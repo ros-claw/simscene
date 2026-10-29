@@ -1,0 +1,20 @@
+{
+  "target_bin_inner_min": [
+    0.21,
+    -0.57,
+    0.3
+  ],
+  "target_bin_inner_max": [
+    0.35,
+    -0.43,
+    0.44
+  ],
+  "cube_half_extent_m": 0.02,
+  "minimum_lift_m": 0.08,
+  "stable_duration_s": 1.0,
+  "max_displacement_m": 0.003,
+  "frame_rate_hz": 60,
+  "open_joint_threshold_rad": -0.4,
+  "containment_tolerance_m": 0.002,
+  "minimum_finger_origin_distance_m": 0.08
+}

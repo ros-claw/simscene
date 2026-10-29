@@ -1,0 +1,102 @@
+{
+  "passed": true,
+  "checks": {
+    "case_copy_hash_matches": true,
+    "agent_session_completed": true,
+    "no_external_intervention": true,
+    "same_scene_and_new_revision": true,
+    "one_retained_belt": true,
+    "checker_matches_frozen_copy": true,
+    "speed_reduced_as_requested": true,
+    "same_items_and_order": true,
+    "spawn_spacing_increased_as_requested": true,
+    "other_functional_configuration_preserved_with_bounded_motion_repairs": true,
+    "completed_run_of_edited_revision": true,
+    "agent_observed_edited_run": true,
+    "agent_saw_completed_run": true,
+    "input_integrity": true,
+    "output_integrity": true,
+    "worker_matches_frozen_package": true,
+    "skill_matches_frozen_package": true,
+    "physics_completed": true,
+    "reference_case_hash_matches": true,
+    "physical_criteria_preserved": true,
+    "all_items_physically_verified": true,
+    "original_bin_bounds_preserved": true,
+    "parallel_cycles_preserved": true,
+    "full_discrete_collision_audit": true,
+    "edited_belt_in_run": true,
+    "edited_schedule_in_run": true,
+    "multiple_actual_spawns": true,
+    "measured_upstream_motion": true,
+    "camera_observation_saved": true
+  },
+  "run_directory": "/tmp/simscene-v30-edit-repairs/retime_repair/state/runs/02ecb900168641c68c8b4888bc812fb3",
+  "case_sha256": "a1b4c8e48ca1524b89fe22a677a8dfb2db3367c7aff6c7805d76c8f0b0f4e591",
+  "measurements": [
+    {
+      "part": "part0000",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0001",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0002",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0003",
+      "speed_m_s": 0.060163373168633905,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0027228861438984
+    },
+    {
+      "part": "part0004",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0005",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0006",
+      "speed_m_s": 0.060163373168633905,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0027228861438984
+    },
+    {
+      "part": "part0007",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0008",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    }
+  ],
+  "scope": "Separate repair case: unchanged task and geometry, bounded motion-target/timeout repairs, measured timing change, and all items physically correct with a complete discrete collision audit."
+}

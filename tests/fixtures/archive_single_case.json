@@ -1,0 +1,14 @@
+{
+  "expected_spawn_order": ["part0000"],
+  "upstream_position": [-0.7, -0.5, 0.32],
+  "belt_id": "belt", "minimum_belt_speed": 0.029,
+  "objects": [{"type":"parallel","robot_id":"arm","part_id":"part0000","part_path":"/World/part0000","class_label":"red",
+    "tracking_phase":2,"grip_phase":3,"lift_phase":4,"transfer_phase":5,"release_phase":7,"pass_x":[],
+    "left_finger":"left_inner_finger","right_finger":"right_inner_finger","contact_fraction":0.8,
+    "bin_min":[0.065,-0.905,0.30],"bin_max":[0.295,-0.675,0.40],
+    "open_direction":"less","open_threshold":-0.4,"evidence_per_item":true}],
+  "common": {"tolerance_m":0.002,"minimum_lift_m":0.08,"minimum_belt_displacement_m":0.02,
+    "retract_distance_m":0.1,"stable_duration_s":1.0,"stable_displacement_m":0.003,
+    "max_linear_velocity_m_s":0.05,"max_angular_velocity_rad_s":0.5,
+    "belt_path":"/World/belt","forbidden_environment_paths":["/World/belt","/World/bin_"]}
+}

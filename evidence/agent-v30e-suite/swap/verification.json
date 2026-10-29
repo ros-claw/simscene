@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "checks": {
+    "case_copy_hash_matches": true,
+    "agent_session_completed": true,
+    "no_external_intervention": true,
+    "same_scene_and_new_revision": true,
+    "checker_matches_frozen_copy": true,
+    "before_classes_have_distinct_owners": true,
+    "requested_owners_swapped": true,
+    "other_class_owners_preserved": true,
+    "completed_run_of_edited_revision": true,
+    "agent_observed_edited_run": true,
+    "agent_saw_completed_run": true,
+    "input_integrity": true,
+    "output_integrity": true,
+    "worker_matches_frozen_package": true,
+    "skill_matches_frozen_package": true,
+    "pinned_physical_case_passed": true,
+    "no_wrong_bin": true,
+    "physical_case_owners_match_edited_scene": true,
+    "changed_classes_physically_placed": true,
+    "camera_observation_saved": true,
+    "changed_classes_in_real_enclosed_bins": true
+  },
+  "run_directory": "/tmp/simscene-agent-v30e-suite/agent-acceptance/swap/state/runs/cd44404ef053449cb360afae1a1da1fa",
+  "measurements": {
+    "correct_by_class": {
+      "blue": 3,
+      "green": 3,
+      "red": 3
+    }
+  },
+  "scope": "Independent checks of requested route changes and recorded physical placement; a separate full-path collision audit is required for safety claims."
+}

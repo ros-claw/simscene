@@ -1,0 +1,16 @@
+SimScene — ROSClaw simulation scene tools
+Copyright 2026 ROSClaw contributors
+
+The SimScene source code is distributed under the Apache License, Version 2.0.
+
+NVIDIA Isaac Sim, NVIDIA USD Search, USD Content Agents, robot models, textures,
+and other third-party simulation assets retain their original licenses and
+terms. They are not relicensed by this repository's LICENSE file. The public
+source repository does not bundle Isaac Sim or the downloaded 3D asset library.
+Profile-generation tools read separately installed configuration files and
+preserve applicable attribution in generated output.
+
+Selected JSON test recordings and validation summaries describe observed
+simulation runs; they do not include the underlying robot model geometry.
+The demonstration video and preview are rendered project outputs, not 3D assets.
+

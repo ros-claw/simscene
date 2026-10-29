@@ -1,0 +1,714 @@
+{
+  "schema_version": "0.1",
+  "scene_id": "parallel",
+  "revision": 1,
+  "world": {
+    "units": "m",
+    "up_axis": "Z"
+  },
+  "objects": {
+    "belt": {
+      "kind": "box",
+      "position": [
+        2,
+        -0.5,
+        0.28
+      ],
+      "size": [
+        5.8,
+        0.15,
+        0.04
+      ],
+      "collision": true,
+      "conveyor": {
+        "speed_m_s": 0.03,
+        "direction": [
+          1,
+          0,
+          0
+        ]
+      }
+    },
+    "kawasaki": {
+      "kind": "asset",
+      "asset_path": "/data/omniverse/Assets/Isaac/6.0/Isaac/Robots/Kawasaki/RS007L/rs007l_onrobot_rg2.usd",
+      "pose_follower": {
+        "experimental": true,
+        "model_directory": "/tmp/simscene-three-arm5-07NcqG/runs/b021d418703e4a538da8fe9d839987c4/models/kawasaki",
+        "tool_frame": "gripper_center",
+        "tcp_prim": "gripper_center",
+        "initial_joints": {
+          "joint1": 1.5707829843,
+          "joint2": 0.1642120063,
+          "joint3": -1.8665936187,
+          "joint4": -1.23875e-05,
+          "joint5": -1.1107880308,
+          "joint6": 0,
+          "finger_joint": -0.5,
+          "left_inner_knuckle_joint": 0.5,
+          "left_inner_finger_joint": -0.5,
+          "right_outer_knuckle_joint": 0.5,
+          "right_inner_knuckle_joint": 0.5,
+          "right_inner_finger_joint": -0.5
+        },
+        "target_position": [
+          -0.05,
+          -0.5,
+          0.31
+        ],
+        "gripper_urdf": "/tmp/simscene-three-arm5-07NcqG/runs/b021d418703e4a538da8fe9d839987c4/models/kawasaki/robot.urdf",
+        "gripper_joint": "finger_joint",
+        "monitor_collisions": true,
+        "sequence": [
+          {
+            "type": "track",
+            "object": "part_k",
+            "offset": [
+              0,
+              0,
+              -0.01
+            ],
+            "steps": 90
+          },
+          {
+            "type": "track",
+            "object": "part_k",
+            "offset": [
+              0,
+              0,
+              -0.01
+            ],
+            "steps": 180,
+            "gripper_value": 0.5
+          },
+          {
+            "type": "move",
+            "object": "part_k",
+            "offset": [
+              0,
+              0,
+              0.23
+            ],
+            "min_steps": 120,
+            "max_steps": 400
+          },
+          {
+            "type": "move",
+            "position": [
+              0.18,
+              -0.79,
+              0.55
+            ],
+            "min_steps": 150,
+            "max_steps": 500
+          },
+          {
+            "type": "move",
+            "position": [
+              0.18,
+              -0.79,
+              0.32
+            ],
+            "min_steps": 150,
+            "max_steps": 500
+          },
+          {
+            "type": "gripper",
+            "value": -0.5,
+            "steps": 180
+          },
+          {
+            "type": "move",
+            "position": [
+              0.18,
+              -0.79,
+              0.55
+            ],
+            "min_steps": 120,
+            "max_steps": 400
+          }
+        ]
+      }
+    },
+    "part_k": {
+      "kind": "box",
+      "position": [
+        -0.05,
+        -0.5,
+        0.32
+      ],
+      "size": [
+        0.04,
+        0.04,
+        0.04
+      ],
+      "dynamic": true,
+      "class_label": "red"
+    },
+    "bin_k_floor": {
+      "kind": "box",
+      "position": [
+        0.18,
+        -0.79,
+        0.28
+      ],
+      "size": [
+        0.25,
+        0.25,
+        0.04
+      ],
+      "collision": true
+    },
+    "bin_k_wl": {
+      "kind": "box",
+      "position": [
+        0.055,
+        -0.79,
+        0.35
+      ],
+      "size": [
+        0.02,
+        0.27,
+        0.1
+      ],
+      "collision": true
+    },
+    "bin_k_wr": {
+      "kind": "box",
+      "position": [
+        0.305,
+        -0.79,
+        0.35
+      ],
+      "size": [
+        0.02,
+        0.27,
+        0.1
+      ],
+      "collision": true
+    },
+    "bin_k_wf": {
+      "kind": "box",
+      "position": [
+        0.18,
+        -0.915,
+        0.35
+      ],
+      "size": [
+        0.23,
+        0.02,
+        0.1
+      ],
+      "collision": true
+    },
+    "bin_k_wb": {
+      "kind": "box",
+      "position": [
+        0.18,
+        -0.665,
+        0.35
+      ],
+      "size": [
+        0.23,
+        0.02,
+        0.1
+      ],
+      "collision": true
+    },
+    "franka": {
+      "kind": "asset",
+      "asset_path": "/data/omniverse/Assets/Isaac/6.0/Isaac/Robots/FrankaRobotics/FrankaPanda/franka.usd",
+      "position": [
+        2.0,
+        -0.05,
+        0
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "pose_follower": {
+        "experimental": true,
+        "model_directory": "/tmp/simscene-three-arm5-07NcqG/runs/b021d418703e4a538da8fe9d839987c4/models/franka",
+        "tool_frame": "simscene_tcp",
+        "tcp_prim": "panda_hand",
+        "tcp_offset": [
+          0,
+          0,
+          0.1034
+        ],
+        "initial_joints": {
+          "panda_joint1": -0.0114430609,
+          "panda_joint2": -0.1461084292,
+          "panda_joint3": 0.0110332323,
+          "panda_joint4": -2.2183429949,
+          "panda_joint5": 0.0018318037,
+          "panda_joint6": 2.0722426326,
+          "panda_joint7": 0.7839902483,
+          "panda_finger_joint1": 0.04,
+          "panda_finger_joint2": 0.04
+        },
+        "target_position": [
+          2.0,
+          -0.5,
+          0.34
+        ],
+        "gripper_urdf": "/tmp/simscene-three-arm5-07NcqG/runs/b021d418703e4a538da8fe9d839987c4/models/franka/robot.urdf",
+        "gripper_joint": "panda_finger_joint1",
+        "gripper_mapping": {
+          "panda_finger_joint2": 1.0
+        },
+        "monitor_collisions": true,
+        "max_joint_speed": 0.5,
+        "sequence": [
+          {
+            "type": "track",
+            "object": "part_f",
+            "offset": [
+              0,
+              0,
+              0.02
+            ],
+            "steps": 90
+          },
+          {
+            "type": "track",
+            "object": "part_f",
+            "offset": [
+              0,
+              0,
+              0.02
+            ],
+            "steps": 180,
+            "gripper_value": 0.0
+          },
+          {
+            "type": "move",
+            "object": "part_f",
+            "offset": [
+              0,
+              0,
+              0.2
+            ],
+            "min_steps": 30,
+            "max_steps": 600,
+            "max_joint_speed": 1.3,
+            "settle_steps": 15
+          },
+          {
+            "type": "move",
+            "position": [
+              2.32,
+              -0.64,
+              0.55
+            ],
+            "min_steps": 30,
+            "max_steps": 600,
+            "max_joint_speed": 1.3,
+            "settle_steps": 15
+          },
+          {
+            "type": "move",
+            "position": [
+              2.32,
+              -0.64,
+              0.37
+            ],
+            "min_steps": 30,
+            "max_steps": 600,
+            "max_joint_speed": 1.3,
+            "settle_steps": 15
+          },
+          {
+            "type": "gripper",
+            "value": 0.04,
+            "steps": 180
+          },
+          {
+            "type": "move",
+            "position": [
+              2.32,
+              -0.64,
+              0.55
+            ],
+            "min_steps": 30,
+            "max_steps": 600,
+            "max_joint_speed": 1.3,
+            "settle_steps": 15
+          }
+        ]
+      }
+    },
+    "part_f": {
+      "kind": "box",
+      "position": [
+        2.0,
+        -0.5,
+        0.32
+      ],
+      "size": [
+        0.04,
+        0.04,
+        0.04
+      ],
+      "dynamic": true,
+      "class_label": "green"
+    },
+    "bin_f_floor": {
+      "kind": "box",
+      "position": [
+        2.32,
+        -0.64,
+        0.28
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "size": [
+        0.24,
+        0.24,
+        0.04
+      ],
+      "collision": true
+    },
+    "bin_f_left": {
+      "kind": "box",
+      "position": [
+        2.32,
+        -0.52,
+        0.33
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "size": [
+        0.02,
+        0.26,
+        0.06
+      ],
+      "collision": true
+    },
+    "bin_f_right": {
+      "kind": "box",
+      "position": [
+        2.32,
+        -0.76,
+        0.33
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "size": [
+        0.02,
+        0.26,
+        0.06
+      ],
+      "collision": true
+    },
+    "bin_f_front": {
+      "kind": "box",
+      "position": [
+        2.2,
+        -0.64,
+        0.33
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "size": [
+        0.22,
+        0.02,
+        0.06
+      ],
+      "collision": true
+    },
+    "bin_f_back": {
+      "kind": "box",
+      "position": [
+        2.44,
+        -0.64,
+        0.33
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "size": [
+        0.22,
+        0.02,
+        0.06
+      ],
+      "collision": true
+    },
+    "ur10": {
+      "kind": "asset",
+      "asset_path": "/data/omniverse/Assets/Isaac/6.0/Isaac/Robots/UniversalRobots/ur10/ur10.usd",
+      "position": [
+        4.0,
+        -0.05,
+        0
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "variants": {
+        "Gripper": "Short_Suction"
+      },
+      "pose_follower": {
+        "experimental": true,
+        "model_directory": "/tmp/simscene-three-arm5-07NcqG/runs/b021d418703e4a538da8fe9d839987c4/models/ur10",
+        "tool_frame": "simscene_suction_tcp",
+        "tcp_prim": "ee_link",
+        "tcp_offset": [
+          0.15850000083446503,
+          -4.3100304851845515e-33,
+          -3.519407006590592e-17
+        ],
+        "tcp_orientation_wxyz": [
+          0.7071067094802856,
+          0.0,
+          0.7071068286895752,
+          0.0
+        ],
+        "initial_joints": {
+          "shoulder_pan_joint": -0.3340939157,
+          "shoulder_lift_joint": -1.9129483852,
+          "elbow_joint": 2.1030217123,
+          "wrist_1_joint": -1.7608695245,
+          "wrist_2_joint": -1.5707965136,
+          "wrist_3_joint": 1.2367162245
+        },
+        "target_position": [
+          4.0,
+          -0.5,
+          0.345
+        ],
+        "suction": {
+          "prim": "ee_link/SurfaceGripper",
+          "max_grip_distance": 0.02,
+          "force_limit": 100
+        },
+        "max_joint_speed": 0.5,
+        "monitor_collisions": true,
+        "sequence": [
+          {
+            "type": "track",
+            "object": "part_u",
+            "offset": [
+              0,
+              0,
+              0.025
+            ],
+            "steps": 90
+          },
+          {
+            "type": "track",
+            "object": "part_u",
+            "offset": [
+              0,
+              0,
+              0.025
+            ],
+            "steps": 120,
+            "gripper_value": 0.5,
+            "required_object": "part_u"
+          },
+          {
+            "type": "move",
+            "object": "part_u",
+            "offset": [
+              0,
+              0,
+              0.23
+            ],
+            "min_steps": 30,
+            "max_steps": 600,
+            "max_joint_speed": 0.8,
+            "settle_steps": 4
+          },
+          {
+            "type": "move",
+            "position": [
+              4.22,
+              -0.79,
+              0.55
+            ],
+            "min_steps": 30,
+            "max_steps": 600,
+            "max_joint_speed": 1.3,
+            "settle_steps": 15
+          },
+          {
+            "type": "move",
+            "position": [
+              4.22,
+              -0.79,
+              0.345
+            ],
+            "min_steps": 30,
+            "max_steps": 600,
+            "max_joint_speed": 1.3,
+            "settle_steps": 15
+          },
+          {
+            "type": "gripper",
+            "value": -0.5,
+            "steps": 120
+          },
+          {
+            "type": "move",
+            "position": [
+              4.22,
+              -0.79,
+              0.55
+            ],
+            "min_steps": 30,
+            "max_steps": 600,
+            "max_joint_speed": 1.3,
+            "settle_steps": 15
+          }
+        ]
+      }
+    },
+    "part_u": {
+      "kind": "box",
+      "position": [
+        4.0,
+        -0.5,
+        0.32
+      ],
+      "size": [
+        0.04,
+        0.04,
+        0.04
+      ],
+      "dynamic": true,
+      "class_label": "blue"
+    },
+    "bin_u_floor": {
+      "kind": "box",
+      "position": [
+        4.22,
+        -0.79,
+        0.28
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "size": [
+        0.32,
+        0.32,
+        0.04
+      ],
+      "collision": true
+    },
+    "bin_u_left": {
+      "kind": "box",
+      "position": [
+        4.22,
+        -0.63,
+        0.35
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "size": [
+        0.02,
+        0.34,
+        0.1
+      ],
+      "collision": true
+    },
+    "bin_u_right": {
+      "kind": "box",
+      "position": [
+        4.22,
+        -0.9500000000000001,
+        0.35
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "size": [
+        0.02,
+        0.34,
+        0.1
+      ],
+      "collision": true
+    },
+    "bin_u_front": {
+      "kind": "box",
+      "position": [
+        4.06,
+        -0.79,
+        0.35
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "size": [
+        0.3,
+        0.02,
+        0.1
+      ],
+      "collision": true
+    },
+    "bin_u_back": {
+      "kind": "box",
+      "position": [
+        4.38,
+        -0.79,
+        0.35
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        -0.7071067811865476
+      ],
+      "size": [
+        0.3,
+        0.02,
+        0.1
+      ],
+      "collision": true
+    }
+  },
+  "requests": {
+    "setup": {
+      "hash": "2dc5908b753029ad8d149ae70b0e3bfc977b8bfd9a035727d8a4aaff6fe23b10",
+      "revision": 1
+    }
+  }
+}

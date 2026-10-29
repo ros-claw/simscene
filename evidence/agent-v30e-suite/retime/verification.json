@@ -1,0 +1,96 @@
+{
+  "passed": false,
+  "checks": {
+    "case_copy_hash_matches": true,
+    "agent_session_completed": true,
+    "no_external_intervention": true,
+    "same_scene_and_new_revision": true,
+    "one_retained_belt": true,
+    "checker_matches_frozen_copy": true,
+    "speed_reduced_as_requested": true,
+    "same_items_and_order": true,
+    "spawn_spacing_increased_as_requested": true,
+    "other_functional_configuration_preserved": true,
+    "completed_run_of_edited_revision": true,
+    "agent_observed_edited_run": true,
+    "agent_saw_completed_run": false,
+    "input_integrity": true,
+    "output_integrity": true,
+    "worker_matches_frozen_package": true,
+    "skill_matches_frozen_package": true,
+    "physics_completed": false,
+    "edited_belt_in_run": true,
+    "edited_schedule_in_run": true,
+    "multiple_actual_spawns": true,
+    "measured_upstream_motion": true,
+    "camera_observation_saved": true
+  },
+  "run_directory": "/tmp/simscene-agent-v30e-suite/agent-acceptance/retime/state/runs/ed8e942b6e0f42cc967ded4e7b84b776",
+  "case_sha256": "f3e85d827975cd4216b279ecc326988a95f456d30399e2c197fef4cbd0be5149",
+  "measurements": [
+    {
+      "part": "part0000",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0001",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0002",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0003",
+      "speed_m_s": 0.060163373168633905,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0027228861438984
+    },
+    {
+      "part": "part0004",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0005",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0006",
+      "speed_m_s": 0.060163373168633905,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0027228861438984
+    },
+    {
+      "part": "part0007",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    },
+    {
+      "part": "part0008",
+      "speed_m_s": 0.06253694115852823,
+      "samples": 49,
+      "belt_contact": true,
+      "ratio_to_command": 1.0422823526421372
+    }
+  ],
+  "scope": "Checks the requested relative timing change and physical upstream displacement in a completed run; does not claim full sorting acceptance."
+}

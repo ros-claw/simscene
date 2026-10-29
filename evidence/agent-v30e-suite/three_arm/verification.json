@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "checks": {
+    "case_copy_hash_matches": true,
+    "agent_session_completed": true,
+    "no_external_intervention": true,
+    "checker_matches_frozen_copy": true,
+    "completed_run": true,
+    "agent_observed_selected_run": true,
+    "agent_saw_completed_run": true,
+    "three_distinct_listed_robots": true,
+    "online_discovery_and_acquisition": true,
+    "robot_bodies_observed": true,
+    "nonzero_conveyor": true,
+    "cameras_and_images": true,
+    "camera_positions_distinct": true,
+    "top_view_observed": true,
+    "closeup_view_observed": true,
+    "overview_view_observed": true,
+    "verified_class_counters": true,
+    "controller_indicators": true,
+    "indicators_follow_observed_phases": true,
+    "multiple_spawned_items_per_class": true,
+    "physical_chute_feeds_belt": true,
+    "physical_recovery_tray_geometry": true,
+    "input_integrity": true,
+    "output_integrity": true,
+    "worker_matches_frozen_package": true,
+    "skill_matches_frozen_package": true,
+    "pinned_physical_case_passed": true,
+    "distinct_robot_per_class": true,
+    "physical_success_per_class": true,
+    "no_wrong_bin": true,
+    "simultaneous_robot_cycles": true,
+    "displayed_counts_match_verified_ledger": true,
+    "correct_objects_in_distinct_physical_bins": true
+  },
+  "run_directory": "/tmp/simscene-agent-v30e-suite/agent-acceptance/three_arm/state/runs/883489dbc37b40148b373458d81af4d7",
+  "spawned_by_class": {
+    "red": 3,
+    "green": 3,
+    "blue": 3
+  },
+  "correct_by_class": {
+    "red": 3,
+    "green": 3,
+    "blue": 3
+  },
+  "robot_ids": [
+    "panda",
+    "rs007l",
+    "ur10"
+  ],
+  "case_sha256": "c27381f56e812bf491be89ccb08ea91758cee4c235b693824504ae0b8a9b7282",
+  "scope": "One fresh-agent three-arm composition and physical run; it does not replace the frozen multi-seed or collision-safety suite."
+}

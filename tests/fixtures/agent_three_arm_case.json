@@ -1,0 +1,14 @@
+{
+  "schema": "simscene.agent_three_arm_case.v1",
+  "robot_asset_suffixes": [
+    "/Kawasaki/RS007L/rs007l_onrobot_rg2.usd",
+    "/FrankaRobotics/FrankaPanda/franka.usd",
+    "/UniversalRobots/ur10/ur10.usd"
+  ],
+  "classes": ["red", "green", "blue"],
+  "minimum_items_per_class": 2,
+  "minimum_parallel_steps": 60,
+  "minimum_cameras": 3,
+  "maximum_closeup_distance_m": 3.5,
+  "scope": "One fresh-agent three-arm composition and physical run; it does not replace the frozen multi-seed or collision-safety suite."
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "simscene.agent_retime_repair_case.v1",
+  "speed_factor": 0.75,
+  "spawn_interval_factor": 1.5,
+  "relative_tolerance": 0.02,
+  "sample_start_steps_after_spawn": 60,
+  "sample_end_steps_after_spawn": 300,
+  "minimum_samples": 10,
+  "measured_speed_ratio_min": 0.6,
+  "measured_speed_ratio_max": 1.4,
+  "maximum_move_target_shift_m": 0.05,
+  "maximum_move_timeout_factor": 2.0,
+  "scope": "Separate repair case: unchanged task and geometry, bounded motion-target/timeout repairs, measured timing change, and all items physically correct with a complete discrete collision audit."
+}

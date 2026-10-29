@@ -1,0 +1,14 @@
+{
+  "robot_id": "arm",
+  "common": {
+    "left_finger": "left_inner_finger", "right_finger": "right_inner_finger", "contact_fraction": 0.8,
+    "tolerance_m": 0.002, "minimum_lift_m": 0.08, "minimum_belt_displacement_m": 0.02,
+    "open_direction": "less", "open_threshold": -0.4, "retract_distance_m": 0.1,
+    "stable_duration_s": 1.0, "stable_displacement_m": 0.003,
+    "forbidden_environment_paths": ["/World/belt", "/World/bin_"]
+  },
+  "objects": [
+    {"part_id":"part_a", "part_path":"/World/part_a", "class_label":"red", "grip_phase":2, "tracking_phase":1, "lift_phase":3, "transfer_phase":4, "release_phase":6, "bin_min":[0.065,-0.905,0.30], "bin_max":[0.295,-0.675,0.40]},
+    {"part_id":"part_b", "part_path":"/World/part_b", "class_label":"blue", "grip_phase":12, "tracking_phase":11, "lift_phase":13, "transfer_phase":14, "release_phase":16, "bin_min":[-0.295,-0.905,0.30], "bin_max":[-0.065,-0.675,0.40]}
+  ]
+}

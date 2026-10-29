@@ -1,0 +1,12 @@
+{
+  "schema": "simscene.agent_workbench_case.v1",
+  "robot_asset_suffix": "/FrankaRobotics/FrankaPanda/franka.usd",
+  "minimum_bin_count": 4,
+  "minimum_bins_per_row": 2,
+  "row_tolerance_m": 0.05,
+  "minimum_row_separation_m": 0.10,
+  "minimum_orbit_angle_rad": 5.654866776461628,
+  "minimum_camera_samples": 10,
+  "minimum_simulation_steps": 120,
+  "scope": "Generic single-arm workbench, two rows of open bins, actual camera movement and recorded Isaac run; this case does not claim manipulation or collision safety."
+}

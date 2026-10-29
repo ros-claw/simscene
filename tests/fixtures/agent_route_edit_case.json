@@ -1,0 +1,7 @@
+{
+  "schema": "simscene.agent_route_edit_case.v1",
+  "swap_classes": ["red", "green"],
+  "minimum_correct_per_changed_class": 1,
+  "minimum_bin_move_m": 0.2,
+  "scope": "Independent checks of requested route changes and recorded physical placement; a separate full-path collision audit is required for safety claims."
+}

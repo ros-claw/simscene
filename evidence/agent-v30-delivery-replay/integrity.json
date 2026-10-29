@@ -1,0 +1,54 @@
+{
+  "input": {
+    "passed": true,
+    "checks": {
+      "spec.json": true,
+      "scene.usda": true,
+      "asset-lock.json": true,
+      "runtime-lock.json": true,
+      "acceptance_case": true,
+      "asset_lock_coverage": true,
+      "controller_lock_coverage": true,
+      "asset:rs007l": true,
+      "asset:panda": true,
+      "asset:header": true,
+      "asset:rs_label": true,
+      "asset:panda_label": true,
+      "asset:ur_label": true,
+      "asset:feed_label": true,
+      "asset:recovery_label": true,
+      "asset:conveyor_frame": true,
+      "asset:ur10": true,
+      "controller:rs007l": true,
+      "controller:panda": true,
+      "controller:ur10": true,
+      "worker_code_snapshot": true,
+      "runtime_launcher": true,
+      "queue_launcher": true
+    },
+    "errors": [],
+    "scope": "recorded run input integrity; external files may change after this check and physics success is not established"
+  },
+  "output": {
+    "passed": true,
+    "partial": false,
+    "checks": {
+      "result.json": true,
+      "camera_panorama.png": true,
+      "camera_overhead.png": true,
+      "camera_grip_close.png": true,
+      "camera_suction_close.png": true,
+      "camera_panorama.mp4": true,
+      "camera_panorama.ffmpeg.log": true,
+      "camera_overhead.mp4": true,
+      "camera_overhead.ffmpeg.log": true,
+      "camera_grip_close.mp4": true,
+      "camera_grip_close.ffmpeg.log": true,
+      "camera_suction_close.mp4": true,
+      "camera_suction_close.ffmpeg.log": true,
+      "archive-ledger.jsonl": true
+    },
+    "errors": [],
+    "scope": "saved artifact hashes; not a signature or proof of task success"
+  }
+}

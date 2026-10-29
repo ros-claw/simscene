@@ -1,0 +1,17 @@
+{
+  "state": "complete",
+  "sessions": [
+    {
+      "name": "retime_repair",
+      "agent_exit_code": 0,
+      "passed": true,
+      "directory": "/tmp/simscene-v30-edit-repairs/retime_repair"
+    },
+    {
+      "name": "relocate_repair",
+      "agent_exit_code": 0,
+      "passed": true,
+      "directory": "/tmp/simscene-v30-edit-repairs/relocate_repair"
+    }
+  ]
+}

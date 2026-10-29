@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": {
+    "session_completed": true,
+    "no_external_intervention": true,
+    "checker_frozen": true,
+    "public_search_returned_candidates": true,
+    "selected_result_was_inspected_and_acquired": true,
+    "completed_run_used_selected_asset": true,
+    "agent_observed_selected_run": true,
+    "agent_saw_completed_run": true,
+    "input_integrity": true,
+    "output_integrity": true,
+    "worker_matches_frozen_package": true,
+    "skill_matches_frozen_package": true,
+    "camera_observation_saved": true,
+    "selected_asset_has_composed_prims": true
+  },
+  "run_directory": "/tmp/simscene-agent-v30d-suite/agent-acceptance/online/state/runs/a53f13552f8e47a8917d290021354355",
+  "scope": "One fresh session and one selected online model; does not establish that every indexed asset or dependency is available."
+}

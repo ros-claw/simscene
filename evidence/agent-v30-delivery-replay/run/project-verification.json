@@ -1,0 +1,411 @@
+{
+  "checks": {
+    "exact_spawn_order": true,
+    "spawn_classes_match": true,
+    "archive_records_match_spawned_objects": true,
+    "no_pending_spawns": true,
+    "nonzero_belt": true,
+    "no_arm_arm_contact": true,
+    "no_forbidden_robot_environment_contact": true,
+    "no_wrong_robot_contact": true,
+    "physics_duration_completed": true,
+    "contacts_not_truncated": true,
+    "minimum_overall_success_rate": true,
+    "minimum_per_robot_success_rate": true,
+    "no_wrong_bin": true,
+    "simultaneous_cycles_observed": true
+  },
+  "objects": {
+    "part0000": {
+      "checks": {
+        "sequence_completed": true,
+        "suction_acquired_target": true,
+        "retained_in_each_held_phase": true,
+        "suction_released": true,
+        "contained": true,
+        "stable": true,
+        "no_robot_belt_table_or_bin_contact": true,
+        "contacts_not_truncated": true,
+        "belt_motion_observed": true,
+        "retracted": true,
+        "archive_after_retraction": true,
+        "lifted": true,
+        "linear_and_angular_speed_stable": true,
+        "archive_matches_observation": true,
+        "correct_class": true,
+        "origin_upstream": true,
+        "passed_earlier_stations": true,
+        "belt_contact_during_tracking": true
+      },
+      "passed": true,
+      "forbidden_contacts": [],
+      "scope": "single object; does not establish general path safety, stream throughput or multi-arm acceptance"
+    },
+    "part0001": {
+      "checks": {
+        "sequence_completed": true,
+        "lifted": true,
+        "left_lift_contact": true,
+        "right_lift_contact": true,
+        "left_transfer_contact": true,
+        "right_transfer_contact": true,
+        "opened": true,
+        "retracted": true,
+        "contained": true,
+        "stable": true,
+        "no_forbidden_robot_environment_contact": true,
+        "contacts_not_truncated": true,
+        "belt_motion_observed": true,
+        "belt_contact_during_tracking": true,
+        "archive_after_retraction": true,
+        "linear_and_angular_speed_stable": true,
+        "archive_matches_observation": true,
+        "correct_class": true,
+        "origin_upstream": true,
+        "passed_earlier_stations": true
+      },
+      "passed": true,
+      "forbidden_contacts": [],
+      "scope": "one object; no repeated-run reliability, full self-collision or multi-arm validation"
+    },
+    "part0002": {
+      "checks": {
+        "sequence_completed": true,
+        "lifted": true,
+        "left_lift_contact": true,
+        "right_lift_contact": true,
+        "left_transfer_contact": true,
+        "right_transfer_contact": true,
+        "opened": true,
+        "retracted": true,
+        "contained": true,
+        "stable": true,
+        "no_forbidden_robot_environment_contact": true,
+        "contacts_not_truncated": true,
+        "belt_motion_observed": true,
+        "belt_contact_during_tracking": true,
+        "archive_after_retraction": true,
+        "linear_and_angular_speed_stable": true,
+        "archive_matches_observation": true,
+        "correct_class": true,
+        "origin_upstream": true,
+        "passed_earlier_stations": true
+      },
+      "passed": true,
+      "forbidden_contacts": [],
+      "scope": "one object; no repeated-run reliability, full self-collision or multi-arm validation"
+    },
+    "part0003": {
+      "checks": {
+        "sequence_completed": true,
+        "suction_acquired_target": true,
+        "retained_in_each_held_phase": true,
+        "suction_released": true,
+        "contained": true,
+        "stable": true,
+        "no_robot_belt_table_or_bin_contact": true,
+        "contacts_not_truncated": true,
+        "belt_motion_observed": true,
+        "retracted": true,
+        "archive_after_retraction": true,
+        "lifted": true,
+        "linear_and_angular_speed_stable": true,
+        "archive_matches_observation": true,
+        "correct_class": true,
+        "origin_upstream": true,
+        "passed_earlier_stations": true,
+        "belt_contact_during_tracking": true
+      },
+      "passed": true,
+      "forbidden_contacts": [],
+      "scope": "single object; does not establish general path safety, stream throughput or multi-arm acceptance"
+    },
+    "part0004": {
+      "checks": {
+        "sequence_completed": true,
+        "lifted": true,
+        "left_lift_contact": true,
+        "right_lift_contact": true,
+        "left_transfer_contact": true,
+        "right_transfer_contact": true,
+        "opened": true,
+        "retracted": true,
+        "contained": true,
+        "stable": true,
+        "no_forbidden_robot_environment_contact": true,
+        "contacts_not_truncated": true,
+        "belt_motion_observed": true,
+        "belt_contact_during_tracking": true,
+        "archive_after_retraction": true,
+        "linear_and_angular_speed_stable": true,
+        "archive_matches_observation": true,
+        "correct_class": true,
+        "origin_upstream": true,
+        "passed_earlier_stations": true
+      },
+      "passed": true,
+      "forbidden_contacts": [],
+      "scope": "one object; no repeated-run reliability, full self-collision or multi-arm validation"
+    },
+    "part0005": {
+      "checks": {
+        "sequence_completed": true,
+        "lifted": true,
+        "left_lift_contact": true,
+        "right_lift_contact": true,
+        "left_transfer_contact": true,
+        "right_transfer_contact": true,
+        "opened": true,
+        "retracted": true,
+        "contained": true,
+        "stable": true,
+        "no_forbidden_robot_environment_contact": true,
+        "contacts_not_truncated": true,
+        "belt_motion_observed": true,
+        "belt_contact_during_tracking": true,
+        "archive_after_retraction": true,
+        "linear_and_angular_speed_stable": true,
+        "archive_matches_observation": true,
+        "correct_class": true,
+        "origin_upstream": true,
+        "passed_earlier_stations": true
+      },
+      "passed": true,
+      "forbidden_contacts": [],
+      "scope": "one object; no repeated-run reliability, full self-collision or multi-arm validation"
+    },
+    "part0006": {
+      "checks": {
+        "sequence_completed": true,
+        "suction_acquired_target": true,
+        "retained_in_each_held_phase": true,
+        "suction_released": true,
+        "contained": true,
+        "stable": true,
+        "no_robot_belt_table_or_bin_contact": true,
+        "contacts_not_truncated": true,
+        "belt_motion_observed": true,
+        "retracted": true,
+        "archive_after_retraction": true,
+        "lifted": true,
+        "linear_and_angular_speed_stable": true,
+        "archive_matches_observation": true,
+        "correct_class": true,
+        "origin_upstream": true,
+        "passed_earlier_stations": true,
+        "belt_contact_during_tracking": true
+      },
+      "passed": true,
+      "forbidden_contacts": [],
+      "scope": "single object; does not establish general path safety, stream throughput or multi-arm acceptance"
+    },
+    "part0007": {
+      "checks": {
+        "sequence_completed": true,
+        "lifted": true,
+        "left_lift_contact": true,
+        "right_lift_contact": true,
+        "left_transfer_contact": true,
+        "right_transfer_contact": true,
+        "opened": true,
+        "retracted": true,
+        "contained": true,
+        "stable": true,
+        "no_forbidden_robot_environment_contact": true,
+        "contacts_not_truncated": true,
+        "belt_motion_observed": true,
+        "belt_contact_during_tracking": true,
+        "archive_after_retraction": true,
+        "linear_and_angular_speed_stable": true,
+        "archive_matches_observation": true,
+        "correct_class": true,
+        "origin_upstream": true,
+        "passed_earlier_stations": true
+      },
+      "passed": true,
+      "forbidden_contacts": [],
+      "scope": "one object; no repeated-run reliability, full self-collision or multi-arm validation"
+    },
+    "part0008": {
+      "checks": {
+        "sequence_completed": true,
+        "lifted": true,
+        "left_lift_contact": true,
+        "right_lift_contact": true,
+        "left_transfer_contact": true,
+        "right_transfer_contact": true,
+        "opened": true,
+        "retracted": true,
+        "contained": true,
+        "stable": true,
+        "no_forbidden_robot_environment_contact": true,
+        "contacts_not_truncated": true,
+        "belt_motion_observed": true,
+        "belt_contact_during_tracking": true,
+        "archive_after_retraction": true,
+        "linear_and_angular_speed_stable": true,
+        "archive_matches_observation": true,
+        "correct_class": true,
+        "origin_upstream": true,
+        "passed_earlier_stations": true
+      },
+      "passed": true,
+      "forbidden_contacts": [],
+      "scope": "one object; no repeated-run reliability, full self-collision or multi-arm validation"
+    }
+  },
+  "cross_arm_contacts": [],
+  "wrong_robot_contacts": [],
+  "cross_arm_proximity": [],
+  "wrong_robot_proximity": [],
+  "environment_contacts": [],
+  "ledger": {
+    "generated": 9,
+    "correct": 9,
+    "wrong_bin": 0,
+    "failed_or_unfinished": 0,
+    "success_rate": 1.0,
+    "per_robot": {
+      "panda": {
+        "generated": 3,
+        "correct": 3,
+        "success_rate": 1.0
+      },
+      "rs007l": {
+        "generated": 3,
+        "correct": 3,
+        "success_rate": 1.0
+      },
+      "ur10": {
+        "generated": 3,
+        "correct": 3,
+        "success_rate": 1.0
+      }
+    },
+    "objects": [
+      {
+        "id": "part0000",
+        "class_label": "blue",
+        "state": "correct"
+      },
+      {
+        "id": "part0001",
+        "class_label": "green",
+        "state": "correct"
+      },
+      {
+        "id": "part0002",
+        "class_label": "red",
+        "state": "correct"
+      },
+      {
+        "id": "part0003",
+        "class_label": "blue",
+        "state": "correct"
+      },
+      {
+        "id": "part0004",
+        "class_label": "green",
+        "state": "correct"
+      },
+      {
+        "id": "part0005",
+        "class_label": "red",
+        "state": "correct"
+      },
+      {
+        "id": "part0006",
+        "class_label": "blue",
+        "state": "correct"
+      },
+      {
+        "id": "part0007",
+        "class_label": "green",
+        "state": "correct"
+      },
+      {
+        "id": "part0008",
+        "class_label": "red",
+        "state": "correct"
+      }
+    ]
+  },
+  "parallel_steps": [
+    2985,
+    3458
+  ],
+  "passed": true,
+  "scope": "single stream run; repeated-run reliability and formal acceptance require separate checks",
+  "collision_audit": {
+    "passed": true,
+    "checks": {
+      "case_policy_matches_scene": true,
+      "self_collision_enabled": true,
+      "collision_shapes_covered": true,
+      "each_step_queried": true,
+      "queries_complete": true,
+      "contact_reporting_complete": true,
+      "no_unexpected_overlaps_or_contacts": true
+    },
+    "unexpected": [],
+    "shape_count": 92,
+    "overlap_pairs": 37,
+    "positive_separation_contact_records": 106,
+    "scope": "Discrete per-physics-step PhysX queries with convex-hull mesh approximations plus reported zero-or-negative-separation contacts. Positive-separation contact records are counted separately. Approved mechanical pairs and assigned grasp contacts are excluded. No swept-volume, unmodelled-geometry or physical-robot safety claim."
+  },
+  "case_type": "stream",
+  "case_pinned_to_run": true,
+  "archive_ledger_verified": true,
+  "input_integrity": {
+    "passed": true,
+    "checks": {
+      "spec.json": true,
+      "scene.usda": true,
+      "asset-lock.json": true,
+      "runtime-lock.json": true,
+      "acceptance_case": true,
+      "asset_lock_coverage": true,
+      "controller_lock_coverage": true,
+      "asset:rs007l": true,
+      "asset:panda": true,
+      "asset:header": true,
+      "asset:rs_label": true,
+      "asset:panda_label": true,
+      "asset:ur_label": true,
+      "asset:feed_label": true,
+      "asset:recovery_label": true,
+      "asset:conveyor_frame": true,
+      "asset:ur10": true,
+      "controller:rs007l": true,
+      "controller:panda": true,
+      "controller:ur10": true,
+      "worker_code_snapshot": true,
+      "runtime_launcher": true,
+      "queue_launcher": true
+    },
+    "errors": [],
+    "scope": "recorded run input integrity; external files may change after this check and physics success is not established"
+  },
+  "evidence_integrity": {
+    "passed": true,
+    "partial": false,
+    "checks": {
+      "result.json": true,
+      "camera_panorama.png": true,
+      "camera_overhead.png": true,
+      "camera_grip_close.png": true,
+      "camera_suction_close.png": true,
+      "camera_panorama.mp4": true,
+      "camera_panorama.ffmpeg.log": true,
+      "camera_overhead.mp4": true,
+      "camera_overhead.ffmpeg.log": true,
+      "camera_grip_close.mp4": true,
+      "camera_grip_close.ffmpeg.log": true,
+      "camera_suction_close.mp4": true,
+      "camera_suction_close.ffmpeg.log": true,
+      "archive-ledger.jsonl": true
+    },
+    "errors": [],
+    "scope": "saved artifact hashes; not a signature or proof of task success"
+  }
+}

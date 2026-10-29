@@ -1,0 +1,39 @@
+# Generated Python/build files
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+
+# Credentials, local settings, caches and simulation output
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.codex/
+.agents/
+state/
+cache/
+logs/
+*.log
+*.whl
+
+# These local archives include downloaded third-party models and raw sessions.
+# Only explicitly reviewed reports/test fixtures are added with git add -f.
+/evidence/
+/deliverables/
+*.usd
+*.usda
+*.usdc
+*.usdz
+*.urdf
+*.xrdf
+*.mp4
+!docs/media/triarm-demo.mp4
+

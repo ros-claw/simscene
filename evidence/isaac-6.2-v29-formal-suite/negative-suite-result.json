@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "baseline": "/tmp/simscene-formal-v19-camera-warmup/runs/d7627199d0c745afb3fcbdc255f2ea03",
+  "controls": [
+    {
+      "mode": "disable_drive",
+      "run_exit_code": 0,
+      "passed": true,
+      "directory": "/tmp/simscene-formal-v19-camera-warmup/runs/b9cf71f6a09c4de183ecaf6ca89bc0a9"
+    },
+    {
+      "mode": "disable_suction",
+      "run_exit_code": 0,
+      "passed": true,
+      "directory": "/tmp/simscene-formal-v19-camera-warmup/runs/59e091b757d344dd9d6788fbc8987760"
+    },
+    {
+      "mode": "stop_belt",
+      "run_exit_code": 0,
+      "passed": true,
+      "directory": "/tmp/simscene-formal-v19-camera-warmup/runs/25db5b86962a4bf3a7e58c94c75d4f28"
+    }
+  ]
+}

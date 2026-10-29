@@ -1,0 +1,8 @@
+{
+ "robot_id":"arm", "part_id":"part", "part_path":"/World/part", "grip_phase":0, "lift_phase":1, "transfer_phase":2,
+ "left_finger":"panda_leftfinger", "right_finger":"panda_rightfinger", "contact_fraction":0.8,
+ "bin_min":[0.31,0.21,0.30], "bin_max":[0.69,0.59,0.44], "tolerance_m":0.002,
+ "minimum_lift_m":0.08, "open_direction":"greater", "open_threshold":0.035,
+ "retract_distance_m":0.1, "stable_duration_s":1.0, "stable_displacement_m":0.003,
+ "forbidden_environment_paths":["/World/table","/World/bin_"]
+}

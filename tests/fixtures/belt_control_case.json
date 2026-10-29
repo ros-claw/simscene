@@ -1,0 +1,11 @@
+{
+  "part_path": "/World/part",
+  "part_id": "part",
+  "belt_path": "/World/belt",
+  "window_start_s": 2.0,
+  "window_end_s": 9.0,
+  "minimum_moving_displacement_m": 0.5,
+  "maximum_stopped_displacement_m": 0.003,
+  "expected_positive_speed_m_s": 0.1,
+  "physics_steps": 600
+}

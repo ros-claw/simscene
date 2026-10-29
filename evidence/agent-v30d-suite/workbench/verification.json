@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "checks": {
+    "one_robot": true,
+    "robot_body_observed": true,
+    "two_rows_of_open_bins": true,
+    "light_present": true,
+    "orbit_observed": true,
+    "simulation_completed": true,
+    "recording_present": true,
+    "input_integrity": true,
+    "output_integrity": true,
+    "case_copy_hash_matches": true,
+    "checker_matches_frozen_copy": true,
+    "worker_matches_frozen_package": true,
+    "skill_matches_frozen_package": true
+  },
+  "bins": [
+    {
+      "base": "bin_r1_c1_bottom",
+      "center": [
+        -0.12,
+        -0.43,
+        0.8525
+      ]
+    },
+    {
+      "base": "bin_r1_c2_bottom",
+      "center": [
+        0.32,
+        -0.43,
+        0.8525
+      ]
+    },
+    {
+      "base": "bin_r1_c3_bottom",
+      "center": [
+        0.76,
+        -0.43,
+        0.8525
+      ]
+    },
+    {
+      "base": "bin_r2_c1_bottom",
+      "center": [
+        -0.12,
+        0.43,
+        0.8525
+      ]
+    },
+    {
+      "base": "bin_r2_c2_bottom",
+      "center": [
+        0.32,
+        0.43,
+        0.8525
+      ]
+    },
+    {
+      "base": "bin_r2_c3_bottom",
+      "center": [
+        0.76,
+        0.43,
+        0.8525
+      ]
+    }
+  ],
+  "cameras": [
+    {
+      "name": "orbit_camera",
+      "samples": 156,
+      "observed_turn_rad": 6.230822810359336
+    }
+  ],
+  "case_sha256": "874052ecd656283fa835ac744b1b9231cd048f9b776ca984d5105d80f2dffee1",
+  "scope": "Generic single-arm workbench, two rows of open bins, actual camera movement and recorded Isaac run; this case does not claim manipulation or collision safety."
+}

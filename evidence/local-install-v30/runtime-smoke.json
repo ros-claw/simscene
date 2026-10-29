@@ -1,0 +1,18 @@
+{
+  "job": {
+    "job_id": "074dc4db713d4637bab94b6e0773c828",
+    "run_id": "c05b002fbe0a481197ec716784856168",
+    "revision": 1,
+    "replayed": false
+  },
+  "checks": {
+    "completed": true,
+    "observed_exit_zero": true,
+    "steps": true,
+    "input_lock": true,
+    "output_lock": true,
+    "rendered_image": true
+  },
+  "passed": true,
+  "scope": "Installed MCP launcher, actual Isaac 6.2 120-step load/render run; not a sorting acceptance."
+}

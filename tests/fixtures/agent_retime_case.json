@@ -1,0 +1,12 @@
+{
+  "schema": "simscene.agent_retime_case.v1",
+  "speed_factor": 0.75,
+  "spawn_interval_factor": 1.5,
+  "relative_tolerance": 0.02,
+  "sample_start_steps_after_spawn": 60,
+  "sample_end_steps_after_spawn": 300,
+  "minimum_samples": 10,
+  "measured_speed_ratio_min": 0.6,
+  "measured_speed_ratio_max": 1.4,
+  "scope": "Checks the requested relative timing change and physical upstream displacement in a completed run; does not claim full sorting acceptance."
+}

@@ -1,0 +1,1873 @@
+{
+  "expected_spawn_order": [
+    "part0000",
+    "part0001",
+    "part0002",
+    "part0003",
+    "part0004",
+    "part0005",
+    "part0006",
+    "part0007",
+    "part0008",
+    "part0009",
+    "part0010",
+    "part0011",
+    "part0012",
+    "part0013",
+    "part0014",
+    "part0015",
+    "part0016",
+    "part0017",
+    "part0018",
+    "part0019",
+    "part0020",
+    "part0021",
+    "part0022",
+    "part0023",
+    "part0024",
+    "part0025",
+    "part0026",
+    "part0027",
+    "part0028",
+    "part0029",
+    "part0030",
+    "part0031",
+    "part0032",
+    "part0033",
+    "part0034",
+    "part0035",
+    "part0036",
+    "part0037",
+    "part0038",
+    "part0039",
+    "part0040",
+    "part0041",
+    "part0042",
+    "part0043",
+    "part0044",
+    "part0045",
+    "part0046",
+    "part0047",
+    "part0048",
+    "part0049",
+    "part0050",
+    "part0051",
+    "part0052",
+    "part0053",
+    "part0054",
+    "part0055",
+    "part0056",
+    "part0057",
+    "part0058",
+    "part0059"
+  ],
+  "upstream_position": [
+    -0.7,
+    -0.5,
+    0.32
+  ],
+  "belt_id": "belt",
+  "minimum_belt_speed": 0.029,
+  "objects": [
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0000",
+      "part_path": "/World/part0000",
+      "class_label": "blue",
+      "tracking_phase": 2,
+      "held_phases": [
+        4,
+        5,
+        6
+      ],
+      "release_phase": 7,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0001",
+      "part_path": "/World/part0001",
+      "class_label": "green",
+      "tracking_phase": 2,
+      "grip_phase": 3,
+      "lift_phase": 4,
+      "transfer_phase": 5,
+      "release_phase": 7,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0002",
+      "part_path": "/World/part0002",
+      "class_label": "red",
+      "tracking_phase": 2,
+      "grip_phase": 3,
+      "lift_phase": 4,
+      "transfer_phase": 5,
+      "release_phase": 7,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0003",
+      "part_path": "/World/part0003",
+      "class_label": "blue",
+      "tracking_phase": 11,
+      "held_phases": [
+        13,
+        14,
+        15
+      ],
+      "release_phase": 16,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0004",
+      "part_path": "/World/part0004",
+      "class_label": "green",
+      "tracking_phase": 11,
+      "grip_phase": 12,
+      "lift_phase": 13,
+      "transfer_phase": 14,
+      "release_phase": 16,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0005",
+      "part_path": "/World/part0005",
+      "class_label": "red",
+      "tracking_phase": 11,
+      "grip_phase": 12,
+      "lift_phase": 13,
+      "transfer_phase": 14,
+      "release_phase": 16,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0006",
+      "part_path": "/World/part0006",
+      "class_label": "blue",
+      "tracking_phase": 20,
+      "held_phases": [
+        22,
+        23,
+        24
+      ],
+      "release_phase": 25,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0007",
+      "part_path": "/World/part0007",
+      "class_label": "green",
+      "tracking_phase": 20,
+      "grip_phase": 21,
+      "lift_phase": 22,
+      "transfer_phase": 23,
+      "release_phase": 25,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0008",
+      "part_path": "/World/part0008",
+      "class_label": "red",
+      "tracking_phase": 20,
+      "grip_phase": 21,
+      "lift_phase": 22,
+      "transfer_phase": 23,
+      "release_phase": 25,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0009",
+      "part_path": "/World/part0009",
+      "class_label": "blue",
+      "tracking_phase": 29,
+      "held_phases": [
+        31,
+        32,
+        33
+      ],
+      "release_phase": 34,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0010",
+      "part_path": "/World/part0010",
+      "class_label": "green",
+      "tracking_phase": 29,
+      "grip_phase": 30,
+      "lift_phase": 31,
+      "transfer_phase": 32,
+      "release_phase": 34,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0011",
+      "part_path": "/World/part0011",
+      "class_label": "red",
+      "tracking_phase": 29,
+      "grip_phase": 30,
+      "lift_phase": 31,
+      "transfer_phase": 32,
+      "release_phase": 34,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0012",
+      "part_path": "/World/part0012",
+      "class_label": "blue",
+      "tracking_phase": 38,
+      "held_phases": [
+        40,
+        41,
+        42
+      ],
+      "release_phase": 43,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0013",
+      "part_path": "/World/part0013",
+      "class_label": "green",
+      "tracking_phase": 38,
+      "grip_phase": 39,
+      "lift_phase": 40,
+      "transfer_phase": 41,
+      "release_phase": 43,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0014",
+      "part_path": "/World/part0014",
+      "class_label": "red",
+      "tracking_phase": 38,
+      "grip_phase": 39,
+      "lift_phase": 40,
+      "transfer_phase": 41,
+      "release_phase": 43,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0015",
+      "part_path": "/World/part0015",
+      "class_label": "blue",
+      "tracking_phase": 47,
+      "held_phases": [
+        49,
+        50,
+        51
+      ],
+      "release_phase": 52,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0016",
+      "part_path": "/World/part0016",
+      "class_label": "green",
+      "tracking_phase": 47,
+      "grip_phase": 48,
+      "lift_phase": 49,
+      "transfer_phase": 50,
+      "release_phase": 52,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0017",
+      "part_path": "/World/part0017",
+      "class_label": "red",
+      "tracking_phase": 47,
+      "grip_phase": 48,
+      "lift_phase": 49,
+      "transfer_phase": 50,
+      "release_phase": 52,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0018",
+      "part_path": "/World/part0018",
+      "class_label": "blue",
+      "tracking_phase": 56,
+      "held_phases": [
+        58,
+        59,
+        60
+      ],
+      "release_phase": 61,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0019",
+      "part_path": "/World/part0019",
+      "class_label": "green",
+      "tracking_phase": 56,
+      "grip_phase": 57,
+      "lift_phase": 58,
+      "transfer_phase": 59,
+      "release_phase": 61,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0020",
+      "part_path": "/World/part0020",
+      "class_label": "red",
+      "tracking_phase": 56,
+      "grip_phase": 57,
+      "lift_phase": 58,
+      "transfer_phase": 59,
+      "release_phase": 61,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0021",
+      "part_path": "/World/part0021",
+      "class_label": "blue",
+      "tracking_phase": 65,
+      "held_phases": [
+        67,
+        68,
+        69
+      ],
+      "release_phase": 70,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0022",
+      "part_path": "/World/part0022",
+      "class_label": "green",
+      "tracking_phase": 65,
+      "grip_phase": 66,
+      "lift_phase": 67,
+      "transfer_phase": 68,
+      "release_phase": 70,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0023",
+      "part_path": "/World/part0023",
+      "class_label": "red",
+      "tracking_phase": 65,
+      "grip_phase": 66,
+      "lift_phase": 67,
+      "transfer_phase": 68,
+      "release_phase": 70,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0024",
+      "part_path": "/World/part0024",
+      "class_label": "blue",
+      "tracking_phase": 74,
+      "held_phases": [
+        76,
+        77,
+        78
+      ],
+      "release_phase": 79,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0025",
+      "part_path": "/World/part0025",
+      "class_label": "green",
+      "tracking_phase": 74,
+      "grip_phase": 75,
+      "lift_phase": 76,
+      "transfer_phase": 77,
+      "release_phase": 79,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0026",
+      "part_path": "/World/part0026",
+      "class_label": "red",
+      "tracking_phase": 74,
+      "grip_phase": 75,
+      "lift_phase": 76,
+      "transfer_phase": 77,
+      "release_phase": 79,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0027",
+      "part_path": "/World/part0027",
+      "class_label": "blue",
+      "tracking_phase": 83,
+      "held_phases": [
+        85,
+        86,
+        87
+      ],
+      "release_phase": 88,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0028",
+      "part_path": "/World/part0028",
+      "class_label": "green",
+      "tracking_phase": 83,
+      "grip_phase": 84,
+      "lift_phase": 85,
+      "transfer_phase": 86,
+      "release_phase": 88,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0029",
+      "part_path": "/World/part0029",
+      "class_label": "red",
+      "tracking_phase": 83,
+      "grip_phase": 84,
+      "lift_phase": 85,
+      "transfer_phase": 86,
+      "release_phase": 88,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0030",
+      "part_path": "/World/part0030",
+      "class_label": "blue",
+      "tracking_phase": 92,
+      "held_phases": [
+        94,
+        95,
+        96
+      ],
+      "release_phase": 97,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0031",
+      "part_path": "/World/part0031",
+      "class_label": "green",
+      "tracking_phase": 92,
+      "grip_phase": 93,
+      "lift_phase": 94,
+      "transfer_phase": 95,
+      "release_phase": 97,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0032",
+      "part_path": "/World/part0032",
+      "class_label": "red",
+      "tracking_phase": 92,
+      "grip_phase": 93,
+      "lift_phase": 94,
+      "transfer_phase": 95,
+      "release_phase": 97,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0033",
+      "part_path": "/World/part0033",
+      "class_label": "blue",
+      "tracking_phase": 101,
+      "held_phases": [
+        103,
+        104,
+        105
+      ],
+      "release_phase": 106,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0034",
+      "part_path": "/World/part0034",
+      "class_label": "green",
+      "tracking_phase": 101,
+      "grip_phase": 102,
+      "lift_phase": 103,
+      "transfer_phase": 104,
+      "release_phase": 106,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0035",
+      "part_path": "/World/part0035",
+      "class_label": "red",
+      "tracking_phase": 101,
+      "grip_phase": 102,
+      "lift_phase": 103,
+      "transfer_phase": 104,
+      "release_phase": 106,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0036",
+      "part_path": "/World/part0036",
+      "class_label": "blue",
+      "tracking_phase": 110,
+      "held_phases": [
+        112,
+        113,
+        114
+      ],
+      "release_phase": 115,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0037",
+      "part_path": "/World/part0037",
+      "class_label": "green",
+      "tracking_phase": 110,
+      "grip_phase": 111,
+      "lift_phase": 112,
+      "transfer_phase": 113,
+      "release_phase": 115,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0038",
+      "part_path": "/World/part0038",
+      "class_label": "red",
+      "tracking_phase": 110,
+      "grip_phase": 111,
+      "lift_phase": 112,
+      "transfer_phase": 113,
+      "release_phase": 115,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0039",
+      "part_path": "/World/part0039",
+      "class_label": "blue",
+      "tracking_phase": 119,
+      "held_phases": [
+        121,
+        122,
+        123
+      ],
+      "release_phase": 124,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0040",
+      "part_path": "/World/part0040",
+      "class_label": "green",
+      "tracking_phase": 119,
+      "grip_phase": 120,
+      "lift_phase": 121,
+      "transfer_phase": 122,
+      "release_phase": 124,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0041",
+      "part_path": "/World/part0041",
+      "class_label": "red",
+      "tracking_phase": 119,
+      "grip_phase": 120,
+      "lift_phase": 121,
+      "transfer_phase": 122,
+      "release_phase": 124,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0042",
+      "part_path": "/World/part0042",
+      "class_label": "blue",
+      "tracking_phase": 128,
+      "held_phases": [
+        130,
+        131,
+        132
+      ],
+      "release_phase": 133,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0043",
+      "part_path": "/World/part0043",
+      "class_label": "green",
+      "tracking_phase": 128,
+      "grip_phase": 129,
+      "lift_phase": 130,
+      "transfer_phase": 131,
+      "release_phase": 133,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0044",
+      "part_path": "/World/part0044",
+      "class_label": "red",
+      "tracking_phase": 128,
+      "grip_phase": 129,
+      "lift_phase": 130,
+      "transfer_phase": 131,
+      "release_phase": 133,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0045",
+      "part_path": "/World/part0045",
+      "class_label": "blue",
+      "tracking_phase": 137,
+      "held_phases": [
+        139,
+        140,
+        141
+      ],
+      "release_phase": 142,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0046",
+      "part_path": "/World/part0046",
+      "class_label": "green",
+      "tracking_phase": 137,
+      "grip_phase": 138,
+      "lift_phase": 139,
+      "transfer_phase": 140,
+      "release_phase": 142,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0047",
+      "part_path": "/World/part0047",
+      "class_label": "red",
+      "tracking_phase": 137,
+      "grip_phase": 138,
+      "lift_phase": 139,
+      "transfer_phase": 140,
+      "release_phase": 142,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0048",
+      "part_path": "/World/part0048",
+      "class_label": "blue",
+      "tracking_phase": 146,
+      "held_phases": [
+        148,
+        149,
+        150
+      ],
+      "release_phase": 151,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0049",
+      "part_path": "/World/part0049",
+      "class_label": "green",
+      "tracking_phase": 146,
+      "grip_phase": 147,
+      "lift_phase": 148,
+      "transfer_phase": 149,
+      "release_phase": 151,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0050",
+      "part_path": "/World/part0050",
+      "class_label": "red",
+      "tracking_phase": 146,
+      "grip_phase": 147,
+      "lift_phase": 148,
+      "transfer_phase": 149,
+      "release_phase": 151,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0051",
+      "part_path": "/World/part0051",
+      "class_label": "blue",
+      "tracking_phase": 155,
+      "held_phases": [
+        157,
+        158,
+        159
+      ],
+      "release_phase": 160,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0052",
+      "part_path": "/World/part0052",
+      "class_label": "green",
+      "tracking_phase": 155,
+      "grip_phase": 156,
+      "lift_phase": 157,
+      "transfer_phase": 158,
+      "release_phase": 160,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0053",
+      "part_path": "/World/part0053",
+      "class_label": "red",
+      "tracking_phase": 155,
+      "grip_phase": 156,
+      "lift_phase": 157,
+      "transfer_phase": 158,
+      "release_phase": 160,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0054",
+      "part_path": "/World/part0054",
+      "class_label": "blue",
+      "tracking_phase": 164,
+      "held_phases": [
+        166,
+        167,
+        168
+      ],
+      "release_phase": 169,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0055",
+      "part_path": "/World/part0055",
+      "class_label": "green",
+      "tracking_phase": 164,
+      "grip_phase": 165,
+      "lift_phase": 166,
+      "transfer_phase": 167,
+      "release_phase": 169,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0056",
+      "part_path": "/World/part0056",
+      "class_label": "red",
+      "tracking_phase": 164,
+      "grip_phase": 165,
+      "lift_phase": 166,
+      "transfer_phase": 167,
+      "release_phase": 169,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    },
+    {
+      "type": "suction",
+      "robot_id": "ur10",
+      "part_id": "part0057",
+      "part_path": "/World/part0057",
+      "class_label": "blue",
+      "tracking_phase": 173,
+      "held_phases": [
+        175,
+        176,
+        177
+      ],
+      "release_phase": 178,
+      "pass_x": [
+        0.0,
+        2.0
+      ],
+      "bin_min": [
+        4.07,
+        -0.94,
+        0.3
+      ],
+      "bin_max": [
+        4.37,
+        -0.64,
+        0.4
+      ],
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "franka",
+      "part_id": "part0058",
+      "part_path": "/World/part0058",
+      "class_label": "green",
+      "tracking_phase": 173,
+      "grip_phase": 174,
+      "lift_phase": 175,
+      "transfer_phase": 176,
+      "release_phase": 178,
+      "pass_x": [
+        0.0
+      ],
+      "left_finger": "panda_leftfinger",
+      "right_finger": "panda_rightfinger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        2.23,
+        -0.73,
+        0.3
+      ],
+      "bin_max": [
+        2.41,
+        -0.55,
+        0.36
+      ],
+      "open_direction": "greater",
+      "open_threshold": 0.035,
+      "evidence_per_item": true
+    },
+    {
+      "type": "parallel",
+      "robot_id": "kawasaki",
+      "part_id": "part0059",
+      "part_path": "/World/part0059",
+      "class_label": "red",
+      "tracking_phase": 173,
+      "grip_phase": 174,
+      "lift_phase": 175,
+      "transfer_phase": 176,
+      "release_phase": 178,
+      "pass_x": [],
+      "left_finger": "left_inner_finger",
+      "right_finger": "right_inner_finger",
+      "contact_fraction": 0.8,
+      "bin_min": [
+        0.065,
+        -0.905,
+        0.3
+      ],
+      "bin_max": [
+        0.295,
+        -0.675,
+        0.4
+      ],
+      "open_direction": "less",
+      "open_threshold": -0.4,
+      "evidence_per_item": true
+    }
+  ],
+  "common": {
+    "tolerance_m": 0.002,
+    "minimum_lift_m": 0.08,
+    "minimum_belt_displacement_m": 0.02,
+    "retract_distance_m": 0.1,
+    "stable_duration_s": 1.0,
+    "stable_displacement_m": 0.003,
+    "max_linear_velocity_m_s": 0.05,
+    "max_angular_velocity_rad_s": 0.5,
+    "belt_path": "/World/belt",
+    "forbidden_environment_paths": [
+      "/World/belt",
+      "/World/bin_"
+    ]
+  },
+  "acceptance_thresholds": {
+    "overall_success_rate": 0.9,
+    "per_robot_success_rate": 0.85,
+    "minimum_parallel_steps": 60
+  }
+}
