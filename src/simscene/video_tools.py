@@ -68,7 +68,7 @@ def inspect(path,output_dir=None,representative_count=5,record=None):
                     source_checks.append({'run_id':segment['run_id'],'camera':segment['camera'],'passed':bool(checked)})
                     valid=valid and checked and abs(segment['output_start_s']-previous)<1e-6 and segment['output_end_s']>previous and finite(segment['speed']) and segment['speed']>0
                     previous=segment['output_end_s']
-                valid=valid and bool(source_checks) and abs(duration-previous)<=max(.1,len(source_checks)/fps)
+                valid=valid and bool(source_checks) and abs(duration-previous)<=1/fps+1e-6
                 timeline={'passed':bool(valid),'kind':'edited_simulation_sources','source_checks':source_checks,'edit_manifest':str(edit_path)}
                 if not valid:issues.append('edited source hashes, dimensions or time map mismatch')
             except (OSError,KeyError,TypeError,ValueError) as error:issues.append('invalid edit provenance: '+str(error))
@@ -130,14 +130,23 @@ def export(segments,destination,output_resolution=None,output=None,allow_upscale
             # observations/s just by asking ffmpeg to duplicate it.
             fps=record['fps']
             if index and fps!=mappings[0]['source_fps']:raise SceneError('mixed capture rates require explicit separate exports')
-            cmd=['ffmpeg','-hide_banner','-loglevel','warning','-y','-threads','2','-i',record['path'],'-an','-vf',','.join(filters),'-r',str(fps),'-c:v','libx264','-threads','2','-crf',str(config['crf']),'-preset',config['preset'],'-pix_fmt','yuv420p','-color_range','tv','-colorspace','bt709','-color_primaries','bt709','-color_trc','bt709',str(output_file)]
+            target_frames=max(1,round((frame_end-frame_start)/speed))
+            # setpts retimes timestamps but leaves the last frame's duration
+            # unchanged. Slow playback otherwise drops its final hold, losing
+            # one or more output frames at every cut. Bound the final hold and
+            # cap CFR output at the explicitly quantized target frame count.
+            retimed_filters=filters+[f'tpad=stop_mode=clone:stop_duration={(math.ceil(1/speed)+2)/fps}',f'fps=fps={fps}:start_time=0']
+            cmd=['ffmpeg','-hide_banner','-loglevel','warning','-y','-threads','2','-i',record['path'],'-an','-vf',','.join(retimed_filters),'-r',str(fps),'-frames:v',str(target_frames),'-c:v','libx264','-threads','2','-crf',str(config['crf']),'-preset',config['preset'],'-pix_fmt','yuv420p','-color_range','tv','-colorspace','bt709','-color_primaries','bt709','-color_trc','bt709',str(output_file)]
             subprocess.run(cmd,check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,timeout=1200)
-            length=(frame_end-frame_start)/fps/speed
+            actual=probe(output_file)['streams'][0]
+            if int(actual.get('nb_read_frames',0))!=target_frames or abs(float(Fraction(actual['avg_frame_rate']))-fps)>1e-7:
+                raise SceneError(f'retimed segment frame count or cadence mismatch: expected {target_frames} at {fps}fps, got {actual.get("nb_read_frames")} at {actual.get("avg_frame_rate")}fps')
+            length=target_frames/fps
             mappings.append({'run_id':run.name,'run_directory':str(run),'camera':segment['camera'],'source':record['path'],'source_sha256':inspection['sha256'],
                 'source_frame_manifest_sha256':sha(record['frame_manifest']),'run_lock_sha256':sha(run/'run-lock.json'),'evidence_lock_sha256':sha(run/'evidence-lock.json'),
                 'source_fps':fps,'source_resolution':[record['width'],record['height']],'source_start_frame':frame_start,'source_end_frame_exclusive':frame_end,
                 'source_sim_start_s':first+frame_start/fps,'source_sim_end_s':first+frame_end/fps,'speed':speed,'title':title,
-                'composed_keyframe':str(composed),'composed_keyframe_sha256':sha(composed),'output_start_s':elapsed,'output_end_s':elapsed+length,'upscale_factor':max(1,scale),'physics_task_status':result.get('task_status')})
+                'composed_keyframe':str(composed),'composed_keyframe_sha256':sha(composed),'output_frames':target_frames,'duration_rounding_s':length-(frame_end-frame_start)/fps/speed,'final_frame_hold':'bounded CFR retiming hold; no new simulated observation','output_start_s':elapsed,'output_end_s':elapsed+length,'upscale_factor':max(1,scale),'physics_task_status':result.get('task_status')})
             elapsed+=length;files.append(output_file)
         concat=tmp/'concat.txt';concat.write_text(''.join("file '"+str(file).replace("'","'\\''")+"'\n" for file in files))
         try:

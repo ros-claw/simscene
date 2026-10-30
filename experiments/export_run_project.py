@@ -14,8 +14,8 @@ LAUNCHER='''"""Reopen the editable project using its frozen SimScene worker pack
 import argparse,copy,hashlib,json,os,sys,time,uuid
 from pathlib import Path
 root=Path(__file__).resolve().parent
-p=argparse.ArgumentParser();p.add_argument('--check-only',action='store_true');p.add_argument('--steps',type=int);p.add_argument('--isaac-python',default=os.getenv('SIMSCENE_ISAAC_PYTHON'));a=p.parse_args()
-manifest=json.load(open(root/'project.json'));scene=json.load(open(root/'scene.json'))
+p=argparse.ArgumentParser();p.add_argument('--check-only',action='store_true');p.add_argument('--scene-file',default='scene.json');p.add_argument('--case-file',default='case.json');p.add_argument('--steps',type=int);p.add_argument('--isaac-python',default=os.getenv('SIMSCENE_ISAAC_PYTHON'));a=p.parse_args()
+manifest=json.load(open(root/'project.json'));scene=json.load(open(root/a.scene_file))
 os.environ['SIMSCENE_HOME']=str(root/'state')
 if a.isaac_python:os.environ['SIMSCENE_ISAAC_PYTHON']=a.isaac_python
 sys.path.insert(0,str(root/'runtime'))
@@ -37,8 +37,8 @@ store.apply(scene_id,0,'import-editable',ops);current=store.get(scene_id)
 if a.check_only:
  stage=export_scene(current,root/'state'/(scene_id+'.usda'));print(json.dumps({'scene_id':scene_id,'schema_and_export':'passed','stage':stage['path'],'physics_validation':'not run'}));raise SystemExit(0)
 case=None
-if (root/'case.json').is_file():
- case=json.load(open(root/'case.json'))
+if (root/a.case_file).is_file():
+ case=json.load(open(root/a.case_file))
  if 'source_scene_sha256' in case:case['source_scene_sha256']=hashlib.sha256(json.dumps(current,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
 from simscene.jobs import start,status
 archive=bool(case and 'expected_spawn_order' in case)
