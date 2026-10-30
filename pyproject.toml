@@ -17,6 +17,7 @@ Issues = "https://github.com/ros-claw/rosclaw-simscene/issues"
 
 [project.optional-dependencies]
 ik = ["numpy>=1.24", "scipy>=1.10"]
+build = ["packaging>=23"]
 
 [project.scripts]
 simscene = "simscene.cli:main"

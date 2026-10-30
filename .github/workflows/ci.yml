@@ -18,7 +18,7 @@ jobs:
       - name: Install video backend
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Install
-        run: python -m pip install -e '.[ik]' usd-core
+        run: python -m pip install -e '.[ik,build]' usd-core
       - name: Unit tests
         run: python -m unittest discover -s tests -p 'test*.py'
       - name: MCP concurrency regression
