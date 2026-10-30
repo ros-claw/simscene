@@ -29,9 +29,10 @@ def export_scene(scene, destination):
             asset_stage = Usd.Stage.Open(str(asset_path))
             if not asset_stage:
                 raise SceneError(f'cannot open USD asset: {name}')
-            if not asset_stage.HasAuthoredMetadata('metersPerUnit') or not asset_stage.HasAuthoredMetadata('upAxis'):
+            metrics=obj.get('asset_metrics',{})
+            if (not asset_stage.HasAuthoredMetadata('metersPerUnit') and 'meters_per_unit' not in metrics) or (not asset_stage.HasAuthoredMetadata('upAxis') and 'up_axis' not in metrics):
                 raise SceneError(f'asset {name} has unspecified unit or up axis')
-            meters=UsdGeom.GetStageMetersPerUnit(asset_stage);axis=UsdGeom.GetStageUpAxis(asset_stage)
+            meters=metrics.get('meters_per_unit',UsdGeom.GetStageMetersPerUnit(asset_stage));axis=metrics.get('up_axis',UsdGeom.GetStageUpAxis(asset_stage))
             if not math.isfinite(meters) or not 1e-9<=meters<=1e9 or axis not in (UsdGeom.Tokens.y,UsdGeom.Tokens.z):
                 raise SceneError(f'asset {name} has invalid units or up axis')
             if abs(meters-1.0)>1e-9 or axis!=UsdGeom.Tokens.z:
@@ -41,7 +42,7 @@ def export_scene(scene, destination):
                 prims=list(asset_stage.TraverseAll())
                 has_physics=any(prim.HasAPI(UsdPhysics.RigidBodyAPI) or prim.HasAPI(UsdPhysics.CollisionAPI) or prim.HasAPI(UsdPhysics.ArticulationRootAPI) or prim.IsA(UsdPhysics.Joint) for prim in prims)
                 has_variants=bool(obj.get('variants')) or any(prim.GetVariantSets().GetNames() for prim in prims)
-                if has_physics or has_variants or obj.get('pose_follower'):
+                if obj.get('asset_physics')!='visual_only' and (has_physics or has_variants or obj.get('pose_follower')):
                     raise SceneError(f'asset {name} needs unit/up-axis conversion but has physics, variants, or a controller; import and validate it separately')
                 normalizations[name]=(meters,axis)
             _, _, unresolved = UsdUtils.ComputeAllDependencies(str(asset_path))
@@ -85,7 +86,18 @@ def export_scene(scene, destination):
             entity = UsdGeom.Sphere.Define(stage, prim_path)
             size=obj.get('size',[1,1,1])
             entity.CreateRadiusAttr(size[0]/2 if size[0]==size[1]==size[2] else 0.5)
-        elif kind == 'camera': entity = UsdGeom.Camera.Define(stage, prim_path)
+        elif kind == 'camera':
+            from .capture import camera_config
+            cfg=camera_config(scene,obj)
+            entity = UsdGeom.Camera.Define(stage, prim_path)
+            # USD lens lengths use tenths of stage units: a metre stage needs
+            # mm/100, while focus and clipping distances use stage metres.
+            entity.CreateFocalLengthAttr(cfg['focal_length_mm']/100)
+            entity.CreateHorizontalApertureAttr(cfg['horizontal_aperture_mm']/100)
+            entity.CreateVerticalApertureAttr(cfg['horizontal_aperture_mm']/100*cfg['resolution'][1]/cfg['resolution'][0])
+            entity.CreateFocusDistanceAttr(cfg['focus_distance_m'])
+            entity.CreateFStopAttr(cfg['f_stop'] if not cfg['render'] or cfg['render']['depth_of_field'] else 0)
+            entity.CreateClippingRangeAttr(Gf.Vec2f(*cfg['clipping_range_m']))
         elif kind == 'counter':
             from .display import create
             config=obj['counter'];entity=create(stage,prim_path,config.get('digits',3),config.get('color',[.05,1,.1]))
@@ -115,6 +127,24 @@ def export_scene(scene, destination):
                 if choice not in variant.GetVariantNames():
                     raise SceneError(f'unknown variant {set_name}={choice} on {name}')
                 variant.SetVariantSelection(choice)
+            if obj.get('asset_lights')=='disabled':
+                for prim in Usd.PrimRange(referenced):
+                    if prim.HasAPI(UsdLux.LightAPI):UsdLux.LightAPI(prim).GetIntensityAttr().Set(0)
+            if obj.get('asset_physics')=='visual_only':
+                pending_prims=[referenced]
+                while pending_prims:
+                    prim=pending_prims.pop()
+                    if prim.IsInstance():prim.SetInstanceable(False)
+                    pending_prims.extend(prim.GetChildren())
+                    if prim.IsA(UsdPhysics.Joint):prim.SetActive(False);continue
+                    for schema in (UsdPhysics.RigidBodyAPI,UsdPhysics.CollisionAPI,UsdPhysics.ArticulationRootAPI,UsdPhysics.MassAPI):
+                        if prim.HasAPI(schema):prim.RemoveAPI(schema)
+            for relative,config in obj.get('material_overrides',{}).items():
+                import hashlib
+                from .materials import apply_material
+                selected=stage.GetPrimAtPath(prim_path+'/Asset/'+relative)
+                if not selected:raise SceneError(f'unknown material override prim on {name}: {relative}')
+                apply_material(stage,selected,name+'_part_'+hashlib.sha256(relative.encode()).hexdigest()[:12],config)
             grip=obj.get('pose_follower',{}).get('gripper_physics')
             if grip is not None:
                 from .gripper_physics import apply as apply_gripper_physics
@@ -150,6 +180,16 @@ def export_scene(scene, destination):
                 previous=rotation
                 translate.Set(Gf.Vec3d(*position),time);orient.Set(Gf.Quatf(rotation[0],Gf.Vec3f(*rotation[1:])),time)
                 if i==0:
+                    translate.Set(Gf.Vec3d(*position));orient.Set(Gf.Quatf(rotation[0],Gf.Vec3f(*rotation[1:])))
+        if kind=='camera' and 'camera_path' in obj:
+            from .geometry import camera_orientation
+            previous=None
+            for index,node in enumerate(obj['camera_path']):
+                position=node['position'];rotation=camera_orientation(position,node['target'])
+                if previous is not None and sum(a*b for a,b in zip(previous,rotation))<0:rotation=[-x for x in rotation]
+                previous=rotation;code=Usd.TimeCode(node['time_s']*60)
+                translate.Set(Gf.Vec3d(*position),code);orient.Set(Gf.Quatf(rotation[0],Gf.Vec3f(*rotation[1:])),code)
+                if index==0:
                     translate.Set(Gf.Vec3d(*position));orient.Set(Gf.Quatf(rotation[0],Gf.Vec3f(*rotation[1:])))
         if kind=='asset' and name in normalizations:
             meters,axis=normalizations[name]

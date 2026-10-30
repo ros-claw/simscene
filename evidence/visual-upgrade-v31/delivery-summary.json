@@ -1,0 +1,401 @@
+{
+  "baseline_commit": "a6ef3df4ce66ebf29a3ce8b7b8eea76f4c4607a5",
+  "version": "0.1.0.dev1",
+  "environment": {
+    "isaac": "6.2.0-rc.14+release.52805.02189a84.gl",
+    "render_gpu": "NVIDIA RTX A6000",
+    "physics": "CPU PhysX",
+    "physics_hz": 60
+  },
+  "automated_checks": {
+    "cpu_tests": 222,
+    "mcp_concurrency_tests": 2,
+    "checker_regressions": 3,
+    "skills_validated": 2,
+    "all_passed": true
+  },
+  "physics": {
+    "precision": {
+      "run_id": "2a146caa935e45bea2cc3fb3a1540907",
+      "steps": 11000,
+      "correct": 9,
+      "generated": 9,
+      "full_discrete_collision_audit": true,
+      "overlap_steps": 473
+    },
+    "maintenance": {
+      "run_id": "8a97189c0fe242d1a3a190cd9806af27",
+      "steps": 1800,
+      "drops_passed": 3,
+      "scope": "Same active agent, empty-scene reuse through frozen MCP and skills; not an independent fresh-agent benchmark."
+    }
+  },
+  "videos": [
+    {
+      "file": "docs/media/precision-workshop-1080p30.mp4",
+      "sha256": "b93b21121a27966e0883ca90a7822de1fddc21e3de9119329e2e7ddaa58a7c9f",
+      "native_resolution": [
+        1920,
+        1080
+      ],
+      "fps": 30,
+      "decoded_frames": 2640,
+      "duration_s": 88.0,
+      "technical_issues": [],
+      "source_timeline_passed": true,
+      "segments": [
+        {
+          "run_id": "2a146caa935e45bea2cc3fb3a1540907",
+          "run_directory": "/code/rosclaw/simscene/evidence/visual-upgrade-v31/archives/precision-source/state/runs/2a146caa935e45bea2cc3fb3a1540907",
+          "camera": "overview",
+          "source": "/tmp/simscene-precision-corner-v31-final/state/runs/2a146caa935e45bea2cc3fb3a1540907/camera_overview.mp4",
+          "source_sha256": "e040912ffd046707c96100efb38207bdb05ce5eed70ba4bd7d7b6505ac7d52c7",
+          "source_frame_manifest_sha256": "1497a204462055582db525858ca83aff4f933ef6d43c479ff7d2187dc2526a6e",
+          "run_lock_sha256": "cf80222da5fbed747f956a15e4ee4d4abd9fbf8941f13cd10bea4df1f44faecf",
+          "evidence_lock_sha256": "7842c1ad8679d45b21290594405331cede6fdb72e15d9e84893908d92247d9c9",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 959,
+          "source_end_frame_exclusive": 1139,
+          "source_sim_start_s": 32.0,
+          "source_sim_end_s": 38.0,
+          "speed": 1,
+          "title": "RosClaw SimScene | precision manufacturing cell",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/precision-corner-final-1080p30_composed_000.png",
+          "composed_keyframe_sha256": "d46618303eefbeee02d80558fcc47c3205837d407dfb397bbd132e0ce5720014",
+          "output_start_s": 0,
+          "output_end_s": 6.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        },
+        {
+          "run_id": "2147f4b889f242af8b809bd92c1331df",
+          "run_directory": "/code/rosclaw/simscene/evidence/visual-upgrade-v31/archives/precision-source/state/runs/2147f4b889f242af8b809bd92c1331df",
+          "camera": "feeder_close",
+          "source": "/tmp/simscene-precision-corner-v31-final/state/runs/2147f4b889f242af8b809bd92c1331df/camera_feeder_close.mp4",
+          "source_sha256": "3fd214d3ee71c4e4a8d0479ed3d490216d6d416205e2ce7278b275a78b386034",
+          "source_frame_manifest_sha256": "1f08d3d225994ee49fcf2817678bc1aead6622be56a47c1b11fcaf8a09899265",
+          "run_lock_sha256": "9fec9254d3437ab9d1b34a4d8bc9099af905a6af9fcdc1df638c5d011b16a9f1",
+          "evidence_lock_sha256": "78a79127d57838c9e81a1e4f8e7e686698eafa63b57ca143a8f78aafd0dd3c43",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 30,
+          "source_end_frame_exclusive": 210,
+          "source_sim_start_s": 1.0333333333333334,
+          "source_sim_end_s": 7.033333333333333,
+          "speed": 1,
+          "title": "Gravity feed | separate short diagnostic run",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/precision-corner-final-1080p30_composed_001.png",
+          "composed_keyframe_sha256": "b6bf6c61ccc522a47af7a354f3c9c306eb2004ace8c29b2b294f41d8ba4bc7ad",
+          "output_start_s": 6.0,
+          "output_end_s": 12.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        },
+        {
+          "run_id": "2a146caa935e45bea2cc3fb3a1540907",
+          "run_directory": "/code/rosclaw/simscene/evidence/visual-upgrade-v31/archives/precision-source/state/runs/2a146caa935e45bea2cc3fb3a1540907",
+          "camera": "detail",
+          "source": "/tmp/simscene-precision-corner-v31-final/state/runs/2a146caa935e45bea2cc3fb3a1540907/camera_detail.mp4",
+          "source_sha256": "3a8742fcac03a5f77fa773acba79dde8a04eefae920eb37973d382efbdb0f746",
+          "source_frame_manifest_sha256": "c3675e71b8647c1c56e407036de76ce569c2c6ebaffc52f78cab0949791a0bbe",
+          "run_lock_sha256": "cf80222da5fbed747f956a15e4ee4d4abd9fbf8941f13cd10bea4df1f44faecf",
+          "evidence_lock_sha256": "7842c1ad8679d45b21290594405331cede6fdb72e15d9e84893908d92247d9c9",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 1349,
+          "source_end_frame_exclusive": 1769,
+          "source_sim_start_s": 45.0,
+          "source_sim_end_s": 59.0,
+          "speed": 1,
+          "title": "RS007L | approach, contact, lift and release",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/precision-corner-final-1080p30_composed_002.png",
+          "composed_keyframe_sha256": "d371a14e7201b027c0780048b774ffd95a86c68d9ebf7340ba0452ea12cb8b1a",
+          "output_start_s": 12.0,
+          "output_end_s": 26.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        },
+        {
+          "run_id": "25f5eb8377624f69b89f972bd601fbd3",
+          "run_directory": "/code/rosclaw/simscene/evidence/visual-upgrade-v31/archives/precision-source/state/runs/25f5eb8377624f69b89f972bd601fbd3",
+          "camera": "panda_side",
+          "source": "/code/rosclaw/simscene/evidence/visual-upgrade-v31/archives/precision-source/state/runs/25f5eb8377624f69b89f972bd601fbd3/camera_panda_side.mp4",
+          "source_sha256": "bf128c355862131d53a05eb054d91cdfd82c5cb8656dfac18aadd58bef6faa22",
+          "source_frame_manifest_sha256": "abca099a9abf22dd7dbaa2d6e7c3e033fd5d9168a4cec938782d0fefeda756c5",
+          "run_lock_sha256": "2f69f564add6b90cadc917ab78a9374c6342bec09dafba239add2d7341becfb5",
+          "evidence_lock_sha256": "cc3058d2b23b5c1313fb363f0ea92bcb06b8645d9821f91dd2fea37427080d1c",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 14,
+          "source_end_frame_exclusive": 584,
+          "source_sim_start_s": 47.5,
+          "source_sim_end_s": 66.5,
+          "speed": 1,
+          "title": "Panda | separate side-view run: grasp, lift, release",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/precision-corner-final-1080p30_composed_003.png",
+          "composed_keyframe_sha256": "8767326aa5f16f5306bcfc08a3d9d7ef95c42f575f591990da11070903d989b9",
+          "output_start_s": 26.0,
+          "output_end_s": 45.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        },
+        {
+          "run_id": "2a146caa935e45bea2cc3fb3a1540907",
+          "run_directory": "/code/rosclaw/simscene/evidence/visual-upgrade-v31/archives/precision-source/state/runs/2a146caa935e45bea2cc3fb3a1540907",
+          "camera": "detail",
+          "source": "/tmp/simscene-precision-corner-v31-final/state/runs/2a146caa935e45bea2cc3fb3a1540907/camera_detail.mp4",
+          "source_sha256": "3a8742fcac03a5f77fa773acba79dde8a04eefae920eb37973d382efbdb0f746",
+          "source_frame_manifest_sha256": "c3675e71b8647c1c56e407036de76ce569c2c6ebaffc52f78cab0949791a0bbe",
+          "run_lock_sha256": "cf80222da5fbed747f956a15e4ee4d4abd9fbf8941f13cd10bea4df1f44faecf",
+          "evidence_lock_sha256": "7842c1ad8679d45b21290594405331cede6fdb72e15d9e84893908d92247d9c9",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 2999,
+          "source_end_frame_exclusive": 3449,
+          "source_sim_start_s": 100.0,
+          "source_sim_end_s": 115.0,
+          "speed": 1,
+          "title": "UR10 | suction, transfer and release",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/precision-corner-final-1080p30_composed_004.png",
+          "composed_keyframe_sha256": "d3c9eea2f0c1c9ad19f2d4f44f85c94b0540a53e33364b09fd84b28ee9a0591f",
+          "output_start_s": 45.0,
+          "output_end_s": 60.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        },
+        {
+          "run_id": "2a146caa935e45bea2cc3fb3a1540907",
+          "run_directory": "/code/rosclaw/simscene/evidence/visual-upgrade-v31/archives/precision-source/state/runs/2a146caa935e45bea2cc3fb3a1540907",
+          "camera": "overview",
+          "source": "/tmp/simscene-precision-corner-v31-final/state/runs/2a146caa935e45bea2cc3fb3a1540907/camera_overview.mp4",
+          "source_sha256": "e040912ffd046707c96100efb38207bdb05ce5eed70ba4bd7d7b6505ac7d52c7",
+          "source_frame_manifest_sha256": "1497a204462055582db525858ca83aff4f933ef6d43c479ff7d2187dc2526a6e",
+          "run_lock_sha256": "cf80222da5fbed747f956a15e4ee4d4abd9fbf8941f13cd10bea4df1f44faecf",
+          "evidence_lock_sha256": "7842c1ad8679d45b21290594405331cede6fdb72e15d9e84893908d92247d9c9",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 1349,
+          "source_end_frame_exclusive": 1889,
+          "source_sim_start_s": 45.0,
+          "source_sim_end_s": 63.0,
+          "speed": 1,
+          "title": "Three-arm cycles | measured overlap: 7.88 s",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/precision-corner-final-1080p30_composed_005.png",
+          "composed_keyframe_sha256": "9305ac9c39d13ff6c696b84a0a0b046ed966b545ba7b74ee67636a3296e3e40c",
+          "output_start_s": 60.0,
+          "output_end_s": 78.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        },
+        {
+          "run_id": "2a146caa935e45bea2cc3fb3a1540907",
+          "run_directory": "/code/rosclaw/simscene/evidence/visual-upgrade-v31/archives/precision-source/state/runs/2a146caa935e45bea2cc3fb3a1540907",
+          "camera": "detail",
+          "source": "/tmp/simscene-precision-corner-v31-final/state/runs/2a146caa935e45bea2cc3fb3a1540907/camera_detail.mp4",
+          "source_sha256": "3a8742fcac03a5f77fa773acba79dde8a04eefae920eb37973d382efbdb0f746",
+          "source_frame_manifest_sha256": "c3675e71b8647c1c56e407036de76ce569c2c6ebaffc52f78cab0949791a0bbe",
+          "run_lock_sha256": "cf80222da5fbed747f956a15e4ee4d4abd9fbf8941f13cd10bea4df1f44faecf",
+          "evidence_lock_sha256": "7842c1ad8679d45b21290594405331cede6fdb72e15d9e84893908d92247d9c9",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 419,
+          "source_end_frame_exclusive": 569,
+          "source_sim_start_s": 14.0,
+          "source_sim_end_s": 19.0,
+          "speed": 1,
+          "title": "Online assets | measured supports and original materials",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/precision-corner-final-1080p30_composed_006.png",
+          "composed_keyframe_sha256": "52c93cf13ff083a3d0e61a96246997c1466deab64a85156e1e021f5644614695",
+          "output_start_s": 78.0,
+          "output_end_s": 83.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        },
+        {
+          "run_id": "2a146caa935e45bea2cc3fb3a1540907",
+          "run_directory": "/code/rosclaw/simscene/evidence/visual-upgrade-v31/archives/precision-source/state/runs/2a146caa935e45bea2cc3fb3a1540907",
+          "camera": "overview",
+          "source": "/tmp/simscene-precision-corner-v31-final/state/runs/2a146caa935e45bea2cc3fb3a1540907/camera_overview.mp4",
+          "source_sha256": "e040912ffd046707c96100efb38207bdb05ce5eed70ba4bd7d7b6505ac7d52c7",
+          "source_frame_manifest_sha256": "1497a204462055582db525858ca83aff4f933ef6d43c479ff7d2187dc2526a6e",
+          "run_lock_sha256": "cf80222da5fbed747f956a15e4ee4d4abd9fbf8941f13cd10bea4df1f44faecf",
+          "evidence_lock_sha256": "7842c1ad8679d45b21290594405331cede6fdb72e15d9e84893908d92247d9c9",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 5279,
+          "source_end_frame_exclusive": 5429,
+          "source_sim_start_s": 176.0,
+          "source_sim_end_s": 181.0,
+          "speed": 1,
+          "title": "Verified result: 9/9 correct | full discrete audit passed",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/precision-corner-final-1080p30_composed_007.png",
+          "composed_keyframe_sha256": "851e855b08fa36a6e6c327411a971ce32bcf206f1e52910a3afc6616d17de3bd",
+          "output_start_s": 83.0,
+          "output_end_s": 88.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        }
+      ]
+    },
+    {
+      "file": "docs/media/maintenance-workbench-1080p30.mp4",
+      "sha256": "9097282af21a9fc64617ac84b64a4415df750f57439d0f56264d735283567dde",
+      "native_resolution": [
+        1920,
+        1080
+      ],
+      "fps": 30,
+      "decoded_frames": 840,
+      "duration_s": 28.0,
+      "technical_issues": [],
+      "source_timeline_passed": true,
+      "segments": [
+        {
+          "run_id": "8a97189c0fe242d1a3a190cd9806af27",
+          "run_directory": "/tmp/simscene-workbench-reuse-v31/state/runs/8a97189c0fe242d1a3a190cd9806af27",
+          "camera": "presentation_0",
+          "source": "/tmp/simscene-workbench-reuse-v31/state/runs/8a97189c0fe242d1a3a190cd9806af27/camera_presentation_0.mp4",
+          "source_sha256": "e81ad9f0a07a8827c8d5a726b3ceca68ef4edd57fe5b421d769139f90edaf198",
+          "source_frame_manifest_sha256": "4f1270025f3a829816444ce711a1b28c8a977d6d601db636c9cee8b61291b78d",
+          "run_lock_sha256": "300aefe58b8e5a1744dd0588da222146403e5f60863499b8fbb9dcf9646b24db",
+          "evidence_lock_sha256": "c605e05f1ecefec084ae9644b9e2a8a6f0f002e5a61d5522a3a8b2cf2b940d00",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 0,
+          "source_end_frame_exclusive": 150,
+          "source_sim_start_s": 0.03333333333333333,
+          "source_sim_end_s": 5.033333333333333,
+          "speed": 1,
+          "title": "Industrial maintenance station | generated from an empty scene",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/maintenance-workbench-final-1080p30_composed_000.png",
+          "composed_keyframe_sha256": "3d3dc8473318dd37e29f57e37aae096b4faa070852d05fd2c951c1e8605d3d1b",
+          "output_start_s": 0,
+          "output_end_s": 5.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        },
+        {
+          "run_id": "8a97189c0fe242d1a3a190cd9806af27",
+          "run_directory": "/tmp/simscene-workbench-reuse-v31/state/runs/8a97189c0fe242d1a3a190cd9806af27",
+          "camera": "presentation_1",
+          "source": "/tmp/simscene-workbench-reuse-v31/state/runs/8a97189c0fe242d1a3a190cd9806af27/camera_presentation_1.mp4",
+          "source_sha256": "8b9e564c1ce742761b400f8c178555eeecff517ef392515294e948e60cee83e8",
+          "source_frame_manifest_sha256": "e70af04ecdf6aeefa41af410fa16e544a7dcd7a9de8204c706637f1b9330a1f0",
+          "run_lock_sha256": "300aefe58b8e5a1744dd0588da222146403e5f60863499b8fbb9dcf9646b24db",
+          "evidence_lock_sha256": "c605e05f1ecefec084ae9644b9e2a8a6f0f002e5a61d5522a3a8b2cf2b940d00",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 0,
+          "source_end_frame_exclusive": 210,
+          "source_sim_start_s": 0.03333333333333333,
+          "source_sim_end_s": 7.033333333333333,
+          "speed": 1,
+          "title": "Two rows | gears, nuts and shaft supports",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/maintenance-workbench-final-1080p30_composed_001.png",
+          "composed_keyframe_sha256": "66b19ea01f00e9b0297dbb59675c2f85e6ec750d5d35509ce714c3357d12bfbb",
+          "output_start_s": 5.0,
+          "output_end_s": 12.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        },
+        {
+          "run_id": "8a97189c0fe242d1a3a190cd9806af27",
+          "run_directory": "/tmp/simscene-workbench-reuse-v31/state/runs/8a97189c0fe242d1a3a190cd9806af27",
+          "camera": "presentation_1",
+          "source": "/tmp/simscene-workbench-reuse-v31/state/runs/8a97189c0fe242d1a3a190cd9806af27/camera_presentation_1.mp4",
+          "source_sha256": "8b9e564c1ce742761b400f8c178555eeecff517ef392515294e948e60cee83e8",
+          "source_frame_manifest_sha256": "e70af04ecdf6aeefa41af410fa16e544a7dcd7a9de8204c706637f1b9330a1f0",
+          "run_lock_sha256": "300aefe58b8e5a1744dd0588da222146403e5f60863499b8fbb9dcf9646b24db",
+          "evidence_lock_sha256": "c605e05f1ecefec084ae9644b9e2a8a6f0f002e5a61d5522a3a8b2cf2b940d00",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 270,
+          "source_end_frame_exclusive": 630,
+          "source_sim_start_s": 9.033333333333333,
+          "source_sim_end_s": 21.033333333333335,
+          "speed": 1,
+          "title": "",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/maintenance-workbench-final-1080p30_composed_002.png",
+          "composed_keyframe_sha256": "ba763e185bd7b481afda9625c9a3b2987d7e51a3a6dfd3b2d75d98aede64e0e4",
+          "output_start_s": 12.0,
+          "output_end_s": 24.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        },
+        {
+          "run_id": "8a97189c0fe242d1a3a190cd9806af27",
+          "run_directory": "/tmp/simscene-workbench-reuse-v31/state/runs/8a97189c0fe242d1a3a190cd9806af27",
+          "camera": "presentation_0",
+          "source": "/tmp/simscene-workbench-reuse-v31/state/runs/8a97189c0fe242d1a3a190cd9806af27/camera_presentation_0.mp4",
+          "source_sha256": "e81ad9f0a07a8827c8d5a726b3ceca68ef4edd57fe5b421d769139f90edaf198",
+          "source_frame_manifest_sha256": "4f1270025f3a829816444ce711a1b28c8a977d6d601db636c9cee8b61291b78d",
+          "run_lock_sha256": "300aefe58b8e5a1744dd0588da222146403e5f60863499b8fbb9dcf9646b24db",
+          "evidence_lock_sha256": "c605e05f1ecefec084ae9644b9e2a8a6f0f002e5a61d5522a3a8b2cf2b940d00",
+          "source_fps": 30,
+          "source_resolution": [
+            1920,
+            1080
+          ],
+          "source_start_frame": 780,
+          "source_end_frame_exclusive": 900,
+          "source_sim_start_s": 26.033333333333335,
+          "source_sim_end_s": 30.033333333333335,
+          "speed": 1,
+          "title": "Three drops completed | source physics and capture verified",
+          "composed_keyframe": "/code/rosclaw/simscene/deliverables/visual_upgrade_20261030/maintenance-workbench-final-1080p30_composed_003.png",
+          "composed_keyframe_sha256": "8f14f6cde6d140123f0abe1589c3ad8c8396325d5265cfd85fe8144b082fb38a",
+          "output_start_s": 24.0,
+          "output_end_s": 28.0,
+          "upscale_factor": 1,
+          "physics_task_status": "unverified"
+        }
+      ]
+    }
+  ],
+  "visual_review": {
+    "reviewed": "native source action sequences and decoded final representative frames, all shot types, both physics results and source maps",
+    "first_main_edit_rejected": "Panda count-board occlusion; final uses an explicitly identified camera-only side run",
+    "first_maintenance_edit_revised": "Removed title during falling action",
+    "external_upload_transcoding": "not tested"
+  },
+  "scope_limits": [
+    "No 4K/GPU PhysX/second-machine test",
+    "No arbitrary imported-part grasping",
+    "Full source physics validation and project import/startup checks are distinct",
+    "Archived terminal objects are physically removed after verification"
+  ]
+}

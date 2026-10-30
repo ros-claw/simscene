@@ -32,11 +32,21 @@ def write(path, value):
 def copy_installed_dependencies(vendor):
     """Vendor the active environment's validated dependency closure offline."""
     from packaging.requirements import Requirement
-    queue=[(Requirement('mcp>=1.0,<2'),{''}),(Requirement('PyYAML>=6,<7'),{''})];visited={};versions={}
+    queue=[(Requirement('mcp>=1.0,<2'),{''}),(Requirement('PyYAML>=6,<7'),{''}),(Requirement('Pillow>=10,<13'),{''})];visited={};versions={}
     while queue:
         requirement,parent_extras=queue.pop()
         if requirement.marker and not any(requirement.marker.evaluate({'extra':extra}) for extra in parent_extras):continue
         distribution=metadata.distribution(requirement.name)
+        if requirement.name.lower()=='pillow':
+            # Shared user site-packages may retain several .dist-info trees.
+            # Match the actually loaded PIL module, otherwise the extension
+            # can be copied from 12.x while its private libraries come from11.x.
+            import PIL
+            active=Path(PIL.__file__).resolve()
+            matches=[d for d in metadata.distributions() if d.metadata.get('Name','').lower()=='pillow'
+                     and d.version==PIL.__version__ and Path(d.locate_file('PIL/__init__.py')).resolve()==active]
+            if not matches:raise RuntimeError('active Pillow module has no matching distribution metadata; use a clean build environment')
+            distribution=matches[0]
         if requirement.specifier and distribution.version not in requirement.specifier:
             raise RuntimeError(f'{requirement} is incompatible with installed {distribution.version}')
         canonical=distribution.metadata['Name'].lower().replace('_','-')
@@ -71,19 +81,23 @@ def build(destination, use_installed_deps=False):
             write(portable/'server'/'dependency-lock.json',versions)
         else:
             subprocess.run([sys.executable,'-m','pip','install','--disable-pip-version-check','--no-compile','--target',str(vendor),str(ROOT)],check=True)
+        # Test the image extension in a fresh interpreter before shipping.
+        # CPU video_inspect uses Pillow even though Isaac has its own copy.
+        subprocess.run([sys.executable,'-I','-c',
+                        'import sys;sys.path.insert(0,sys.argv[1]);from PIL import Image;Image.new("RGB",(2,2)).tobytes()',str(vendor)],check=True)
         (portable/'server'/'launch.py').write_text(LAUNCHER)
         (portable/'README.md').write_text(PACKAGE_README)
         shutil.copyfile(ROOT/'LICENSE',portable/'LICENSE')
         shutil.copyfile(ROOT/'plugins'/'install.py',portable/'install.py')
         shutil.copytree(ROOT/'skills',portable/'skills',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
-        write(portable/'plugin.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json','name':'simscene','version':'0.1.0-dev.0','description':'Discover assets, compose and run experimental simulation scenes.'})
+        write(portable/'plugin.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json','name':'simscene','version':'0.1.0-dev.1','description':'Discover assets, compose and run experimental simulation scenes.'})
         write(portable/'mcp.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json','mcpServers':{'simscene':{'type':'stdio','command':'python3','args':['${PLUGIN_ROOT}/server/launch.py'],'cwd':'${PLUGIN_ROOT}'}}})
         claude.mkdir(parents=True)
         shutil.copytree(portable/'server',claude/'server')
         shutil.copytree(portable/'skills',claude/'skills')
         shutil.copyfile(portable/'README.md',claude/'README.md')
         shutil.copyfile(portable/'LICENSE',claude/'LICENSE')
-        write(claude/'.claude-plugin'/'plugin.json',{'name':'simscene','version':'0.1.0-dev.0','description':'Discover assets, compose and run experimental simulation scenes.'})
+        write(claude/'.claude-plugin'/'plugin.json',{'name':'simscene','version':'0.1.0-dev.1','description':'Discover assets, compose and run experimental simulation scenes.'})
         write(claude/'.mcp.json',{'mcpServers':{'simscene':{'command':'python3','args':['${CLAUDE_PLUGIN_ROOT}/server/launch.py']}}})
         deepseek.mkdir(parents=True)
         shutil.copytree(portable/'server',deepseek/'server')

@@ -1,0 +1,478 @@
+{
+  "baseline": {
+    "frames": 60,
+    "resolution": [
+      640,
+      480
+    ],
+    "fps": 6,
+    "timeline_passed": true,
+    "render_settings": {
+      "requested": null,
+      "before": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "after_stage": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "sensor_startup_readback": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "after_sensor_warmup": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "at_completion": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      }
+    }
+  },
+  "native": {
+    "frames": 300,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "fps": 30,
+    "timeline_passed": true,
+    "render_settings": {
+      "requested": null,
+      "before": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "after_stage": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "sensor_startup_readback": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "after_sensor_warmup": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "at_completion": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      }
+    }
+  },
+  "quality": {
+    "frames": 300,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "fps": 30,
+    "timeline_passed": true,
+    "render_settings": {
+      "requested": {
+        "anti_aliasing": "dlss_quality",
+        "depth_of_field": false,
+        "motion_blur": false,
+        "exposure_mode": "manual",
+        "exposure_ev": 0.0,
+        "renderer": "RealTimePathTracing"
+      },
+      "before": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "after_stage": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 2,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+        "/rtx/post/tonemap/fNumber": 4.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "expected": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+        "/rtx/post/tonemap/fNumber": 4.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true,
+        "/rtx/post/dlss/execMode": 2
+      },
+      "color_pipeline": "RTX tonemap sRGB display output -> RGB annotator -> FFmpeg sRGB/BT.709 conversion",
+      "sensor_startup_readback": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 2,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+        "/rtx/post/tonemap/fNumber": 4.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "post_sensor_application": {
+        "requested": {
+          "anti_aliasing": "dlss_quality",
+          "depth_of_field": false,
+          "motion_blur": false,
+          "exposure_mode": "manual",
+          "exposure_ev": 0.0,
+          "renderer": "RealTimePathTracing"
+        },
+        "before": {
+          "/rtx/rendermode": "RealTimePathTracing",
+          "/rtx/post/aa/op": 3,
+          "/rtx/post/dlss/execMode": 2,
+          "/rtx/post/dof/enabled": false,
+          "/rtx/post/motionblur/enabled": false,
+          "/rtx/post/histogram/enabled": false,
+          "/rtx/post/tonemap/op": 6,
+          "/rtx/post/tonemap/filmIso": 100.0,
+          "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+          "/rtx/post/tonemap/fNumber": 4.0,
+          "/rtx/post/tonemap/colorMode": 0,
+          "/rtx/post/tonemap/enableSrgbToGamma": true
+        },
+        "after_stage": {
+          "/rtx/rendermode": "RealTimePathTracing",
+          "/rtx/post/aa/op": 3,
+          "/rtx/post/dlss/execMode": 2,
+          "/rtx/post/dof/enabled": false,
+          "/rtx/post/motionblur/enabled": false,
+          "/rtx/post/histogram/enabled": false,
+          "/rtx/post/tonemap/op": 6,
+          "/rtx/post/tonemap/filmIso": 100.0,
+          "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+          "/rtx/post/tonemap/fNumber": 4.0,
+          "/rtx/post/tonemap/colorMode": 0,
+          "/rtx/post/tonemap/enableSrgbToGamma": true
+        },
+        "expected": {
+          "/rtx/rendermode": "RealTimePathTracing",
+          "/rtx/post/aa/op": 3,
+          "/rtx/post/dof/enabled": false,
+          "/rtx/post/motionblur/enabled": false,
+          "/rtx/post/histogram/enabled": false,
+          "/rtx/post/tonemap/op": 6,
+          "/rtx/post/tonemap/filmIso": 100.0,
+          "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+          "/rtx/post/tonemap/fNumber": 4.0,
+          "/rtx/post/tonemap/colorMode": 0,
+          "/rtx/post/tonemap/enableSrgbToGamma": true,
+          "/rtx/post/dlss/execMode": 2
+        },
+        "color_pipeline": "RTX tonemap sRGB display output -> RGB annotator -> FFmpeg sRGB/BT.709 conversion"
+      },
+      "after_sensor_warmup": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 2,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+        "/rtx/post/tonemap/fNumber": 4.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "at_completion": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 2,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+        "/rtx/post/tonemap/fNumber": 4.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      }
+    }
+  },
+  "dlaa": {
+    "frames": 300,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "fps": 30,
+    "timeline_passed": true,
+    "render_settings": {
+      "requested": {
+        "anti_aliasing": "dlaa",
+        "depth_of_field": false,
+        "motion_blur": false,
+        "exposure_mode": "manual",
+        "exposure_ev": 0.0,
+        "renderer": "RealTimePathTracing"
+      },
+      "before": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 3,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.019999999552965164,
+        "/rtx/post/tonemap/fNumber": 5.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "after_stage": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 4,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+        "/rtx/post/tonemap/fNumber": 4.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "expected": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 4,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+        "/rtx/post/tonemap/fNumber": 4.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "color_pipeline": "RTX tonemap sRGB display output -> RGB annotator -> FFmpeg sRGB/BT.709 conversion",
+      "sensor_startup_readback": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 4,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+        "/rtx/post/tonemap/fNumber": 4.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "post_sensor_application": {
+        "requested": {
+          "anti_aliasing": "dlaa",
+          "depth_of_field": false,
+          "motion_blur": false,
+          "exposure_mode": "manual",
+          "exposure_ev": 0.0,
+          "renderer": "RealTimePathTracing"
+        },
+        "before": {
+          "/rtx/rendermode": "RealTimePathTracing",
+          "/rtx/post/aa/op": 4,
+          "/rtx/post/dlss/execMode": 0,
+          "/rtx/post/dof/enabled": false,
+          "/rtx/post/motionblur/enabled": false,
+          "/rtx/post/histogram/enabled": false,
+          "/rtx/post/tonemap/op": 6,
+          "/rtx/post/tonemap/filmIso": 100.0,
+          "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+          "/rtx/post/tonemap/fNumber": 4.0,
+          "/rtx/post/tonemap/colorMode": 0,
+          "/rtx/post/tonemap/enableSrgbToGamma": true
+        },
+        "after_stage": {
+          "/rtx/rendermode": "RealTimePathTracing",
+          "/rtx/post/aa/op": 4,
+          "/rtx/post/dlss/execMode": 0,
+          "/rtx/post/dof/enabled": false,
+          "/rtx/post/motionblur/enabled": false,
+          "/rtx/post/histogram/enabled": false,
+          "/rtx/post/tonemap/op": 6,
+          "/rtx/post/tonemap/filmIso": 100.0,
+          "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+          "/rtx/post/tonemap/fNumber": 4.0,
+          "/rtx/post/tonemap/colorMode": 0,
+          "/rtx/post/tonemap/enableSrgbToGamma": true
+        },
+        "expected": {
+          "/rtx/rendermode": "RealTimePathTracing",
+          "/rtx/post/aa/op": 4,
+          "/rtx/post/dof/enabled": false,
+          "/rtx/post/motionblur/enabled": false,
+          "/rtx/post/histogram/enabled": false,
+          "/rtx/post/tonemap/op": 6,
+          "/rtx/post/tonemap/filmIso": 100.0,
+          "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+          "/rtx/post/tonemap/fNumber": 4.0,
+          "/rtx/post/tonemap/colorMode": 0,
+          "/rtx/post/tonemap/enableSrgbToGamma": true
+        },
+        "color_pipeline": "RTX tonemap sRGB display output -> RGB annotator -> FFmpeg sRGB/BT.709 conversion"
+      },
+      "after_sensor_warmup": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 4,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+        "/rtx/post/tonemap/fNumber": 4.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      },
+      "at_completion": {
+        "/rtx/rendermode": "RealTimePathTracing",
+        "/rtx/post/aa/op": 4,
+        "/rtx/post/dlss/execMode": 0,
+        "/rtx/post/dof/enabled": false,
+        "/rtx/post/motionblur/enabled": false,
+        "/rtx/post/histogram/enabled": false,
+        "/rtx/post/tonemap/op": 6,
+        "/rtx/post/tonemap/filmIso": 100.0,
+        "/rtx/post/tonemap/exposureTime": 0.016666666666666666,
+        "/rtx/post/tonemap/fNumber": 4.0,
+        "/rtx/post/tonemap/colorMode": 0,
+        "/rtx/post/tonemap/enableSrgbToGamma": true
+      }
+    }
+  }
+}

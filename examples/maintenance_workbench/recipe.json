@@ -1,0 +1,1156 @@
+{
+  "description": "Post-test editable data from the empty-scene reuse task, not a script supplied to the agent.",
+  "operations": [
+    {
+      "op": "add",
+      "id": "floor",
+      "object": {
+        "kind": "box",
+        "position": [
+          0,
+          0,
+          -0.05
+        ],
+        "size": [
+          8,
+          7,
+          0.1
+        ],
+        "collision": true,
+        "material": {
+          "color": [
+            0.4,
+            0.43,
+            0.46
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "bench",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://bench",
+        "asset_physics": "visual_only",
+        "asset_metrics": {
+          "meters_per_unit": 1,
+          "reason": "Inspected component 0.01 scaling and metre assembly translations; root lacks unit metadata."
+        },
+        "support_surfaces": {
+          "worktop": {
+            "min_xy": [
+              -1.1,
+              -0.32
+            ],
+            "max_xy": [
+              0.1,
+              0.32
+            ],
+            "z_m": 0.99405134
+          }
+        },
+        "position": [
+          0.0,
+          0.009812584503149202,
+          0.0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "tray_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tray",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.085,
+              -0.105
+            ],
+            "max_xy": [
+              0.085,
+              0.105
+            ],
+            "z_m": 0.0012
+          }
+        },
+        "position": [
+          -0.7353670707345009,
+          -0.1326857614679583,
+          0.9940513403825806
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "tray_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tray",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.085,
+              -0.105
+            ],
+            "max_xy": [
+              0.085,
+              0.105
+            ],
+            "z_m": 0.0012
+          }
+        },
+        "position": [
+          -0.5000000074505806,
+          -0.1326857614679583,
+          0.9940513403825806
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "tray_2",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tray",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.085,
+              -0.105
+            ],
+            "max_xy": [
+              0.085,
+              0.105
+            ],
+            "z_m": 0.0012
+          }
+        },
+        "position": [
+          -0.26463294416666033,
+          -0.1326857614679583,
+          0.9940513403825806
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "tray_3",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tray",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.085,
+              -0.105
+            ],
+            "max_xy": [
+              0.085,
+              0.105
+            ],
+            "z_m": 0.0012
+          }
+        },
+        "position": [
+          -0.7353670707345009,
+          0.15231093047425667,
+          0.9940513403825806
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "tray_4",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tray",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.085,
+              -0.105
+            ],
+            "max_xy": [
+              0.085,
+              0.105
+            ],
+            "z_m": 0.0012
+          }
+        },
+        "position": [
+          -0.5000000074505806,
+          0.15231093047425667,
+          0.9940513403825806
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "tray_5",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tray",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.085,
+              -0.105
+            ],
+            "max_xy": [
+              0.085,
+              0.105
+            ],
+            "z_m": 0.0012
+          }
+        },
+        "position": [
+          -0.26463294416666033,
+          0.15231093047425667,
+          0.9940513403825806
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_0_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://gear",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.7825787689387799,
+          -0.1326857614679583,
+          0.9902513404943393
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_0_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://gear",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.7286554057113827,
+          -0.1326857614679583,
+          0.9902513404943393
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_1_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://nut",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.5155000071451068,
+          -0.1326857614679583,
+          0.9832513402782724
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_1_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://nut",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.4845000077560544,
+          -0.1326857614679583,
+          0.9832513402782724
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_2_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://flange",
+        "asset_physics": "visual_only",
+        "asset_metrics": {
+          "meters_per_unit": 1,
+          "reason": "Factory shaft support body is 0.04 coordinate units with an 8mm bore; source root has no units; preserve authored Y up."
+        },
+        "position": [
+          -0.2906329437196255,
+          -0.1216857612947323,
+          1.0152513399355456
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_2_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://flange",
+        "asset_physics": "visual_only",
+        "asset_metrics": {
+          "meters_per_unit": 1,
+          "reason": "Factory shaft support body is 0.04 coordinate units with an 8mm bore; source root has no units; preserve authored Y up."
+        },
+        "position": [
+          -0.23863294461369516,
+          -0.1216857612947323,
+          1.0152513399355456
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_3_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://gear",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.7825787689387799,
+          0.15231093047425667,
+          0.9902513404943393
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_3_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://gear",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.7286554057113827,
+          0.15231093047425667,
+          0.9902513404943393
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_4_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://nut",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.5155000071451068,
+          0.15231093047425667,
+          0.9832513402782724
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_4_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://nut",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.4845000077560544,
+          0.15231093047425667,
+          0.9832513402782724
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_5_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://flange",
+        "asset_physics": "visual_only",
+        "asset_metrics": {
+          "meters_per_unit": 1,
+          "reason": "Factory shaft support body is 0.04 coordinate units with an 8mm bore; source root has no units; preserve authored Y up."
+        },
+        "position": [
+          -0.2906329437196255,
+          0.16331093064748267,
+          1.0152513399355456
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "part_5_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://flange",
+        "asset_physics": "visual_only",
+        "asset_metrics": {
+          "meters_per_unit": 1,
+          "reason": "Factory shaft support body is 0.04 coordinate units with an 8mm bore; source root has no units; preserve authored Y up."
+        },
+        "position": [
+          -0.23863294461369516,
+          0.16331093064748267,
+          1.0152513399355456
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "tool_cart",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://cart",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "rails": {
+            "min_xy": [
+              -0.4,
+              -0.6
+            ],
+            "max_xy": [
+              0.4,
+              0.6
+            ],
+            "z_m": 0.377
+          }
+        },
+        "position": [
+          -2.5001413635095204,
+          -0.09900457456062198,
+          -0.0007847229171554148
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "cart_deck",
+      "object": {
+        "kind": "box",
+        "position": [
+          -2.5001413635095204,
+          -0.09900457456062198,
+          0.3887152770828446
+        ],
+        "size": [
+          0.8,
+          1.2,
+          0.025
+        ],
+        "collision": false,
+        "material": {
+          "color": [
+            0.37,
+            0.3,
+            0.21
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "tool_case",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://case",
+        "asset_physics": "visual_only",
+        "position": [
+          -2.5003900811162647,
+          -0.09900446313850511,
+          0.40099616668573407
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_post_0_0",
+      "object": {
+        "kind": "box",
+        "position": [
+          -0.7,
+          1.2,
+          1.1
+        ],
+        "size": [
+          0.04,
+          0.04,
+          2.2
+        ],
+        "collision": false,
+        "material": {
+          "color": [
+            0.17,
+            0.21,
+            0.24
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_post_0_1",
+      "object": {
+        "kind": "box",
+        "position": [
+          -0.7,
+          1.8,
+          1.1
+        ],
+        "size": [
+          0.04,
+          0.04,
+          2.2
+        ],
+        "collision": false,
+        "material": {
+          "color": [
+            0.17,
+            0.21,
+            0.24
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_post_1_0",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.4,
+          1.2,
+          1.1
+        ],
+        "size": [
+          0.04,
+          0.04,
+          2.2
+        ],
+        "collision": false,
+        "material": {
+          "color": [
+            0.17,
+            0.21,
+            0.24
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_post_1_1",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.4,
+          1.8,
+          1.1
+        ],
+        "size": [
+          0.04,
+          0.04,
+          2.2
+        ],
+        "collision": false,
+        "material": {
+          "color": [
+            0.17,
+            0.21,
+            0.24
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "shelf_low",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.35,
+          1.5,
+          0.35
+        ],
+        "size": [
+          2.15,
+          0.65,
+          0.04
+        ],
+        "collision": false,
+        "material": {
+          "color": [
+            0.27,
+            0.31,
+            0.34
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "shelf_mid",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.35,
+          1.5,
+          1.05
+        ],
+        "size": [
+          2.15,
+          0.65,
+          0.04
+        ],
+        "collision": false,
+        "material": {
+          "color": [
+            0.27,
+            0.31,
+            0.34
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "shelf_top",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.35,
+          1.5,
+          1.8
+        ],
+        "size": [
+          2.15,
+          0.65,
+          0.04
+        ],
+        "collision": false,
+        "material": {
+          "color": [
+            0.27,
+            0.31,
+            0.34
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "shelf_bin_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.1267641701083631,
+          1.499999990087995,
+          1.1431799569652648
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "shelf_bin_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only",
+        "position": [
+          0.191078609963879,
+          1.499999990087995,
+          1.1431799569652648
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "shelf_bin_2",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only",
+        "position": [
+          0.508921390036121,
+          1.499999990087995,
+          1.1431799569652648
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "shelf_bin_3",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only",
+        "position": [
+          0.826764170108363,
+          1.499999990087995,
+          1.1431799569652648
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "shelf_case",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://case",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.15024871760674427,
+          1.5000001114221169,
+          0.36978088960288946
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_floor",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.62,
+          -0.09,
+          1.004
+        ],
+        "size": [
+          0.68,
+          0.43,
+          0.012
+        ],
+        "collision": true,
+        "material": {
+          "color": [
+            0.2,
+            0.24,
+            0.26
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_left",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.275,
+          -0.09,
+          1.045
+        ],
+        "size": [
+          0.01,
+          0.45,
+          0.08
+        ],
+        "collision": true,
+        "material": {
+          "color": [
+            0.2,
+            0.24,
+            0.26
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_right",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.965,
+          -0.09,
+          1.045
+        ],
+        "size": [
+          0.01,
+          0.45,
+          0.08
+        ],
+        "collision": true,
+        "material": {
+          "color": [
+            0.2,
+            0.24,
+            0.26
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_front",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.62,
+          -0.31,
+          1.045
+        ],
+        "size": [
+          0.7,
+          0.01,
+          0.08
+        ],
+        "collision": true,
+        "material": {
+          "color": [
+            0.2,
+            0.24,
+            0.26
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_back",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.62,
+          0.13,
+          1.045
+        ],
+        "size": [
+          0.7,
+          0.01,
+          0.08
+        ],
+        "collision": true,
+        "material": {
+          "color": [
+            0.2,
+            0.24,
+            0.26
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "drop_0",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.04,
+          0.04,
+          0.04
+        ],
+        "position": [
+          0.45,
+          -0.09,
+          1.65
+        ],
+        "dynamic": true,
+        "collision": true,
+        "mass_kg": 0.03,
+        "spawn_step": 600,
+        "class_label": "sample",
+        "material": {
+          "color": [
+            0.8,
+            0.22,
+            0.035
+          ],
+          "roughness": 0.5
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "drop_1",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.04,
+          0.04,
+          0.04
+        ],
+        "position": [
+          0.62,
+          -0.09,
+          1.65
+        ],
+        "dynamic": true,
+        "collision": true,
+        "mass_kg": 0.03,
+        "spawn_step": 840,
+        "class_label": "sample",
+        "material": {
+          "color": [
+            0.8,
+            0.22,
+            0.035
+          ],
+          "roughness": 0.5
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "drop_2",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.04,
+          0.04,
+          0.04
+        ],
+        "position": [
+          0.79,
+          -0.09,
+          1.65
+        ],
+        "dynamic": true,
+        "collision": true,
+        "mass_kg": 0.03,
+        "spawn_step": 1080,
+        "class_label": "sample",
+        "material": {
+          "color": [
+            0.8,
+            0.22,
+            0.035
+          ],
+          "roughness": 0.5
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rear_wall",
+      "object": {
+        "kind": "box",
+        "position": [
+          0,
+          2.8,
+          1.5
+        ],
+        "size": [
+          8,
+          0.1,
+          3
+        ],
+        "collision": false,
+        "material": {
+          "color": [
+            0.52,
+            0.55,
+            0.57
+          ],
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "ambient",
+      "object": {
+        "kind": "light",
+        "intensity": 220,
+        "light": {
+          "type": "dome"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "key",
+      "object": {
+        "kind": "light",
+        "intensity": 600,
+        "orientation_wxyz": [
+          0.9238795325112867,
+          0.3826834323650898,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fill",
+      "object": {
+        "kind": "light",
+        "intensity": 250,
+        "position": [
+          0,
+          -1,
+          3.5
+        ],
+        "light": {
+          "type": "rect",
+          "width_m": 2,
+          "height_m": 1.5
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "presentation_0",
+      "object": {
+        "kind": "camera",
+        "position": [
+          3.2054799915582946,
+          -7.935122375774399,
+          6.3138242494698655
+        ],
+        "orientation_wxyz": [
+          0.8454971437791755,
+          0.4881480035599667,
+          0.10821980696905142,
+          0.18744220405569356
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "focal_length_mm": 50,
+          "horizontal_aperture_mm": 36
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "presentation_1",
+      "object": {
+        "kind": "camera",
+        "position": [
+          0.6380254516687884,
+          -2.440503456819733,
+          1.9699429864637792
+        ],
+        "orientation_wxyz": [
+          0.7898400613004307,
+          0.5738523948571242,
+          0.12722001308469333,
+          0.17510332593187802
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "focal_length_mm": 45,
+          "horizontal_aperture_mm": 36
+        },
+        "camera_path": [
+          {
+            "time_s": 0,
+            "position": [
+              -0.5,
+              -0.95,
+              1.9
+            ],
+            "target": [
+              -0.5,
+              0,
+              1.03
+            ]
+          },
+          {
+            "time_s": 7,
+            "position": [
+              -0.5,
+              -0.95,
+              1.9
+            ],
+            "target": [
+              -0.5,
+              0,
+              1.03
+            ]
+          },
+          {
+            "time_s": 9,
+            "position": [
+              0.62,
+              -1.65,
+              1.85
+            ],
+            "target": [
+              0.62,
+              -0.09,
+              1.3
+            ]
+          },
+          {
+            "time_s": 22,
+            "position": [
+              0.62,
+              -1.65,
+              1.85
+            ],
+            "target": [
+              0.62,
+              -0.09,
+              1.3
+            ]
+          },
+          {
+            "time_s": 24,
+            "position": [
+              -0.5,
+              -0.95,
+              1.9
+            ],
+            "target": [
+              -0.5,
+              0,
+              1.03
+            ]
+          },
+          {
+            "time_s": 30,
+            "position": [
+              -0.5,
+              -0.95,
+              1.9
+            ],
+            "target": [
+              -0.5,
+              0,
+              1.03
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "set_presentation",
+      "presentation": {
+        "profile": "technical_showcase_1080p",
+        "budget": {
+          "max_cameras": 2
+        },
+        "diagnostics": {
+          "keyframe_interval_s": 10
+        }
+      }
+    }
+  ]
+}

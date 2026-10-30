@@ -1,0 +1,1440 @@
+{
+  "description": "Precision manufacturing sorting corner; ordinary editable operations, all new imported objects are explicit visual props. Original three-arm task and controllers are unchanged.",
+  "asset_roles": [
+    "bench",
+    "tray",
+    "tote",
+    "pallet",
+    "wrench",
+    "screwdriver",
+    "gear",
+    "puller",
+    "case",
+    "cart",
+    "nut",
+    "flange"
+  ],
+  "reserved_activity_bounds": [
+    {
+      "min": [
+        -3.15,
+        -1.2,
+        0.1
+      ],
+      "max": [
+        3.25,
+        1.35,
+        2.0
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "op": "update",
+      "id": "ur10",
+      "changes": {
+        "asset_lights": "disabled"
+      }
+    },
+    {
+      "op": "remove",
+      "id": "header"
+    },
+    {
+      "op": "update",
+      "id": "island",
+      "changes": {
+        "material": {
+          "color": [
+            0.48,
+            0.5,
+            0.51
+          ],
+          "roughness": 0.8
+        }
+      }
+    },
+    {
+      "op": "update",
+      "id": "floor",
+      "changes": {
+        "size": [
+          12,
+          8,
+          0.12
+        ],
+        "material": {
+          "color": [
+            0.38,
+            0.42,
+            0.45
+          ],
+          "roughness": 0.8
+        }
+      }
+    },
+    {
+      "op": "update",
+      "id": "ambient",
+      "changes": {
+        "intensity": 170
+      }
+    },
+    {
+      "op": "update",
+      "id": "key",
+      "changes": {
+        "intensity": 600
+      }
+    },
+    {
+      "op": "add",
+      "id": "spares_bench",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://bench",
+        "asset_physics": "visual_only",
+        "position": [
+          -1.9,
+          2.15,
+          0
+        ],
+        "asset_metrics": {
+          "meters_per_unit": 1,
+          "reason": "Root metadata absent; component scales 0.01 and metre translations plus measured table top at 0.994051m establish assembled metre coordinates."
+        },
+        "support_surfaces": {
+          "top": {
+            "min_xy": [
+              -1.1,
+              -0.32
+            ],
+            "max_xy": [
+              0.1,
+              0.32
+            ],
+            "z_m": 0.99405134
+          }
+        }
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "spares_bench",
+      "support": "floor",
+      "offset_xy": [
+        -1.9,
+        2.15
+      ],
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ],
+      "clearance_m": 0.03
+    },
+    {
+      "op": "add",
+      "id": "tray_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tray",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.085,
+              -0.105
+            ],
+            "max_xy": [
+              0.085,
+              0.105
+            ],
+            "z_m": 0.0012
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "tray_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tray",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.085,
+              -0.105
+            ],
+            "max_xy": [
+              0.085,
+              0.105
+            ],
+            "z_m": 0.0012
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "tray_2",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tray",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.085,
+              -0.105
+            ],
+            "max_xy": [
+              0.085,
+              0.105
+            ],
+            "z_m": 0.0012
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "tray_3",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tray",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.085,
+              -0.105
+            ],
+            "max_xy": [
+              0.085,
+              0.105
+            ],
+            "z_m": 0.0012
+          }
+        }
+      }
+    },
+    {
+      "op": "arrange_grid",
+      "ids": [
+        "tray_0",
+        "tray_1",
+        "tray_2",
+        "tray_3"
+      ],
+      "support": "spares_bench",
+      "support_surface": "top",
+      "columns": 2,
+      "gap_m": 0.035,
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ]
+    },
+    {
+      "op": "add",
+      "id": "gear_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://gear",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "gear_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://gear",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "nut_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://nut",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "nut_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://nut",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "flange_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://flange",
+        "asset_physics": "visual_only",
+        "asset_metrics": {
+          "meters_per_unit": 1,
+          "reason": "Factory 8mm shaft support has 0.04 coordinate-unit body and 0.008 coordinate-unit bore; assembled root lacks metresPerUnit; preserve authored Y up."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "flange_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://flange",
+        "asset_physics": "visual_only",
+        "asset_metrics": {
+          "meters_per_unit": 1,
+          "reason": "Factory 8mm shaft support has 0.04 coordinate-unit body and 0.008 coordinate-unit bore; assembled root lacks metresPerUnit; preserve authored Y up."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "gear_6",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://gear",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "gear_7",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://gear",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "arrange_grid",
+      "ids": [
+        "gear_0",
+        "gear_1"
+      ],
+      "support": "tray_0",
+      "support_surface": "interior",
+      "columns": 2,
+      "gap_m": 0.012
+    },
+    {
+      "op": "arrange_grid",
+      "ids": [
+        "nut_0",
+        "nut_1"
+      ],
+      "support": "tray_1",
+      "support_surface": "interior",
+      "columns": 2,
+      "gap_m": 0.012
+    },
+    {
+      "op": "arrange_grid",
+      "ids": [
+        "flange_0",
+        "flange_1"
+      ],
+      "support": "tray_2",
+      "support_surface": "interior",
+      "columns": 2,
+      "gap_m": 0.012
+    },
+    {
+      "op": "arrange_grid",
+      "ids": [
+        "gear_6",
+        "gear_7"
+      ],
+      "support": "tray_3",
+      "support_surface": "interior",
+      "columns": 2,
+      "gap_m": 0.012
+    },
+    {
+      "op": "add",
+      "id": "bench_wrench",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://wrench",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "bench_wrench",
+      "support": "spares_bench",
+      "offset_xy": [
+        0.38,
+        0
+      ],
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ],
+      "clearance_m": 0.03,
+      "support_surface": "top"
+    },
+    {
+      "op": "add",
+      "id": "bench_driver",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://screwdriver",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "bench_driver",
+      "support": "spares_bench",
+      "offset_xy": [
+        0.38,
+        0.18
+      ],
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ],
+      "clearance_m": 0.03,
+      "support_surface": "top"
+    },
+    {
+      "op": "add",
+      "id": "service_cart",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://cart",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "rails": {
+            "min_xy": [
+              -0.4,
+              -0.6
+            ],
+            "max_xy": [
+              0.4,
+              0.6
+            ],
+            "z_m": 0.377
+          }
+        }
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "service_cart",
+      "support": "floor",
+      "offset_xy": [
+        -4.0,
+        -1.65
+      ],
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ],
+      "clearance_m": 0.03
+    },
+    {
+      "op": "add",
+      "id": "service_cart_deck",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.8,
+          1.2,
+          0.025
+        ],
+        "material": {
+          "color": [
+            0.37,
+            0.3,
+            0.21
+          ],
+          "roughness": 0.75
+        }
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "service_cart_deck",
+      "support": "service_cart",
+      "support_surface": "rails"
+    },
+    {
+      "op": "add",
+      "id": "service_case",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://case",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "service_case",
+      "support": "service_cart_deck",
+      "offset_xy": [
+        0,
+        0
+      ],
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ],
+      "clearance_m": 0.03
+    },
+    {
+      "op": "add",
+      "id": "puller",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://puller",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "puller",
+      "support": "spares_bench",
+      "offset_xy": [
+        -0.35,
+        0
+      ],
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ],
+      "clearance_m": 0.03,
+      "support_surface": "top"
+    },
+    {
+      "op": "add",
+      "id": "incoming_pallet",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://pallet",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "deck": {
+            "min_xy": [
+              -0.55,
+              -0.35
+            ],
+            "max_xy": [
+              0.55,
+              0.35
+            ],
+            "z_m": 0.14250583
+          }
+        }
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "incoming_pallet",
+      "support": "floor",
+      "offset_xy": [
+        -4,
+        1.8
+      ],
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ],
+      "clearance_m": 0.03
+    },
+    {
+      "op": "add",
+      "id": "incoming_pallet_tote_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "incoming_pallet_tote_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "incoming_pallet_tote_2",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "arrange_grid",
+      "ids": [
+        "incoming_pallet_tote_0",
+        "incoming_pallet_tote_1",
+        "incoming_pallet_tote_2"
+      ],
+      "support": "incoming_pallet",
+      "support_surface": "deck",
+      "columns": 3,
+      "gap_m": 0.04,
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ]
+    },
+    {
+      "op": "add",
+      "id": "finished_pallet",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://pallet",
+        "asset_physics": "visual_only",
+        "support_surfaces": {
+          "deck": {
+            "min_xy": [
+              -0.55,
+              -0.35
+            ],
+            "max_xy": [
+              0.55,
+              0.35
+            ],
+            "z_m": 0.14250583
+          }
+        }
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "finished_pallet",
+      "support": "floor",
+      "offset_xy": [
+        3.9,
+        1.8
+      ],
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ],
+      "clearance_m": 0.03
+    },
+    {
+      "op": "add",
+      "id": "finished_pallet_tote_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "finished_pallet_tote_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "finished_pallet_tote_2",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "arrange_grid",
+      "ids": [
+        "finished_pallet_tote_0",
+        "finished_pallet_tote_1",
+        "finished_pallet_tote_2"
+      ],
+      "support": "finished_pallet",
+      "support_surface": "deck",
+      "columns": 3,
+      "gap_m": 0.04,
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ]
+    },
+    {
+      "op": "add",
+      "id": "rack_post_0_0",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.65,
+          2.1,
+          1.1
+        ],
+        "size": [
+          0.045,
+          0.045,
+          2.2
+        ],
+        "material": {
+          "color": [
+            0.17,
+            0.21,
+            0.24
+          ],
+          "roughness": 0.6,
+          "metallic": 0.6
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_post_0_1",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.65,
+          2.7,
+          1.1
+        ],
+        "size": [
+          0.045,
+          0.045,
+          2.2
+        ],
+        "material": {
+          "color": [
+            0.17,
+            0.21,
+            0.24
+          ],
+          "roughness": 0.6,
+          "metallic": 0.6
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_post_1_0",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.45,
+          2.1,
+          1.1
+        ],
+        "size": [
+          0.045,
+          0.045,
+          2.2
+        ],
+        "material": {
+          "color": [
+            0.17,
+            0.21,
+            0.24
+          ],
+          "roughness": 0.6,
+          "metallic": 0.6
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_post_1_1",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.45,
+          2.7,
+          1.1
+        ],
+        "size": [
+          0.045,
+          0.045,
+          2.2
+        ],
+        "material": {
+          "color": [
+            0.17,
+            0.21,
+            0.24
+          ],
+          "roughness": 0.6,
+          "metallic": 0.6
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_shelf_0",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.55,
+          2.4,
+          0.32
+        ],
+        "size": [
+          1.85,
+          0.65,
+          0.045
+        ],
+        "material": {
+          "color": [
+            0.28,
+            0.32,
+            0.35
+          ],
+          "roughness": 0.6,
+          "metallic": 0.4
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_shelf_1",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.55,
+          2.4,
+          1.05
+        ],
+        "size": [
+          1.85,
+          0.65,
+          0.045
+        ],
+        "material": {
+          "color": [
+            0.28,
+            0.32,
+            0.35
+          ],
+          "roughness": 0.6,
+          "metallic": 0.4
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_shelf_2",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.55,
+          2.4,
+          1.8
+        ],
+        "size": [
+          1.85,
+          0.65,
+          0.045
+        ],
+        "material": {
+          "color": [
+            0.28,
+            0.32,
+            0.35
+          ],
+          "roughness": 0.6,
+          "metallic": 0.4
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_tote_0",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_tote_1",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "add",
+      "id": "rack_tote_2",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://tote",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "arrange_grid",
+      "ids": [
+        "rack_tote_0",
+        "rack_tote_1",
+        "rack_tote_2"
+      ],
+      "support": "rack_shelf_1",
+      "columns": 3,
+      "gap_m": 0.16
+    },
+    {
+      "op": "add",
+      "id": "rack_case",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://case",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "rack_case",
+      "support": "rack_shelf_0",
+      "offset_xy": [
+        -0.45,
+        0
+      ],
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ],
+      "clearance_m": 0.03
+    },
+    {
+      "op": "add",
+      "id": "rack_spare_case",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://case",
+        "asset_physics": "visual_only"
+      }
+    },
+    {
+      "op": "place_on",
+      "id": "rack_spare_case",
+      "support": "rack_shelf_0",
+      "offset_xy": [
+        0.3,
+        0
+      ],
+      "keepout_bounds": [
+        {
+          "min": [
+            -3.15,
+            -1.2,
+            0.1
+          ],
+          "max": [
+            3.25,
+            1.35,
+            2.0
+          ]
+        }
+      ],
+      "clearance_m": 0.03
+    },
+    {
+      "op": "add",
+      "id": "safety_line_0",
+      "object": {
+        "kind": "box",
+        "position": [
+          -3.4,
+          0,
+          0.002
+        ],
+        "size": [
+          0.035,
+          3.2,
+          0.004
+        ],
+        "material": {
+          "color": [
+            0.78,
+            0.62,
+            0.12
+          ],
+          "roughness": 0.6,
+          "metallic": 0
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "safety_line_1",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.45,
+          0,
+          0.002
+        ],
+        "size": [
+          0.035,
+          3.2,
+          0.004
+        ],
+        "material": {
+          "color": [
+            0.78,
+            0.62,
+            0.12
+          ],
+          "roughness": 0.6,
+          "metallic": 0
+        }
+      }
+    },
+    {
+      "op": "remove",
+      "id": "panorama"
+    },
+    {
+      "op": "remove",
+      "id": "overhead"
+    },
+    {
+      "op": "remove",
+      "id": "grip_close"
+    },
+    {
+      "op": "remove",
+      "id": "suction_close"
+    },
+    {
+      "op": "set_presentation",
+      "presentation": {
+        "profile": "technical_showcase_1080p",
+        "capture": {
+          "anti_aliasing": "dlss_quality",
+          "exposure_ev": 0
+        },
+        "output": {
+          "crf": 18,
+          "preset": "medium"
+        },
+        "budget": {
+          "max_cameras": 2,
+          "max_recording_bytes": 6442450944,
+          "min_free_bytes": 4294967296
+        },
+        "diagnostics": {
+          "keyframe_interval_s": 10
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "overview",
+      "object": {
+        "kind": "camera",
+        "position": [
+          8,
+          -12,
+          7.5
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "focal_length_mm": 46,
+          "horizontal_aperture_mm": 36
+        }
+      }
+    },
+    {
+      "op": "look_at",
+      "id": "overview",
+      "target": [
+        0,
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "op": "add",
+      "id": "detail",
+      "object": {
+        "kind": "camera",
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "focal_length_mm": 35,
+          "horizontal_aperture_mm": 36
+        },
+        "camera_path": [
+          {
+            "time_s": 0,
+            "position": [
+              -1.8,
+              0.8,
+              1.9
+            ],
+            "target": [
+              -2.2,
+              2.15,
+              1.05
+            ]
+          },
+          {
+            "time_s": 30,
+            "position": [
+              -1.8,
+              0.8,
+              1.9
+            ],
+            "target": [
+              -2.2,
+              2.15,
+              1.05
+            ]
+          },
+          {
+            "time_s": 40,
+            "position": [
+              -1.05,
+              -1.8,
+              1.5
+            ],
+            "target": [
+              -1.1,
+              0.2,
+              0.95
+            ]
+          },
+          {
+            "time_s": 59,
+            "position": [
+              -1.05,
+              -1.8,
+              1.5
+            ],
+            "target": [
+              -1.1,
+              0.2,
+              0.95
+            ]
+          },
+          {
+            "time_s": 61,
+            "position": [
+              0.85,
+              -2.15,
+              1.65
+            ],
+            "target": [
+              0.35,
+              -0.35,
+              1
+            ]
+          },
+          {
+            "time_s": 75,
+            "position": [
+              0.85,
+              -2.15,
+              1.65
+            ],
+            "target": [
+              0.35,
+              -0.35,
+              1
+            ]
+          },
+          {
+            "time_s": 93,
+            "position": [
+              2.9,
+              -1.5,
+              1.6
+            ],
+            "target": [
+              2,
+              0.15,
+              1
+            ]
+          },
+          {
+            "time_s": 122,
+            "position": [
+              2.9,
+              -1.5,
+              1.6
+            ],
+            "target": [
+              2,
+              0.15,
+              1
+            ]
+          },
+          {
+            "time_s": 130,
+            "position": [
+              0.4,
+              0.9,
+              1.8
+            ],
+            "target": [
+              1.55,
+              2.4,
+              1
+            ]
+          },
+          {
+            "time_s": 145,
+            "position": [
+              0.4,
+              0.9,
+              1.8
+            ],
+            "target": [
+              1.55,
+              2.4,
+              1
+            ]
+          },
+          {
+            "time_s": 149,
+            "position": [
+              0.85,
+              -2.15,
+              1.65
+            ],
+            "target": [
+              0.35,
+              -0.35,
+              1
+            ]
+          },
+          {
+            "time_s": 172,
+            "position": [
+              0.85,
+              -2.15,
+              1.65
+            ],
+            "target": [
+              0.35,
+              -0.35,
+              1
+            ]
+          },
+          {
+            "time_s": 176,
+            "position": [
+              8,
+              -12,
+              7.5
+            ],
+            "target": [
+              0,
+              0.5,
+              0.7
+            ]
+          },
+          {
+            "time_s": 184,
+            "position": [
+              8,
+              -12,
+              7.5
+            ],
+            "target": [
+              0,
+              0.5,
+              0.7
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "workshop_back_wall",
+      "object": {
+        "kind": "box",
+        "position": [
+          0,
+          4,
+          1.8
+        ],
+        "size": [
+          12,
+          0.12,
+          3.6
+        ],
+        "material": {
+          "color": [
+            0.5,
+            0.54,
+            0.57
+          ],
+          "roughness": 0.85
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "workshop_side_wall",
+      "object": {
+        "kind": "box",
+        "position": [
+          -6,
+          1.7,
+          1.8
+        ],
+        "size": [
+          0.12,
+          4.6,
+          3.6
+        ],
+        "material": {
+          "color": [
+            0.46,
+            0.5,
+            0.53
+          ],
+          "roughness": 0.85
+        }
+      }
+    }
+  ]
+}

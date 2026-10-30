@@ -15,6 +15,9 @@ def _artifacts(root,result_name):
     for value in (result.get('videos') or {}).values():
         paths.append(Path(value['path']))
         if value.get('encoder_log'):paths.append(Path(value['encoder_log']))
+        if value.get('frame_manifest'):paths.append(Path(value['frame_manifest']))
+        paths.extend(Path(p) for p in value.get('keyframes',[]))
+    if result.get('render_settings_path'):paths.append(Path(result['render_settings_path']))
     if result.get('archived_objects'):
         paths.append(root/'archive-ledger.jsonl')
     result_paths={}

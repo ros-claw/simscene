@@ -36,4 +36,6 @@ logs/
 *.xrdf
 *.mp4
 !docs/media/triarm-demo.mp4
+!docs/media/precision-workshop-1080p30.mp4
+!docs/media/maintenance-workbench-1080p30.mp4
 

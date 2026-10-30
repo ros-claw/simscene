@@ -1,0 +1,6 @@
+{
+  "reason": "Installed user site contained Pillow11.3 metadata alongside active Pillow12.2 binary; copy now selects metadata matching the active PIL module and validates image import in a clean interpreter.",
+  "core_and_skills_changed": [],
+  "old_package": "/tmp/simscene-plugin-v31/portable/simscene",
+  "fixed_package": "/tmp/simscene-plugin-v32/portable/simscene"
+}

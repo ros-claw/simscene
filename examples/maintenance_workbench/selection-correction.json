@@ -1,0 +1,19 @@
+{
+  "first_selection": {
+    "query_call": 9,
+    "query": "toolbox",
+    "hit_index": 6,
+    "hit_id": "0e3bce952c58d10af9a9050b1583d927",
+    "source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Samples/ROS2/Scenario/turtlebot_tutorial.usd",
+    "thumbnail_image_key": "8d191c95c36c58802de14d1ea0083ddc4d1244e25c8ba28ef0f807fdca30d84b"
+  },
+  "correction": {
+    "query_call": 9,
+    "query": "toolbox",
+    "hit_index": 7,
+    "hit_id": "25883f575e9b5b0f98417c803e5ab63b",
+    "source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Industrial/Tools/Toolbox_Carry_Hard_Case_B01/sm_storage_toolbox_carry_hardCase_b01_01.usd",
+    "thumbnail_image_key": null
+  },
+  "reason": "Index6 was a Turtlebot demonstration scene, not the intended tool case; corrected to actual case hit7 before any scene construction. Attempted download cancellation; active background tasks may finish."
+}

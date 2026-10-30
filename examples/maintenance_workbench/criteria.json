@@ -1,0 +1,20 @@
+{
+  "scope": "Same active agent, empty-scene reuse through frozen packaged MCP and both skills; not an independent fresh-agent benchmark.",
+  "scene_id": "maintenance_bench",
+  "required_tray_ids": ["tray_0", "tray_1", "tray_2", "tray_3", "tray_4", "tray_5"],
+  "rows": 2,
+  "columns": 3,
+  "bench_id": "bench",
+  "cart_id": "tool_cart",
+  "shelf_id": "shelf_mid",
+  "part_source_categories_minimum": 3,
+  "dynamic_ids": ["drop_0", "drop_1", "drop_2"],
+  "receiver_id": "receiver_floor",
+  "minimum_fall_m": 0.25,
+  "maximum_terminal_motion_m": 0.003,
+  "native_resolution": [1920, 1080],
+  "fps": 30,
+  "minimum_camera_count": 2,
+  "all_selected_sources_must_match_actual_search_hits_and_run_asset_locks": true,
+  "no_runtime_or_skill_changes": true
+}

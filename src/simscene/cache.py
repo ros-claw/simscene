@@ -49,8 +49,36 @@ class AssetCache:
             fcntl.flock(lock, fcntl.LOCK_EX)
             self._cleanup_partials()
             result = self._acquire(asset_url, refresh)
+            result = self._complete_material_dependencies(result)
             self._write_provenance(result)
             return result
+
+    def _complete_material_dependencies(self, result):
+        """Upgrade pre-MDL scans only during explicitly requested acquisition.
+
+        Existing content is never replaced. Additional files are source-bound
+        and hashed; their expanded fingerprint is recorded in the new lock.
+        """
+        target=self.directory/result['package_sha256']
+        lock_path=target/'simscene-lock.json'
+        lock=json.loads(lock_path.read_text())
+        if lock.get('dependency_scan_version',0)>=2:return result
+        if not any(target.rglob('*.mdl')):
+            # No local MDL source to scan. Naked runtime builtins still follow
+            # the existing explicit runtime dependency classification.
+            return result
+        from .dependencies import repair
+        scan=repair(lock['root'],lock['source'],target,self.max_bytes)
+        known={entry['path'] for entry in lock['files']}
+        lock['files'].extend(entry for entry in scan['files'] if entry['path'] not in known)
+        lock.update(unresolved_dependencies=scan['unresolved'],repair_errors=scan['errors'],
+                    dependency_status='missing' if scan['unresolved'] else 'resolved_locally',dependency_scan_version=2)
+        if sum(p.stat().st_size for p in target.rglob('*') if p.is_file())+len(json.dumps(lock))>self.max_bytes:
+            raise SearchError('material dependency repair exceeds cache capacity')
+        temporary=lock_path.with_suffix('.json.tmp')
+        temporary.write_text(json.dumps(lock,indent=2));os.replace(temporary,lock_path)
+        os.utime(target,None);self._evict(0)
+        return _runtime_status(lock)
 
     @staticmethod
     def content_identity(files):
@@ -175,7 +203,7 @@ class AssetCache:
                     unresolved = []
                     dependency_status = 'unverified_usd_tools_unavailable'
                     scan = {'errors': []}
-                lock = {'source': asset_url, 'package_sha256': digest, 'root': str(target / roots[0]), 'files': files, 'dependency_status': dependency_status, 'unresolved_dependencies': unresolved, 'repair_errors': scan['errors'], 'preview': preview}
+                lock = {'source': asset_url, 'package_sha256': digest, 'root': str(target / roots[0]), 'files': files, 'dependency_status': dependency_status, 'unresolved_dependencies': unresolved, 'repair_errors': scan['errors'], 'dependency_scan_version':scan.get('scan_version',0), 'preview': preview}
                 (output / 'simscene-lock.json').write_text(json.dumps(lock, indent=2))
                 size = sum(p.stat().st_size for p in output.rglob('*') if p.is_file())
                 if size > self.max_bytes:

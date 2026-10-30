@@ -1,8 +1,8 @@
 # Public validation records
 
 This directory contains selected validation summaries and JSON observations
-needed by the CPU regression tests. The full local evidence archive is about
-13 GB and is intentionally not distributed in Git.
+needed by the CPU regression tests. The full local evidence archive, including
+downloaded geometry and native recordings, is intentionally not distributed in Git.
 
 No raw agent transcripts, credentials, robot model geometry, textures, cache
 directories or installed vendor packages are included. Paths inside historical
@@ -33,4 +33,8 @@ run snapshots. The implementation report preserves that distinction.
 The top-level domino, repeated-grasp, parallel-grasp and short-stream JSON
 recordings are historical observations used to test the independent verifiers.
 Their presence is not a claim that CPU CI re-executes those physical scenarios.
+
+# 20261030 视觉升级
+
+精选摘要见 [visual-upgrade-v31](visual-upgrade-v31/README.md)：原生采集对照、完整9/9物理验证、空场景工作台3/3落料、核心冻结检查及本次测试记录。完整录像、第三方模型与原始工具过程仍在本工作站忽略目录，不整体进入Git。原有证据及失败结论保持原样。
 

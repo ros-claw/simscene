@@ -30,8 +30,9 @@ def install(package, destination, project=None, register_codex=False, isaac_pyth
     if project is not None and not project.is_dir():
         raise ValueError('project must be an existing directory')
     skill = project / '.agents/skills/build-scene' if project else None
-    if skill and (skill.exists() or skill.is_symlink()):
-        raise FileExistsError(f'project skill already exists: {skill}')
+    skills=[project/'.agents/skills'/source.name for source in (package/'skills').iterdir() if source.is_dir() and (source/'SKILL.md').is_file()] if project else []
+    for target in skills:
+        if target.exists() or target.is_symlink():raise FileExistsError(f'project skill already exists: {target}')
     if isaac_python is not None:
         isaac_python = str(Path(isaac_python).expanduser().resolve())
         if not Path(isaac_python).is_file():
@@ -44,22 +45,20 @@ def install(package, destination, project=None, register_codex=False, isaac_pyth
             raise FileExistsError('Codex already has a simscene MCP registration; it was not changed')
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.mkdir()  # exclusive: do not overwrite a pre-existing package
-    skill_created = False
+    created_skills=[]
     try:
         shutil.copytree(package, destination, dirs_exist_ok=True, symlinks=False)
         if any(not (destination / item).is_file() for item in required):
             raise RuntimeError('installed package is incomplete')
-        if skill:
-            skill.parent.mkdir(parents=True, exist_ok=True)
-            skill.mkdir()
-            skill_created = True
-            shutil.copytree(destination / 'skills/build-scene', skill, dirs_exist_ok=True)
+        for target in skills:
+            target.parent.mkdir(parents=True,exist_ok=True);target.mkdir();created_skills.append(target)
+            shutil.copytree(destination/'skills'/target.name,target,dirs_exist_ok=True)
     except BaseException:
         shutil.rmtree(destination, ignore_errors=True)
-        if skill_created: shutil.rmtree(skill, ignore_errors=True)
+        for target in created_skills:shutil.rmtree(target,ignore_errors=True)
         raise
     result = {'package_root':str(destination), 'package_installed':True,
-              'project_skill':str(skill) if skill else None, 'codex_mcp_registered':False,
+              'project_skill':str(skill) if skill else None,'project_skills':[str(target) for target in skills], 'codex_mcp_registered':False,
               'native_plugin_installed':False}
     if register_codex:
         command = [codex, 'mcp', 'add', 'simscene']

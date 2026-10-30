@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "checks": {
+    "criteria_unchanged": true,
+    "inputs": true,
+    "outputs": true,
+    "runtime_and_skills_frozen": true,
+    "empty_scene_observed": true,
+    "two_rows_three_trays": true,
+    "cart_and_rear_rack": true,
+    "three_online_part_categories": true,
+    "all_imports_query_bound": true,
+    "completion_observed_via_tool": true,
+    "completed_physics_steps": true,
+    "all_three_real_drops": true,
+    "native_captures": true,
+    "generic_camera_planner_used": true
+  },
+  "dynamic_outcomes": {
+    "drop_0": {
+      "spawned": true,
+      "fell": true,
+      "contact": true,
+      "contained": true,
+      "settled": true,
+      "terminal_motion_m": 0.0
+    },
+    "drop_1": {
+      "spawned": true,
+      "fell": true,
+      "contact": true,
+      "contained": true,
+      "settled": true,
+      "terminal_motion_m": 0.0
+    },
+    "drop_2": {
+      "spawned": true,
+      "fell": true,
+      "contact": true,
+      "contained": true,
+      "settled": true,
+      "terminal_motion_m": 0.0
+    }
+  },
+  "source_run": "/tmp/simscene-workbench-reuse-v31/state/runs/8a97189c0fe242d1a3a190cd9806af27",
+  "scope": "Same active agent, empty-scene reuse through frozen packaged MCP and both skills; not an independent fresh-agent benchmark.",
+  "visual_review": "separate representative/action-frame review required"
+}

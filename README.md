@@ -8,14 +8,32 @@ edit-repair cases have also passed; the original strict retime and first
 relocation failures remain documented. Cross-machine remote execution has not
 yet been verified.
 
+Native simulation video capture is configurable through the scene: 1080p30,
+optics, renderer readback, recording budgets and per-frame physics provenance.
+Imported assets support measured placement on explicit support regions, grids,
+alignment and selective materials. The `deliver-scene-video` skill and generic
+presentation/export/inspection tools share the existing simulation pipeline.
+See [视频交付与布局接口](docs/视频交付.md), the editable
+[precision workshop recipe](examples/precision_sorting_corner/README.md), and the
+[empty-scene maintenance recipe](examples/maintenance_workbench/README.md).
+
+The enriched workshop passed its unchanged nine-item physical case and full
+discrete audit. A separate empty-scene workbench passed three measured drops
+using frozen tools and skills. This reuse test used the same active agent.
+Watch the native [88-second workshop film](docs/media/precision-workshop-1080p30.mp4)
+and [28-second workbench film](docs/media/maintenance-workbench-1080p30.mp4).
+The workshop film labels its two separately recorded close-up sources; its 9/9
+claim belongs to the complete main run. Details and limitations are in the
+[视觉升级实施报告](SIMSCENE_视觉升级实施报告_20261030.md).
+
 中文使用说明：[快速开始](docs/快速开始.md)。
 交付工程和实录：[deliverables](deliverables/README.md)。
 中文实施报告与复盘：[首版实施报告](SIMSCENE_V1_实施报告与项目复盘_20261030.md)。
 公开仓库的安装与证据分发范围：[开源发布说明](docs/开源发布说明.md)。
 
-![Three-arm sorting simulation](docs/media/triarm-preview.png)
+![Enriched workshop captured in Isaac Sim](docs/media/precision-workshop-preview.png)
 
-[Watch the recorded Isaac Sim demonstration](docs/media/triarm-demo.mp4).
+[Original first-version demonstration](docs/media/triarm-demo.mp4).
 Downloaded robot geometry, textures and the full workstation evidence archive
 are excluded from Git; selected validation summaries and CPU test recordings
 are indexed in [evidence/README.md](evidence/README.md).
@@ -87,7 +105,7 @@ The package capacity limits 3D files; these small provenance records are kept
 separately to support later reconstruction.
 The manifest is checked and files are hashed. With USD Python bindings, asset
 references are scanned and missing relative HTTPS dependencies, including
-referenced sibling assets on the same origin, are fetched when possible within
+referenced sibling assets and relative MDL modules/texture defaults on the same origin, are fetched when possible within
 the bounded package. `missing` or `unverified_usd_tools_unavailable` means
 that completeness has not been established. `resolved_with_runtime` means the
 configured Isaac installation provides the listed built-in MDL files; it does

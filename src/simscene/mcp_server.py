@@ -130,9 +130,58 @@ def scene_get(scene_id: str) -> dict:
 
 @threaded_tool()
 def scene_apply(scene_id: str, base_revision: int, request_id: str, operations: list[dict]) -> dict:
-    """Atomically edit a revision. Supported kinds: box, sphere, asset, camera, light, counter; make ground from a static box. A light can use light={"type":"dome"}, {"type":"sphere","radius_m":0.2}, or {"type":"rect","width_m":2,"height_m":1}; default is distant. Configure intensity, optional light color/exposure and transform. A counter uses counter={"source":"spawned"} or {"source":"verified_archives","class_label":"red"}; verified counts require case-checked archiving. A non-colliding static box can use indicator={"robot_id":"arm"} to show the observed controller phase. A pose_follower can opt into reactive obstacle planning with avoid_obstacles listing static collision-enabled primitive IDs and obstacle_margin_m; this is not collision safety certification. A USD asset requires the local simulation-host asset_path returned by acquisition, not its online URL. Example: {"op":"add","id":"box1","object":{"kind":"box","size":[0.2,0.2,0.2],"position":[0,0,0.1]}}. IDs belong on the operation; object uses kind. Update uses {"op":"update","id":"box1","changes":{...}}. Also supports remove, place_on, arrange_line and look_at. For a static box surface use {"op":"bind_conveyor","id":"belt","speed_m_s":0.1,"direction":[1,0,0]}; imported assets cannot be conveyor surfaces directly. A camera can use camera_orbit={"center":[0,0,0.5],"radius_m":2,"height_m":1,"duration_s":8} for a circular view."""
+    """Atomically edit a revision. Supported kinds: box, sphere, asset, camera, light, counter; make ground from a static box. A light can use light={"type":"dome"}, {"type":"sphere","radius_m":0.2}, or {"type":"rect","width_m":2,"height_m":1}; default is distant. Configure intensity, optional light color/exposure and transform. A counter uses counter={"source":"spawned"} or {"source":"verified_archives","class_label":"red"}; verified counts require case-checked archiving. A non-colliding static box can use indicator={"robot_id":"arm"} to show the observed controller phase. A pose_follower can opt into reactive obstacle planning with avoid_obstacles listing static collision-enabled primitive IDs and obstacle_margin_m; this is not collision safety certification. A USD asset requires the local simulation-host asset_path returned by acquisition, not its online URL. Example: {"op":"add","id":"box1","object":{"kind":"box","size":[0.2,0.2,0.2],"position":[0,0,0.1]}}. IDs belong on the operation; object uses kind. Update uses {"op":"update","id":"box1","changes":{...}}. Also supports remove, place_on, arrange_line, arrange_grid, align and look_at. Imported supports need support_surfaces={name:{min_xy:[x,y],max_xy:[x,y],z_m:z,exclude:[]}} in normalized local metres; place_on uses support_surface and offset_xy with optional avoid_ids/keepout_bounds/clearance_m. arrange_grid uses ids,support,support_surface,columns,gap_m; align uses ids,axis,edge,value_m. set_presentation accepts presentation.profile=technical_showcase_1080p and capture/output/budget/diagnostics; camera settings live under camera={resolution:[width,height],focal_length_mm:35,horizontal_aperture_mm:36,...}. Native 30fps records every two physics steps. For a static box surface use {"op":"bind_conveyor","id":"belt","speed_m_s":0.1,"direction":[1,0,0]}; imported assets cannot be conveyor surfaces directly. A camera can use camera_orbit={"center":[0,0,0.5],"radius_m":2,"height_m":1,"duration_s":8} for a circular view."""
     from .scene import SceneStore
     return SceneStore().apply(scene_id, base_revision, request_id, operations)
+
+@threaded_tool(annotations=_read_local)
+def scene_measure(scene_id: str, ids: list[str]) -> dict:
+    """Measure final world render bounds and bottom anchors, including imported units/axes/variants. Imported outer bbox is not a support surface."""
+    from .scene import SceneStore
+    from .placement import measure
+    return measure(SceneStore().get(scene_id),ids)
+
+@threaded_tool(annotations=_read_local)
+def scene_plan_presentation(scene_id: str, subject_ids: list[str], regions: list[dict] | None = None, profile: str = 'technical_showcase_1080p', duration_s: float = 75, max_cameras: int = 2, azimuth_deg: float = -65) -> dict:
+    """Propose measured overview/detail cameras and a capture profile. regions use id,min,max, optional action/subject_ids. Review occlusion, lighting and existing camera budget; apply operations and preview before native recording."""
+    from .scene import SceneStore
+    from .presentation import plan
+    return plan(SceneStore().get(scene_id),subject_ids,regions,profile,duration_s,max_cameras,azimuth_deg)
+
+@threaded_tool(annotations=_read_local)
+def run_presentation_events(job_id: str) -> dict:
+    """Read semantic phase/spawn events from the completed run's frozen spec. No event implies physical success; inspect run_verify separately."""
+    from .jobs import _job,status
+    from .presentation import events
+    if status(job_id)['state']!='completed':raise ValueError('events require a completed run')
+    from .run_integrity import verify as verify_inputs
+    from .evidence_integrity import verify as verify_outputs
+    if not verify_inputs(_job(job_id)['directory'])['passed'] or not verify_outputs(_job(job_id)['directory'])['passed']:raise ValueError('events require intact source evidence')
+    return {'run_id':_job(job_id)['run_id'],'events':events(_job(job_id)['directory'])}
+
+@threaded_tool()
+def video_export(segments: list[dict], destination: str, output_resolution: list[int] | None = None, output: dict | None = None, allow_upscale: bool = False) -> dict:
+    """Edit intact real run recordings. Segments require run_directory,camera,start_sim_time_s,end_sim_time_s; optional speed,title. Preserve native cadence, save source hashes and sim/output time mapping. Upscaling requires explicit opt-in."""
+    from .video_tools import export
+    return export(segments,destination,output_resolution,output,allow_upscale)
+
+@threaded_tool()
+def video_inspect(path: str, output_dir: str | None = None, representative_count: int = 5, job_id: str | None = None, camera: str | None = None) -> dict:
+    """Probe/decode real video; when job_id/camera supplied, bind to intact source and verify native capture dimensions and physics frame clock. Representative PNG paths are returned for actual visual review."""
+    from .video_tools import inspect
+    record=None
+    if job_id is not None:
+        from .jobs import _job,status
+        from .evidence_integrity import verify
+        from .run_integrity import verify as verify_inputs
+        from pathlib import Path
+        state=status(job_id)
+        if state['state']!='completed':raise ValueError('source provenance requires a completed run')
+        run=_job(job_id)['directory']
+        if not verify(run)['passed'] or not verify_inputs(run)['passed']:raise ValueError('source integrity failed')
+        record=state['result'].get('videos',{}).get(camera)
+        if not record or Path(record['path']).resolve()!=Path(path).expanduser().resolve():raise ValueError('video path does not match the selected run/camera')
+    return inspect(path,output_dir,representative_count,record)
 
 @threaded_tool(annotations=_read_local)
 def scene_plan_stream(scene_id: str, prefix: str, labels: list[str], routes: dict, position: list[float], size: list[float], interval_steps: int = 240, first_step: int = 1, mass_kg: float = .1, spawn_steps: list[int] | None = None) -> dict:

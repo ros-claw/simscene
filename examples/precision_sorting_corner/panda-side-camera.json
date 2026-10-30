@@ -1,0 +1,43 @@
+{
+  "description": "Replace the detail camera with the observed unobstructed Panda side camera. Camera-only short run; full nine-item acceptance remains the original full run.",
+  "operations": [
+    {
+      "op": "remove",
+      "id": "detail"
+    },
+    {
+      "op": "add",
+      "id": "panda_side",
+      "object": {
+        "kind": "camera",
+        "position": [
+          1.6,
+          -1.05,
+          1.5
+        ],
+        "orientation_wxyz": [
+          0.7275084916432886,
+          0.5127219105026087,
+          0.26263346387832137,
+          0.3726543985098479
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 50,
+          "horizontal_aperture_mm": 36,
+          "capture_window": {
+            "start_step": 2820,
+            "end_step": 4200
+          }
+        }
+      }
+    }
+  ],
+  "requested_physics_steps": 4200,
+  "seed": 42
+}

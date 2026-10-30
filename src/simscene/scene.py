@@ -19,6 +19,10 @@ def _id(value):
 def validate(scene):
     issues = []
     normalized={}
+    if 'presentation' in scene:
+        from .capture import validate_presentation
+        try: validate_presentation(scene['presentation'])
+        except (ValueError, TypeError) as error: issues.append({'object':None,'message':str(error)})
     for name in scene['objects']:
         try:_id(name)
         except SceneError:
@@ -34,7 +38,7 @@ def validate(scene):
         if not isinstance(obj, dict):
             issues.append({'object': name, 'message': 'object must be a mapping'})
             continue
-        allowed = {'kind', 'position', 'size', 'asset_path', 'color', 'material', 'collision', 'dynamic', 'intensity', 'light', 'orientation_wxyz', 'conveyor', 'pose_follower', 'variants', 'spawn_step', 'mass_kg', 'class_label', 'record_fps', 'preview_fps', 'camera_orbit','counter','indicator'}
+        allowed = {'kind', 'position', 'size', 'asset_path', 'asset_physics', 'asset_lights', 'asset_metrics', 'color', 'material', 'material_overrides', 'collision', 'dynamic', 'intensity', 'light', 'orientation_wxyz', 'conveyor', 'pose_follower', 'variants', 'spawn_step', 'mass_kg', 'class_label', 'record_fps', 'preview_fps', 'camera_orbit','camera_path','camera','support_surfaces','counter','indicator'}
         unknown = set(obj) - allowed
         if unknown:
             issues.append({'object':name, 'message':f'unsupported fields: {sorted(unknown)}'})
@@ -57,6 +61,24 @@ def validate(scene):
                     value=material.get(field,0)
                     if not isinstance(value,(int,float)) or isinstance(value,bool) or not math.isfinite(value) or not 0<=value<=1:
                         issues.append({'object':name,'message':f'material {field} must be between 0 and 1'})
+        if 'asset_lights' in obj and (obj.get('kind')!='asset' or obj['asset_lights'] not in ('preserve','disabled')):
+            issues.append({'object':name,'message':'asset_lights requires preserve or disabled on an asset'})
+        if 'asset_metrics' in obj:
+            metrics=obj['asset_metrics']
+            if obj.get('kind')!='asset' or not isinstance(metrics,dict) or set(metrics)-{'meters_per_unit','up_axis','reason'} or not isinstance(metrics.get('reason'),str) or len(metrics['reason'].strip())<8 or not isinstance(metrics.get('meters_per_unit',1),(int,float)) or isinstance(metrics.get('meters_per_unit',1),bool) or not math.isfinite(metrics.get('meters_per_unit',1)) or not 1e-9<=metrics.get('meters_per_unit',1)<=1e9 or metrics.get('up_axis','Z') not in ('Y','Z'):
+                issues.append({'object':name,'message':'asset_metrics requires explicit finite units/axis and an inspection reason'})
+        if 'asset_physics' in obj and (obj.get('kind')!='asset' or obj['asset_physics'] not in ('preserve','visual_only') or obj.get('pose_follower')):
+            issues.append({'object':name,'message':'asset_physics requires a controller-free asset with preserve or visual_only policy'})
+        if 'material_overrides' in obj:
+            overrides=obj['material_overrides']
+            if obj.get('kind')!='asset' or not isinstance(overrides,dict) or not overrides:
+                issues.append({'object':name,'message':'material_overrides require an imported asset and relative prim paths'})
+            else:
+                for relative,config in overrides.items():
+                    if not isinstance(relative,str) or not relative or relative.startswith('/') or any(part in ('','.','..') for part in relative.split('/')):
+                        issues.append({'object':name,'message':'material override paths must be relative to Asset'})
+                    else:
+                        issues.extend({'object':name,'message':'material override '+relative+': '+issue['message']} for issue in validate({'objects':{'selection':{'kind':'box','material':config}}}))
         for field in ('collision', 'dynamic'):
             if field in obj and not isinstance(obj[field], bool):
                 issues.append({'object':name, 'message':f'{field} must be boolean'})
@@ -95,10 +117,32 @@ def validate(scene):
             target=scene['objects'].get(robot,{}) if isinstance(robot,str) else {}
             if obj.get('kind')!='box' or obj.get('dynamic') or obj.get('collision') or not isinstance(indicator,dict) or set(indicator)!={'robot_id'} or not isinstance(target,dict) or not isinstance(target.get('pose_follower'),dict):
                 issues.append({'object':name,'message':'indicator requires a non-colliding static box and a robot follower'})
+        if 'camera' in obj or obj.get('kind')=='camera':
+            from .capture import camera_config
+            try:
+                if obj.get('kind')!='camera': raise ValueError('camera settings require a camera')
+                camera_config(scene,obj)
+            except (ValueError,TypeError) as error: issues.append({'object':name,'message':str(error)})
+        if 'support_surfaces' in obj:
+            from .placement import validate_surfaces
+            try: validate_surfaces(obj['support_surfaces'])
+            except (ValueError,TypeError) as error: issues.append({'object':name,'message':str(error)})
         if 'record_fps' in obj and (obj.get('kind')!='camera' or type(obj['record_fps']) is not int or obj['record_fps'] not in (1,2,3,4,5,6,10,12,15,20,30)):
             issues.append({'object':name,'message':'record_fps must be a camera frame rate that divides 60, up to 30'})
         if 'preview_fps' in obj and (obj.get('kind')!='camera' or type(obj['preview_fps']) is not int or obj['preview_fps'] not in (1,2,3,4,5,6,10)):
             issues.append({'object':name,'message':'preview_fps must be a camera frame rate that divides 60, up to 10'})
+        if 'camera_path' in obj:
+            nodes=obj['camera_path']
+            previous=-1
+            if obj.get('kind')!='camera' or 'camera_orbit' in obj or not isinstance(nodes,list) or not 2<=len(nodes)<=200:
+                issues.append({'object':name,'message':'camera_path requires 2..200 camera poses and excludes camera_orbit'})
+            else:
+                from .capture import finite
+                for node in nodes:
+                    if not isinstance(node,dict) or set(node)!={'time_s','position','target'} or not finite(node.get('time_s')) or not 0<=node.get('time_s',-1)<=1200 or not previous<node.get('time_s',-1) or not all(isinstance(node.get(k),list) and len(node[k])==3 and all(finite(v) for v in node[k]) for k in ('position','target')) or node.get('position')==node.get('target'):
+                        issues.append({'object':name,'message':'camera_path nodes need increasing time_s and distinct finite position/target'})
+                        break
+                    previous=node['time_s']
         if 'camera_orbit' in obj:
             orbit=obj['camera_orbit']
             if obj.get('kind')!='camera' or not isinstance(orbit,dict) or set(orbit)-{'center','radius_m','height_m','duration_s','turns','start_angle_rad'}:
@@ -329,7 +373,20 @@ class SceneStore:
             updated = copy.deepcopy(scene)
             for op in operations:
                 action = op.get('op')
+                if action == 'set_presentation':
+                    from .capture import validate_presentation
+                    try: updated['presentation']=copy.deepcopy(validate_presentation(op.get('presentation')))
+                    except ValueError as error: raise SceneError(str(error)) from error
+                    continue
+                if action in ('arrange_grid','align'):
+                    from .placement import apply_layout
+                    apply_layout(updated,op)
+                    continue
                 if action == 'arrange_line':
+                    if any(updated['objects'].get(i,{}).get('kind')=='asset' or updated['objects'].get(i,{}).get('orientation_wxyz',[1,0,0,0])!=[1,0,0,0] for i in op.get('ids',[])):
+                        from .placement import arrange_line
+                        arrange_line(updated,op)
+                        continue
                     ids, origin, spacing, axis = op.get('ids'), op.get('origin'), op.get('spacing'), op.get('axis', 'x')
                     if not isinstance(ids, list) or not ids or len(ids) != len(set(ids)):
                         raise SceneError('arrange_line requires distinct object IDs')
@@ -392,21 +449,8 @@ class SceneStore:
                     if name not in updated['objects']: raise SceneError(f'object not found: {name}')
                     del updated['objects'][name]
                 elif action == 'place_on':
-                    support_id = _id(op.get('support'))
-                    if name == support_id or name not in updated['objects'] or support_id not in updated['objects']:
-                        raise SceneError('place_on requires two distinct existing objects')
-                    item, support = updated['objects'][name], updated['objects'][support_id]
-                    if item.get('orientation_wxyz', [1,0,0,0]) != [1,0,0,0] or support.get('orientation_wxyz', [1,0,0,0]) != [1,0,0,0]:
-                        raise SceneError('place_on does not support rotated objects')
-                    if item.get('kind') not in ('box', 'sphere') or support.get('kind') != 'box':
-                        raise SceneError('place_on currently requires primitive object and box support')
-                    offset = op.get('offset_xy', [0, 0])
-                    if not isinstance(offset, list) or len(offset) != 2 or not all(isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x) for x in offset):
-                        raise SceneError('offset_xy must contain two finite numbers')
-                    p = support.get('position', [0, 0, 0]); a = item.get('size', [1, 1, 1]); b = support.get('size', [1, 1, 1])
-                    if any(abs(offset[i]) + a[i] / 2 > b[i] / 2 for i in (0, 1)):
-                        raise SceneError('object extends beyond support surface')
-                    item['position'] = [p[0] + offset[0], p[1] + offset[1], p[2] + (a[2] + b[2]) / 2]
+                    from .placement import place_on
+                    place_on(updated,op)
                 else: raise SceneError(f'unsupported operation: {action}')
             issues = validate(updated)
             if issues: raise SceneError(json.dumps(issues))

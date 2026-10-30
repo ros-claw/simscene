@@ -26,8 +26,11 @@ if args.seed is not None:
     import random
     import numpy as np
     random.seed(args.seed);np.random.seed(args.seed)
+startup_spec=json.load(open(args.spec)) if args.spec else {'objects':{}}
+startup_renderer=startup_spec.get('presentation',{}).get('capture',{}).get('renderer')
+startup_options={'renderer':startup_renderer} if startup_renderer else {}
 from isaacsim import SimulationApp
-app = SimulationApp({'headless': True, 'multi_gpu': False, 'active_gpu': int(os.getenv('SIMSCENE_GPU', '0'))})
+app = SimulationApp({**startup_options,'headless': True, 'multi_gpu': False, 'active_gpu': int(os.getenv('SIMSCENE_GPU', '0'))})
 recorders = {}
 try:
     import omni.usd
@@ -47,7 +50,12 @@ try:
         scene_api=PhysxSchema.PhysxSceneAPI.Apply(stage.GetPrimAtPath('/World/PhysicsScene'))
         scene_api.CreateEnableGPUDynamicsAttr().Set(args.physics_device == 'gpu')
         scene_api.CreateBroadphaseTypeAttr().Set('GPU' if args.physics_device == 'gpu' else 'MBP')
-    spec = json.load(open(args.spec)) if args.spec else {'objects': {}}
+    spec = startup_spec
+    import carb
+    from simscene.capture import camera_config
+    from simscene.worker.render_settings import configure as configure_render,readback as read_render,check as check_render
+    render_config=camera_config(spec,{'kind':'camera'})['render']
+    render_settings=configure_render(carb.settings.get_settings(),render_config)
     archive_case=None;archived_objects={}
     if args.archive_case:
         sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
@@ -71,18 +79,24 @@ try:
     cameras = [(name, obj) for name, obj in spec['objects'].items() if obj.get('kind') == 'camera']
     sensors = {}
     preview_rates={name:obj.get('preview_fps',1 if 'record_fps' in obj else 0) for name,obj in cameras}
+    recording_count=sum(camera_config(spec,obj)['fps'] is not None for _,obj in cameras)
+    if recording_count>spec.get('presentation',{}).get('budget',{}).get('max_cameras',4 if not spec.get('presentation') else 2):
+        raise RuntimeError('recording camera count exceeds explicit presentation budget')
     if cameras:
         from isaacsim.sensors.experimental.rtx import TiledCameraSensor
         from simscene.worker.camera_frames import MAX_WARMUP_UPDATES, read_rgb
         for name, obj in cameras:
             # This API expects (height, width); keep frames landscape.
-            sensors[name] = TiledCameraSensor('/World/' + name.replace('-', '_'), resolution=(480, 640), annotators=['rgb'])
-        if any('record_fps' in obj for _,obj in cameras):
-            sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-            from simscene.worker.video import VideoRecorder
-            for name,obj in cameras:
-                if 'record_fps' in obj:
-                    recorders[name]=VideoRecorder(Path(args.output).parent/('camera_'+name+'.mp4'),obj['record_fps'])
+            cfg=camera_config(spec,obj)
+            width,height=cfg['resolution']
+            sensors[name] = TiledCameraSensor('/World/' + name.replace('-', '_'), resolution=(height,width), annotators=['rgb'])
+        from simscene.worker.video import VideoRecorder
+        for name,obj in cameras:
+            cfg=camera_config(spec,obj)
+            if cfg['fps'] is not None:
+                width,height=cfg['resolution']
+                recorders[name]=VideoRecorder(Path(args.output).parent/('camera_'+name+'.mp4'),cfg['fps'],width,height,
+                    camera_id=name,output=cfg['output'],budget=cfg['budget'],diagnostics=cfg['diagnostics'],start_step=cfg['capture_window'].get('start_step',0))
     robot_configs = [(name, obj['pose_follower']) for name, obj in spec['objects'].items() if 'pose_follower' in obj]
     self_collision_settings={}
     for name,config in robot_configs:
@@ -177,6 +191,14 @@ try:
         if self_collision_settings[name]['runtime']!=self_collision_settings[name]['authored']:
             raise RuntimeError(f'self collision setting did not take effect for {name}')
     # App updates drive both the graph and physics; count real physics steps.
+    render_settings['sensor_startup_readback']=read_render(carb.settings.get_settings())
+    # Sensor startup can install its defaults after stage load. Reapply the
+    # explicit profile after initialization and save both sets of readings.
+    if render_config:
+        render_settings['post_sensor_application']=configure_render(carb.settings.get_settings(),render_config)
+    check_render(carb.settings.get_settings(),render_settings.get('expected',{}))
+    render_settings['after_sensor_warmup']=read_render(carb.settings.get_settings())
+    (Path(args.output).parent/'render-settings.json').write_text(json.dumps(render_settings,indent=2))
     start_steps = SimulationManager.get_num_physics_steps()
     contact_start_steps[0]=start_steps
     start_time = SimulationManager.get_simulation_time()
@@ -246,9 +268,11 @@ try:
             resources.append(resource_sample(actual,worker_started))
         for name,sensor in sensors.items():
             recorder=recorders.get(name)
-            next_step=(recorder.frames+1)*(60//recorder.fps) if recorder else None
-            if recorder and actual>next_step:raise RuntimeError('Physics skipped a scheduled camera frame')
-            record_due=bool(recorder and actual==next_step)
+            window=camera_config(spec,dict(cameras)[name])['capture_window']
+            active=recorder and (window.get('end_step') is None or actual<=window['end_step'])
+            next_step=recorder.start_step+(recorder.frames+1)*(60//recorder.fps) if active else None
+            if active and actual>next_step:raise RuntimeError('Physics skipped a scheduled camera frame')
+            record_due=bool(active and actual==next_step)
             preview_due=bool(preview_rates[name] and actual and actual%(60//preview_rates[name])==0)
             if record_due or preview_due:
                 rgb=read_rgb(sensor)
@@ -265,7 +289,7 @@ try:
                         app_utils.play()
                 if rgb is None:raise RuntimeError(f'No RGB frame available for camera {name} at step {actual}')
                 frame=rgb.numpy()
-                if record_due:recorder.write(frame)
+                if record_due:recorder.write(frame,actual,actual/60,{'app_update':__import__('omni.kit.app',fromlist=['get_app']).get_app().get_update_number(),'absolute_physics_step':SimulationManager.get_num_physics_steps(),'stage_time_code':omni.timeline.get_timeline_interface().get_current_time()*stage.GetTimeCodesPerSecond()})
                 if preview_due:
                     from PIL import Image
                     path=Path(args.output).parent/('camera_'+name+'_live.png')
@@ -358,6 +382,9 @@ try:
         box=bbox_cache.ComputeWorldBound(prim).ComputeAlignedRange()
         if not box.IsEmpty(): object_bounds[name]={'min':list(box.GetMin()),'max':list(box.GetMax())}
     images = {}
+    check_render(carb.settings.get_settings(),render_settings.get('expected',{}))
+    render_settings['at_completion']=read_render(carb.settings.get_settings())
+    (Path(args.output).parent/'render-settings.json').write_text(json.dumps(render_settings,indent=2))
     videos={name:recorder.close() for name,recorder in recorders.items()}
     recorders={}
     if sensors:
@@ -375,7 +402,7 @@ try:
             Image.fromarray(rgb.numpy()).save(path)
             images[name] = str(path)
     with open(args.output, 'w') as f:
-        json.dump({'requested_physics_steps':args.steps, 'actual_physics_steps':actual_steps, 'simulation_time_s':simulation_time, 'seed':args.seed, 'positions':data, 'object_classes':{name:obj.get('class_label') for name,obj in spec['objects'].items() if obj.get('dynamic')}, 'spawn_events':spawn_events, 'pending_spawn_ids':list(pending), 'archived_objects':archived_objects, 'bounds':object_bounds, 'samples':samples, 'resources':resources, 'images':images, 'videos':videos, 'followers':{name:follower.observe() for name,follower in followers.items()}, 'task_status':'failed' if any(follower.sequence_error for follower in followers.values()) else 'unverified', 'contact_counts':contacts, 'contacts_truncated':contacts_truncated[0], 'robot_contacts':robot_contacts, 'self_collision_settings':self_collision_settings, 'overlap_counts':overlap_monitor.counts if overlap_monitor else {}, 'overlap_diagnostics':overlap_monitor.summary() if overlap_monitor else None, 'contact_geometry_incomplete':contact_geometry_incomplete[0], 'monitored_robot_ids':[name for name,config in robot_configs if config.get('monitor_collisions')], 'contact_scope':'dynamic objects and explicitly enabled robot rigid bodies; reported separation covers PhysX contact points only and does not exclude unreported penetration'}, f, indent=2)
+        json.dump({'requested_physics_steps':args.steps, 'actual_physics_steps':actual_steps, 'simulation_time_s':simulation_time, 'seed':args.seed, 'positions':data, 'object_classes':{name:obj.get('class_label') for name,obj in spec['objects'].items() if obj.get('dynamic')}, 'spawn_events':spawn_events, 'pending_spawn_ids':list(pending), 'archived_objects':archived_objects, 'bounds':object_bounds, 'samples':samples, 'resources':resources, 'images':images, 'videos':videos, 'render_settings_path':str(Path(args.output).parent/'render-settings.json'), 'followers':{name:follower.observe() for name,follower in followers.items()}, 'task_status':'failed' if any(follower.sequence_error for follower in followers.values()) else 'unverified', 'contact_counts':contacts, 'contacts_truncated':contacts_truncated[0], 'robot_contacts':robot_contacts, 'self_collision_settings':self_collision_settings, 'overlap_counts':overlap_monitor.counts if overlap_monitor else {}, 'overlap_diagnostics':overlap_monitor.summary() if overlap_monitor else None, 'contact_geometry_incomplete':contact_geometry_incomplete[0], 'monitored_robot_ids':[name for name,config in robot_configs if config.get('monitor_collisions')], 'contact_scope':'dynamic objects and explicitly enabled robot rigid bodies; reported separation covers PhysX contact points only and does not exclude unreported penetration'}, f, indent=2)
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
     from simscene.evidence_integrity import seal
     seal(Path(args.output).parent)

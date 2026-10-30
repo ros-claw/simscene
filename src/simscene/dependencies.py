@@ -48,6 +48,14 @@ def repair(root, root_url, package_dir, limit, max_passes=32):
                 return value
             UsdUtils.ModifyAssetPaths(copy, collect)
         progress = False
+        # MDL source has its own module/texture dependency graph. Resolve it
+        # under the same package, origin and byte bounds as USD references.
+        from .mdl_dependencies import references as mdl_references
+        material_missing=[]
+        for module in package_dir.rglob('*.mdl'):
+            try:material_missing.extend(p for p in mdl_references(module) if not p.is_file())
+            except ValueError as error:errors.append({'dependency':str(module),'error':str(error)})
+        unresolved=list(unresolved)+sorted(set(str(p) for p in material_missing))
         for item in unresolved:
             path = Path(str(item))
             if not path.is_absolute():
@@ -68,7 +76,11 @@ def repair(root, root_url, package_dir, limit, max_passes=32):
         if not progress:
             break
     _, _, unresolved = UsdUtils.ComputeAllDependencies(str(root))
-    return {'files':fetched, 'unresolved':[str(p) for p in unresolved], 'errors':errors}
+    material_missing=[]
+    for module in package_dir.rglob('*.mdl'):
+        try:material_missing.extend(str(p) for p in mdl_references(module) if not p.is_file())
+        except ValueError as error:material_missing.append(str(module)+': '+str(error))
+    return {'files':fetched, 'unresolved':sorted(set([str(p) for p in unresolved]+material_missing)), 'errors':errors,'scan_version':2}
 
 
 def _fetch(path, item, root, package_dir, root_url, origin, limit, attempted):
