@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "installed_package": "simscene-v37 / dev4",
+  "tool_count": 44,
+  "movie_frames": 1860,
+  "movie_duration_s": 62.0,
+  "movie_timeline": true,
+  "movie_issues": []
+}

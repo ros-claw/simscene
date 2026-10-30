@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "native_browser_video": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 62,
+    "error": null
+  },
+  "chapter_seek_s": 26.024813,
+  "missing_local_links": [],
+  "page_errors": [],
+  "mobile_horizontal_overflow": false,
+  "scope": "Local Chrome desktop/mobile viewport and native MP4 metadata/seek; no external-platform transcoding checked."
+}

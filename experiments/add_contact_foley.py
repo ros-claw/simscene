@@ -57,7 +57,7 @@ def render_audio(events, duration, destination, rate=48000):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('source');parser.add_argument('destination');args=parser.parse_args()
-    from simscene.video_tools import inspect,sha
+    from simscene.video_tools import inspect,sha,probe
     source=Path(args.source).resolve();destination=Path(args.destination).resolve()
     if destination.exists():raise FileExistsError(destination)
     original=inspect(source);assert not original['issues'] and original['simulation_timeline']['passed']
@@ -66,7 +66,7 @@ def main():
     audio=destination.with_suffix('.contact-foley.wav');render_audio(events,original['duration_s'],audio)
     command=['ffmpeg','-hide_banner','-loglevel','warning','-y','-i',str(source),'-i',str(audio),'-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','160k','-shortest','-movflags','+faststart',str(destination)]
     with destination.with_suffix('.foley.ffmpeg.log').open('wb') as log:subprocess.run(command,check=True,stderr=log,stdout=subprocess.DEVNULL)
-    manifest=copy.deepcopy(edit);manifest['path']=str(destination);manifest['sha256']=sha(destination)
+    manifest=copy.deepcopy(edit);manifest['path']=str(destination);manifest['sha256']=sha(destination);manifest['metadata']=probe(destination)
     manifest['audio_design']={'scope':'Post-designed synthetic contact sounds timed from logged frozen-case events; not simulated acoustics','source_silent_video':str(source),'source_silent_video_sha256':sha(source),'wav':str(audio),'wav_sha256':sha(audio),'events':events,'command':command,'video':'packet copy, no re-encoding'}
     destination.with_suffix('.edit.json').write_text(json.dumps(manifest,indent=2))
     check=inspect(destination)

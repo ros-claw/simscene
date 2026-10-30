@@ -1,0 +1,191 @@
+{
+  "passed": true,
+  "checks": {
+    "three_repetitions": true,
+    "paired_negative_modes": true,
+    "all_physical_checks": true,
+    "same_repeat_configuration": true,
+    "same_frozen_worker": true,
+    "distinct_fresh_runs": true,
+    "controls_change_only_one_body": true,
+    "requested_edit_measured": true,
+    "same_contact_network_after_edit": true,
+    "receiver_acceptance_region_translated": true,
+    "no_added_actuation_after_edit": true
+  },
+  "scope": "Three fresh initializations of one designed configuration, paired single-body removal controls, and the declared support/receiver edit; not randomized-layout generalization or cross-machine verification.",
+  "runs": {
+    "positive": [
+      {
+        "id": "5c187cc79e4a48c1b351056256fc43c6",
+        "passed": true,
+        "case_pinned_to_run": true,
+        "activated": 64,
+        "receiver": {
+          "contained_entire_tail": true,
+          "terminal_motion_m": 0.0,
+          "contact": true
+        },
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "all_required_activated": true,
+          "all_tiles_finally_tipped": true,
+          "every_handoff_ordered": true,
+          "terminal_received_and_settled": true
+        }
+      },
+      {
+        "id": "7bb3de00b85a4b08a165a4fe906e3415",
+        "passed": true,
+        "case_pinned_to_run": true,
+        "activated": 64,
+        "receiver": {
+          "contained_entire_tail": true,
+          "terminal_motion_m": 0.0,
+          "contact": true
+        },
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "all_required_activated": true,
+          "all_tiles_finally_tipped": true,
+          "every_handoff_ordered": true,
+          "terminal_received_and_settled": true
+        }
+      },
+      {
+        "id": "6beae536cbee44e29a67550ffa3a54c0",
+        "passed": true,
+        "case_pinned_to_run": true,
+        "activated": 64,
+        "receiver": {
+          "contained_entire_tail": true,
+          "terminal_motion_m": 0.0,
+          "contact": true
+        },
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "all_required_activated": true,
+          "all_tiles_finally_tipped": true,
+          "every_handoff_ordered": true,
+          "terminal_received_and_settled": true
+        }
+      }
+    ],
+    "negative": [
+      {
+        "id": "bf738414897d4fdb8443af9477e4ca56",
+        "passed": true,
+        "case_pinned_to_run": true,
+        "activated": 0,
+        "receiver": {
+          "contained_entire_tail": false,
+          "terminal_motion_m": 0.0,
+          "contact": false
+        },
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "control_really_removed_body": true,
+          "downstream_did_not_activate": true,
+          "terminal_not_received": true
+        }
+      },
+      {
+        "id": "ee6be4e44e124898b451b5da5eb2d4e6",
+        "passed": true,
+        "case_pinned_to_run": true,
+        "activated": 20,
+        "receiver": {
+          "contained_entire_tail": false,
+          "terminal_motion_m": 0.0,
+          "contact": false
+        },
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "control_really_removed_body": true,
+          "downstream_did_not_activate": true,
+          "terminal_not_received": true
+        }
+      }
+    ],
+    "edit": [
+      {
+        "id": "2956d299487b4834b0169ab359efd33e",
+        "passed": true,
+        "case_pinned_to_run": true,
+        "activated": 64,
+        "receiver": {
+          "contained_entire_tail": true,
+          "terminal_motion_m": 0.0,
+          "contact": true
+        },
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "all_required_activated": true,
+          "all_tiles_finally_tipped": true,
+          "every_handoff_ordered": true,
+          "terminal_received_and_settled": true
+        }
+      }
+    ]
+  }
+}

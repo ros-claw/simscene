@@ -1,0 +1,5062 @@
+{
+  "passed": true,
+  "checks": {
+    "three_repetitions": true,
+    "paired_negative_modes": true,
+    "all_physical_checks": true,
+    "same_repeat_configuration": true,
+    "same_frozen_worker": true,
+    "distinct_fresh_runs": true,
+    "controls_change_only_one_body": true,
+    "requested_edit_measured": true,
+    "same_contact_network_after_edit": true,
+    "receiver_acceptance_region_translated": true,
+    "no_added_actuation_after_edit": true
+  },
+  "runs": {
+    "positive": [
+      {
+        "passed": true,
+        "mode": "positive",
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "all_required_activated": true,
+          "all_tiles_finally_tipped": true,
+          "every_handoff_ordered": true,
+          "terminal_received_and_settled": true
+        },
+        "bodies": {
+          "upper_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 115,
+            "final_state_ok": true
+          },
+          "fan_32": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 415,
+            "final_state_ok": true
+          },
+          "terminal": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 440,
+            "final_state_ok": true
+          },
+          "fan_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 335,
+            "final_state_ok": true
+          },
+          "upper_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 125,
+            "final_state_ok": true
+          },
+          "middle_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 195,
+            "final_state_ok": true
+          },
+          "relay_upper": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 155,
+            "final_state_ok": true
+          },
+          "upper_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 115,
+            "final_state_ok": true
+          },
+          "fan_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 345,
+            "final_state_ok": true
+          },
+          "fan_33": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 420,
+            "final_state_ok": true
+          },
+          "fan_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 340,
+            "final_state_ok": true
+          },
+          "middle_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 240,
+            "final_state_ok": true
+          },
+          "fan_13": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 355,
+            "final_state_ok": true
+          },
+          "fan_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 340,
+            "final_state_ok": true
+          },
+          "upper_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 125,
+            "final_state_ok": true
+          },
+          "fan_22": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 385,
+            "final_state_ok": true
+          },
+          "fan_12": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 350,
+            "final_state_ok": true
+          },
+          "fan_16": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 365,
+            "final_state_ok": true
+          },
+          "middle_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 250,
+            "final_state_ok": true
+          },
+          "fan_20": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 375,
+            "final_state_ok": true
+          },
+          "upper_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 135,
+            "final_state_ok": true
+          },
+          "middle_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 195,
+            "final_state_ok": true
+          },
+          "relay_lower": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 270,
+            "final_state_ok": true
+          },
+          "fan_34": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 420,
+            "final_state_ok": true
+          },
+          "fan_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 335,
+            "final_state_ok": true
+          },
+          "fan_21": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 380,
+            "final_state_ok": true
+          },
+          "middle_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 200,
+            "final_state_ok": true
+          },
+          "fan_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 310,
+            "final_state_ok": true
+          },
+          "middle_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 240,
+            "final_state_ok": true
+          },
+          "fan_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 310,
+            "final_state_ok": true
+          },
+          "upper_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 110,
+            "final_state_ok": true
+          },
+          "fan_15": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 360,
+            "final_state_ok": true
+          },
+          "upper_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 140,
+            "final_state_ok": true
+          },
+          "fan_27": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 400,
+            "final_state_ok": true
+          },
+          "fan_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 320,
+            "final_state_ok": true
+          },
+          "middle_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 245,
+            "final_state_ok": true
+          },
+          "middle_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 200,
+            "final_state_ok": true
+          },
+          "fan_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 325,
+            "final_state_ok": true
+          },
+          "fan_25": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 395,
+            "final_state_ok": true
+          },
+          "fan_28": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 405,
+            "final_state_ok": true
+          },
+          "middle_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 255,
+            "final_state_ok": true
+          },
+          "fan_35": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 425,
+            "final_state_ok": true
+          },
+          "trigger": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 65,
+            "final_state_ok": true
+          },
+          "fan_24": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 390,
+            "final_state_ok": true
+          },
+          "fan_18": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 370,
+            "final_state_ok": true
+          },
+          "fan_23": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 385,
+            "final_state_ok": true
+          },
+          "middle_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 215,
+            "final_state_ok": true
+          },
+          "upper_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 105,
+            "final_state_ok": true
+          },
+          "fan_29": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 405,
+            "final_state_ok": true
+          },
+          "fan_26": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 395,
+            "final_state_ok": true
+          },
+          "upper_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 120,
+            "final_state_ok": true
+          },
+          "fan_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 315,
+            "final_state_ok": true
+          },
+          "fan_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 350,
+            "final_state_ok": true
+          },
+          "upper_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 110,
+            "final_state_ok": true
+          },
+          "upper_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 135,
+            "final_state_ok": true
+          },
+          "middle_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 225,
+            "final_state_ok": true
+          },
+          "fan_17": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 370,
+            "final_state_ok": true
+          },
+          "middle_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 235,
+            "final_state_ok": true
+          },
+          "fan_31": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 410,
+            "final_state_ok": true
+          },
+          "upper_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 130,
+            "final_state_ok": true
+          },
+          "fan_19": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 375,
+            "final_state_ok": true
+          },
+          "fan_30": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 410,
+            "final_state_ok": true
+          },
+          "fan_14": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 360,
+            "final_state_ok": true
+          },
+          "fan_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 330,
+            "final_state_ok": true
+          }
+        },
+        "edges": {
+          "trigger->upper_00": {
+            "first_contact_step": 103,
+            "source_activation_step": 60,
+            "target_activation_step": 105,
+            "ordered": true
+          },
+          "upper_00->upper_01": {
+            "first_contact_step": 105,
+            "source_activation_step": 105,
+            "target_activation_step": 110,
+            "ordered": true
+          },
+          "upper_01->upper_02": {
+            "first_contact_step": 107,
+            "source_activation_step": 110,
+            "target_activation_step": 110,
+            "ordered": true
+          },
+          "upper_02->upper_03": {
+            "first_contact_step": 109,
+            "source_activation_step": 110,
+            "target_activation_step": 115,
+            "ordered": true
+          },
+          "upper_03->upper_04": {
+            "first_contact_step": 112,
+            "source_activation_step": 115,
+            "target_activation_step": 115,
+            "ordered": true
+          },
+          "upper_04->upper_05": {
+            "first_contact_step": 116,
+            "source_activation_step": 115,
+            "target_activation_step": 120,
+            "ordered": true
+          },
+          "upper_05->upper_06": {
+            "first_contact_step": 119,
+            "source_activation_step": 120,
+            "target_activation_step": 125,
+            "ordered": true
+          },
+          "upper_06->upper_07": {
+            "first_contact_step": 122,
+            "source_activation_step": 125,
+            "target_activation_step": 125,
+            "ordered": true
+          },
+          "upper_07->upper_08": {
+            "first_contact_step": 125,
+            "source_activation_step": 125,
+            "target_activation_step": 130,
+            "ordered": true
+          },
+          "upper_08->upper_09": {
+            "first_contact_step": 129,
+            "source_activation_step": 130,
+            "target_activation_step": 135,
+            "ordered": true
+          },
+          "upper_09->upper_10": {
+            "first_contact_step": 132,
+            "source_activation_step": 135,
+            "target_activation_step": 135,
+            "ordered": true
+          },
+          "upper_10->upper_11": {
+            "first_contact_step": 135,
+            "source_activation_step": 135,
+            "target_activation_step": 140,
+            "ordered": true
+          },
+          "upper_11->relay_upper": {
+            "first_contact_step": 141,
+            "source_activation_step": 140,
+            "target_activation_step": 155,
+            "ordered": true
+          },
+          "relay_upper->middle_00": {
+            "first_contact_step": 193,
+            "source_activation_step": 155,
+            "target_activation_step": 195,
+            "ordered": true
+          },
+          "middle_00->middle_01": {
+            "first_contact_step": 194,
+            "source_activation_step": 195,
+            "target_activation_step": 195,
+            "ordered": true
+          },
+          "middle_01->middle_02": {
+            "first_contact_step": 196,
+            "source_activation_step": 195,
+            "target_activation_step": 200,
+            "ordered": true
+          },
+          "middle_02->middle_03": {
+            "first_contact_step": 198,
+            "source_activation_step": 200,
+            "target_activation_step": 200,
+            "ordered": true
+          },
+          "middle_03->middle_04": {
+            "first_contact_step": 203,
+            "source_activation_step": 200,
+            "target_activation_step": 215,
+            "ordered": true
+          },
+          "middle_04->middle_05": {
+            "first_contact_step": 217,
+            "source_activation_step": 215,
+            "target_activation_step": 225,
+            "ordered": true
+          },
+          "middle_05->middle_06": {
+            "first_contact_step": 227,
+            "source_activation_step": 225,
+            "target_activation_step": 235,
+            "ordered": true
+          },
+          "middle_06->middle_07": {
+            "first_contact_step": 233,
+            "source_activation_step": 235,
+            "target_activation_step": 240,
+            "ordered": true
+          },
+          "middle_07->middle_08": {
+            "first_contact_step": 237,
+            "source_activation_step": 240,
+            "target_activation_step": 240,
+            "ordered": true
+          },
+          "middle_08->middle_09": {
+            "first_contact_step": 241,
+            "source_activation_step": 240,
+            "target_activation_step": 245,
+            "ordered": true
+          },
+          "middle_09->middle_10": {
+            "first_contact_step": 244,
+            "source_activation_step": 245,
+            "target_activation_step": 250,
+            "ordered": true
+          },
+          "middle_10->middle_11": {
+            "first_contact_step": 248,
+            "source_activation_step": 250,
+            "target_activation_step": 255,
+            "ordered": true
+          },
+          "middle_11->relay_lower": {
+            "first_contact_step": 254,
+            "source_activation_step": 255,
+            "target_activation_step": 270,
+            "ordered": true
+          },
+          "relay_lower->fan_00": {
+            "first_contact_step": 306,
+            "source_activation_step": 270,
+            "target_activation_step": 310,
+            "ordered": true
+          },
+          "fan_00->fan_01": {
+            "first_contact_step": 308,
+            "source_activation_step": 310,
+            "target_activation_step": 310,
+            "ordered": true
+          },
+          "fan_01->fan_02": {
+            "first_contact_step": 310,
+            "source_activation_step": 310,
+            "target_activation_step": 315,
+            "ordered": true
+          },
+          "fan_02->fan_03": {
+            "first_contact_step": 314,
+            "source_activation_step": 315,
+            "target_activation_step": 320,
+            "ordered": true
+          },
+          "fan_03->fan_04": {
+            "first_contact_step": 319,
+            "source_activation_step": 320,
+            "target_activation_step": 325,
+            "ordered": true
+          },
+          "fan_04->fan_05": {
+            "first_contact_step": 324,
+            "source_activation_step": 325,
+            "target_activation_step": 330,
+            "ordered": true
+          },
+          "fan_05->fan_06": {
+            "first_contact_step": 328,
+            "source_activation_step": 330,
+            "target_activation_step": 335,
+            "ordered": true
+          },
+          "fan_06->fan_07": {
+            "first_contact_step": 331,
+            "source_activation_step": 335,
+            "target_activation_step": 335,
+            "ordered": true
+          },
+          "fan_07->fan_08": {
+            "first_contact_step": 335,
+            "source_activation_step": 335,
+            "target_activation_step": 340,
+            "ordered": true
+          },
+          "fan_08->fan_09": {
+            "first_contact_step": 338,
+            "source_activation_step": 340,
+            "target_activation_step": 340,
+            "ordered": true
+          },
+          "fan_09->fan_10": {
+            "first_contact_step": 341,
+            "source_activation_step": 340,
+            "target_activation_step": 345,
+            "ordered": true
+          },
+          "fan_10->fan_11": {
+            "first_contact_step": 344,
+            "source_activation_step": 345,
+            "target_activation_step": 350,
+            "ordered": true
+          },
+          "fan_11->fan_12": {
+            "first_contact_step": 347,
+            "source_activation_step": 350,
+            "target_activation_step": 350,
+            "ordered": true
+          },
+          "fan_12->fan_13": {
+            "first_contact_step": 351,
+            "source_activation_step": 350,
+            "target_activation_step": 355,
+            "ordered": true
+          },
+          "fan_13->fan_14": {
+            "first_contact_step": 354,
+            "source_activation_step": 355,
+            "target_activation_step": 360,
+            "ordered": true
+          },
+          "fan_14->fan_15": {
+            "first_contact_step": 357,
+            "source_activation_step": 360,
+            "target_activation_step": 360,
+            "ordered": true
+          },
+          "fan_15->fan_16": {
+            "first_contact_step": 360,
+            "source_activation_step": 360,
+            "target_activation_step": 365,
+            "ordered": true
+          },
+          "fan_16->fan_17": {
+            "first_contact_step": 363,
+            "source_activation_step": 365,
+            "target_activation_step": 370,
+            "ordered": true
+          },
+          "fan_17->fan_18": {
+            "first_contact_step": 367,
+            "source_activation_step": 370,
+            "target_activation_step": 370,
+            "ordered": true
+          },
+          "fan_18->fan_19": {
+            "first_contact_step": 370,
+            "source_activation_step": 370,
+            "target_activation_step": 375,
+            "ordered": true
+          },
+          "fan_19->fan_20": {
+            "first_contact_step": 373,
+            "source_activation_step": 375,
+            "target_activation_step": 375,
+            "ordered": true
+          },
+          "fan_20->fan_21": {
+            "first_contact_step": 376,
+            "source_activation_step": 375,
+            "target_activation_step": 380,
+            "ordered": true
+          },
+          "fan_21->fan_22": {
+            "first_contact_step": 379,
+            "source_activation_step": 380,
+            "target_activation_step": 385,
+            "ordered": true
+          },
+          "fan_22->fan_23": {
+            "first_contact_step": 382,
+            "source_activation_step": 385,
+            "target_activation_step": 385,
+            "ordered": true
+          },
+          "fan_23->fan_24": {
+            "first_contact_step": 386,
+            "source_activation_step": 385,
+            "target_activation_step": 390,
+            "ordered": true
+          },
+          "fan_24->fan_25": {
+            "first_contact_step": 389,
+            "source_activation_step": 390,
+            "target_activation_step": 395,
+            "ordered": true
+          },
+          "fan_25->fan_26": {
+            "first_contact_step": 392,
+            "source_activation_step": 395,
+            "target_activation_step": 395,
+            "ordered": true
+          },
+          "fan_26->fan_27": {
+            "first_contact_step": 395,
+            "source_activation_step": 395,
+            "target_activation_step": 400,
+            "ordered": true
+          },
+          "fan_27->fan_28": {
+            "first_contact_step": 398,
+            "source_activation_step": 400,
+            "target_activation_step": 405,
+            "ordered": true
+          },
+          "fan_28->fan_29": {
+            "first_contact_step": 401,
+            "source_activation_step": 405,
+            "target_activation_step": 405,
+            "ordered": true
+          },
+          "fan_29->fan_30": {
+            "first_contact_step": 405,
+            "source_activation_step": 405,
+            "target_activation_step": 410,
+            "ordered": true
+          },
+          "fan_30->fan_31": {
+            "first_contact_step": 408,
+            "source_activation_step": 410,
+            "target_activation_step": 410,
+            "ordered": true
+          },
+          "fan_31->fan_32": {
+            "first_contact_step": 411,
+            "source_activation_step": 410,
+            "target_activation_step": 415,
+            "ordered": true
+          },
+          "fan_32->fan_33": {
+            "first_contact_step": 414,
+            "source_activation_step": 415,
+            "target_activation_step": 420,
+            "ordered": true
+          },
+          "fan_33->fan_34": {
+            "first_contact_step": 417,
+            "source_activation_step": 420,
+            "target_activation_step": 420,
+            "ordered": true
+          },
+          "fan_34->fan_35": {
+            "first_contact_step": 420,
+            "source_activation_step": 420,
+            "target_activation_step": 425,
+            "ordered": true
+          },
+          "fan_35->terminal": {
+            "first_contact_step": 427,
+            "source_activation_step": 425,
+            "target_activation_step": 440,
+            "ordered": true
+          }
+        },
+        "receiver": {
+          "contained_entire_tail": true,
+          "terminal_motion_m": 0.0,
+          "contact": true
+        },
+        "scope": "Recorded contact order and measured passive motion; causal claim requires paired no-trigger and broken-link controls.",
+        "run_id": "5c187cc79e4a48c1b351056256fc43c6",
+        "case_pinned_to_run": true,
+        "integrity": {
+          "inputs": {
+            "passed": true,
+            "checks": {
+              "spec.json": true,
+              "scene.usda": true,
+              "asset-lock.json": true,
+              "runtime-lock.json": true,
+              "acceptance_case": true,
+              "asset_lock_coverage": true,
+              "controller_lock_coverage": true,
+              "asset:upper_rack": true,
+              "asset:middle_workbench": true,
+              "asset:receiver_tray": true,
+              "worker_code_snapshot": true,
+              "runtime_launcher": true,
+              "queue_launcher": true
+            },
+            "errors": [],
+            "scope": "recorded run input integrity; external files may change after this check and physics success is not established"
+          },
+          "outputs": {
+            "passed": true,
+            "partial": false,
+            "checks": {
+              "result.json": true,
+              "camera_overview.png": true,
+              "camera_detail.png": true,
+              "camera_overview.mp4": true,
+              "camera_overview.ffmpeg.log": true,
+              "camera_overview.frames.jsonl": true,
+              "camera_overview_frame_000000.png": true,
+              "camera_overview_frame_000059.png": true,
+              "camera_overview_frame_000119.png": true,
+              "camera_overview_frame_000179.png": true,
+              "camera_overview_frame_000239.png": true,
+              "camera_overview_frame_000299.png": true,
+              "camera_detail.mp4": true,
+              "camera_detail.ffmpeg.log": true,
+              "camera_detail.frames.jsonl": true,
+              "camera_detail_frame_000000.png": true,
+              "camera_detail_frame_000059.png": true,
+              "camera_detail_frame_000119.png": true,
+              "camera_detail_frame_000179.png": true,
+              "camera_detail_frame_000239.png": true,
+              "camera_detail_frame_000299.png": true,
+              "render-settings.json": true
+            },
+            "errors": [],
+            "scope": "saved artifact hashes; not a signature or proof of task success"
+          }
+        }
+      },
+      {
+        "passed": true,
+        "mode": "positive",
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "all_required_activated": true,
+          "all_tiles_finally_tipped": true,
+          "every_handoff_ordered": true,
+          "terminal_received_and_settled": true
+        },
+        "bodies": {
+          "upper_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 115,
+            "final_state_ok": true
+          },
+          "fan_32": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 415,
+            "final_state_ok": true
+          },
+          "terminal": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 440,
+            "final_state_ok": true
+          },
+          "fan_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 335,
+            "final_state_ok": true
+          },
+          "upper_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 125,
+            "final_state_ok": true
+          },
+          "middle_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 195,
+            "final_state_ok": true
+          },
+          "relay_upper": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 155,
+            "final_state_ok": true
+          },
+          "upper_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 115,
+            "final_state_ok": true
+          },
+          "fan_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 345,
+            "final_state_ok": true
+          },
+          "fan_33": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 420,
+            "final_state_ok": true
+          },
+          "fan_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 340,
+            "final_state_ok": true
+          },
+          "middle_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 240,
+            "final_state_ok": true
+          },
+          "fan_13": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 355,
+            "final_state_ok": true
+          },
+          "fan_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 340,
+            "final_state_ok": true
+          },
+          "upper_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 125,
+            "final_state_ok": true
+          },
+          "fan_22": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 385,
+            "final_state_ok": true
+          },
+          "fan_12": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 350,
+            "final_state_ok": true
+          },
+          "fan_16": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 365,
+            "final_state_ok": true
+          },
+          "middle_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 250,
+            "final_state_ok": true
+          },
+          "fan_20": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 375,
+            "final_state_ok": true
+          },
+          "upper_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 135,
+            "final_state_ok": true
+          },
+          "middle_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 195,
+            "final_state_ok": true
+          },
+          "relay_lower": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 270,
+            "final_state_ok": true
+          },
+          "fan_34": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 420,
+            "final_state_ok": true
+          },
+          "fan_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 335,
+            "final_state_ok": true
+          },
+          "fan_21": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 380,
+            "final_state_ok": true
+          },
+          "middle_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 200,
+            "final_state_ok": true
+          },
+          "fan_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 310,
+            "final_state_ok": true
+          },
+          "middle_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 240,
+            "final_state_ok": true
+          },
+          "fan_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 310,
+            "final_state_ok": true
+          },
+          "upper_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 110,
+            "final_state_ok": true
+          },
+          "fan_15": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 360,
+            "final_state_ok": true
+          },
+          "upper_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 140,
+            "final_state_ok": true
+          },
+          "fan_27": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 400,
+            "final_state_ok": true
+          },
+          "fan_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 320,
+            "final_state_ok": true
+          },
+          "middle_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 245,
+            "final_state_ok": true
+          },
+          "middle_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 200,
+            "final_state_ok": true
+          },
+          "fan_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 325,
+            "final_state_ok": true
+          },
+          "fan_25": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 395,
+            "final_state_ok": true
+          },
+          "fan_28": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 405,
+            "final_state_ok": true
+          },
+          "middle_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 255,
+            "final_state_ok": true
+          },
+          "fan_35": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 425,
+            "final_state_ok": true
+          },
+          "trigger": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 65,
+            "final_state_ok": true
+          },
+          "fan_24": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 390,
+            "final_state_ok": true
+          },
+          "fan_18": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 370,
+            "final_state_ok": true
+          },
+          "fan_23": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 385,
+            "final_state_ok": true
+          },
+          "middle_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 215,
+            "final_state_ok": true
+          },
+          "upper_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 105,
+            "final_state_ok": true
+          },
+          "fan_29": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 405,
+            "final_state_ok": true
+          },
+          "fan_26": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 395,
+            "final_state_ok": true
+          },
+          "upper_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 120,
+            "final_state_ok": true
+          },
+          "fan_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 315,
+            "final_state_ok": true
+          },
+          "fan_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 350,
+            "final_state_ok": true
+          },
+          "upper_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 110,
+            "final_state_ok": true
+          },
+          "upper_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 135,
+            "final_state_ok": true
+          },
+          "middle_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 225,
+            "final_state_ok": true
+          },
+          "fan_17": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 370,
+            "final_state_ok": true
+          },
+          "middle_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 235,
+            "final_state_ok": true
+          },
+          "fan_31": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 410,
+            "final_state_ok": true
+          },
+          "upper_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 130,
+            "final_state_ok": true
+          },
+          "fan_19": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 375,
+            "final_state_ok": true
+          },
+          "fan_30": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 410,
+            "final_state_ok": true
+          },
+          "fan_14": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 360,
+            "final_state_ok": true
+          },
+          "fan_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 330,
+            "final_state_ok": true
+          }
+        },
+        "edges": {
+          "trigger->upper_00": {
+            "first_contact_step": 103,
+            "source_activation_step": 60,
+            "target_activation_step": 105,
+            "ordered": true
+          },
+          "upper_00->upper_01": {
+            "first_contact_step": 105,
+            "source_activation_step": 105,
+            "target_activation_step": 110,
+            "ordered": true
+          },
+          "upper_01->upper_02": {
+            "first_contact_step": 107,
+            "source_activation_step": 110,
+            "target_activation_step": 110,
+            "ordered": true
+          },
+          "upper_02->upper_03": {
+            "first_contact_step": 109,
+            "source_activation_step": 110,
+            "target_activation_step": 115,
+            "ordered": true
+          },
+          "upper_03->upper_04": {
+            "first_contact_step": 112,
+            "source_activation_step": 115,
+            "target_activation_step": 115,
+            "ordered": true
+          },
+          "upper_04->upper_05": {
+            "first_contact_step": 116,
+            "source_activation_step": 115,
+            "target_activation_step": 120,
+            "ordered": true
+          },
+          "upper_05->upper_06": {
+            "first_contact_step": 119,
+            "source_activation_step": 120,
+            "target_activation_step": 125,
+            "ordered": true
+          },
+          "upper_06->upper_07": {
+            "first_contact_step": 122,
+            "source_activation_step": 125,
+            "target_activation_step": 125,
+            "ordered": true
+          },
+          "upper_07->upper_08": {
+            "first_contact_step": 125,
+            "source_activation_step": 125,
+            "target_activation_step": 130,
+            "ordered": true
+          },
+          "upper_08->upper_09": {
+            "first_contact_step": 129,
+            "source_activation_step": 130,
+            "target_activation_step": 135,
+            "ordered": true
+          },
+          "upper_09->upper_10": {
+            "first_contact_step": 132,
+            "source_activation_step": 135,
+            "target_activation_step": 135,
+            "ordered": true
+          },
+          "upper_10->upper_11": {
+            "first_contact_step": 135,
+            "source_activation_step": 135,
+            "target_activation_step": 140,
+            "ordered": true
+          },
+          "upper_11->relay_upper": {
+            "first_contact_step": 141,
+            "source_activation_step": 140,
+            "target_activation_step": 155,
+            "ordered": true
+          },
+          "relay_upper->middle_00": {
+            "first_contact_step": 193,
+            "source_activation_step": 155,
+            "target_activation_step": 195,
+            "ordered": true
+          },
+          "middle_00->middle_01": {
+            "first_contact_step": 194,
+            "source_activation_step": 195,
+            "target_activation_step": 195,
+            "ordered": true
+          },
+          "middle_01->middle_02": {
+            "first_contact_step": 196,
+            "source_activation_step": 195,
+            "target_activation_step": 200,
+            "ordered": true
+          },
+          "middle_02->middle_03": {
+            "first_contact_step": 198,
+            "source_activation_step": 200,
+            "target_activation_step": 200,
+            "ordered": true
+          },
+          "middle_03->middle_04": {
+            "first_contact_step": 203,
+            "source_activation_step": 200,
+            "target_activation_step": 215,
+            "ordered": true
+          },
+          "middle_04->middle_05": {
+            "first_contact_step": 217,
+            "source_activation_step": 215,
+            "target_activation_step": 225,
+            "ordered": true
+          },
+          "middle_05->middle_06": {
+            "first_contact_step": 227,
+            "source_activation_step": 225,
+            "target_activation_step": 235,
+            "ordered": true
+          },
+          "middle_06->middle_07": {
+            "first_contact_step": 233,
+            "source_activation_step": 235,
+            "target_activation_step": 240,
+            "ordered": true
+          },
+          "middle_07->middle_08": {
+            "first_contact_step": 237,
+            "source_activation_step": 240,
+            "target_activation_step": 240,
+            "ordered": true
+          },
+          "middle_08->middle_09": {
+            "first_contact_step": 241,
+            "source_activation_step": 240,
+            "target_activation_step": 245,
+            "ordered": true
+          },
+          "middle_09->middle_10": {
+            "first_contact_step": 244,
+            "source_activation_step": 245,
+            "target_activation_step": 250,
+            "ordered": true
+          },
+          "middle_10->middle_11": {
+            "first_contact_step": 248,
+            "source_activation_step": 250,
+            "target_activation_step": 255,
+            "ordered": true
+          },
+          "middle_11->relay_lower": {
+            "first_contact_step": 254,
+            "source_activation_step": 255,
+            "target_activation_step": 270,
+            "ordered": true
+          },
+          "relay_lower->fan_00": {
+            "first_contact_step": 306,
+            "source_activation_step": 270,
+            "target_activation_step": 310,
+            "ordered": true
+          },
+          "fan_00->fan_01": {
+            "first_contact_step": 308,
+            "source_activation_step": 310,
+            "target_activation_step": 310,
+            "ordered": true
+          },
+          "fan_01->fan_02": {
+            "first_contact_step": 310,
+            "source_activation_step": 310,
+            "target_activation_step": 315,
+            "ordered": true
+          },
+          "fan_02->fan_03": {
+            "first_contact_step": 314,
+            "source_activation_step": 315,
+            "target_activation_step": 320,
+            "ordered": true
+          },
+          "fan_03->fan_04": {
+            "first_contact_step": 319,
+            "source_activation_step": 320,
+            "target_activation_step": 325,
+            "ordered": true
+          },
+          "fan_04->fan_05": {
+            "first_contact_step": 324,
+            "source_activation_step": 325,
+            "target_activation_step": 330,
+            "ordered": true
+          },
+          "fan_05->fan_06": {
+            "first_contact_step": 328,
+            "source_activation_step": 330,
+            "target_activation_step": 335,
+            "ordered": true
+          },
+          "fan_06->fan_07": {
+            "first_contact_step": 331,
+            "source_activation_step": 335,
+            "target_activation_step": 335,
+            "ordered": true
+          },
+          "fan_07->fan_08": {
+            "first_contact_step": 335,
+            "source_activation_step": 335,
+            "target_activation_step": 340,
+            "ordered": true
+          },
+          "fan_08->fan_09": {
+            "first_contact_step": 338,
+            "source_activation_step": 340,
+            "target_activation_step": 340,
+            "ordered": true
+          },
+          "fan_09->fan_10": {
+            "first_contact_step": 341,
+            "source_activation_step": 340,
+            "target_activation_step": 345,
+            "ordered": true
+          },
+          "fan_10->fan_11": {
+            "first_contact_step": 344,
+            "source_activation_step": 345,
+            "target_activation_step": 350,
+            "ordered": true
+          },
+          "fan_11->fan_12": {
+            "first_contact_step": 347,
+            "source_activation_step": 350,
+            "target_activation_step": 350,
+            "ordered": true
+          },
+          "fan_12->fan_13": {
+            "first_contact_step": 351,
+            "source_activation_step": 350,
+            "target_activation_step": 355,
+            "ordered": true
+          },
+          "fan_13->fan_14": {
+            "first_contact_step": 354,
+            "source_activation_step": 355,
+            "target_activation_step": 360,
+            "ordered": true
+          },
+          "fan_14->fan_15": {
+            "first_contact_step": 357,
+            "source_activation_step": 360,
+            "target_activation_step": 360,
+            "ordered": true
+          },
+          "fan_15->fan_16": {
+            "first_contact_step": 360,
+            "source_activation_step": 360,
+            "target_activation_step": 365,
+            "ordered": true
+          },
+          "fan_16->fan_17": {
+            "first_contact_step": 363,
+            "source_activation_step": 365,
+            "target_activation_step": 370,
+            "ordered": true
+          },
+          "fan_17->fan_18": {
+            "first_contact_step": 367,
+            "source_activation_step": 370,
+            "target_activation_step": 370,
+            "ordered": true
+          },
+          "fan_18->fan_19": {
+            "first_contact_step": 370,
+            "source_activation_step": 370,
+            "target_activation_step": 375,
+            "ordered": true
+          },
+          "fan_19->fan_20": {
+            "first_contact_step": 373,
+            "source_activation_step": 375,
+            "target_activation_step": 375,
+            "ordered": true
+          },
+          "fan_20->fan_21": {
+            "first_contact_step": 376,
+            "source_activation_step": 375,
+            "target_activation_step": 380,
+            "ordered": true
+          },
+          "fan_21->fan_22": {
+            "first_contact_step": 379,
+            "source_activation_step": 380,
+            "target_activation_step": 385,
+            "ordered": true
+          },
+          "fan_22->fan_23": {
+            "first_contact_step": 382,
+            "source_activation_step": 385,
+            "target_activation_step": 385,
+            "ordered": true
+          },
+          "fan_23->fan_24": {
+            "first_contact_step": 386,
+            "source_activation_step": 385,
+            "target_activation_step": 390,
+            "ordered": true
+          },
+          "fan_24->fan_25": {
+            "first_contact_step": 389,
+            "source_activation_step": 390,
+            "target_activation_step": 395,
+            "ordered": true
+          },
+          "fan_25->fan_26": {
+            "first_contact_step": 392,
+            "source_activation_step": 395,
+            "target_activation_step": 395,
+            "ordered": true
+          },
+          "fan_26->fan_27": {
+            "first_contact_step": 395,
+            "source_activation_step": 395,
+            "target_activation_step": 400,
+            "ordered": true
+          },
+          "fan_27->fan_28": {
+            "first_contact_step": 398,
+            "source_activation_step": 400,
+            "target_activation_step": 405,
+            "ordered": true
+          },
+          "fan_28->fan_29": {
+            "first_contact_step": 401,
+            "source_activation_step": 405,
+            "target_activation_step": 405,
+            "ordered": true
+          },
+          "fan_29->fan_30": {
+            "first_contact_step": 405,
+            "source_activation_step": 405,
+            "target_activation_step": 410,
+            "ordered": true
+          },
+          "fan_30->fan_31": {
+            "first_contact_step": 408,
+            "source_activation_step": 410,
+            "target_activation_step": 410,
+            "ordered": true
+          },
+          "fan_31->fan_32": {
+            "first_contact_step": 411,
+            "source_activation_step": 410,
+            "target_activation_step": 415,
+            "ordered": true
+          },
+          "fan_32->fan_33": {
+            "first_contact_step": 414,
+            "source_activation_step": 415,
+            "target_activation_step": 420,
+            "ordered": true
+          },
+          "fan_33->fan_34": {
+            "first_contact_step": 417,
+            "source_activation_step": 420,
+            "target_activation_step": 420,
+            "ordered": true
+          },
+          "fan_34->fan_35": {
+            "first_contact_step": 420,
+            "source_activation_step": 420,
+            "target_activation_step": 425,
+            "ordered": true
+          },
+          "fan_35->terminal": {
+            "first_contact_step": 427,
+            "source_activation_step": 425,
+            "target_activation_step": 440,
+            "ordered": true
+          }
+        },
+        "receiver": {
+          "contained_entire_tail": true,
+          "terminal_motion_m": 0.0,
+          "contact": true
+        },
+        "scope": "Recorded contact order and measured passive motion; causal claim requires paired no-trigger and broken-link controls.",
+        "run_id": "7bb3de00b85a4b08a165a4fe906e3415",
+        "case_pinned_to_run": true,
+        "integrity": {
+          "inputs": {
+            "passed": true,
+            "checks": {
+              "spec.json": true,
+              "scene.usda": true,
+              "asset-lock.json": true,
+              "runtime-lock.json": true,
+              "acceptance_case": true,
+              "asset_lock_coverage": true,
+              "controller_lock_coverage": true,
+              "asset:upper_rack": true,
+              "asset:middle_workbench": true,
+              "asset:receiver_tray": true,
+              "worker_code_snapshot": true,
+              "runtime_launcher": true,
+              "queue_launcher": true
+            },
+            "errors": [],
+            "scope": "recorded run input integrity; external files may change after this check and physics success is not established"
+          },
+          "outputs": {
+            "passed": true,
+            "partial": false,
+            "checks": {
+              "result.json": true,
+              "camera_overview.png": true,
+              "camera_overview.mp4": true,
+              "camera_overview.ffmpeg.log": true,
+              "camera_overview.frames.jsonl": true,
+              "camera_overview_frame_000000.png": true,
+              "camera_overview_frame_000019.png": true,
+              "camera_overview_frame_000039.png": true,
+              "render-settings.json": true
+            },
+            "errors": [],
+            "scope": "saved artifact hashes; not a signature or proof of task success"
+          }
+        }
+      },
+      {
+        "passed": true,
+        "mode": "positive",
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "all_required_activated": true,
+          "all_tiles_finally_tipped": true,
+          "every_handoff_ordered": true,
+          "terminal_received_and_settled": true
+        },
+        "bodies": {
+          "upper_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 115,
+            "final_state_ok": true
+          },
+          "fan_32": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 415,
+            "final_state_ok": true
+          },
+          "terminal": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 440,
+            "final_state_ok": true
+          },
+          "fan_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 335,
+            "final_state_ok": true
+          },
+          "upper_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 125,
+            "final_state_ok": true
+          },
+          "middle_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 195,
+            "final_state_ok": true
+          },
+          "relay_upper": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 155,
+            "final_state_ok": true
+          },
+          "upper_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 115,
+            "final_state_ok": true
+          },
+          "fan_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 345,
+            "final_state_ok": true
+          },
+          "fan_33": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 420,
+            "final_state_ok": true
+          },
+          "fan_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 340,
+            "final_state_ok": true
+          },
+          "middle_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 240,
+            "final_state_ok": true
+          },
+          "fan_13": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 355,
+            "final_state_ok": true
+          },
+          "fan_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 340,
+            "final_state_ok": true
+          },
+          "upper_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 125,
+            "final_state_ok": true
+          },
+          "fan_22": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 385,
+            "final_state_ok": true
+          },
+          "fan_12": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 350,
+            "final_state_ok": true
+          },
+          "fan_16": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 365,
+            "final_state_ok": true
+          },
+          "middle_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 250,
+            "final_state_ok": true
+          },
+          "fan_20": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 375,
+            "final_state_ok": true
+          },
+          "upper_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 135,
+            "final_state_ok": true
+          },
+          "middle_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 195,
+            "final_state_ok": true
+          },
+          "relay_lower": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 270,
+            "final_state_ok": true
+          },
+          "fan_34": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 420,
+            "final_state_ok": true
+          },
+          "fan_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 335,
+            "final_state_ok": true
+          },
+          "fan_21": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 380,
+            "final_state_ok": true
+          },
+          "middle_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 200,
+            "final_state_ok": true
+          },
+          "fan_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 310,
+            "final_state_ok": true
+          },
+          "middle_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 240,
+            "final_state_ok": true
+          },
+          "fan_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 310,
+            "final_state_ok": true
+          },
+          "upper_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 110,
+            "final_state_ok": true
+          },
+          "fan_15": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 360,
+            "final_state_ok": true
+          },
+          "upper_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 140,
+            "final_state_ok": true
+          },
+          "fan_27": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 400,
+            "final_state_ok": true
+          },
+          "fan_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 320,
+            "final_state_ok": true
+          },
+          "middle_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 245,
+            "final_state_ok": true
+          },
+          "middle_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 200,
+            "final_state_ok": true
+          },
+          "fan_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 325,
+            "final_state_ok": true
+          },
+          "fan_25": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 395,
+            "final_state_ok": true
+          },
+          "fan_28": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 405,
+            "final_state_ok": true
+          },
+          "middle_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 255,
+            "final_state_ok": true
+          },
+          "fan_35": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 425,
+            "final_state_ok": true
+          },
+          "trigger": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 65,
+            "final_state_ok": true
+          },
+          "fan_24": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 390,
+            "final_state_ok": true
+          },
+          "fan_18": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 370,
+            "final_state_ok": true
+          },
+          "fan_23": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 385,
+            "final_state_ok": true
+          },
+          "middle_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 215,
+            "final_state_ok": true
+          },
+          "upper_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 105,
+            "final_state_ok": true
+          },
+          "fan_29": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 405,
+            "final_state_ok": true
+          },
+          "fan_26": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 395,
+            "final_state_ok": true
+          },
+          "upper_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 120,
+            "final_state_ok": true
+          },
+          "fan_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 315,
+            "final_state_ok": true
+          },
+          "fan_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 350,
+            "final_state_ok": true
+          },
+          "upper_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 110,
+            "final_state_ok": true
+          },
+          "upper_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 135,
+            "final_state_ok": true
+          },
+          "middle_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 225,
+            "final_state_ok": true
+          },
+          "fan_17": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 370,
+            "final_state_ok": true
+          },
+          "middle_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 235,
+            "final_state_ok": true
+          },
+          "fan_31": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 410,
+            "final_state_ok": true
+          },
+          "upper_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 130,
+            "final_state_ok": true
+          },
+          "fan_19": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 375,
+            "final_state_ok": true
+          },
+          "fan_30": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 410,
+            "final_state_ok": true
+          },
+          "fan_14": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 360,
+            "final_state_ok": true
+          },
+          "fan_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 330,
+            "final_state_ok": true
+          }
+        },
+        "edges": {
+          "trigger->upper_00": {
+            "first_contact_step": 103,
+            "source_activation_step": 60,
+            "target_activation_step": 105,
+            "ordered": true
+          },
+          "upper_00->upper_01": {
+            "first_contact_step": 105,
+            "source_activation_step": 105,
+            "target_activation_step": 110,
+            "ordered": true
+          },
+          "upper_01->upper_02": {
+            "first_contact_step": 107,
+            "source_activation_step": 110,
+            "target_activation_step": 110,
+            "ordered": true
+          },
+          "upper_02->upper_03": {
+            "first_contact_step": 109,
+            "source_activation_step": 110,
+            "target_activation_step": 115,
+            "ordered": true
+          },
+          "upper_03->upper_04": {
+            "first_contact_step": 112,
+            "source_activation_step": 115,
+            "target_activation_step": 115,
+            "ordered": true
+          },
+          "upper_04->upper_05": {
+            "first_contact_step": 116,
+            "source_activation_step": 115,
+            "target_activation_step": 120,
+            "ordered": true
+          },
+          "upper_05->upper_06": {
+            "first_contact_step": 119,
+            "source_activation_step": 120,
+            "target_activation_step": 125,
+            "ordered": true
+          },
+          "upper_06->upper_07": {
+            "first_contact_step": 122,
+            "source_activation_step": 125,
+            "target_activation_step": 125,
+            "ordered": true
+          },
+          "upper_07->upper_08": {
+            "first_contact_step": 125,
+            "source_activation_step": 125,
+            "target_activation_step": 130,
+            "ordered": true
+          },
+          "upper_08->upper_09": {
+            "first_contact_step": 129,
+            "source_activation_step": 130,
+            "target_activation_step": 135,
+            "ordered": true
+          },
+          "upper_09->upper_10": {
+            "first_contact_step": 132,
+            "source_activation_step": 135,
+            "target_activation_step": 135,
+            "ordered": true
+          },
+          "upper_10->upper_11": {
+            "first_contact_step": 135,
+            "source_activation_step": 135,
+            "target_activation_step": 140,
+            "ordered": true
+          },
+          "upper_11->relay_upper": {
+            "first_contact_step": 141,
+            "source_activation_step": 140,
+            "target_activation_step": 155,
+            "ordered": true
+          },
+          "relay_upper->middle_00": {
+            "first_contact_step": 193,
+            "source_activation_step": 155,
+            "target_activation_step": 195,
+            "ordered": true
+          },
+          "middle_00->middle_01": {
+            "first_contact_step": 194,
+            "source_activation_step": 195,
+            "target_activation_step": 195,
+            "ordered": true
+          },
+          "middle_01->middle_02": {
+            "first_contact_step": 196,
+            "source_activation_step": 195,
+            "target_activation_step": 200,
+            "ordered": true
+          },
+          "middle_02->middle_03": {
+            "first_contact_step": 198,
+            "source_activation_step": 200,
+            "target_activation_step": 200,
+            "ordered": true
+          },
+          "middle_03->middle_04": {
+            "first_contact_step": 203,
+            "source_activation_step": 200,
+            "target_activation_step": 215,
+            "ordered": true
+          },
+          "middle_04->middle_05": {
+            "first_contact_step": 217,
+            "source_activation_step": 215,
+            "target_activation_step": 225,
+            "ordered": true
+          },
+          "middle_05->middle_06": {
+            "first_contact_step": 227,
+            "source_activation_step": 225,
+            "target_activation_step": 235,
+            "ordered": true
+          },
+          "middle_06->middle_07": {
+            "first_contact_step": 233,
+            "source_activation_step": 235,
+            "target_activation_step": 240,
+            "ordered": true
+          },
+          "middle_07->middle_08": {
+            "first_contact_step": 237,
+            "source_activation_step": 240,
+            "target_activation_step": 240,
+            "ordered": true
+          },
+          "middle_08->middle_09": {
+            "first_contact_step": 241,
+            "source_activation_step": 240,
+            "target_activation_step": 245,
+            "ordered": true
+          },
+          "middle_09->middle_10": {
+            "first_contact_step": 244,
+            "source_activation_step": 245,
+            "target_activation_step": 250,
+            "ordered": true
+          },
+          "middle_10->middle_11": {
+            "first_contact_step": 248,
+            "source_activation_step": 250,
+            "target_activation_step": 255,
+            "ordered": true
+          },
+          "middle_11->relay_lower": {
+            "first_contact_step": 254,
+            "source_activation_step": 255,
+            "target_activation_step": 270,
+            "ordered": true
+          },
+          "relay_lower->fan_00": {
+            "first_contact_step": 306,
+            "source_activation_step": 270,
+            "target_activation_step": 310,
+            "ordered": true
+          },
+          "fan_00->fan_01": {
+            "first_contact_step": 308,
+            "source_activation_step": 310,
+            "target_activation_step": 310,
+            "ordered": true
+          },
+          "fan_01->fan_02": {
+            "first_contact_step": 310,
+            "source_activation_step": 310,
+            "target_activation_step": 315,
+            "ordered": true
+          },
+          "fan_02->fan_03": {
+            "first_contact_step": 314,
+            "source_activation_step": 315,
+            "target_activation_step": 320,
+            "ordered": true
+          },
+          "fan_03->fan_04": {
+            "first_contact_step": 319,
+            "source_activation_step": 320,
+            "target_activation_step": 325,
+            "ordered": true
+          },
+          "fan_04->fan_05": {
+            "first_contact_step": 324,
+            "source_activation_step": 325,
+            "target_activation_step": 330,
+            "ordered": true
+          },
+          "fan_05->fan_06": {
+            "first_contact_step": 328,
+            "source_activation_step": 330,
+            "target_activation_step": 335,
+            "ordered": true
+          },
+          "fan_06->fan_07": {
+            "first_contact_step": 331,
+            "source_activation_step": 335,
+            "target_activation_step": 335,
+            "ordered": true
+          },
+          "fan_07->fan_08": {
+            "first_contact_step": 335,
+            "source_activation_step": 335,
+            "target_activation_step": 340,
+            "ordered": true
+          },
+          "fan_08->fan_09": {
+            "first_contact_step": 338,
+            "source_activation_step": 340,
+            "target_activation_step": 340,
+            "ordered": true
+          },
+          "fan_09->fan_10": {
+            "first_contact_step": 341,
+            "source_activation_step": 340,
+            "target_activation_step": 345,
+            "ordered": true
+          },
+          "fan_10->fan_11": {
+            "first_contact_step": 344,
+            "source_activation_step": 345,
+            "target_activation_step": 350,
+            "ordered": true
+          },
+          "fan_11->fan_12": {
+            "first_contact_step": 347,
+            "source_activation_step": 350,
+            "target_activation_step": 350,
+            "ordered": true
+          },
+          "fan_12->fan_13": {
+            "first_contact_step": 351,
+            "source_activation_step": 350,
+            "target_activation_step": 355,
+            "ordered": true
+          },
+          "fan_13->fan_14": {
+            "first_contact_step": 354,
+            "source_activation_step": 355,
+            "target_activation_step": 360,
+            "ordered": true
+          },
+          "fan_14->fan_15": {
+            "first_contact_step": 357,
+            "source_activation_step": 360,
+            "target_activation_step": 360,
+            "ordered": true
+          },
+          "fan_15->fan_16": {
+            "first_contact_step": 360,
+            "source_activation_step": 360,
+            "target_activation_step": 365,
+            "ordered": true
+          },
+          "fan_16->fan_17": {
+            "first_contact_step": 363,
+            "source_activation_step": 365,
+            "target_activation_step": 370,
+            "ordered": true
+          },
+          "fan_17->fan_18": {
+            "first_contact_step": 367,
+            "source_activation_step": 370,
+            "target_activation_step": 370,
+            "ordered": true
+          },
+          "fan_18->fan_19": {
+            "first_contact_step": 370,
+            "source_activation_step": 370,
+            "target_activation_step": 375,
+            "ordered": true
+          },
+          "fan_19->fan_20": {
+            "first_contact_step": 373,
+            "source_activation_step": 375,
+            "target_activation_step": 375,
+            "ordered": true
+          },
+          "fan_20->fan_21": {
+            "first_contact_step": 376,
+            "source_activation_step": 375,
+            "target_activation_step": 380,
+            "ordered": true
+          },
+          "fan_21->fan_22": {
+            "first_contact_step": 379,
+            "source_activation_step": 380,
+            "target_activation_step": 385,
+            "ordered": true
+          },
+          "fan_22->fan_23": {
+            "first_contact_step": 382,
+            "source_activation_step": 385,
+            "target_activation_step": 385,
+            "ordered": true
+          },
+          "fan_23->fan_24": {
+            "first_contact_step": 386,
+            "source_activation_step": 385,
+            "target_activation_step": 390,
+            "ordered": true
+          },
+          "fan_24->fan_25": {
+            "first_contact_step": 389,
+            "source_activation_step": 390,
+            "target_activation_step": 395,
+            "ordered": true
+          },
+          "fan_25->fan_26": {
+            "first_contact_step": 392,
+            "source_activation_step": 395,
+            "target_activation_step": 395,
+            "ordered": true
+          },
+          "fan_26->fan_27": {
+            "first_contact_step": 395,
+            "source_activation_step": 395,
+            "target_activation_step": 400,
+            "ordered": true
+          },
+          "fan_27->fan_28": {
+            "first_contact_step": 398,
+            "source_activation_step": 400,
+            "target_activation_step": 405,
+            "ordered": true
+          },
+          "fan_28->fan_29": {
+            "first_contact_step": 401,
+            "source_activation_step": 405,
+            "target_activation_step": 405,
+            "ordered": true
+          },
+          "fan_29->fan_30": {
+            "first_contact_step": 405,
+            "source_activation_step": 405,
+            "target_activation_step": 410,
+            "ordered": true
+          },
+          "fan_30->fan_31": {
+            "first_contact_step": 408,
+            "source_activation_step": 410,
+            "target_activation_step": 410,
+            "ordered": true
+          },
+          "fan_31->fan_32": {
+            "first_contact_step": 411,
+            "source_activation_step": 410,
+            "target_activation_step": 415,
+            "ordered": true
+          },
+          "fan_32->fan_33": {
+            "first_contact_step": 414,
+            "source_activation_step": 415,
+            "target_activation_step": 420,
+            "ordered": true
+          },
+          "fan_33->fan_34": {
+            "first_contact_step": 417,
+            "source_activation_step": 420,
+            "target_activation_step": 420,
+            "ordered": true
+          },
+          "fan_34->fan_35": {
+            "first_contact_step": 420,
+            "source_activation_step": 420,
+            "target_activation_step": 425,
+            "ordered": true
+          },
+          "fan_35->terminal": {
+            "first_contact_step": 427,
+            "source_activation_step": 425,
+            "target_activation_step": 440,
+            "ordered": true
+          }
+        },
+        "receiver": {
+          "contained_entire_tail": true,
+          "terminal_motion_m": 0.0,
+          "contact": true
+        },
+        "scope": "Recorded contact order and measured passive motion; causal claim requires paired no-trigger and broken-link controls.",
+        "run_id": "6beae536cbee44e29a67550ffa3a54c0",
+        "case_pinned_to_run": true,
+        "integrity": {
+          "inputs": {
+            "passed": true,
+            "checks": {
+              "spec.json": true,
+              "scene.usda": true,
+              "asset-lock.json": true,
+              "runtime-lock.json": true,
+              "acceptance_case": true,
+              "asset_lock_coverage": true,
+              "controller_lock_coverage": true,
+              "asset:upper_rack": true,
+              "asset:middle_workbench": true,
+              "asset:receiver_tray": true,
+              "worker_code_snapshot": true,
+              "runtime_launcher": true,
+              "queue_launcher": true
+            },
+            "errors": [],
+            "scope": "recorded run input integrity; external files may change after this check and physics success is not established"
+          },
+          "outputs": {
+            "passed": true,
+            "partial": false,
+            "checks": {
+              "result.json": true,
+              "camera_overview.png": true,
+              "camera_detail.png": true,
+              "camera_overview.mp4": true,
+              "camera_overview.ffmpeg.log": true,
+              "camera_overview.frames.jsonl": true,
+              "camera_overview_frame_000000.png": true,
+              "camera_overview_frame_000059.png": true,
+              "camera_overview_frame_000119.png": true,
+              "camera_overview_frame_000179.png": true,
+              "camera_overview_frame_000239.png": true,
+              "camera_overview_frame_000299.png": true,
+              "camera_overview_frame_000359.png": true,
+              "camera_overview_frame_000419.png": true,
+              "camera_overview_frame_000479.png": true,
+              "camera_overview_frame_000539.png": true,
+              "camera_overview_frame_000599.png": true,
+              "camera_overview_frame_000659.png": true,
+              "camera_overview_frame_000719.png": true,
+              "camera_detail.mp4": true,
+              "camera_detail.ffmpeg.log": true,
+              "camera_detail.frames.jsonl": true,
+              "camera_detail_frame_000000.png": true,
+              "camera_detail_frame_000059.png": true,
+              "camera_detail_frame_000119.png": true,
+              "camera_detail_frame_000179.png": true,
+              "camera_detail_frame_000239.png": true,
+              "camera_detail_frame_000299.png": true,
+              "camera_detail_frame_000359.png": true,
+              "camera_detail_frame_000419.png": true,
+              "camera_detail_frame_000479.png": true,
+              "camera_detail_frame_000539.png": true,
+              "camera_detail_frame_000599.png": true,
+              "camera_detail_frame_000659.png": true,
+              "camera_detail_frame_000719.png": true,
+              "render-settings.json": true
+            },
+            "errors": [],
+            "scope": "saved artifact hashes; not a signature or proof of task success"
+          }
+        }
+      }
+    ],
+    "negative": [
+      {
+        "passed": true,
+        "mode": "no_trigger",
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "control_really_removed_body": true,
+          "downstream_did_not_activate": true,
+          "terminal_not_received": true
+        },
+        "bodies": {
+          "upper_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_32": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "terminal": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": true
+          },
+          "fan_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "relay_upper": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": true
+          },
+          "upper_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_33": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_13": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_22": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_12": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_16": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_20": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "relay_lower": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": true
+          },
+          "fan_34": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_21": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_15": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_27": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_25": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_28": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_35": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_24": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_18": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_23": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_29": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_26": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_17": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_31": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_19": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_30": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_14": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          }
+        },
+        "edges": {
+          "upper_00->upper_01": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_01->upper_02": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_02->upper_03": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_03->upper_04": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_04->upper_05": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_05->upper_06": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_06->upper_07": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_07->upper_08": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_08->upper_09": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_09->upper_10": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_10->upper_11": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "upper_11->relay_upper": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "relay_upper->middle_00": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_00->middle_01": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_01->middle_02": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_02->middle_03": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_03->middle_04": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_04->middle_05": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_05->middle_06": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_06->middle_07": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_07->middle_08": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_08->middle_09": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_09->middle_10": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_10->middle_11": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_11->relay_lower": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "relay_lower->fan_00": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_00->fan_01": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_01->fan_02": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_02->fan_03": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_03->fan_04": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_04->fan_05": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_05->fan_06": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_06->fan_07": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_07->fan_08": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_08->fan_09": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_09->fan_10": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_10->fan_11": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_11->fan_12": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_12->fan_13": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_13->fan_14": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_14->fan_15": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_15->fan_16": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_16->fan_17": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_17->fan_18": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_18->fan_19": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_19->fan_20": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_20->fan_21": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_21->fan_22": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_22->fan_23": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_23->fan_24": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_24->fan_25": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_25->fan_26": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_26->fan_27": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_27->fan_28": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_28->fan_29": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_29->fan_30": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_30->fan_31": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_31->fan_32": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_32->fan_33": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_33->fan_34": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_34->fan_35": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_35->terminal": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          }
+        },
+        "receiver": {
+          "contained_entire_tail": false,
+          "terminal_motion_m": 0.0,
+          "contact": false
+        },
+        "scope": "Recorded contact order and measured passive motion; causal claim requires paired no-trigger and broken-link controls.",
+        "run_id": "bf738414897d4fdb8443af9477e4ca56",
+        "case_pinned_to_run": true,
+        "integrity": {
+          "inputs": {
+            "passed": true,
+            "checks": {
+              "spec.json": true,
+              "scene.usda": true,
+              "asset-lock.json": true,
+              "runtime-lock.json": true,
+              "acceptance_case": true,
+              "asset_lock_coverage": true,
+              "controller_lock_coverage": true,
+              "asset:upper_rack": true,
+              "asset:middle_workbench": true,
+              "asset:receiver_tray": true,
+              "worker_code_snapshot": true,
+              "runtime_launcher": true,
+              "queue_launcher": true
+            },
+            "errors": [],
+            "scope": "recorded run input integrity; external files may change after this check and physics success is not established"
+          },
+          "outputs": {
+            "passed": true,
+            "partial": false,
+            "checks": {
+              "result.json": true,
+              "camera_overview.png": true,
+              "camera_overview.mp4": true,
+              "camera_overview.ffmpeg.log": true,
+              "camera_overview.frames.jsonl": true,
+              "camera_overview_frame_000000.png": true,
+              "camera_overview_frame_000019.png": true,
+              "camera_overview_frame_000039.png": true,
+              "render-settings.json": true
+            },
+            "errors": [],
+            "scope": "saved artifact hashes; not a signature or proof of task success"
+          }
+        }
+      },
+      {
+        "passed": true,
+        "mode": "broken_link",
+        "checks": {
+          "completed_duration": true,
+          "observed_time_order": true,
+          "contacts_not_truncated": true,
+          "exact_dynamic_roles": true,
+          "role_shapes_match": true,
+          "only_initial_trigger_scheduled": true,
+          "no_active_drives": true,
+          "imported_assets_are_passive_visuals": true,
+          "spawn_evidence_matches": true,
+          "all_expected_bodies_observed": true,
+          "downstream_initially_quiet": true,
+          "control_really_removed_body": true,
+          "downstream_did_not_activate": true,
+          "terminal_not_received": true
+        },
+        "bodies": {
+          "upper_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 115,
+            "final_state_ok": true
+          },
+          "fan_32": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "terminal": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": true
+          },
+          "fan_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 125,
+            "final_state_ok": true
+          },
+          "middle_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 195,
+            "final_state_ok": true
+          },
+          "relay_upper": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 155,
+            "final_state_ok": true
+          },
+          "upper_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 115,
+            "final_state_ok": true
+          },
+          "fan_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_33": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_13": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 125,
+            "final_state_ok": true
+          },
+          "fan_22": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_12": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_16": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_20": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_10": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 135,
+            "final_state_ok": true
+          },
+          "middle_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 195,
+            "final_state_ok": true
+          },
+          "relay_lower": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": true
+          },
+          "fan_34": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_06": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_21": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 200,
+            "final_state_ok": true
+          },
+          "fan_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_07": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 110,
+            "final_state_ok": true
+          },
+          "fan_15": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 140,
+            "final_state_ok": true
+          },
+          "fan_27": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_03": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 200,
+            "final_state_ok": true
+          },
+          "fan_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_25": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_28": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_35": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "trigger": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 65,
+            "final_state_ok": true
+          },
+          "fan_24": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_18": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_23": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "middle_04": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 220,
+            "final_state_ok": true
+          },
+          "upper_00": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 105,
+            "final_state_ok": true
+          },
+          "fan_29": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_26": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 120,
+            "final_state_ok": true
+          },
+          "fan_02": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_11": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_01": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 110,
+            "final_state_ok": true
+          },
+          "upper_09": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 135,
+            "final_state_ok": true
+          },
+          "middle_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 225,
+            "final_state_ok": true
+          },
+          "fan_17": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_31": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "upper_08": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": 130,
+            "final_state_ok": true
+          },
+          "fan_19": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_30": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_14": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          },
+          "fan_05": {
+            "observed": true,
+            "quiet_before_trigger": true,
+            "activation_step": null,
+            "final_state_ok": false
+          }
+        },
+        "edges": {
+          "trigger->upper_00": {
+            "first_contact_step": 103,
+            "source_activation_step": 60,
+            "target_activation_step": 105,
+            "ordered": true
+          },
+          "upper_00->upper_01": {
+            "first_contact_step": 105,
+            "source_activation_step": 105,
+            "target_activation_step": 110,
+            "ordered": true
+          },
+          "upper_01->upper_02": {
+            "first_contact_step": 107,
+            "source_activation_step": 110,
+            "target_activation_step": 110,
+            "ordered": true
+          },
+          "upper_02->upper_03": {
+            "first_contact_step": 109,
+            "source_activation_step": 110,
+            "target_activation_step": 115,
+            "ordered": true
+          },
+          "upper_03->upper_04": {
+            "first_contact_step": 112,
+            "source_activation_step": 115,
+            "target_activation_step": 115,
+            "ordered": true
+          },
+          "upper_04->upper_05": {
+            "first_contact_step": 116,
+            "source_activation_step": 115,
+            "target_activation_step": 120,
+            "ordered": true
+          },
+          "upper_05->upper_06": {
+            "first_contact_step": 119,
+            "source_activation_step": 120,
+            "target_activation_step": 125,
+            "ordered": true
+          },
+          "upper_06->upper_07": {
+            "first_contact_step": 122,
+            "source_activation_step": 125,
+            "target_activation_step": 125,
+            "ordered": true
+          },
+          "upper_07->upper_08": {
+            "first_contact_step": 125,
+            "source_activation_step": 125,
+            "target_activation_step": 130,
+            "ordered": true
+          },
+          "upper_08->upper_09": {
+            "first_contact_step": 129,
+            "source_activation_step": 130,
+            "target_activation_step": 135,
+            "ordered": true
+          },
+          "upper_09->upper_10": {
+            "first_contact_step": 132,
+            "source_activation_step": 135,
+            "target_activation_step": 135,
+            "ordered": true
+          },
+          "upper_10->upper_11": {
+            "first_contact_step": 135,
+            "source_activation_step": 135,
+            "target_activation_step": 140,
+            "ordered": true
+          },
+          "upper_11->relay_upper": {
+            "first_contact_step": 141,
+            "source_activation_step": 140,
+            "target_activation_step": 155,
+            "ordered": true
+          },
+          "relay_upper->middle_00": {
+            "first_contact_step": 193,
+            "source_activation_step": 155,
+            "target_activation_step": 195,
+            "ordered": true
+          },
+          "middle_00->middle_01": {
+            "first_contact_step": 194,
+            "source_activation_step": 195,
+            "target_activation_step": 195,
+            "ordered": true
+          },
+          "middle_01->middle_02": {
+            "first_contact_step": 196,
+            "source_activation_step": 195,
+            "target_activation_step": 200,
+            "ordered": true
+          },
+          "middle_02->middle_03": {
+            "first_contact_step": 198,
+            "source_activation_step": 200,
+            "target_activation_step": 200,
+            "ordered": true
+          },
+          "middle_03->middle_04": {
+            "first_contact_step": 203,
+            "source_activation_step": 200,
+            "target_activation_step": 220,
+            "ordered": true
+          },
+          "middle_04->middle_05": {
+            "first_contact_step": 218,
+            "source_activation_step": 220,
+            "target_activation_step": 225,
+            "ordered": true
+          },
+          "middle_07->middle_08": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_08->middle_09": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_09->middle_10": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_10->middle_11": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "middle_11->relay_lower": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "relay_lower->fan_00": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_00->fan_01": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_01->fan_02": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_02->fan_03": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_03->fan_04": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_04->fan_05": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_05->fan_06": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_06->fan_07": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_07->fan_08": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_08->fan_09": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_09->fan_10": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_10->fan_11": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_11->fan_12": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_12->fan_13": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_13->fan_14": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_14->fan_15": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_15->fan_16": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_16->fan_17": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_17->fan_18": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_18->fan_19": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_19->fan_20": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_20->fan_21": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_21->fan_22": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_22->fan_23": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_23->fan_24": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_24->fan_25": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_25->fan_26": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_26->fan_27": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_27->fan_28": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_28->fan_29": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_29->fan_30": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_30->fan_31": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_31->fan_32": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_32->fan_33": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_33->fan_34": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_34->fan_35": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          },
+          "fan_35->terminal": {
+            "first_contact_step": null,
+            "source_activation_step": null,
+            "target_activation_step": null,
+            "ordered": false
+          }
+        },
+        "receiver": {
+          "contained_entire_tail": false,
+          "terminal_motion_m": 0.0,
+          "contact": false
+        },
+        "scope": "Recorded contact order and measured passive motion; causal claim requires paired no-trigger and broken-link controls.",
+        "run_id": "ee6be4e44e124898b451b5da5eb2d4e6",
+        "case_pinned_to_run": true,
+        "integrity": {
+          "inputs": {
+            "passed": true,
+            "checks": {
+              "spec.json": true,
+              "scene.usda": true,
+              "asset-lock.json": true,
+              "runtime-lock.json": true,
+              "acceptance_case": true,
+              "asset_lock_coverage": true,
+              "controller_lock_coverage": true,
+              "asset:upper_rack": true,
+              "asset:middle_workbench": true,
+              "asset:receiver_tray": true,
+              "worker_code_snapshot": true,
+              "runtime_launcher": true,
+              "queue_launcher": true
+            },
+            "errors": [],
+            "scope": "recorded run input integrity; external files may change after this check and physics success is not established"
+          },
+          "outputs": {
+            "passed": true,
+            "partial": false,
+            "checks": {
+              "result.json": true,
+              "camera_overview.png": true,
+              "camera_overview.mp4": true,
+              "camera_overview.ffmpeg.log": true,
+              "camera_overview.frames.jsonl": true,
+              "camera_overview_frame_000000.png": true,
+              "camera_overview_frame_000019.png": true,
+              "camera_overview_frame_000039.png": true,
+              "render-settings.json": true
+            },
+            "errors": [],
+            "scope": "saved artifact hashes; not a signature or proof of task success"
+          }
+        }
+      }
+    ],
+    "edit": {
+      "passed": true,
+      "mode": "positive",
+      "checks": {
+        "completed_duration": true,
+        "observed_time_order": true,
+        "contacts_not_truncated": true,
+        "exact_dynamic_roles": true,
+        "role_shapes_match": true,
+        "only_initial_trigger_scheduled": true,
+        "no_active_drives": true,
+        "imported_assets_are_passive_visuals": true,
+        "spawn_evidence_matches": true,
+        "all_expected_bodies_observed": true,
+        "downstream_initially_quiet": true,
+        "all_required_activated": true,
+        "all_tiles_finally_tipped": true,
+        "every_handoff_ordered": true,
+        "terminal_received_and_settled": true
+      },
+      "bodies": {
+        "upper_04": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 115,
+          "final_state_ok": true
+        },
+        "fan_32": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 415,
+          "final_state_ok": true
+        },
+        "terminal": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 440,
+          "final_state_ok": true
+        },
+        "fan_07": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 335,
+          "final_state_ok": true
+        },
+        "upper_06": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 125,
+          "final_state_ok": true
+        },
+        "middle_00": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 200,
+          "final_state_ok": true
+        },
+        "relay_upper": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 155,
+          "final_state_ok": true
+        },
+        "upper_03": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 115,
+          "final_state_ok": true
+        },
+        "fan_10": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 345,
+          "final_state_ok": true
+        },
+        "fan_33": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 415,
+          "final_state_ok": true
+        },
+        "fan_08": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 335,
+          "final_state_ok": true
+        },
+        "middle_08": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 235,
+          "final_state_ok": true
+        },
+        "fan_13": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 350,
+          "final_state_ok": true
+        },
+        "fan_09": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 340,
+          "final_state_ok": true
+        },
+        "upper_07": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 125,
+          "final_state_ok": true
+        },
+        "fan_22": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 380,
+          "final_state_ok": true
+        },
+        "fan_12": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 350,
+          "final_state_ok": true
+        },
+        "fan_16": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 360,
+          "final_state_ok": true
+        },
+        "middle_10": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 240,
+          "final_state_ok": true
+        },
+        "fan_20": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 375,
+          "final_state_ok": true
+        },
+        "upper_10": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 135,
+          "final_state_ok": true
+        },
+        "middle_01": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 205,
+          "final_state_ok": true
+        },
+        "relay_lower": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 265,
+          "final_state_ok": true
+        },
+        "fan_34": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 420,
+          "final_state_ok": true
+        },
+        "fan_06": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 330,
+          "final_state_ok": true
+        },
+        "fan_21": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 380,
+          "final_state_ok": true
+        },
+        "middle_02": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 210,
+          "final_state_ok": true
+        },
+        "fan_00": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 305,
+          "final_state_ok": true
+        },
+        "middle_07": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 230,
+          "final_state_ok": true
+        },
+        "fan_01": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 310,
+          "final_state_ok": true
+        },
+        "upper_02": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 110,
+          "final_state_ok": true
+        },
+        "fan_15": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 360,
+          "final_state_ok": true
+        },
+        "upper_11": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 140,
+          "final_state_ok": true
+        },
+        "fan_27": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 395,
+          "final_state_ok": true
+        },
+        "fan_03": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 320,
+          "final_state_ok": true
+        },
+        "middle_09": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 235,
+          "final_state_ok": true
+        },
+        "middle_03": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 215,
+          "final_state_ok": true
+        },
+        "fan_04": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 320,
+          "final_state_ok": true
+        },
+        "fan_25": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 390,
+          "final_state_ok": true
+        },
+        "fan_28": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 400,
+          "final_state_ok": true
+        },
+        "middle_11": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 245,
+          "final_state_ok": true
+        },
+        "fan_35": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 420,
+          "final_state_ok": true
+        },
+        "trigger": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 65,
+          "final_state_ok": true
+        },
+        "fan_24": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 385,
+          "final_state_ok": true
+        },
+        "fan_18": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 370,
+          "final_state_ok": true
+        },
+        "fan_23": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 385,
+          "final_state_ok": true
+        },
+        "middle_04": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 220,
+          "final_state_ok": true
+        },
+        "upper_00": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 105,
+          "final_state_ok": true
+        },
+        "fan_29": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 405,
+          "final_state_ok": true
+        },
+        "fan_26": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 395,
+          "final_state_ok": true
+        },
+        "upper_05": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 120,
+          "final_state_ok": true
+        },
+        "fan_02": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 315,
+          "final_state_ok": true
+        },
+        "fan_11": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 345,
+          "final_state_ok": true
+        },
+        "upper_01": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 110,
+          "final_state_ok": true
+        },
+        "upper_09": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 135,
+          "final_state_ok": true
+        },
+        "middle_05": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 220,
+          "final_state_ok": true
+        },
+        "fan_17": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 365,
+          "final_state_ok": true
+        },
+        "middle_06": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 225,
+          "final_state_ok": true
+        },
+        "fan_31": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 410,
+          "final_state_ok": true
+        },
+        "upper_08": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 130,
+          "final_state_ok": true
+        },
+        "fan_19": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 370,
+          "final_state_ok": true
+        },
+        "fan_30": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 405,
+          "final_state_ok": true
+        },
+        "fan_14": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 355,
+          "final_state_ok": true
+        },
+        "fan_05": {
+          "observed": true,
+          "quiet_before_trigger": true,
+          "activation_step": 325,
+          "final_state_ok": true
+        }
+      },
+      "edges": {
+        "trigger->upper_00": {
+          "first_contact_step": 103,
+          "source_activation_step": 60,
+          "target_activation_step": 105,
+          "ordered": true
+        },
+        "upper_00->upper_01": {
+          "first_contact_step": 105,
+          "source_activation_step": 105,
+          "target_activation_step": 110,
+          "ordered": true
+        },
+        "upper_01->upper_02": {
+          "first_contact_step": 107,
+          "source_activation_step": 110,
+          "target_activation_step": 110,
+          "ordered": true
+        },
+        "upper_02->upper_03": {
+          "first_contact_step": 109,
+          "source_activation_step": 110,
+          "target_activation_step": 115,
+          "ordered": true
+        },
+        "upper_03->upper_04": {
+          "first_contact_step": 112,
+          "source_activation_step": 115,
+          "target_activation_step": 115,
+          "ordered": true
+        },
+        "upper_04->upper_05": {
+          "first_contact_step": 116,
+          "source_activation_step": 115,
+          "target_activation_step": 120,
+          "ordered": true
+        },
+        "upper_05->upper_06": {
+          "first_contact_step": 119,
+          "source_activation_step": 120,
+          "target_activation_step": 125,
+          "ordered": true
+        },
+        "upper_06->upper_07": {
+          "first_contact_step": 122,
+          "source_activation_step": 125,
+          "target_activation_step": 125,
+          "ordered": true
+        },
+        "upper_07->upper_08": {
+          "first_contact_step": 125,
+          "source_activation_step": 125,
+          "target_activation_step": 130,
+          "ordered": true
+        },
+        "upper_08->upper_09": {
+          "first_contact_step": 129,
+          "source_activation_step": 130,
+          "target_activation_step": 135,
+          "ordered": true
+        },
+        "upper_09->upper_10": {
+          "first_contact_step": 132,
+          "source_activation_step": 135,
+          "target_activation_step": 135,
+          "ordered": true
+        },
+        "upper_10->upper_11": {
+          "first_contact_step": 135,
+          "source_activation_step": 135,
+          "target_activation_step": 140,
+          "ordered": true
+        },
+        "upper_11->relay_upper": {
+          "first_contact_step": 141,
+          "source_activation_step": 140,
+          "target_activation_step": 155,
+          "ordered": true
+        },
+        "relay_upper->middle_00": {
+          "first_contact_step": 199,
+          "source_activation_step": 155,
+          "target_activation_step": 200,
+          "ordered": true
+        },
+        "middle_00->middle_01": {
+          "first_contact_step": 201,
+          "source_activation_step": 200,
+          "target_activation_step": 205,
+          "ordered": true
+        },
+        "middle_01->middle_02": {
+          "first_contact_step": 204,
+          "source_activation_step": 205,
+          "target_activation_step": 210,
+          "ordered": true
+        },
+        "middle_02->middle_03": {
+          "first_contact_step": 208,
+          "source_activation_step": 210,
+          "target_activation_step": 215,
+          "ordered": true
+        },
+        "middle_03->middle_04": {
+          "first_contact_step": 213,
+          "source_activation_step": 215,
+          "target_activation_step": 220,
+          "ordered": true
+        },
+        "middle_04->middle_05": {
+          "first_contact_step": 217,
+          "source_activation_step": 220,
+          "target_activation_step": 220,
+          "ordered": true
+        },
+        "middle_05->middle_06": {
+          "first_contact_step": 222,
+          "source_activation_step": 220,
+          "target_activation_step": 225,
+          "ordered": true
+        },
+        "middle_06->middle_07": {
+          "first_contact_step": 226,
+          "source_activation_step": 225,
+          "target_activation_step": 230,
+          "ordered": true
+        },
+        "middle_07->middle_08": {
+          "first_contact_step": 229,
+          "source_activation_step": 230,
+          "target_activation_step": 235,
+          "ordered": true
+        },
+        "middle_08->middle_09": {
+          "first_contact_step": 233,
+          "source_activation_step": 235,
+          "target_activation_step": 235,
+          "ordered": true
+        },
+        "middle_09->middle_10": {
+          "first_contact_step": 236,
+          "source_activation_step": 235,
+          "target_activation_step": 240,
+          "ordered": true
+        },
+        "middle_10->middle_11": {
+          "first_contact_step": 240,
+          "source_activation_step": 240,
+          "target_activation_step": 245,
+          "ordered": true
+        },
+        "middle_11->relay_lower": {
+          "first_contact_step": 246,
+          "source_activation_step": 245,
+          "target_activation_step": 265,
+          "ordered": true
+        },
+        "relay_lower->fan_00": {
+          "first_contact_step": 304,
+          "source_activation_step": 265,
+          "target_activation_step": 305,
+          "ordered": true
+        },
+        "fan_00->fan_01": {
+          "first_contact_step": 306,
+          "source_activation_step": 305,
+          "target_activation_step": 310,
+          "ordered": true
+        },
+        "fan_01->fan_02": {
+          "first_contact_step": 309,
+          "source_activation_step": 310,
+          "target_activation_step": 315,
+          "ordered": true
+        },
+        "fan_02->fan_03": {
+          "first_contact_step": 312,
+          "source_activation_step": 315,
+          "target_activation_step": 320,
+          "ordered": true
+        },
+        "fan_03->fan_04": {
+          "first_contact_step": 317,
+          "source_activation_step": 320,
+          "target_activation_step": 320,
+          "ordered": true
+        },
+        "fan_04->fan_05": {
+          "first_contact_step": 321,
+          "source_activation_step": 320,
+          "target_activation_step": 325,
+          "ordered": true
+        },
+        "fan_05->fan_06": {
+          "first_contact_step": 325,
+          "source_activation_step": 325,
+          "target_activation_step": 330,
+          "ordered": true
+        },
+        "fan_06->fan_07": {
+          "first_contact_step": 328,
+          "source_activation_step": 330,
+          "target_activation_step": 335,
+          "ordered": true
+        },
+        "fan_07->fan_08": {
+          "first_contact_step": 332,
+          "source_activation_step": 335,
+          "target_activation_step": 335,
+          "ordered": true
+        },
+        "fan_08->fan_09": {
+          "first_contact_step": 335,
+          "source_activation_step": 335,
+          "target_activation_step": 340,
+          "ordered": true
+        },
+        "fan_09->fan_10": {
+          "first_contact_step": 338,
+          "source_activation_step": 340,
+          "target_activation_step": 345,
+          "ordered": true
+        },
+        "fan_10->fan_11": {
+          "first_contact_step": 341,
+          "source_activation_step": 345,
+          "target_activation_step": 345,
+          "ordered": true
+        },
+        "fan_11->fan_12": {
+          "first_contact_step": 345,
+          "source_activation_step": 345,
+          "target_activation_step": 350,
+          "ordered": true
+        },
+        "fan_12->fan_13": {
+          "first_contact_step": 348,
+          "source_activation_step": 350,
+          "target_activation_step": 350,
+          "ordered": true
+        },
+        "fan_13->fan_14": {
+          "first_contact_step": 351,
+          "source_activation_step": 350,
+          "target_activation_step": 355,
+          "ordered": true
+        },
+        "fan_14->fan_15": {
+          "first_contact_step": 354,
+          "source_activation_step": 355,
+          "target_activation_step": 360,
+          "ordered": true
+        },
+        "fan_15->fan_16": {
+          "first_contact_step": 357,
+          "source_activation_step": 360,
+          "target_activation_step": 360,
+          "ordered": true
+        },
+        "fan_16->fan_17": {
+          "first_contact_step": 361,
+          "source_activation_step": 360,
+          "target_activation_step": 365,
+          "ordered": true
+        },
+        "fan_17->fan_18": {
+          "first_contact_step": 364,
+          "source_activation_step": 365,
+          "target_activation_step": 370,
+          "ordered": true
+        },
+        "fan_18->fan_19": {
+          "first_contact_step": 367,
+          "source_activation_step": 370,
+          "target_activation_step": 370,
+          "ordered": true
+        },
+        "fan_19->fan_20": {
+          "first_contact_step": 370,
+          "source_activation_step": 370,
+          "target_activation_step": 375,
+          "ordered": true
+        },
+        "fan_20->fan_21": {
+          "first_contact_step": 373,
+          "source_activation_step": 375,
+          "target_activation_step": 380,
+          "ordered": true
+        },
+        "fan_21->fan_22": {
+          "first_contact_step": 376,
+          "source_activation_step": 380,
+          "target_activation_step": 380,
+          "ordered": true
+        },
+        "fan_22->fan_23": {
+          "first_contact_step": 380,
+          "source_activation_step": 380,
+          "target_activation_step": 385,
+          "ordered": true
+        },
+        "fan_23->fan_24": {
+          "first_contact_step": 383,
+          "source_activation_step": 385,
+          "target_activation_step": 385,
+          "ordered": true
+        },
+        "fan_24->fan_25": {
+          "first_contact_step": 386,
+          "source_activation_step": 385,
+          "target_activation_step": 390,
+          "ordered": true
+        },
+        "fan_25->fan_26": {
+          "first_contact_step": 389,
+          "source_activation_step": 390,
+          "target_activation_step": 395,
+          "ordered": true
+        },
+        "fan_26->fan_27": {
+          "first_contact_step": 392,
+          "source_activation_step": 395,
+          "target_activation_step": 395,
+          "ordered": true
+        },
+        "fan_27->fan_28": {
+          "first_contact_step": 395,
+          "source_activation_step": 395,
+          "target_activation_step": 400,
+          "ordered": true
+        },
+        "fan_28->fan_29": {
+          "first_contact_step": 399,
+          "source_activation_step": 400,
+          "target_activation_step": 405,
+          "ordered": true
+        },
+        "fan_29->fan_30": {
+          "first_contact_step": 402,
+          "source_activation_step": 405,
+          "target_activation_step": 405,
+          "ordered": true
+        },
+        "fan_30->fan_31": {
+          "first_contact_step": 405,
+          "source_activation_step": 405,
+          "target_activation_step": 410,
+          "ordered": true
+        },
+        "fan_31->fan_32": {
+          "first_contact_step": 408,
+          "source_activation_step": 410,
+          "target_activation_step": 415,
+          "ordered": true
+        },
+        "fan_32->fan_33": {
+          "first_contact_step": 411,
+          "source_activation_step": 415,
+          "target_activation_step": 415,
+          "ordered": true
+        },
+        "fan_33->fan_34": {
+          "first_contact_step": 414,
+          "source_activation_step": 415,
+          "target_activation_step": 420,
+          "ordered": true
+        },
+        "fan_34->fan_35": {
+          "first_contact_step": 418,
+          "source_activation_step": 420,
+          "target_activation_step": 420,
+          "ordered": true
+        },
+        "fan_35->terminal": {
+          "first_contact_step": 424,
+          "source_activation_step": 420,
+          "target_activation_step": 440,
+          "ordered": true
+        }
+      },
+      "receiver": {
+        "contained_entire_tail": true,
+        "terminal_motion_m": 0.0,
+        "contact": true
+      },
+      "scope": "Recorded contact order and measured passive motion; causal claim requires paired no-trigger and broken-link controls.",
+      "run_id": "2956d299487b4834b0169ab359efd33e",
+      "case_pinned_to_run": true,
+      "integrity": {
+        "inputs": {
+          "passed": true,
+          "checks": {
+            "spec.json": true,
+            "scene.usda": true,
+            "asset-lock.json": true,
+            "runtime-lock.json": true,
+            "acceptance_case": true,
+            "asset_lock_coverage": true,
+            "controller_lock_coverage": true,
+            "asset:upper_rack": true,
+            "asset:middle_workbench": true,
+            "asset:receiver_tray": true,
+            "worker_code_snapshot": true,
+            "runtime_launcher": true,
+            "queue_launcher": true
+          },
+          "errors": [],
+          "scope": "recorded run input integrity; external files may change after this check and physics success is not established"
+        },
+        "outputs": {
+          "passed": true,
+          "partial": false,
+          "checks": {
+            "result.json": true,
+            "camera_overview.png": true,
+            "camera_detail.png": true,
+            "camera_overview.mp4": true,
+            "camera_overview.ffmpeg.log": true,
+            "camera_overview.frames.jsonl": true,
+            "camera_overview_frame_000000.png": true,
+            "camera_overview_frame_000059.png": true,
+            "camera_overview_frame_000119.png": true,
+            "camera_overview_frame_000179.png": true,
+            "camera_overview_frame_000239.png": true,
+            "camera_overview_frame_000299.png": true,
+            "camera_overview_frame_000359.png": true,
+            "camera_overview_frame_000419.png": true,
+            "camera_overview_frame_000479.png": true,
+            "camera_overview_frame_000539.png": true,
+            "camera_overview_frame_000599.png": true,
+            "camera_overview_frame_000659.png": true,
+            "camera_overview_frame_000719.png": true,
+            "camera_detail.mp4": true,
+            "camera_detail.ffmpeg.log": true,
+            "camera_detail.frames.jsonl": true,
+            "camera_detail_frame_000000.png": true,
+            "camera_detail_frame_000059.png": true,
+            "camera_detail_frame_000119.png": true,
+            "camera_detail_frame_000179.png": true,
+            "camera_detail_frame_000239.png": true,
+            "camera_detail_frame_000299.png": true,
+            "camera_detail_frame_000359.png": true,
+            "camera_detail_frame_000419.png": true,
+            "camera_detail_frame_000479.png": true,
+            "camera_detail_frame_000539.png": true,
+            "camera_detail_frame_000599.png": true,
+            "camera_detail_frame_000659.png": true,
+            "camera_detail_frame_000719.png": true,
+            "render-settings.json": true
+          },
+          "errors": [],
+          "scope": "saved artifact hashes; not a signature or proof of task success"
+        }
+      }
+    }
+  },
+  "scope": "Three fresh initializations of one designed configuration, paired single-body removal controls, and the declared support/receiver edit; not randomized-layout generalization or cross-machine verification."
+}

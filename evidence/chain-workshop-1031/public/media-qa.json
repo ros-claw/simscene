@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "decoded_frames": 1860,
+  "duration_s": 62,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "video_packet_hash_silent": "SHA256=525aafc15b55e93e082db60a213a3edecdea8f7d2cb0b6378aad3a9fb9d017ec",
+  "video_packet_hash_final": "SHA256=525aafc15b55e93e082db60a213a3edecdea8f7d2cb0b6378aad3a9fb9d017ec",
+  "black_intervals_over_0_1s": [],
+  "audio": {
+    "sample_rate": 48000,
+    "duration_s": 62.0,
+    "channels": 1
+  },
+  "contact_foley_events": 202,
+  "source_checks": "All original physical run/evidence locks verified by video_inspect; three clean starts and interventions checked separately.",
+  "visual_review": {
+    "status": "reviewed",
+    "scope": "Decoded overview, contact handoffs, semicircle wave, terminal catch and final pullback; source motion sequences and cut titles inspected. Video packets identical after adding foley. External-platform transcoding not checked.",
+    "report": "media-qa.json"
+  },
+  "scope": "Postproduction verification; does not rerun physics or validate external-platform playback."
+}

@@ -1,0 +1,3020 @@
+{
+  "description": "Editable ordinary operations exported after the independent scene-composition experiment; not supplied as an answer to that agent.",
+  "source_run_id": "6beae536cbee44e29a67550ffa3a54c0",
+  "source_run_lock_sha256": "17a8f4dd04a012d27dc94c60ca1bd89598c380e60bcaf40bc4b37c679850ca92",
+  "operations": [
+    {
+      "op": "add",
+      "id": "ground",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.8,
+          0.5,
+          -0.06
+        ],
+        "size": [
+          9,
+          5.5,
+          0.12
+        ],
+        "color": [
+          0.055,
+          0.069,
+          0.084
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "exhibition_plinth",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.5,
+          0.75,
+          0.025
+        ],
+        "size": [
+          6.1,
+          4.3,
+          0.05
+        ],
+        "color": [
+          0.095,
+          0.115,
+          0.14
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_deck",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.1,
+          0,
+          1.64
+        ],
+        "size": [
+          1.6,
+          0.3,
+          0.02
+        ],
+        "color": [
+          0.46,
+          0.52,
+          0.6
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_deck",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.02,
+          0,
+          1.235
+        ],
+        "size": [
+          1.27,
+          0.32,
+          0.03
+        ],
+        "color": [
+          0.46,
+          0.52,
+          0.6
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "lower_deck",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.86,
+          0.75,
+          0.825
+        ],
+        "size": [
+          1.02,
+          1.78,
+          0.05
+        ],
+        "color": [
+          0.31,
+          0.25,
+          0.18
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "lower_leg_0_0",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.37,
+          -0.03,
+          0.43
+        ],
+        "size": [
+          0.065,
+          0.065,
+          0.79
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "lower_leg_0_1",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.37,
+          1.53,
+          0.43
+        ],
+        "size": [
+          0.065,
+          0.065,
+          0.79
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "lower_leg_1_0",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.23,
+          -0.03,
+          0.43
+        ],
+        "size": [
+          0.065,
+          0.065,
+          0.79
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "lower_leg_1_1",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.23,
+          1.53,
+          0.43
+        ],
+        "size": [
+          0.065,
+          0.065,
+          0.79
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_foundation",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.02,
+          0,
+          0.275843665599823
+        ],
+        "size": [
+          1.57,
+          0.57,
+          0.551687331199646
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_rack",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://upper_rack",
+        "asset_physics": "visual_only",
+        "position": [
+          -0.153290982246399,
+          0.75,
+          0
+        ],
+        "orientation_wxyz": [
+          0.7071067811865476,
+          0,
+          0,
+          0.7071067811865476
+        ],
+        "support_surfaces": {
+          "shelf": {
+            "min_xy": [
+              -1.7,
+              -0.89
+            ],
+            "max_xy": [
+              1.7,
+              0.89
+            ],
+            "z_m": 1.629927,
+            "exclude": []
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_workbench",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://middle_workbench",
+        "asset_physics": "visual_only",
+        "position": [
+          2.02,
+          0,
+          0.551687331199646
+        ],
+        "orientation_wxyz": [
+          0.7071067811865476,
+          0,
+          0,
+          -0.7071067811865476
+        ],
+        "support_surfaces": {
+          "worktop": {
+            "min_xy": [
+              -0.21,
+              -0.7
+            ],
+            "max_xy": [
+              0.21,
+              0.7
+            ],
+            "z_m": 0.668312668800354,
+            "exclude": []
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_tray",
+      "object": {
+        "kind": "asset",
+        "asset_path": "asset://receiver_tray",
+        "asset_physics": "visual_only",
+        "position": [
+          3.2,
+          1.5,
+          0.65
+        ],
+        "support_surfaces": {
+          "interior": {
+            "min_xy": [
+              -0.092,
+              -0.115
+            ],
+            "max_xy": [
+              0.092,
+              0.115
+            ],
+            "z_m": 0.005,
+            "exclude": []
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "release_ramp",
+      "object": {
+        "kind": "box",
+        "position": [
+          -0.3425053906496607,
+          0,
+          1.7958597714147086
+        ],
+        "size": [
+          0.599353818708115,
+          0.15,
+          0.03
+        ],
+        "color": [
+          0.46,
+          0.52,
+          0.6
+        ],
+        "collision": true,
+        "dynamic": false,
+        "orientation_wxyz": [
+          0.9855663107285293,
+          0,
+          0.1692898318179682,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "release_ramp_left",
+      "object": {
+        "kind": "box",
+        "position": [
+          -0.32748921870067876,
+          -0.08499999999999999,
+          1.8382804571705826
+        ],
+        "size": [
+          0.599353818708115,
+          0.02,
+          0.12
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false,
+        "orientation_wxyz": [
+          0.9855663107285293,
+          0,
+          0.1692898318179682,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "release_ramp_right",
+      "object": {
+        "kind": "box",
+        "position": [
+          -0.32748921870067876,
+          0.08499999999999999,
+          1.8382804571705826
+        ],
+        "size": [
+          0.599353818708115,
+          0.02,
+          0.12
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false,
+        "orientation_wxyz": [
+          0.9855663107285293,
+          0,
+          0.1692898318179682,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "trigger",
+      "object": {
+        "kind": "sphere",
+        "position": [
+          -0.56,
+          0,
+          2.04
+        ],
+        "size": [
+          0.06,
+          0.06,
+          0.06
+        ],
+        "material": {
+          "color": [
+            0.65,
+            0.72,
+            0.79
+          ],
+          "metallic": 0.92,
+          "roughness": 0.22
+        },
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.035,
+        "spawn_step": 60
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_00",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.02,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_01",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.085,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_02",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.15,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_03",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.215,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_04",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.28,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_05",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.34500000000000003,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_06",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.41000000000000003,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_07",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.47500000000000003,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_08",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.54,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_09",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.605,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_10",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.67,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_11",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.7350000000000001,
+          0,
+          1.7209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "upper_saddle",
+      "object": {
+        "kind": "box",
+        "position": [
+          0.855,
+          0,
+          1.67
+        ],
+        "size": [
+          0.012,
+          0.08,
+          0.04
+        ],
+        "color": [
+          0.46,
+          0.52,
+          0.6
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "relay_upper",
+      "object": {
+        "kind": "sphere",
+        "position": [
+          0.855,
+          0,
+          1.721
+        ],
+        "size": [
+          0.06,
+          0.06,
+          0.06
+        ],
+        "material": {
+          "color": [
+            0.65,
+            0.72,
+            0.79
+          ],
+          "metallic": 0.92,
+          "roughness": 0.22
+        },
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.035
+      }
+    },
+    {
+      "op": "add",
+      "id": "descent_upper",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.246182944874682,
+          0,
+          1.4766385719543764
+        ],
+        "size": [
+          0.8801454425264043,
+          0.15,
+          0.03
+        ],
+        "color": [
+          0.46,
+          0.52,
+          0.6
+        ],
+        "collision": true,
+        "dynamic": false,
+        "orientation_wxyz": [
+          0.9723070167668835,
+          0,
+          0.2337072209964499,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "descent_upper_left",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.2666341102506362,
+          -0.08499999999999999,
+          1.516722856091247
+        ],
+        "size": [
+          0.8801454425264043,
+          0.02,
+          0.12
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false,
+        "orientation_wxyz": [
+          0.9723070167668835,
+          0,
+          0.2337072209964499,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "descent_upper_right",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.2666341102506362,
+          0.08499999999999999,
+          1.516722856091247
+        ],
+        "size": [
+          0.8801454425264043,
+          0.02,
+          0.12
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false,
+        "orientation_wxyz": [
+          0.9723070167668835,
+          0,
+          0.2337072209964499,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_00",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.72,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_01",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.785,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_02",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.85,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_03",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.915,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_04",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.98,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_05",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.045,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_06",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.135,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_07",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.2249999999999996,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_08",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.29,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_09",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.3549999999999995,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_10",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.42,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_11",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.485,
+          0,
+          1.321
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "middle_saddle",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.605,
+          0,
+          1.27
+        ],
+        "size": [
+          0.012,
+          0.08,
+          0.04
+        ],
+        "color": [
+          0.46,
+          0.52,
+          0.6
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "relay_lower",
+      "object": {
+        "kind": "sphere",
+        "position": [
+          2.605,
+          0,
+          1.321
+        ],
+        "size": [
+          0.06,
+          0.06,
+          0.06
+        ],
+        "material": {
+          "color": [
+            0.65,
+            0.72,
+            0.79
+          ],
+          "metallic": 0.92,
+          "roughness": 0.22
+        },
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.035
+      }
+    },
+    {
+      "op": "add",
+      "id": "descent_lower",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.970822247562105,
+          0,
+          1.076828824276463
+        ],
+        "size": [
+          0.8359162637489476,
+          0.15,
+          0.03
+        ],
+        "color": [
+          0.46,
+          0.52,
+          0.6
+        ],
+        "collision": true,
+        "dynamic": false,
+        "orientation_wxyz": [
+          0.9690403452821617,
+          0,
+          0.24690242853286992,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "descent_lower_left",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.99235550487579,
+          -0.08499999999999999,
+          1.1163423514470743
+        ],
+        "size": [
+          0.8359162637489476,
+          0.02,
+          0.12
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false,
+        "orientation_wxyz": [
+          0.9690403452821617,
+          0,
+          0.24690242853286992,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "descent_lower_right",
+      "object": {
+        "kind": "box",
+        "position": [
+          2.99235550487579,
+          0.08499999999999999,
+          1.1163423514470743
+        ],
+        "size": [
+          0.8359162637489476,
+          0.02,
+          0.12
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false,
+        "orientation_wxyz": [
+          0.9690403452821617,
+          0,
+          0.24690242853286992,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_00",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.42,
+          0.0,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_01",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.487229481677575,
+          0.0030192795035707265,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.9989930665413147,
+          0,
+          0,
+          0.044864830350514924
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_02",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.5539176710989775,
+          0.01205280855102775,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.9959742939952391,
+          0,
+          0,
+          0.0896393089034335
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_03",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.6195276341750064,
+          0.02702785447811007,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.9909497617679348,
+          0,
+          0,
+          0.13423326581765546
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_04",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.683531118061007,
+          0.04782384702019704,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.9839295885986297,
+          0,
+          0,
+          0.17855689479863665
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_05",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.7454128043381685,
+          0.07427334907318561,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.9749279121818236,
+          0,
+          0,
+          0.2225209339563144
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_06",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.8046744580544294,
+          0.10616340479860042,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.9639628606958532,
+          0,
+          0,
+          0.2660368455666751
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_07",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.860838939219355,
+          0.1432372542187894,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.9510565162951535,
+          0,
+          0,
+          0.3090169943749474
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_08",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.9134540444547845,
+          0.1851964004972918,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.9362348706397372,
+          0,
+          0,
+          0.3513748240813427
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_09",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.9620961478705436,
+          0.23170301325985154,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.9195277725514507,
+          0,
+          0,
+          0.3930250316539236
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_10",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.006373611851022,
+          0.2823826486059498,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.9009688679024191,
+          0,
+          0,
+          0.4338837391175581
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_11",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.045929940290977,
+          0.336827263910923,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.880595531856738,
+          0,
+          0,
+          0.4738686624729986
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_12",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.080446648892553,
+          0.39459850314525097,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.8584487936018661,
+          0,
+          0,
+          0.5128992774059061
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_13",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.109645829413588,
+          0.45523122625955725,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.8345732537213026,
+          0,
+          0,
+          0.5508969814521025
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_14",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.133292387221365,
+          0.5182372542187894,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.8090169943749475,
+          0,
+          0,
+          0.5877852522924731
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_15",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.151195934136368,
+          0.5831092995327641,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.7818314824680298,
+          0,
+          0,
+          0.6234898018587335
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_16",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.163212321325951,
+          0.6493250506367584,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.753071466003611,
+          0,
+          0,
+          0.6579387259397126
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_17",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.169244799905986,
+          0.7163513772371137,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.7227948638273916,
+          0,
+          0,
+          0.6910626489868646
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_18",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.169244799905986,
+          0.7836486227628862,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.6910626489868646,
+          0,
+          0,
+          0.7227948638273916
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_19",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.163212321325951,
+          0.8506749493632415,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.6579387259397126,
+          0,
+          0,
+          0.7530714660036109
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_20",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.151195934136368,
+          0.9168907004672358,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.6234898018587336,
+          0,
+          0,
+          0.7818314824680298
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_21",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.133292387221365,
+          0.9817627457812105,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.5877852522924731,
+          0,
+          0,
+          0.8090169943749475
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_22",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.109645829413588,
+          1.0447687737404425,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.5508969814521026,
+          0,
+          0,
+          0.8345732537213025
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_23",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.080446648892553,
+          1.105401496854749,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          0.07,
+          0.58,
+          0.69
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.5128992774059061,
+          0,
+          0,
+          0.8584487936018661
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_24",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.045929940290977,
+          1.1631727360890767,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.4738686624729987,
+          0,
+          0,
+          0.880595531856738
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_25",
+      "object": {
+        "kind": "box",
+        "position": [
+          4.006373611851022,
+          1.21761735139405,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.4338837391175582,
+          0,
+          0,
+          0.9009688679024191
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_26",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.9620961478705436,
+          1.2682969867401486,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.39302503165392366,
+          0,
+          0,
+          0.9195277725514506
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_27",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.9134540444547845,
+          1.314803599502708,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.35137482408134274,
+          0,
+          0,
+          0.9362348706397372
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_28",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.860838939219355,
+          1.3567627457812104,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.30901699437494745,
+          0,
+          0,
+          0.9510565162951535
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_29",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.8046744580544294,
+          1.3938365952013996,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.2660368455666752,
+          0,
+          0,
+          0.9639628606958532
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_30",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.7454128043381685,
+          1.4257266509268143,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.22252093395631445,
+          0,
+          0,
+          0.9749279121818236
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_31",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.683531118061007,
+          1.452176152979803,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.1785568947986367,
+          0,
+          0,
+          0.9839295885986297
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_32",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.6195276341750064,
+          1.47297214552189,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.13423326581765554,
+          0,
+          0,
+          0.9909497617679347
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_33",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.5539176710989775,
+          1.4879471914489724,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.08963930890343355,
+          0,
+          0,
+          0.9959742939952391
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_34",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.4872294816775753,
+          1.4969807204964294,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          0.044864830350514986,
+          0,
+          0,
+          0.9989930665413146
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "fan_35",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.42,
+          1.5,
+          0.9209999999999999
+        ],
+        "size": [
+          0.014,
+          0.08,
+          0.14
+        ],
+        "color": [
+          1,
+          0.27,
+          0.035
+        ],
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012,
+        "orientation_wxyz": [
+          6.123233995736766e-17,
+          0,
+          0,
+          1.0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "terminal",
+      "object": {
+        "kind": "sphere",
+        "position": [
+          3.3,
+          1.5,
+          0.911
+        ],
+        "size": [
+          0.04,
+          0.04,
+          0.04
+        ],
+        "material": {
+          "color": [
+            0.65,
+            0.72,
+            0.79
+          ],
+          "metallic": 0.92,
+          "roughness": 0.22
+        },
+        "collision": true,
+        "dynamic": true,
+        "mass_kg": 0.012
+      }
+    },
+    {
+      "op": "add",
+      "id": "terminal_ledge",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.3,
+          1.5,
+          0.87
+        ],
+        "size": [
+          0.004,
+          0.1,
+          0.04
+        ],
+        "color": [
+          0.46,
+          0.52,
+          0.6
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_floor",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.2,
+          1.5,
+          0.6525
+        ],
+        "size": [
+          0.19,
+          0.24,
+          0.005
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_xmin",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.105,
+          1.5,
+          0.675
+        ],
+        "size": [
+          0.006,
+          0.245,
+          0.05
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_xmax",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.295,
+          1.5,
+          0.675
+        ],
+        "size": [
+          0.006,
+          0.245,
+          0.05
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_ymin",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.2,
+          1.382,
+          0.675
+        ],
+        "size": [
+          0.19,
+          0.006,
+          0.05
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_ymax",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.2,
+          1.618,
+          0.675
+        ],
+        "size": [
+          0.19,
+          0.006,
+          0.05
+        ],
+        "color": [
+          0.025,
+          0.3,
+          0.72
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_pedestal",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.2,
+          1.5,
+          0.345
+        ],
+        "size": [
+          0.24,
+          0.28,
+          0.61
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "dome",
+      "object": {
+        "kind": "light",
+        "intensity": 650,
+        "light": {
+          "type": "dome",
+          "color": [
+            0.84,
+            0.91,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "key",
+      "object": {
+        "kind": "light",
+        "position": [
+          1,
+          -2,
+          4.5
+        ],
+        "intensity": 1600,
+        "light": {
+          "type": "rect",
+          "width_m": 5,
+          "height_m": 3
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "rim",
+      "object": {
+        "kind": "light",
+        "position": [
+          3,
+          2,
+          4
+        ],
+        "intensity": 1200,
+        "light": {
+          "type": "rect",
+          "width_m": 3,
+          "height_m": 2
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "overview",
+      "object": {
+        "kind": "camera",
+        "position": [
+          4.4,
+          -3.8,
+          2.65
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 32,
+          "horizontal_aperture_mm": 36,
+          "f_stop": 0
+        },
+        "orientation_wxyz": [
+          0.7682265791373601,
+          0.5867367527795395,
+          0.15542292466858232,
+          0.20349845338993441
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "gallery_backdrop",
+      "object": {
+        "kind": "box",
+        "position": [
+          1.5,
+          3.15,
+          2.05
+        ],
+        "size": [
+          8.2,
+          0.08,
+          4.1
+        ],
+        "color": [
+          0.035,
+          0.045,
+          0.06
+        ],
+        "collision": false,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "lower_front_catch_rail",
+      "object": {
+        "kind": "box",
+        "position": [
+          3.85,
+          -0.155,
+          0.89
+        ],
+        "size": [
+          1.1,
+          0.03,
+          0.08
+        ],
+        "color": [
+          0.105,
+          0.13,
+          0.16
+        ],
+        "collision": true,
+        "dynamic": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "detail",
+      "object": {
+        "kind": "camera",
+        "position": [
+          0.43,
+          -0.65,
+          2.28
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 30,
+          "horizontal_aperture_mm": 36,
+          "f_stop": 0
+        },
+        "camera_path": [
+          {
+            "time_s": 0,
+            "position": [
+              0.43,
+              -0.65,
+              2.28
+            ],
+            "target": [
+              0.43,
+              0,
+              1.72
+            ]
+          },
+          {
+            "time_s": 3.45,
+            "position": [
+              0.43,
+              -0.65,
+              2.28
+            ],
+            "target": [
+              0.43,
+              0,
+              1.72
+            ]
+          },
+          {
+            "time_s": 3.6,
+            "position": [
+              0.85,
+              -0.8,
+              2.1
+            ],
+            "target": [
+              0.95,
+              0,
+              1.57
+            ]
+          },
+          {
+            "time_s": 3.95,
+            "position": [
+              2.9,
+              -1.5,
+              1.95
+            ],
+            "target": [
+              2.3,
+              0,
+              1.3
+            ]
+          },
+          {
+            "time_s": 4.65,
+            "position": [
+              2.9,
+              -1.5,
+              1.95
+            ],
+            "target": [
+              2.3,
+              0,
+              1.3
+            ]
+          },
+          {
+            "time_s": 5.1,
+            "position": [
+              2.8,
+              -1.1,
+              2.6
+            ],
+            "target": [
+              3.75,
+              0.75,
+              0.85
+            ]
+          },
+          {
+            "time_s": 10,
+            "position": [
+              2.8,
+              -1.1,
+              2.6
+            ],
+            "target": [
+              3.75,
+              0.75,
+              0.85
+            ]
+          },
+          {
+            "time_s": 12,
+            "position": [
+              2.8,
+              -0.8,
+              1.6
+            ],
+            "target": [
+              2.2,
+              0,
+              1.05
+            ]
+          },
+          {
+            "time_s": 15,
+            "position": [
+              2.0,
+              -0.8,
+              1.15
+            ],
+            "target": [
+              2.1,
+              0,
+              0.9
+            ]
+          },
+          {
+            "time_s": 18,
+            "position": [
+              1.1,
+              -1.3,
+              1.9
+            ],
+            "target": [
+              0.72,
+              0.1,
+              1.62
+            ]
+          },
+          {
+            "time_s": 19.5,
+            "position": [
+              2.9,
+              -1.0,
+              1.6
+            ],
+            "target": [
+              2.3,
+              0,
+              1.25
+            ]
+          },
+          {
+            "time_s": 21,
+            "position": [
+              2.9,
+              0.65,
+              1.2
+            ],
+            "target": [
+              3.2,
+              1.5,
+              0.675
+            ]
+          },
+          {
+            "time_s": 22,
+            "position": [
+              2.9,
+              0.65,
+              1.2
+            ],
+            "target": [
+              3.2,
+              1.5,
+              0.675
+            ]
+          },
+          {
+            "time_s": 25,
+            "position": [
+              4.4,
+              -3.8,
+              2.65
+            ],
+            "target": [
+              1.95,
+              0.5,
+              1.3
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "set_presentation",
+      "presentation": {
+        "profile": "technical_showcase_1080p",
+        "capture": {
+          "anti_aliasing": "dlss_quality",
+          "depth_of_field": false,
+          "motion_blur": false,
+          "exposure_mode": "manual",
+          "exposure_ev": 0
+        },
+        "output": {
+          "codec": "h264",
+          "crf": 18,
+          "preset": "medium",
+          "pixel_format": "yuv420p"
+        },
+        "budget": {
+          "max_cameras": 2,
+          "max_recording_bytes": 8589934592,
+          "min_free_bytes": 2147483648
+        },
+        "diagnostics": {
+          "png_seconds": 0,
+          "keyframe_interval_s": 2
+        }
+      }
+    }
+  ]
+}

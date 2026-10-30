@@ -1,5 +1,9 @@
 # Public validation records
 
+The [three-level chain challenge](chain-workshop-1031/public/README.md) adds
+three clean-start successes, paired single-body removal controls, the requested
+layout repair, preserved failed attempts, and a full exported-project replay.
+
 This directory contains selected validation summaries and JSON observations
 needed by the CPU regression tests. The full local evidence archive, including
 downloaded geometry and native recordings, is intentionally not distributed in Git.

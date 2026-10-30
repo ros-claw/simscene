@@ -1,0 +1,15 @@
+{
+  "case_sha256": "4ed03f6995fe1990b4e5e5a8f2b8e8d9290fe28c5257a94482a322a794666f87",
+  "case": "evidence/chain-workshop-1031/round3/design/formal-case.json",
+  "bodies": 64,
+  "edges": 63,
+  "stages": 6,
+  "declared_levels_m": [
+    1.65,
+    1.25,
+    0.85
+  ],
+  "physical_thresholds": "unchanged frozen default checker values",
+  "decision": "Locked before formal run. Diagnostic failures remain attempts, not repetitions. Repeat three times only after final geometry is held fixed.",
+  "parent_review": "Shape/receiver fit is geometrically possible for terminal diameter .04m; actual physical and visual outcomes pending."
+}

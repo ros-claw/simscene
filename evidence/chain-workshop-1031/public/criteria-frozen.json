@@ -1,0 +1,42 @@
+{
+  "schema": "simscene.chain_challenge.v1",
+  "input_sha256": "3bd83e8b603e2fb1eac704acb464bfb22d7ccfcda8c2878feae15eac675897e6",
+  "pilot": "one released sphere -> 8-12 initially upright tiles -> initially resting second sphere -> receiver",
+  "formal": {
+    "levels": 3,
+    "stages_min": 5,
+    "suggested_dynamic_budget": [
+      60,
+      120
+    ],
+    "initial_triggers": 1,
+    "repetitions": 3,
+    "negative_controls": [
+      "no_trigger",
+      "broken_middle_link"
+    ],
+    "edit": {
+      "middle_support_raise_m": 0.15,
+      "receiver_right_shift_m": 0.2
+    },
+    "video": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "duration_s": [
+        60,
+        90
+      ],
+      "continuous_complete_source": true
+    }
+  },
+  "physical_requirements": [
+    "no robots, conveyors, pose followers or delayed downstream spawns",
+    "only the initial sphere is released/spawned; all downstream bodies initially at rest",
+    "every handoff backed by ordered recorded contacts and subsequent motion/tipping",
+    "receiver bound and stable outcome from measured states, not viewport animation",
+    "negative controls must prevent downstream activation",
+    "clean initial state for every repetition, no warm-start pose reuse"
+  ],
+  "scope": "Independent builder gets requirements and frozen plugin only, no answer coordinates; preserve baseline gaps and failed attempts."
+}

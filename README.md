@@ -1,5 +1,16 @@
 # SimScene (development)
 
+The new [three-level chain film](docs/media/chain-workshop-1080p30.mp4) shows
+64 passive bodies, six handoffs and a 36-tile semicircular wave. A fresh agent
+built it with frozen tools after two earlier rounds exposed asset dependency
+defects. Three clean starts, paired removal controls and a raised-table / shifted-tray
+repair passed independent checks. The editable project also completed a full
+replay. See the [challenge report](SIMSCENE_三层连锁工坊挑战报告_20261031.md),
+[public recipe](examples/three_level_chain/README.md) and
+[selected evidence](evidence/chain-workshop-1031/public/README.md).
+
+![Three-level workshop captured in Isaac Sim](docs/media/chain-workshop-preview.png)
+
 This development version implements NVIDIA USD Search access, on-demand asset
 and dependency acquisition, editable scenes, an MCP agent interface, and Isaac
 simulation. The 6.2 three-arm physical suite, paired negative controls and

@@ -1,0 +1,40 @@
+{
+  "run_id": "36666bfa0e0f467ca5cf4afab465b011",
+  "scope": "Actual GPU material closure diagnostic, not chain physics acceptance",
+  "inputs": {
+    "passed": true,
+    "checks": {
+      "spec.json": true,
+      "scene.usda": true,
+      "asset-lock.json": true,
+      "runtime-lock.json": true,
+      "asset_lock_coverage": true,
+      "controller_lock_coverage": true,
+      "asset:rack": true,
+      "asset:bench": true,
+      "worker_code_snapshot": true,
+      "runtime_launcher": true,
+      "queue_launcher": true
+    },
+    "errors": [],
+    "scope": "recorded run input integrity; external files may change after this check and physics success is not established"
+  },
+  "outputs": {
+    "passed": true,
+    "partial": false,
+    "checks": {
+      "result.json": true,
+      "camera_view.png": true,
+      "camera_view.mp4": true,
+      "camera_view.ffmpeg.log": true,
+      "camera_view.frames.jsonl": true,
+      "camera_view_frame_000000.png": true,
+      "render-settings.json": true
+    },
+    "errors": [],
+    "scope": "saved artifact hashes; not a signature or proof of task success"
+  },
+  "material_compiler_errors": [],
+  "native_png": "evidence/chain-workshop-1031/material-proof/state/runs/36666bfa0e0f467ca5cf4afab465b011/camera_view_frame_000000.png",
+  "visual_review": "Opened native PNG: rack has original charcoal shelves/navy uprights/rust-red beams, bench visible with blue panels/wood top; previous solid error red is gone."
+}

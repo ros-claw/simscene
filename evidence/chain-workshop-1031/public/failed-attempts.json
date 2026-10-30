@@ -1,0 +1,75 @@
+{
+  "scope": "Preserved failed diagnostics from round3; round1 and round2 described in report, full source records kept on the simulation host.",
+  "round3_failures": [
+    {
+      "source": "round3/runs/formal-diagnostic-001-physical.json",
+      "passed": false,
+      "mode": "positive",
+      "failed_checks": [
+        "all_required_activated",
+        "all_tiles_finally_tipped",
+        "every_handoff_ordered",
+        "terminal_received_and_settled"
+      ]
+    },
+    {
+      "source": "round3/runs/formal-diagnostic-002-physical.json",
+      "passed": false,
+      "mode": "positive",
+      "failed_checks": [
+        "all_required_activated",
+        "all_tiles_finally_tipped",
+        "every_handoff_ordered",
+        "terminal_received_and_settled"
+      ]
+    },
+    {
+      "source": "round3/runs/formal-diagnostic-003-physical.json",
+      "passed": false,
+      "mode": "positive",
+      "failed_checks": [
+        "all_required_activated",
+        "all_tiles_finally_tipped",
+        "every_handoff_ordered",
+        "terminal_received_and_settled"
+      ]
+    },
+    {
+      "source": "round3/runs/formal-diagnostic-004-physical.json",
+      "passed": false,
+      "mode": "positive",
+      "failed_checks": [
+        "all_required_activated",
+        "all_tiles_finally_tipped",
+        "every_handoff_ordered",
+        "terminal_received_and_settled"
+      ]
+    },
+    {
+      "source": "round3/runs/formal-diagnostic-005-physical.json",
+      "passed": false,
+      "mode": "positive",
+      "failed_checks": [
+        "terminal_received_and_settled"
+      ]
+    },
+    {
+      "source": "round3/runs/pilot-001-physical-check.json",
+      "passed": false,
+      "mode": "positive",
+      "failed_checks": [
+        "all_required_activated",
+        "every_handoff_ordered",
+        "terminal_received_and_settled"
+      ]
+    },
+    {
+      "source": "round3/runs/pilot-002-physical-check.json",
+      "passed": false,
+      "mode": "positive",
+      "failed_checks": [
+        "all_tiles_finally_tipped"
+      ]
+    }
+  ]
+}

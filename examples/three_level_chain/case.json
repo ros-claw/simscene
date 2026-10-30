@@ -1,0 +1,472 @@
+{
+  "schema": "simscene.passive_chain.v1",
+  "trigger_id": "trigger",
+  "bodies": {
+    "trigger": {
+      "kind": "sphere"
+    },
+    "upper_00": {
+      "kind": "tile"
+    },
+    "upper_01": {
+      "kind": "tile"
+    },
+    "upper_02": {
+      "kind": "tile"
+    },
+    "upper_03": {
+      "kind": "tile"
+    },
+    "upper_04": {
+      "kind": "tile"
+    },
+    "upper_05": {
+      "kind": "tile"
+    },
+    "upper_06": {
+      "kind": "tile"
+    },
+    "upper_07": {
+      "kind": "tile"
+    },
+    "upper_08": {
+      "kind": "tile"
+    },
+    "upper_09": {
+      "kind": "tile"
+    },
+    "upper_10": {
+      "kind": "tile"
+    },
+    "upper_11": {
+      "kind": "tile"
+    },
+    "relay_upper": {
+      "kind": "sphere"
+    },
+    "middle_00": {
+      "kind": "tile"
+    },
+    "middle_01": {
+      "kind": "tile"
+    },
+    "middle_02": {
+      "kind": "tile"
+    },
+    "middle_03": {
+      "kind": "tile"
+    },
+    "middle_04": {
+      "kind": "tile"
+    },
+    "middle_05": {
+      "kind": "tile"
+    },
+    "middle_06": {
+      "kind": "tile"
+    },
+    "middle_07": {
+      "kind": "tile"
+    },
+    "middle_08": {
+      "kind": "tile"
+    },
+    "middle_09": {
+      "kind": "tile"
+    },
+    "middle_10": {
+      "kind": "tile"
+    },
+    "middle_11": {
+      "kind": "tile"
+    },
+    "relay_lower": {
+      "kind": "sphere"
+    },
+    "fan_00": {
+      "kind": "tile"
+    },
+    "fan_01": {
+      "kind": "tile"
+    },
+    "fan_02": {
+      "kind": "tile"
+    },
+    "fan_03": {
+      "kind": "tile"
+    },
+    "fan_04": {
+      "kind": "tile"
+    },
+    "fan_05": {
+      "kind": "tile"
+    },
+    "fan_06": {
+      "kind": "tile"
+    },
+    "fan_07": {
+      "kind": "tile"
+    },
+    "fan_08": {
+      "kind": "tile"
+    },
+    "fan_09": {
+      "kind": "tile"
+    },
+    "fan_10": {
+      "kind": "tile"
+    },
+    "fan_11": {
+      "kind": "tile"
+    },
+    "fan_12": {
+      "kind": "tile"
+    },
+    "fan_13": {
+      "kind": "tile"
+    },
+    "fan_14": {
+      "kind": "tile"
+    },
+    "fan_15": {
+      "kind": "tile"
+    },
+    "fan_16": {
+      "kind": "tile"
+    },
+    "fan_17": {
+      "kind": "tile"
+    },
+    "fan_18": {
+      "kind": "tile"
+    },
+    "fan_19": {
+      "kind": "tile"
+    },
+    "fan_20": {
+      "kind": "tile"
+    },
+    "fan_21": {
+      "kind": "tile"
+    },
+    "fan_22": {
+      "kind": "tile"
+    },
+    "fan_23": {
+      "kind": "tile"
+    },
+    "fan_24": {
+      "kind": "tile"
+    },
+    "fan_25": {
+      "kind": "tile"
+    },
+    "fan_26": {
+      "kind": "tile"
+    },
+    "fan_27": {
+      "kind": "tile"
+    },
+    "fan_28": {
+      "kind": "tile"
+    },
+    "fan_29": {
+      "kind": "tile"
+    },
+    "fan_30": {
+      "kind": "tile"
+    },
+    "fan_31": {
+      "kind": "tile"
+    },
+    "fan_32": {
+      "kind": "tile"
+    },
+    "fan_33": {
+      "kind": "tile"
+    },
+    "fan_34": {
+      "kind": "tile"
+    },
+    "fan_35": {
+      "kind": "tile"
+    },
+    "terminal": {
+      "kind": "sphere"
+    }
+  },
+  "edges": [
+    [
+      "trigger",
+      "upper_00"
+    ],
+    [
+      "upper_00",
+      "upper_01"
+    ],
+    [
+      "upper_01",
+      "upper_02"
+    ],
+    [
+      "upper_02",
+      "upper_03"
+    ],
+    [
+      "upper_03",
+      "upper_04"
+    ],
+    [
+      "upper_04",
+      "upper_05"
+    ],
+    [
+      "upper_05",
+      "upper_06"
+    ],
+    [
+      "upper_06",
+      "upper_07"
+    ],
+    [
+      "upper_07",
+      "upper_08"
+    ],
+    [
+      "upper_08",
+      "upper_09"
+    ],
+    [
+      "upper_09",
+      "upper_10"
+    ],
+    [
+      "upper_10",
+      "upper_11"
+    ],
+    [
+      "upper_11",
+      "relay_upper"
+    ],
+    [
+      "relay_upper",
+      "middle_00"
+    ],
+    [
+      "middle_00",
+      "middle_01"
+    ],
+    [
+      "middle_01",
+      "middle_02"
+    ],
+    [
+      "middle_02",
+      "middle_03"
+    ],
+    [
+      "middle_03",
+      "middle_04"
+    ],
+    [
+      "middle_04",
+      "middle_05"
+    ],
+    [
+      "middle_05",
+      "middle_06"
+    ],
+    [
+      "middle_06",
+      "middle_07"
+    ],
+    [
+      "middle_07",
+      "middle_08"
+    ],
+    [
+      "middle_08",
+      "middle_09"
+    ],
+    [
+      "middle_09",
+      "middle_10"
+    ],
+    [
+      "middle_10",
+      "middle_11"
+    ],
+    [
+      "middle_11",
+      "relay_lower"
+    ],
+    [
+      "relay_lower",
+      "fan_00"
+    ],
+    [
+      "fan_00",
+      "fan_01"
+    ],
+    [
+      "fan_01",
+      "fan_02"
+    ],
+    [
+      "fan_02",
+      "fan_03"
+    ],
+    [
+      "fan_03",
+      "fan_04"
+    ],
+    [
+      "fan_04",
+      "fan_05"
+    ],
+    [
+      "fan_05",
+      "fan_06"
+    ],
+    [
+      "fan_06",
+      "fan_07"
+    ],
+    [
+      "fan_07",
+      "fan_08"
+    ],
+    [
+      "fan_08",
+      "fan_09"
+    ],
+    [
+      "fan_09",
+      "fan_10"
+    ],
+    [
+      "fan_10",
+      "fan_11"
+    ],
+    [
+      "fan_11",
+      "fan_12"
+    ],
+    [
+      "fan_12",
+      "fan_13"
+    ],
+    [
+      "fan_13",
+      "fan_14"
+    ],
+    [
+      "fan_14",
+      "fan_15"
+    ],
+    [
+      "fan_15",
+      "fan_16"
+    ],
+    [
+      "fan_16",
+      "fan_17"
+    ],
+    [
+      "fan_17",
+      "fan_18"
+    ],
+    [
+      "fan_18",
+      "fan_19"
+    ],
+    [
+      "fan_19",
+      "fan_20"
+    ],
+    [
+      "fan_20",
+      "fan_21"
+    ],
+    [
+      "fan_21",
+      "fan_22"
+    ],
+    [
+      "fan_22",
+      "fan_23"
+    ],
+    [
+      "fan_23",
+      "fan_24"
+    ],
+    [
+      "fan_24",
+      "fan_25"
+    ],
+    [
+      "fan_25",
+      "fan_26"
+    ],
+    [
+      "fan_26",
+      "fan_27"
+    ],
+    [
+      "fan_27",
+      "fan_28"
+    ],
+    [
+      "fan_28",
+      "fan_29"
+    ],
+    [
+      "fan_29",
+      "fan_30"
+    ],
+    [
+      "fan_30",
+      "fan_31"
+    ],
+    [
+      "fan_31",
+      "fan_32"
+    ],
+    [
+      "fan_32",
+      "fan_33"
+    ],
+    [
+      "fan_33",
+      "fan_34"
+    ],
+    [
+      "fan_34",
+      "fan_35"
+    ],
+    [
+      "fan_35",
+      "terminal"
+    ]
+  ],
+  "receiver": {
+    "body_id": "terminal",
+    "collider_ids": [
+      "receiver_floor",
+      "receiver_xmin",
+      "receiver_xmax",
+      "receiver_ymin",
+      "receiver_ymax"
+    ],
+    "min": [
+      3.108,
+      1.385,
+      0.655
+    ],
+    "max": [
+      3.292,
+      1.615,
+      0.704
+    ]
+  }
+}

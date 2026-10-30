@@ -1,0 +1,23 @@
+{
+  "cpu_tests": {
+    "count": 243,
+    "passed": true,
+    "command": "python -m unittest discover -s tests -p 'test*.py'"
+  },
+  "actual_mcp_concurrency": {
+    "count": 2,
+    "passed": true
+  },
+  "construction": "0.1.0.dev3",
+  "final_editor": "0.1.0.dev4",
+  "postproduction_source_delta": [
+    "src/simscene/video_tools.py"
+  ],
+  "note": "Physical acceptance is independently recorded, not rerun in CPU CI.",
+  "github": {
+    "conclusion": "success",
+    "headSha": "bc88da1816d32c6b4dee6d5499427789f761dd31",
+    "status": "completed",
+    "url": "https://github.com/ros-claw/simscene/actions/runs/41144340098"
+  }
+}

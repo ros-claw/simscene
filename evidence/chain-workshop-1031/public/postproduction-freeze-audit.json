@@ -1,0 +1,359 @@
+{
+  "construction_version": "0.1.0.dev3",
+  "construction_files": 89,
+  "original_package_checks": [
+    {
+      "path": "src/simscene/activity.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/cache.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/cache_restore.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/capture.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/display_runtime.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/presentation.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/display.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/jobs.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/geometry.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/mcp_server.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/run_integrity.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/assets.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/cli.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/evidence_integrity.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/usd_export.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/__init__.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/huggingface_cache.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/video_tools.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/materials.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/runtime_dependencies.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/composition.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/request_registry.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/scene.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/mdl_dependencies.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/settings.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/gripper_physics.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/asset_inspect.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/video_color.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/dependencies.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/huggingface_assets.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/placement.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/environment.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/gpu_queue.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/resources.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/camera_frames.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/contact_geometry.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/object_pose.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/overlap_diagnostics.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/render_settings.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/spawn.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/video.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/follow.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/worker/isaac_run.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/gripper.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/__init__.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/ik.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/urdf.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/config_paths.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/profiles.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/profile_scripts/prepare_rs007l_profile.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/profile_scripts/convert_lula_to_xrdf.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/profile_scripts/__init__.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/profile_scripts/convert_rmpflow.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/profile_scripts/prepare_ur10_profile.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/profile_scripts/align_fixed_frame.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/robotics/profile_scripts/prepare_franka_profile.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/scene_edits/retime.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/scene_edits/interleave.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/scene_edits/synchronize.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/scene_edits/__init__.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/scene_edits/collision_audit.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/scene_edits/stream_case.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/scene_edits/translate_group.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/scene_edits/swap_routes.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/stream_probe.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/settling.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/contacts.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/moving_pick.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/repeated_pick.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/contact_pick.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/collision_preflight.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/archive_candidate.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/ledger.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/__init__.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/archive_ledger.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/acceptance.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/domino.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/case_runner.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/archive_evidence.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/parallel_probe.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/overlap_audit.py",
+      "matches": true
+    },
+    {
+      "path": "src/simscene/verification/suction_pick.py",
+      "matches": true
+    },
+    {
+      "path": "skills/build-scene/SKILL.md",
+      "matches": true
+    },
+    {
+      "path": "skills/build-scene/references/robot-streams.md",
+      "matches": true
+    },
+    {
+      "path": "skills/build-scene/references/measured-layout.md",
+      "matches": true
+    },
+    {
+      "path": "skills/deliver-scene-video/SKILL.md",
+      "matches": true
+    },
+    {
+      "path": "skills/deliver-scene-video/references/capture.md",
+      "matches": true
+    }
+  ],
+  "original_package_intact": true,
+  "postproduction_source_delta": [
+    "src/simscene/video_tools.py"
+  ],
+  "scope": "Source video editor changed only after all construction and physical acceptance. Original v35 runtime, recorded worker hashes and acceptance records remain intact. No physics or scene capability changed."
+}
