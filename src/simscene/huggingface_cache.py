@@ -109,7 +109,8 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
                 result=cache._verified_cached(target,digest,source)
                 # Old incomplete UDIM packages remain intact. Explicitly
                 # acquiring them again creates a new content fingerprint.
-                if not any('<UDIM>' in str(p) for p in result.get('unresolved_dependencies',[])):
+                legacy_mdl=any(f['path'].lower().endswith('.mdl') for f in result['files']) and result.get('dependency_scan_version',0)<4
+                if not legacy_mdl and not any('<UDIM>' in str(p) for p in result.get('unresolved_dependencies',[])):
                     cache._write_provenance(result)
                     return result
         with tempfile.TemporaryDirectory(dir=cache.directory,prefix='.partial-hf-') as tmp:
@@ -126,8 +127,12 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
             try:
                 from pxr import Sdf, UsdUtils
                 root=output.joinpath(*root_path.parts)
-                for _ in range(8):
+                from .mdl_dependencies import missing as missing_mdl
+                material_errors=set()
+                for _ in range(32):
                     layers,_,unresolved=UsdUtils.ComputeAllDependencies(str(root));progress=False
+                    try:unresolved=list(unresolved)+missing_mdl(output.rglob('*.mdl'))
+                    except ValueError as error:material_errors.add(str(error))
                     # Some USD versions leave a missing UDIM template relative
                     # even though ordinary asset dependencies are anchored.
                     anchors={}
@@ -136,13 +141,16 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
                         if not local.is_absolute():continue
                         copy=Sdf.Layer.CreateAnonymous();copy.TransferContent(layer)
                         def collect(value):
-                            if '<UDIM>' in value:anchors.setdefault(value,set()).add(local.parent)
+                            anchors.setdefault(value,set()).add(local.parent)
                             return value
                         UsdUtils.ModifyAssetPaths(copy,collect)
                     anchored=[]
                     for item in unresolved:
                         if Path(str(item)).is_absolute():anchored.append(item)
-                        elif '<UDIM>' in str(item):
+                        else:
+                            from .runtime_dependencies import classify
+                            if classify([str(item)])['runtime_provided']:continue
+                            if '://' in str(item) or str(item).startswith(('anon:','package:')):continue
                             anchored.extend(str(parent/str(item)) for parent in sorted(anchors.get(str(item),[])))
                     for item in anchored:
                         candidate=Path(str(item))
@@ -169,16 +177,18 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
                         except (SearchError,ValueError) as error:errors.append({'dependency':str(item),'error':str(error)})
                     if not progress:break
                 _,_,unresolved=UsdUtils.ComputeAllDependencies(str(root))
-                unresolved=sorted(set(str(x).replace(str(output),'${PACKAGE_ROOT}') for x in list(unresolved)+list(incomplete_udims)))
+                try:unresolved=list(unresolved)+missing_mdl(output.rglob('*.mdl'))
+                except ValueError as error:material_errors.add(str(error))
+                unresolved=sorted(set(str(x).replace(str(output),'${PACKAGE_ROOT}') for x in list(unresolved)+list(incomplete_udims)+list(material_errors)))
                 status='missing' if unresolved else 'resolved_locally'
             except ImportError:
                 unresolved=[];status='unverified_usd_tools_unavailable'
-            fingerprint=json.dumps({'source':source,'files':files},sort_keys=True,separators=(',',':')).encode()
+            fingerprint=json.dumps({'source':source,'files':files,'dependency_scan_version':4},sort_keys=True,separators=(',',':')).encode()
             digest=hashlib.sha256(fingerprint).hexdigest();target=cache.directory/digest
             unresolved=[x.replace('${PACKAGE_ROOT}',str(target)) for x in unresolved]
             metadata={'source':source,'repository':repo,'revision':revision,'package_sha256':digest,'root':str(target.joinpath(*root_path.parts)),
                       'files':files,'dependency_status':status,'unresolved_dependencies':unresolved,'repair_errors':errors,'license':'unknown',
-                      'dependency_scan_version':3,'udim_patterns':udim_patterns}
+                      'dependency_scan_version':4,'udim_patterns':udim_patterns}
             (output/'simscene-lock.json').write_text(json.dumps(metadata,indent=2))
             size=sum(p.stat().st_size for p in output.rglob('*') if p.is_file())
             if size>max_bytes:raise SearchError('Hugging Face package exceeds cache capacity')

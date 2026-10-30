@@ -26,3 +26,19 @@ def references(path):
             if '\\' in value or ':' in value or value.startswith('/'):continue
             found.append(path.parent/value)
     return sorted(set(p.resolve() for p in found))
+
+
+def missing(paths, max_modules=256):
+    """Follow static local MDL references, including transitive modules."""
+    pending=[Path(p) for p in paths if str(p).lower().endswith('.mdl')]
+    visited=set();unresolved=set()
+    while pending:
+        module=pending.pop().resolve()
+        if module in visited:continue
+        visited.add(module)
+        if len(visited)>max_modules:raise ValueError('MDL module scan exceeds count budget')
+        if not module.is_file():unresolved.add(str(module));continue
+        for target in references(module):
+            if not target.is_file():unresolved.add(str(target))
+            elif target.suffix.lower()=='.mdl':pending.append(target)
+    return sorted(unresolved)

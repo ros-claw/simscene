@@ -12,7 +12,10 @@ def inspect_local(path):
     stage=Usd.Stage.Open(str(path))
     if not stage: raise SearchError('could not open USD stage')
     root=stage.GetDefaultPrim()
-    _, _, unresolved=UsdUtils.ComputeAllDependencies(str(path))
+    _, assets, unresolved=UsdUtils.ComputeAllDependencies(str(path))
+    from .mdl_dependencies import missing as missing_mdl
+    try:unresolved=list(unresolved)+missing_mdl(assets)
+    except ValueError as error:unresolved=list(unresolved)+['MDL scan error: '+str(error)]
     from .runtime_dependencies import classify
     dependencies=classify(unresolved)
     prims=list(stage.Traverse())
