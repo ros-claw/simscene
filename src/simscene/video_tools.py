@@ -8,6 +8,7 @@ from pathlib import Path
 from fractions import Fraction
 from .capture import output_config,resolution,finite
 from .scene import SceneError
+from .video_color import png_filter
 
 def sha(path):
     h=hashlib.sha256()
@@ -78,10 +79,10 @@ def inspect(path,output_dir=None,representative_count=5,record=None):
         for index in range(representative_count):
             frame_id=min(count-1,max(0,round((count-1)*(index/(representative_count-1) if representative_count>1 else .5))))
             image=root/f'{path.stem}_decoded_{frame_id:06d}.png'
-            subprocess.run([shutil.which('ffmpeg') or 'ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(path),'-vf',f'select=eq(n\\,{frame_id})','-frames:v','1','-vsync','0',str(image)],check=True,timeout=120)
+            subprocess.run([shutil.which('ffmpeg') or 'ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(path),'-vf',f'select=eq(n\\,{frame_id}),'+png_filter(stream),'-frames:v','1','-vsync','0',str(image)],check=True,timeout=120)
             representatives.append({'frame_id':frame_id,'video_time_s':frame_id/fps,'path':str(image)})
     return {'path':str(path),'sha256':sha(path),'metadata':metadata,'decoded_frame_count':count,'duration_s':duration,'simulation_timeline':timeline,
-            'representative_frames':representatives,'issues':issues,'requires_visual_review':['subject detail and action visibility','highlights and material loading','occlusion, black frames, cuts and motion continuity']}
+            'representative_frames':representatives,'representative_png_filter':png_filter(stream),'issues':issues,'requires_visual_review':['subject detail and action visibility','highlights and material loading','occlusion, black frames, cuts and motion continuity']}
 
 def export(segments,destination,output_resolution=None,output=None,allow_upscale=False):
     """segments: run_directory, camera, start/end sim seconds, optional speed/title.
@@ -124,7 +125,7 @@ def export(segments,destination,output_resolution=None,output=None,allow_upscale
                 title_file=tmp/f'title{index:03d}.txt';title_file.write_text(title)
                 filters.append(f'drawtext=textfile={title_file}:expansion=none:fontcolor=white:fontsize=28:x=48:y=36:box=1:boxcolor=black@0.55:boxborderw=12')
             composed=destination.with_name(destination.stem+f'_composed_{index:03d}.png')
-            subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-threads','2','-i',record['path'],'-vf',','.join(filters),'-frames:v','1',str(composed)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,timeout=120)
+            subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-threads','2','-i',record['path'],'-vf',','.join(filters)+','+png_filter(inspection['metadata']['streams'][0]),'-frames:v','1',str(composed)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,timeout=120)
             # Keep source cadence. A 6fps source cannot be certified as 30 real
             # observations/s just by asking ffmpeg to duplicate it.
             fps=record['fps']

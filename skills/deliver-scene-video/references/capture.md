@@ -38,6 +38,11 @@ annotator bytes are display-referred sRGB; the encoder transforms transfer and
 matrix to limited-range BT.709 SDR. Source/encoded visual comparisons must
 account for that conversion and lossy compression.
 
+The dev2 encoder requires FFmpeg's `zscale`: packed RGB is first rearranged to
+planar GBR, then explicitly converted to BT.709. Representative/composed PNGs
+are converted back to display sRGB. This avoids the old implicit RGB→YUV step
+before a GBR override; compare matching frames, not differently timed previews.
+
 `video_inspect(path, output_dir, representative_count, job_id, camera)` probes,
 checks native frame provenance and writes decoded representative frames. Final
 edited files have an adjacent `.edit.json` source/time map; inspect that in

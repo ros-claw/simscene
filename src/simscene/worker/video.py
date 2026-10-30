@@ -4,6 +4,7 @@ import shutil
 import subprocess
 from pathlib import Path
 from simscene.capture import output_config
+from simscene.video_color import SRGB_TO_REC709
 
 class VideoRecorder:
     def __init__(self,path,fps,width=640,height=480,*,camera_id=None,output=None,budget=None,diagnostics=None,start_step=0):
@@ -21,7 +22,7 @@ class VideoRecorder:
             # Isaac rgb annotator supplies display-referred sRGB bytes. Convert
             # sRGB full-range RGB to limited-range BT.709 SDR; labels alone
             # would not transform the transfer function or RGB/YUV matrix.
-            '-vf','colorspace=ispace=gbr:iprimaries=bt709:itrc=iec61966-2-1:irange=pc:space=bt709:primaries=bt709:trc=bt709:range=tv:format=yuv420p',
+            '-vf',SRGB_TO_REC709,
             '-pix_fmt','yuv420p','-color_range','tv','-colorspace','bt709','-color_trc','bt709','-color_primaries','bt709',
             '-g',str(fps*5),'-movflags','frag_keyframe+empty_moov+default_base_moof','-flush_packets','1',str(self.path)]
         try:self.process=subprocess.Popen(self.command,stdin=subprocess.PIPE,stdout=subprocess.DEVNULL,stderr=self.log)

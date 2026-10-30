@@ -8,6 +8,53 @@ from .assets import CredentialSafeRedirect,SearchError
 from .cache import AssetCache,_sha256,_runtime_status
 from .huggingface_assets import BASE
 
+def _udim_matches(repo, revision, relative, max_pages=32, max_tiles=256):
+    """Enumerate only a selected texture directory at the pinned revision.
+
+    Never guess tile URLs or download the whole repository. Exhaust pagination
+    before claiming completeness; an unresolved or oversized tile set stays
+    unusable even if USD can resolve its first tile.
+    """
+    from .huggingface_assets import _get
+    from urllib.parse import urlparse, parse_qs
+    if relative.name.count('<UDIM>') != 1 or '<UDIM>' in relative.parent.as_posix():
+        raise SearchError('UDIM token must occur once in the texture filename')
+    before, after = relative.name.split('<UDIM>')
+    pattern = re.compile(re.escape(before) + r'(1[0-9]{3})' + re.escape(after))
+    parent = relative.parent
+    route = '/api/datasets/'+repo+'/tree/'+revision
+    if parent.as_posix() != '.':route += '/' + quote(parent.as_posix(), safe='/')
+    cursor=None;seen=set();matches=set()
+    for _ in range(max_pages):
+        params={'recursive':'false','limit':100}
+        if cursor:params['cursor']=cursor
+        data, link = _get(route, params)
+        if not isinstance(data,list) or len(data)>100:
+            raise SearchError('invalid or oversized UDIM directory listing')
+        for item in data:
+            candidate=PurePosixPath(item.get('path',''))
+            match=pattern.fullmatch(candidate.name)
+            if item.get('type')=='file' and candidate.parent==parent and match and int(match[1])>=1001:
+                _url(repo,revision,candidate)  # Reject unsafe encoded components.
+                matches.add(candidate)
+                if len(matches)>max_tiles:raise SearchError('UDIM tile count exceeds acquisition budget')
+        cursor=None
+        for segment in link.split(','):
+            if 'rel="next"' not in segment:continue
+            value=re.search(r'<([^>]+)>',segment)
+            if not value:raise SearchError('invalid UDIM pagination')
+            target=urlparse(value[1])
+            if target.scheme!='https' or target.netloc!='huggingface.co' or unquote(target.path)!=unquote(route):
+                raise SearchError('unsafe UDIM pagination origin or repository revision')
+            cursor=parse_qs(target.query).get('cursor',[None])[0]
+            if not cursor:raise SearchError('missing UDIM pagination cursor')
+        if not cursor:
+            if not matches:raise SearchError('UDIM pattern has no matching repository tiles')
+            return sorted(matches)
+        if cursor in seen:raise SearchError('repeated UDIM pagination cursor')
+        seen.add(cursor)
+    raise SearchError('UDIM directory listing exceeds page budget')
+
 def _parts(repo_id,revision,path):
     if not isinstance(repo_id,str) or not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',repo_id) or any(x in ('.','..') for x in repo_id.split('/')):
         raise ValueError('repository must be owner/name')
@@ -60,10 +107,13 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
             digest=index.read_text().strip();target=cache.directory/digest
             if re.fullmatch(r'[0-9a-f]{64}',digest) and target.is_dir():
                 result=cache._verified_cached(target,digest,source)
-                cache._write_provenance(result)
-                return result
+                # Old incomplete UDIM packages remain intact. Explicitly
+                # acquiring them again creates a new content fingerprint.
+                if not any('<UDIM>' in str(p) for p in result.get('unresolved_dependencies',[])):
+                    cache._write_provenance(result)
+                    return result
         with tempfile.TemporaryDirectory(dir=cache.directory,prefix='.partial-hf-') as tmp:
-            output=Path(tmp)/'contents';output.mkdir();files=[];errors=[];attempted=set()
+            output=Path(tmp)/'contents';output.mkdir();files=[];errors=[];attempted=set();incomplete_udims=set();udim_patterns={}
             def fetch(relative):
                 target=output.joinpath(*relative.parts)
                 if target.exists():raise SearchError('dependency already exists but could not be resolved')
@@ -74,11 +124,27 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
                 files.append({'url':url,'path':relative.as_posix(),'size':size,'sha256':hash_value})
             fetch(root_path)
             try:
-                from pxr import UsdUtils
+                from pxr import Sdf, UsdUtils
                 root=output.joinpath(*root_path.parts)
                 for _ in range(8):
-                    _,_,unresolved=UsdUtils.ComputeAllDependencies(str(root));progress=False
+                    layers,_,unresolved=UsdUtils.ComputeAllDependencies(str(root));progress=False
+                    # Some USD versions leave a missing UDIM template relative
+                    # even though ordinary asset dependencies are anchored.
+                    anchors={}
+                    for layer in layers:
+                        local=Path(layer.realPath or layer.identifier)
+                        if not local.is_absolute():continue
+                        copy=Sdf.Layer.CreateAnonymous();copy.TransferContent(layer)
+                        def collect(value):
+                            if '<UDIM>' in value:anchors.setdefault(value,set()).add(local.parent)
+                            return value
+                        UsdUtils.ModifyAssetPaths(copy,collect)
+                    anchored=[]
                     for item in unresolved:
+                        if Path(str(item)).is_absolute():anchored.append(item)
+                        elif '<UDIM>' in str(item):
+                            anchored.extend(str(parent/str(item)) for parent in sorted(anchors.get(str(item),[])))
+                    for item in anchored:
                         candidate=Path(str(item))
                         if not candidate.is_absolute():continue
                         candidate=candidate.resolve()
@@ -87,11 +153,23 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
                             errors.append({'dependency':str(item),'error':'outside repository package'});continue
                         if relative in attempted:continue
                         attempted.add(relative)
-                        try:fetch(PurePosixPath(relative.as_posix()));progress=True
+                        try:
+                            relative=PurePosixPath(relative.as_posix())
+                            if '<UDIM>' in relative.as_posix():
+                                tiles=_udim_matches(repo,revision,relative)
+                                udim_patterns[relative.as_posix()]=[t.as_posix() for t in tiles]
+                                failed=False
+                                for tile in tiles:
+                                    if output.joinpath(*tile.parts).is_file():continue
+                                    try:fetch(tile);progress=True
+                                    except (SearchError,ValueError) as error:
+                                        failed=True;errors.append({'dependency':tile.as_posix(),'error':str(error)})
+                                if failed:incomplete_udims.add(str(item))
+                            else:fetch(relative);progress=True
                         except (SearchError,ValueError) as error:errors.append({'dependency':str(item),'error':str(error)})
                     if not progress:break
                 _,_,unresolved=UsdUtils.ComputeAllDependencies(str(root))
-                unresolved=[str(x).replace(str(output),'${PACKAGE_ROOT}') for x in unresolved]
+                unresolved=sorted(set(str(x).replace(str(output),'${PACKAGE_ROOT}') for x in list(unresolved)+list(incomplete_udims)))
                 status='missing' if unresolved else 'resolved_locally'
             except ImportError:
                 unresolved=[];status='unverified_usd_tools_unavailable'
@@ -99,7 +177,8 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
             digest=hashlib.sha256(fingerprint).hexdigest();target=cache.directory/digest
             unresolved=[x.replace('${PACKAGE_ROOT}',str(target)) for x in unresolved]
             metadata={'source':source,'repository':repo,'revision':revision,'package_sha256':digest,'root':str(target.joinpath(*root_path.parts)),
-                      'files':files,'dependency_status':status,'unresolved_dependencies':unresolved,'repair_errors':errors,'license':'unknown'}
+                      'files':files,'dependency_status':status,'unresolved_dependencies':unresolved,'repair_errors':errors,'license':'unknown',
+                      'dependency_scan_version':3,'udim_patterns':udim_patterns}
             (output/'simscene-lock.json').write_text(json.dumps(metadata,indent=2))
             size=sum(p.stat().st_size for p in output.rglob('*') if p.is_file())
             if size>max_bytes:raise SearchError('Hugging Face package exceeds cache capacity')
