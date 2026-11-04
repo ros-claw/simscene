@@ -1,6 +1,6 @@
 # 三层连锁工坊挑战 · 精选证据
 
-[完整挑战报告](../../../SIMSCENE_三层连锁工坊挑战报告_20261031.md) · [公开配方](../../../examples/three_level_chain/README.md) · [62秒影片](../../../docs/media/chain-workshop-1080p30.mp4)
+[验证范围](../../../docs/validation.md) · [公开配方](../../../examples/three_level_chain/README.md) · [62秒影片](../../../docs/media/chain-workshop-1080p30.mp4)
 
 - [验收摘要](acceptance-summary.json)、[逐边独立整套检查](suite-parent-verification.json)：3次重启、2种删除干预和布局修改恢复。
 - [提前冻结条件](criteria-frozen.json)、[第三轮通用代码冻结](round3-freeze.json)、[正式case预先审批](formal-case-round3-approval.json)。

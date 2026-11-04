@@ -40,3 +40,11 @@ logs/
 !docs/media/maintenance-workbench-1080p30.mp4
 !docs/media/chain-workshop-1080p30.mp4
 
+
+# Internal plans and production notes
+/SIMSCENE_*.md
+/*实施报告*.md
+/*想法*.md
+/一个富有挑战的尝试*.md
+/SimScene_*Kit.zip
+/SimScene_*Playbook*.html
