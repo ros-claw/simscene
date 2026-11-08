@@ -1,7 +1,8 @@
 # Catalog efficiency: frozen protocol and bounded collection
 
-No efficiency trials have been collected with this protocol. Token reduction,
-quality equivalence, time improvement and billing savings are **unknown**. The
+An initial collection pilot stopped after one timeout with missing usage and
+unwanted global client context. No valid comparison is available. Token
+reduction, quality equivalence, time improvement and billing savings are **unknown**. The
 30% token reduction mentioned in the design is an optimization target, not an
 observed result. Historical development hours cannot establish token savings.
 
@@ -13,6 +14,30 @@ intentionally unset until the implementation is frozen. Actual model selection
 comes from the explicitly frozen protocol or `freeze --model`; the initial
 configured model is `gpt-6.1-sol`, reasoning effort `medium`, for both versions.
 The driver never substitutes a different model.
+
+## Collection validity
+
+The first legacy native-layout pilot completed a physical worker but did not
+write its required submission before the 240-second ceiling. It made 744 tool
+calls, including 722 individual observation requests, and discovered a global
+skill path outside the allowed task scope. The original timeout, scope failures
+and absent usage remain unchanged; they are not a baseline capability failure
+or a measured token count. That incomplete cohort stopped without expanding.
+
+The revised collector uses fresh per-trial client state, privately copies only
+available file-based login and model-capability metadata, and disables bundled
+skills. Parent configuration, global instructions, plugins and history are not
+copied. A live client probe exposed exactly the two installed SimScene skills.
+This follows the documented [client state locations](https://learn.chatgpt.com/docs/config-file/config-advanced#config-and-state-locations)
+and [skill controls](https://learn.chatgpt.com/docs/build-skills#enable-or-disable-local-codex-skills).
+Credential contents and hashes are never written to evaluation receipts.
+
+Both versions receive the same clarification: inspect a few representative
+observations, submit the run/evidence locators promptly, and let the trusted host
+check every saved physics step. Physical predicates, time/token ceilings and
+source locks are unchanged. The evaluator/prompt change requires a new frozen
+cohort; its results cannot be pooled with the failed original collection probe
+or attributed as a plugin-only improvement.
 
 ## Comparisons and gates
 

@@ -210,6 +210,35 @@ def remap_seed_metadata(source, output, work):
     return receipts
 
 
+def isolated_client_environment(output, environment):
+    """Use fresh client state; copy only private auth and model-capability metadata.
+
+    Credential contents/hashes never enter receipts. Parent configuration,
+    instructions, skills, plugin registrations and conversation history do not
+    migrate into the evaluation client. Work-local installed skills remain.
+    """
+    import shutil
+    source=Path(environment.get('CODEX_HOME',str(Path.home()/'.codex'))).expanduser()
+    client_state_root=Path(output)/'client-state'
+    client_state_root.mkdir(mode=0o700)
+    copied=[]
+    for name in ('auth.json','models_cache.json'):
+        path=source/name
+        if not path.exists():continue
+        info=path.stat()
+        if path.is_symlink() or not path.is_file() or info.st_uid!=os.getuid() or info.st_size>16*1024**2:
+            raise ValueError('client state must be bounded owned regular files')
+        target=client_state_root/name
+        shutil.copyfile(path,target);target.chmod(0o600);copied.append(name)
+    result=dict(environment,CODEX_HOME=str(client_state_root.resolve()))
+    write_new(Path(output)/'client-isolation.json',{
+        'schema':'simscene.eval_client_isolation.v1','client_state':str(client_state_root.resolve()),
+        'copied_filenames':copied,'global_configuration_copied':False,
+        'global_instructions_copied':False,'global_skills_or_plugins_copied':False,
+        'credential_values_recorded':False,'scope':'client-state isolation; not an operating-system read jail'})
+    return result
+
+
 def run_trial(plan, trial_id, output):
     """Actual Codex CLI, isolated MCP package and host verifier; no implicit retry."""
     import shutil
@@ -233,17 +262,19 @@ def run_trial(plan, trial_id, output):
     env=dict(plan['server_environment'],SIMSCENE_HOME=str(state),SIMSCENE_CACHE=str(output/'cache'),
              XDG_CONFIG_HOME=str(output/'config'),SIMSCENE_V2_CONFIG=str(output/'v2.json'),SIMSCENE_PHYSICS_DEVICE='cpu')
     task=next(t for t in plan['tasks'] if t['id']==trial['task_id'])
-    prompt=('Use only this work directory, copied installed skills and configured SimScene MCP. No child agents, source checkout reads, direct SDK/shell SimScene calls or network shell commands. Preserve every failed attempt. Submit submission.json with scene_id, run_ids (every attempted run ID), selected_run_id, and evidence paths. For an unsupported new capability, optionally include capability_gap:{capability:NAME}; only the host can verify a capability gap. Agent assertions are not verification. Read all fixed task inputs and acceptance predicates in task/. Do not modify them. If seed-scene-resolved.json exists, it is the same frozen seed with documented local asset locators resolved; use it as the warm task starting scene.\n'+task['prompt'])
+    prompt=('Use only this work directory, copied installed skills and configured SimScene MCP. Do not read global skills or global configuration. No child agents, source checkout reads, direct SDK/shell SimScene calls or network shell commands. Preserve every failed attempt. Submit submission.json with scene_id, run_ids (every attempted run ID), selected_run_id, and evidence paths. For an unsupported new capability, optionally include capability_gap:{capability:NAME}; only the host can verify a capability gap. Agent assertions are not verification. Read all fixed task inputs and acceptance predicates in task/. Do not modify them. If seed-scene-resolved.json exists, it is the same frozen seed with documented local asset locators resolved; use it as the warm task starting scene. The worker already saves the complete trajectory. Inspect only a few representative observations rather than streaming every physics step through MCP. The trusted host verifier reads the full saved trajectory directly; its acceptance file need not be a stock run_verify case. Write submission.json promptly after completing the chosen run and saving its evidence paths; do not reproduce the host audit frame by frame.\n'+task['prompt'])
     (output/'prompt.txt').write_text(prompt)
     (work/'AGENTS.md').write_text('Use only own work and configured MCP. Do not modify task inputs.\n')
     cmd=agent.command(package,work,output,plan['protocol']['model'],plan['protocol']['reasoning_effort'],env)
+    cmd[2:2]=['-c','skills.bundled.enabled=false']
     key='mcp_servers.simscene.enabled_tools='
     cmd=[key+json.dumps(plan['tool_allowlist']) if x.startswith(key) else x for x in cmd]
     write_new(output/'trial-config.json',dict(trial,plan_sha256=plan['plan_sha256'],command=cmd,mcp_environment=env))
+    environment=dict(os.environ,**env); environment.pop('PYTHONPATH',None)
+    environment=isolated_client_environment(output,environment)
     setup_wall_s=time.monotonic()-setup_started
     p=plan['protocol']; wall=p['pilot_wall_limit_s'] if plan['pilot'] else p['wall_limit_s']; cap=p['pilot_token_limit'] if plan['pilot'] else p['token_limit']
     started=time.monotonic(); completion={'exit_code':None,'timed_out':False,'token_limit_reached':False}; process=None
-    environment=dict(os.environ,**env); environment.pop('PYTHONPATH',None)
     with (output/'events.jsonl').open('x') as stdout,(output/'stderr.log').open('x') as stderr:
         try:
             completion['client_version']=subprocess.run(['codex','--version'],capture_output=True,text=True,timeout=10,check=True).stdout.strip()

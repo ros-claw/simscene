@@ -14,6 +14,9 @@ class EfficiencyTests(unittest.TestCase):
         protocol=ev.read(ev.DEFAULT_PROTOCOL)
         protocol['hardware'].update(host='fixture-host',gpu='fixture-gpu',isaac='fixture-sdk',usd='fixture-usd',renderer='fixture-renderer')
         self.protocol=self.root/'protocol.json'; ev.write_new(self.protocol,protocol)
+        client_source=self.root/'parent-client';client_source.mkdir()
+        self.client_environment=patch.dict(ev.os.environ,{'CODEX_HOME':str(client_source)})
+        self.client_environment.start();self.addCleanup(self.client_environment.stop)
         self.packages=[]
         for version in ('baseline','candidate'):
             package=self.root/version; (package/'server').mkdir(parents=True)
@@ -147,6 +150,22 @@ class EfficiencyTests(unittest.TestCase):
         self.assertEqual(result['status'],'timeout');self.assertTrue(signals)
         self.assertEqual(result['usage']['aggregate']['total_tokens'],15)
         self.assertTrue((output/'completion.json').is_file())
+
+    def test_client_state_copies_only_auth_and_model_metadata_without_receipt_secrets(self):
+        source=self.root/'isolated-source';source.mkdir()
+        for name,value in [('auth.json','fixture-credential'),('models_cache.json','{}'),('config.toml','fixture-global-setting'),('AGENTS.md','fixture-global-instructions')]:
+            (source/name).write_text(value)
+        (source/'skills').mkdir();(source/'plugins').mkdir()
+        output=self.root/'client-test';output.mkdir()
+        environment=ev.isolated_client_environment(output,{'CODEX_HOME':str(source),'FIXTURE':'retained'})
+        target=Path(environment['CODEX_HOME'])
+        self.assertEqual({p.name for p in target.iterdir()},{'auth.json','models_cache.json'})
+        self.assertEqual((target/'auth.json').read_text(),'fixture-credential')
+        self.assertEqual((target/'auth.json').stat().st_mode & 0o777,0o600)
+        self.assertEqual(environment['FIXTURE'],'retained')
+        receipt=(output/'client-isolation.json').read_text()
+        self.assertNotIn('fixture-credential',receipt)
+        self.assertEqual((source/'AGENTS.md').read_text(),'fixture-global-instructions')
 
     def test_trace_call_history_counted_once_including_tool_failure(self):
         plan=self.plan();output=self.root/'trace';(output/'work').mkdir(parents=True)

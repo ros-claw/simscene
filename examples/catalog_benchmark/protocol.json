@@ -59,5 +59,13 @@
   "output_token_limit": 16000,
   "max_full_host_verifier_wall_s": 4320,
   "max_pilot_host_verifier_wall_s": 480,
-  "wall_budget_scope": "Codex process wall plus separately reported host verifier wall; file-copy/setup time recorded separately, not hidden. Stop after each explicit trial; no unattended schedule loop."
+  "wall_budget_scope": "Codex process wall plus separately reported host verifier wall; file-copy/setup time recorded separately, not hidden. Stop after each explicit trial; no unattended schedule loop.",
+  "client_isolation": {
+    "state": "fresh per-trial CODEX_HOME; file-based login and model-capability metadata copied privately if available",
+    "excluded": "global config, AGENTS instructions, plugin registrations, skills and conversation history",
+    "bundled_skills_enabled": false,
+    "scope": "client context plus trace audit; not an operating-system read jail"
+  },
+  "observation_collection": "Worker records the full trajectory. Model inspects bounded representative observations and writes submission promptly; trusted host verifier reads the full unchanged trajectory. Applied identically to both packages.",
+  "cohort_changes": "Changed evaluator/prompt/client-isolation inputs require a new frozen cohort. Keep earlier failures and unknown usage; never pool incompatible fingerprints."
 }
