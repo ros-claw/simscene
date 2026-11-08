@@ -116,7 +116,7 @@ try:
         raise RuntimeError('recording camera count exceeds explicit presentation budget')
     if cameras:
         from isaacsim.sensors.experimental.rtx import TiledCameraSensor
-        from simscene.worker.camera_frames import MAX_WARMUP_UPDATES, read_rgb
+        from simscene.worker.camera_frames import MAX_WARMUP_UPDATES, read_rgb, paused_render_barrier
         for name, obj in cameras:
             # This API expects (height, width); keep frames landscape.
             cfg=camera_config(spec,obj)
@@ -379,6 +379,7 @@ try:
             overlap_monitor.sample(actual)
         if actual >= resources[-1]['physics_steps'] + 3600:
             resources.append(resource_sample(actual,worker_started))
+        due_cameras=[]
         for name,sensor in sensors.items():
             recorder=recorders.get(name)
             window=camera_config(spec,dict(cameras)[name])['capture_window']
@@ -388,27 +389,29 @@ try:
             record_due=bool(active and actual==next_step)
             preview_due=bool(preview_rates[name] and actual and actual%(60//preview_rates[name])==0)
             if record_due or preview_due:
-                rgb=read_rgb(sensor)
-                if rgb is None:
-                    # Camera annotators can warm up later than the first
-                    # requested frame. Pump rendering while physics is paused;
-                    # never duplicate or silently skip a scheduled frame.
-                    app_utils.pause()
-                    try:
+                due_cameras.append((name,sensor,recorder,record_due,preview_due))
+        if due_cameras:
+            # Flush once for the entire batch, including already nonempty RGB
+            # buffers. Those can still contain the preceding physical frame.
+            with paused_render_barrier(
+                    read_state=lambda:(SimulationManager.get_num_physics_steps(),SimulationManager.get_simulation_time()),
+                    is_playing=renderer_timeline.is_playing,pause=app_utils.pause,
+                    play=app_utils.play,pump=app.update) as render_barrier:
+                for name,sensor,recorder,record_due,preview_due in due_cameras:
+                    rgb=read_rgb(sensor)
+                    if rgb is None:
                         rgb=read_rgb(sensor,app.update,MAX_WARMUP_UPDATES)
                         if SimulationManager.get_num_physics_steps()-start_steps != actual:
                             raise RuntimeError('physics advanced while waiting for a camera frame')
-                    finally:
-                        app_utils.play()
-                if rgb is None:raise RuntimeError(f'No RGB frame available for camera {name} at step {actual}')
-                frame=rgb.numpy()
-                if record_due:recorder.write(frame,actual,actual/60,{'app_update':__import__('omni.kit.app',fromlist=['get_app']).get_app().get_update_number(),'absolute_physics_step':SimulationManager.get_num_physics_steps(),'stage_time_code':omni.timeline.get_timeline_interface().get_current_time()*stage.GetTimeCodesPerSecond()})
-                if preview_due:
-                    from PIL import Image
-                    path=Path(args.output).parent/('camera_'+name+'_live.png')
-                    temporary=path.with_suffix('.tmp')
-                    Image.fromarray(frame).save(temporary,format='PNG')
-                    os.replace(temporary,path)
+                    if rgb is None:raise RuntimeError(f'No RGB frame available for camera {name} at step {actual}')
+                    frame=rgb.numpy()
+                    if record_due:recorder.write(frame,actual,actual/60,{'app_update':__import__('omni.kit.app',fromlist=['get_app']).get_app().get_update_number(),'absolute_physics_step':SimulationManager.get_num_physics_steps(),'stage_time_code':omni.timeline.get_timeline_interface().get_current_time()*stage.GetTimeCodesPerSecond(),'render_barrier':render_barrier})
+                    if preview_due:
+                        from PIL import Image
+                        path=Path(args.output).parent/('camera_'+name+'_live.png')
+                        temporary=path.with_suffix('.tmp')
+                        Image.fromarray(frame).save(temporary,format='PNG')
+                        os.replace(temporary,path)
         stalled = stalled + 1 if before == SimulationManager.get_num_physics_steps() else 0
         if stalled >= 120:
             raise RuntimeError('Physics did not advance for 120 app updates')

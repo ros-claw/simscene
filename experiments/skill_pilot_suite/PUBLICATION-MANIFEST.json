@@ -116,12 +116,12 @@
     },
     {
       "path": "results/REVIEW.md",
-      "sha256": "6c37f7ecba8defa7fda7f99560589ee2d81f800b287048040e721aed09f08bda",
+      "sha256": "5dda608b42ec27b44d9c6901098bf71369969ba5349c0a4747e9ca6a44e104dd",
       "category": "separate_posthoc_results_or_publication_guide"
     },
     {
       "path": "PUBLICATION-GUIDE.md",
-      "sha256": "dfb91a9ec757843507e95b7db4f61b3bde41f06db67c0dc7d7444fb642b21c29"
+      "sha256": "32486c7a199567c80bf9f8335b33ef15e715c02bb0b7db42cd7a9579eed1b64f"
     },
     {
       "path": "results/recorded-token-costs.svg",
@@ -229,5 +229,20 @@
       "category": "separate_posthoc_results_or_publication_guide"
     }
   ],
-  "scope": "Exact original design plus separately versioned post-hoc fixes and sanitized summaries. No raw sessions, provider IDs or toolkit copies."
+  "scope": "Exact original design plus separately versioned post-hoc fixes and sanitized summaries. No raw sessions, provider IDs or toolkit copies.",
+  "documentation_refresh": {
+    "scope": "public navigation and concise results only; frozen designs, observations and scores unchanged",
+    "files": [
+      {
+        "path": "results/REVIEW.md",
+        "previous_sha256": "6c37f7ecba8defa7fda7f99560589ee2d81f800b287048040e721aed09f08bda",
+        "sha256": "5dda608b42ec27b44d9c6901098bf71369969ba5349c0a4747e9ca6a44e104dd"
+      },
+      {
+        "path": "PUBLICATION-GUIDE.md",
+        "previous_sha256": "dfb91a9ec757843507e95b7db4f61b3bde41f06db67c0dc7d7444fb642b21c29",
+        "sha256": "32486c7a199567c80bf9f8335b33ef15e715c02bb0b7db42cd7a9579eed1b64f"
+      }
+    ]
+  }
 }

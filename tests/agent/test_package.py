@@ -1,5 +1,5 @@
 """Run generated launchers in a directory outside the source checkout."""
-import asyncio,json,os,shutil,subprocess,sys,tempfile,unittest,yaml,zipfile
+import asyncio,json,os,re,shutil,subprocess,sys,tempfile,unittest,yaml,zipfile
 from pathlib import Path
 from mcp import ClientSession,StdioServerParameters
 from mcp.client.stdio import stdio_client
@@ -81,6 +81,13 @@ else:raise AssertionError('missing optional decoder was reported available')
                 stage=root/kind;stage.mkdir()
                 plugin=output/kind/'simscene'
                 self.assertTrue((plugin/'README.md').is_file())
+                for reference in (plugin/'skills').rglob('*.md'):
+                    for link in re.findall(r'\]\(([^\s)]+)\)',reference.read_text()):
+                        target=link.split('#')[0]
+                        if not target or ':' in target:continue
+                        resolved=(reference.parent/target).resolve()
+                        self.assertTrue(resolved.is_relative_to(plugin.resolve()),str(reference))
+                        self.assertTrue(resolved.is_file(),f'{reference}: missing {target}')
                 for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
                     self.assertTrue((plugin/notice).is_file())
                     self.assertEqual((plugin/notice).read_bytes(),(ROOT/notice).read_bytes())

@@ -186,6 +186,22 @@ class CatalogAgentEvalTests(unittest.TestCase):
             'server':'simscene','tool':'catalog_search','arguments':{'filters':None},'result':{},'status':'completed'}})+'\n')
         self.assertEqual(harness.analyze_trace(path)['explicit_sources_searched'],[])
 
+    def test_own_relative_globs_and_rg_exclusion_patterns_are_not_external_reads(self):
+        for command in ('cat task/cache/*/simscene-lock.json',
+                        "rg --files -g '!**/.codex/**' -g '!**/.git/**' .",
+                        "rg --files --glob='!**/.codex/**' task"):
+            with self.subTest(command=command):
+                self.assertEqual(self.audit_command(command)['scope_violations'],[])
+
+    def test_glob_handling_keeps_external_operands_and_executable_text(self):
+        for command in ('cat /*/secret','cat /etc/secret',
+                        "rg --files -g '!**/.codex/**' /etc",
+                        'rg --files -g "$(cat /etc/secret)" .',
+                        "rg --files -g '!**/.codex/**' .; cat /etc/secret",
+                        'cat task/cache/*/../../../../etc/secret'):
+            with self.subTest(command=command):
+                self.assertTrue(self.audit_command(command)['scope_violations'])
+
     def test_reassessment_is_new_file_with_original_and_evaluator_hashes(self):
         output,_=self.prepared();self.trace(output)
         harness.evaluate_output(output,{'exit_code':0,'timed_out':False},self.fake_verifier)

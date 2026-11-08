@@ -27,6 +27,15 @@ rows include frame_id,camera_id,physics_step,sim_time_s,video_time_s,width,heigh
 and optional raw_png. First PNG plus periodic keyframes are saved; diagnostic
 full PNG capture is optional and limited to10 simulated seconds.
 
+The worker pauses physics and flushes rendering before reading each due camera
+batch, including nonempty sensor buffers that may hold an earlier frame. The
+manifest records the render barrier and unchanged absolute step/time.
+`video_inspect` reports these receipts separately as `render_synchronization`:
+`guarded`, `unrecorded` for older clips, or `invalid`. A nominal frame clock
+alone cannot establish RGB/physical-pose alignment. Moving-body projection and
+native/decoded pixel checks validate that alignment on the tested SDK; the
+barrier receipt is not an independent sensor timestamp or visual-quality pass.
+
 Lens lengths in mm convert to USD tenths of metre-stage units (mm/100), while
 focus/clipping distances are metres. The horizontal aperture and resolution
 set vertical aperture/aspect. Focal length changes FOV; focus distance and f-stop

@@ -24,6 +24,28 @@ def probe(path):
     try:return json.loads(subprocess.check_output(command,stderr=subprocess.PIPE,timeout=300))
     except (subprocess.SubprocessError,ValueError) as error:raise SceneError('video probe failed: '+str(error)) from error
 
+def render_synchronization(rows):
+    """Audit declared barrier receipts, independently of nominal frame cadence."""
+    contexts=[row.get('render_context') if isinstance(row.get('render_context'),dict) else {} for row in rows]
+    receipts=[context.get('render_barrier') for context in contexts]
+    scope='saved render-barrier receipts; not an independent sensor timestamp or pixel/pose verdict'
+    if not any(value is not None for value in receipts):
+        return {'status':'unrecorded','frames':len(rows),'scope':scope}
+    valid=bool(rows);offset=None;time_origin=None
+    for row,context,receipt in zip(rows,contexts,receipts):
+        if not isinstance(receipt,dict):valid=False;continue
+        if type(row.get('physics_step')) is not int:valid=False;continue
+        absolute=receipt.get('absolute_physics_step');time=receipt.get('absolute_simulation_time_s')
+        current_offset=absolute-row['physics_step'] if type(absolute) is int else None
+        current_origin=time-row['physics_step']/60 if finite(time) else None
+        if offset is None:offset=current_offset;time_origin=current_origin
+        valid=valid and (receipt.get('policy')=='paused-render-barrier-v1'
+            and type(receipt.get('application_updates')) is int and 2<=receipt['application_updates']<=8
+            and receipt.get('physics_unchanged') is True and current_offset is not None and current_offset>=0 and current_offset==offset
+            and current_origin is not None and time_origin is not None and abs(current_origin-time_origin)<1e-6
+            and context.get('absolute_physics_step')==absolute)
+    return {'status':'guarded' if valid else 'invalid','frames':len(rows),'scope':scope}
+
 def inspect(path,output_dir=None,representative_count=5,record=None):
     path=Path(path).expanduser().resolve()
     if not path.is_file():raise SceneError('video file not found')
@@ -50,7 +72,11 @@ def inspect(path,output_dir=None,representative_count=5,record=None):
                         with Image.open(image_path) as image:ok=image.size==(stream['width'],stream['height'])
                     except OSError:ok=False
                     raw_checks.append({'path':str(image_path),'native_size_matches':ok});valid=valid and ok
-            timeline={'passed':bool(valid),'frames':len(rows),'first_physics_step':first,'last_physics_step':rows[-1]['physics_step'] if rows else None,'interval_steps':interval,'raw_keyframes':raw_checks}
+            synchronization=render_synchronization(rows)
+            if synchronization['status']=='invalid':
+                valid=False;issues.append('render barrier receipts are incomplete or inconsistent')
+            timeline={'passed':bool(valid),'frames':len(rows),'first_physics_step':first,'last_physics_step':rows[-1]['physics_step'] if rows else None,'interval_steps':interval,'raw_keyframes':raw_checks,'render_synchronization':synchronization,
+                      'scope':'declared capture cadence and saved dimensions; pixel/physical-pose alignment requires separate evidence'}
             if not valid:issues.append('native capture size, frame count or simulation clock mismatch')
     else:
         edit_path=path.with_suffix('.edit.json')

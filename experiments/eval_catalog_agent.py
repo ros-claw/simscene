@@ -213,6 +213,27 @@ def command_diagnostic(command, audited):
             'command_excerpt':audited[:240]}
 
 
+def file_audit_text(command):
+    """Ignore literal rg glob options, while retaining executable shell text."""
+    if any(char in command for char in '$`;\n\r&|<>'):
+        return command
+    try:
+        tokens=shlex.split(command)
+    except ValueError:
+        return command
+    if not tokens or tokens[0]!='rg':return command
+    result=[];index=0
+    while index<len(tokens):
+        token=tokens[index]
+        if token in ('-g','--glob','--iglob') and index+1<len(tokens):
+            result.extend([token,'LITERAL_GLOB']);index+=2;continue
+        if token.startswith(('--glob=','--iglob=')):
+            result.append(token.split('=',1)[0]+'=LITERAL_GLOB')
+        else:result.append(token)
+        index+=1
+    return shlex.join(result)
+
+
 def analyze_trace(path, work=None):
     """Keep call status histories/errors; never infer success from agent prose."""
     calls = {}; invalid = []; violations = []; turns = []; commands = []
@@ -247,10 +268,13 @@ def analyze_trace(path, work=None):
                              'output_sha256':hashlib.sha256(str(item.get('aggregated_output','')).encode()).hexdigest()})
             if re.search(r'(?<![\w/-])(?:curl|wget|pip|npm|codex|isaac[-_]?sim)\s|(?:from|import)\s+simscene\b|subprocess|os\.system', command, re.I):
                 violations.append({'line': number, 'reason': 'possible shell MCP bypass', **diagnostic})
-            if str(Path(__file__).resolve().parents[1]) in command or re.search(r'(?:cat|tee|find|rg|ls|sed|head|tail)\s+[^\n]*(?:\.\./|/\.codex/)', command):
+            file_command=file_audit_text(command)
+            if str(Path(__file__).resolve().parents[1]) in file_command or re.search(r'(?:cat|tee|find|rg|ls|sed|head|tail)\s+[^\n]*(?:\.\./|/\.codex/)', file_command):
                 violations.append({'line': number, 'reason': 'possible read outside own task', **diagnostic})
             if work and re.search(r'\b(?:cat|tee|find|rg|ls|sed|head|tail)\s',command):
-                paths=re.findall(r'(?<![:\w])/[A-Za-z0-9_.~/-]+',command)
+                # Relative globs such as task/cache/*/lock.json are one path,
+                # not an absolute /lock.json tail. Keep absolute glob operands.
+                paths=re.findall(r'(?<![\w:./*?\[\]{}~-])/[A-Za-z0-9_.*?~\[\]{}/-]+',file_command)
                 if any(p not in ('/bin/bash','/dev/null') and not p.startswith(str(work)+'/') and p!=str(work) for p in paths):
                     violations.append({'line':number,'reason':'external path in shell file command',**diagnostic})
     successful = []
