@@ -1,0 +1,175 @@
+{
+  "schema": "simscene.kinetic_gallery_public_validation.v1",
+  "scope": "Specific fixed configuration, same-host recipe reconstruction and declared length edit only; no whole-library physics, continuous whole-gallery passive chain or token savings claim. Raw source runs remain outside Git.",
+  "runtime": {
+    "isaac": "6.2.0-rc.14+release.52805.02189a84.gl",
+    "physx": "110.4.4",
+    "usd": "0.25.11",
+    "gpu": "NVIDIA RTX A6000",
+    "requested_physics": "CPU; loaded scene readback GPU dynamics disabled, MBP,60Hz; not independent device telemetry"
+  },
+  "main": {
+    "run_id": "c4225168ce944660a318c4fceaa8b4e6",
+    "requested_steps": 3600,
+    "physics_hz": 60,
+    "seed": 42,
+    "physics_device": "cpu",
+    "run_lock_sha256": "8e1b427dbd5cc47fa77b940e0d07c960364d56b6dbb6f1c71dcef5ba7832de82",
+    "evidence_lock_sha256": "046e993a279d2f93a2f2e762b9c8ab9e5e1456d780110deec8d0a2e505dd1593",
+    "case_sha256": "212e770119b699be0cda6e8ffccd3efc6cafc425f9abecdd2eb0f9a5ef10980d",
+    "worker_snapshot_digest": "a5a19f2b8a1bcc1cbb6de5417d6eb04992a1dac28e9f933436df9db598188238",
+    "physical_passed": true,
+    "input_integrity_passed": true,
+    "output_integrity_passed": true,
+    "components": {
+      "imported_handoffs": true,
+      "cross_catalog_routing": true,
+      "native_joint_motion": true,
+      "generated_open_receiver": true
+    }
+  },
+  "missing_middle_control": {
+    "run_id": "268041705e5347bcb6864f1517cab948",
+    "requested_steps": 3600,
+    "physics_hz": 60,
+    "seed": 42,
+    "physics_device": "cpu",
+    "run_lock_sha256": "53f7cf76dffd8a76bb03faa8f9c91b3551b16f98c4d292ef25f81dd185b5181e",
+    "evidence_lock_sha256": "f3a37d1a591c80e67edef08c68aa5710735e771b2d8b6ddb37bfc6ee56dfdfef",
+    "case_sha256": "212e770119b699be0cda6e8ffccd3efc6cafc425f9abecdd2eb0f9a5ef10980d",
+    "worker_snapshot_digest": "a5a19f2b8a1bcc1cbb6de5417d6eb04992a1dac28e9f933436df9db598188238",
+    "physical_passed": false,
+    "input_integrity_passed": true,
+    "output_integrity_passed": true,
+    "components": {
+      "imported_handoffs": false,
+      "cross_catalog_routing": true,
+      "native_joint_motion": true,
+      "generated_open_receiver": true
+    },
+    "expected_negative_passed": true,
+    "counterfactual_checks": {
+      "complete_steps": true,
+      "complete_frames": true,
+      "not_partial": true,
+      "samples_not_truncated": true,
+      "contacts_not_truncated": true,
+      "contact_geometry_complete": true,
+      "no_followers": true,
+      "no_chain_drive_controllers": true,
+      "exact_prepared_source_motion_body": true,
+      "full_body_pose_and_bounds_observations": true,
+      "full_bounded_trajectory": true,
+      "tiles_initially_upright": true,
+      "source_actual_travel": true,
+      "actual_source_first_tile_contact": true,
+      "first_tile_activated_after_source_contact": true,
+      "upstream_still_tips": true,
+      "downstream_remains_upright": true,
+      "no_source_bypass_contact": true,
+      "ball_not_activated": true,
+      "no_downstream_ball_contact": true,
+      "no_receiver_completion": true,
+      "prepared_selection_and_geometry_pinned": true,
+      "bindings_pinned_to_run": true,
+      "positive_reference_passed": true,
+      "render_delta_has_no_physical_actors": true,
+      "only_frozen_middle_tile_removed": true,
+      "same_frozen_case": true,
+      "same_runtime_python_files": true,
+      "same_runtime_configuration": true
+    },
+    "render_only_delta": "Four cameras omitted under case-frozen policy; retained light-only prepared HDRI; actual no-physics-schema proof passed."
+  },
+  "length_variant": {
+    "run_id": "4fa83e333b27412c93a5cf57005efcef",
+    "requested_steps": 3600,
+    "physics_hz": 60,
+    "seed": 42,
+    "physics_device": "cpu",
+    "run_lock_sha256": "13e417dc6d3ea21fb7ddd39defa4c7c6f0f93b9cb090a5fefd34c3079b399cbc",
+    "evidence_lock_sha256": "02594fa4aadce2bd4c735930cb788bfae7df08aca40ed2c38eb3c4882466914a",
+    "case_sha256": "ac521863d968922c6907a2006af0357e6739156ea21dae4e7ac28fcff4361e92",
+    "worker_snapshot_digest": "a5a19f2b8a1bcc1cbb6de5417d6eb04992a1dac28e9f933436df9db598188238",
+    "physical_passed": true,
+    "input_integrity_passed": true,
+    "output_integrity_passed": true,
+    "components": {
+      "imported_handoffs": true,
+      "cross_catalog_routing": true,
+      "native_joint_motion": true,
+      "generated_open_receiver": true
+    },
+    "parameter_change": {
+      "guide_length_m": {
+        "before": 0.5,
+        "after": 0.65
+      }
+    },
+    "edit_compiler": "length_variant.py",
+    "preparation": "new separately generated/prepared source and pins; same native drive schedule; fresh3600step run"
+  },
+  "new_directory_rebuild": {
+    "run_id": "24778219bedc4517b5232c5c12e501a1",
+    "requested_steps": 3600,
+    "physics_hz": 60,
+    "seed": 42,
+    "physics_device": "cpu",
+    "run_lock_sha256": "18ab14b7349cdd8718cccd5e5ffd9074189c078c0e4bf92f5a487c31f9fd7ef9",
+    "evidence_lock_sha256": "814c4f23741257c51121e044b7c4e12f6255bdbe375c8b2539675d630db88ed7",
+    "case_sha256": "3d4ce2c3f993d4ad4a7aedb73c3332b5f703cd845e495f35a3f53d77725898c8",
+    "worker_snapshot_digest": "9505d55d5e9b87711bc015abcf7a41a7bb218c1c37e2a5410e6d9bf0d90e7569",
+    "physical_passed": true,
+    "input_integrity_passed": true,
+    "output_integrity_passed": true,
+    "components": {
+      "imported_handoffs": true,
+      "cross_catalog_routing": true,
+      "native_joint_motion": true,
+      "generated_open_receiver": true
+    },
+    "cache_scope": "fresh state/index/prepared directories; shared original source cache; no original prepared path",
+    "actual_source_download_bytes": 274856
+  },
+  "film": {
+    "duration_s": 66.0,
+    "native_resolution": [
+      1920,
+      1080
+    ],
+    "fps": 30,
+    "decoded_frames": 1980,
+    "sha256": "f0aa20edd910976cefbbbb8a891ceab1efd23d7fe91f2d9860c554aed41a5a7b",
+    "edit_provenance_passed": true,
+    "sources": {
+      "overview": {
+        "frames": 1800,
+        "sha256": "148b4915c7ce0b9753f41483aceb02a747478c6c2a0967975e49f91eb64e5807",
+        "timeline_passed": true
+      },
+      "chain_follow": {
+        "frames": 360,
+        "sha256": "e03544cf949aa99d821b2ee076cb5eaa014ed588b688b1ea48c28121e6896781",
+        "timeline_passed": true
+      },
+      "routing_and_joint": {
+        "frames": 1800,
+        "sha256": "cc500cd66d06c5b14c2ba131b07e89cc3eb9fa7283c337ca56d96b351843041c",
+        "timeline_passed": true
+      },
+      "receiver_close": {
+        "frames": 150,
+        "sha256": "70f0071ad2cf0003f1c23369b33c68cee928f03e27bd17f4a291780a70307ced",
+        "timeline_passed": true
+      }
+    }
+  },
+  "separate_short_variant_capture": {
+    "run_id": "fcc1d17857f8489d9939bc83e6f81675",
+    "steps": 600,
+    "physical_and_integrity_passed": true,
+    "recovery": "Original outer waiter stopped as stalled after an operator pause. Same worker later completed with recorded exit0 and passed upon reattachment; no new physical job. Original failure receipt retained.",
+    "scope": "film uses chain detail only; the full-length variant is independently verified above."
+  },
+  "efficiency": "No per-edit model usage available; cross-task advantage requires the separate paired protocol."
+}

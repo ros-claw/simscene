@@ -18,6 +18,15 @@ dist/
 *.key
 .codex/
 .agents/
+# Internal project plans, implementation reports and supplied production kits
+/SIMSCENE_*.md
+/*实施报告*.md
+/*想法*.md
+/一个富有挑战的尝试*.md
+/SimScene_*Kit.zip
+/SimScene_*Handoff*.zip
+/SimScene_*Implementation_Plan*.md
+/SimScene_*Playbook*.html
 state/
 cache/
 logs/
@@ -39,12 +48,9 @@ logs/
 !docs/media/precision-workshop-1080p30.mp4
 !docs/media/maintenance-workbench-1080p30.mp4
 !docs/media/chain-workshop-1080p30.mp4
+!docs/media/only-one-sugar-public-55s.mp4
+!docs/media/only-one-sugar-details-20s.mp4
+!docs/media/red-rope-causal-comparison-20s.mp4
 
 
-# Internal plans and production notes
-/SIMSCENE_*.md
-/*实施报告*.md
-/*想法*.md
-/一个富有挑战的尝试*.md
-/SimScene_*Kit.zip
-/SimScene_*Playbook*.html
+!docs/media/kinetic-asset-gallery-1080p30.mp4

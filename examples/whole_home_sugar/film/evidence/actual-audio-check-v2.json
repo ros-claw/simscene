@@ -1,0 +1,9 @@
+{
+  "decoded_samples": 2640896,
+  "expected_samples": 2640000,
+  "first_above_minus50db_s": 49.63333333333333,
+  "peak_dbfs": -11.887760883388786,
+  "contact_target_s": 49.63333333333333,
+  "error_s": 0.0,
+  "scope": "Numeric AAC decoding, not subjective auditory testing"
+}

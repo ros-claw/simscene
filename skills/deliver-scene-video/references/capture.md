@@ -48,6 +48,11 @@ checks native frame provenance and writes decoded representative frames. Final
 edited files have an adjacent `.edit.json` source/time map; inspect that in
 addition to decoded footage. Codec tags alone do not prove native capture.
 
+`video_export` accepts `font_file` for on-screen titles and records its SHA256.
+CJK titles use the installed Noto CJK font when available; otherwise supply a
+CJK-capable server-side font. Decode and inspect real text: an encode can
+succeed while a missing font renders squares.
+
 For editable camera motion use `camera_path:[{time_s:0,position:[x,y,z],target:[x,y,z]},...]`
 with increasing times and two to200 nodes. The exporter authors USD camera
 poses at60 timecodes/second; positions interpolate and rotations keep quaternion

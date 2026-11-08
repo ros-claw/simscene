@@ -6,13 +6,16 @@ performed by the host's own CLI and verified by reading it back.
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
 import sys
 
 
-def install(package, destination, project=None, register_codex=False, isaac_python=None, codex='codex'):
+def install(package, destination, project=None, register_codex=False, isaac_python=None, codex='codex', mcp_name='simscene'):
+    if not isinstance(mcp_name,str) or not re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,63}',mcp_name):
+        raise ValueError('MCP name must be a bounded alphanumeric identifier')
     package = Path(package).expanduser().resolve()
     destination_path = Path(destination).expanduser()
     if destination_path.is_symlink():
@@ -41,8 +44,8 @@ def install(package, destination, project=None, register_codex=False, isaac_pyth
     if register_codex:
         query = subprocess.run([codex, 'mcp', 'list', '--json'], capture_output=True, text=True, env=env, check=True)
         registrations = json.loads(query.stdout)
-        if any(item.get('name') == 'simscene' for item in registrations):
-            raise FileExistsError('Codex already has a simscene MCP registration; it was not changed')
+        if any(item.get('name') == mcp_name for item in registrations):
+            raise FileExistsError(f'Codex already has a {mcp_name} MCP registration; it was not changed')
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.mkdir()  # exclusive: do not overwrite a pre-existing package
     created_skills=[]
@@ -53,25 +56,28 @@ def install(package, destination, project=None, register_codex=False, isaac_pyth
         for target in skills:
             target.parent.mkdir(parents=True,exist_ok=True);target.mkdir();created_skills.append(target)
             shutil.copytree(destination/'skills'/target.name,target,dirs_exist_ok=True)
+            # Copied skill helpers must find their matching vendored code even
+            # when the user's project is outside the development checkout.
+            (target/'.simscene-plugin-root').write_text(str(destination)+'\n')
     except BaseException:
         shutil.rmtree(destination, ignore_errors=True)
         for target in created_skills:shutil.rmtree(target,ignore_errors=True)
         raise
     result = {'package_root':str(destination), 'package_installed':True,
               'project_skill':str(skill) if skill else None,'project_skills':[str(target) for target in skills], 'codex_mcp_registered':False,
-              'native_plugin_installed':False}
+              'native_plugin_installed':False, 'mcp_name':mcp_name}
     if register_codex:
-        command = [codex, 'mcp', 'add', 'simscene']
+        command = [codex, 'mcp', 'add', mcp_name]
         if isaac_python:
             command += ['--env', 'SIMSCENE_ISAAC_PYTHON=' + isaac_python]
         command += ['--', str(Path(sys.executable).resolve()), str(destination / 'server/launch.py')]
         result['codex_mcp_registered'] = None  # a failed readback is uncertain
         try:
             subprocess.run(command, capture_output=True, text=True, env=env, check=True)
-            query = subprocess.run([codex, 'mcp', 'get', 'simscene', '--json'], capture_output=True, text=True, env=env, check=True)
+            query = subprocess.run([codex, 'mcp', 'get', mcp_name, '--json'], capture_output=True, text=True, env=env, check=True)
             registered = json.loads(query.stdout)
             transport = registered.get('transport') or {}
-            if (registered.get('name') != 'simscene' or transport.get('type') != 'stdio' or
+            if (registered.get('name') != mcp_name or transport.get('type') != 'stdio' or
                 transport.get('command') != str(Path(sys.executable).resolve()) or
                 transport.get('args') != [str(destination / 'server/launch.py')]):
                 raise RuntimeError('Codex registration readback did not match the installed launcher')
@@ -90,8 +96,9 @@ def main():
     p.add_argument('--project', help='existing project in which to install the build-scene skill')
     p.add_argument('--register-codex', action='store_true', help='register the installed MCP server with Codex')
     p.add_argument('--isaac-python', help='absolute Isaac Sim python.sh for the registered server')
+    p.add_argument('--mcp-name',default='simscene',help='new distinct MCP name for parallel installations')
     args=p.parse_args()
-    result=install(args.package,args.destination,args.project,args.register_codex,args.isaac_python)
+    result=install(args.package,args.destination,args.project,args.register_codex,args.isaac_python,mcp_name=args.mcp_name)
     print(json.dumps(result,indent=2))
     if args.register_codex and not result['codex_mcp_registered']:
         raise SystemExit(1)

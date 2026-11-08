@@ -7,3 +7,9 @@
 *.png binary
 /evidence/** linguist-generated=true
 
+# Historical evaluator artifacts retain their independently recorded bytes.
+/experiments/skill_pilot_suite/** -text
+/experiments/skill_pilot_suite/results/usage-summary-public.csv whitespace=trailing-space,space-before-tab,cr-at-eol
+/experiments/skill_pilot_suite/results/recorded-token-costs.svg -whitespace linguist-generated=true
+/experiments/skill_pilot_suite/supplementary-v2/original-to-supplementary.diff -whitespace
+

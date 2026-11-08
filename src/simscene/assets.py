@@ -69,7 +69,9 @@ class USDSearch:
         except (URLError, TimeoutError, OSError, ValueError) as e:
             raise SearchError(f"USD Search request failed at {path}: {e}") from e
 
-    def search(self, query, limit=20, filters=None, image=None):
+    def search(self, query, limit=20, filters=None, image=None, *, return_images=True):
+        if type(return_images) is not bool:
+            raise ValueError('return_images must be a boolean')
         if not query and not image:
             raise ValueError("A text query or image is required")
         if not 1 <= limit <= 100:
@@ -88,7 +90,7 @@ class USDSearch:
         # deliberately exploring a different indexed format.
         body.setdefault('file_extension_include','usd*')
         body.update(return_metadata=True, return_usd_dimensions=True, return_usd_properties=True,
-                    return_vision_generated_metadata=True, return_images=True, limit=limit)
+                    return_vision_generated_metadata=True, return_images=return_images, limit=limit)
         if query:
             body.update(hybrid_text_query=query, vector_queries=[{"field_name":"siglip2-embedding.embedding", "query_type":"text", "query":query}])
         if image:

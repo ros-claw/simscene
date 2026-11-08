@@ -1,0 +1,108 @@
+{
+  "schema": "simscene.independent_pilot_report.v1",
+  "task_id": "P2",
+  "checker_sha256": "adccb224e983e2826a9dd220f63e802acb374b09e9f6fc62ee529558715c6061",
+  "case_sha256": "ea106fe7dd79d28233d0bc9e2d1e9a9ebf18d85f10578840a0dd1e6d8eda0eed",
+  "identity_sha256": "42e1c010f8b98ccbea0096d3f6b23c766081581dda4f6d80cd1704ab9950a643",
+  "freeze": {
+    "passed": true,
+    "checks": {
+      "CPU-CHECKS.json": true,
+      "README.md": true,
+      "examiner/ACCEPTANCE.md": true,
+      "examiner/freeze_runtime_identity.py": true,
+      "examiner/score.py": true,
+      "examiner/test_score_cpu.py": true,
+      "public/P1/prompt.md": true,
+      "public/P1/public-case.json": true,
+      "public/P2/prompt.md": true,
+      "public/P2/public-case.json": true,
+      "smoke-source/generic_smoke_ops.py": true,
+      "simscene.run_integrity": true,
+      "simscene.evidence_integrity": true,
+      "simscene.verification.mechanism": true,
+      "simscene.verification.passive_network": true,
+      "simscene.scene": true
+    },
+    "freeze_sha256": "a0d4b4a39b9e5742d0165c537bb360d06d6a258f8a027edd84129680952da379"
+  },
+  "positive": {
+    "directory": "/data/rosclaw/simscene-film-skill-20261103/pilot/trial03/state/runs/87d351b55b1c4dedb70184a10c134cb9",
+    "checks": {
+      "input_lock_complete": true,
+      "output_lock_complete_not_partial": true,
+      "case_pinned_before_native_run": true,
+      "worker_snapshot_pinned": true,
+      "frozen_runtime_identity": true,
+      "fixed_seed_and_steps": true,
+      "fixed_timestep": true,
+      "v43_scene_schema_valid": true,
+      "declared_roles_present": true,
+      "only_primitive_geometry_and_passive_infrastructure": true,
+      "object_budget": true,
+      "exact_dynamic_inventory": true,
+      "exact_joint_inventory": true,
+      "per_step_strict_contact_observation": true,
+      "no_active_or_external_scene_fields": true,
+      "one_fixed_low_resolution_camera": true,
+      "all_dynamics_explicit_mass_collision": false,
+      "only_driver_scheduled": true,
+      "driver_real_metric_sphere": true,
+      "payload_free_upright_metric_box": true,
+      "ramp_and_horizontal_deck_static_collision": false,
+      "driver_payload_pair_collidable": true
+    },
+    "input_integrity": {
+      "passed": true,
+      "checks": {
+        "spec.json": true,
+        "scene.usda": true,
+        "asset-lock.json": true,
+        "runtime-lock.json": true,
+        "acceptance_case": true,
+        "asset_lock_coverage": true,
+        "controller_lock_coverage": true,
+        "worker_code_snapshot": true,
+        "runtime_launcher": true,
+        "queue_launcher": true
+      },
+      "errors": [],
+      "scope": "recorded run input integrity; external files may change after this check and physics success is not established"
+    },
+    "output_integrity": {
+      "passed": true,
+      "partial": false,
+      "checks": {
+        "result.json": true,
+        "camera_camera.png": true,
+        "camera_camera.mp4": true,
+        "camera_camera.ffmpeg.log": true,
+        "camera_camera.frames.jsonl": true,
+        "camera_camera_frame_000000.png": true,
+        "camera_camera_frame_000299.png": true,
+        "render-settings.json": true
+      },
+      "errors": [],
+      "scope": "saved artifact hashes; not a signature or proof of task success"
+    },
+    "runtime_identity_checks": {
+      "worker_code_sha256": true,
+      "physics_dt_s": true,
+      "physics_device": true,
+      "runtime_python": true,
+      "runtime_python_sha256": true,
+      "queue_launcher_python": true,
+      "queue_launcher_python_sha256": true,
+      "runtime_version": true,
+      "gpu_selection": true,
+      "continue_on_controller_error": true,
+      "archive_verified_objects": true
+    },
+    "passed": false
+  },
+  "negative": null,
+  "intervention": null,
+  "positive_passed": false,
+  "physics_suite_passed": false,
+  "scope": "Native sealed physics and isolated causal control only. Overall arm status also requires independent review of visibility, assistance, attempt counts and frozen model/time/usage budgets. No efficiency conclusion follows from this report alone."
+}

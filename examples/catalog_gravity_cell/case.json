@@ -1,0 +1,140 @@
+{
+  "contact_scope": "Every notebook must directly contact its own ramp, angled baffle and receiver floor; no timing-order claim.",
+  "objects": {
+    "book_left_front": {
+      "contact_bodies": [
+        "/World/book_left_front/Asset/Body"
+      ],
+      "initial_height_m": 1.6051983670141947,
+      "min_drop_m": 0.15,
+      "motion_body": "/World/book_left_front/Asset/Body",
+      "required_contact_actors": [
+        "/World/ramp_left",
+        "/World/baffle_left",
+        "/World/bin_left_floor"
+      ],
+      "support_actors": [
+        "/World/bin_left_floor"
+      ],
+      "target_bounds": {
+        "max": [
+          1.055,
+          -0.027999999999999997,
+          1.2490512999999999
+        ],
+        "min": [
+          0.005,
+          -0.31200000000000006,
+          1.0140513
+        ]
+      },
+      "visual_roots": [
+        "/World/book_left_front/Asset/Body/Visual"
+      ]
+    },
+    "book_left_rear": {
+      "contact_bodies": [
+        "/World/book_left_rear/Asset/Body"
+      ],
+      "initial_height_m": 1.836601906501349,
+      "min_drop_m": 0.15,
+      "motion_body": "/World/book_left_rear/Asset/Body",
+      "required_contact_actors": [
+        "/World/ramp_left",
+        "/World/baffle_left",
+        "/World/bin_left_floor"
+      ],
+      "support_actors": [
+        "/World/bin_left_floor"
+      ],
+      "target_bounds": {
+        "max": [
+          1.055,
+          -0.027999999999999997,
+          1.2490512999999999
+        ],
+        "min": [
+          0.005,
+          -0.31200000000000006,
+          1.0140513
+        ]
+      },
+      "visual_roots": [
+        "/World/book_left_rear/Asset/Body/Visual"
+      ]
+    },
+    "book_right_front": {
+      "contact_bodies": [
+        "/World/book_right_front/Asset/Body"
+      ],
+      "initial_height_m": 1.6051983670141947,
+      "min_drop_m": 0.15,
+      "motion_body": "/World/book_right_front/Asset/Body",
+      "required_contact_actors": [
+        "/World/ramp_right",
+        "/World/baffle_right",
+        "/World/bin_right_floor"
+      ],
+      "support_actors": [
+        "/World/bin_right_floor"
+      ],
+      "target_bounds": {
+        "max": [
+          1.055,
+          0.31200000000000006,
+          1.2490512999999999
+        ],
+        "min": [
+          0.005,
+          0.027999999999999997,
+          1.0140513
+        ]
+      },
+      "visual_roots": [
+        "/World/book_right_front/Asset/Body/Visual"
+      ]
+    },
+    "book_right_rear": {
+      "contact_bodies": [
+        "/World/book_right_rear/Asset/Body"
+      ],
+      "initial_height_m": 1.836601906501349,
+      "min_drop_m": 0.15,
+      "motion_body": "/World/book_right_rear/Asset/Body",
+      "required_contact_actors": [
+        "/World/ramp_right",
+        "/World/baffle_right",
+        "/World/bin_right_floor"
+      ],
+      "support_actors": [
+        "/World/bin_right_floor"
+      ],
+      "target_bounds": {
+        "max": [
+          1.055,
+          0.31200000000000006,
+          1.2490512999999999
+        ],
+        "min": [
+          0.005,
+          0.027999999999999997,
+          1.0140513
+        ]
+      },
+      "visual_roots": [
+        "/World/book_right_rear/Asset/Body/Visual"
+      ]
+    }
+  },
+  "prepared_manifest_sha256": "${notebook.prepared_manifest_sha256}",
+  "scaling_note": "All four actual notebook instances share immutable150mm-longest experimental geometry and .12kg mass; no manufacturer dimensions/mass claim.",
+  "schema": "simscene.rigid_asset_smoke.v1",
+  "schema_version": 1,
+  "source_ref": {
+    "asset_id": "B01DN8TB5U",
+    "revision": "c7c8293fed3b7ab122ef5d7896521a187e0962d7",
+    "source_id": "abo-glb",
+    "variant_id": null
+  },
+  "workbench_scope": "Native legacy-compatible visual-only source. License unresolved; no default-ready catalog plan or redistribution grant asserted."
+}

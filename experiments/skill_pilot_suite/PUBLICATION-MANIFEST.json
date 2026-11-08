@@ -1,0 +1,233 @@
+{
+  "files": [
+    {
+      "path": "original-design/CPU-CHECKS.json",
+      "sha256": "d7577683c9683237494f889ddc12108d14fdf499f8861dc1c089620bb5f27175",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/README.md",
+      "sha256": "472642a3bfaa25415c1e9b4f58288db6bbb872a28de3ff7f99d048d165e94ccf",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/examiner/ACCEPTANCE.md",
+      "sha256": "ef0206afa669c44bbc26dc700a507da48c41e7583822bda6add84fe1ba623950",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/examiner/freeze_runtime_identity.py",
+      "sha256": "0968f80abd81197e8d626ab28c0b7a9e1d8f7876b33d40450bac31341b8d34bd",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/examiner/score.py",
+      "sha256": "adccb224e983e2826a9dd220f63e802acb374b09e9f6fc62ee529558715c6061",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/examiner/test_score_cpu.py",
+      "sha256": "71855533e188e48e02de6b3f90a57dc8bf637e19e49c76ccc35e93f5837ef36a",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/public/P1/prompt.md",
+      "sha256": "3cbafc96ae8349b76c1c9925daaafc9653414dad146c4e20a86516d8ba1858a6",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/public/P1/public-case.json",
+      "sha256": "e3a5cfe886ac059f967270fc5ef84fb92f18fbee958c5fc276dfef6d2125b10e",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/public/P2/prompt.md",
+      "sha256": "b604edc90bfec4151033fb0c06db9e1b056b052ca3e8afa0eef7a9139bcdd825",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/public/P2/public-case.json",
+      "sha256": "ea106fe7dd79d28233d0bc9e2d1e9a9ebf18d85f10578840a0dd1e6d8eda0eed",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/smoke-source/generic_smoke_ops.py",
+      "sha256": "9c107eedccea432f3a90e739f783c0c88b7c4cf6610be39beb8d0a0ad1ebb58c",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "original-design/DESIGN-FREEZE.json",
+      "sha256": "a0d4b4a39b9e5742d0165c537bb360d06d6a258f8a027edd84129680952da379",
+      "category": "original_frozen_design"
+    },
+    {
+      "path": "supplementary-v2/score_v2.py",
+      "sha256": "36cc889764bc96e3136c2869c1a588c66a138aa709d520594e2f2413010441f5",
+      "category": "separate_supplementary_v2"
+    },
+    {
+      "path": "supplementary-v2/test_interfaces_cpu.py",
+      "sha256": "b3e36fb113d12474963f4d77eb71a246ee4ed5a72ce58c592295535dd48f5dcb",
+      "category": "separate_supplementary_v2"
+    },
+    {
+      "path": "supplementary-v2/README.md",
+      "sha256": "5af58acfee7672e6e07fed74ad8f5ef151fcad8d6e89cb08b01ac857a90c43fa",
+      "category": "separate_supplementary_v2"
+    },
+    {
+      "path": "supplementary-v2/CHANGE-RECORD.json",
+      "sha256": "c68c10e6c16368224d65b70aec1ee2f1c95221220ffba88bb1b2de49c80b618e",
+      "category": "separate_supplementary_v2"
+    },
+    {
+      "path": "supplementary-v2/original-to-supplementary.diff",
+      "sha256": "e395bf4551d6112ba42268de7f5b62a129a77a3a37a576af3d32058e60b01aa7",
+      "category": "separate_supplementary_v2"
+    },
+    {
+      "path": "supplementary-v2/CPU-REGRESSION-RESULT.json",
+      "sha256": "18753d2b14bb20f73a5acb2eaa49b96a7abe6e6c58246e0d7c1752fea56a9964",
+      "category": "separate_supplementary_v2"
+    },
+    {
+      "path": "historical/protocol.json",
+      "sha256": "11fda2ac4fc1bf69e56eb35a18a483e16bff6db02bf3d98c2ac6f9ca47a0d587",
+      "category": "historical_operator_protocol_or_sanitized_summary"
+    },
+    {
+      "path": "historical/candidate-freeze.json",
+      "sha256": "54485c9b29acf56d7d0f7dede16da7ddf20cd56aac79b1a2339cb45b1871036a",
+      "category": "historical_operator_protocol_or_sanitized_summary"
+    },
+    {
+      "path": "results/usage-summary-public.csv",
+      "sha256": "1f2a6c3bc8456f77627c451f68b31dab50fdd1050fcaa1aa4876f2c1587395ab",
+      "category": "historical_operator_protocol_or_sanitized_summary"
+    },
+    {
+      "path": "results/REVIEW-SUMMARY.json",
+      "sha256": "df8b41a2887b84c8b361709f2072fe89969111e9730c8eaa16b82444197b530f",
+      "category": "historical_operator_protocol_or_sanitized_summary"
+    },
+    {
+      "path": "supplementary-v2/SUPPLEMENTARY-FREEZE.json",
+      "sha256": "f414c4b4b7c607ebcbaaaf83aad8a3c18a51cf79e14cc924e1c9b33617ed47c6"
+    },
+    {
+      "path": "results/REVIEW.md",
+      "sha256": "6c37f7ecba8defa7fda7f99560589ee2d81f800b287048040e721aed09f08bda",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "PUBLICATION-GUIDE.md",
+      "sha256": "dfb91a9ec757843507e95b7db4f61b3bde41f06db67c0dc7d7444fb642b21c29"
+    },
+    {
+      "path": "results/recorded-token-costs.svg",
+      "sha256": "39b8ced1ad97d865eaf7e935ea7e6fbce67a982f0d8fc787f2f6fb567255ceb8",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/original-v1/trial01-POSTHOC-final-suite.json",
+      "sha256": "ea097e658f835bf7bb1df502859fdd8671dfe6b2e41942d5b41a5d1358ed2204",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/original-v1/trial01-positive-1.json",
+      "sha256": "863f11ba4c21d4a176309818532efc67cdf3b766e6d46c1977a9241f29b600df",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/original-v1/trial01-positive-2.json",
+      "sha256": "82335498a87a7c5029ca031343126cb3f51c97d5878e0c1e7ae6787ab683d8a5",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/original-v1/trial02-POSTHOC-final-suite.json",
+      "sha256": "8d33a3d2f798360887134c045afa9b653bca15fc786d7f791ccbd8ef699fe63d",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/original-v1/trial02-positive-1.json",
+      "sha256": "b09839c07cb5efceee005ebdf0308049cd70bdd49b2d3644510d6394005344f5",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/original-v1/trial02-positive-2.json",
+      "sha256": "bcb939e14aea63790423dccaf3730d036ee0014dd2964cca6776f1a2f849452b",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/original-v1/trial03-positive-1.json",
+      "sha256": "1ed13f88ca73f056e43ce8a756bc9940e620ae5cfdf6fb8a098c054fb4dba49e",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/original-v1/trial03-positive-2.json",
+      "sha256": "8393b54085aa260b2b02a86799eec46542d40e750ad81fd054f3777ba96d0c1c",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/original-v1/trial04-positive-1.json",
+      "sha256": "84a4df4b0464a2f33c770f3046a56879830c2133fb77034c1ad757bff629deed",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/original-v1/trial04-positive-2.json",
+      "sha256": "49873a4a7dd1da4e6ea18f1638f8d9e0408bd41e4d752982600e2205b4e3b722",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/supplementary-v2/trial01-POSTHOC-final-suite.json",
+      "sha256": "39cb802c4e8a10781b3888fb3c3f049abddba3b76d90b567b9c039d0d0380842",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/supplementary-v2/trial01-positive-1.json",
+      "sha256": "05300a8449a5a47a10a64d775c2bd38444aee1b4fcb784d87d97d455822ddba5",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/supplementary-v2/trial01-positive-2.json",
+      "sha256": "d8332e6a226eea4ef9d18bec339d9d75782f98b7add3dfa48b36d5b644e0ba13",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/supplementary-v2/trial02-POSTHOC-final-suite.json",
+      "sha256": "cec24da063c73deac92247982b9ff01eafdbf76c4422cc3dbafb2f2eed8f3ece",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/supplementary-v2/trial02-positive-1.json",
+      "sha256": "22320bfb7a27d79ef92103b3e5d0ac3ffe2a617e93f316eb0d939a23de19fa4c",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/supplementary-v2/trial02-positive-2.json",
+      "sha256": "5f747931a1bf24d6f283f30c2398105534c651cc34c9229b9463dfc97c00d00a",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/supplementary-v2/trial03-positive-1.json",
+      "sha256": "d3127814d159d53e3f31d29625712666b272f0e681c6d1a72d1b848b25db7ad9",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/supplementary-v2/trial03-positive-2.json",
+      "sha256": "94a4bc753b44659a6e9aec568208b3e63e39a9e9ac3d471d842f645251d56dd2",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/supplementary-v2/trial04-positive-1.json",
+      "sha256": "e463da0a8f4875bea0b3b189675fdcb2c242bea3433c0d17b71052f9a97aadb3",
+      "category": "separate_posthoc_results_or_publication_guide"
+    },
+    {
+      "path": "results/supplementary-v2/trial04-positive-2.json",
+      "sha256": "5d76f1d430327d2c834054f01e1e5525c3cd8d696f418c05b17a86f7f02f47fe",
+      "category": "separate_posthoc_results_or_publication_guide"
+    }
+  ],
+  "scope": "Exact original design plus separately versioned post-hoc fixes and sanitized summaries. No raw sessions, provider IDs or toolkit copies."
+}

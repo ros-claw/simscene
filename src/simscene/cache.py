@@ -48,37 +48,72 @@ class AssetCache:
         with (self.directory / '.cache.lock').open('a') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
             self._cleanup_partials()
+            index = self.directory / ('.source-' + hashlib.sha256(asset_url.encode()).hexdigest())
+            cached_before = not refresh and index.is_file() and (self.directory / index.read_text().strip()).is_dir()
             result = self._acquire(asset_url, refresh)
-            result = self._complete_material_dependencies(result)
+            if cached_before:
+                result = self._complete_material_dependencies(result)
             self._write_provenance(result)
             return result
 
     def _complete_material_dependencies(self, result):
-        """Upgrade pre-MDL scans only during explicitly requested acquisition.
+        """Retry incomplete dependencies by publishing a new immutable package.
 
-        Existing content is never replaced. Additional files are source-bound
-        and hashed; their expanded fingerprint is recorded in the new lock.
+        Source files and the prior lock remain intact. A normal cached missing
+        texture is retryable, just like a legacy material scan.
         """
-        target=self.directory/result['package_sha256']
-        lock_path=target/'simscene-lock.json'
-        lock=json.loads(lock_path.read_text())
-        if lock.get('dependency_scan_version',0)>=2:return result
-        if not any(target.rglob('*.mdl')):
-            # No local MDL source to scan. Naked runtime builtins still follow
-            # the existing explicit runtime dependency classification.
+        target = self.directory / result['package_sha256']
+        lock = json.loads((target / 'simscene-lock.json').read_text())
+        needs_scan = lock.get('dependency_status') in {'missing', 'unverified_usd_tools_unavailable'}
+        needs_scan = needs_scan or (lock.get('dependency_scan_version', 0) < 2 and any(target.rglob('*.mdl')))
+        if not needs_scan:
+            return result
+        try:
+            from pxr import UsdUtils
+        except ImportError:
             return result
         from .dependencies import repair
-        scan=repair(lock['root'],lock['source'],target,self.max_bytes)
-        known={entry['path'] for entry in lock['files']}
-        lock['files'].extend(entry for entry in scan['files'] if entry['path'] not in known)
-        lock.update(unresolved_dependencies=scan['unresolved'],repair_errors=scan['errors'],
-                    dependency_status='missing' if scan['unresolved'] else 'resolved_locally',dependency_scan_version=2)
-        if sum(p.stat().st_size for p in target.rglob('*') if p.is_file())+len(json.dumps(lock))>self.max_bytes:
-            raise SearchError('material dependency repair exceeds cache capacity')
-        temporary=lock_path.with_suffix('.json.tmp')
-        temporary.write_text(json.dumps(lock,indent=2));os.replace(temporary,lock_path)
-        os.utime(target,None);self._evict(0)
-        return _runtime_status(lock)
+        from .acquisition.transfer import current_budget
+        budget = current_budget()
+        limit = budget.package_limit(self.max_bytes) if budget else self.max_bytes
+        original_files = lock['files']
+        if sum(item['size'] for item in original_files) > limit:
+            raise SearchError('cached dependency repair exceeds unpacked/staging budget')
+        with tempfile.TemporaryDirectory(dir=self.directory, prefix='.partial-repair-') as temporary:
+            output = Path(temporary) / 'contents'; output.mkdir()
+            for item in original_files:
+                destination = output / item['path']; destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(target / item['path'], destination)
+            relative_root = Path(lock['root']).relative_to(target)
+            scan = repair(output / relative_root, lock['source'], output, limit)
+            known = {entry['path'] for entry in original_files}
+            files = list(original_files) + [entry for entry in scan['files'] if entry['path'] not in known]
+            files.sort(key=lambda entry: entry['path'])
+            normalized = sorted(str(value).replace(str(output), '${PACKAGE_ROOT}') for value in scan['unresolved'])
+            previous = sorted(str(value).replace(str(target), '${PACKAGE_ROOT}') for value in lock.get('unresolved_dependencies', []))
+            status = 'missing' if normalized else 'resolved_locally'
+            if files == sorted(original_files, key=lambda entry: entry['path']) and normalized == previous and status == lock.get('dependency_status') and lock.get('dependency_scan_version', 0) >= 2:
+                return result
+            identity = {'source': lock['source'], 'files': files, 'unresolved': normalized,
+                        'dependency_scan_version': scan.get('scan_version', 2)}
+            encoded = json.dumps(identity, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode()
+            digest = hashlib.sha256(encoded).hexdigest(); destination = self.directory / digest
+            updated = dict(lock, package_sha256=digest, root=str(destination / relative_root), files=files,
+                           dependency_status=status, dependency_scan_version=scan.get('scan_version', 2),
+                           unresolved_dependencies=[value.replace('${PACKAGE_ROOT}', str(destination)) for value in normalized],
+                           repair_errors=scan['errors'], previous_package_sha256=lock['package_sha256'])
+            updated['manifest_sha256'] = hashlib.sha256(json.dumps(files, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode()).hexdigest()
+            (output / 'simscene-lock.json').write_text(json.dumps(updated, indent=2))
+            size = sum(path.stat().st_size for path in output.rglob('*') if path.is_file())
+            if size > limit:
+                raise SearchError('dependency repair exceeds unpacked/staging budget or cache capacity')
+            if destination.exists():
+                updated = self._verified_cached(destination, digest, lock['source'])
+            else:
+                self._evict(size); output.rename(destination)
+            index = self.directory / ('.source-' + hashlib.sha256(lock['source'].encode()).hexdigest())
+            self._write_index(index, digest)
+            return _runtime_status(updated)
 
     @staticmethod
     def content_identity(files):
@@ -138,12 +173,16 @@ class AssetCache:
                 if target.is_dir():
                     return self._verified_cached(target, digest, asset_url)
         preview = self.client.request('/download/asset', {'asset_url': asset_url, 'manifest_only': 'true'})
-        if preview.get('total_size', 0) > self.max_bytes:
+        from .acquisition.transfer import current_budget
+        budget = current_budget()
+        package_limit = budget.package_limit(self.max_bytes) if budget else self.max_bytes
+        if preview.get('total_size', 0) > package_limit:
             raise SearchError('Asset exceeds cache capacity')
         with tempfile.TemporaryDirectory(dir=self.directory, prefix='.partial-') as tmp:
             tmp = Path(tmp)
             archive = tmp / 'package.zip'
-            self.client.request('/download/asset', {'asset_url': asset_url}, output=archive, max_bytes=self.max_bytes)
+            self.client.request('/download/asset', {'asset_url': asset_url}, output=archive, max_bytes=budget.remaining if budget else self.max_bytes)
+            package_limit = budget.package_limit(self.max_bytes, scratch_bytes=archive.stat().st_size) if budget else self.max_bytes
             digest = _sha256(archive)
             target = self.directory / digest
             if target.is_dir():
@@ -166,13 +205,17 @@ class AssetCache:
                 extraction.mkdir(parents=True)
                 with zipfile.ZipFile(archive) as z:
                     infos = z.infolist()
-                    if sum(x.file_size for x in infos) > self.max_bytes:
+                    if sum(x.file_size for x in infos) > package_limit:
                         raise SearchError('Unpacked asset exceeds cache capacity')
+                    if budget and len(infos) > 10000:
+                        raise SearchError('Unpacked asset exceeds file count budget')
                     names = set()
                     for entry in infos:
                         path = PurePosixPath(entry.filename)
                         if path.is_absolute() or '..' in path.parts or '\\' in entry.filename or entry.filename in names or (entry.external_attr >> 16) & 0o170000 == 0o120000:
                             raise SearchError('Unsafe package member')
+                        if budget and len(path.parts) > 64:
+                            raise SearchError('Unpacked asset exceeds path depth budget')
                         names.add(entry.filename)
                     z.extractall(extraction)
                 manifest = json.loads((extraction / 'manifest.json').read_text())
@@ -195,7 +238,7 @@ class AssetCache:
                 try:
                     from pxr import UsdUtils
                     from .dependencies import repair
-                    scan = repair(output / roots[0], asset_url, output, self.max_bytes)
+                    scan = repair(output / roots[0], asset_url, output, package_limit)
                     files.extend(scan['files'])
                     unresolved = [str(x).replace(str(output), str(target)) for x in scan['unresolved']]
                     dependency_status = 'missing' if unresolved else 'resolved_locally'
@@ -206,8 +249,8 @@ class AssetCache:
                 lock = {'source': asset_url, 'package_sha256': digest, 'root': str(target / roots[0]), 'files': files, 'dependency_status': dependency_status, 'unresolved_dependencies': unresolved, 'repair_errors': scan['errors'], 'dependency_scan_version':scan.get('scan_version',0), 'preview': preview}
                 (output / 'simscene-lock.json').write_text(json.dumps(lock, indent=2))
                 size = sum(p.stat().st_size for p in output.rglob('*') if p.is_file())
-                if size > self.max_bytes:
-                    raise SearchError('Unpacked asset exceeds cache capacity')
+                if size > package_limit:
+                    raise SearchError('Unpacked asset exceeds cache capacity or unpacked/staging budget')
                 self._evict(size)
                 output.rename(target)
                 self._write_index(index, digest)

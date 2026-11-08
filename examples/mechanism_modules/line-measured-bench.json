@@ -1,0 +1,196 @@
+{
+  "passed": true,
+  "checks": {
+    "all_input_output_timelines": true,
+    "all20_tip": true,
+    "control_upstream_tips": true,
+    "control_downstream_quiet": true
+  },
+  "measurements": {
+    "positive": {
+      "input_integrity": true,
+      "output_integrity": true,
+      "complete_per_step_timeline": true,
+      "tiles": {
+        "1": {
+          "maximum_tilt_degrees": 78.52288464467728,
+          "maximum_displacement_m": 0.07803491947014331
+        },
+        "2": {
+          "maximum_tilt_degrees": 78.51822398034173,
+          "maximum_displacement_m": 0.09032337939702553
+        },
+        "3": {
+          "maximum_tilt_degrees": 78.495499381697,
+          "maximum_displacement_m": 0.09074754549130953
+        },
+        "4": {
+          "maximum_tilt_degrees": 78.36237743228676,
+          "maximum_displacement_m": 0.09134550478831546
+        },
+        "5": {
+          "maximum_tilt_degrees": 78.51853675248447,
+          "maximum_displacement_m": 0.09080214814795422
+        },
+        "6": {
+          "maximum_tilt_degrees": 78.44236019711583,
+          "maximum_displacement_m": 0.09138484428764901
+        },
+        "7": {
+          "maximum_tilt_degrees": 78.43500408146029,
+          "maximum_displacement_m": 0.09125738968364484
+        },
+        "8": {
+          "maximum_tilt_degrees": 78.3652987122524,
+          "maximum_displacement_m": 0.09126744067577985
+        },
+        "9": {
+          "maximum_tilt_degrees": 78.51490585452724,
+          "maximum_displacement_m": 0.09073781070026617
+        },
+        "10": {
+          "maximum_tilt_degrees": 78.46137178968505,
+          "maximum_displacement_m": 0.09122531179114782
+        },
+        "11": {
+          "maximum_tilt_degrees": 78.4297545067611,
+          "maximum_displacement_m": 0.09130279668322673
+        },
+        "12": {
+          "maximum_tilt_degrees": 78.36647439749598,
+          "maximum_displacement_m": 0.09127983952423768
+        },
+        "13": {
+          "maximum_tilt_degrees": 78.52256349245211,
+          "maximum_displacement_m": 0.09072324652848521
+        },
+        "14": {
+          "maximum_tilt_degrees": 78.46038302813503,
+          "maximum_displacement_m": 0.09128467112249097
+        },
+        "15": {
+          "maximum_tilt_degrees": 78.42720563072507,
+          "maximum_displacement_m": 0.09136808856022212
+        },
+        "16": {
+          "maximum_tilt_degrees": 78.48400786183193,
+          "maximum_displacement_m": 0.09115657879016442
+        },
+        "17": {
+          "maximum_tilt_degrees": 78.55432805138256,
+          "maximum_displacement_m": 0.09134412543705926
+        },
+        "18": {
+          "maximum_tilt_degrees": 80.06562260837565,
+          "maximum_displacement_m": 0.09329211507560782
+        },
+        "19": {
+          "maximum_tilt_degrees": 90.1144213143855,
+          "maximum_displacement_m": 0.1126556365457654
+        },
+        "20": {
+          "maximum_tilt_degrees": 178.79473341447402,
+          "maximum_displacement_m": 151.57651028357154
+        }
+      }
+    },
+    "negative": {
+      "input_integrity": true,
+      "output_integrity": true,
+      "complete_per_step_timeline": true,
+      "tiles": {
+        "1": {
+          "maximum_tilt_degrees": 78.52430501182,
+          "maximum_displacement_m": 0.07802883944818592
+        },
+        "2": {
+          "maximum_tilt_degrees": 78.51904449183114,
+          "maximum_displacement_m": 0.09032328140525414
+        },
+        "3": {
+          "maximum_tilt_degrees": 78.49517392300957,
+          "maximum_displacement_m": 0.09074773995264077
+        },
+        "4": {
+          "maximum_tilt_degrees": 78.35960516033397,
+          "maximum_displacement_m": 0.09133890667781647
+        },
+        "5": {
+          "maximum_tilt_degrees": 78.52969623651717,
+          "maximum_displacement_m": 0.09081227132443415
+        },
+        "6": {
+          "maximum_tilt_degrees": 78.44267173077031,
+          "maximum_displacement_m": 0.09150555527545683
+        },
+        "7": {
+          "maximum_tilt_degrees": 79.00259456350724,
+          "maximum_displacement_m": 0.0918755659168118
+        },
+        "8": {
+          "maximum_tilt_degrees": 78.60431263204097,
+          "maximum_displacement_m": 0.0967786166711666
+        },
+        "9": {
+          "maximum_tilt_degrees": 90.00003729976133,
+          "maximum_displacement_m": 0.10613816565335453
+        },
+        "11": {
+          "maximum_tilt_degrees": 0.003943679360706762,
+          "maximum_displacement_m": 5.813828589459993e-06
+        },
+        "12": {
+          "maximum_tilt_degrees": 0.003997664159450057,
+          "maximum_displacement_m": 6.0638803947466616e-06
+        },
+        "13": {
+          "maximum_tilt_degrees": 0.004044591330827296,
+          "maximum_displacement_m": 6.234853897106684e-06
+        },
+        "14": {
+          "maximum_tilt_degrees": 0.004021529092324,
+          "maximum_displacement_m": 5.872880978121786e-06
+        },
+        "15": {
+          "maximum_tilt_degrees": 0.004001805846445002,
+          "maximum_displacement_m": 6.23493251196769e-06
+        },
+        "16": {
+          "maximum_tilt_degrees": 0.003991648833977898,
+          "maximum_displacement_m": 6.116377947283915e-06
+        },
+        "17": {
+          "maximum_tilt_degrees": 0.004000827945085565,
+          "maximum_displacement_m": 6.234913199594353e-06
+        },
+        "18": {
+          "maximum_tilt_degrees": 0.004009642741200873,
+          "maximum_displacement_m": 6.2348594816187865e-06
+        },
+        "19": {
+          "maximum_tilt_degrees": 0.0040010368257968635,
+          "maximum_displacement_m": 6.234869364906191e-06
+        },
+        "20": {
+          "maximum_tilt_degrees": 0.003951189536027327,
+          "maximum_displacement_m": 5.99783673071785e-06
+        }
+      }
+    }
+  },
+  "launches": {
+    "positive": {
+      "job_id": "0a5a33ca6cdd43a5a5d4a6bc8661bb99",
+      "run_id": "3e69eebcbd884a208de4221086269ccc",
+      "revision": 1,
+      "replayed": false
+    },
+    "negative": {
+      "job_id": "967b0dc5d1ca4865bd7750247f4a388f",
+      "run_id": "effd8f587b6a4d218018f1c23460a77d",
+      "revision": 1,
+      "replayed": false
+    }
+  },
+  "scope": "One paired configuration, read-only engineering checks. Not independent whole-room acceptance or parameter-range certification."
+}

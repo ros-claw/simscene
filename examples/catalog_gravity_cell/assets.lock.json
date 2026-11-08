@@ -1,0 +1,375 @@
+{
+  "assets": {
+    "notebook": {
+      "content_identity_scheme": "simscene.AssetCache.content_identity.v1",
+      "content_sha256": "fbd4d83201e104e9a8df04a02da800630ea3d62e240fa2468f89055cc06e2397",
+      "entry_path": "objects/B01DN8TB5U/B01DN8TB5U.glb",
+      "files": [
+        {
+          "path": "LICENSE-CC-BY-4.0.txt",
+          "sha256": "419896aea50c15d6e40c5b4baf4bd346f78223b9a354c7357ad00262afdc08ec",
+          "size": 14527,
+          "url": "https://huggingface.co/datasets/codepawl/abo-glb/resolve/c7c8293fed3b7ab122ef5d7896521a187e0962d7/LICENSE-CC-BY-4.0.txt"
+        },
+        {
+          "path": "objects/B01DN8TB5U/B01DN8TB5U.glb",
+          "sha256": "67d61db31084d820ca9b1b0d2d3761662f6a5532944573afceee8f57c8151845",
+          "size": 524720,
+          "url": "https://huggingface.co/datasets/codepawl/abo-glb/resolve/c7c8293fed3b7ab122ef5d7896521a187e0962d7/objects/B01DN8TB5U/B01DN8TB5U.glb"
+        }
+      ],
+      "license": {
+        "basis": "dataset_card",
+        "evidence": "declared",
+        "license": "CC-BY-4.0",
+        "notices_required": true,
+        "status": "known"
+      },
+      "repository": "codepawl/abo-glb",
+      "source_file_sha256": "67d61db31084d820ca9b1b0d2d3761662f6a5532944573afceee8f57c8151845",
+      "source_manifest_sha256": "7d3ae44fb94faa434650be896d80eb6b2fdff835a276afdafff3bc077bd0fc6a",
+      "source_ref": {
+        "asset_id": "B01DN8TB5U",
+        "revision": "c7c8293fed3b7ab122ef5d7896521a187e0962d7",
+        "source_id": "abo-glb",
+        "variant_id": null
+      }
+    },
+    "workbench": {
+      "content_identity_scheme": "simscene.AssetCache.content_identity.v1",
+      "content_sha256": "ce56eb794f672691d4f4d6d2874baa39a711929dd86f13605aac73afd50f09c8",
+      "files": [
+        {
+          "path": "origin/_/_/_/_/_/_/packing_table.usd",
+          "sha256": "be265b9fa6f73d2bf0da01f1e4afddae9096f5c4988285f67a0f2ae4cc33dcb4",
+          "size": 13964280,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/packing_table.usd"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_Crate_A07_Yellow_01/SM_Crate_A07_Yellow_01.usd",
+          "sha256": "5055b2ff047b961b4bbf294b1ee3d60186edb0e257e9b4d8454f713764f53ba0",
+          "size": 2444409,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_Crate_A07_Yellow_01/SM_Crate_A07_Yellow_01.usd"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_Crate_A08_Blue_01/SM_Crate_A08_Blue_01.usd",
+          "sha256": "3de32b019d4f1b1aed3dbeb23b127c2b8af1401eadcc483c0fb1c344f3faa43b",
+          "size": 2390602,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_Crate_A08_Blue_01/SM_Crate_A08_Blue_01.usd"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/SM_HeavyDutyPackingTable_C02_01.usd",
+          "sha256": "dc7ed9c01f2287d36abebef2d19165d88b90c68a121949d2a9d74017714d9163",
+          "size": 8533735,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/SM_HeavyDutyPackingTable_C02_01.usd"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/container_h20/container_h20.usd",
+          "sha256": "cf89c3f8e59d983105adec96f3980ae57ca6e6baefde729a54b04ffac473f6bf",
+          "size": 4090057,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/container_h20/container_h20.usd"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/sm_whitecorrugatedbox_b07_brown_01.usd",
+          "sha256": "63d699f9918d75dbabc984733ddda0ccc05a970c37cd3f47a98b33bd4e1dbd73",
+          "size": 202591,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/sm_whitecorrugatedbox_b07_brown_01.usd"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/sm_whitecorrugatedbox_b26_white_01.usd",
+          "sha256": "76bcd741cd6412c33fc3d64367d678e01f92f0762fe9ce06f39baccc7a7ad0b1",
+          "size": 204283,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/sm_whitecorrugatedbox_b26_white_01.usd"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_decal_albedo.png",
+          "sha256": "b5128f13063140230dbd1588e03d9d17808883bbeb5b5cf2d3a272acd54c3db0",
+          "size": 1092832,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_decal_albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_decal_opacity.png",
+          "sha256": "156e05a6c61179931aa71dd4c6609eac1ceacb01454cd1aac2964fb9857fb6ac",
+          "size": 345574,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_decal_opacity.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_decal_orm.png",
+          "sha256": "a1165a219f93e48cfda9efade8022f25631aa8202fabb97aba899d87ecc025b5",
+          "size": 653905,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_decal_orm.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile01_albedo.png",
+          "sha256": "5db82f3c8f9700b79bb4d2f801c33718c6ea9f406699948ba7c971a676adc5ea",
+          "size": 7528129,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile01_albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile01_normal.png",
+          "sha256": "be1966633f7aa8f8156f47f146927a17f35568c3f4a0e5d39260fb4f268c53ac",
+          "size": 8397701,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile01_normal.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile01_orm.png",
+          "sha256": "2ad7183e78cb49bcfe1a9591a0c23b423c9fd1a6eb2ea77e07b4cf8386058222",
+          "size": 4211848,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile01_orm.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile02_albedo.png",
+          "sha256": "f28e62db726c65c9d3472bc2fd1bc6e5328ea98fc94c9359c586c7c99963a58d",
+          "size": 5011737,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile02_albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile02_normal.png",
+          "sha256": "dbe2565bf75a57c0d8350dcb6380bc2d76a83b37240c42c77c61fd0b167895ec",
+          "size": 3691365,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile02_normal.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile02_orm.png",
+          "sha256": "049a8cd3cd5ad347b213ac7dc9c21c8ef63f989754539e2889ebba9df5083242",
+          "size": 3834772,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_tile02_orm.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_trim_Albedo.png",
+          "sha256": "4a24c65f53b4a7420ac8b3cf570e4dd77df0df81c37a730a65c93305b05289b3",
+          "size": 2459866,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_trim_Albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_trim_normal.png",
+          "sha256": "1061dc411be515d6f2a95a02b4ebf9fcf897c7d5dbe4692a96889d0cd390713f",
+          "size": 1290348,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_trim_normal.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_trim_opacity.png",
+          "sha256": "2f9726a7f956f4c3631e5f794cd04a6328058b415b322b077fecf5e96bf4bfc4",
+          "size": 155873,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_trim_opacity.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_trim_orm.png",
+          "sha256": "37aedb3d2bc48129f27d282c604ff2e8ccb152f1ac091067d6cb70c3aedc5005",
+          "size": 1817980,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/sm_whitecorrugatedbox_b/materials/textures/t_corrugatedboxes_b01_trim_orm.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_Crate_A07_Yellow_01/materials/Plastic_Yellow_A.mdl",
+          "sha256": "161078d8ef231da19c0ca46b2cff3b8c4c2668f0d4362a8e752cd88771c6128d",
+          "size": 1709,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_Crate_A07_Yellow_01/materials/Plastic_Yellow_A.mdl"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_Crate_A08_Blue_01/materials/Plastic_Blue_A.mdl",
+          "sha256": "c2f19215622271a40ea2c32e44cea3c6c3a0c3e83e12d803e9a712918b4b7216",
+          "size": 1695,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_Crate_A08_Blue_01/materials/Plastic_Blue_A.mdl"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/MetalPainted_White_Glossy_A.mdl",
+          "sha256": "f13854f109fc75ab840d14cf7b98c92bccbb9b39ac0d1b449e5d0f489c4c1564",
+          "size": 681,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/MetalPainted_White_Glossy_A.mdl"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/Metal_Glossy_A.mdl",
+          "sha256": "c3d04b3d341e3c1b8cfb6dce47305d49378f5060d8dd9325842d62ca5b705991",
+          "size": 620,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/Metal_Glossy_A.mdl"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/Wood_Laminate_Gray_A.mdl",
+          "sha256": "bb221ae2c9f46e60e1340d1fce36e08fd23d780bdb567d651eaa5f2e2f67b8ad",
+          "size": 1734,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/Wood_Laminate_Gray_A.mdl"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/Wood_Pressed_A.mdl",
+          "sha256": "40775359c16526a9bef766fbe5ae9841f17e9a5f60275093a4f80e7ba5ebdbb5",
+          "size": 651,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/Wood_Pressed_A.mdl"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/container_h20/materials/Plastic_B.mdl",
+          "sha256": "d9dc6c90174c69a03de966447144cd13c8590656d68dd0fde7de7d4609510d41",
+          "size": 1617,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/container_h20/materials/Plastic_B.mdl"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/container_h20/textures/T_Plastic_Gray_A_Albedo.png",
+          "sha256": "45604d449bf31d0f956dfa990745da7bc54beb3bd017af0126f3abf5e7e065dd",
+          "size": 2741864,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/container_h20/textures/T_Plastic_Gray_A_Albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/container_h20/textures/T_Plastic_Gray_A_ORM.png",
+          "sha256": "63e070b9c902612fe9af6d8d248f24decde3eceda288154217cc28c7c27e4b96",
+          "size": 3257454,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/container_h20/textures/T_Plastic_Gray_A_ORM.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/container_h20/textures/T_Plastic_Normal_1k.png",
+          "sha256": "017086a4fb5d697900eaa4f52a4918ad7d559405dc733e8af3b090efc5875300",
+          "size": 4152274,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/container_h20/textures/T_Plastic_Normal_1k.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/container_h20/textures/T_Plastic_ORM_1k.png",
+          "sha256": "c0c44b42d69832fa25d0749a55d36e7d5aa1ceba445d1e48ff026f220bd0f28d",
+          "size": 901654,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/container_h20/textures/T_Plastic_ORM_1k.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_Crate_A07_Yellow_01/materials/textures/Plastic_Yellow_A/T_Plastic_Yellow_A_Albedo.png",
+          "sha256": "3fe56ba7f880da180d6af3c52697bef23a388201fc25913e141afa8b56d0532b",
+          "size": 3152673,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_Crate_A07_Yellow_01/materials/textures/Plastic_Yellow_A/T_Plastic_Yellow_A_Albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_Crate_A07_Yellow_01/materials/textures/Plastic_Yellow_A/T_Plastic_Yellow_A_Normal.png",
+          "sha256": "1c60d70a5ab374810b7af180f7fb8c9533431eaba0e277feb7eecdc44f3d61ee",
+          "size": 4893090,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_Crate_A07_Yellow_01/materials/textures/Plastic_Yellow_A/T_Plastic_Yellow_A_Normal.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_Crate_A07_Yellow_01/materials/textures/Plastic_Yellow_A/T_Plastic_Yellow_A_ORM.png",
+          "sha256": "e5dd7bf3457879acba77c61720a639c074c68002017dc496eb7954e3dcb4168b",
+          "size": 3352510,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_Crate_A07_Yellow_01/materials/textures/Plastic_Yellow_A/T_Plastic_Yellow_A_ORM.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_Crate_A08_Blue_01/materials/textures/Plastic_Blue_A/T_Plastic_Blue_A_Albedo.png",
+          "sha256": "9a414b0d8551193f129ee80ea61c736a990c130fc19ac256d31dde1749d04e16",
+          "size": 822814,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_Crate_A08_Blue_01/materials/textures/Plastic_Blue_A/T_Plastic_Blue_A_Albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_Crate_A08_Blue_01/materials/textures/Plastic_Blue_A/T_Plastic_Blue_A_Normal.png",
+          "sha256": "b276207f782c029f34dfd6034a9c718467e35e5aa6c8ba2dbcba1de25f045559",
+          "size": 909580,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_Crate_A08_Blue_01/materials/textures/Plastic_Blue_A/T_Plastic_Blue_A_Normal.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_Crate_A08_Blue_01/materials/textures/Plastic_Blue_A/T_Plastic_Blue_A_ORM.png",
+          "sha256": "dff7a9ec311c68b779576bbbf7ab1d121fcd784d49d3f1f730a7fe2ac647fbc9",
+          "size": 743855,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_Crate_A08_Blue_01/materials/textures/Plastic_Blue_A/T_Plastic_Blue_A_ORM.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/MetalPainted_White_Glossy_A/T_MetalPainted_White_Glossy_A_Albedo.png",
+          "sha256": "c9651a8eb7a7db92d51dbf319e6a54096869bf7b57d541137272b4be73325f20",
+          "size": 1318976,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/MetalPainted_White_Glossy_A/T_MetalPainted_White_Glossy_A_Albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/MetalPainted_White_Glossy_A/T_MetalPainted_White_Glossy_A_Normal.png",
+          "sha256": "774d302d5deb1b7233bb01d9480d889bb41c3c75c6a8274da3db22c387c9a352",
+          "size": 2325135,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/MetalPainted_White_Glossy_A/T_MetalPainted_White_Glossy_A_Normal.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/MetalPainted_White_Glossy_A/T_MetalPainted_White_Glossy_A_ORM.png",
+          "sha256": "fa86de21fe705fa4a826e4785d4001c6e90d5418bdefbfa24e7eaca14e5cc5bf",
+          "size": 1821970,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/MetalPainted_White_Glossy_A/T_MetalPainted_White_Glossy_A_ORM.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Metal_Glossy_A/T_Metal_Glossy_A_Albedo.png",
+          "sha256": "1f2c43526c30270e07b6e0ea5ccba7be5b588db5a19e70cc909ed69f17dabd4e",
+          "size": 3314214,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Metal_Glossy_A/T_Metal_Glossy_A_Albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Metal_Glossy_A/T_Metal_Glossy_A_Normal.png",
+          "sha256": "e3d8bdd35ff2bc77775b162b98d1723e0008b02cfbaf1a058d3160e90dc3fac6",
+          "size": 159602,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Metal_Glossy_A/T_Metal_Glossy_A_Normal.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Metal_Glossy_A/T_Metal_Glossy_A_ORM.png",
+          "sha256": "a6474d52f77d44479366ad3da9d8b595bb3c90c2c1dd597226a477ccb1a3f4a6",
+          "size": 2707096,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Metal_Glossy_A/T_Metal_Glossy_A_ORM.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Laminate_Gray_A/T_Wood_Laminate_Gray_A_Albedo.png",
+          "sha256": "c0566c4fc38f4004c8db6d20009d3af675891bd30b574ec24ceb5325597bfbab",
+          "size": 16914,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Laminate_Gray_A/T_Wood_Laminate_Gray_A_Albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Laminate_Gray_A/T_Wood_Laminate_Gray_A_Normal.png",
+          "sha256": "81ebfea8c17d8942fed2cebd5e13ade2f12729e99c9525320537fc447ca0c848",
+          "size": 4655646,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Laminate_Gray_A/T_Wood_Laminate_Gray_A_Normal.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Laminate_Gray_A/T_Wood_Laminate_Gray_A_ORM.png",
+          "sha256": "915b2f6f4690dad4f6ea14d98751bbde91fd14329200a3d2528174b65ef5084b",
+          "size": 5055979,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Laminate_Gray_A/T_Wood_Laminate_Gray_A_ORM.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Pressed_A/T_Wood_Pressed_A1_Albedo.png",
+          "sha256": "3065b2625f535a306422de5dbbdc6168fbd29922a3ded13c2f0cfb98c2af7fd6",
+          "size": 8634237,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Pressed_A/T_Wood_Pressed_A1_Albedo.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Pressed_A/T_Wood_Pressed_A1_Normal.png",
+          "sha256": "4b900d0ea825d9158915ecb1a19fee41b7ed3c10f89251bbfbae2e7637e38b30",
+          "size": 10829846,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Pressed_A/T_Wood_Pressed_A1_Normal.png"
+        },
+        {
+          "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Pressed_A/T_Wood_Pressed_A1_ORM.png",
+          "sha256": "060bc3de700178616538f325438bfda9164d6663eb4af3384fc52a8ff8d1765b",
+          "size": 4248696,
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Pressed_A/T_Wood_Pressed_A1_ORM.png"
+        }
+      ],
+      "license": {
+        "license": null,
+        "redistribution_grant_asserted": false,
+        "status": "unknown"
+      },
+      "selected_member": {
+        "dimensions_m_in_source_axes": [
+          2.473646545410156,
+          0.7619999694824219,
+          0.9940513610839844
+        ],
+        "meters_per_unit": 0.01,
+        "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/SM_HeavyDutyPackingTable_C02_01.usd",
+        "sha256": "dc7ed9c01f2287d36abebef2d19165d88b90c68a121949d2a9d74017714d9163",
+        "up_axis": "Z"
+      },
+      "source_ref": {
+        "asset_id": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/packing_table.usd",
+        "revision": "metadata-sha256:c080da0578bd32decaa2dc3c423629f390722ff901cb0a00527d2ed43c080f27",
+        "source_id": "nvidia-usd-search",
+        "variant_id": null
+      },
+      "source_terms": {
+        "faq_url": "https://docs.isaacsim.omniverse.nvidia.com/6.2.0/common/license-faq.html",
+        "new_catalog_asset_plan_ready": false,
+        "restrictions": [
+          "NVIDIA GPU/Isaac use conditions",
+          "modification and redistribution restrictions",
+          "retain applicable notices"
+        ],
+        "scope": "Source-level NVIDIA-provided assets documentation; per-asset exceptions remain unverified. No terms are accepted by this driver.",
+        "terms_url": "https://www.nvidia.com/en-us/agreements/enterprise-software/isaac-sim-additional-software-and-materials-license/"
+      },
+      "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/packing_table.usd"
+    }
+  },
+  "schema": "simscene.catalog_gravity_cell.assets.v1",
+  "schema_version": 1
+}

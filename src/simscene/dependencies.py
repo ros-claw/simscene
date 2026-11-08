@@ -120,6 +120,20 @@ def _fetch(path, item, root, package_dir, root_url, origin, limit, attempted):
         used = sum(p.stat().st_size for p in package_dir.rglob('*') if p.is_file())
         hasher = hashlib.sha256()
         size = 0
+        from .acquisition.transfer import current_budget, BudgetExceeded
+        budget = current_budget()
+        if budget is not None:
+            from .assets import SearchError
+            try:
+                size, digest = budget.download(url, tmp, max_bytes=max(0, limit-used),
+                    opener=build_opener(SameOriginRedirect(origin.netloc)), same_origin=origin.netloc)
+            except BudgetExceeded:
+                raise
+            except SearchError as error:
+                return {'error': str(error)}
+            tmp.replace(path)
+            return {'file': {'url': url, 'path': str(path.relative_to(package_dir)),
+                             'size': size, 'sha256': digest}}
         with build_opener(SameOriginRedirect(origin.netloc)).open(url, timeout=30) as response, tmp.open('wb') as output:
             final = urlsplit(response.geturl())
             if final.scheme != 'https' or final.netloc != origin.netloc:

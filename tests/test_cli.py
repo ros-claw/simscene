@@ -1,6 +1,16 @@
 import json,os,subprocess,sys,tempfile,unittest
 from pathlib import Path
 class CliTest(unittest.TestCase):
+    def test_import_preserves_strict_observation_and_capture_configuration(self):
+        from simscene.scene import SceneStore
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);source=root/'scene.json';state=root/'state'
+            scene={'objects':{'box':{'kind':'box','size':[.1]*3}},'observation':{'sample_interval_steps':1,'strict_start':True,'record_contact_pairs':True},'presentation':{'profile':'technical_showcase_1080p','capture':{'anti_aliasing':'dlaa'}}}
+            source.write_text(json.dumps(scene));result=subprocess.run([sys.executable,'-m','simscene.cli','import-scene','--spec',str(source),'--scene','imported'],env=dict(os.environ,PYTHONPATH='src',SIMSCENE_HOME=str(state)),capture_output=True,text=True)
+            self.assertEqual(result.returncode,0,result.stderr)
+            imported=SceneStore(state).get('imported')
+            self.assertEqual(imported['observation'],scene['observation'])
+            self.assertEqual(imported['presentation'],scene['presentation'])
     def test_run_uses_shared_job_api_and_waits(self):
         import contextlib,io
         from unittest.mock import patch

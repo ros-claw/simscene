@@ -51,11 +51,43 @@ try:
         scene_api.CreateEnableGPUDynamicsAttr().Set(args.physics_device == 'gpu')
         scene_api.CreateBroadphaseTypeAttr().Set('GPU' if args.physics_device == 'gpu' else 'MBP')
     spec = startup_spec
+    from simscene.physics_binding import resolve_body_bindings
+    body_bindings=resolve_body_bindings(stage,spec)
+    from simscene.worker.initial_state import capture_authored_state,visual_bounds
+    strict_start=spec.get('observation',{}).get('strict_start',False)
+    record_contact_pairs=spec.get('observation',{}).get('record_contact_pairs',False)
+    state_reader=None;initial_observation=None;initialization_reset=None
     import carb
     from simscene.capture import camera_config
     from simscene.worker.render_settings import configure as configure_render,readback as read_render,check as check_render
     render_config=camera_config(spec,{'kind':'camera'})['render']
-    render_settings=configure_render(carb.settings.get_settings(),render_config)
+    renderer_timeline=omni.timeline.get_timeline_interface()
+    renderer_before_steps=SimulationManager.get_num_physics_steps()
+    renderer_before_time=SimulationManager.get_simulation_time()
+    renderer_initialization_updates=[0]
+    def update_renderer_before_physics():
+        if renderer_timeline.is_playing():
+            raise RuntimeError('renderer initialization requires a stopped physics timeline')
+        app.update()
+        renderer_initialization_updates[0]+=1
+        if (renderer_timeline.is_playing() or
+                SimulationManager.get_num_physics_steps()!=renderer_before_steps or
+                SimulationManager.get_simulation_time()!=renderer_before_time):
+            raise RuntimeError('physics advanced during renderer option registration')
+    if render_config and renderer_timeline.is_playing():
+        raise RuntimeError('renderer initialization requires a stopped physics timeline')
+    if render_config:
+        # Complete the stage-open/render initialization tick before asking
+        # which post-processing settings the renderer has registered.
+        update_renderer_before_physics()
+    render_settings=configure_render(carb.settings.get_settings(),render_config,update=update_renderer_before_physics)
+    render_settings['pre_physics_renderer_registration']={
+        'before_absolute_physics_step':renderer_before_steps,
+        'after_absolute_physics_step':SimulationManager.get_num_physics_steps(),
+        'before_absolute_simulation_time_s':renderer_before_time,
+        'after_absolute_simulation_time_s':SimulationManager.get_simulation_time(),
+        'application_updates':renderer_initialization_updates[0],
+        'timeline_playing':renderer_timeline.is_playing()}
     archive_case=None;archived_objects={}
     if args.archive_case:
         sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
@@ -127,10 +159,11 @@ try:
     monitored={}
     for name,obj in spec['objects'].items():
         if obj.get('dynamic'):
-            path='/World/'+name.replace('-', '_')
-            prim=stage.GetPrimAtPath(path)
-            if prim: PhysxSchema.PhysxContactReportAPI.Apply(prim).CreateThresholdAttr().Set(0)
-            monitored[path]=name
+            paths=body_bindings.get(name,{}).get('contact_bodies',['/World/'+name.replace('-', '_')])
+            for path in paths:
+                prim=stage.GetPrimAtPath(path)
+                if prim: PhysxSchema.PhysxContactReportAPI.Apply(prim).CreateThresholdAttr().Set(0)
+                monitored[path]=name
     robot_paths=[]
     for name,config in robot_configs:
         if not config.get('monitor_collisions'): continue
@@ -141,9 +174,12 @@ try:
                 PhysxSchema.PhysxContactReportAPI.Apply(prim).CreateThresholdAttr().Set(0)
     robot_contacts={}
     contacts={} 
+    body_contact_counts={}
     contacts_truncated=[False]
     contact_geometry_incomplete=[False]
     contact_start_steps=[None]
+    interval_contacts={};contact_interval_overflow=[False]
+    object_id_by_prim={name.replace('-','_'):name for name in spec['objects']}
     def on_contact(headers,data):
         # Initialization updates happen before the frozen run timeline starts.
         # Do not mix those contacts into step zero of the reset task.
@@ -152,6 +188,22 @@ try:
             absolute=SimulationManager.get_num_physics_steps()
             contact_step=max(0,absolute-contact_start_steps[0])
             actors=[str(PhysicsSchemaTools.intToSdfPath(header.actor0)),str(PhysicsSchemaTools.intToSdfPath(header.actor1))]
+            if getattr(header,'num_contact_data',0)>0 and any(actor in monitored for actor in actors):
+                raw_key='|'.join(sorted(actors))
+                if raw_key not in body_contact_counts and len(body_contact_counts)>=50000:contacts_truncated[0]=True
+                else:
+                    raw_record=body_contact_counts.setdefault(raw_key,{'count':0,'first_physics_step':contact_step,'last_physics_step':contact_step})
+                    raw_record['count']+=1;raw_record['last_physics_step']=contact_step
+            if record_contact_pairs and getattr(header,'num_contact_data',0)>0:
+                colliders=[str(PhysicsSchemaTools.intToSdfPath(getattr(header,'collider'+str(i)))) if hasattr(header,'collider'+str(i)) else None for i in (0,1)]
+                key=tuple(actors+colliders)
+                if key not in interval_contacts and len(interval_contacts)>=20000:contact_interval_overflow[0]=True
+                else:
+                    item=interval_contacts.setdefault(key,{'actor_paths':actors,'collider_paths':colliders,'body_ids':[object_id_by_prim.get(a.split('/')[2]) if len(a.split('/'))>2 else None for a in actors],'count':0,'first_callback_absolute_physics_step':absolute,'last_callback_absolute_physics_step':absolute})
+                    item['count']+=1;item['last_callback_absolute_physics_step']=absolute
+                    value,incomplete_points=minimum_separation(header,data)
+                    if incomplete_points:contact_geometry_incomplete[0]=True
+                    if value is not None:item['minimum_separation_m']=min(item.get('minimum_separation_m',value),value)
             involved=[name for name,prefix in robot_paths if any(actor == prefix or actor.startswith(prefix+'/') for actor in actors)]
             separation,incomplete=minimum_separation(header,data) if involved else (None,False)
             if incomplete:contact_geometry_incomplete[0]=True
@@ -180,9 +232,37 @@ try:
                     record['count']+=1
                     record['last_physics_step']=contact_step
     contact_subscription=omni.physx.get_physx_simulation_interface().subscribe_contact_report_events(on_contact) if monitored or robot_paths else None
+    from simscene.worker.joint_observation import configuration as passive_configuration,sample as sample_joints
+    from simscene.attachments import sample_world as sample_visuals
+    has_rigid_visuals=any(obj.get('rigid_attachment') for obj in spec['objects'].values())
+    mechanism_configuration=passive_configuration(stage,spec['objects'])
+    print('passive geometry settings: '+json.dumps(mechanism_configuration['geometry_settings']),flush=True)
+    initial_joint_states=sample_joints(stage,spec['objects'])
     SimulationManager.set_physics_dt(1.0 / 60.0)
+    from simscene.worker.physics_readback import read_physics_settings
+    physics_settings={'before_warmup':None,'after_run':None}
+    physics_settings['before_warmup']=read_physics_settings(stage,args.physics_device)
+    initialization_before_steps=SimulationManager.get_num_physics_steps()
+    initialization_before_time=SimulationManager.get_simulation_time()
+    authored_initial_state=capture_authored_state(stage,spec['objects'],body_bindings) if strict_start else None
     app_utils.play()
-    app.update()
+    if strict_start:
+        if followers:raise RuntimeError('strict passive reset does not support robot controllers')
+        app.update()  # Complete the SDK's physics setup before restoring t0.
+        app_utils.pause()
+        from simscene.worker.initial_state import PassiveState
+        state_reader=PassiveState(stage,spec['objects'],body_bindings=body_bindings,authored_state=authored_initial_state);initialization_reset=state_reader.reset_before_task()
+        initialization_reset.update(before_warmup_absolute_physics_step=initialization_before_steps,before_warmup_absolute_simulation_time_s=initialization_before_time,after_warmup_absolute_physics_step=SimulationManager.get_num_physics_steps(),after_warmup_absolute_simulation_time_s=SimulationManager.get_simulation_time())
+        paused_steps=SimulationManager.get_num_physics_steps()
+        for _ in range(3):app.update()
+        if SimulationManager.get_num_physics_steps()!=paused_steps:raise RuntimeError('physics advanced during strict paused initialization')
+        repeated=state_reader.read()
+        # The reset readback is repeated after renderer initialization; its
+        # measured state, not a source declaration, becomes task sample zero.
+        for path,position in repeated['positions'].items():
+            expected_position=authored_initial_state['bodies'][path]['position']
+            if max(abs(a-b) for a,b in zip(position,expected_position))>1e-6:raise RuntimeError('initial body moved while physics was paused')
+    else:app.update()
     for follower in followers.values(): follower.initialize()
     for name in self_collision_settings:
         observed=followers[name].robot.get_enabled_self_collisions().numpy().reshape(-1)
@@ -202,6 +282,26 @@ try:
     start_steps = SimulationManager.get_num_physics_steps()
     contact_start_steps[0]=start_steps
     start_time = SimulationManager.get_simulation_time()
+    mechanism_controllers={}
+    if any(binding.get('joints') for binding in body_bindings.values()):
+        if not strict_start:raise RuntimeError('prepared mechanism observation requires strict_start')
+        from simscene.worker.mechanism import MechanismController,UsdMechanismBackend
+        for name,binding in body_bindings.items():
+            if not binding.get('joints'):continue
+            mechanism_controllers[name]=MechanismController(binding,spec['objects'][name].get('mechanism',{}),backend=UsdMechanismBackend(stage,state_reader))
+    if strict_start:
+        initial_native_state=state_reader.read()
+        initial_joint_states=sample_joints(stage,spec['objects'],native_state=initial_native_state)
+        mechanism_configuration['mass_properties_by_prim_path']=state_reader.mass_properties(0)
+        initial_observation={'physics_steps':0,'simulation_time_s':0.,'absolute_physics_step':start_steps,'absolute_simulation_time_s':start_time,**initial_native_state,'joints':initial_joint_states,'followers':{}}
+        initial_observation['mechanisms']={}
+        for name,controller in mechanism_controllers.items():
+            controller.step(0,[])
+            initial_observation['mechanisms'][name]=controller.observe(0,initial_native_state)
+        initial_observation['bounds']=visual_bounds(stage,spec['objects'],body_bindings)
+        if has_rigid_visuals:initial_observation['rigid_visuals']=sample_visuals(stage,spec)
+        initialization_reset.update(absolute_physics_step=start_steps,absolute_simulation_time_s=start_time)
+        interval_contacts.clear()
     overlap_monitor=None
     diagnostic_prefixes=['/World/'+name.replace('-', '_')+'/Asset' for name,config in robot_configs if config.get('diagnose_overlaps')]
     if diagnostic_prefixes:
@@ -218,6 +318,8 @@ try:
         overlap_monitor=OverlapDiagnostics(shapes,query,lambda path:PhysicsSchemaTools.encodeSdfPath(Sdf.Path(path)),robot_prefixes=diagnostic_prefixes)
         overlap_monitor.sample(0)
     samples = []
+    observation_interval=spec.get('observation',{}).get('sample_interval_steps',5)
+    joint_observations=initial_joint_states if strict_start else {}
     displays_present=any(obj.get('kind')=='counter' or 'indicator' in obj for obj in spec['objects'].values())
     display_last={}
     if displays_present:
@@ -230,6 +332,7 @@ try:
         from simscene.worker.spawn import spawn
     last_sample = 0
     stalled = 0
+    if strict_start:app_utils.play()
     while SimulationManager.get_num_physics_steps() - start_steps < args.steps:
         # Control is cooperative: pause the timeline while keeping the worker
         # and its scene alive, then resume from the same physics state.
@@ -250,18 +353,28 @@ try:
                         temp.write_text(json.dumps({'state':'running','request_id':current.get('request_id')}));os.replace(temp,state)
                         break
         before = SimulationManager.get_num_physics_steps()
+        spawned_now=False
         for name,obj in list(pending.items()):
             if before-start_steps >= obj['spawn_step']:
                 path=spawn(stage,name,obj)
+                spawned_now=True
+                if obj.get('physics'):
+                    observed=passive_configuration(stage,{name:obj})
+                    mechanism_configuration['body_settings'].update(observed['body_settings'])
                 if overlap_monitor:
                     prim=stage.GetPrimAtPath(path)
                     overlap_monitor.add({'path':path,'body':path,'type':prim.GetTypeName()})
                 spawn_events.append({'id':name,'path':path,'class_label':obj.get('class_label'),'physics_step':before-start_steps})
                 del pending[name]
+        for controller in mechanism_controllers.values():controller.step(before-start_steps,[])
         for follower in followers.values(): follower.step((before - start_steps) / 60.0)
         if not args.continue_on_controller_error and any(follower.sequence_error for follower in followers.values()): break
         app.update()
         actual = SimulationManager.get_num_physics_steps() - start_steps
+        if contact_interval_overflow[0]:raise RuntimeError('per-step physical contact budget exceeded')
+        if strict_start and spawned_now:
+            state_reader.refresh()
+            mechanism_configuration['mass_properties_by_prim_path'].update(state_reader.mass_properties(actual))
         if overlap_monitor and actual>overlap_monitor.last_step:
             overlap_monitor.sample(actual)
         if actual >= resources[-1]['physics_steps'] + 3600:
@@ -299,7 +412,8 @@ try:
         stalled = stalled + 1 if before == SimulationManager.get_num_physics_steps() else 0
         if stalled >= 120:
             raise RuntimeError('Physics did not advance for 120 app updates')
-        if actual >= last_sample + 5 or actual >= args.steps:
+        if actual >= last_sample + observation_interval or actual >= args.steps:
+            if observation_interval==1 and actual!=last_sample+1:raise RuntimeError('physics skipped a required per-step observation')
             last_sample = actual
             cache = UsdGeom.XformCache()
             positions = {str(prim.GetPath()):list(cache.GetLocalToWorldTransform(prim).ExtractTranslation())
@@ -321,8 +435,19 @@ try:
                     camera_poses[name]={'position':list(transform.ExtractTranslation()),'orientation_wxyz':[rotation.GetReal(),*rotation.GetImaginary()],'stage_time_code':stage_time}
             observation={'physics_steps':SimulationManager.get_num_physics_steps() - start_steps,
                          'simulation_time_s':SimulationManager.get_simulation_time() - start_time,
+                         'absolute_physics_step':SimulationManager.get_num_physics_steps(),'absolute_simulation_time_s':SimulationManager.get_simulation_time(),
                          'positions':positions, 'orientations_wxyz':orientations,'cameras':camera_poses,
                          'followers':{name:follower.sample_state() for name,follower in followers.items()}}
+            if strict_start:observation.update(state_reader.read())
+            if mechanism_controllers:
+                observation['mechanisms']={name:controller.observe(actual,observation) for name,controller in mechanism_controllers.items()}
+            observation['bounds']=visual_bounds(stage,spec['objects'],body_bindings)
+            if has_rigid_visuals:observation['rigid_visuals']=sample_visuals(stage,spec)
+            if record_contact_pairs:
+                observation['contact_pairs']=list(interval_contacts.values());interval_contacts.clear()
+            if any(obj.get('kind')=='joint' for obj in spec['objects'].values()):
+                joint_observations=sample_joints(stage,spec['objects'],joint_observations,native_state=observation if strict_start else None)
+                observation['joints']=joint_observations
             samples.append(observation)
             if archive_case and actual%30==0:
                 for item in archive_case['objects']:
@@ -366,6 +491,7 @@ try:
                 temporary.write_text(json.dumps(observation))
                 os.replace(temporary,path)
     actual_steps = SimulationManager.get_num_physics_steps() - start_steps
+    physics_settings['after_run']=read_physics_settings(stage,args.physics_device)
     if actual_steps != resources[-1]['physics_steps']:
         resources.append(resource_sample(actual_steps,worker_started))
     simulation_time = SimulationManager.get_simulation_time() - start_time
@@ -374,13 +500,7 @@ try:
         if prim.HasAPI(UsdPhysics.RigidBodyAPI):
             transform = UsdGeom.XformCache().GetLocalToWorldTransform(prim)
             data[str(prim.GetPath())] = list(transform.ExtractTranslation())
-    object_bounds={}
-    bbox_cache=UsdGeom.BBoxCache(Usd.TimeCode.Default(),[UsdGeom.Tokens.default_,UsdGeom.Tokens.render])
-    for path,name in monitored.items():
-        prim=stage.GetPrimAtPath(path)
-        if not prim: continue
-        box=bbox_cache.ComputeWorldBound(prim).ComputeAlignedRange()
-        if not box.IsEmpty(): object_bounds[name]={'min':list(box.GetMin()),'max':list(box.GetMax())}
+    object_bounds=visual_bounds(stage,spec['objects'],body_bindings)
     images = {}
     check_render(carb.settings.get_settings(),render_settings.get('expected',{}))
     render_settings['at_completion']=read_render(carb.settings.get_settings())
@@ -401,13 +521,20 @@ try:
             path = Path(args.output).parent / ('camera_' + name + '.png')
             Image.fromarray(rgb.numpy()).save(path)
             images[name] = str(path)
+    # Keep all per-step fields; compact JSON avoids large whitespace-only
+    # output for long passive runs. Seal only after the complete file closes.
     with open(args.output, 'w') as f:
-        json.dump({'requested_physics_steps':args.steps, 'actual_physics_steps':actual_steps, 'simulation_time_s':simulation_time, 'seed':args.seed, 'positions':data, 'object_classes':{name:obj.get('class_label') for name,obj in spec['objects'].items() if obj.get('dynamic')}, 'spawn_events':spawn_events, 'pending_spawn_ids':list(pending), 'archived_objects':archived_objects, 'bounds':object_bounds, 'samples':samples, 'resources':resources, 'images':images, 'videos':videos, 'render_settings_path':str(Path(args.output).parent/'render-settings.json'), 'followers':{name:follower.observe() for name,follower in followers.items()}, 'task_status':'failed' if any(follower.sequence_error for follower in followers.values()) else 'unverified', 'contact_counts':contacts, 'contacts_truncated':contacts_truncated[0], 'robot_contacts':robot_contacts, 'self_collision_settings':self_collision_settings, 'overlap_counts':overlap_monitor.counts if overlap_monitor else {}, 'overlap_diagnostics':overlap_monitor.summary() if overlap_monitor else None, 'contact_geometry_incomplete':contact_geometry_incomplete[0], 'monitored_robot_ids':[name for name,config in robot_configs if config.get('monitor_collisions')], 'contact_scope':'dynamic objects and explicitly enabled robot rigid bodies; reported separation covers PhysX contact points only and does not exclude unreported penetration'}, f, indent=2)
+        json.dump({'mechanisms':samples[-1].get('mechanisms',{}) if samples else {},'physics_settings':physics_settings,'body_bindings':body_bindings,'body_contact_counts':body_contact_counts,'partial':actual_steps!=args.steps,'samples_truncated':False,'initial_observation':initial_observation,'initialization_reset':initialization_reset,'run_zero_absolute_physics_step':start_steps,'run_zero_absolute_simulation_time_s':start_time,'contact_pair_scope':'non-empty physical contact callbacks since the preceding observation; original callback counters retained' if record_contact_pairs else None,'mechanism_configuration':mechanism_configuration,'initial_joint_states':initial_joint_states,'observation_interval_steps':observation_interval,'requested_physics_steps':args.steps, 'actual_physics_steps':actual_steps, 'simulation_time_s':simulation_time, 'seed':args.seed, 'positions':data, 'object_classes':{name:obj.get('class_label') for name,obj in spec['objects'].items() if obj.get('dynamic')}, 'spawn_events':spawn_events, 'pending_spawn_ids':list(pending), 'archived_objects':archived_objects, 'bounds':object_bounds, 'samples':samples, 'resources':resources, 'images':images, 'videos':videos, 'render_settings_path':str(Path(args.output).parent/'render-settings.json'), 'followers':{name:follower.observe() for name,follower in followers.items()}, 'task_status':'failed' if any(follower.sequence_error for follower in followers.values()) else 'unverified', 'contact_counts':contacts, 'contacts_truncated':contacts_truncated[0], 'robot_contacts':robot_contacts, 'self_collision_settings':self_collision_settings, 'overlap_counts':overlap_monitor.counts if overlap_monitor else {}, 'overlap_diagnostics':overlap_monitor.summary() if overlap_monitor else None, 'contact_geometry_incomplete':contact_geometry_incomplete[0], 'monitored_robot_ids':[name for name,config in robot_configs if config.get('monitor_collisions')], 'contact_scope':'dynamic objects and explicitly enabled robot rigid bodies; reported separation covers PhysX contact points only and does not exclude unreported penetration'}, f, separators=(',',':'))
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
     from simscene.evidence_integrity import seal
     seal(Path(args.output).parent)
     app_utils.stop()
 except Exception as error:
+    if hasattr(error,'physics_settings'):
+        captured=globals().get('physics_settings')
+        if captured is not None:
+            key='before_warmup' if captured.get('before_warmup') is None else 'after_run'
+            captured[key]=error.physics_settings
     partial_videos={}
     for name,recorder in recorders.items():
         try:partial_videos[name]=recorder.close()
@@ -422,7 +549,7 @@ except Exception as error:
             controller_records[name]={**sampled,'sequence_index':getattr(follower,'sequence_index',None),
                 'sequence_length':len(getattr(follower,'sequence',[])),'sequence_error':getattr(follower,'sequence_error',None),
                 'transitions':getattr(follower,'transitions',[]),'suction_events':getattr(follower,'suction_events',[])}
-        partial={'task_status':'failed','partial':True,'evidence_incomplete':True,'error':str(error),'requested_physics_steps':args.steps,
+        partial={'physics_settings':globals().get('physics_settings'),'body_bindings':globals().get('body_bindings',{}),'body_contact_counts':globals().get('body_contact_counts',{}),'initial_observation':globals().get('initial_observation'),'initialization_reset':globals().get('initialization_reset'),'samples_truncated':True,'task_status':'failed','partial':True,'evidence_incomplete':True,'error':str(error),'requested_physics_steps':args.steps,
                  'actual_physics_steps':last.get('physics_steps',0),'simulation_time_s':last.get('simulation_time_s',0),
                  'positions':last.get('positions',{}),'samples':observed,'resources':globals().get('resources',[]),'bounds':{},'followers':controller_records,
                  'spawn_events':globals().get('spawn_events',[]),'pending_spawn_ids':list(globals().get('pending',{})),'archived_objects':globals().get('archived_objects',{}),
@@ -430,7 +557,7 @@ except Exception as error:
                  'overlap_counts':globals()['overlap_monitor'].counts if globals().get('overlap_monitor') else {},
                  'overlap_diagnostics':globals()['overlap_monitor'].summary() if globals().get('overlap_monitor') else None,
                  'contacts_truncated':True, 'contact_geometry_incomplete':True,'videos':partial_videos}
-        (Path(args.output).parent/'partial-result.json').write_text(json.dumps(partial,indent=2))
+        (Path(args.output).parent/'partial-result.json').write_text(json.dumps(partial,separators=(',',':')))
         sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
         from simscene.evidence_integrity import seal
         seal(Path(args.output).parent,'partial-result.json')

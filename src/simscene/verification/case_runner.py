@@ -6,7 +6,12 @@ evidentiary scope even though they use the same physical measurements.
 import hashlib,importlib,json
 from pathlib import Path
 
-TYPES={'contact':'contact_pick','suction':'suction_pick','moving':'moving_pick','repeated':'repeated_pick','domino':'domino','parallel':'parallel_probe','stream':'stream_probe'}
+TYPES={'contact':'contact_pick','suction':'suction_pick','moving':'moving_pick','repeated':'repeated_pick','domino':'domino','parallel':'parallel_probe','stream':'stream_probe','mechanism':'mechanism_adapter','passive_network':'passive_network'}
+TYPES['rigid_asset_smoke']='rigid_asset_smoke'
+TYPES['articulated_asset_smoke']='articulated_asset_smoke'
+TYPES['container_asset_smoke']='container_asset_smoke'
+TYPES['asset_gallery']='asset_gallery'
+TYPES['handoff_chain']='handoff_chain'
 
 def _load(path):
     path=Path(path)
@@ -16,7 +21,27 @@ def _load(path):
         except yaml.YAMLError as error:raise ValueError(f'invalid YAML: {error}') from error
     return json.loads(path.read_text())
 
-def evaluate(run_path,case_path=None,case_type=None,spec_path=None):
+def verify_passive_suite(positive_run, control_runs, case_path=None):
+    """Choose an explicit schema authority; its original sealed guards still run."""
+    root=Path(positive_run)
+    selected=case_path
+    if selected is None:
+        lock=_load(root/'run-lock.json')
+        name=lock.get('acceptance_case_file')
+        if name not in ('acceptance-case.json','acceptance-case.yaml','acceptance-case.yml'):
+            raise ValueError('a snapshotted passive network case is required')
+        selected=root/name
+    case=_load(selected)
+    if not isinstance(case,dict):raise ValueError('case must be a mapping')
+    schema=case.get('schema')
+    if schema in ('simscene.passive_network.v1','simscene.passive_network.v2'):
+        module_name='passive_network'
+    elif schema=='simscene.passive_network.v3':module_name='passive_network_v3'
+    else:raise ValueError('unsupported passive network suite schema')
+    module=importlib.import_module('.'+module_name,__package__)
+    return module.verify_suite(positive_run,control_runs,case_path)
+
+def evaluate(run_path,case_path=None,case_type=None,spec_path=None,mode='positive',reference_run=None):
     directory=Path(run_path) if Path(run_path).is_dir() else None
     lock={}
     if directory and (directory/'run-lock.json').is_file():lock=_load(directory/'run-lock.json')
@@ -32,11 +57,37 @@ def evaluate(run_path,case_path=None,case_type=None,spec_path=None):
     case=_load(case_path)
     if not isinstance(case,dict):raise ValueError('case must be a mapping')
     if case_type is None:
-        if 'expected_spawn_order' in case and 'objects' in case:case_type='stream'
+        if case.get('schema')=='simscene.rigid_asset_smoke.v1':case_type='rigid_asset_smoke'
+        elif case.get('schema')=='simscene.articulated_asset_smoke.v1':case_type='articulated_asset_smoke'
+        elif case.get('schema')=='simscene.container_asset_smoke.v1':case_type='container_asset_smoke'
+        elif case.get('schema')=='simscene.asset_gallery.v1':case_type='asset_gallery'
+        elif case.get('schema')=='simscene.handoff_chain.v1':case_type='handoff_chain'
+        elif case.get('schema') in ('simscene.passive_network.v1','simscene.passive_network.v2','simscene.passive_network.v3'):case_type='passive_network'
+        elif case.get('schema') in ('simscene.mechanism.v1','simscene.mechanism.v2'):case_type='mechanism'
+        elif 'expected_spawn_order' in case and 'objects' in case:case_type='stream'
         elif 'objects' in case:case_type='parallel'
         else:raise ValueError('case type is required when it cannot be inferred')
     if case_type not in TYPES:raise ValueError('unsupported verification case type')
-    module=importlib.import_module('.'+TYPES[case_type],__package__)
+    module_name=TYPES[case_type]
+    if case.get('schema')=='simscene.mechanism.v2':
+        if case_type!='mechanism':raise ValueError('v2 D6 case requires mechanism verification')
+        module_name='mechanism_adapter_v2'
+    elif case.get('schema')=='simscene.passive_network.v3':
+        if case_type!='passive_network':raise ValueError('v3 D6 case requires passive network verification')
+        module_name='passive_network_v3'
+    module=importlib.import_module('.'+module_name,__package__)
+    if case_type=='handoff_chain':
+        if not directory:raise ValueError('handoff verification requires the complete frozen run directory')
+        return {**module.verify_run(directory,case_path,mode,reference_directory=reference_run),'case_type':case_type}
+    if case_type in ('rigid_asset_smoke','articulated_asset_smoke','container_asset_smoke','asset_gallery'):
+        if not directory or mode!='positive' or reference_run is not None:
+            raise ValueError('imported asset verification requires a frozen run directory and its own case')
+        return {**module.verify_run(directory,case_path),'case_type':case_type}
+    if case_type in ('mechanism','passive_network'):
+        if not directory:raise ValueError('passive verification requires the complete frozen run directory')
+        result=module.verify_run(directory,case_path,mode,reference_run)
+        return {**result,'case_type':case_type}
+    if mode!='positive' or reference_run is not None:raise ValueError('paired mechanism modes require a mechanism case')
     run=_load(directory/'result.json' if directory else run_path)
     if case_type in ('parallel','stream'):
         spec_path=spec_path or (directory/'spec.json' if directory else None)

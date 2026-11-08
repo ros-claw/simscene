@@ -1,0 +1,93 @@
+{
+  "schema": "simscene.catalog_benchmark_tasks.v1",
+  "tasks": [
+    {
+      "id": "native-layout",
+      "group": "A",
+      "phase": "authoring",
+      "cache": "cold",
+      "prompt": "Find a native USD workbench using online metadata and compose an editable gravity sorting cell: one workbench, floor, ramp, baffle, and four falling rigid objects. Measure support heights; run 720 steps at 60 Hz, seed 42. Submit scene JSON and every run ID. All four objects must remain above the floor and settle within the work area.",
+      "acceptance": [
+        "native_source_identity",
+        "editable_geometry",
+        "four_dynamic_bodies",
+        "support_and_bounds",
+        "720_step_physics"
+      ]
+    },
+    {
+      "id": "warm-edit",
+      "group": "A",
+      "phase": "warm_edit",
+      "cache": "paired_warm",
+      "prompt": "From the supplied identical frozen gravity cell, move only the first falling object 20 mm along the ramp. Preserve source geometry and the other three objects. Run a new 720-step, 60 Hz, seed-42 simulation and submit the changed scene plus all attempted run IDs.",
+      "acceptance": [
+        "exact_20mm_edit",
+        "other_objects_unchanged",
+        "new_run",
+        "720_step_physics"
+      ]
+    },
+    {
+      "id": "native-video",
+      "group": "A",
+      "phase": "render",
+      "cache": "paired_warm",
+      "prompt": "Replay the supplied identical native USD gravity cell and record a native 5-second, 960x540, 30 fps video showing all four objects and their ramp contacts. Submit original video, run ID and camera parameters. No synthetic frames or speed changes.",
+      "acceptance": [
+        "frozen_scene_identity",
+        "native_video",
+        "150_frames",
+        "visible_four_bodies",
+        "pixel_and_motion_QA"
+      ]
+    },
+    {
+      "id": "glb-rigid",
+      "group": "B",
+      "phase": "authoring",
+      "cache": "cold",
+      "capability": "GLB rigid preparation",
+      "prompt": "Find ABO B01DN8TB5U at pinned revision c7c8293fed3b7ab122ef5d7896521a187e0962d7. Prepare its actual source geometry at 150 mm longest dimension and explicit experimental mass 0.12 kg. Drop it onto an editable ramp and run 720 steps at 60 Hz, seed 42. Submit source identity, preparation binding, scene and all run IDs.",
+      "acceptance": [
+        "pinned_source_geometry",
+        "150mm_profile",
+        "explicit_mass",
+        "prepared_binding",
+        "720_step_physics"
+      ]
+    },
+    {
+      "id": "native-joint",
+      "group": "B",
+      "phase": "authoring",
+      "cache": "cold",
+      "capability": "native articulated preparation",
+      "prompt": "Using the supplied pinned native articulated asset, retain its native links and joint topology, prepare an explicit articulated profile, then command one bounded open-and-close cycle in a new 720-step, 60 Hz, seed-42 run. Use the supplied drive recipe and verify actual joint position readback, limits, return travel and anchor error. Submit source identity, body map, joint limits and all run IDs. Command targets alone are not measured motion.",
+      "acceptance": [
+        "pinned_joint_source",
+        "native_topology_preserved",
+        "explicit_profile",
+        "driven_open_close_actual_readback",
+        "joint_motion_and_limits",
+        "720_step_physics"
+      ]
+    },
+    {
+      "id": "generated-module",
+      "group": "B",
+      "phase": "authoring",
+      "cache": "cold",
+      "capability": "trusted Sand3D original-geometry generation",
+      "prompt": "Use the supplied pinned Sand3D guide_plate_v1 template and fixed dimensions to generate original editable USD geometry. Rebuild with the same parameters and compare output hashes, then change only the supplied length parameter and verify changed geometry. Prepare the original generated plate as a static fixture, drop the supplied rigid sphere onto it, and run 720 steps at 60 Hz, seed 42. Submit generator/template/source provenance, parameters, editable scene, generation job IDs and all attempted run IDs. Do not replace generation with manually authored primitive geometry.",
+      "acceptance": [
+        "pinned_generator_template",
+        "exact_generation_parameters",
+        "same_parameter_hash_repeatability",
+        "changed_length_geometry",
+        "generated_source_bound_in_scene",
+        "720_step_physics"
+      ]
+    }
+  ]
+}

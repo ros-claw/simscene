@@ -113,6 +113,36 @@ def _snapshot_cached_assets(scene, run):
     records = {}
     for name, obj in scene['objects'].items():
         if obj.get('kind') != 'asset': continue
+        if obj.get('asset_binding'):
+            from .physics_binding import validate_asset_binding
+            if not Path(obj['asset_binding']['manifest_path']).expanduser().is_file():
+                from .cache_restore import restore_prepared_reference
+                restored=restore_prepared_reference(obj['asset_binding'],obj['asset_path'],home=SceneStore().path)
+                obj.update(restored)
+            binding=obj['asset_binding']; original=Path(binding['manifest_path']).expanduser().resolve()
+            package=original.parent; key='prepared:'+str(package)
+            # The same lock protects prepared-cache eviction and publication.
+            with (package.parent/'.prepared.lock').open('a') as lockfile:
+                fcntl.flock(lockfile,fcntl.LOCK_EX)
+                metadata=validate_asset_binding(binding,require_dynamic=obj.get('dynamic',False),asset_path=obj['asset_path'])
+                if key not in snapshots:
+                    target=run/'assets'/('prepared-'+binding['manifest_sha256'])
+                    target.parent.mkdir(parents=True,exist_ok=True)
+                    shutil.copytree(package,target)
+                    snapshots[key]=target
+                target=snapshots[key]
+                relocated={'manifest_path':str(target/'manifest.json'),'manifest_sha256':binding['manifest_sha256']}
+                validate_asset_binding(relocated,require_dynamic=obj.get('dynamic',False),asset_path=str(target/metadata['main']))
+            obj['asset_path']=str(target/metadata['main']);obj['asset_binding']=relocated
+            records[name]={'kind':'prepared_snapshot','prepared_id':metadata['prepared_id'],
+                           'root_relative_to_run':str((target/metadata['main']).relative_to(run)),
+                           'manifest_relative_to_run':str((target/'manifest.json').relative_to(run)),
+                           'manifest_sha256':relocated['manifest_sha256'],'source_ref':metadata.get('source_ref'),
+                           'license':metadata.get('license'),'runtime_dependencies':metadata.get('runtime_dependencies',[])}
+            from .preparation.snapshots import pin_prepared_runtime
+            from .settings import get
+            records[name].update(pin_prepared_runtime(target,metadata,get('isaac_python')))
+            continue
         path = Path(obj['asset_path']).expanduser().resolve()
         if not path.is_file():
             from .cache_restore import restore_reference
@@ -165,6 +195,12 @@ def _snapshot_cached_assets(scene, run):
                              'license':metadata.get('license','unknown'),
                              'runtime_provided_dependencies':verified.get('runtime_provided_dependencies',{}),
                              'runtime_dependency_sha256':{key:_sha256(Path(value)) for key,value in verified.get('runtime_provided_dependencies',{}).items()}}
+            from .snapshot_integrity import pin_snapshot
+            from .settings import get
+            try:
+                records[name].update(pin_snapshot(target, get('isaac_python'), records[name]['runtime_provided_dependencies']))
+            except (OSError, ValueError, KeyError) as error:
+                raise SceneError(f'cannot pin complete cached asset closure {name}: {error}') from error
     return records
 
 def _recover_job_request(root,request_id,digest):
@@ -256,6 +292,14 @@ def _start(scene_id, steps=120, seed=None, case_path=None, continue_on_controlle
     if not executable or not Path(executable).is_file():
         raise SceneError('set SIMSCENE_ISAAC_PYTHON to the Isaac Sim python.sh path')
     scene = SceneStore().get(scene_id)
+    if case_snapshot and parsed.get('schema') in ('simscene.articulated_asset_smoke.v1','simscene.container_asset_smoke.v1','simscene.asset_gallery.v1','simscene.handoff_chain.v1'):
+        from importlib import import_module
+        module={'simscene.articulated_asset_smoke.v1':'articulated_asset_smoke','simscene.container_asset_smoke.v1':'container_asset_smoke','simscene.asset_gallery.v1':'asset_gallery','simscene.handoff_chain.v1':'handoff_chain'}[parsed['schema']]
+        try:
+            checker=import_module('.verification.'+module,__package__)
+            checker.validate_case(parsed)
+            if module=='handoff_chain':checker.verify_selection(scene,parsed)
+        except (ValueError,TypeError,KeyError) as error:raise SceneError(str(error)) from error
     if case_snapshot:
         from .verification.collision_preflight import validate as validate_collision_case
         try:validate_collision_case(scene,parsed)
@@ -342,6 +386,8 @@ def _start(scene_id, steps=120, seed=None, case_path=None, continue_on_controlle
               'asset_normalizations':exported.get('normalized_visual_assets',{}) if isinstance(exported,dict) else {},
               'gpu_selection':{'simscene_gpu':os.getenv('SIMSCENE_GPU','0'),'cuda_visible_devices':os.getenv('CUDA_VISIBLE_DEVICES')},
               'physics_dt_s':1/60,'physics_device':physics_device,'continue_on_controller_error':continue_on_controller_error,'archive_verified_objects':archive_verified_objects,'requested_physics_steps':steps,'seed':seed,'created_at_utc':datetime.now(timezone.utc).isoformat()}
+    if isinstance(exported,dict) and exported.get('body_bindings'):
+        manifest['body_bindings']=exported['body_bindings']
     if case_snapshot:
         manifest['acceptance_case_file']=case_name
         manifest['acceptance_case_sha256']=hashlib.sha256(case_snapshot[0]).hexdigest()
@@ -404,6 +450,10 @@ def robot_profile_start(model, asset_path):
     return {'job_id':job_id}
 
 def status(job_id):
+    from .generation import jobs as generation_jobs
+    if generation_jobs.owns(job_id):return generation_jobs.status(job_id)
+    from .preparation import jobs as preparation_jobs
+    if preparation_jobs.owns(job_id):return preparation_jobs.status(job_id)
     future = _downloads.get(job_id)
     if future is not None:
         if future.cancelled(): return {'job_id':job_id, 'state':'cancelled'}
@@ -530,11 +580,27 @@ def verify_lock(job_id):
     from .run_integrity import verify
     return verify(job['directory'])
 
-def verify_task(job_id,case_path=None,case_type=None):
+def verify_task(job_id,case_path=None,case_type=None,mode='positive',reference_job_id=None):
     job=_job(job_id)
     if status(job_id)['state']!='completed':raise SceneError('physical verification requires a completed result')
     from .verification.case_runner import evaluate
-    return evaluate(job['directory'],case_path,case_type)
+    reference=None
+    if reference_job_id is not None:
+        if status(reference_job_id)['state']!='completed':raise SceneError('paired reference requires a completed positive run')
+        reference=_job(reference_job_id)['directory']
+    return evaluate(job['directory'],case_path,case_type,mode=mode,reference_run=reference)
+
+def verify_passive_suite(positive_job_id,control_job_ids,case_path=None):
+    """Read a complete passive-network run and its frozen isolated controls."""
+    from .verification.passive_network import MODES
+    from .verification.case_runner import verify_passive_suite as verify_suite
+    if not isinstance(control_job_ids,dict) or set(control_job_ids)-set(MODES[1:]) or any(not isinstance(v,str) for v in control_job_ids.values()):
+        raise SceneError('control_job_ids must map passive control modes to job IDs')
+    ids=[positive_job_id,*control_job_ids.values()]
+    if len(set(ids))!=len(ids):raise SceneError('positive and isolated control jobs must be distinct')
+    for job_id in ids:
+        if status(job_id)['state']!='completed':raise SceneError('passive suite requires completed positive and control results')
+    return verify_suite(_job(positive_job_id)['directory'],{mode:_job(job_id)['directory'] for mode,job_id in control_job_ids.items()},case_path)
 
 def verify_evidence(job_id):
     job=_job(job_id)
@@ -613,6 +679,10 @@ def video_chunk(job_id, camera, offset=0, length=262144):
             'chunk_sha256':hashlib.sha256(data).hexdigest(), 'next_offset':offset+len(data) if offset+len(data)<total else None}
 
 def cancel(job_id):
+    from .generation import jobs as generation_jobs
+    if generation_jobs.owns(job_id):return generation_jobs.cancel(job_id)
+    from .preparation import jobs as preparation_jobs
+    if preparation_jobs.owns(job_id):return preparation_jobs.cancel(job_id)
     import signal
     future = _downloads.get(job_id)
     if future is not None:

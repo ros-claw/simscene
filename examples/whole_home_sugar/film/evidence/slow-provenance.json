@@ -1,0 +1,31 @@
+{
+  "schema": "simscene.public_film_provenance.v1",
+  "movie": "../../../../docs/media/only-one-sugar-details-20s.mp4",
+  "sha256": "99052dd948c44217bb40af0933f460c3ad746d9cf87076417adf02601a379781",
+  "frames": 600,
+  "fps": 30,
+  "duration_s": 20.0,
+  "sources": [
+    {
+      "id": "source_01",
+      "filename": "slow_wave.mp4",
+      "sha256": "9c64de29602cecf8956e2189713e95f62e1f06894520f8fc4fb4498663263148"
+    },
+    {
+      "id": "source_02",
+      "filename": "slow_bridge.mp4",
+      "sha256": "e8bee6ae0b8d9490e6f2817ca59022c26b6f52c5b8a865f9f7ceca810a1daf4b"
+    },
+    {
+      "id": "source_03",
+      "filename": "slow_sugar.mp4",
+      "sha256": "8c2cd6daeaf02fb0ca00bff0a108715dc62faff8421631447849e5e10ed0dfa6"
+    }
+  ],
+  "frame_map": "slow-frame-map.jsonl",
+  "frame_map_sha256": "951f19097add05baeb310fb9ebe1aa7f252b88761cefa8f1d9330bdfaf0b5886",
+  "new_physics_runs": 0,
+  "pose_interpolation": false,
+  "review": "Actual decoded frame grids and temporal action strips; final per-frame PTS verified. No subjective full-playback/audience or phone speaker test claimed.",
+  "full_local_receipt": "/data/rosclaw/simscene-film-skill-20261103/slow-details-v2/film-reviewed.json"
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "door_bridge",
+  "prefix": "bridge",
+  "parameters": {
+    "origin": [
+      0,
+      0,
+      0.7
+    ],
+    "length_m": 0.6,
+    "width_m": 0.3,
+    "thickness_m": 0.025,
+    "raised_angle_degrees": 80
+  }
+}

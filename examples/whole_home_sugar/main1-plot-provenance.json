@@ -1,0 +1,19 @@
+{
+  "schema": "simscene.public_original_MAIN1_activity_plot.v1",
+  "run_id": "80299d13af664aa3a597d64633addf19",
+  "scope": "Presentation of this one original accepted run, not full-suite acceptance. Exported by original P6 from unchanged original masks; overlapping acts are unioned once. Confirmation wait is excluded.",
+  "source_full_F9_sha256": "be40aa731d151d6b46ae679c4b3ba5e1d6c5dcaa523a710e7c0eb0ffaf548eb4",
+  "source_K6_sha256": "d3cf259ecdc389ffe32c9fd42a12b15bdbe23a4a8ef8bd1fd7bbfb18dad09685",
+  "original_plot_metadata_sha256": "0ebf64afb3b341eaec253bfa518a6cc4068c03cb8f3086d5c7248d81c6bc08df",
+  "metrics": {
+    "chain_duration_s": 87.65,
+    "net_effective_action_s": 87.01666666666667,
+    "motion_occupancy": 0.9927742916904354,
+    "maximum_idle_s": 0.05
+  },
+  "files_sha256": {
+    "main1-activity.pdf": "74fa2335b26e0f409abc38e34f452e610f7b82ef6d4ba4a1430a994a8ed242dd",
+    "main1-activity.svg": "441a588cdfe23b2340d493a46cbe0c992219cbe77710613c15617eac1f6be2a5",
+    "main1-activity.png": "b84e13ffcabc6c82465d543a996bbff19808714e8ea3a65359b53d5a262f2de2"
+  }
+}

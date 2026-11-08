@@ -1,0 +1,44 @@
+{
+  "status": "P1 desktop mechanisms; not a whole-room delivery",
+  "note": "Published after actual SDK validation. No downstream actuators; physical proxy models. The detached rope must be checked against its matched positive. These recipes were not provided to a fresh whole-room builder.",
+  "scenes": {
+    "rope_drawer": {
+      "source_run_id": "71442554f2054c3c96fc127343c34d09",
+      "run_lock_sha256": "73b17cb044c54f714a000506d47099339afe83a23afa55bbc28655e324bd2d38",
+      "evidence_lock_sha256": "0b307d81058d6a440868680452059bc406847f01043385efb561556cf9f56d49",
+      "recipe": "rope_drawer.json",
+      "steps": 600,
+      "seed": 42,
+      "case": "rope-drawer-v1.json",
+      "case_sha256": "9c23efc8b30071902ebc986bf29a78878d8218b2f360ff550872e41436450fc9"
+    },
+    "rope_disconnected": {
+      "source_run_id": "dc4a651c97aa4f868282f7ff46eedbb5",
+      "run_lock_sha256": "9e5b3753c48d9d71e3de1faef181f86f0305de2556069319b1c2d4f3bb86a02e",
+      "evidence_lock_sha256": "1aed865624f6c81bc1d692b456223ed0ee8e0cd83b690e47ecce0465221d6670",
+      "recipe": "rope_disconnected.json",
+      "steps": 600,
+      "seed": 42
+    },
+    "wheel_door_bridge": {
+      "source_run_id": "90f1e308c8ae4c4faf9f7235ba359d2c",
+      "run_lock_sha256": "573fc7d4c311219a0b32878c3bf470c1bd9c819b9a24c50fb91f1f21bbfe83ca",
+      "evidence_lock_sha256": "7bb89fc4c2d4cb0fc39f82dee2e9d816f37e69d00ed3169a81dd7edc6ff77611",
+      "recipe": "wheel_door_bridge.json",
+      "steps": 600,
+      "seed": 42,
+      "case": "wheel-door-bridge-v1.json",
+      "case_sha256": "e593da6743e566f313eccb61129c1efd4afb87fa86092813b5dd0e68bb41edb8"
+    },
+    "spoon_sugar": {
+      "source_run_id": "e4c37037d8e743bf9d08d033da2e2fcc",
+      "run_lock_sha256": "30293929b02994629359b27cf087c556ab8faf738209ba2998dd2ebb6efd5779",
+      "evidence_lock_sha256": "5480a9570ae40b0afc6e321b3766127959ecb7ca370589739efa571d4522507d",
+      "recipe": "spoon_sugar.json",
+      "steps": 600,
+      "seed": 42,
+      "case": "spoon-sugar-v1.json",
+      "case_sha256": "386396941e2f29bc07a5f70bf8ff808eabb84f6c51029190ad80693151a7ec2a"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "simscene.pilot_design_cpu_checks.v1",
+  "cpu_only": true,
+  "isaac_launched": false,
+  "formal_task_runs": 0,
+  "generic_native_smoke_runs": 0,
+  "compiled_sources": [
+    "examiner/freeze_runtime_identity.py",
+    "examiner/score.py",
+    "examiner/test_score_cpu.py",
+    "smoke-source/generic_smoke_ops.py"
+  ],
+  "test_count": 15,
+  "test_status": "passed",
+  "test_output": "...............\n----------------------------------------------------------------------\nRan 15 tests in 0.428s\n\nOK\n",
+  "pre_freeze_preparation_corrections": [
+    {
+      "kind": "CPU interface test",
+      "detail": "A source-only smoke ops test initially passed SceneStore.apply arguments in the wrong order; corrected to the existing request_id-before-operations signature. No native run and no task result were involved."
+    }
+  ],
+  "scope": "Synthetic scorer logic and v43 smoke-ops schema only; does not establish physical task success, native environment readiness, or A/B efficiency."
+}

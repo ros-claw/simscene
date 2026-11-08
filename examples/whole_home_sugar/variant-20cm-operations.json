@@ -1,0 +1,322 @@
+{
+  "description": "Predeclared physical geometry change: shift cup and spoon assembly 0.20m in X, repair the same passive support linkage with the original eleven whole-vector patches. No drive, mass, threshold, camera or timing changes. Source recipe only; actual formal variant has its separate independent record.",
+  "operations": [
+    {
+      "op": "update",
+      "id": "dining_spoon",
+      "changes": {
+        "position": [
+          8.5,
+          6.819999999999999,
+          0.94
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "id": "dining_spoon_pivot",
+      "changes": {
+        "joint": {
+          "type": "revolute",
+          "body0": null,
+          "body1": "dining_spoon",
+          "local_pos0": [
+            8.5,
+            6.819999999999999,
+            0.94
+          ],
+          "local_pos1": [
+            0,
+            0,
+            0
+          ],
+          "axis": "Y",
+          "lower_limit": 0,
+          "upper_limit": 30,
+          "local_rot0_wxyz": [
+            6.123233995736766e-17,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      }
+    },
+    {
+      "op": "update",
+      "id": "dining_spoon_bearing",
+      "changes": {
+        "position": [
+          8.5,
+          6.76,
+          0.8325
+        ],
+        "size": [
+          0.01,
+          0.01,
+          0.215
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "id": "dining_support_stop",
+      "changes": {
+        "parts": [
+          {
+            "kind": "box",
+            "size": [
+              0.02,
+              0.045,
+              0.055
+            ],
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "color": [
+              0.72,
+              0.25,
+              0.12
+            ],
+            "orientation_wxyz": [
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "kind": "box",
+            "size": [
+              0.014,
+              0.2973213749463701,
+              0.012
+            ],
+            "position": [
+              0.1,
+              -0.11,
+              0.0155
+            ],
+            "color": [
+              0.72,
+              0.25,
+              0.12
+            ],
+            "orientation_wxyz": [
+              0.932721843154738,
+              0,
+              0,
+              0.3605966767761846
+            ]
+          },
+          {
+            "kind": "box",
+            "size": [
+              0.03,
+              0.045,
+              0.055
+            ],
+            "position": [
+              0.19,
+              -0.22,
+              0
+            ],
+            "color": [
+              0.72,
+              0.25,
+              0.12
+            ],
+            "orientation_wxyz": [
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "id": "dining_cup",
+      "changes": {
+        "position": [
+          8.325,
+          6.819999999999999,
+          0.7250000000000001
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "id": "dining_sugar",
+      "changes": {
+        "position": [
+          8.422,
+          6.8229999999999995,
+          0.9560000000000001
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "id": "dining_spoon_static_axle",
+      "changes": {
+        "position": [
+          8.5,
+          6.785,
+          0.94
+        ]
+      }
+    }
+  ],
+  "exact_eleven_vector_patches": [
+    {
+      "path": "objects.dining_spoon.position",
+      "before": [
+        8.7,
+        6.819999999999999,
+        0.94
+      ],
+      "after": [
+        8.5,
+        6.819999999999999,
+        0.94
+      ]
+    },
+    {
+      "path": "objects.dining_spoon_pivot.joint.local_pos0",
+      "before": [
+        8.7,
+        6.819999999999999,
+        0.94
+      ],
+      "after": [
+        8.5,
+        6.819999999999999,
+        0.94
+      ]
+    },
+    {
+      "path": "objects.dining_spoon_bearing.size",
+      "before": [
+        0.02,
+        0.025,
+        0.215
+      ],
+      "after": [
+        0.01,
+        0.01,
+        0.215
+      ]
+    },
+    {
+      "path": "objects.dining_spoon_bearing.position",
+      "before": [
+        8.7,
+        6.76,
+        0.8325
+      ],
+      "after": [
+        8.5,
+        6.76,
+        0.8325
+      ]
+    },
+    {
+      "path": "objects.dining_support_stop.parts.1.size",
+      "before": [
+        0.014,
+        0.22,
+        0.012
+      ],
+      "after": [
+        0.014,
+        0.2973213749463701,
+        0.012
+      ]
+    },
+    {
+      "path": "objects.dining_support_stop.parts.1.position",
+      "before": [
+        0,
+        -0.11,
+        0.0155
+      ],
+      "after": [
+        0.1,
+        -0.11,
+        0.0155
+      ]
+    },
+    {
+      "path": "objects.dining_support_stop.parts.1.orientation_wxyz",
+      "before": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "after": [
+        0.932721843154738,
+        0,
+        0,
+        0.3605966767761846
+      ]
+    },
+    {
+      "path": "objects.dining_support_stop.parts.2.position",
+      "before": [
+        -0.01,
+        -0.22,
+        0
+      ],
+      "after": [
+        0.19,
+        -0.22,
+        0
+      ]
+    },
+    {
+      "path": "objects.dining_cup.position",
+      "before": [
+        8.524999999999999,
+        6.819999999999999,
+        0.7250000000000001
+      ],
+      "after": [
+        8.325,
+        6.819999999999999,
+        0.7250000000000001
+      ]
+    },
+    {
+      "path": "objects.dining_sugar.position",
+      "before": [
+        8.622,
+        6.819999999999999,
+        0.9560000000000001
+      ],
+      "after": [
+        8.422,
+        6.8229999999999995,
+        0.9560000000000001
+      ]
+    },
+    {
+      "path": "objects.dining_spoon_static_axle.position",
+      "before": [
+        8.7,
+        6.785,
+        0.94
+      ],
+      "after": [
+        8.5,
+        6.785,
+        0.94
+      ]
+    }
+  ]
+}

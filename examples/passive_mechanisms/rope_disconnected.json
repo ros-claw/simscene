@@ -1,0 +1,5333 @@
+{
+  "objects": {
+    "floor": {
+      "kind": "box",
+      "size": [
+        3,
+        1.7,
+        0.2
+      ],
+      "position": [
+        0,
+        0,
+        -0.04
+      ],
+      "color": [
+        0.14,
+        0.17,
+        0.2
+      ],
+      "collision": true
+    },
+    "drawer_shelf": {
+      "kind": "box",
+      "size": [
+        0.5,
+        0.36,
+        0.03
+      ],
+      "position": [
+        -0.9,
+        0,
+        0.895
+      ],
+      "color": [
+        0.35,
+        0.25,
+        0.15
+      ],
+      "collision": true
+    },
+    "drawer": {
+      "kind": "compound",
+      "position": [
+        -0.85,
+        0,
+        0.92
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 1,
+      "color": [
+        0.64,
+        0.39,
+        0.19
+      ],
+      "physics": {
+        "static_friction": 0.2,
+        "dynamic_friction": 0.15,
+        "linear_damping": 25,
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "enable_ccd": true,
+        "sleep_threshold": 0
+      },
+      "parts": [
+        {
+          "kind": "box",
+          "size": [
+            0.4,
+            0.25,
+            0.02
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.4,
+            0.015,
+            0.08
+          ],
+          "position": [
+            0,
+            -0.1175,
+            0.04
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.4,
+            0.015,
+            0.08
+          ],
+          "position": [
+            0,
+            0.1175,
+            0.04
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.015,
+            0.25,
+            0.08
+          ],
+          "position": [
+            -0.1925,
+            0,
+            0.04
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.015,
+            0.25,
+            0.08
+          ],
+          "position": [
+            0.1925,
+            0,
+            0.04
+          ]
+        }
+      ]
+    },
+    "drawer_slide": {
+      "kind": "joint",
+      "joint": {
+        "type": "prismatic",
+        "body1": "drawer",
+        "axis": "X",
+        "local_pos0": [
+          -0.85,
+          0,
+          0.92
+        ],
+        "lower_limit": 0,
+        "upper_limit": 0.38
+      }
+    },
+    "weight": {
+      "kind": "compound",
+      "position": [
+        0.13,
+        0,
+        0.82
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.5,
+      "color": [
+        0.12,
+        0.14,
+        0.16
+      ],
+      "parts": [
+        {
+          "kind": "box",
+          "size": [
+            0.07,
+            0.07,
+            0.06
+          ]
+        }
+      ],
+      "physics": {
+        "linear_damping": 20,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "enable_ccd": true,
+        "sleep_threshold": 0
+      }
+    },
+    "weight_guide": {
+      "kind": "joint",
+      "joint": {
+        "type": "prismatic",
+        "body1": "weight",
+        "axis": "Z",
+        "local_pos0": [
+          0.13,
+          0,
+          0.82
+        ],
+        "lower_limit": -0.6,
+        "upper_limit": 0
+      }
+    },
+    "pulley": {
+      "kind": "compound",
+      "position": [
+        0,
+        0,
+        1.1
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.12,
+      "color": [
+        0.65,
+        0.68,
+        0.72
+      ],
+      "physics": {
+        "static_friction": 0.9,
+        "dynamic_friction": 0.7,
+        "angular_damping": 1,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "enable_ccd": true,
+        "sleep_threshold": 0
+      },
+      "parts": [
+        {
+          "kind": "cylinder",
+          "size": [
+            0.26,
+            0.26,
+            0.024
+          ],
+          "orientation_wxyz": [
+            0.7071067811865476,
+            0.7071067811865476,
+            0,
+            0
+          ]
+        },
+        {
+          "kind": "cylinder",
+          "size": [
+            0.42,
+            0.42,
+            0.006
+          ],
+          "orientation_wxyz": [
+            0.7071067811865476,
+            0.7071067811865476,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            -0.015,
+            0
+          ],
+          "material": {
+            "color": [
+              0.65,
+              0.8,
+              0.9
+            ],
+            "roughness": 0.15,
+            "opacity": 0.2
+          }
+        },
+        {
+          "kind": "cylinder",
+          "size": [
+            0.42,
+            0.42,
+            0.006
+          ],
+          "orientation_wxyz": [
+            0.7071067811865476,
+            0.7071067811865476,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.015,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.02,
+            0.042,
+            0.15
+          ],
+          "position": [
+            0,
+            0,
+            0.055
+          ],
+          "collision": false,
+          "color": [
+            0.04,
+            0.4,
+            0.65
+          ]
+        }
+      ]
+    },
+    "pulley_axle": {
+      "kind": "joint",
+      "joint": {
+        "type": "revolute",
+        "body1": "pulley",
+        "axis": "Y",
+        "local_pos0": [
+          0,
+          0,
+          1.1
+        ]
+      }
+    },
+    "stand": {
+      "kind": "box",
+      "size": [
+        0.06,
+        0.06,
+        1.08
+      ],
+      "position": [
+        0,
+        0.12,
+        0.54
+      ],
+      "color": [
+        0.35,
+        0.25,
+        0.15
+      ],
+      "collision": true
+    },
+    "support_arm": {
+      "kind": "box",
+      "size": [
+        0.06,
+        0.16,
+        0.04
+      ],
+      "position": [
+        0,
+        0.11,
+        1.1
+      ],
+      "color": [
+        0.35,
+        0.25,
+        0.15
+      ],
+      "collision": true
+    },
+    "camera": {
+      "kind": "camera",
+      "position": [
+        -0.4,
+        -2.6,
+        1.6
+      ],
+      "orientation_wxyz": [
+        0.8095489041149467,
+        0.5870524438636541,
+        -0.0,
+        -0.0
+      ],
+      "record_fps": 30,
+      "preview_fps": 1,
+      "camera": {
+        "resolution": [
+          1920,
+          1080
+        ],
+        "focal_length_mm": 40
+      }
+    },
+    "key": {
+      "kind": "light",
+      "position": [
+        1,
+        -2,
+        3
+      ],
+      "intensity": 1800,
+      "light": {
+        "type": "distant"
+      }
+    },
+    "fill": {
+      "kind": "light",
+      "intensity": 550,
+      "light": {
+        "type": "dome"
+      }
+    },
+    "red_rope_link_000": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03404423007708916
+      ],
+      "position": [
+        -0.639375,
+        0.0,
+        0.954375
+      ],
+      "orientation_wxyz": [
+        0.5158063006502381,
+        -0.0,
+        0.8567052353111402,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014426538046253498,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": []
+    },
+    "red_rope_link_001": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03404423007708916
+      ],
+      "position": [
+        -0.618125,
+        0.0,
+        0.943125
+      ],
+      "orientation_wxyz": [
+        0.5158063006502381,
+        -0.0,
+        0.8567052353111402,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014426538046253498,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000"
+      ]
+    },
+    "red_rope_joint_001": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_000",
+        "body1": "red_rope_link_001",
+        "local_pos0": [
+          0,
+          0,
+          0.012022115038544582
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012022115038544582
+        ]
+      }
+    },
+    "red_rope_link_002": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03404423007708916
+      ],
+      "position": [
+        -0.596875,
+        0.0,
+        0.931875
+      ],
+      "orientation_wxyz": [
+        0.5158063006502381,
+        -0.0,
+        0.8567052353111402,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014426538046253498,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001"
+      ]
+    },
+    "red_rope_joint_002": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_001",
+        "body1": "red_rope_link_002",
+        "local_pos0": [
+          0,
+          0,
+          0.012022115038544582
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012022115038544582
+        ]
+      }
+    },
+    "red_rope_link_003": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03404423007708926
+      ],
+      "position": [
+        -0.575625,
+        0.0,
+        0.920625
+      ],
+      "orientation_wxyz": [
+        0.515806300650239,
+        -0.0,
+        0.8567052353111396,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014426538046253556,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002"
+      ]
+    },
+    "red_rope_joint_003": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_002",
+        "body1": "red_rope_link_003",
+        "local_pos0": [
+          0,
+          0,
+          0.012022115038544582
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012022115038544631
+        ]
+      }
+    },
+    "red_rope_link_004": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03404423007708922
+      ],
+      "position": [
+        -0.554375,
+        0.0,
+        0.909375
+      ],
+      "orientation_wxyz": [
+        0.5158063006502364,
+        -0.0,
+        0.8567052353111413,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001442653804625353,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003"
+      ]
+    },
+    "red_rope_joint_004": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_003",
+        "body1": "red_rope_link_004",
+        "local_pos0": [
+          0,
+          0,
+          0.012022115038544631
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012022115038544608
+        ]
+      }
+    },
+    "red_rope_link_005": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03404423007708916
+      ],
+      "position": [
+        -0.533125,
+        0.0,
+        0.898125
+      ],
+      "orientation_wxyz": [
+        0.5158063006502381,
+        -0.0,
+        0.8567052353111402,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014426538046253498,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004"
+      ]
+    },
+    "red_rope_joint_005": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_004",
+        "body1": "red_rope_link_005",
+        "local_pos0": [
+          0,
+          0,
+          0.012022115038544608
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012022115038544582
+        ]
+      }
+    },
+    "red_rope_link_006": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03404423007708916
+      ],
+      "position": [
+        -0.511875,
+        0.0,
+        0.886875
+      ],
+      "orientation_wxyz": [
+        0.5158063006502381,
+        -0.0,
+        0.8567052353111402,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014426538046253498,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005"
+      ]
+    },
+    "red_rope_joint_006": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_005",
+        "body1": "red_rope_link_006",
+        "local_pos0": [
+          0,
+          0,
+          0.012022115038544582
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012022115038544582
+        ]
+      }
+    },
+    "red_rope_link_007": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03404423007708916
+      ],
+      "position": [
+        -0.490625,
+        0.0,
+        0.875625
+      ],
+      "orientation_wxyz": [
+        0.5158063006502381,
+        -0.0,
+        0.8567052353111402,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014426538046253498,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006"
+      ]
+    },
+    "red_rope_joint_007": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_006",
+        "body1": "red_rope_link_007",
+        "local_pos0": [
+          0,
+          0,
+          0.012022115038544582
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012022115038544582
+        ]
+      }
+    },
+    "red_rope_link_008": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03426703296426839
+      ],
+      "position": [
+        -0.4683333333333333,
+        0.0,
+        0.8733333333333333
+      ],
+      "orientation_wxyz": [
+        0.7983486481160282,
+        -0.0,
+        0.6021955131444522,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014560219778561034,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007"
+      ]
+    },
+    "red_rope_joint_008": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_007",
+        "body1": "red_rope_link_008",
+        "local_pos0": [
+          0,
+          0,
+          0.012022115038544582
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012133516482134196
+        ]
+      }
+    },
+    "red_rope_link_009": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03426703296426836
+      ],
+      "position": [
+        -0.445,
+        0.0,
+        0.88
+      ],
+      "orientation_wxyz": [
+        0.7983486481160269,
+        -0.0,
+        0.602195513144454,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014560219778561015,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008"
+      ]
+    },
+    "red_rope_joint_009": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_008",
+        "body1": "red_rope_link_009",
+        "local_pos0": [
+          0,
+          0,
+          0.012133516482134196
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.01213351648213418
+        ]
+      }
+    },
+    "red_rope_link_010": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.034267032964268446
+      ],
+      "position": [
+        -0.42166666666666663,
+        0.0,
+        0.8866666666666667
+      ],
+      "orientation_wxyz": [
+        0.7983486481160281,
+        -0.0,
+        0.6021955131444524,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014560219778561065,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009"
+      ]
+    },
+    "red_rope_joint_010": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_009",
+        "body1": "red_rope_link_010",
+        "local_pos0": [
+          0,
+          0,
+          0.01213351648213418
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012133516482134222
+        ]
+      }
+    },
+    "red_rope_link_011": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03426703296426839
+      ],
+      "position": [
+        -0.3983333333333333,
+        0.0,
+        0.8933333333333333
+      ],
+      "orientation_wxyz": [
+        0.7983486481160282,
+        -0.0,
+        0.6021955131444522,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014560219778561034,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010"
+      ]
+    },
+    "red_rope_joint_011": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_010",
+        "body1": "red_rope_link_011",
+        "local_pos0": [
+          0,
+          0,
+          0.012133516482134222
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012133516482134196
+        ]
+      }
+    },
+    "red_rope_link_012": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03426703296426836
+      ],
+      "position": [
+        -0.375,
+        0.0,
+        0.9
+      ],
+      "orientation_wxyz": [
+        0.7983486481160269,
+        -0.0,
+        0.602195513144454,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014560219778561015,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011"
+      ]
+    },
+    "red_rope_joint_012": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_011",
+        "body1": "red_rope_link_012",
+        "local_pos0": [
+          0,
+          0,
+          0.012133516482134196
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.01213351648213418
+        ]
+      }
+    },
+    "red_rope_link_013": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.034267032964268446
+      ],
+      "position": [
+        -0.3516666666666667,
+        0.0,
+        0.9066666666666667
+      ],
+      "orientation_wxyz": [
+        0.7983486481160281,
+        -0.0,
+        0.6021955131444524,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014560219778561065,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012"
+      ]
+    },
+    "red_rope_joint_013": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_012",
+        "body1": "red_rope_link_013",
+        "local_pos0": [
+          0,
+          0,
+          0.01213351648213418
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012133516482134222
+        ]
+      }
+    },
+    "red_rope_link_014": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03426703296426839
+      ],
+      "position": [
+        -0.3283333333333333,
+        0.0,
+        0.9133333333333333
+      ],
+      "orientation_wxyz": [
+        0.7983486481160282,
+        -0.0,
+        0.6021955131444522,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014560219778561034,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013"
+      ]
+    },
+    "red_rope_joint_014": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_013",
+        "body1": "red_rope_link_014",
+        "local_pos0": [
+          0,
+          0,
+          0.012133516482134222
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012133516482134196
+        ]
+      }
+    },
+    "red_rope_link_015": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03426703296426836
+      ],
+      "position": [
+        -0.305,
+        0.0,
+        0.92
+      ],
+      "orientation_wxyz": [
+        0.7983486481160269,
+        -0.0,
+        0.602195513144454,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014560219778561015,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014"
+      ]
+    },
+    "red_rope_joint_015": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_014",
+        "body1": "red_rope_link_015",
+        "local_pos0": [
+          0,
+          0,
+          0.012133516482134196
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.01213351648213418
+        ]
+      }
+    },
+    "red_rope_link_016": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03426703296426839
+      ],
+      "position": [
+        -0.2816666666666667,
+        0.0,
+        0.9266666666666667
+      ],
+      "orientation_wxyz": [
+        0.7983486481160282,
+        -0.0,
+        0.6021955131444522,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014560219778561034,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015"
+      ]
+    },
+    "red_rope_joint_016": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_015",
+        "body1": "red_rope_link_016",
+        "local_pos0": [
+          0,
+          0,
+          0.01213351648213418
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012133516482134196
+        ]
+      }
+    },
+    "red_rope_link_017": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.035000000000000024
+      ],
+      "position": [
+        -0.26,
+        0.0,
+        0.9375
+      ],
+      "orientation_wxyz": [
+        0.8944271909999159,
+        -0.0,
+        0.4472135954999579,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0015000000000000013,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016"
+      ]
+    },
+    "red_rope_joint_017": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_016",
+        "body1": "red_rope_link_017",
+        "local_pos0": [
+          0,
+          0,
+          0.012133516482134196
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012500000000000011
+        ]
+      }
+    },
+    "red_rope_link_018": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.035
+      ],
+      "position": [
+        -0.24,
+        0.0,
+        0.9525000000000001
+      ],
+      "orientation_wxyz": [
+        0.894427190999916,
+        -0.0,
+        0.4472135954999576,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0015,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017"
+      ]
+    },
+    "red_rope_joint_018": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_017",
+        "body1": "red_rope_link_018",
+        "local_pos0": [
+          0,
+          0,
+          0.012500000000000011
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.0125
+        ]
+      }
+    },
+    "red_rope_link_019": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.035000000000000024
+      ],
+      "position": [
+        -0.22,
+        0.0,
+        0.9675
+      ],
+      "orientation_wxyz": [
+        0.8944271909999159,
+        -0.0,
+        0.4472135954999579,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0015000000000000013,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018"
+      ]
+    },
+    "red_rope_joint_019": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_018",
+        "body1": "red_rope_link_019",
+        "local_pos0": [
+          0,
+          0,
+          0.0125
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012500000000000011
+        ]
+      }
+    },
+    "red_rope_link_020": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.034999999999999934
+      ],
+      "position": [
+        -0.2,
+        0.0,
+        0.9825
+      ],
+      "orientation_wxyz": [
+        0.8944271909999153,
+        -0.0,
+        0.44721359549995926,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001499999999999996,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019"
+      ]
+    },
+    "red_rope_joint_020": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_019",
+        "body1": "red_rope_link_020",
+        "local_pos0": [
+          0,
+          0,
+          0.012500000000000011
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012499999999999966
+        ]
+      }
+    },
+    "red_rope_link_021": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03500000000000009
+      ],
+      "position": [
+        -0.18,
+        0.0,
+        0.9975
+      ],
+      "orientation_wxyz": [
+        0.8944271909999166,
+        -0.0,
+        0.44721359549995643,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0015000000000000052,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020"
+      ]
+    },
+    "red_rope_joint_021": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_020",
+        "body1": "red_rope_link_021",
+        "local_pos0": [
+          0,
+          0,
+          0.012499999999999966
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012500000000000044
+        ]
+      }
+    },
+    "red_rope_link_022": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.034999999999999955
+      ],
+      "position": [
+        -0.15999999999999998,
+        0.0,
+        1.0125000000000002
+      ],
+      "orientation_wxyz": [
+        0.894427190999915,
+        -0.0,
+        0.44721359549995954,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014999999999999974,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021"
+      ]
+    },
+    "red_rope_joint_022": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_021",
+        "body1": "red_rope_link_022",
+        "local_pos0": [
+          0,
+          0,
+          0.012500000000000044
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012499999999999978
+        ]
+      }
+    },
+    "red_rope_link_023": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03146866596803481
+      ],
+      "position": [
+        -0.14830646513903795,
+        0.0,
+        1.0305998983149118
+      ],
+      "orientation_wxyz": [
+        0.9968641324761883,
+        -0.0,
+        0.07913217665713757,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0012881199580820888,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022"
+      ]
+    },
+    "red_rope_joint_023": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_022",
+        "body1": "red_rope_link_023",
+        "local_pos0": [
+          0,
+          0,
+          0.012499999999999978
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.010734332984017407
+        ]
+      }
+    },
+    "red_rope_link_024": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03146866596803504
+      ],
+      "position": [
+        -0.14491939541711385,
+        0.0,
+        1.0517996949447355
+      ],
+      "orientation_wxyz": [
+        0.9968641324761883,
+        -0.0,
+        0.07913217665713801,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0012881199580821025,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023"
+      ]
+    },
+    "red_rope_joint_024": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_023",
+        "body1": "red_rope_link_024",
+        "local_pos0": [
+          0,
+          0,
+          0.010734332984017407
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.010734332984017521
+        ]
+      }
+    },
+    "red_rope_link_025": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.031468665968035034
+      ],
+      "position": [
+        -0.14153232569518973,
+        0.0,
+        1.0729994915745595
+      ],
+      "orientation_wxyz": [
+        0.9968641324761883,
+        -0.0,
+        0.07913217665713738,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001288119958082102,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024"
+      ]
+    },
+    "red_rope_joint_025": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_024",
+        "body1": "red_rope_link_025",
+        "local_pos0": [
+          0,
+          0,
+          0.010734332984017521
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.010734332984017518
+        ]
+      }
+    },
+    "red_rope_link_026": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03146866596803482
+      ],
+      "position": [
+        -0.13814525597326563,
+        0.0,
+        1.0941992882043832
+      ],
+      "orientation_wxyz": [
+        0.9968641324761883,
+        -0.0,
+        0.07913217665713819,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001288119958082089,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025"
+      ]
+    },
+    "red_rope_joint_026": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_025",
+        "body1": "red_rope_link_026",
+        "local_pos0": [
+          0,
+          0,
+          0.010734332984017518
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.010734332984017408
+        ]
+      }
+    },
+    "red_rope_link_027": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03146866596803482
+      ],
+      "position": [
+        -0.1347581862513415,
+        0.0,
+        1.1153990848342068
+      ],
+      "orientation_wxyz": [
+        0.9968641324761882,
+        -0.0,
+        0.07913217665713884,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0012881199580820893,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026"
+      ]
+    },
+    "red_rope_joint_027": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_026",
+        "body1": "red_rope_link_027",
+        "local_pos0": [
+          0,
+          0,
+          0.010734332984017408
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.01073433298401741
+        ]
+      }
+    },
+    "red_rope_link_028": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.031468665968035034
+      ],
+      "position": [
+        -0.1313711165294174,
+        0.0,
+        1.1365988814640304
+      ],
+      "orientation_wxyz": [
+        0.9968641324761883,
+        -0.0,
+        0.07913217665713738,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001288119958082102,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027"
+      ]
+    },
+    "red_rope_joint_028": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_027",
+        "body1": "red_rope_link_028",
+        "local_pos0": [
+          0,
+          0,
+          0.01073433298401741
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.010734332984017518
+        ]
+      }
+    },
+    "red_rope_link_029": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03405498499835352
+      ],
+      "position": [
+        -0.12459454369535396,
+        0.0,
+        1.1580993898894714
+      ],
+      "orientation_wxyz": [
+        0.9762960071199331,
+        -0.0,
+        0.21643961393810382,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001443299099901211,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028"
+      ]
+    },
+    "red_rope_joint_029": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_028",
+        "body1": "red_rope_link_029",
+        "local_pos0": [
+          0,
+          0,
+          0.010734332984017518
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.01202749249917676
+        ]
+      }
+    },
+    "red_rope_link_030": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.034054984998353806
+      ],
+      "position": [
+        -0.11261281943633575,
+        0.0,
+        1.1788523450683712
+      ],
+      "orientation_wxyz": [
+        0.9537169507482274,
+        -0.0,
+        0.3007057995042719,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012282,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029"
+      ]
+    },
+    "red_rope_joint_030": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_029",
+        "body1": "red_rope_link_030",
+        "local_pos0": [
+          0,
+          0,
+          0.01202749249917676
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176902
+        ]
+      }
+    },
+    "red_rope_link_031": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.034054984998353584
+      ],
+      "position": [
+        -0.0972094116435807,
+        0.0,
+        1.197209411643581
+      ],
+      "orientation_wxyz": [
+        0.9238795325112865,
+        -0.0,
+        0.38268343236509056,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012148,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030"
+      ]
+    },
+    "red_rope_joint_031": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_030",
+        "body1": "red_rope_link_031",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176902
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176791
+        ]
+      }
+    },
+    "red_rope_link_032": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03405498499835374
+      ],
+      "position": [
+        -0.07885234506837122,
+        0.0,
+        1.212612819436336
+      ],
+      "orientation_wxyz": [
+        0.8870108331782224,
+        -0.0,
+        0.4617486132350328,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012243,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031"
+      ]
+    },
+    "red_rope_joint_032": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_031",
+        "body1": "red_rope_link_032",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176791
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.01202749249917687
+        ]
+      }
+    },
+    "red_rope_link_033": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03405498499835361
+      ],
+      "position": [
+        -0.05809938988947114,
+        0.0,
+        1.2245945436953543
+      ],
+      "orientation_wxyz": [
+        0.8433914458128854,
+        -0.0,
+        0.5372996083468243,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012167,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032"
+      ]
+    },
+    "red_rope_joint_033": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_032",
+        "body1": "red_rope_link_033",
+        "local_pos0": [
+          0,
+          0,
+          0.01202749249917687
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176807
+        ]
+      }
+    },
+    "red_rope_link_034": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03405498499835364
+      ],
+      "position": [
+        -0.035581114148489336,
+        0.0,
+        1.2327905257920702
+      ],
+      "orientation_wxyz": [
+        0.7933533402912338,
+        -0.0,
+        0.6087614290087224,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012183,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033"
+      ]
+    },
+    "red_rope_joint_034": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_033",
+        "body1": "red_rope_link_034",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176807
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176819
+        ]
+      }
+    },
+    "red_rope_link_035": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03405498499835365
+      ],
+      "position": [
+        -0.011981724259018188,
+        0.0,
+        1.2369517349578425
+      ],
+      "orientation_wxyz": [
+        0.737277336810123,
+        -0.0,
+        0.6755902076156615,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012191,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034"
+      ]
+    },
+    "red_rope_joint_035": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_034",
+        "body1": "red_rope_link_035",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176819
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176826
+        ]
+      }
+    },
+    "red_rope_link_036": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03405498499835365
+      ],
+      "position": [
+        0.011981724259018204,
+        0.0,
+        1.2369517349578425
+      ],
+      "orientation_wxyz": [
+        0.6755902076156615,
+        -0.0,
+        0.7372773368101229,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012191,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035"
+      ]
+    },
+    "red_rope_joint_036": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_035",
+        "body1": "red_rope_link_036",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176826
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176827
+        ]
+      }
+    },
+    "red_rope_link_037": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03405498499835363
+      ],
+      "position": [
+        0.03558111414848935,
+        0.0,
+        1.2327905257920702
+      ],
+      "orientation_wxyz": [
+        0.6087614290087222,
+        -0.0,
+        0.7933533402912337,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001443299099901218,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036"
+      ]
+    },
+    "red_rope_joint_037": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_036",
+        "body1": "red_rope_link_037",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176827
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176817
+        ]
+      }
+    },
+    "red_rope_link_038": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.034054984998353736
+      ],
+      "position": [
+        0.058099389889471165,
+        0.0,
+        1.224594543695354
+      ],
+      "orientation_wxyz": [
+        0.537299608346821,
+        -0.0,
+        0.8433914458128874,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012241,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037"
+      ]
+    },
+    "red_rope_joint_038": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_037",
+        "body1": "red_rope_link_038",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176817
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176867
+        ]
+      }
+    },
+    "red_rope_link_039": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.034054984998353584
+      ],
+      "position": [
+        0.07885234506837123,
+        0.0,
+        1.2126128194363357
+      ],
+      "orientation_wxyz": [
+        0.4617486132350357,
+        -0.0,
+        0.8870108331782207,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012148,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038"
+      ]
+    },
+    "red_rope_joint_039": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_038",
+        "body1": "red_rope_link_039",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176867
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176791
+        ]
+      }
+    },
+    "red_rope_link_040": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03405498499835375
+      ],
+      "position": [
+        0.09720941164358071,
+        0.0,
+        1.1972094116435807
+      ],
+      "orientation_wxyz": [
+        0.3826834323650877,
+        -0.0,
+        0.9238795325112875,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012248,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039"
+      ]
+    },
+    "red_rope_joint_040": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_039",
+        "body1": "red_rope_link_040",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176791
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176874
+        ]
+      }
+    },
+    "red_rope_link_041": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03405498499835362
+      ],
+      "position": [
+        0.11261281943633576,
+        0.0,
+        1.1788523450683712
+      ],
+      "orientation_wxyz": [
+        0.3007057995042741,
+        -0.0,
+        0.9537169507482266,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001443299099901217,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040"
+      ]
+    },
+    "red_rope_joint_041": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_040",
+        "body1": "red_rope_link_041",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176874
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176808
+        ]
+      }
+    },
+    "red_rope_link_042": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03405498499835352
+      ],
+      "position": [
+        0.12459454369535396,
+        0.0,
+        1.1580993898894714
+      ],
+      "orientation_wxyz": [
+        0.2164396139381038,
+        -0.0,
+        0.9762960071199331,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001443299099901211,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041"
+      ]
+    },
+    "red_rope_joint_042": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_041",
+        "body1": "red_rope_link_042",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176808
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.01202749249917676
+        ]
+      }
+    },
+    "red_rope_link_043": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.034054984998353695
+      ],
+      "position": [
+        0.13279052579207004,
+        0.0,
+        1.1355811141484895
+      ],
+      "orientation_wxyz": [
+        0.1305261922200516,
+        -0.0,
+        0.9914448613738105,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012215,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042"
+      ]
+    },
+    "red_rope_joint_043": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_042",
+        "body1": "red_rope_link_043",
+        "local_pos0": [
+          0,
+          0,
+          0.01202749249917676
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176846
+        ]
+      }
+    },
+    "red_rope_link_044": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.034054984998353716
+      ],
+      "position": [
+        0.13695173495784235,
+        0.0,
+        1.1119817242590182
+      ],
+      "orientation_wxyz": [
+        0.04361938736533592,
+        -0.0,
+        0.9990482215818578,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0014432990999012228,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043"
+      ]
+    },
+    "red_rope_joint_044": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_043",
+        "body1": "red_rope_link_044",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176846
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.012027492499176857
+        ]
+      }
+    },
+    "red_rope_link_045": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03273890611352421
+      ],
+      "position": [
+        0.13763636363636367,
+        0.0,
+        1.0886363636363638
+      ],
+      "orientation_wxyz": [
+        0.0159938600601,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0013643343668114523,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044"
+      ]
+    },
+    "red_rope_joint_045": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_044",
+        "body1": "red_rope_link_045",
+        "local_pos0": [
+          0,
+          0,
+          0.012027492499176857
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762104
+        ]
+      }
+    },
+    "red_rope_link_046": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03273890611352421
+      ],
+      "position": [
+        0.13690909090909092,
+        0.0,
+        1.065909090909091
+      ],
+      "orientation_wxyz": [
+        0.01599386006009939,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0013643343668114523,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044",
+        "red_rope_link_045"
+      ]
+    },
+    "red_rope_joint_046": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_045",
+        "body1": "red_rope_link_046",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762104
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762104
+        ]
+      }
+    },
+    "red_rope_link_047": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03273890611352421
+      ],
+      "position": [
+        0.13618181818181818,
+        0.0,
+        1.0431818181818184
+      ],
+      "orientation_wxyz": [
+        0.0159938600601,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0013643343668114523,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044",
+        "red_rope_link_045",
+        "red_rope_link_046"
+      ]
+    },
+    "red_rope_joint_047": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_046",
+        "body1": "red_rope_link_047",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762104
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762104
+        ]
+      }
+    },
+    "red_rope_link_048": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03273890611352443
+      ],
+      "position": [
+        0.13545454545454547,
+        0.0,
+        1.0204545454545455
+      ],
+      "orientation_wxyz": [
+        0.015993860060099546,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0013643343668114658,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044",
+        "red_rope_link_045",
+        "red_rope_link_046",
+        "red_rope_link_047"
+      ]
+    },
+    "red_rope_joint_048": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_047",
+        "body1": "red_rope_link_048",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762104
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762215
+        ]
+      }
+    },
+    "red_rope_link_049": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.0327389061135241
+      ],
+      "position": [
+        0.13472727272727275,
+        0.0,
+        0.9977272727272728
+      ],
+      "orientation_wxyz": [
+        0.015993860060099924,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0013643343668114456,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044",
+        "red_rope_link_045",
+        "red_rope_link_046",
+        "red_rope_link_047",
+        "red_rope_link_048"
+      ]
+    },
+    "red_rope_joint_049": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_048",
+        "body1": "red_rope_link_049",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762215
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762048
+        ]
+      }
+    },
+    "red_rope_link_050": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03273890611352432
+      ],
+      "position": [
+        0.134,
+        0.0,
+        0.9750000000000001
+      ],
+      "orientation_wxyz": [
+        0.01599386006009947,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001364334366811459,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044",
+        "red_rope_link_045",
+        "red_rope_link_046",
+        "red_rope_link_047",
+        "red_rope_link_048",
+        "red_rope_link_049"
+      ]
+    },
+    "red_rope_joint_050": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_049",
+        "body1": "red_rope_link_050",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762048
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762159
+        ]
+      }
+    },
+    "red_rope_link_051": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03273890611352421
+      ],
+      "position": [
+        0.13327272727272726,
+        0.0,
+        0.9522727272727273
+      ],
+      "orientation_wxyz": [
+        0.0159938600601,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0013643343668114523,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044",
+        "red_rope_link_045",
+        "red_rope_link_046",
+        "red_rope_link_047",
+        "red_rope_link_048",
+        "red_rope_link_049",
+        "red_rope_link_050"
+      ]
+    },
+    "red_rope_joint_051": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_050",
+        "body1": "red_rope_link_051",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762159
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762104
+        ]
+      }
+    },
+    "red_rope_link_052": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03273890611352421
+      ],
+      "position": [
+        0.13254545454545455,
+        0.0,
+        0.9295454545454546
+      ],
+      "orientation_wxyz": [
+        0.01599386006009939,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0013643343668114523,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044",
+        "red_rope_link_045",
+        "red_rope_link_046",
+        "red_rope_link_047",
+        "red_rope_link_048",
+        "red_rope_link_049",
+        "red_rope_link_050",
+        "red_rope_link_051"
+      ]
+    },
+    "red_rope_joint_052": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_051",
+        "body1": "red_rope_link_052",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762104
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762104
+        ]
+      }
+    },
+    "red_rope_link_053": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03273890611352421
+      ],
+      "position": [
+        0.13181818181818183,
+        0.0,
+        0.9068181818181819
+      ],
+      "orientation_wxyz": [
+        0.0159938600601,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0013643343668114523,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044",
+        "red_rope_link_045",
+        "red_rope_link_046",
+        "red_rope_link_047",
+        "red_rope_link_048",
+        "red_rope_link_049",
+        "red_rope_link_050",
+        "red_rope_link_051",
+        "red_rope_link_052"
+      ]
+    },
+    "red_rope_joint_053": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_052",
+        "body1": "red_rope_link_053",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762104
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762104
+        ]
+      }
+    },
+    "red_rope_link_054": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03273890611352421
+      ],
+      "position": [
+        0.1310909090909091,
+        0.0,
+        0.8840909090909091
+      ],
+      "orientation_wxyz": [
+        0.01599386006009939,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.0013643343668114523,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044",
+        "red_rope_link_045",
+        "red_rope_link_046",
+        "red_rope_link_047",
+        "red_rope_link_048",
+        "red_rope_link_049",
+        "red_rope_link_050",
+        "red_rope_link_051",
+        "red_rope_link_052",
+        "red_rope_link_053"
+      ]
+    },
+    "red_rope_joint_054": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_053",
+        "body1": "red_rope_link_054",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762104
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762104
+        ]
+      }
+    },
+    "red_rope_link_055": {
+      "kind": "capsule",
+      "size": [
+        0.01,
+        0.01,
+        0.03273890611352432
+      ],
+      "position": [
+        0.13036363636363635,
+        0.0,
+        0.8613636363636363
+      ],
+      "orientation_wxyz": [
+        0.01599386006010008,
+        -0.0,
+        -0.99987209003971,
+        0.0
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.001364334366811459,
+      "color": [
+        0.8,
+        0.035,
+        0.025
+      ],
+      "physics": {
+        "static_friction": 0.6,
+        "dynamic_friction": 0.5,
+        "restitution": 0,
+        "linear_damping": 5,
+        "angular_damping": 5,
+        "solver_position_iterations": 255,
+        "solver_velocity_iterations": 8,
+        "contact_offset_m": 0.0015,
+        "rest_offset_m": 0,
+        "enable_ccd": false,
+        "sleep_threshold": 0
+      },
+      "collision_exclusions": [
+        "red_rope_link_000",
+        "red_rope_link_001",
+        "red_rope_link_002",
+        "red_rope_link_003",
+        "red_rope_link_004",
+        "red_rope_link_005",
+        "red_rope_link_006",
+        "red_rope_link_007",
+        "red_rope_link_008",
+        "red_rope_link_009",
+        "red_rope_link_010",
+        "red_rope_link_011",
+        "red_rope_link_012",
+        "red_rope_link_013",
+        "red_rope_link_014",
+        "red_rope_link_015",
+        "red_rope_link_016",
+        "red_rope_link_017",
+        "red_rope_link_018",
+        "red_rope_link_019",
+        "red_rope_link_020",
+        "red_rope_link_021",
+        "red_rope_link_022",
+        "red_rope_link_023",
+        "red_rope_link_024",
+        "red_rope_link_025",
+        "red_rope_link_026",
+        "red_rope_link_027",
+        "red_rope_link_028",
+        "red_rope_link_029",
+        "red_rope_link_030",
+        "red_rope_link_031",
+        "red_rope_link_032",
+        "red_rope_link_033",
+        "red_rope_link_034",
+        "red_rope_link_035",
+        "red_rope_link_036",
+        "red_rope_link_037",
+        "red_rope_link_038",
+        "red_rope_link_039",
+        "red_rope_link_040",
+        "red_rope_link_041",
+        "red_rope_link_042",
+        "red_rope_link_043",
+        "red_rope_link_044",
+        "red_rope_link_045",
+        "red_rope_link_046",
+        "red_rope_link_047",
+        "red_rope_link_048",
+        "red_rope_link_049",
+        "red_rope_link_050",
+        "red_rope_link_051",
+        "red_rope_link_052",
+        "red_rope_link_053",
+        "red_rope_link_054"
+      ]
+    },
+    "red_rope_joint_055": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_054",
+        "body1": "red_rope_link_055",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762104
+        ],
+        "local_pos1": [
+          0,
+          0,
+          -0.011369453056762159
+        ]
+      }
+    },
+    "red_rope_start_attachment": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_000",
+        "body1": "drawer",
+        "local_pos0": [
+          0,
+          0,
+          -0.012022115038544582
+        ],
+        "local_pos1": [
+          0.2,
+          0,
+          0.04
+        ],
+        "enabled": false
+      }
+    },
+    "red_rope_end_attachment": {
+      "kind": "joint",
+      "joint": {
+        "type": "spherical",
+        "body0": "red_rope_link_055",
+        "body1": "weight",
+        "local_pos0": [
+          0,
+          0,
+          0.011369453056762159
+        ],
+        "local_pos1": [
+          0,
+          0,
+          0.03
+        ]
+      }
+    }
+  },
+  "observation": {
+    "sample_interval_steps": 1,
+    "strict_start": true,
+    "record_contact_pairs": true
+  },
+  "presentation": {
+    "profile": "technical_showcase_1080p",
+    "capture": {
+      "anti_aliasing": "dlaa",
+      "depth_of_field": false,
+      "motion_blur": false,
+      "exposure_mode": "manual",
+      "exposure_ev": 0
+    },
+    "diagnostics": {
+      "png_seconds": 0,
+      "keyframe_interval_s": 1
+    }
+  }
+}

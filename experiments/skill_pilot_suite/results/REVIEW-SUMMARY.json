@@ -1,0 +1,286 @@
+{
+  "schema": "simscene.independent_pilot_review.v1",
+  "created_at_utc": "2026-11-02T21:02:51.544153+00:00",
+  "original_design_freeze_sha256": "a0d4b4a39b9e5742d0165c537bb360d06d6a258f8a027edd84129680952da379",
+  "protocol_sha256": "11fda2ac4fc1bf69e56eb35a18a483e16bff6db02bf3d98c2ac6f9ca47a0d587",
+  "candidate_freeze_sha256": "54485c9b29acf56d7d0f7dede16da7ddf20cd56aac79b1a2339cb45b1871036a",
+  "runtime_identity_sha256": "42e1c010f8b98ccbea0096d3f6b23c766081581dda4f6d80cd1704ab9950a643",
+  "allocated_trials": 4,
+  "overall_protocol_passes": 0,
+  "native_runs_preserved": 10,
+  "native_process_failures": 0,
+  "new_native_simulations_or_model_attempts_by_review": 0,
+  "rows": [
+    {
+      "anonymous_id": "trial01",
+      "task_id": "P1",
+      "arm": "A",
+      "overall_protocol_status": "budget_exceeded",
+      "overall_passed": false,
+      "submission_exists": false,
+      "input_tokens_I": 1600992,
+      "cached_input_tokens_C": 1553408,
+      "uncached_input_tokens": 47584,
+      "output_tokens_O": 6525,
+      "reasoning_output_subset": 1349,
+      "I_plus_O": 1607517,
+      "observed_completed_model_responses": 36,
+      "wall_seconds": 228.9575504558161,
+      "sleep_wall_union_seconds": 114.42199969291687,
+      "CLI_tool_operations": 47,
+      "MCP_calls": 28,
+      "functions_exec_envelopes": 36,
+      "native_attempts": 3,
+      "original_v1_first_positive_pass": false,
+      "original_v1_final_positive_pass": false,
+      "original_v1_posthoc_suite_pass": false,
+      "supplementary_v2_first_positive_pass": false,
+      "supplementary_v2_final_positive_pass": true,
+      "supplementary_v2_posthoc_suite_pass": true,
+      "billing_amount": "unknown",
+      "savings_estimate": "not_defined_no_equivalent_on_budget_passed_pair"
+    },
+    {
+      "anonymous_id": "trial02",
+      "task_id": "P1",
+      "arm": "B",
+      "overall_protocol_status": "budget_exceeded",
+      "overall_passed": false,
+      "submission_exists": false,
+      "input_tokens_I": 1510704,
+      "cached_input_tokens_C": 1437696,
+      "uncached_input_tokens": 73008,
+      "output_tokens_O": 6498,
+      "reasoning_output_subset": 1117,
+      "I_plus_O": 1517202,
+      "observed_completed_model_responses": 40,
+      "wall_seconds": 168.7370850602165,
+      "sleep_wall_union_seconds": 60.360000133514404,
+      "CLI_tool_operations": 50,
+      "MCP_calls": 28,
+      "functions_exec_envelopes": 40,
+      "native_attempts": 3,
+      "original_v1_first_positive_pass": false,
+      "original_v1_final_positive_pass": true,
+      "original_v1_posthoc_suite_pass": true,
+      "supplementary_v2_first_positive_pass": false,
+      "supplementary_v2_final_positive_pass": true,
+      "supplementary_v2_posthoc_suite_pass": true,
+      "billing_amount": "unknown",
+      "savings_estimate": "not_defined_no_equivalent_on_budget_passed_pair"
+    },
+    {
+      "anonymous_id": "trial03",
+      "task_id": "P2",
+      "arm": "B",
+      "overall_protocol_status": "physics_failed",
+      "overall_passed": false,
+      "submission_exists": true,
+      "input_tokens_I": 1181959,
+      "cached_input_tokens_C": 1136768,
+      "uncached_input_tokens": 45191,
+      "output_tokens_O": 5897,
+      "reasoning_output_subset": 665,
+      "I_plus_O": 1187856,
+      "observed_completed_model_responses": 32,
+      "wall_seconds": 170.6606232188642,
+      "sleep_wall_union_seconds": 69.71199989318848,
+      "CLI_tool_operations": 47,
+      "MCP_calls": 24,
+      "functions_exec_envelopes": 30,
+      "native_attempts": 2,
+      "original_v1_first_positive_pass": false,
+      "original_v1_final_positive_pass": false,
+      "original_v1_posthoc_suite_pass": null,
+      "supplementary_v2_first_positive_pass": false,
+      "supplementary_v2_final_positive_pass": false,
+      "supplementary_v2_posthoc_suite_pass": null,
+      "billing_amount": "unknown",
+      "savings_estimate": "not_defined_no_equivalent_on_budget_passed_pair"
+    },
+    {
+      "anonymous_id": "trial04",
+      "task_id": "P2",
+      "arm": "A",
+      "overall_protocol_status": "physics_failed",
+      "overall_passed": false,
+      "submission_exists": true,
+      "input_tokens_I": 1116367,
+      "cached_input_tokens_C": 1080576,
+      "uncached_input_tokens": 35791,
+      "output_tokens_O": 5544,
+      "reasoning_output_subset": 828,
+      "I_plus_O": 1121911,
+      "observed_completed_model_responses": 32,
+      "wall_seconds": 174.65111343376338,
+      "sleep_wall_union_seconds": 79.71300005912781,
+      "CLI_tool_operations": 47,
+      "MCP_calls": 24,
+      "functions_exec_envelopes": 29,
+      "native_attempts": 2,
+      "original_v1_first_positive_pass": false,
+      "original_v1_final_positive_pass": false,
+      "original_v1_posthoc_suite_pass": null,
+      "supplementary_v2_first_positive_pass": false,
+      "supplementary_v2_final_positive_pass": false,
+      "supplementary_v2_posthoc_suite_pass": null,
+      "billing_amount": "unknown",
+      "savings_estimate": "not_defined_no_equivalent_on_budget_passed_pair"
+    }
+  ],
+  "checker_comparison": [
+    {
+      "anonymous_id": "trial01",
+      "task_id": "P1",
+      "arm": "A",
+      "overall_protocol_status": "budget_exceeded",
+      "missing_submission": true,
+      "original_v1": {
+        "first_positive": false,
+        "final_positive": false,
+        "posthoc_suite": false,
+        "first_failed_checks": [
+          "all_dynamics_explicit_mass_collision"
+        ],
+        "final_failed_checks": [
+          "all_dynamics_explicit_mass_collision"
+        ]
+      },
+      "supplementary_v2": {
+        "first_positive": false,
+        "final_positive": true,
+        "posthoc_suite": true,
+        "first_failed_checks": [
+          "sustained_physically_carried_lift"
+        ],
+        "final_failed_checks": []
+      },
+      "negative_prerequisite": "Engineering repaired positive satisfies original numeric predicates; original CLI admissibility differs as reported. No on-budget nominated submission.",
+      "score_mode": "Post-hoc for every non-nominated or no-submission attempt; never a replacement on-budget submission."
+    },
+    {
+      "anonymous_id": "trial02",
+      "task_id": "P1",
+      "arm": "B",
+      "overall_protocol_status": "budget_exceeded",
+      "missing_submission": true,
+      "original_v1": {
+        "first_positive": false,
+        "final_positive": true,
+        "posthoc_suite": true,
+        "first_failed_checks": [
+          "sustained_physically_carried_lift"
+        ],
+        "final_failed_checks": []
+      },
+      "supplementary_v2": {
+        "first_positive": false,
+        "final_positive": true,
+        "posthoc_suite": true,
+        "first_failed_checks": [
+          "sustained_physically_carried_lift"
+        ],
+        "final_failed_checks": []
+      },
+      "negative_prerequisite": "Engineering repaired positive satisfies original numeric predicates; original CLI admissibility differs as reported. No on-budget nominated submission.",
+      "score_mode": "Post-hoc for every non-nominated or no-submission attempt; never a replacement on-budget submission."
+    },
+    {
+      "anonymous_id": "trial03",
+      "task_id": "P2",
+      "arm": "B",
+      "overall_protocol_status": "physics_failed",
+      "missing_submission": false,
+      "original_v1": {
+        "first_positive": false,
+        "final_positive": false,
+        "posthoc_suite": null,
+        "first_failed_checks": [
+          "all_dynamics_explicit_mass_collision",
+          "ramp_and_horizontal_deck_static_collision"
+        ],
+        "final_failed_checks": [
+          "all_dynamics_explicit_mass_collision"
+        ]
+      },
+      "supplementary_v2": {
+        "first_positive": false,
+        "final_positive": false,
+        "posthoc_suite": null,
+        "first_failed_checks": [
+          "ramp_and_horizontal_deck_static_collision"
+        ],
+        "final_failed_checks": [
+          "payload_stops_at_new_location",
+          "payload_slides_without_fall_or_tumble",
+          "terminal_whole_payload_supported_on_deck"
+        ]
+      },
+      "negative_prerequisite": "No accepted positive; negative correctly not launched.",
+      "score_mode": "Post-hoc for every non-nominated or no-submission attempt; never a replacement on-budget submission."
+    },
+    {
+      "anonymous_id": "trial04",
+      "task_id": "P2",
+      "arm": "A",
+      "overall_protocol_status": "physics_failed",
+      "missing_submission": false,
+      "original_v1": {
+        "first_positive": false,
+        "final_positive": false,
+        "posthoc_suite": null,
+        "first_failed_checks": [
+          "all_dynamics_explicit_mass_collision",
+          "ramp_and_horizontal_deck_static_collision"
+        ],
+        "final_failed_checks": [
+          "passive_native_settings_and_inventory"
+        ]
+      },
+      "supplementary_v2": {
+        "first_positive": false,
+        "final_positive": false,
+        "posthoc_suite": null,
+        "first_failed_checks": [
+          "ramp_and_horizontal_deck_static_collision"
+        ],
+        "final_failed_checks": [
+          "payload_stops_at_new_location",
+          "payload_slides_without_fall_or_tumble",
+          "terminal_whole_payload_supported_on_deck"
+        ]
+      },
+      "negative_prerequisite": "No accepted positive; negative correctly not launched.",
+      "score_mode": "Post-hoc for every non-nominated or no-submission attempt; never a replacement on-budget submission."
+    }
+  ],
+  "totals": {
+    "input_tokens_I": 5410022,
+    "cached_input_tokens_C": 5208448,
+    "uncached_input_tokens": 201574,
+    "output_tokens_O": 24464,
+    "reasoning_output_subset": 3959,
+    "I_plus_O": 5434486,
+    "observed_completed_model_responses": 140,
+    "CLI_tool_operations": 191,
+    "MCP_calls": 104,
+    "functions_exec_envelopes": 135,
+    "native_attempts": 10
+  },
+  "whole_allocated_wall_s": 743.0063721686602,
+  "all_usage_completed_response_counters_reconcile": true,
+  "provider_request_id_missing": true,
+  "provider_response_ids_unique_count": 140,
+  "P1_terminal_CLI_usage_missing": true,
+  "frozen_inputs_checked": 306,
+  "frozen_input_mismatches": [],
+  "all_copied_skills_match_candidate": true,
+  "all_native_clock_strict_initial_integrity_runtime_checks_pass": true,
+  "observed_expert_or_external_task_coaching": false,
+  "B_new_production_references_read": true,
+  "B_new_compiler_diagnostic_wait_or_replay_helpers_observed_invocations": 0,
+  "savings_rate": null,
+  "savings_rate_reason": "No pair has equivalent quality, required controls and an on-budget complete submitted task in both arms. Both arms have zero accepted tasks.",
+  "cost_scope": "Provider reported tokens for logged completed responses only; cached=input subset, reasoning=output subset. P1 aborted terminal usage/in-flight billing and invoice amounts unknown. Preparation usage separately unknown; never imputed zero.",
+  "publication_warning": "Do not publish raw-session logs, account/user/session metadata, response IDs, private tool envelopes or the whole toolkit. Publish exact original design bytes plus clearly separate v2 and sanitized summaries."
+}

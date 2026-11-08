@@ -1,0 +1,73 @@
+{
+  "schema": "simscene.independent_pilot.v1",
+  "design_version": "20261103-independent-v1",
+  "steps": 720,
+  "physics_dt_s": 0.016666666666666666,
+  "seed": 19,
+  "release_step": 60,
+  "require_strict_initial_state": true,
+  "observation": {
+    "sample_interval_steps": 1,
+    "strict_start": true,
+    "record_contact_pairs": true
+  },
+  "allowed_geometry": [
+    "box",
+    "sphere",
+    "cylinder",
+    "capsule",
+    "compound"
+  ],
+  "maximum_object_count": 40,
+  "mass_range_kg": [
+    0.01,
+    5.0
+  ],
+  "driver_diameter_range_m": [
+    0.04,
+    0.15
+  ],
+  "initial_max_translation_m": 0.006,
+  "initial_max_rotation_degrees": 3.0,
+  "maximum_joint_anchor_error_m": 0.01,
+  "contact_time_tolerance_steps": 2,
+  "maximum_initial_interpenetration_m": 0.006,
+  "maximum_wall_seconds_per_arm": 1800,
+  "maximum_positive_attempts": 2,
+  "negative_attempts_after_positive": 1,
+  "task_id": "P2",
+  "category": "gravity_contact_impulse_free_slider",
+  "roles": {
+    "driver": "driver",
+    "payload": "payload",
+    "ramp": "ramp",
+    "deck": "deck"
+  },
+  "dynamic_ids": [
+    "driver",
+    "payload"
+  ],
+  "joint_ids": [],
+  "thresholds": {
+    "driver_min_horizontal_travel_m": 0.2,
+    "driver_min_drop_m": 0.06,
+    "payload_min_horizontal_travel_m": 0.12,
+    "payload_final_min_horizontal_offset_m": 0.1,
+    "terminal_hold_steps": 60,
+    "terminal_max_translation_span_m": 0.012,
+    "terminal_max_rotation_degrees": 4.0,
+    "payload_max_vertical_deviation_m": 0.015,
+    "payload_max_tilt_degrees": 10.0,
+    "negative_payload_max_translation_m": 0.008,
+    "negative_payload_max_rotation_degrees": 3.0,
+    "deck_top_tolerance_m": 0.012,
+    "before_impact_payload_max_translation_m": 0.008,
+    "before_impact_payload_max_rotation_degrees": 3.0,
+    "payload_edge_range_m": [
+      0.04,
+      0.12
+    ],
+    "initial_support_contact_min_steps": 2,
+    "driver_min_rotation_on_ramp_degrees": 45.0
+  }
+}

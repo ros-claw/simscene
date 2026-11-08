@@ -11,7 +11,8 @@ job=start(a.scene_id,a.steps,a.seed,case_path=a.case,archive_verified_objects=a.
 while True:
  state=status(job['job_id']);step=(state.get('progress') or {}).get('physics_steps',0);marker=(state['state'],step//600)
  if marker!=last:print(json.dumps({'state':state['state'],'step':step}),flush=True);last=marker
- if state['state'] not in ('queued','running','paused'):break
+ # A stalled worker is still alive; retain its original job and await exit.
+ if state['state'] not in ('queued','running','paused','stalled'):break
  time.sleep(1)
 (root/'status.json').write_text(json.dumps(state,indent=2));report={}
 if state['state']=='completed':

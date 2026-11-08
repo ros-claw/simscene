@@ -39,6 +39,19 @@ def verify(directory):
                 for item in record['files']:
                     path=Path(item['path'])
                     if not path.is_file() or path.stat().st_size!=item['size'] or _sha256(path)!=item['sha256']:raise ValueError('external dependency missing or changed: '+str(path))
+            elif record.get('kind')=='prepared_snapshot':
+                from .physics_binding import validate_asset_binding
+                relative=PurePosixPath(record['manifest_relative_to_run'])
+                if relative.is_absolute() or '..' in relative.parts or len(relative.parts)!=3 or relative.parts[0]!='assets':
+                    raise ValueError('invalid prepared snapshot path')
+                bound=objects[name].get('asset_binding')
+                expected={'manifest_path':str(root/relative),'manifest_sha256':record['manifest_sha256']}
+                if bound!=expected or configured!=(root/record['root_relative_to_run']).resolve():
+                    raise ValueError('prepared scene path does not match locked snapshot')
+                prepared=validate_asset_binding(bound,require_dynamic=objects[name].get('dynamic',False),asset_path=str(configured))
+                if prepared['prepared_id']!=record['prepared_id']:raise ValueError('prepared identity changed')
+                from .preparation.snapshots import verify_prepared_runtime
+                verify_prepared_runtime((root/relative).parent,prepared,record,manifest.get('runtime_python'))
             elif record.get('kind')=='snapshot':
                 relative=PurePosixPath(record['root_relative_to_run'])
                 if relative.is_absolute() or '..' in relative.parts or len(relative.parts)<3 or relative.parts[0]!='assets':raise ValueError('invalid snapshot path')
@@ -46,6 +59,9 @@ def verify(directory):
                 if not package.is_dir():raise ValueError('snapshot package missing')
                 if configured!=(root/relative).resolve():raise ValueError('scene asset path does not point to the snapshot')
                 AssetCache(None,root/'assets')._verified_cached(package,record['package_sha256'],record['source'],touch=False)
+                from .snapshot_integrity import PIN_FIELDS, verify_snapshot
+                if PIN_FIELDS & set(record):
+                    verify_snapshot(package, record, root, manifest.get('runtime_python'))
             else:raise ValueError('unknown asset lock kind')
             runtime_deps=record.get('runtime_provided_dependencies',{})
             runtime_hashes=record.get('runtime_dependency_sha256',{})

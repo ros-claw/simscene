@@ -1,0 +1,52 @@
+{
+  "A": {
+    "count": 32,
+    "first_60deg_step": 1092,
+    "last_60deg_step": 1226,
+    "wave_span_s": 2.2333333333333334,
+    "median_adjacent_tilt_delay_s": 0.06666666666666667,
+    "source_mass_kg": 0.012,
+    "initial_path_length_m": 2.015,
+    "average_wave_speed_m_s": 0.9022388059701493
+  },
+  "B": {
+    "count": 40,
+    "first_60deg_step": 1893,
+    "last_60deg_step": 2062,
+    "wave_span_s": 2.816666666666667,
+    "median_adjacent_tilt_delay_s": 0.08333333333333333,
+    "source_mass_kg": 0.012,
+    "initial_path_length_m": 2.6000000000000005,
+    "average_wave_speed_m_s": 0.9230769230769232
+  },
+  "C": {
+    "count": 36,
+    "first_60deg_step": 2349,
+    "last_60deg_step": 2522,
+    "wave_span_s": 2.8833333333333333,
+    "median_adjacent_tilt_delay_s": 0.08333333333333333,
+    "source_mass_kg": 0.012,
+    "initial_path_length_m": 2.375,
+    "average_wave_speed_m_s": 0.823699421965318
+  },
+  "D": {
+    "count": 44,
+    "first_60deg_step": 4950,
+    "last_60deg_step": 5122,
+    "wave_span_s": 2.8666666666666667,
+    "median_adjacent_tilt_delay_s": 0.06666666666666667,
+    "source_mass_kg": 0.012,
+    "initial_path_length_m": 2.7967036763152096,
+    "average_wave_speed_m_s": 0.9755943056913522
+  },
+  "E": {
+    "count": 48,
+    "first_60deg_step": 5637,
+    "last_60deg_step": 5840,
+    "wave_span_s": 3.3833333333333333,
+    "median_adjacent_tilt_delay_s": 0.06666666666666667,
+    "source_mass_kg": 0.012,
+    "initial_path_length_m": 3.0549999999999997,
+    "average_wave_speed_m_s": 0.9029556650246304
+  }
+}
