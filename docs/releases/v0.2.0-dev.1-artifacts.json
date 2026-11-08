@@ -1,0 +1,45 @@
+{
+  "schema": "simscene.preview_artifacts.v1",
+  "release_tag": "v0.2.0-dev.1",
+  "python_package_version": "0.2.0.dev1",
+  "plugin_version": "0.2.0-dev.1",
+  "tested_source_commit": "6d00bd9c7444aa5bcf2ed6d12f78536c38b280ef",
+  "artifacts": [
+    {
+      "name": "simscene-0.2.0-dev.1-py310-linux-x86_64.zip",
+      "bytes": 38196687,
+      "sha256": "76b14e730186796c099e1960c3e193a0e46fd6f9fd4559bc324033d405840de4"
+    },
+    {
+      "name": "rosclaw_simscene-0.2.0.dev1-py3-none-any.whl",
+      "bytes": 509872,
+      "sha256": "fe6f595a217d78315c5a329dd0eb669c7619328682c82ab10b5c73b340a69893"
+    },
+    {
+      "name": "kinetic-asset-gallery-1080p30.mp4",
+      "bytes": 13747914,
+      "sha256": "afbab31ebaca357159e1ffb19d1599e13463677887bc7d9b174c118edc5d0a9b"
+    },
+    {
+      "name": "kinetic-gallery-native-sources.zip",
+      "bytes": 24514829,
+      "sha256": "ffd9b9e8f83d72d1a963e5f768837b5ce139002d48601a97f59991eb63fe0a53"
+    },
+    {
+      "name": "simscene-v44-comparison-py310-linux-x86_64.zip",
+      "bytes": 12378126,
+      "sha256": "700ea16a7e065fbe0edfd610d4c84a2fa0b7fb52e75a7ef1d29ec1f45dbe75a9"
+    },
+    {
+      "name": "catalog-efficiency-results.json",
+      "bytes": 88303,
+      "sha256": "a060bd26a0dba4d98265af9a02a6091a5e1aac94c74d5bd2b59b443490cad1fa"
+    },
+    {
+      "name": "release-qualification.json",
+      "bytes": 4829,
+      "sha256": "504b819c0e70e39e426b774d5a1ffed5ca90f5ec73286a76b0725be8d8faafe5"
+    }
+  ],
+  "scope": "Published runtime modules and matching skills equal tested source; later commits update documentation, data and media only. Client ZIP local pip-origin metadata is normalized and its DeepSeek overlay is a relocation template. Baseline artifact inventory matches the historical comparison prefix. SDKs/models/credentials/private histories are excluded."
+}

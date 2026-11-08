@@ -1,6 +1,6 @@
 # Plugin packages
 
-Python version `0.2.0.dev1` is an experimental V2 candidate. The single version
+Python package version `0.2.0.dev1` is an experimental V2 candidate. The single version
 source is `pyproject.toml`; the builder maps its development suffix explicitly to
 plugin version `0.2.0-dev.1`. Building or installing files does not publish a
 release or establish physical compatibility for arbitrary assets.
