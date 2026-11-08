@@ -24,6 +24,28 @@ def probe(path):
     try:return json.loads(subprocess.check_output(command,stderr=subprocess.PIPE,timeout=300))
     except (subprocess.SubprocessError,ValueError) as error:raise SceneError('video probe failed: '+str(error)) from error
 
+def render_synchronization(rows):
+    """Audit declared barrier receipts, independently of nominal frame cadence."""
+    contexts=[row.get('render_context') if isinstance(row.get('render_context'),dict) else {} for row in rows]
+    receipts=[context.get('render_barrier') for context in contexts]
+    scope='saved render-barrier receipts; not an independent sensor timestamp or pixel/pose verdict'
+    if not any(value is not None for value in receipts):
+        return {'status':'unrecorded','frames':len(rows),'scope':scope}
+    valid=bool(rows);offset=None;time_origin=None
+    for row,context,receipt in zip(rows,contexts,receipts):
+        if not isinstance(receipt,dict):valid=False;continue
+        if type(row.get('physics_step')) is not int:valid=False;continue
+        absolute=receipt.get('absolute_physics_step');time=receipt.get('absolute_simulation_time_s')
+        current_offset=absolute-row['physics_step'] if type(absolute) is int else None
+        current_origin=time-row['physics_step']/60 if finite(time) else None
+        if offset is None:offset=current_offset;time_origin=current_origin
+        valid=valid and (receipt.get('policy')=='paused-render-barrier-v1'
+            and type(receipt.get('application_updates')) is int and 2<=receipt['application_updates']<=8
+            and receipt.get('physics_unchanged') is True and current_offset is not None and current_offset>=0 and current_offset==offset
+            and current_origin is not None and time_origin is not None and abs(current_origin-time_origin)<1e-6
+            and context.get('absolute_physics_step')==absolute)
+    return {'status':'guarded' if valid else 'invalid','frames':len(rows),'scope':scope}
+
 def inspect(path,output_dir=None,representative_count=5,record=None):
     path=Path(path).expanduser().resolve()
     if not path.is_file():raise SceneError('video file not found')
@@ -50,7 +72,11 @@ def inspect(path,output_dir=None,representative_count=5,record=None):
                         with Image.open(image_path) as image:ok=image.size==(stream['width'],stream['height'])
                     except OSError:ok=False
                     raw_checks.append({'path':str(image_path),'native_size_matches':ok});valid=valid and ok
-            timeline={'passed':bool(valid),'frames':len(rows),'first_physics_step':first,'last_physics_step':rows[-1]['physics_step'] if rows else None,'interval_steps':interval,'raw_keyframes':raw_checks}
+            synchronization=render_synchronization(rows)
+            if synchronization['status']=='invalid':
+                valid=False;issues.append('render barrier receipts are incomplete or inconsistent')
+            timeline={'passed':bool(valid),'frames':len(rows),'first_physics_step':first,'last_physics_step':rows[-1]['physics_step'] if rows else None,'interval_steps':interval,'raw_keyframes':raw_checks,'render_synchronization':synchronization,
+                      'scope':'declared capture cadence and saved dimensions; pixel/physical-pose alignment requires separate evidence'}
             if not valid:issues.append('native capture size, frame count or simulation clock mismatch')
     else:
         edit_path=path.with_suffix('.edit.json')
@@ -84,7 +110,7 @@ def inspect(path,output_dir=None,representative_count=5,record=None):
     return {'path':str(path),'sha256':sha(path),'metadata':metadata,'decoded_frame_count':count,'duration_s':duration,'simulation_timeline':timeline,
             'representative_frames':representatives,'representative_png_filter':png_filter(stream),'issues':issues,'requires_visual_review':['subject detail and action visibility','highlights and material loading','occlusion, black frames, cuts and motion continuity']}
 
-def export(segments,destination,output_resolution=None,output=None,allow_upscale=False):
+def export(segments,destination,output_resolution=None,output=None,allow_upscale=False,font_file=None):
     """segments: run_directory, camera, start/end sim seconds, optional speed/title.
 
     Every source must have intact run/evidence locks and a continuous native
@@ -95,20 +121,36 @@ def export(segments,destination,output_resolution=None,output=None,allow_upscale
     if destination.exists():raise SceneError('video destination exists')
     destination.parent.mkdir(parents=True,exist_ok=True)
     config=output_config(output);size=resolution(output_resolution or [1920,1080]);width,height=size
+    if font_file is None and any(any('\u3400'<=c<='\u9fff' for c in s['title']) for s in segments if isinstance(s,dict) and isinstance(s.get('title'),str)):
+        candidate=Path('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc')
+        if not candidate.is_file():raise SceneError('CJK titles require an installed CJK font_file')
+        font_file=candidate
+    if font_file is not None:
+        font_file=Path(font_file).expanduser().resolve()
+        if not font_file.is_file():raise SceneError('font_file does not exist')
     from .run_integrity import verify as verify_run
     from .evidence_integrity import verify as verify_evidence
     mappings=[];files=[];elapsed=0
+    # Cache small media indices within one export, never whole trajectories.
+    run_media={};camera_inspections={}
     import tempfile
     with tempfile.TemporaryDirectory(prefix='simscene-edit-',dir=destination.parent) as tmp:
         tmp=Path(tmp)
         for index,segment in enumerate(segments):
             if not isinstance(segment,dict) or set(segment)-{'run_directory','camera','start_sim_time_s','end_sim_time_s','speed','title'}:raise SceneError('unsupported source segment fields')
             run=Path(segment['run_directory']).expanduser().resolve()
-            locks={'inputs':verify_run(run),'outputs':verify_evidence(run)}
-            if not all(v.get('passed') is True for v in locks.values()):raise SceneError('source recording integrity check failed: '+str(run))
-            result=json.loads((run/'result.json').read_text());record=result.get('videos',{}).get(segment['camera'])
+            if run not in run_media:
+                locks={'inputs':verify_run(run),'outputs':verify_evidence(run)}
+                if not all(v.get('passed') is True for v in locks.values()):raise SceneError('source recording integrity check failed: '+str(run))
+                result=json.loads((run/'result.json').read_text())
+                run_media[run]={'videos':result.get('videos',{}),'task_status':result.get('task_status')}
+                del result
+            media=run_media[run];record=media['videos'].get(segment['camera'])
             if not record:raise SceneError('source camera recording not found')
-            inspection=inspect(record['path'],record=record,representative_count=1)
+            key=(run,segment['camera'])
+            if key not in camera_inspections:
+                camera_inspections[key]=inspect(record['path'],record=record,representative_count=1)
+            inspection=camera_inspections[key]
             if not inspection['simulation_timeline'] or not inspection['simulation_timeline']['passed']:raise SceneError('source capture is not continuous')
             first=record['first_physics_step']/60;last=record['last_physics_step']/60+1/record['fps']
             start=segment.get('start_sim_time_s',first);end=segment.get('end_sim_time_s',last);speed=segment.get('speed',1)
@@ -123,7 +165,8 @@ def export(segments,destination,output_resolution=None,output=None,allow_upscale
             if title:
                 if not isinstance(title,str) or len(title)>160 or '\n' in title:raise SceneError('title must be a short single line')
                 title_file=tmp/f'title{index:03d}.txt';title_file.write_text(title)
-                filters.append(f'drawtext=textfile={title_file}:expansion=none:fontcolor=white:fontsize=28:x=48:y=36:box=1:boxcolor=black@0.55:boxborderw=12')
+                font=f'fontfile={font_file}:' if font_file is not None else ''
+                filters.append(f'drawtext={font}textfile={title_file}:expansion=none:fontcolor=white:fontsize=28:x=48:y=36:box=1:boxcolor=black@0.55:boxborderw=12')
             composed=destination.with_name(destination.stem+f'_composed_{index:03d}.png')
             subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-threads','2','-i',record['path'],'-vf',','.join(filters)+','+png_filter(inspection['metadata']['streams'][0]),'-frames:v','1',str(composed)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,timeout=120)
             # Keep source cadence. A 6fps source cannot be certified as 30 real
@@ -146,8 +189,11 @@ def export(segments,destination,output_resolution=None,output=None,allow_upscale
                 'source_frame_manifest_sha256':sha(record['frame_manifest']),'run_lock_sha256':sha(run/'run-lock.json'),'evidence_lock_sha256':sha(run/'evidence-lock.json'),
                 'source_fps':fps,'source_resolution':[record['width'],record['height']],'source_start_frame':frame_start,'source_end_frame_exclusive':frame_end,
                 'source_sim_start_s':first+frame_start/fps,'source_sim_end_s':first+frame_end/fps,'speed':speed,'title':title,
-                'composed_keyframe':str(composed),'composed_keyframe_sha256':sha(composed),'output_frames':target_frames,'duration_rounding_s':length-(frame_end-frame_start)/fps/speed,'final_frame_hold':'bounded CFR retiming hold; no new simulated observation','output_start_s':elapsed,'output_end_s':elapsed+length,'upscale_factor':max(1,scale),'physics_task_status':result.get('task_status')})
+                'composed_keyframe':str(composed),'composed_keyframe_sha256':sha(composed),'output_frames':target_frames,'duration_rounding_s':length-(frame_end-frame_start)/fps/speed,'final_frame_hold':'bounded CFR retiming hold; no new simulated observation','output_start_s':elapsed,'output_end_s':elapsed+length,'upscale_factor':max(1,scale),'physics_task_status':media['task_status']})
             elapsed+=length;files.append(output_file)
+        for (run,camera),inspection in camera_inspections.items():
+            if sha(run_media[run]['videos'][camera]['path'])!=inspection['sha256']:
+                raise SceneError('source video changed during export')
         concat=tmp/'concat.txt';concat.write_text(''.join("file '"+str(file).replace("'","'\\''")+"'\n" for file in files))
         try:
             subprocess.run(['ffmpeg','-hide_banner','-loglevel','warning','-y','-f','concat','-safe','0','-i',str(concat),'-c','copy','-movflags','+faststart',str(destination)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,timeout=300)
@@ -155,5 +201,6 @@ def export(segments,destination,output_resolution=None,output=None,allow_upscale
             destination.unlink(missing_ok=True);raise
     manifest={'schema':'simscene.video_edit.v1','path':str(destination),'sha256':sha(destination),'resolution':size,'encoding':config,'segments':mappings,
               'metadata':probe(destination),'visual_review':'pending; inspect representative frames and motion clips before delivery'}
+    if font_file is not None:manifest['font']={'path':str(font_file),'sha256':sha(font_file)}
     manifest_path=destination.with_suffix('.edit.json');manifest_path.write_text(json.dumps(manifest,indent=2))
     return {**manifest,'manifest_path':str(manifest_path)}

@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "checks": {
+    "all_input_output_timelines": true,
+    "door_lands": true,
+    "payload_crosses": true,
+    "control_door_stays_raised": true,
+    "control_payload_activated": true,
+    "control_supported_crossing_blocked": true
+  },
+  "measurements": {
+    "positive": {
+      "input_integrity": true,
+      "output_integrity": true,
+      "complete_per_step_timeline": true,
+      "minimum_door_tilt_degrees": 0.1287583516407777,
+      "maximum_door_tilt_degrees": 79.51916067041333,
+      "payload_maximum_x_m": 0.9750004410743713,
+      "payload_supported_crossing": true
+    },
+    "negative": {
+      "input_integrity": true,
+      "output_integrity": true,
+      "complete_per_step_timeline": true,
+      "minimum_door_tilt_degrees": 79.95877456584506,
+      "maximum_door_tilt_degrees": 79.961778378982,
+      "payload_maximum_x_m": -0.030652381479740143,
+      "payload_supported_crossing": false
+    }
+  },
+  "launches": {
+    "positive": {
+      "job_id": "472159cdcec44d82a32982d74b610a02",
+      "run_id": "fb0451f3830a47e38fa36a61d2978e85",
+      "revision": 1,
+      "replayed": false
+    },
+    "negative": {
+      "job_id": "5cf38ae641d543feb95358af1f7b33d3",
+      "run_id": "eeee057a9205495e8a010718e26536c9",
+      "revision": 1,
+      "replayed": false
+    }
+  },
+  "scope": "One paired configuration, read-only engineering checks. Not independent whole-room acceptance or parameter-range certification."
+}

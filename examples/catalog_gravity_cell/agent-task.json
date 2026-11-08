@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "task_id": "catalog-gravity-cell-fixed-layout",
+  "prompt_file": "prompt.md",
+  "recipe_file": "recipe.json",
+  "asset_lock_file": "assets.lock.json",
+  "case_template_file": "case.json",
+  "runner": "experiments/run_catalog_mvp.py",
+  "default_mode": "routing",
+  "output_policy": "new directory outside checkout; preserve every attempt and failure",
+  "source_policy": "explicit audited sources; exact locked content only; no automatic replacement",
+  "workbench_route": "legacy_usd_compatibility",
+  "workbench_license": "unknown; source-level official restrictive terms documented separately; no redistribution grant asserted",
+  "budgets": {
+    "scene_asset_download_bytes": 2147483648,
+    "workbench_asset_download_bytes": 536870912,
+    "notebook_asset_download_bytes": 16777216,
+    "metadata_index_refresh_bytes": 33554432
+  },
+  "verification": {
+    "case_type": "rigid_asset_smoke",
+    "independent_body_instances": 4,
+    "physics_steps": 720,
+    "physics_hz": 60,
+    "seed": 42,
+    "required": ["gravity_displacement", "ramp_contact", "baffle_contact", "receiver_floor_contact", "complete_bounds_in_receiver", "settling", "input_integrity", "evidence_integrity"],
+    "claim_scope": "same-machine fixed-layout physical rebuild; no timing-order or layout-generalization claim"
+  },
+  "recording": {
+    "required": false,
+    "diagnostic_resolution": [960, 540],
+    "fps": 30,
+    "window_steps": [0, 300],
+    "final_video_delivery_claimed": false
+  }
+}

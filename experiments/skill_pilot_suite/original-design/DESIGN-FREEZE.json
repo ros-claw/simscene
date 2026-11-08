@@ -1,0 +1,34 @@
+{
+  "schema": "simscene.independent_pilot_design_freeze.v1",
+  "design_version": "20261103-independent-v1",
+  "prepared_at_utc": "2026-11-02T19:17:10.948557+00:00",
+  "protocol_source": "/code/rosclaw/simscene/SimScene_Film_and_Skill_Playbook_20261103.html#pilot",
+  "independence_statement": "Task/acceptance/scorer author did not author candidate skills/modules or inspect trial outcomes. No Isaac or task simulation was launched. Tasks are not derived from B-specific domino/door modules.",
+  "task_order": [
+    "P1:A",
+    "P1:B",
+    "P2:B",
+    "P2:A"
+  ],
+  "files_sha256": {
+    "CPU-CHECKS.json": "d7577683c9683237494f889ddc12108d14fdf499f8861dc1c089620bb5f27175",
+    "README.md": "472642a3bfaa25415c1e9b4f58288db6bbb872a28de3ff7f99d048d165e94ccf",
+    "examiner/ACCEPTANCE.md": "ef0206afa669c44bbc26dc700a507da48c41e7583822bda6add84fe1ba623950",
+    "examiner/freeze_runtime_identity.py": "0968f80abd81197e8d626ab28c0b7a9e1d8f7876b33d40450bac31341b8d34bd",
+    "examiner/score.py": "adccb224e983e2826a9dd220f63e802acb374b09e9f6fc62ee529558715c6061",
+    "examiner/test_score_cpu.py": "71855533e188e48e02de6b3f90a57dc8bf637e19e49c76ccc35e93f5837ef36a",
+    "public/P1/prompt.md": "3cbafc96ae8349b76c1c9925daaafc9653414dad146c4e20a86516d8ba1858a6",
+    "public/P1/public-case.json": "e3a5cfe886ac059f967270fc5ef84fb92f18fbee958c5fc276dfef6d2125b10e",
+    "public/P2/prompt.md": "b604edc90bfec4151033fb0c06db9e1b056b052ca3e8afa0eef7a9139bcdd825",
+    "public/P2/public-case.json": "ea106fe7dd79d28233d0bc9e2d1e9a9ebf18d85f10578840a0dd1e6d8eda0eed",
+    "smoke-source/generic_smoke_ops.py": "9c107eedccea432f3a90e739f783c0c88b7c4cf6610be39beb8d0a0ad1ebb58c"
+  },
+  "generic_readers_sha256": {
+    "simscene.run_integrity": "ed4eec9a24bc4999135d9c6e09211871986a2a87cd440fbccf43f6900d27f76d",
+    "simscene.evidence_integrity": "6a5314aa8eb53d730dd1c0342009149c56917171ff0521a0e92731177f899d63",
+    "simscene.verification.mechanism": "ce05b85cd11af946901f77249e6d16208434d5764056c5ba704a97beb4c9f4e8",
+    "simscene.verification.passive_network": "0ed9160f0225bcba3e621c2b22ce0a36720ca67203cb29330883abfd99a1adc1",
+    "simscene.scene": "feb31a14d0b1ea5ce90dcf56d2e17404957bc8dfcc3544fc51408953d5941c86"
+  },
+  "runtime_identity": "Must be created exactly once from unrelated generic native smoke and candidate freeze before formal prompt release. Design, thresholds and scorer may not be edited based on formal outcomes."
+}

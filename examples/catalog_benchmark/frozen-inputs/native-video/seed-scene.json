@@ -1,0 +1,278 @@
+{
+  "schema_version": "0.1",
+  "scene_id": "common-native-seed",
+  "revision": 1,
+  "world": {
+    "units": "m",
+    "up_axis": "Z"
+  },
+  "objects": {
+    "workbench": {
+      "kind": "asset",
+      "asset_path": "${TASK_ROOT}/assets/native/origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/SM_HeavyDutyPackingTable_C02_01.usd",
+      "asset_metrics": {
+        "meters_per_unit": 0.01,
+        "up_axis": "Z",
+        "reason": "Pinned source has centimetre mesh coordinates and authored Z-up; selected bounds independently inspected."
+      },
+      "asset_physics": "visual_only",
+      "position": [
+        0,
+        0,
+        0
+      ]
+    },
+    "floor": {
+      "kind": "box",
+      "size": [
+        4,
+        3,
+        0.1
+      ],
+      "position": [
+        0,
+        0,
+        -0.05
+      ],
+      "dynamic": false,
+      "collision": true
+    },
+    "support": {
+      "kind": "box",
+      "size": [
+        2.2,
+        0.62,
+        0.06
+      ],
+      "position": [
+        0,
+        0,
+        0.964
+      ],
+      "dynamic": false,
+      "collision": true
+    },
+    "ramp": {
+      "kind": "box",
+      "size": [
+        0.8,
+        0.5,
+        0.04
+      ],
+      "position": [
+        0,
+        0,
+        1.12
+      ],
+      "orientation_wxyz": [
+        0.9914448613738104,
+        0,
+        0.13052619222005157,
+        0
+      ],
+      "dynamic": false,
+      "collision": true
+    },
+    "baffle": {
+      "kind": "box",
+      "size": [
+        0.05,
+        0.57,
+        0.2
+      ],
+      "position": [
+        0.55,
+        0,
+        1.094
+      ],
+      "dynamic": false,
+      "collision": true
+    },
+    "payload1": {
+      "kind": "sphere",
+      "size": [
+        0.06,
+        0.06,
+        0.06
+      ],
+      "position": [
+        -0.22,
+        -0.165,
+        1.48
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.12,
+      "material": {
+        "color": [
+          0.8,
+          0.08,
+          0.05
+        ],
+        "roughness": 0.55,
+        "metallic": 0
+      }
+    },
+    "payload2": {
+      "kind": "sphere",
+      "size": [
+        0.06,
+        0.06,
+        0.06
+      ],
+      "position": [
+        -0.22,
+        -0.055,
+        1.48
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.12,
+      "material": {
+        "color": [
+          0.05,
+          0.7,
+          0.1
+        ],
+        "roughness": 0.55,
+        "metallic": 0
+      }
+    },
+    "payload3": {
+      "kind": "sphere",
+      "size": [
+        0.06,
+        0.06,
+        0.06
+      ],
+      "position": [
+        -0.22,
+        0.055,
+        1.48
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.12,
+      "material": {
+        "color": [
+          0.05,
+          0.1,
+          0.85
+        ],
+        "roughness": 0.55,
+        "metallic": 0
+      }
+    },
+    "payload4": {
+      "kind": "sphere",
+      "size": [
+        0.06,
+        0.06,
+        0.06
+      ],
+      "position": [
+        -0.22,
+        0.165,
+        1.48
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.12,
+      "material": {
+        "color": [
+          0.8,
+          0.7,
+          0.04
+        ],
+        "roughness": 0.55,
+        "metallic": 0
+      }
+    },
+    "overview": {
+      "kind": "camera",
+      "position": [
+        -2,
+        -2.8,
+        2.5
+      ],
+      "orientation_wxyz": [
+        0.7867920246350931,
+        0.536493285674647,
+        -0.17192734944704102,
+        -0.2521393481960869
+      ],
+      "record_fps": 30,
+      "preview_fps": 1,
+      "camera": {
+        "resolution": [
+          960,
+          540
+        ],
+        "focal_length_mm": 35,
+        "horizontal_aperture_mm": 36,
+        "capture_window": {
+          "start_step": 0,
+          "end_step": 300
+        },
+        "clipping_range_m": [
+          0.01,
+          100
+        ]
+      }
+    },
+    "key": {
+      "kind": "light",
+      "light": {
+        "type": "distant",
+        "color": [
+          1,
+          0.98,
+          0.94
+        ]
+      },
+      "orientation_wxyz": [
+        0.8934292207829864,
+        0.34323370262843894,
+        0.1039228032044394,
+        0.2705086020909677
+      ],
+      "intensity": 1000
+    }
+  },
+  "observation": {
+    "strict_start": true,
+    "sample_interval_steps": 1,
+    "record_contact_pairs": true
+  },
+  "presentation": {
+    "profile": "technical_showcase_1080p",
+    "capture": {
+      "resolution": [
+        960,
+        540
+      ],
+      "fps": 30,
+      "renderer": "RealTimePathTracing",
+      "anti_aliasing": "dlaa",
+      "depth_of_field": false,
+      "motion_blur": false,
+      "exposure_mode": "manual",
+      "exposure_ev": 0
+    },
+    "output": {
+      "codec": "h264",
+      "crf": 18,
+      "preset": "medium",
+      "pixel_format": "yuv420p"
+    },
+    "diagnostics": {
+      "png_seconds": 5,
+      "keyframe_interval_s": 1
+    },
+    "budget": {
+      "max_cameras": 1,
+      "max_recording_bytes": 1073741824,
+      "min_free_bytes": 2147483648
+    }
+  }
+}

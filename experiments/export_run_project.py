@@ -33,24 +33,32 @@ for obj in scene['objects'].values():
 store=SceneStore();scene_id='project_'+uuid.uuid4().hex[:12];store.open(scene_id)
 ops=[{'op':'add','id':name,'object':obj} for name,obj in scene['objects'].items()]
 if scene.get('presentation'):ops.append({'op':'set_presentation','presentation':scene['presentation']})
+if scene.get('observation'):ops.append({'op':'set_observation','observation':scene['observation']})
 store.apply(scene_id,0,'import-editable',ops);current=store.get(scene_id)
 if a.check_only:
  stage=export_scene(current,root/'state'/(scene_id+'.usda'));print(json.dumps({'scene_id':scene_id,'schema_and_export':'passed','stage':stage['path'],'physics_validation':'not run'}));raise SystemExit(0)
-case=None
+case=None;case_path=None
 if (root/a.case_file).is_file():
- case=json.load(open(root/a.case_file))
- if 'source_scene_sha256' in case:case['source_scene_sha256']=hashlib.sha256(json.dumps(current,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+ case_path=root/a.case_file;original_case_bytes=case_path.read_bytes();case=json.loads(original_case_bytes)
+ if 'source_scene_sha256' in case:
+  current_sha=hashlib.sha256(json.dumps(current,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+  if case['source_scene_sha256']!=current_sha:
+   case['source_scene_sha256']=current_sha
+   rebound_path=root/'state'/(scene_id+'.case.json')
+   with rebound_path.open('x') as f:json.dump(case,f,sort_keys=True,separators=(',',':'),allow_nan=False)
+   print(json.dumps({'project_case_rebound':{'original_file':str(case_path),'original_sha256':hashlib.sha256(original_case_bytes).hexdigest(),'rebound_file':str(rebound_path),'rebound_sha256':hashlib.sha256(rebound_path.read_bytes()).hexdigest(),'reason':'legacy source_scene_sha256 follows the newly imported scene; original case retained'}}),flush=True)
+   case_path=rebound_path
 from simscene.jobs import start,status
 archive=bool(case and 'expected_spawn_order' in case)
-job=start(scene_id,a.steps or manifest['default_steps'],manifest['seed'],case=case,archive_verified_objects=archive,request_id='project-'+uuid.uuid4().hex)
+job=start(scene_id,a.steps or manifest['default_steps'],manifest['seed'],case_path=str(case_path) if case_path else None,archive_verified_objects=archive,request_id='project-'+uuid.uuid4().hex)
 print(json.dumps(job),flush=True)
 while True:
  state=status(job['job_id'])
- if state['state'] not in ('queued','running','paused'):break
+ if state['state'] not in ('queued','running','paused','stalled'):break
  time.sleep(1)
 print(json.dumps({k:v for k,v in state.items() if k!='result'}),flush=True)
 if state['state']!='completed':raise SystemExit(1)
-if case and ('objects' in case or 'expected_spawn_order' in case):
+if case and ('objects' in case or 'expected_spawn_order' in case or case.get('schema') in ('simscene.mechanism.v1','simscene.passive_network.v1','simscene.passive_network.v2')):
  from simscene.verification.case_runner import evaluate
  report=evaluate(Path(state['result_file']).parent);print(json.dumps({'passed':report['passed']}));raise SystemExit(0 if report['passed'] else 1)
 print(json.dumps({'task_verification':'unverified by stock case checker; inspect measured state and supplied validation separately'}))

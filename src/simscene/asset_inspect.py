@@ -22,7 +22,21 @@ def inspect_local(path):
     joints=[]
     for prim in prims:
         if prim.IsA(UsdPhysics.Joint):
-            joints.append({'path':str(prim.GetPath()), 'type':prim.GetTypeName()})
+            joint=UsdPhysics.Joint(prim)
+            entry={'path':str(prim.GetPath()),'type':prim.GetTypeName(),
+                   'body0':[str(p) for p in joint.GetBody0Rel().GetTargets()],
+                   'body1':[str(p) for p in joint.GetBody1Rel().GetTargets()],
+                   'enabled':joint.GetJointEnabledAttr().Get(),
+                   'drives':[s for s in prim.GetAppliedSchemas() if 'DriveAPI' in s]}
+            for key in ('physics:axis','physics:lowerLimit','physics:upperLimit'):
+                attr=prim.GetAttribute(key)
+                if attr and attr.Get() is not None:entry[key]=attr.Get()
+            entry['local_pos0_units']=list(joint.GetLocalPos0Attr().Get())
+            entry['local_pos1_units']=list(joint.GetLocalPos1Attr().Get())
+            for index in (0,1):
+                q=getattr(joint,'GetLocalRot'+str(index)+'Attr')().Get()
+                entry['local_rot'+str(index)+'_wxyz']=[q.GetReal(),*q.GetImaginary()]
+            joints.append(entry)
     bbox=None
     if root:
         try:

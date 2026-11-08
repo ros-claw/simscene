@@ -1,0 +1,7 @@
+Rebuild the catalog gravity cell using `recipe.json`, `assets.lock.json`, and the case template beside this prompt. Search the two explicit sources and select exactly the pinned ABO notebook and NVIDIA PackingTable source closure. Do not substitute a primitive or another product for the notebook.
+
+Prepare the notebook as a passive rigid prop with the recorded 150 mm longest extent, 0.12 kg experimental mass, collision recipe and material assumptions. Place four independent instances in the editable two-ramp layout. Each must move under gravity, contact its own ramp and angled baffle, enter its receiver with its complete bounds, and settle. Freeze this attempt's prepared manifest hash into a new case before simulation.
+
+Use a new output directory outside the checkout. Keep all failures, source requests, byte costs and evidence. Respect the separate asset, scene, unpacking and staging allowances. The NVIDIA workbench remains an explicitly disclosed legacy visual-only compatibility acquisition with unresolved individual licensing; do not turn it into a ready new catalog plan or claim redistribution rights.
+
+Run the shared simulation and verification path. Report the new run's outcome and actual transfer cost. Same-machine replay is not independent reproduction or a performance comparison. Recording is optional and the inherited diagnostic cameras are 960×540; final video production is a separate task.

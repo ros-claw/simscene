@@ -1,0 +1,13 @@
+{
+  "kind": "domino_line",
+  "prefix": "wave",
+  "parameters": {
+    "count": 20,
+    "origin": [
+      0,
+      0,
+      0.35
+    ],
+    "spacing_m": 0.09
+  }
+}

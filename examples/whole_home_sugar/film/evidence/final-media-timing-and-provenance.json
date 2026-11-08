@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "films": [
+    {
+      "movie": "/data/rosclaw/simscene-film-skill-20261103/public-cut-multicam-v3/only-one-sugar-public-55s.mp4",
+      "sha256": "a734a1cfb34d61026db40e958820c5a5d7185f72ebaec777c4b05c956b4f8718",
+      "frames": 1650,
+      "duration_s": 55.0,
+      "exact_CFR_30fps": true,
+      "all_frame_pts_checked": true,
+      "frame_map_complete": true,
+      "review_receipt": "/data/rosclaw/simscene-film-skill-20261103/public-cut-multicam-v3/film-reviewed.json"
+    },
+    {
+      "movie": "/data/rosclaw/simscene-film-skill-20261103/slow-details-v2/only-one-sugar-details-20s.mp4",
+      "sha256": "99052dd948c44217bb40af0933f460c3ad746d9cf87076417adf02601a379781",
+      "frames": 600,
+      "duration_s": 20.0,
+      "exact_CFR_30fps": true,
+      "all_frame_pts_checked": true,
+      "frame_map_complete": true,
+      "review_receipt": "/data/rosclaw/simscene-film-skill-20261103/slow-details-v2/film-reviewed.json"
+    },
+    {
+      "movie": "/data/rosclaw/simscene-film-skill-20261103/rope-comparison-v2/red-rope-causal-comparison-20s.mp4",
+      "sha256": "4dfb64a6748a011b258656fc0ebf9231142c7822b2013bfba60d0f80d401db2c",
+      "frames": 600,
+      "duration_s": 20.0,
+      "exact_CFR_30fps": true,
+      "all_frame_pts_checked": true,
+      "frame_map_complete": true,
+      "review_receipt": "/data/rosclaw/simscene-film-skill-20261103/rope-comparison-v2/film-reviewed.json"
+    }
+  ]
+}

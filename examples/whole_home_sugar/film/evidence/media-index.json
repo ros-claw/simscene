@@ -1,0 +1,126 @@
+{
+  "films": [
+    {
+      "schema": "simscene.public_film_provenance.v1",
+      "movie": "../../../../docs/media/only-one-sugar-public-55s.mp4",
+      "sha256": "a734a1cfb34d61026db40e958820c5a5d7185f72ebaec777c4b05c956b4f8718",
+      "frames": 1650,
+      "fps": 30,
+      "duration_s": 55.0,
+      "sources": [
+        {
+          "id": "source_01",
+          "filename": "frame-00000.png",
+          "sha256": "0ebbdc3a87dc2dc19e2d184da4ea840d8e9be340cd27a3151b085bb1223747f1"
+        },
+        {
+          "id": "source_02",
+          "filename": "camera_story_camera.mp4",
+          "sha256": "0fcec84641e299a62a88e42a80a3006172056ae828b4cd2e4d59628c359bec22"
+        },
+        {
+          "id": "source_03",
+          "filename": "bridge_detail.mp4",
+          "sha256": "0026c04bdc066d9e1616ae927771feb422034d15ac82aa211b1a8a4f9d26c705"
+        },
+        {
+          "id": "source_04",
+          "filename": "rope_detail.mp4",
+          "sha256": "ef2b03a9fb4286a7f434d846ae1dd63034bbee39fd6ce5891939589b51bcb908"
+        },
+        {
+          "id": "source_05",
+          "filename": "camera_fixed_overview.mp4",
+          "sha256": "da9e5f664b80ad70b5d9a82cd00b87ea3315858aedfd780809c8c8793d3dc4fa"
+        },
+        {
+          "id": "source_06",
+          "filename": "car_depart.mp4",
+          "sha256": "eb794f77546fc98ae2f89a6b826ded23a44da47224e7234c97f5bc4caaeeea6f"
+        },
+        {
+          "id": "source_07",
+          "filename": "car_arrive.mp4",
+          "sha256": "320d9d7d5328209f6876073814560b7e6fdbba8814d15f73d3710a336af874d9"
+        },
+        {
+          "id": "source_08",
+          "filename": "finale_detail.mp4",
+          "sha256": "349217aebd00b04c9d29b0fbc5551e6d626fd5c4ed30c7a58cf0243c9000cca5"
+        }
+      ],
+      "frame_map": "main-frame-map.jsonl",
+      "frame_map_sha256": "b6d16c2a10ec6d6615492c5dedf1655180a1e2b83ee9389a47433e3777d9f861",
+      "new_physics_runs": 0,
+      "pose_interpolation": false,
+      "review": "Actual decoded frame grids and temporal action strips; final per-frame PTS verified. No subjective full-playback/audience or phone speaker test claimed.",
+      "full_local_receipt": "/data/rosclaw/simscene-film-skill-20261103/public-cut-multicam-v3/film-reviewed.json",
+      "post_foley": {
+        "kind": "post-production; not native acoustics",
+        "first_audible_time_s": 49.63333333333333,
+        "mapped_first_cup_contact_step": 5858,
+        "peak_dbfs": -11.887760883388786
+      }
+    },
+    {
+      "schema": "simscene.public_film_provenance.v1",
+      "movie": "../../../../docs/media/only-one-sugar-details-20s.mp4",
+      "sha256": "99052dd948c44217bb40af0933f460c3ad746d9cf87076417adf02601a379781",
+      "frames": 600,
+      "fps": 30,
+      "duration_s": 20.0,
+      "sources": [
+        {
+          "id": "source_01",
+          "filename": "slow_wave.mp4",
+          "sha256": "9c64de29602cecf8956e2189713e95f62e1f06894520f8fc4fb4498663263148"
+        },
+        {
+          "id": "source_02",
+          "filename": "slow_bridge.mp4",
+          "sha256": "e8bee6ae0b8d9490e6f2817ca59022c26b6f52c5b8a865f9f7ceca810a1daf4b"
+        },
+        {
+          "id": "source_03",
+          "filename": "slow_sugar.mp4",
+          "sha256": "8c2cd6daeaf02fb0ca00bff0a108715dc62faff8421631447849e5e10ed0dfa6"
+        }
+      ],
+      "frame_map": "slow-frame-map.jsonl",
+      "frame_map_sha256": "951f19097add05baeb310fb9ebe1aa7f252b88761cefa8f1d9330bdfaf0b5886",
+      "new_physics_runs": 0,
+      "pose_interpolation": false,
+      "review": "Actual decoded frame grids and temporal action strips; final per-frame PTS verified. No subjective full-playback/audience or phone speaker test claimed.",
+      "full_local_receipt": "/data/rosclaw/simscene-film-skill-20261103/slow-details-v2/film-reviewed.json"
+    },
+    {
+      "schema": "simscene.public_film_provenance.v1",
+      "movie": "../../../../docs/media/red-rope-causal-comparison-20s.mp4",
+      "sha256": "4dfb64a6748a011b258656fc0ebf9231142c7822b2013bfba60d0f80d401db2c",
+      "frames": 600,
+      "fps": 30,
+      "duration_s": 20.0,
+      "sources": [
+        {
+          "id": "source_01",
+          "filename": "camera_story_camera.mp4",
+          "sha256": "0fcec84641e299a62a88e42a80a3006172056ae828b4cd2e4d59628c359bec22"
+        },
+        {
+          "id": "source_02",
+          "filename": "camera_story_camera.mp4",
+          "sha256": "c60abce541149bbff638b8de9176a610704e393f4b79d0ec9f5174e7c3491840"
+        }
+      ],
+      "frame_map": "rope-frame-map.jsonl",
+      "frame_map_sha256": "59f8fc5560bfbcac94a4b6a0eac3bd08d4f9fc636fe325d09e22e018b8ad2a6d",
+      "new_physics_runs": 0,
+      "pose_interpolation": false,
+      "review": "Actual decoded frame grids and temporal action strips; final per-frame PTS verified. No subjective full-playback/audience or phone speaker test claimed.",
+      "full_local_receipt": "/data/rosclaw/simscene-film-skill-20261103/rope-comparison-v2/film-reviewed.json"
+    }
+  ],
+  "cover_sha256": "14f41ce0273c56b96592c0c1519d2b055f495d35f841a7a50f448ff7698a73a3",
+  "source_render_request_sha256": "48752da1b0a80058aa83a9bc3cccc78e02e2c5a160e168a41c9e980b45f1de9b",
+  "scope": "Portable identifiers refer to original source bytes; full raw simulation records remain in the separate workstation archive."
+}

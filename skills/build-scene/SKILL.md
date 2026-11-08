@@ -3,36 +3,53 @@ name: build-scene
 description: Discover online simulation assets, compose editable scenes with measured support relationships, run Isaac Sim and improve the result from camera and physical observations.
 ---
 
+Choose reproduction, modification or original construction first. Reproduce a
+locked recipe directly; test changed interfaces locally; build new mechanisms
+on a small bench before assembling the full scene. For editable parameter
+modules, compact first-handoff diagnosis and machine-side waiting, read
+[passive production](references/passive-production.md). Use its scripts when
+they remove repeated geometry or log-reading work; unsupported cases remain
+explicit rather than inheriting a previous example's physical pass.
+
 Use `environment_probe` to establish the available backend. Configure a supplied
-Isaac launcher or non-secret host defaults with `environment_configure` when
-needed. Default discovery is the hosted NVIDIA USD Search; there is no full
-library download or index deployment prerequisite. Search metadata/previews
-first, acquire selected assets only, and keep the assets on the simulation host.
+Isaac launcher with `environment_configure` when needed. Start with
+`catalog_search`: it returns bounded metadata, critical gaps and detail links;
+there is no full-library download or index deployment prerequisite. Read
+[catalog selection](references/catalog.md) when choosing sources or encountering
+empty results, license gaps, codecs or candidates from `catalog_discover`.
 
-Use `asset_search` with short object descriptions. Inspect candidates and preview
-with `asset_thumbnail`; prefer a hit's `thumbnail_image_key` where provided.
-Check captions, match signals, source and actual object identity: a scene that
-contains a tool is not a standalone tool, and indexed captions can be wrong.
-Preserve the query and selected hit in the delivery records. If a desired model
-is absent, search related categories and explain the concrete substitute.
-`huggingface_search_datasets` / `huggingface_list_assets` extend discovery;
-acquisition requires a pinned full commit SHA and a selected USD path.
+For imported physical objects, read [asset preparation](references/preparation.md).
+Select an immutable AssetRef, plan its role, prepare only that selection, and
+retain its manifest pin. A visual asset and an actual moving rigid body need
+different preparation. Do not remove `dynamic` to hide an invalid body binding.
+Legacy `asset_search` / `asset_inspect` / `asset_acquire` remain available for
+reviewed native USD compatibility routes; their availability does not imply
+that every asset is ready for the new preparation profiles.
 
-Call `asset_inspect` before `asset_acquire`, then poll `job_status`. Check the
-returned dependency status; use `result.root` as `asset_path`. Do not treat
-unresolved packages as usable. `resolved_with_runtime` means the configured
-Isaac installation supplies listed materials, not a standalone portable model.
-Inspect selected assets locally for units, axes, variants, physical schemas and
-bounds. Respect asset licenses. Evicted selected assets can be restored from
-retained content fingerprints; changed source content requires a new selection.
-Wait for cache acquisitions to finish before run snapshots.
+Before writing repeated geometry, read [role recipes](references/recipes.md).
+Compile a small editable batch, apply it at its returned revision, and locally
+verify the changed interface. A compiled recipe is a construction proposal,
+not a physical pass. Missing roles require compatible alternatives or explicit
+preparation, rather than a silent primitive substitution for an imported actor.
 
 Use `scene_open`, `scene_get`, and atomic `scene_apply` with current revision and
-unique request ID. Kinds: box, sphere, asset, camera, light, counter. Positions
+unique request ID. Kinds: box, sphere, cylinder, capsule, compound, joint, asset, camera, light, counter. Positions
 are metres, orientation is normalized wxyz. Example addition:
 `{"op":"add","id":"part","object":{"kind":"box","size":[.1,.1,.1]}}`.
 Update uses `changes`; IDs belong on operations. Handle revision conflicts by
 reading the scene. Never omit a requested unsupported behavior silently.
+
+For passive hinges, sliders, compound household objects and physical segmented
+ropes, read [passive mechanisms](references/passive-mechanisms.md). Keep the
+backend experimental until actual paired mechanism trials pass.
+
+For a passive force-path acceptance case, read
+[network verification](references/passive-network-verification.md). A separate
+gravity-loaded support pad requires the explicit v2 declaration and
+[typed support evidence](references/structural-loads-verification.md); never
+invent an activation or count structural motion as task progress. Freeze the
+software, geometry, case and controls before formal runs, and retain their
+original versions when extending the supported physical model.
 
 For spatial composition, read [measured layout](references/measured-layout.md).
 Measure imported models in their final orientation with `scene_measure`.

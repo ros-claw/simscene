@@ -1,0 +1,258 @@
+{
+  "schema": "simscene.gallery_shots.v1",
+  "fps": 30,
+  "native_resolution": [
+    1920,
+    1080
+  ],
+  "main_run_id": "c4225168ce944660a318c4fceaa8b4e6",
+  "cameras": {
+    "overview": {
+      "position": [
+        6,
+        -8,
+        5.7
+      ],
+      "orientation_wxyz": [
+        0.7912542437972561,
+        0.5132470791970394,
+        0.1808929916086389,
+        0.27887610682060476
+      ],
+      "camera": {
+        "resolution": [
+          1920,
+          1080
+        ],
+        "focal_length_mm": 45,
+        "horizontal_aperture_mm": 36,
+        "clipping_range_m": [
+          0.01,
+          100
+        ],
+        "focus_distance_m": 11.527792503337315
+      }
+    },
+    "chain_follow": {
+      "position": [
+        -3.1,
+        -1.15,
+        2.0
+      ],
+      "orientation_wxyz": [
+        0.845612015593745,
+        0.507137769680551,
+        -0.08568037618215435,
+        -0.14286523294421555
+      ],
+      "camera": {
+        "resolution": [
+          1920,
+          1080
+        ],
+        "focal_length_mm": 40,
+        "horizontal_aperture_mm": 36,
+        "clipping_range_m": [
+          0.01,
+          100
+        ],
+        "focus_distance_m": 1.3802173741842259,
+        "capture_window": {
+          "start_step": 0,
+          "end_step": 720
+        }
+      },
+      "camera_path": [
+        {
+          "time_s": 0,
+          "position": [
+            -3.1,
+            -1.15,
+            2.0
+          ],
+          "target": [
+            -2.7,
+            0,
+            1.35
+          ]
+        },
+        {
+          "time_s": 0.6,
+          "position": [
+            -2.6,
+            -1.15,
+            1.9
+          ],
+          "target": [
+            -2.35,
+            0,
+            1.12
+          ]
+        },
+        {
+          "time_s": 1.3,
+          "position": [
+            -1.9,
+            -1.15,
+            1.85
+          ],
+          "target": [
+            -1.8,
+            0,
+            1.1
+          ]
+        },
+        {
+          "time_s": 2.0,
+          "position": [
+            -1,
+            -1.1,
+            1.7
+          ],
+          "target": [
+            -1.1,
+            0,
+            1.02
+          ]
+        },
+        {
+          "time_s": 3.5,
+          "position": [
+            -0.25,
+            -0.65,
+            2.15
+          ],
+          "target": [
+            -0.47,
+            0,
+            0.84
+          ]
+        },
+        {
+          "time_s": 60.0,
+          "position": [
+            -0.25,
+            -0.65,
+            2.15
+          ],
+          "target": [
+            -0.47,
+            0,
+            0.84
+          ]
+        }
+      ]
+    },
+    "routing_and_joint": {
+      "position": [
+        3.6,
+        -2.3,
+        3.1
+      ],
+      "orientation_wxyz": [
+        0.7959640545180818,
+        0.4772443320658566,
+        0.19149777918998104,
+        0.3193863991961081
+      ],
+      "camera": {
+        "resolution": [
+          1920,
+          1080
+        ],
+        "focal_length_mm": 40,
+        "horizontal_aperture_mm": 36,
+        "clipping_range_m": [
+          0.01,
+          100
+        ],
+        "focus_distance_m": 3.608323710533743
+      },
+      "camera_path": [
+        {
+          "time_s": 0,
+          "position": [
+            3.6,
+            -2.3,
+            3.1
+          ],
+          "target": [
+            1.4,
+            0,
+            1.4
+          ]
+        },
+        {
+          "time_s": 5,
+          "position": [
+            3.6,
+            -2.3,
+            3.1
+          ],
+          "target": [
+            1.4,
+            0,
+            1.4
+          ]
+        },
+        {
+          "time_s": 8,
+          "position": [
+            0.6,
+            -0.8,
+            2.1
+          ],
+          "target": [
+            -0.9,
+            1.1,
+            1.2
+          ]
+        },
+        {
+          "time_s": 60.0,
+          "position": [
+            0.6,
+            -0.8,
+            2.1
+          ],
+          "target": [
+            -0.9,
+            1.1,
+            1.2
+          ]
+        }
+      ]
+    },
+    "receiver_close": {
+      "position": [
+        0.2,
+        -1.6,
+        2.15
+      ],
+      "orientation_wxyz": [
+        0.9553786580942617,
+        0.2652717275900903,
+        0.03476218180897684,
+        0.12519632947996717
+      ],
+      "camera": {
+        "resolution": [
+          1920,
+          1080
+        ],
+        "focal_length_mm": 50,
+        "horizontal_aperture_mm": 36,
+        "clipping_range_m": [
+          0.01,
+          100
+        ],
+        "focus_distance_m": 1.5055231648832244,
+        "capture_window": {
+          "start_step": 0,
+          "end_step": 300
+        }
+      }
+    }
+  },
+  "scope": "continuous fixed overview plus recorded same-run moving/detail cameras; scheduled joint drive independent from passive handoffs"
+}

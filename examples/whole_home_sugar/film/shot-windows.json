@@ -1,0 +1,227 @@
+{
+  "schema": "rosclaw.editorial.shot_windows.v1",
+  "status": "editorial_intent_unviewed_sources",
+  "title": "只想加一块糖",
+  "scope": "给本地剪辑师的候选时间窗；不是运行时指令，也不是已经选定的媒体帧或PTS。",
+  "inputs": {
+    "time_domain": "MAIN1 的任务零点/仿真秒；并非现有106秒导演片的播放时间，也不能假定与130秒源MP4的PTS相等",
+    "run_id": "80299d13af664aa3a597d64633addf19",
+    "native_fps": 30,
+    "physics_hz": 60,
+    "source_camera_files": [
+      "films/native-main1/camera_story_camera.mp4",
+      "films/native-main1/camera_fixed_overview.mp4"
+    ],
+    "existing_full_film": "films/only-one-sugar-director.mp4",
+    "report": "SIMSCENE_只想加一块糖_实施报告与复盘_20261103.md",
+    "manual_mapping_required": true,
+    "mapping_rule": "以MAIN1的相机逐帧来源映射将每一半开时间窗[in,out)定位到相机ID、真实源帧与容器PTS；逐帧向前核对物理步。禁止把本表直接当ffmpeg的-ss时间或当前106秒片内码。视野、字幕遮挡、音量和最终源帧须在本地实际看片确认。"
+  },
+  "main_cut": {
+    "target_duration_s": 55,
+    "target_frames_at_30fps": 1650,
+    "live_duration_s": 50.5,
+    "cards_duration_s": 4.5,
+    "live_speed": 1,
+    "continuity": "同一次MAIN1、按时间顺序、叙事跳切；不是55秒连续物理过程。片头若用照片则明确为定帧。",
+    "segments": [
+      {
+        "id": "T0",
+        "type": "title_still_or_graphic",
+        "edit_in_s": 0,
+        "edit_out_s": 2,
+        "duration_s": 2,
+        "target_frames": 60,
+        "subject": "方糖与杯子的关系；不揭晓结局",
+        "optional_copy": "只想加一块糖"
+      },
+      {
+        "id": "M1",
+        "type": "main1_live",
+        "edit_in_s": 2,
+        "edit_out_s": 5.5,
+        "duration_s": 3.5,
+        "target_frames": 105,
+        "source_run": "MAIN1",
+        "sim_in_s": 9,
+        "sim_out_s": 12.5,
+        "speed": 1,
+        "subject": "释放起球；约在成片第3秒",
+        "optional_copy": "就放这一颗。"
+      },
+      {
+        "id": "M2",
+        "type": "main1_live",
+        "edit_in_s": 5.5,
+        "edit_out_s": 11.5,
+        "duration_s": 6,
+        "target_frames": 180,
+        "source_run": "MAIN1",
+        "sim_in_s": 16.5,
+        "sim_out_s": 22.5,
+        "speed": 1,
+        "subject": "书房首牌、木勺、预置球的交接",
+        "optional_copy": ""
+      },
+      {
+        "id": "M3",
+        "type": "main1_live",
+        "edit_in_s": 11.5,
+        "edit_out_s": 21.5,
+        "duration_s": 10,
+        "target_frames": 300,
+        "source_run": "MAIN1",
+        "sim_in_s": 29,
+        "sim_out_s": 39,
+        "speed": 1,
+        "subject": "书柜牌浪、转盘、拨闩、柜门成桥、擀面杖；保持关键交接连续",
+        "optional_copy": ""
+      },
+      {
+        "id": "M4",
+        "type": "main1_live",
+        "edit_in_s": 21.5,
+        "edit_out_s": 28.5,
+        "duration_s": 7,
+        "target_frames": 210,
+        "source_run": "MAIN1",
+        "sim_in_s": 40,
+        "sim_out_s": 47,
+        "speed": 1,
+        "subject": "食盒、配重、红绳、抽屉；优先选能看清两端的角度",
+        "optional_copy": ""
+      },
+      {
+        "id": "M5",
+        "type": "main1_live",
+        "edit_in_s": 28.5,
+        "edit_out_s": 34.5,
+        "duration_s": 6,
+        "target_frames": 180,
+        "source_run": "MAIN1",
+        "sim_in_s": 54,
+        "sim_out_s": 60,
+        "speed": 1,
+        "subject": "车挡撤去后的走廊出发、小车向前；用全景建立真实距离",
+        "optional_copy": ""
+      },
+      {
+        "id": "M6",
+        "type": "main1_live",
+        "edit_in_s": 34.5,
+        "edit_out_s": 44,
+        "duration_s": 9.5,
+        "target_frames": 285,
+        "source_run": "MAIN1",
+        "sim_in_s": 77.5,
+        "sim_out_s": 87,
+        "speed": 1,
+        "subject": "走廊抵达、D组起牌；和M5用明显切点表示省略时间",
+        "optional_copy": ""
+      },
+      {
+        "id": "M7",
+        "type": "main1_live",
+        "edit_in_s": 44,
+        "edit_out_s": 52.5,
+        "duration_s": 8.5,
+        "target_frames": 255,
+        "source_run": "MAIN1",
+        "sim_in_s": 92,
+        "sim_out_s": 100.5,
+        "speed": 1,
+        "subject": "餐桌末段、末牌至方糖落杯及稳定，保持原速连续",
+        "optional_copy": ""
+      },
+      {
+        "id": "T1",
+        "type": "end_card",
+        "edit_in_s": 52.5,
+        "edit_out_s": 55,
+        "duration_s": 2.5,
+        "target_frames": 75,
+        "subject": "用简短的结束语收住；品牌与原速完整版入口",
+        "optional_copy": "好了，一块。"
+      }
+    ],
+    "intro_options": [
+      "在标明MAIN1来源的现有全分辨率终点帧中选一帧：方糖仍在勺上，杯可辨；核对frame ID及模拟时钟，2.0秒定帧标注为片头定帧，不作为实时事件。",
+      "没有合适的真实帧就用2.0秒简洁字卡；不从已在杯内的画面移除方糖，也不从其他运行借镜。"
+    ],
+    "audio_policy": "只用可定位的真实录音或清楚注明的后期拟音。已有入杯合成声对齐首次杯接触回调的音画映射，不能以97.650秒完全入杯代替首次接触。移动端实听；没有声源就留白。"
+  },
+  "markers_main1_sim_s": {
+    "only_release": 10,
+    "A_first_movement": 17.7,
+    "wooden_spoon_movement": 21.333,
+    "bookcase_ball": 21.917,
+    "B_first_movement": 31.117,
+    "turntable": 35.95,
+    "latch": 36.1,
+    "bridge_in_place": 36.8,
+    "rolling_pin": 37.183,
+    "food_box": 41.717,
+    "counterweight": 42.517,
+    "drawer": 44.55,
+    "cart": 55.483,
+    "D_first_movement": 82.067,
+    "last_domino": 97.15,
+    "teaspoon": 97.383,
+    "sugar_leaves_spoon": 97.533,
+    "sugar_full_containment": 97.65
+  },
+  "finale": {
+    "containment_physics_step": 5859,
+    "stability_start_step": 5866,
+    "stability_end_step": 5986,
+    "observed_stability_s": 2,
+    "first_cup_contact": "另查原接触回调与时钟映射，本表不指定秒数",
+    "rule": "糖离勺至完整入杯约0.117秒，仅约3–4个30fps帧间隔。保留原生序列，不插值补动作；物理步不等于相机帧。终场需看见实际留杯，非仅看计数或字卡。"
+  },
+  "full_film": {
+    "duration_s": 106,
+    "action": "reuse_unchanged",
+    "notes": "直接沿用已验收的106秒导演片；两份130秒原速连续源片留作复核。不重复导出95秒相似版。"
+  },
+  "optional_rope_companion": {
+    "target_duration_s": 20,
+    "separate_from_main_cut": true,
+    "source_reference": "films/rope-independent-run-comparison/README-红绳对照说明.txt",
+    "time_domain": "两次独立重置各自的模拟时钟，不能套用MAIN1秒码、也不能暗示逐步同步。",
+    "segments": [
+      {
+        "edit_s": [
+          0,
+          2
+        ],
+        "type": "question_card",
+        "text": "剪断红绳，还能拉开抽屉吗？"
+      },
+      {
+        "edit_s": [
+          2,
+          14
+        ],
+        "type": "two_independent_recordings_1x",
+        "source_selection": "各自映射配重开始下落，候选分别取该事件前1秒至后11秒；仅在两段都有完整原速覆盖时采用。持续标明接通/断开与独立运行。"
+      },
+      {
+        "edit_s": [
+          14,
+          18
+        ],
+        "type": "paired_real_stills",
+        "source_selection": "各自第3000物理步的已交付对照图；标明定帧。"
+      },
+      {
+        "edit_s": [
+          18,
+          20
+        ],
+        "type": "end_card",
+        "text": "配重都落下。只有绳子接通的那边，抽屉才打开。"
+      }
+    ],
+    "fallback": "若近景覆盖不足12秒，按两边可用的真实窗口缩短为15–20秒并更新时长；不补帧或借主场镜头。"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "domino_arc",
+  "prefix": "wave",
+  "parameters": {
+    "count": 23,
+    "origin": [
+      2,
+      -1,
+      0.7
+    ],
+    "orientation_wxyz": [
+      0.7071067811865476,
+      0,
+      0,
+      0.7071067811865475
+    ],
+    "radius_m": 0.65,
+    "sweep_degrees": 100,
+    "support_thickness_m": 0
+  }
+}

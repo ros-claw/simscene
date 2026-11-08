@@ -1,0 +1,114 @@
+{
+  "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/packing_table.usd",
+  "selected_member": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/SM_HeavyDutyPackingTable_C02_01.usd",
+  "root_relative": "assets/native/origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/SM_HeavyDutyPackingTable_C02_01.usd",
+  "files": [
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/SM_HeavyDutyPackingTable_C02_01.usd",
+      "size": 8533735,
+      "sha256": "dc7ed9c01f2287d36abebef2d19165d88b90c68a121949d2a9d74017714d9163"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/MetalPainted_White_Glossy_A.mdl",
+      "size": 681,
+      "sha256": "f13854f109fc75ab840d14cf7b98c92bccbb9b39ac0d1b449e5d0f489c4c1564"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/Metal_Glossy_A.mdl",
+      "size": 620,
+      "sha256": "c3d04b3d341e3c1b8cfb6dce47305d49378f5060d8dd9325842d62ca5b705991"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/Wood_Laminate_Gray_A.mdl",
+      "size": 1734,
+      "sha256": "bb221ae2c9f46e60e1340d1fce36e08fd23d780bdb567d651eaa5f2e2f67b8ad"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/Wood_Pressed_A.mdl",
+      "size": 651,
+      "sha256": "40775359c16526a9bef766fbe5ae9841f17e9a5f60275093a4f80e7ba5ebdbb5"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/MetalPainted_White_Glossy_A/T_MetalPainted_White_Glossy_A_Albedo.png",
+      "size": 1318976,
+      "sha256": "c9651a8eb7a7db92d51dbf319e6a54096869bf7b57d541137272b4be73325f20"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/MetalPainted_White_Glossy_A/T_MetalPainted_White_Glossy_A_Normal.png",
+      "size": 2325135,
+      "sha256": "774d302d5deb1b7233bb01d9480d889bb41c3c75c6a8274da3db22c387c9a352"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/MetalPainted_White_Glossy_A/T_MetalPainted_White_Glossy_A_ORM.png",
+      "size": 1821970,
+      "sha256": "fa86de21fe705fa4a826e4785d4001c6e90d5418bdefbfa24e7eaca14e5cc5bf"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Metal_Glossy_A/T_Metal_Glossy_A_Albedo.png",
+      "size": 3314214,
+      "sha256": "1f2c43526c30270e07b6e0ea5ccba7be5b588db5a19e70cc909ed69f17dabd4e"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Metal_Glossy_A/T_Metal_Glossy_A_Normal.png",
+      "size": 159602,
+      "sha256": "e3d8bdd35ff2bc77775b162b98d1723e0008b02cfbaf1a058d3160e90dc3fac6"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Metal_Glossy_A/T_Metal_Glossy_A_ORM.png",
+      "size": 2707096,
+      "sha256": "a6474d52f77d44479366ad3da9d8b595bb3c90c2c1dd597226a477ccb1a3f4a6"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Laminate_Gray_A/T_Wood_Laminate_Gray_A_Albedo.png",
+      "size": 16914,
+      "sha256": "c0566c4fc38f4004c8db6d20009d3af675891bd30b574ec24ceb5325597bfbab"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Laminate_Gray_A/T_Wood_Laminate_Gray_A_Normal.png",
+      "size": 4655646,
+      "sha256": "81ebfea8c17d8942fed2cebd5e13ade2f12729e99c9525320537fc447ca0c848"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Laminate_Gray_A/T_Wood_Laminate_Gray_A_ORM.png",
+      "size": 5055979,
+      "sha256": "915b2f6f4690dad4f6ea14d98751bbde91fd14329200a3d2528174b65ef5084b"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Pressed_A/T_Wood_Pressed_A1_Albedo.png",
+      "size": 8634237,
+      "sha256": "3065b2625f535a306422de5dbbdc6168fbd29922a3ded13c2f0cfb98c2af7fd6"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Pressed_A/T_Wood_Pressed_A1_Normal.png",
+      "size": 10829846,
+      "sha256": "4b900d0ea825d9158915ecb1a19fee41b7ed3c10f89251bbfbae2e7637e38b30"
+    },
+    {
+      "path": "origin/_/_/_/_/_/_/props/SM_HeavyDutyPackingTable_C02_01/materials/textures/Wood_Pressed_A/T_Wood_Pressed_A1_ORM.png",
+      "size": 4248696,
+      "sha256": "060bc3de700178616538f325438bfda9164d6663eb4af3384fc52a8ff8d1765b"
+    }
+  ],
+  "license": {
+    "status": "unknown",
+    "scope": "preexisting local selected NVIDIA asset; evaluation read only; no redistribution or new terms acceptance"
+  },
+  "asset_metrics": {
+    "meters_per_unit": 0.01,
+    "up_axis": "Z",
+    "reason": "Pinned source has centimetre mesh coordinates and authored Z-up; selected bounds independently inspected."
+  },
+  "bounds_m": {
+    "min": [
+      -1.236823272705078,
+      -0.380999984741211,
+      0
+    ],
+    "max": [
+      1.236823272705078,
+      0.380999984741211,
+      0.9940513610839844
+    ]
+  },
+  "acquisition_condition": "Same pre-staged selected native closure for both versions; source cache is isolated cold/warm separately. No claim that staged bytes were downloaded during trial."
+}

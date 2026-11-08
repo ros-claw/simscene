@@ -1,0 +1,5354 @@
+{
+  "description": "Four independently verified kinetic exhibits: imported GSO passive handoffs, four ABO routing bodies, scheduled native USDCraft hinge, generated open receiver. All cameras record the same main physics run.",
+  "source_run_id": "c4225168ce944660a318c4fceaa8b4e6",
+  "source_run_lock_sha256": "8e1b427dbd5cc47fa77b940e0d07c960364d56b6dbb6f1c71dcef5ba7832de82",
+  "operations": [
+    {
+      "op": "add",
+      "id": "chain_ball_cradle",
+      "object": {
+        "collision": true,
+        "color": [
+          0.37,
+          0.43,
+          0.49
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "position": [
+          -1.125,
+          0.0,
+          1.023
+        ],
+        "size": [
+          0.12,
+          0.074,
+          0.014
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_00",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.25,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -2.19,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_01",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.275,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -2.105,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_02",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.3,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -2.02,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_03",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.325,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -1.935,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_04",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.35,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -1.8499999999999999,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_05",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.375,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -1.765,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_06",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.4,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -1.68,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_07",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.42500000000000004,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -1.5949999999999998,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_08",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.45,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -1.5099999999999998,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_09",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.475,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -1.4249999999999998,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_10",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.5,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -1.3399999999999999,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_domino_11",
+      "object": {
+        "collision": true,
+        "color": [
+          0.82,
+          0.525,
+          0.13
+        ],
+        "dynamic": true,
+        "kind": "box",
+        "mass_kg": 0.04,
+        "physics": {
+          "angular_damping": 0.01,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.6,
+          "enable_ccd": true,
+          "linear_damping": 0.01,
+          "rest_offset_m": 0.0,
+          "restitution": 0.01,
+          "sleep_threshold": 0.0,
+          "static_friction": 0.7
+        },
+        "position": [
+          -1.255,
+          0.0,
+          1.07
+        ],
+        "size": [
+          0.018,
+          0.05,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_generated_guide",
+      "object": {
+        "collision": true,
+        "dynamic": false,
+        "kind": "asset",
+        "orientation_wxyz": [
+          0.9996573249755573,
+          0.0,
+          0.026176948307873153,
+          0.0
+        ],
+        "position": [
+          -0.9299999999999999,
+          0.0,
+          0.9930205569786814
+        ],
+        "asset_role": "chain_generated_guide"
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_guide_wall_1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.37,
+          0.43,
+          0.49
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "orientation_wxyz": [
+          0.9996573249755573,
+          0.0,
+          0.026176948307873153,
+          0.0
+        ],
+        "position": [
+          -0.9276448819690675,
+          0.085,
+          1.0379588860426372
+        ],
+        "size": [
+          0.5,
+          0.01,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_guide_wall_minus1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.37,
+          0.43,
+          0.49
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "orientation_wxyz": [
+          0.9996573249755573,
+          0.0,
+          0.026176948307873153,
+          0.0
+        ],
+        "position": [
+          -0.9276448819690675,
+          -0.085,
+          1.0379588860426372
+        ],
+        "size": [
+          0.5,
+          0.01,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_ramp_post",
+      "object": {
+        "collision": true,
+        "color": [
+          0.22,
+          0.25,
+          0.28
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "position": [
+          -2.69,
+          0.0,
+          1.15
+        ],
+        "size": [
+          0.06,
+          0.12,
+          0.3
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_receiver",
+      "object": {
+        "collision": true,
+        "dynamic": false,
+        "kind": "asset",
+        "position": [
+          -0.47,
+          0.0,
+          0.79
+        ],
+        "asset_role": "chain_receiver"
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_receiver_leg_1_1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.22,
+          0.25,
+          0.28
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "position": [
+          -0.32000000000000006,
+          0.1,
+          0.39
+        ],
+        "size": [
+          0.04,
+          0.04,
+          0.78
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_receiver_leg_1_minus1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.22,
+          0.25,
+          0.28
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "position": [
+          -0.32000000000000006,
+          -0.1,
+          0.39
+        ],
+        "size": [
+          0.04,
+          0.04,
+          0.78
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_receiver_leg_minus1_1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.22,
+          0.25,
+          0.28
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "position": [
+          -0.6199999999999999,
+          0.1,
+          0.39
+        ],
+        "size": [
+          0.04,
+          0.04,
+          0.78
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_receiver_leg_minus1_minus1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.22,
+          0.25,
+          0.28
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "position": [
+          -0.6199999999999999,
+          -0.1,
+          0.39
+        ],
+        "size": [
+          0.04,
+          0.04,
+          0.78
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_source_box",
+      "object": {
+        "collision": true,
+        "dynamic": true,
+        "kind": "asset",
+        "orientation_wxyz": [
+          0.42261826174069944,
+          0.0,
+          0.9063077870366499,
+          0.0
+        ],
+        "position": [
+          -2.74,
+          0.0,
+          1.4569757692911256
+        ],
+        "asset_role": "chain_source_box"
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_source_ramp",
+      "object": {
+        "collision": true,
+        "color": [
+          0.26,
+          0.3,
+          0.35
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0.0,
+          0.3420201433256687,
+          0.0
+        ],
+        "position": [
+          -2.5534364439540216,
+          0.0,
+          1.2297773426906966
+        ],
+        "size": [
+          0.74,
+          0.18,
+          0.02
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_source_wall_1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.37,
+          0.43,
+          0.49
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0.0,
+          0.3420201433256687,
+          0.0
+        ],
+        "position": [
+          -2.581432743418808,
+          0.028,
+          1.3446475374991866
+        ],
+        "size": [
+          0.6,
+          0.008,
+          0.12
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_source_wall_minus1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.37,
+          0.43,
+          0.49
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0.0,
+          0.3420201433256687,
+          0.0
+        ],
+        "position": [
+          -2.581432743418808,
+          -0.028,
+          1.3446475374991866
+        ],
+        "size": [
+          0.6,
+          0.008,
+          0.12
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_table_leg_0",
+      "object": {
+        "collision": true,
+        "color": [
+          0.22,
+          0.25,
+          0.28
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "position": [
+          -2.8899999999999997,
+          0.0,
+          0.47
+        ],
+        "size": [
+          0.05,
+          0.35,
+          0.94
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_table_leg_1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.22,
+          0.25,
+          0.28
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "position": [
+          -2.19,
+          0.0,
+          0.47
+        ],
+        "size": [
+          0.05,
+          0.35,
+          0.94
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_table_leg_2",
+      "object": {
+        "collision": true,
+        "color": [
+          0.22,
+          0.25,
+          0.28
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "position": [
+          -1.44,
+          0.0,
+          0.47
+        ],
+        "size": [
+          0.05,
+          0.35,
+          0.94
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_tabletop",
+      "object": {
+        "collision": true,
+        "color": [
+          0.33,
+          0.38,
+          0.43
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "position": [
+          -2.165,
+          0.0,
+          0.97
+        ],
+        "size": [
+          1.9,
+          0.45,
+          0.06
+        ],
+        "visible": false,
+        "material": {
+          "color": [
+            0.2,
+            0.23,
+            0.27
+          ],
+          "roughness": 0.6
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_terminal_ball",
+      "object": {
+        "collision": true,
+        "color": [
+          0.93,
+          0.68,
+          0.12
+        ],
+        "dynamic": true,
+        "kind": "sphere",
+        "mass_kg": 0.02,
+        "physics": {
+          "angular_damping": 1.5,
+          "contact_offset_m": 0.001,
+          "dynamic_friction": 0.3,
+          "enable_ccd": true,
+          "linear_damping": 0.1,
+          "rest_offset_m": 0.0,
+          "restitution": 0.05,
+          "static_friction": 0.4
+        },
+        "position": [
+          -1.1349999999999998,
+          0.0,
+          1.065
+        ],
+        "size": [
+          0.07,
+          0.07,
+          0.07
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_terminal_rail_1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.37,
+          0.43,
+          0.49
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "orientation_wxyz": [
+          0.9996573249755573,
+          0.0,
+          0.026176948307873153,
+          0.0
+        ],
+        "position": [
+          -1.1059299213127114,
+          0.041,
+          1.047261266865377
+        ],
+        "size": [
+          0.145,
+          0.008,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_terminal_rail_minus1",
+      "object": {
+        "collision": true,
+        "color": [
+          0.37,
+          0.43,
+          0.49
+        ],
+        "dynamic": false,
+        "kind": "box",
+        "orientation_wxyz": [
+          0.9996573249755573,
+          0.0,
+          0.026176948307873153,
+          0.0
+        ],
+        "position": [
+          -1.1059299213127114,
+          -0.041,
+          1.047261266865377
+        ],
+        "size": [
+          0.145,
+          0.008,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_baffle_left",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.75,
+            0.69,
+            0.26
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "orientation_wxyz": [
+          0.9998476951563913,
+          0,
+          0,
+          0.01745240643728351
+        ],
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          1.7000000000000002,
+          -0.1609205999321456,
+          1.1390512999999998
+        ],
+        "size": [
+          0.52,
+          0.012,
+          0.24
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_baffle_right",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.75,
+            0.69,
+            0.26
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "orientation_wxyz": [
+          0.9998476951563913,
+          0,
+          0,
+          0.01745240643728351
+        ],
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          1.7000000000000002,
+          0.17907940006785442,
+          1.1390512999999998
+        ],
+        "size": [
+          0.52,
+          0.012,
+          0.24
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_bin_left_backwall",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.24,
+            0.27,
+            0.3
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          2.3600000000000003,
+          -0.17,
+          1.0790513
+        ],
+        "size": [
+          0.02,
+          0.31000000000000005,
+          0.12
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_bin_left_floor",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.12,
+            0.42,
+            0.48
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          1.83,
+          -0.17,
+          1.0065513
+        ],
+        "size": [
+          1.04,
+          0.28,
+          0.025
+        ],
+        "support_surfaces": {
+          "receiving": {
+            "exclude": [],
+            "max_xy": [
+              0.52,
+              0.14
+            ],
+            "min_xy": [
+              -0.52,
+              -0.14
+            ],
+            "z_m": 0.0125
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_bin_left_innerwall",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.24,
+            0.27,
+            0.3
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          1.83,
+          -0.022499999999999992,
+          1.0490513
+        ],
+        "size": [
+          1.04,
+          0.015,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_bin_left_outerwall",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.24,
+            0.27,
+            0.3
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          1.83,
+          -0.3175,
+          1.0490513
+        ],
+        "size": [
+          1.04,
+          0.015,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_bin_right_backwall",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.24,
+            0.27,
+            0.3
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          2.3600000000000003,
+          0.17,
+          1.0790513
+        ],
+        "size": [
+          0.02,
+          0.31000000000000005,
+          0.12
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_bin_right_floor",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.55,
+            0.3,
+            0.08
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          1.83,
+          0.17,
+          1.0065513
+        ],
+        "size": [
+          1.04,
+          0.28,
+          0.025
+        ],
+        "support_surfaces": {
+          "receiving": {
+            "exclude": [],
+            "max_xy": [
+              0.52,
+              0.14
+            ],
+            "min_xy": [
+              -0.52,
+              -0.14
+            ],
+            "z_m": 0.0125
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_bin_right_innerwall",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.24,
+            0.27,
+            0.3
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          1.83,
+          0.022499999999999992,
+          1.0490513
+        ],
+        "size": [
+          1.04,
+          0.015,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_bin_right_outerwall",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.24,
+            0.27,
+            0.3
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          1.83,
+          0.3175,
+          1.0490513
+        ],
+        "size": [
+          1.04,
+          0.015,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_book_left_front",
+      "object": {
+        "class_label": "experimental_scaled_notebook",
+        "collision": true,
+        "dynamic": true,
+        "kind": "asset",
+        "orientation_wxyz": [
+          0.29883623873011994,
+          0.6408563820557887,
+          0.6408563820557887,
+          0.29883623873011994
+        ],
+        "position": [
+          0.7620419269022054,
+          -0.21700000000000003,
+          1.6051983670141947
+        ],
+        "asset_role": "route_book_left_front"
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_book_left_rear",
+      "object": {
+        "class_label": "experimental_scaled_notebook",
+        "collision": true,
+        "dynamic": true,
+        "kind": "asset",
+        "orientation_wxyz": [
+          0.29883623873011994,
+          0.6408563820557887,
+          0.6408563820557887,
+          0.29883623873011994
+        ],
+        "position": [
+          0.48626592737937335,
+          -0.12300000000000001,
+          1.836601906501349
+        ],
+        "asset_role": "route_book_left_front"
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_book_right_front",
+      "object": {
+        "class_label": "experimental_scaled_notebook",
+        "collision": true,
+        "dynamic": true,
+        "kind": "asset",
+        "orientation_wxyz": [
+          0.29883623873011994,
+          0.6408563820557887,
+          0.6408563820557887,
+          0.29883623873011994
+        ],
+        "position": [
+          0.7620419269022054,
+          0.12300000000000001,
+          1.6051983670141947
+        ],
+        "asset_role": "route_book_left_front"
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_book_right_rear",
+      "object": {
+        "class_label": "experimental_scaled_notebook",
+        "collision": true,
+        "dynamic": true,
+        "kind": "asset",
+        "orientation_wxyz": [
+          0.29883623873011994,
+          0.6408563820557887,
+          0.6408563820557887,
+          0.29883623873011994
+        ],
+        "position": [
+          0.48626592737937335,
+          0.21700000000000003,
+          1.836601906501349
+        ],
+        "asset_role": "route_book_left_front"
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_guide_left_inner",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.25,
+            0.28,
+            0.31
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0,
+          0.3420201433256687,
+          0
+        ],
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          0.8773184734116779,
+          -0.022499999999999992,
+          1.5325568888325565
+        ],
+        "size": [
+          1.05,
+          0.015,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_guide_left_outer",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.25,
+            0.28,
+            0.31
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0,
+          0.3420201433256687,
+          0
+        ],
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          0.8773184734116779,
+          -0.3175,
+          1.5325568888325565
+        ],
+        "size": [
+          1.05,
+          0.015,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_guide_right_inner",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.25,
+            0.28,
+            0.31
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0,
+          0.3420201433256687,
+          0
+        ],
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          0.8773184734116779,
+          0.022499999999999992,
+          1.5325568888325565
+        ],
+        "size": [
+          1.05,
+          0.015,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_guide_right_outer",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.25,
+            0.28,
+            0.31
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0,
+          0.3420201433256687,
+          0
+        ],
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          0.8773184734116779,
+          0.3175,
+          1.5325568888325565
+        ],
+        "size": [
+          1.05,
+          0.015,
+          0.06
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_ramp_left",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.12,
+            0.42,
+            0.48
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0,
+          0.3420201433256687,
+          0
+        ],
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          0.8500000000000001,
+          -0.17,
+          1.5
+        ],
+        "size": [
+          1.05,
+          0.28,
+          0.025
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_ramp_left_high_cap",
+      "object": {
+        "collision": false,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.18,
+            0.2,
+            0.23
+          ],
+          "metallic": 0.6,
+          "roughness": 0.6
+        },
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0,
+          0.3420201433256687,
+          0
+        ],
+        "position": [
+          0.5155372787820529,
+          -0.17,
+          1.7512758820065526
+        ],
+        "size": [
+          0.08,
+          0.06,
+          0.02
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_ramp_left_high_post",
+      "object": {
+        "collision": false,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.18,
+            0.2,
+            0.23
+          ],
+          "metallic": 0.6,
+          "roughness": 0.6
+        },
+        "position": [
+          0.5155372787820529,
+          -0.17,
+          1.3554776165939506
+        ],
+        "size": [
+          0.035,
+          0.035,
+          0.7228526331879013
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_ramp_left_low_cap",
+      "object": {
+        "collision": false,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.18,
+            0.2,
+            0.23
+          ],
+          "metallic": 0.6,
+          "roughness": 0.6
+        },
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0,
+          0.3420201433256687,
+          0
+        ],
+        "position": [
+          1.125537278782053,
+          -0.17,
+          1.239425106988412
+        ],
+        "size": [
+          0.08,
+          0.06,
+          0.02
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_ramp_left_low_post",
+      "object": {
+        "collision": false,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.18,
+            0.2,
+            0.23
+          ],
+          "metallic": 0.6,
+          "roughness": 0.6
+        },
+        "position": [
+          1.125537278782053,
+          -0.17,
+          1.0995522290848803
+        ],
+        "size": [
+          0.035,
+          0.035,
+          0.21100185816976058
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_ramp_right",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.55,
+            0.3,
+            0.08
+          ],
+          "metallic": 0.05,
+          "roughness": 0.55
+        },
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0,
+          0.3420201433256687,
+          0
+        ],
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          0.8500000000000001,
+          0.17,
+          1.5
+        ],
+        "size": [
+          1.05,
+          0.28,
+          0.025
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_ramp_right_high_cap",
+      "object": {
+        "collision": false,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.18,
+            0.2,
+            0.23
+          ],
+          "metallic": 0.6,
+          "roughness": 0.6
+        },
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0,
+          0.3420201433256687,
+          0
+        ],
+        "position": [
+          0.5155372787820529,
+          0.17,
+          1.7512758820065526
+        ],
+        "size": [
+          0.08,
+          0.06,
+          0.02
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_ramp_right_high_post",
+      "object": {
+        "collision": false,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.18,
+            0.2,
+            0.23
+          ],
+          "metallic": 0.6,
+          "roughness": 0.6
+        },
+        "position": [
+          0.5155372787820529,
+          0.17,
+          1.3554776165939506
+        ],
+        "size": [
+          0.035,
+          0.035,
+          0.7228526331879013
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_ramp_right_low_cap",
+      "object": {
+        "collision": false,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.18,
+            0.2,
+            0.23
+          ],
+          "metallic": 0.6,
+          "roughness": 0.6
+        },
+        "orientation_wxyz": [
+          0.9396926207859084,
+          0,
+          0.3420201433256687,
+          0
+        ],
+        "position": [
+          1.125537278782053,
+          0.17,
+          1.239425106988412
+        ],
+        "size": [
+          0.08,
+          0.06,
+          0.02
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_ramp_right_low_post",
+      "object": {
+        "collision": false,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.18,
+            0.2,
+            0.23
+          ],
+          "metallic": 0.6,
+          "roughness": 0.6
+        },
+        "position": [
+          1.125537278782053,
+          0.17,
+          1.0995522290848803
+        ],
+        "size": [
+          0.035,
+          0.035,
+          0.21100185816976058
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_tabletop_proxy",
+      "object": {
+        "collision": true,
+        "kind": "box",
+        "material": {
+          "color": [
+            0.2,
+            0.23,
+            0.27
+          ],
+          "roughness": 0.6
+        },
+        "physics": {
+          "dynamic_friction": 0.5,
+          "restitution": 0.05,
+          "static_friction": 0.6
+        },
+        "position": [
+          1.3,
+          0,
+          0.9711915
+        ],
+        "size": [
+          2.43643066,
+          0.71628452,
+          0.04571959999999997
+        ],
+        "support_surfaces": {
+          "top": {
+            "exclude": [],
+            "max_xy": [
+              1.21821533,
+              0.35814226
+            ],
+            "min_xy": [
+              -1.21821533,
+              -0.35814226
+            ],
+            "z_m": 0.022859799999999986
+          }
+        },
+        "visible": false
+      }
+    },
+    {
+      "op": "add",
+      "id": "route_workbench",
+      "object": {
+        "asset_lights": "disabled",
+        "asset_path": "asset://route_workbench",
+        "asset_physics": "visual_only",
+        "kind": "asset",
+        "support_surfaces": {
+          "tabletop": {
+            "exclude": [],
+            "max_xy": [
+              1.21821533,
+              0.35814226
+            ],
+            "min_xy": [
+              -1.21821533,
+              -0.35814226
+            ],
+            "z_m": 0.9940513
+          }
+        },
+        "position": [
+          1.3,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_workbench",
+      "object": {
+        "asset_lights": "disabled",
+        "asset_path": "asset://route_workbench",
+        "asset_physics": "visual_only",
+        "kind": "asset",
+        "support_surfaces": {
+          "tabletop": {
+            "exclude": [],
+            "max_xy": [
+              1.21821533,
+              0.35814226
+            ],
+            "min_xy": [
+              -1.21821533,
+              -0.35814226
+            ],
+            "z_m": 0.9940513
+          }
+        },
+        "position": [
+          -2.45,
+          0,
+          0.005948700000000029
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "studio_floor",
+      "object": {
+        "kind": "box",
+        "size": [
+          9,
+          5,
+          0.1
+        ],
+        "position": [
+          -0.5,
+          0.3,
+          -0.06
+        ],
+        "collision": true,
+        "material": {
+          "color": [
+            0.055,
+            0.068,
+            0.085
+          ],
+          "roughness": 0.68
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "native_cabinet",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          -0.9,
+          1.1,
+          1
+        ],
+        "mechanism": {
+          "commands": [
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 0
+              },
+              "target_position": 1.3962634015954636,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 600
+              },
+              "target_position": 1.3904456374221492,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 610
+              },
+              "target_position": 1.3846278732488349,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 620
+              },
+              "target_position": 1.3788101090755203,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 630
+              },
+              "target_position": 1.3729923449022057,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 640
+              },
+              "target_position": 1.3671745807288913,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 650
+              },
+              "target_position": 1.361356816555577,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 660
+              },
+              "target_position": 1.3555390523822626,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 670
+              },
+              "target_position": 1.3497212882089482,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 680
+              },
+              "target_position": 1.3439035240356336,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 690
+              },
+              "target_position": 1.3380857598623193,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 700
+              },
+              "target_position": 1.332267995689005,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 710
+              },
+              "target_position": 1.3264502315156903,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 720
+              },
+              "target_position": 1.320632467342376,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 730
+              },
+              "target_position": 1.3148147031690616,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 740
+              },
+              "target_position": 1.3089969389957472,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 750
+              },
+              "target_position": 1.3031791748224326,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 760
+              },
+              "target_position": 1.2973614106491183,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 770
+              },
+              "target_position": 1.2915436464758039,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 780
+              },
+              "target_position": 1.2857258823024895,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 790
+              },
+              "target_position": 1.279908118129175,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 800
+              },
+              "target_position": 1.2740903539558606,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 810
+              },
+              "target_position": 1.268272589782546,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 820
+              },
+              "target_position": 1.2624548256092316,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 830
+              },
+              "target_position": 1.2566370614359172,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 840
+              },
+              "target_position": 1.2508192972626029,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 850
+              },
+              "target_position": 1.2450015330892883,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 860
+              },
+              "target_position": 1.239183768915974,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 870
+              },
+              "target_position": 1.2333660047426596,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 880
+              },
+              "target_position": 1.227548240569345,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 890
+              },
+              "target_position": 1.2217304763960306,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 900
+              },
+              "target_position": 1.2159127122227162,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 910
+              },
+              "target_position": 1.2100949480494019,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 920
+              },
+              "target_position": 1.2042771838760875,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 930
+              },
+              "target_position": 1.198459419702773,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 940
+              },
+              "target_position": 1.1926416555294583,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 950
+              },
+              "target_position": 1.186823891356144,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 960
+              },
+              "target_position": 1.1810061271828296,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 970
+              },
+              "target_position": 1.1751883630095152,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 980
+              },
+              "target_position": 1.1693705988362009,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 990
+              },
+              "target_position": 1.1635528346628863,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1000
+              },
+              "target_position": 1.1577350704895717,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1010
+              },
+              "target_position": 1.1519173063162573,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1020
+              },
+              "target_position": 1.146099542142943,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1030
+              },
+              "target_position": 1.1402817779696286,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1040
+              },
+              "target_position": 1.1344640137963142,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1050
+              },
+              "target_position": 1.1286462496229996,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1060
+              },
+              "target_position": 1.1228284854496853,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1070
+              },
+              "target_position": 1.117010721276371,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1080
+              },
+              "target_position": 1.1111929571030565,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1090
+              },
+              "target_position": 1.105375192929742,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1100
+              },
+              "target_position": 1.0995574287564276,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1110
+              },
+              "target_position": 1.0937396645831132,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1120
+              },
+              "target_position": 1.0879219004097986,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1130
+              },
+              "target_position": 1.0821041362364843,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1140
+              },
+              "target_position": 1.07628637206317,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1150
+              },
+              "target_position": 1.0704686078898553,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1160
+              },
+              "target_position": 1.064650843716541,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1170
+              },
+              "target_position": 1.0588330795432266,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1180
+              },
+              "target_position": 1.053015315369912,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1190
+              },
+              "target_position": 1.0471975511965976,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1200
+              },
+              "target_position": 1.0413797870232833,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1210
+              },
+              "target_position": 1.035562022849969,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1220
+              },
+              "target_position": 1.0297442586766545,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1230
+              },
+              "target_position": 1.02392649450334,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1240
+              },
+              "target_position": 1.0181087303300256,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1250
+              },
+              "target_position": 1.012290966156711,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1260
+              },
+              "target_position": 1.0064732019833966,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1270
+              },
+              "target_position": 1.0006554378100823,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1280
+              },
+              "target_position": 0.9948376736367678,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1290
+              },
+              "target_position": 0.9890199094634533,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1300
+              },
+              "target_position": 0.9832021452901388,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1310
+              },
+              "target_position": 0.9773843811168245,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1320
+              },
+              "target_position": 0.97156661694351,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1330
+              },
+              "target_position": 0.9657488527701956,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1340
+              },
+              "target_position": 0.9599310885968813,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1350
+              },
+              "target_position": 0.9541133244235668,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1360
+              },
+              "target_position": 0.9482955602502524,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1370
+              },
+              "target_position": 0.9424777960769379,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1380
+              },
+              "target_position": 0.9366600319036236,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1390
+              },
+              "target_position": 0.9308422677303092,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1400
+              },
+              "target_position": 0.9250245035569946,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1410
+              },
+              "target_position": 0.9192067393836801,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1420
+              },
+              "target_position": 0.9133889752103658,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1430
+              },
+              "target_position": 0.9075712110370514,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1440
+              },
+              "target_position": 0.9017534468637368,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1450
+              },
+              "target_position": 0.8959356826904223,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1460
+              },
+              "target_position": 0.890117918517108,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1470
+              },
+              "target_position": 0.8843001543437936,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1480
+              },
+              "target_position": 0.8784823901704791,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1490
+              },
+              "target_position": 0.8726646259971648,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1500
+              },
+              "target_position": 0.8668468618238503,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1510
+              },
+              "target_position": 0.8610290976505359,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1520
+              },
+              "target_position": 0.8552113334772216,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1530
+              },
+              "target_position": 0.8493935693039071,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1540
+              },
+              "target_position": 0.8435758051305927,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1550
+              },
+              "target_position": 0.8377580409572781,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1560
+              },
+              "target_position": 0.8319402767839638,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1570
+              },
+              "target_position": 0.8261225126106493,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1580
+              },
+              "target_position": 0.8203047484373349,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1590
+              },
+              "target_position": 0.8144869842640203,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1600
+              },
+              "target_position": 0.8086692200907059,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1610
+              },
+              "target_position": 0.8028514559173915,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1620
+              },
+              "target_position": 0.7970336917440771,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1630
+              },
+              "target_position": 0.7912159275707626,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1640
+              },
+              "target_position": 0.7853981633974483,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1650
+              },
+              "target_position": 0.7795803992241338,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1660
+              },
+              "target_position": 0.7737626350508194,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1670
+              },
+              "target_position": 0.7679448708775051,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1680
+              },
+              "target_position": 0.7621271067041906,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1690
+              },
+              "target_position": 0.7563093425308762,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1700
+              },
+              "target_position": 0.7504915783575616,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1710
+              },
+              "target_position": 0.7446738141842473,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1720
+              },
+              "target_position": 0.7388560500109328,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1730
+              },
+              "target_position": 0.7330382858376184,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1740
+              },
+              "target_position": 0.7272205216643038,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1750
+              },
+              "target_position": 0.7214027574909895,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1760
+              },
+              "target_position": 0.715584993317675,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1770
+              },
+              "target_position": 0.7097672291443606,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1780
+              },
+              "target_position": 0.7039494649710462,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1790
+              },
+              "target_position": 0.6981317007977318,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1800
+              },
+              "target_position": 0.6923139366244174,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1810
+              },
+              "target_position": 0.686496172451103,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1820
+              },
+              "target_position": 0.6806784082777886,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1830
+              },
+              "target_position": 0.674860644104474,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1840
+              },
+              "target_position": 0.6690428799311596,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1850
+              },
+              "target_position": 0.6632251157578452,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1860
+              },
+              "target_position": 0.6574073515845308,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1870
+              },
+              "target_position": 0.6515895874112163,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1880
+              },
+              "target_position": 0.6457718232379019,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1890
+              },
+              "target_position": 0.6399540590645876,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1900
+              },
+              "target_position": 0.6341362948912731,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1910
+              },
+              "target_position": 0.6283185307179585,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1920
+              },
+              "target_position": 0.6225007665446441,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1930
+              },
+              "target_position": 0.6166830023713298,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1940
+              },
+              "target_position": 0.6108652381980153,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1950
+              },
+              "target_position": 0.6050474740247009,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1960
+              },
+              "target_position": 0.5992297098513865,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1970
+              },
+              "target_position": 0.5934119456780721,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1980
+              },
+              "target_position": 0.5875941815047575,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 1990
+              },
+              "target_position": 0.5817764173314431,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2000
+              },
+              "target_position": 0.5759586531581287,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2010
+              },
+              "target_position": 0.5701408889848143,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2020
+              },
+              "target_position": 0.5643231248114998,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2030
+              },
+              "target_position": 0.5585053606381855,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2040
+              },
+              "target_position": 0.5526875964648711,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2050
+              },
+              "target_position": 0.5468698322915566,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2060
+              },
+              "target_position": 0.541052068118242,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2070
+              },
+              "target_position": 0.5352343039449277,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2080
+              },
+              "target_position": 0.5294165397716133,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2090
+              },
+              "target_position": 0.5235987755982988,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2100
+              },
+              "target_position": 0.5177810114249844,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2110
+              },
+              "target_position": 0.51196324725167,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2120
+              },
+              "target_position": 0.5061454830783556,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2130
+              },
+              "target_position": 0.500327718905041,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2140
+              },
+              "target_position": 0.49450995473172665,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2150
+              },
+              "target_position": 0.48869219055841223,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2160
+              },
+              "target_position": 0.4828744263850978,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2170
+              },
+              "target_position": 0.4770566622117834,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2180
+              },
+              "target_position": 0.47123889803846897,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2190
+              },
+              "target_position": 0.4654211338651546,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2200
+              },
+              "target_position": 0.4596033696918402,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2210
+              },
+              "target_position": 0.4537856055185256,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2220
+              },
+              "target_position": 0.44796784134521117,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2230
+              },
+              "target_position": 0.4421500771718968,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2240
+              },
+              "target_position": 0.4363323129985824,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2250
+              },
+              "target_position": 0.43051454882526796,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2260
+              },
+              "target_position": 0.42469678465195354,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2270
+              },
+              "target_position": 0.4188790204786391,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2280
+              },
+              "target_position": 0.4130612563053246,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2290
+              },
+              "target_position": 0.40724349213201017,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2300
+              },
+              "target_position": 0.40142572795869574,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2310
+              },
+              "target_position": 0.3956079637853813,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2320
+              },
+              "target_position": 0.3897901996120669,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2330
+              },
+              "target_position": 0.38397243543875254,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2340
+              },
+              "target_position": 0.3781546712654381,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2350
+              },
+              "target_position": 0.3723369070921237,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2360
+              },
+              "target_position": 0.3665191429188091,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2370
+              },
+              "target_position": 0.36070137874549474,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2380
+              },
+              "target_position": 0.3548836145721803,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2390
+              },
+              "target_position": 0.3490658503988659,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2400
+              },
+              "target_position": 0.3432480862255515,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2410
+              },
+              "target_position": 0.33743032205223705,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2420
+              },
+              "target_position": 0.3316125578789227,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2430
+              },
+              "target_position": 0.3257947937056081,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2440
+              },
+              "target_position": 0.3199770295322937,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2450
+              },
+              "target_position": 0.31415926535897926,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2460
+              },
+              "target_position": 0.3083415011856649,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2470
+              },
+              "target_position": 0.30252373701235047,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2480
+              },
+              "target_position": 0.29670597283903605,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2490
+              },
+              "target_position": 0.2908882086657216,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2500
+              },
+              "target_position": 0.2850704444924072,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2510
+              },
+              "target_position": 0.27925268031909267,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2520
+              },
+              "target_position": 0.27343491614577825,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2530
+              },
+              "target_position": 0.26761715197246383,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2540
+              },
+              "target_position": 0.2617993877991494,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2550
+              },
+              "target_position": 0.255981623625835,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2560
+              },
+              "target_position": 0.2501638594525206,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2570
+              },
+              "target_position": 0.2443460952792062,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2580
+              },
+              "target_position": 0.2385283311058916,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2590
+              },
+              "target_position": 0.23271056693257722,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2600
+              },
+              "target_position": 0.2268928027592628,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2610
+              },
+              "target_position": 0.2210750385859484,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2620
+              },
+              "target_position": 0.21525727441263398,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2630
+              },
+              "target_position": 0.20943951023931956,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2640
+              },
+              "target_position": 0.20362174606600517,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2650
+              },
+              "target_position": 0.19780398189269074,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2660
+              },
+              "target_position": 0.19198621771937618,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2670
+              },
+              "target_position": 0.18616845354606176,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2680
+              },
+              "target_position": 0.18035068937274737,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2690
+              },
+              "target_position": 0.17453292519943295,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2700
+              },
+              "target_position": 0.16871516102611853,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2710
+              },
+              "target_position": 0.16289739685280413,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2720
+              },
+              "target_position": 0.1570796326794897,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2730
+              },
+              "target_position": 0.15126186850617515,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2740
+              },
+              "target_position": 0.14544410433286073,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2750
+              },
+              "target_position": 0.13962634015954634,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2760
+              },
+              "target_position": 0.13380857598623191,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2770
+              },
+              "target_position": 0.1279908118129175,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2780
+              },
+              "target_position": 0.1221730476396031,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2790
+              },
+              "target_position": 0.11635528346628868,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2800
+              },
+              "target_position": 0.11053751929297427,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2810
+              },
+              "target_position": 0.10471975511965971,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2820
+              },
+              "target_position": 0.09890199094634529,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2830
+              },
+              "target_position": 0.09308422677303088,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2840
+              },
+              "target_position": 0.08726646259971647,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2850
+              },
+              "target_position": 0.08144869842640207,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2860
+              },
+              "target_position": 0.07563093425308766,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2870
+              },
+              "target_position": 0.06981317007977324,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2880
+              },
+              "target_position": 0.06399540590645868,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2890
+              },
+              "target_position": 0.05817764173314426,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2900
+              },
+              "target_position": 0.052359877559829855,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2910
+              },
+              "target_position": 0.04654211338651544,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2920
+              },
+              "target_position": 0.04072434921320103,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2930
+              },
+              "target_position": 0.03490658503988662,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2940
+              },
+              "target_position": 0.02908882086657221,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2950
+              },
+              "target_position": 0.0232710566932578,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2960
+              },
+              "target_position": 0.017453292519943233,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2970
+              },
+              "target_position": 0.011635528346628822,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2980
+              },
+              "target_position": 0.005817764173314411,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 2990
+              },
+              "target_position": 0.0,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            }
+          ]
+        },
+        "asset_role": "native_cabinet"
+      }
+    },
+    {
+      "op": "add",
+      "id": "native_plinth",
+      "object": {
+        "kind": "box",
+        "size": [
+          1.04,
+          0.58,
+          1.0
+        ],
+        "position": [
+          -0.9,
+          1.1,
+          0.5
+        ],
+        "collision": true,
+        "material": {
+          "color": [
+            0.1,
+            0.13,
+            0.17
+          ],
+          "roughness": 0.55
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "display_receiver",
+      "object": {
+        "kind": "asset",
+        "dynamic": false,
+        "collision": true,
+        "position": [
+          0.0,
+          -0.85,
+          0.75
+        ],
+        "asset_role": "chain_receiver"
+      }
+    },
+    {
+      "op": "add",
+      "id": "display_probe",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "collision": true,
+        "position": [
+          0.0,
+          -0.775,
+          1.05
+        ],
+        "orientation_wxyz": [
+          0.7071067811865476,
+          0.7071067811865476,
+          0.0,
+          0.0
+        ],
+        "asset_role": "route_book_left_front"
+      }
+    },
+    {
+      "op": "add",
+      "id": "display_plinth",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.48,
+          0.38,
+          0.75
+        ],
+        "position": [
+          0,
+          -0.85,
+          0.375
+        ],
+        "collision": true,
+        "material": {
+          "color": [
+            0.1,
+            0.13,
+            0.17
+          ],
+          "roughness": 0.55
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "studio_environment",
+      "object": {
+        "kind": "asset",
+        "dynamic": false,
+        "asset_role": "studio_environment"
+      }
+    },
+    {
+      "op": "add",
+      "id": "overview",
+      "object": {
+        "kind": "camera",
+        "position": [
+          6,
+          -8,
+          5.7
+        ],
+        "orientation_wxyz": [
+          0.7912542437972561,
+          0.5132470791970394,
+          0.1808929916086389,
+          0.27887610682060476
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 45,
+          "horizontal_aperture_mm": 36,
+          "clipping_range_m": [
+            0.01,
+            100
+          ],
+          "focus_distance_m": 11.527792503337315
+        }
+      }
+    },
+    {
+      "op": "add",
+      "id": "chain_follow",
+      "object": {
+        "kind": "camera",
+        "position": [
+          -3.1,
+          -1.15,
+          2.0
+        ],
+        "orientation_wxyz": [
+          0.845612015593745,
+          0.507137769680551,
+          -0.08568037618215435,
+          -0.14286523294421555
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 40,
+          "horizontal_aperture_mm": 36,
+          "clipping_range_m": [
+            0.01,
+            100
+          ],
+          "focus_distance_m": 1.3802173741842259,
+          "capture_window": {
+            "start_step": 0,
+            "end_step": 720
+          }
+        },
+        "camera_path": [
+          {
+            "time_s": 0,
+            "position": [
+              -3.1,
+              -1.15,
+              2.0
+            ],
+            "target": [
+              -2.7,
+              0,
+              1.35
+            ]
+          },
+          {
+            "time_s": 0.6,
+            "position": [
+              -2.6,
+              -1.15,
+              1.9
+            ],
+            "target": [
+              -2.35,
+              0,
+              1.12
+            ]
+          },
+          {
+            "time_s": 1.3,
+            "position": [
+              -1.9,
+              -1.15,
+              1.85
+            ],
+            "target": [
+              -1.8,
+              0,
+              1.1
+            ]
+          },
+          {
+            "time_s": 2.0,
+            "position": [
+              -1,
+              -1.1,
+              1.7
+            ],
+            "target": [
+              -1.1,
+              0,
+              1.02
+            ]
+          },
+          {
+            "time_s": 3.5,
+            "position": [
+              -0.25,
+              -0.65,
+              2.15
+            ],
+            "target": [
+              -0.47,
+              0,
+              0.84
+            ]
+          },
+          {
+            "time_s": 60.0,
+            "position": [
+              -0.25,
+              -0.65,
+              2.15
+            ],
+            "target": [
+              -0.47,
+              0,
+              0.84
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "routing_and_joint",
+      "object": {
+        "kind": "camera",
+        "position": [
+          3.6,
+          -2.3,
+          3.1
+        ],
+        "orientation_wxyz": [
+          0.7959640545180818,
+          0.4772443320658566,
+          0.19149777918998104,
+          0.3193863991961081
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 40,
+          "horizontal_aperture_mm": 36,
+          "clipping_range_m": [
+            0.01,
+            100
+          ],
+          "focus_distance_m": 3.608323710533743
+        },
+        "camera_path": [
+          {
+            "time_s": 0,
+            "position": [
+              3.6,
+              -2.3,
+              3.1
+            ],
+            "target": [
+              1.4,
+              0,
+              1.4
+            ]
+          },
+          {
+            "time_s": 5,
+            "position": [
+              3.6,
+              -2.3,
+              3.1
+            ],
+            "target": [
+              1.4,
+              0,
+              1.4
+            ]
+          },
+          {
+            "time_s": 8,
+            "position": [
+              0.6,
+              -0.8,
+              2.1
+            ],
+            "target": [
+              -0.9,
+              1.1,
+              1.2
+            ]
+          },
+          {
+            "time_s": 60.0,
+            "position": [
+              0.6,
+              -0.8,
+              2.1
+            ],
+            "target": [
+              -0.9,
+              1.1,
+              1.2
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "receiver_close",
+      "object": {
+        "kind": "camera",
+        "position": [
+          0.2,
+          -1.6,
+          2.15
+        ],
+        "orientation_wxyz": [
+          0.9553786580942617,
+          0.2652717275900903,
+          0.03476218180897684,
+          0.12519632947996717
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 50,
+          "horizontal_aperture_mm": 36,
+          "clipping_range_m": [
+            0.01,
+            100
+          ],
+          "focus_distance_m": 1.5055231648832244,
+          "capture_window": {
+            "start_step": 0,
+            "end_step": 300
+          }
+        }
+      }
+    },
+    {
+      "op": "set_presentation",
+      "presentation": {
+        "profile": "technical_showcase_1080p",
+        "capture": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "fps": 30,
+          "anti_aliasing": "dlaa",
+          "renderer": "RealTimePathTracing",
+          "depth_of_field": false,
+          "motion_blur": false,
+          "exposure_mode": "manual",
+          "exposure_ev": 0
+        },
+        "budget": {
+          "max_cameras": 4,
+          "max_recording_bytes": 4294967296,
+          "min_free_bytes": 4294967296
+        },
+        "diagnostics": {
+          "png_seconds": 0.1,
+          "keyframe_interval_s": 2
+        }
+      }
+    },
+    {
+      "op": "set_observation",
+      "observation": {
+        "sample_interval_steps": 1,
+        "strict_start": true,
+        "record_contact_pairs": true
+      }
+    }
+  ],
+  "schema": "simscene.scene_recipe.v2"
+}

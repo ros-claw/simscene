@@ -1,0 +1,26 @@
+{
+  "schema": "simscene.public_film_provenance.v1",
+  "movie": "../../../../docs/media/red-rope-causal-comparison-20s.mp4",
+  "sha256": "4dfb64a6748a011b258656fc0ebf9231142c7822b2013bfba60d0f80d401db2c",
+  "frames": 600,
+  "fps": 30,
+  "duration_s": 20.0,
+  "sources": [
+    {
+      "id": "source_01",
+      "filename": "camera_story_camera.mp4",
+      "sha256": "0fcec84641e299a62a88e42a80a3006172056ae828b4cd2e4d59628c359bec22"
+    },
+    {
+      "id": "source_02",
+      "filename": "camera_story_camera.mp4",
+      "sha256": "c60abce541149bbff638b8de9176a610704e393f4b79d0ec9f5174e7c3491840"
+    }
+  ],
+  "frame_map": "rope-frame-map.jsonl",
+  "frame_map_sha256": "59f8fc5560bfbcac94a4b6a0eac3bd08d4f9fc636fe325d09e22e018b8ad2a6d",
+  "new_physics_runs": 0,
+  "pose_interpolation": false,
+  "review": "Actual decoded frame grids and temporal action strips; final per-frame PTS verified. No subjective full-playback/audience or phone speaker test claimed.",
+  "full_local_receipt": "/data/rosclaw/simscene-film-skill-20261103/rope-comparison-v2/film-reviewed.json"
+}

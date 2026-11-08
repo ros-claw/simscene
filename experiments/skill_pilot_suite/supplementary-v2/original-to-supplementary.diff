@@ -1,0 +1,151 @@
+--- ORIGINAL-FROZEN-score.py
++++ SUPPLEMENTARY-v2-score.py
+@@ -14,8 +14,9 @@
+ import math
+ from pathlib import Path
+ import sys
+-
+-ROOT = Path(__file__).resolve().parents[1]
++import tempfile
++
++ROOT = Path(__file__).resolve().parent/'original-design'
+ PAIRED_FIELDS = (
+     'worker_code_sha256','physics_dt_s','physics_device','runtime_python',
+     'runtime_python_sha256','queue_launcher_python','queue_launcher_python_sha256',
+@@ -159,7 +160,7 @@
+       'per_step_strict_contact_observation':spec.get('observation')==case['observation'],
+       'no_active_or_external_scene_fields':not spec.get('drivers') and not spec.get('followers') and all(not any(o.get(k) for k in forbidden) for o in objects.values()),
+       'one_fixed_low_resolution_camera':len(cameras)==1 and cameras[0].get('camera',{}).get('resolution') in ([320,240],[640,360]),
+-      'all_dynamics_explicit_mass_collision':all(o.get('collision') is True and type(o.get('mass_kg')) in (int,float) and
++      'all_dynamics_explicit_mass_collision':all(type(o.get('mass_kg')) in (int,float) and
+           case['mass_range_kg'][0]<=o['mass_kg']<=case['mass_range_kg'][1] for o in objects.values() if o.get('dynamic')),
+       'only_driver_scheduled':{n:o.get('spawn_step') for n,o in objects.items() if o.get('spawn_step',0)}=={'driver':case['release_step']},
+     }
+@@ -217,8 +218,10 @@
+       'fixed_timestep':lock.get('physics_dt_s')==case['physics_dt_s'],
+     }
+     checks.update(source_checks(spec,case,mode))
++    compiled_collisions = effective_compiled_collisions(root, spec, case, lock)
++    checks['all_dynamics_explicit_mass_collision'] = bool(checks['all_dynamics_explicit_mass_collision'] and compiled_collisions['passed'])
+     report={'directory':str(root),'checks':checks,'input_integrity':inputs,'output_integrity':outputs,
+-            'runtime_identity_checks':runtime_identity(lock,identity),'passed':False}
++            'runtime_identity_checks':runtime_identity(lock,identity),'compiled_dynamic_collisions':compiled_collisions,'passed':False}
+     if not all(checks.values()):
+         return report,None
+     dt=case['physics_dt_s']
+@@ -227,7 +230,7 @@
+     # Empty joint inventories are legitimate in P2; the old P1 helper requires
+     # at least one joint, so that single legacy bool is replaced explicitly.
+     if not case['joint_ids']:
+-        passive['all_joint_observations_passive']=all(s.get('joints')=={} for s in [run['initial_observation'],*run['samples']])
++        passive['all_joint_observations_passive']=empty_joint_observations_valid([run['initial_observation'],*run['samples']])
+     journal=contact_journal(run,spec)
+     checks['complete_native_step_clock']=clock['passed']
+     checks['strict_zero_velocity_reset_and_full_native_maps']=strict['passed']
+@@ -358,13 +361,90 @@
+     return {'passed':all(checks.values()),'checks':checks}
+ 
+ 
++
++def empty_joint_observations_valid(observations):
++    """An absent map encodes the same empty inventory as {}; None/extra joints fail.
++
++    Called only when the unchanged source/case joint inventories are both empty.
++    The strict t0/full-clock checks still run independently and remain unchanged.
++    """
++    return all(s.get('joints', {}) == {} for s in observations)
++
++
++def effective_compiled_collisions(root, spec, case, lock):
++    """Read effective USD schemas, without running or mutating any physics.
++
++    Initial bodies are checked in the sealed original authored stage. Scheduled
++    bodies do not yet exist in that stage: an isolated CPU-only compilation of
++    an initial-equivalent source copy supplies their schema witness. This is
++    explicitly a compiler-policy witness, not a saved native spawn-stage
++    readback. The original native contact/clock/passivity predicates still must
++    pass. The exporter and spawn implementation bytes must match the run's
++    approved, intact worker snapshot; no fresh implementation is substituted.
++    """
++    report={'passed':False,'bodies':{},'compiler_identity':{},
++            'scope':'Effective compiled USD colliders. Source-equivalent CPU compilation only for scheduled bodies; no simulation, stage edits or evidence rewrites.'}
++    try:
++        from pxr import Usd, UsdPhysics
++        import simscene
++        from simscene.usd_export import export_scene
++        package=Path(simscene.__file__).resolve().parent
++        dependency_names=('usd_export.py','passive.py','materials.py','attachments.py','capture.py','d6.py','geometry.py','scene.py','worker/spawn.py')
++        expected=lock.get('worker_code_sha256',{})
++        report['compiler_identity']={name:name in expected and (package/name).is_file() and sha(package/name)==expected[name] for name in dependency_names}
++        if not all(report['compiler_identity'].values()):
++            return report
++        if any(o.get('kind') not in set(case['allowed_geometry'])|{'joint','camera','light'} for o in spec['objects'].values()):
++            report['error']='unsupported source: no external asset compilation allowed';return report
++        stage=Usd.Stage.Open(str(Path(root)/'scene.usda'))
++        if not stage:
++            report['error']='sealed authored USD stage cannot be opened';return report
++        scheduled=[n for n in case['dynamic_ids'] if spec['objects'][n].get('spawn_step',0)>0]
++        probe_stage=None
++        with tempfile.TemporaryDirectory(prefix='simscene-collision-interface-cpu-') as temporary:
++            if scheduled:
++                probe=copy.deepcopy(spec)
++                for n in scheduled:
++                    probe['objects'][n].pop('spawn_step',None)
++                probe_path=Path(temporary)/'source-equivalent-compiled.usda'
++                export_scene(probe,probe_path)
++                probe_stage=Usd.Stage.Open(str(probe_path))
++            for name in case['dynamic_ids']:
++                selected=probe_stage if name in scheduled else stage
++                body=selected.GetPrimAtPath(path(name)) if selected else None
++                body_ok=bool(body and body.IsActive() and body.HasAPI(UsdPhysics.RigidBodyAPI))
++                if body_ok:
++                    api=UsdPhysics.RigidBodyAPI(body)
++                    body_ok=api.GetRigidBodyEnabledAttr().Get() is True and api.GetKinematicEnabledAttr().Get() is False
++                colliders=[]
++                if body_ok:
++                    for prim in Usd.PrimRange(body):
++                        if not prim.HasAPI(UsdPhysics.CollisionAPI) or UsdPhysics.CollisionAPI(prim).GetCollisionEnabledAttr().Get() is not True:
++                            continue
++                        ancestor=prim
++                        while ancestor and not ancestor.IsPseudoRoot() and not ancestor.HasAPI(UsdPhysics.RigidBodyAPI):
++                            ancestor=ancestor.GetParent()
++                        if ancestor and ancestor.GetPath()==body.GetPath():
++                            colliders.append(str(prim.GetPath()))
++                report['bodies'][name]={'source_collision_field':spec['objects'][name].get('collision','ABSENT'),
++                    'stage_witness':'CPU source-equivalent compilation of scheduled body' if name in scheduled else 'sealed original authored stage',
++                    'rigid_dynamic_enabled':body_ok,'enabled_colliders':colliders,'passed':body_ok and bool(colliders)}
++        report['passed']=bool(report['bodies']) and all(x['passed'] for x in report['bodies'].values())
++        return report
++    except (ImportError,OSError,ValueError,RuntimeError,TypeError,KeyError,AttributeError) as error:
++        report['error']=str(error);return report
++
++
+ def main():
++    global ROOT
+     parser=argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--design-root',required=True,help='Unmodified original design directory containing DESIGN-FREEZE.json')
+     parser.add_argument('--task',choices=('P1','P2'),required=True)
+     parser.add_argument('--positive',required=True)
+     parser.add_argument('--negative')
+     parser.add_argument('--identity',required=True)
+     args=parser.parse_args()
++    ROOT=Path(args.design_root).expanduser().resolve()
+     freeze=frozen_design()
+     if not freeze['passed']:
+         print(json.dumps({'passed':False,'evidence_status':'design_or_generic_checker_identity_changed','freeze':freeze},ensure_ascii=False,indent=2));return 2
+@@ -374,11 +454,13 @@
+     positive,data=load_native(args.positive,case,case_path,identity,'positive')
+     if data:
+         positive['task']=task_predicates(data,case,'positive');positive['passed']=positive['passed'] and positive['task']['passed']
+-    report={'schema':'simscene.independent_pilot_report.v1','task_id':args.task,
++    report={'schema':'simscene.independent_pilot_report.supplementary_v2','task_id':args.task,
++            'supplementary_posthoc':True,'replaces_frozen_outcome':False,'original_checker_sha256':sha(ROOT/'examiner/score.py'),
++            'interface_changes':['effective compiled USD dynamic collisions instead of requiring an explicit collision:true source key','omitted empty sample joints map accepted only for exact zero-joint source inventory'],
+             'checker_sha256':sha(__file__),'case_sha256':sha(case_path),'identity_sha256':sha(args.identity),
+             'freeze':freeze,'positive':positive,'negative':None,'intervention':None,
+             'positive_passed':positive['passed'],'physics_suite_passed':False,
+-            'scope':'Native sealed physics and isolated causal control only. Overall arm status also requires independent review of visibility, assistance, attempt counts and frozen model/time/usage budgets. No efficiency conclusion follows from this report alone.'}
++            'scope':'SUPPLEMENTARY POST-HOC / EXPLORATORY ONLY; original frozen scores and protocol outcomes remain authoritative. Native sealed physics and isolated causal control only. Overall arm status also requires independent review of visibility, assistance, attempt counts and frozen model/time/usage budgets. No efficiency conclusion follows from this report alone.'}
+     if args.negative:
+         negative,neg=load_native(args.negative,case,case_path,identity,'negative')
+         if neg:

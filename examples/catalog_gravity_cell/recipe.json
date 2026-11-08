@@ -1,0 +1,1099 @@
+{
+  "asset_roles": {
+    "notebook": {
+      "parameters": {
+        "ccd": true,
+        "collision_method": "convex_hull",
+        "dynamic_friction": 0.5,
+        "mass_kg": 0.12,
+        "mass_note": "Experimental 150mm scaled notebook surrogate for 200mm routing channels; mass assumption, not full-size manufacturer specification.",
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "fit_longest",
+        "source_physics_policy": "reject_if_physics",
+        "static_friction": 0.6,
+        "target_longest_extent_m": 0.15
+      },
+      "profile_id": "rigid_prop_v1",
+      "search_query": "notebook",
+      "source_ref": {
+        "asset_id": "B01DN8TB5U",
+        "revision": "c7c8293fed3b7ab122ef5d7896521a187e0962d7",
+        "source_id": "abo-glb",
+        "variant_id": null
+      }
+    },
+    "workbench": {
+      "license_status": "unknown",
+      "new_asset_plan_ready": false,
+      "route": "legacy_usd_compatibility",
+      "search_query": "packing table",
+      "selected_member_meters_per_unit": 0.01,
+      "selected_member_up_axis": "Z",
+      "source_ref": {
+        "asset_id": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/PackingTable/packing_table.usd",
+        "revision": "metadata-sha256:c080da0578bd32decaa2dc3c423629f390722ff901cb0a00527d2ed43c080f27",
+        "source_id": "nvidia-usd-search",
+        "variant_id": null
+      }
+    }
+  },
+  "layout_parameters": {
+    "baffles": {
+      "height_m": 0.24,
+      "length_m": 0.52,
+      "thickness_m": 0.012,
+      "yaw_degrees": 2
+    },
+    "geometry_editing": "Edit ordinary object positions, sizes and orientations, then freeze a new case before running. Descriptive layout parameters document this fixed layout.",
+    "ramps": {
+      "angle_degrees": 40,
+      "center_x": -0.45,
+      "center_z": 1.5,
+      "length_m": 1.05,
+      "thickness_m": 0.025,
+      "width_m": 0.28
+    }
+  },
+  "objects": {
+    "ambient": {
+      "intensity": 400,
+      "kind": "light",
+      "light": {
+        "type": "dome"
+      }
+    },
+    "baffle_left": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.75,
+          0.69,
+          0.26
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "orientation_wxyz": [
+        0.9998476951563913,
+        0,
+        0,
+        0.01745240643728351
+      ],
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        0.4,
+        -0.1609205999321456,
+        1.1390512999999998
+      ],
+      "size": [
+        0.52,
+        0.012,
+        0.24
+      ]
+    },
+    "baffle_right": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.75,
+          0.69,
+          0.26
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "orientation_wxyz": [
+        0.9998476951563913,
+        0,
+        0,
+        0.01745240643728351
+      ],
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        0.4,
+        0.17907940006785442,
+        1.1390512999999998
+      ],
+      "size": [
+        0.52,
+        0.012,
+        0.24
+      ]
+    },
+    "bin_left_backwall": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.24,
+          0.27,
+          0.3
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        1.06,
+        -0.17,
+        1.0790513
+      ],
+      "size": [
+        0.02,
+        0.31000000000000005,
+        0.12
+      ]
+    },
+    "bin_left_floor": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.12,
+          0.42,
+          0.48
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        0.53,
+        -0.17,
+        1.0065513
+      ],
+      "size": [
+        1.04,
+        0.28,
+        0.025
+      ],
+      "support_surfaces": {
+        "receiving": {
+          "exclude": [],
+          "max_xy": [
+            0.52,
+            0.14
+          ],
+          "min_xy": [
+            -0.52,
+            -0.14
+          ],
+          "z_m": 0.0125
+        }
+      }
+    },
+    "bin_left_innerwall": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.24,
+          0.27,
+          0.3
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        0.53,
+        -0.022499999999999992,
+        1.0490513
+      ],
+      "size": [
+        1.04,
+        0.015,
+        0.06
+      ]
+    },
+    "bin_left_outerwall": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.24,
+          0.27,
+          0.3
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        0.53,
+        -0.3175,
+        1.0490513
+      ],
+      "size": [
+        1.04,
+        0.015,
+        0.06
+      ]
+    },
+    "bin_right_backwall": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.24,
+          0.27,
+          0.3
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        1.06,
+        0.17,
+        1.0790513
+      ],
+      "size": [
+        0.02,
+        0.31000000000000005,
+        0.12
+      ]
+    },
+    "bin_right_floor": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.55,
+          0.3,
+          0.08
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        0.53,
+        0.17,
+        1.0065513
+      ],
+      "size": [
+        1.04,
+        0.28,
+        0.025
+      ],
+      "support_surfaces": {
+        "receiving": {
+          "exclude": [],
+          "max_xy": [
+            0.52,
+            0.14
+          ],
+          "min_xy": [
+            -0.52,
+            -0.14
+          ],
+          "z_m": 0.0125
+        }
+      }
+    },
+    "bin_right_innerwall": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.24,
+          0.27,
+          0.3
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        0.53,
+        0.022499999999999992,
+        1.0490513
+      ],
+      "size": [
+        1.04,
+        0.015,
+        0.06
+      ]
+    },
+    "bin_right_outerwall": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.24,
+          0.27,
+          0.3
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        0.53,
+        0.3175,
+        1.0490513
+      ],
+      "size": [
+        1.04,
+        0.015,
+        0.06
+      ]
+    },
+    "book_left_front": {
+      "asset_role": "notebook",
+      "class_label": "experimental_scaled_notebook",
+      "collision": true,
+      "dynamic": true,
+      "kind": "asset",
+      "orientation_wxyz": [
+        0.29883623873011994,
+        0.6408563820557887,
+        0.6408563820557887,
+        0.29883623873011994
+      ],
+      "position": [
+        -0.5379580730977946,
+        -0.21700000000000003,
+        1.6051983670141947
+      ]
+    },
+    "book_left_rear": {
+      "asset_role": "notebook",
+      "class_label": "experimental_scaled_notebook",
+      "collision": true,
+      "dynamic": true,
+      "kind": "asset",
+      "orientation_wxyz": [
+        0.29883623873011994,
+        0.6408563820557887,
+        0.6408563820557887,
+        0.29883623873011994
+      ],
+      "position": [
+        -0.8137340726206267,
+        -0.12300000000000001,
+        1.836601906501349
+      ]
+    },
+    "book_right_front": {
+      "asset_role": "notebook",
+      "class_label": "experimental_scaled_notebook",
+      "collision": true,
+      "dynamic": true,
+      "kind": "asset",
+      "orientation_wxyz": [
+        0.29883623873011994,
+        0.6408563820557887,
+        0.6408563820557887,
+        0.29883623873011994
+      ],
+      "position": [
+        -0.5379580730977946,
+        0.12300000000000001,
+        1.6051983670141947
+      ]
+    },
+    "book_right_rear": {
+      "asset_role": "notebook",
+      "class_label": "experimental_scaled_notebook",
+      "collision": true,
+      "dynamic": true,
+      "kind": "asset",
+      "orientation_wxyz": [
+        0.29883623873011994,
+        0.6408563820557887,
+        0.6408563820557887,
+        0.29883623873011994
+      ],
+      "position": [
+        -0.8137340726206267,
+        0.21700000000000003,
+        1.836601906501349
+      ]
+    },
+    "guide_left_inner": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.25,
+          0.28,
+          0.31
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "orientation_wxyz": [
+        0.9396926207859084,
+        0,
+        0.3420201433256687,
+        0
+      ],
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        -0.4226815265883221,
+        -0.022499999999999992,
+        1.5325568888325565
+      ],
+      "size": [
+        1.05,
+        0.015,
+        0.06
+      ]
+    },
+    "guide_left_outer": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.25,
+          0.28,
+          0.31
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "orientation_wxyz": [
+        0.9396926207859084,
+        0,
+        0.3420201433256687,
+        0
+      ],
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        -0.4226815265883221,
+        -0.3175,
+        1.5325568888325565
+      ],
+      "size": [
+        1.05,
+        0.015,
+        0.06
+      ]
+    },
+    "guide_right_inner": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.25,
+          0.28,
+          0.31
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "orientation_wxyz": [
+        0.9396926207859084,
+        0,
+        0.3420201433256687,
+        0
+      ],
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        -0.4226815265883221,
+        0.022499999999999992,
+        1.5325568888325565
+      ],
+      "size": [
+        1.05,
+        0.015,
+        0.06
+      ]
+    },
+    "guide_right_outer": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.25,
+          0.28,
+          0.31
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "orientation_wxyz": [
+        0.9396926207859084,
+        0,
+        0.3420201433256687,
+        0
+      ],
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        -0.4226815265883221,
+        0.3175,
+        1.5325568888325565
+      ],
+      "size": [
+        1.05,
+        0.015,
+        0.06
+      ]
+    },
+    "key": {
+      "intensity": 800,
+      "kind": "light",
+      "light": {
+        "color": [
+          1,
+          0.96,
+          0.9
+        ],
+        "type": "distant"
+      },
+      "orientation_wxyz": [
+        0.8934292207829864,
+        0.34323370262843894,
+        -0.1039228032044394,
+        -0.2705086020909677
+      ]
+    },
+    "overview": {
+      "camera": {
+        "capture_window": {
+          "end_step": 300,
+          "start_step": 0
+        },
+        "clipping_range_m": [
+          0.01,
+          100
+        ],
+        "focal_length_mm": 28,
+        "focus_distance_m": 3.7353045391239523,
+        "resolution": [
+          960,
+          540
+        ]
+      },
+      "kind": "camera",
+      "orientation_wxyz": [
+        0.7773084766235627,
+        0.5323617425471152,
+        0.18942760577840784,
+        0.27658577224871034
+      ],
+      "position": [
+        2.2,
+        -2.7,
+        2.6
+      ],
+      "preview_fps": 1,
+      "record_fps": 30
+    },
+    "ramp_left": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.12,
+          0.42,
+          0.48
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "orientation_wxyz": [
+        0.9396926207859084,
+        0,
+        0.3420201433256687,
+        0
+      ],
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        -0.45,
+        -0.17,
+        1.5
+      ],
+      "size": [
+        1.05,
+        0.28,
+        0.025
+      ]
+    },
+    "ramp_left_high_cap": {
+      "collision": false,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.18,
+          0.2,
+          0.23
+        ],
+        "metallic": 0.6,
+        "roughness": 0.6
+      },
+      "orientation_wxyz": [
+        0.9396926207859084,
+        0,
+        0.3420201433256687,
+        0
+      ],
+      "position": [
+        -0.7844627212179471,
+        -0.17,
+        1.7512758820065526
+      ],
+      "size": [
+        0.08,
+        0.06,
+        0.02
+      ]
+    },
+    "ramp_left_high_post": {
+      "collision": false,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.18,
+          0.2,
+          0.23
+        ],
+        "metallic": 0.6,
+        "roughness": 0.6
+      },
+      "position": [
+        -0.7844627212179471,
+        -0.17,
+        1.3554776165939506
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.7228526331879013
+      ]
+    },
+    "ramp_left_low_cap": {
+      "collision": false,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.18,
+          0.2,
+          0.23
+        ],
+        "metallic": 0.6,
+        "roughness": 0.6
+      },
+      "orientation_wxyz": [
+        0.9396926207859084,
+        0,
+        0.3420201433256687,
+        0
+      ],
+      "position": [
+        -0.17446272121794715,
+        -0.17,
+        1.239425106988412
+      ],
+      "size": [
+        0.08,
+        0.06,
+        0.02
+      ]
+    },
+    "ramp_left_low_post": {
+      "collision": false,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.18,
+          0.2,
+          0.23
+        ],
+        "metallic": 0.6,
+        "roughness": 0.6
+      },
+      "position": [
+        -0.17446272121794715,
+        -0.17,
+        1.0995522290848803
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.21100185816976058
+      ]
+    },
+    "ramp_right": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.55,
+          0.3,
+          0.08
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "orientation_wxyz": [
+        0.9396926207859084,
+        0,
+        0.3420201433256687,
+        0
+      ],
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        -0.45,
+        0.17,
+        1.5
+      ],
+      "size": [
+        1.05,
+        0.28,
+        0.025
+      ]
+    },
+    "ramp_right_high_cap": {
+      "collision": false,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.18,
+          0.2,
+          0.23
+        ],
+        "metallic": 0.6,
+        "roughness": 0.6
+      },
+      "orientation_wxyz": [
+        0.9396926207859084,
+        0,
+        0.3420201433256687,
+        0
+      ],
+      "position": [
+        -0.7844627212179471,
+        0.17,
+        1.7512758820065526
+      ],
+      "size": [
+        0.08,
+        0.06,
+        0.02
+      ]
+    },
+    "ramp_right_high_post": {
+      "collision": false,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.18,
+          0.2,
+          0.23
+        ],
+        "metallic": 0.6,
+        "roughness": 0.6
+      },
+      "position": [
+        -0.7844627212179471,
+        0.17,
+        1.3554776165939506
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.7228526331879013
+      ]
+    },
+    "ramp_right_low_cap": {
+      "collision": false,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.18,
+          0.2,
+          0.23
+        ],
+        "metallic": 0.6,
+        "roughness": 0.6
+      },
+      "orientation_wxyz": [
+        0.9396926207859084,
+        0,
+        0.3420201433256687,
+        0
+      ],
+      "position": [
+        -0.17446272121794715,
+        0.17,
+        1.239425106988412
+      ],
+      "size": [
+        0.08,
+        0.06,
+        0.02
+      ]
+    },
+    "ramp_right_low_post": {
+      "collision": false,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.18,
+          0.2,
+          0.23
+        ],
+        "metallic": 0.6,
+        "roughness": 0.6
+      },
+      "position": [
+        -0.17446272121794715,
+        0.17,
+        1.0995522290848803
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.21100185816976058
+      ]
+    },
+    "receivers": {
+      "camera": {
+        "capture_window": {
+          "end_step": 300,
+          "start_step": 0
+        },
+        "clipping_range_m": [
+          0.01,
+          100
+        ],
+        "focal_length_mm": 38,
+        "focus_distance_m": 2.0806969986040738,
+        "resolution": [
+          960,
+          540
+        ]
+      },
+      "kind": "camera",
+      "orientation_wxyz": [
+        0.9999162490173096,
+        0.004805790306051633,
+        0.012016488472689612,
+        -5.7753560732298126e-05
+      ],
+      "position": [
+        0.37,
+        -0.02,
+        3.3
+      ],
+      "preview_fps": 1,
+      "record_fps": 30
+    },
+    "studio_floor": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.075,
+          0.085,
+          0.1
+        ],
+        "metallic": 0.05,
+        "roughness": 0.55
+      },
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        0,
+        0,
+        -0.06
+      ],
+      "size": [
+        6,
+        4,
+        0.1
+      ]
+    },
+    "tabletop_proxy": {
+      "collision": true,
+      "kind": "box",
+      "material": {
+        "color": [
+          0.22,
+          0.24,
+          0.26
+        ],
+        "metallic": 0.05,
+        "opacity": 0.0,
+        "roughness": 0.55
+      },
+      "physics": {
+        "dynamic_friction": 0.5,
+        "restitution": 0.05,
+        "static_friction": 0.6
+      },
+      "position": [
+        0,
+        0,
+        0.9711915
+      ],
+      "size": [
+        2.43643066,
+        0.71628452,
+        0.04571959999999997
+      ],
+      "support_surfaces": {
+        "top": {
+          "exclude": [],
+          "max_xy": [
+            1.21821533,
+            0.35814226
+          ],
+          "min_xy": [
+            -1.21821533,
+            -0.35814226
+          ],
+          "z_m": 0.022859799999999986
+        }
+      }
+    },
+    "workbench": {
+      "asset_lights": "disabled",
+      "asset_physics": "visual_only",
+      "asset_role": "workbench",
+      "kind": "asset",
+      "support_surfaces": {
+        "tabletop": {
+          "exclude": [],
+          "max_xy": [
+            1.21821533,
+            0.35814226
+          ],
+          "min_xy": [
+            -1.21821533,
+            -0.35814226
+          ],
+          "z_m": 0.9940513
+        }
+      }
+    }
+  },
+  "observation": {
+    "record_contact_pairs": true,
+    "sample_interval_steps": 1,
+    "strict_start": true
+  },
+  "presentation": {
+    "budget": {
+      "max_cameras": 2,
+      "max_recording_bytes": 1073741824,
+      "min_free_bytes": 2147483648
+    },
+    "capture": {
+      "anti_aliasing": "dlaa",
+      "depth_of_field": false,
+      "exposure_ev": 0.0,
+      "exposure_mode": "manual",
+      "fps": 30,
+      "motion_blur": false,
+      "renderer": "RealTimePathTracing",
+      "resolution": [
+        960,
+        540
+      ]
+    },
+    "diagnostics": {
+      "keyframe_interval_s": 1,
+      "png_seconds": 5
+    },
+    "output": {
+      "codec": "h264",
+      "crf": 18,
+      "pixel_format": "yuv420p",
+      "preset": "medium"
+    },
+    "profile": "technical_showcase_1080p"
+  },
+  "run": {
+    "physics_device": "cpu",
+    "physics_dt_s": 0.016666666666666666,
+    "scope": "same-machine fixed-layout repeatability; no layout-generalization or timing-order claim",
+    "seed": 42,
+    "steps": 720
+  },
+  "scene_id": "catalog-gravity-cell",
+  "schema": "simscene.catalog_gravity_cell.recipe.v1",
+  "schema_version": 1,
+  "visual_scope": {
+    "notebook": "Actual locked ABO GLB, experimentally scaled to longest extent 0.15m and mass 0.12kg; no primitive substitute.",
+    "recording": "Optional inherited diagnostic views: 960x540,30fps,first300steps. No final 1080p25s delivery claim.",
+    "workbench": "Bare table member from the locked NVIDIA PackingTable closure, visual-only; original materials retained. Authored centimeters normalize by standard exporter. Tabletop proxy and all routing supports are explicit ordinary geometry."
+  },
+  "world": {
+    "units": "m",
+    "up_axis": "Z"
+  }
+}

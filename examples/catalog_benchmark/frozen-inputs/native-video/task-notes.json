@@ -1,0 +1,15 @@
+{
+  "source": "source-lock.json",
+  "seed_scene": "seed-scene.json",
+  "path_tokens": {
+    "${TASK_ROOT}": "this trial work/task directory",
+    "${CACHE_ROOT}": "this trial configured source cache"
+  },
+  "support_measurement": "native selected source dimensions/source unit metadata are facts, not a prescribed layout solution",
+  "physical_seed_validation": "A host-only seed preflight completed720steps and passed all four actual-sphere support/drop/containment/settling checks with input/evidence integrity. This is not a trial verdict; a fresh trialrun is mandatory.",
+  "model_hints": [
+    "orientation_wxyz is exact field name",
+    "job_status wait_seconds>0 needs caller-chosen NEW absolute receipt_path in own work"
+  ],
+  "visual_seed_validation": "Initial camera/light proposal failed actual native RGB visibility after balls settled in a dark baffle shadow. Improve cameras and/or fill lights without changing physical actors. The same strict pixel/motion thresholds apply to both versions; do not lower the predicates."
+}

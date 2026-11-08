@@ -1,0 +1,28 @@
+[
+  {
+    "mode": "release",
+    "legacy_schemas_and_annotations_equal": 46,
+    "tool_count": 52,
+    "new_tools": [
+      "asset_generate",
+      "asset_plan",
+      "asset_prepare",
+      "catalog_discover",
+      "catalog_search",
+      "scene_compile_recipe"
+    ]
+  },
+  {
+    "mode": "pip",
+    "legacy_schemas_and_annotations_equal": 46,
+    "tool_count": 52,
+    "new_tools": [
+      "asset_generate",
+      "asset_plan",
+      "asset_prepare",
+      "catalog_discover",
+      "catalog_search",
+      "scene_compile_recipe"
+    ]
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "source": "Frozen simscene-v40 / da42fdd8 / verification/passive_network.py",
+  "sha256": "db21f1a4991fc67e3402f8a1de57da8419cb07ca5032ed91f06cdff89c73191e",
+  "modified": false,
+  "scope": "Exact legacy core for frozen external-v3 orchestration CPU tests. Current network semantics are tested separately; v3 guards remain unchanged and must reject a different current kernel. Relative imports use the unchanged P1 mechanism kernel and shared unchanged dependencies.",
+  "license": "Same repository Apache-2.0 source; see root LICENSE."
+}

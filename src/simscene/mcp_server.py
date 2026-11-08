@@ -27,6 +27,53 @@ def threaded_tool(*decorator_args, **decorator_kwargs):
 _read_local = ToolAnnotations(readOnlyHint=True, openWorldHint=False)
 _read_network = ToolAnnotations(readOnlyHint=True, openWorldHint=True)
 
+@threaded_tool(annotations=_read_network)
+def catalog_search(query: str, filters: dict | None = None, limit: int = 8, cursor: str | None = None) -> dict:
+    """Search reviewed sources with bounded metadata only. Read known source IDs from simscene://catalog/sources or simscene catalog sources; copy those IDs into filters.source_ids for explicit selection. Detailed records are linked, not inlined."""
+    from .catalog.service import search
+    return search(query,filters,limit,cursor)
+
+
+@threaded_tool(annotations=_read_network)
+def catalog_discover(query: str, budget: dict | None = None, cursor: str | None = None) -> dict:
+    """Discover bounded HF repository candidates, not enabled libraries. No models, conversion or simulation; review access/license/layout facts before registering a source."""
+    from .catalog.service import discover
+    return discover(query,budget,cursor)
+
+
+@threaded_tool(annotations=_read_local)
+def scene_compile_recipe(scene_id: str, recipe_id: str, parameters: dict, bindings: dict) -> dict:
+    """Compile a versioned recipe into ordinary scene_apply operations at the current base_revision. Supply role bindings with asset_path and pinned asset_binding. This does not edit or run the scene and gives no physical pass; apply the full batch atomically, then freeze and verify a new trial."""
+    from .recipes.compile import compile_recipe
+    from .scene import SceneStore
+    return compile_recipe(recipe_id,parameters,bindings,SceneStore().get(scene_id))
+
+
+@threaded_tool()
+def asset_generate(recipe_id: str, parameters: dict, request_id: str | None = None) -> dict:
+    """Start a durable job for an explicitly configured independent Sand3D runtime and a shipped fixed template (guide_plate_v1 or open_receiver_v1). Accepts structured dimensions only, never external programs. Completion returns a generated AssetRef for ordinary asset_plan/asset_prepare; generation alone gives no physical pass."""
+    from .generation.jobs import start
+    return start(recipe_id,parameters,request_id)
+
+@threaded_tool()
+def asset_plan(asset_ref: dict, profile_id: str = 'visual_prop_v1', parameters: dict | None = None, budget_bytes: int | None = None) -> dict:
+    """Freeze a selected revision, role, toolchain and transfer budget without downloading models or starting physics. Unknown constraints block preparation."""
+    from .acquisition.plans import make_plan
+    return make_plan(asset_ref,profile_id,parameters,budgets={'download_bytes':budget_bytes} if budget_bytes is not None else None)
+
+@threaded_tool()
+def asset_prepare(plan_id: str, request_id: str | None = None) -> dict:
+    """Start a persistent acquisition/preparation job; poll job_status. Preparation alone does not establish runtime physics success. Reuse request_id to reconnect."""
+    from .preparation.jobs import start
+    return start(plan_id,request_id)
+
+@server.resource('simscene://catalog/sources')
+def catalog_sources_resource() -> str:
+    """Reviewed source states and provenance; metadata availability is not integration acceptance."""
+    import json
+    from .catalog.service import sources
+    return json.dumps(sources(),ensure_ascii=False)
+
 @threaded_tool(annotations=_read_local)
 def environment_probe() -> dict:
     """Inspect configured runtime and GPU without starting Isaac Sim."""
@@ -130,16 +177,32 @@ def scene_get(scene_id: str) -> dict:
 
 @threaded_tool()
 def scene_apply(scene_id: str, base_revision: int, request_id: str, operations: list[dict]) -> dict:
-    """Atomically edit a revision. Supported kinds: box, sphere, asset, camera, light, counter; make ground from a static box. A light can use light={"type":"dome"}, {"type":"sphere","radius_m":0.2}, or {"type":"rect","width_m":2,"height_m":1}; default is distant. Configure intensity, optional light color/exposure and transform. A counter uses counter={"source":"spawned"} or {"source":"verified_archives","class_label":"red"}; verified counts require case-checked archiving. A non-colliding static box can use indicator={"robot_id":"arm"} to show the observed controller phase. A pose_follower can opt into reactive obstacle planning with avoid_obstacles listing static collision-enabled primitive IDs and obstacle_margin_m; this is not collision safety certification. A USD asset requires the local simulation-host asset_path returned by acquisition, not its online URL. Example: {"op":"add","id":"box1","object":{"kind":"box","size":[0.2,0.2,0.2],"position":[0,0,0.1]}}. IDs belong on the operation; object uses kind. Update uses {"op":"update","id":"box1","changes":{...}}. Also supports remove, place_on, arrange_line, arrange_grid, align and look_at. Imported supports need support_surfaces={name:{min_xy:[x,y],max_xy:[x,y],z_m:z,exclude:[]}} in normalized local metres; place_on uses support_surface and offset_xy with optional avoid_ids/keepout_bounds/clearance_m. arrange_grid uses ids,support,support_surface,columns,gap_m; align uses ids,axis,edge,value_m. set_presentation accepts presentation.profile=technical_showcase_1080p and capture/output/budget/diagnostics; camera settings live under camera={resolution:[width,height],focal_length_mm:35,horizontal_aperture_mm:36,...}. Native 30fps records every two physics steps. For a static box surface use {"op":"bind_conveyor","id":"belt","speed_m_s":0.1,"direction":[1,0,0]}; imported assets cannot be conveyor surfaces directly. A camera can use camera_orbit={"center":[0,0,0.5],"radius_m":2,"height_m":1,"duration_s":8} for a circular view."""
+    """Atomically edit a revision. For a prepared asset, use asset_path=result.root and asset_binding={"manifest_path":result.manifest_path,"manifest_sha256":result.manifest_sha256} with exactly these two binding keys from the preparation result. A rigid_prop_v1 asset requires dynamic=true. Set rotation with normalized orientation_wxyz=[w,x,y,z]. Supported kinds: box, sphere, cylinder, capsule, compound, joint, asset, camera, light, counter; make ground from a static box. A light can use light={"type":"dome"}, {"type":"sphere","radius_m":0.2}, or {"type":"rect","width_m":2,"height_m":1}; default is distant. Configure intensity, optional light color/exposure and transform. A counter uses counter={"source":"spawned"} or {"source":"verified_archives","class_label":"red"}; verified counts require case-checked archiving. A non-colliding static box can use indicator={"robot_id":"arm"} to show the observed controller phase. A pose_follower can opt into reactive obstacle planning with avoid_obstacles listing static collision-enabled primitive IDs and obstacle_margin_m; this is not collision safety certification. A USD asset requires the local simulation-host asset_path returned by acquisition, not its online URL. Example: {"op":"add","id":"box1","object":{"kind":"box","size":[0.2,0.2,0.2],"position":[0,0,0.1]}}. IDs belong on the operation; object uses kind. Update uses {"op":"update","id":"box1","changes":{...}}. Also supports remove, place_on, arrange_line, arrange_grid, align and look_at. compound uses 1..128 local primitive parts under one unscaled rigid body; part visible=false hides its rendered proxy while retaining collision. An acquired asset with asset_physics=visual_only and asset_lights=disabled can set rigid_attachment={body:compound_ID}; its position/orientation then define a local pose under that dynamic compound. It follows USD hierarchy, with no runtime pose commands. Measure the original mesh and disclose its collision proxy approximation. joint={type:revolute|prismatic|spherical|fixed|d6,body0:null|ID,body1:ID,axis:X|Y|Z,local_pos0:[...],local_pos1:[...],lower_limit:...,upper_limit:...}; angular limits are degrees, linear limits metres. D6 instead requires dof_limits with all6 transX/transY/transZ/rotX/rotY/rotZ values: free, locked, or [low,high] with low<high; no axis/lower_limit fields. Joint X is twist; local_rot0_wxyz/local_rot1_wxyz define frames. D6 swing bounds form a pyramid, not a cone; use measured relative frame quaternion rather than global Euler components. Primitive kind=joint remains passive, with no drive targets. A prepared articulated_prop_v1 asset can use mechanism={"commands":[{"joint_id":"main","trigger":{"type":"at_step","physics_step":0},"target_position":0.5,"position_unit":"rad","stiffness":400,"damping":12,"max_effort":22}]}; use manifest joint IDs and limits, rad for hinges or m for sliders. Commands declare a schedule; actual joint response is observed separately. Initial body poses define initial state. Nonuniform legacy primitives need a baked compound frame when jointed. set_observation with observation={sample_interval_steps:1,strict_start:true,record_contact_pairs:true} requests every actual physics step, a measured reset zero after SDK warmup, and actual per-step contact records; no body setters run during the task. Imported supports need support_surfaces={name:{min_xy:[x,y],max_xy:[x,y],z_m:z,exclude:[]}} in normalized local metres; place_on uses support_surface and offset_xy with optional avoid_ids/keepout_bounds/clearance_m. arrange_grid uses ids,support,support_surface,columns,gap_m; align uses ids,axis,edge,value_m. set_presentation accepts presentation.profile=technical_showcase_1080p and capture/output/budget/diagnostics; camera settings live under camera={resolution:[width,height],focal_length_mm:35,horizontal_aperture_mm:36,...}. Native 30fps records every two physics steps. For a static box surface use {"op":"bind_conveyor","id":"belt","speed_m_s":0.1,"direction":[1,0,0]}; imported assets cannot be conveyor surfaces directly. A camera can use camera_orbit={"center":[0,0,0.5],"radius_m":2,"height_m":1,"duration_s":8} for a circular view."""
     from .scene import SceneStore
     return SceneStore().apply(scene_id, base_revision, request_id, operations)
 
 @threaded_tool(annotations=_read_local)
-def scene_measure(scene_id: str, ids: list[str]) -> dict:
-    """Measure final world render bounds and bottom anchors, including imported units/axes/variants. Imported outer bbox is not a support surface."""
+def scene_measure(scene_id: str, ids: list[str], include_overlap_candidates: bool = False) -> dict:
+    """Measure authored world render bounds and bottom anchors, including imported units/axes/variants and rigid visual attachments. Optional include_overlap_candidates returns AABB intersections among selected objects to review initial layout interference; empty compound space and deliberate contact can be false positives. It does not certify physical clearance. Imported outer bbox is not a support surface."""
     from .scene import SceneStore
     from .placement import measure
-    return measure(SceneStore().get(scene_id),ids)
+    return measure(SceneStore().get(scene_id),ids,include_overlap_candidates)
+
+@threaded_tool(annotations=_read_local)
+def scene_plan_rope(scene_id: str, prefix: str, points: list[list[float]], radius_m: float = .005, max_segment_m: float = .025, linear_density_kg_m: float = .06, attachments: dict | None = None, physics: dict | None = None, self_collision: bool = True) -> dict:
+    """Propose real colliding capsule links connected by passive spherical joints. points are a metric world polyline, including deliberate slack. Optional start/end attachments each use body and local_position_m. Apply returned ordinary operations after review. This is not a distance-only or animated rope; routing over a free pulley and actual tension transfer need physical trials and broken-end controls."""
+    from .scene import SceneStore,validate,SceneError
+    from .mechanisms import segmented_rope
+    import copy
+    scene=SceneStore().get(scene_id)
+    plan=segmented_rope(prefix,points,radius_m,max_segment_m,linear_density_kg_m,attachments,physics,self_collision)
+    probe=copy.deepcopy(scene)
+    for op in plan['operations']:
+        if op['id'] in probe['objects']:raise SceneError('rope object ID already exists: '+op['id'])
+        probe['objects'][op['id']]=op['object']
+    errors=validate(probe)
+    if errors:raise SceneError(str(errors))
+    return {**plan,'base_revision':scene['revision']}
 
 @threaded_tool(annotations=_read_local)
 def scene_plan_presentation(scene_id: str, subject_ids: list[str], regions: list[dict] | None = None, profile: str = 'technical_showcase_1080p', duration_s: float = 75, max_cameras: int = 2, azimuth_deg: float = -65) -> dict:
@@ -160,10 +223,10 @@ def run_presentation_events(job_id: str) -> dict:
     return {'run_id':_job(job_id)['run_id'],'events':events(_job(job_id)['directory'])}
 
 @threaded_tool()
-def video_export(segments: list[dict], destination: str, output_resolution: list[int] | None = None, output: dict | None = None, allow_upscale: bool = False) -> dict:
+def video_export(segments: list[dict], destination: str, output_resolution: list[int] | None = None, output: dict | None = None, allow_upscale: bool = False, font_file: str | None = None) -> dict:
     """Edit intact real run recordings. Segments require run_directory,camera,start_sim_time_s,end_sim_time_s; optional speed,title. Preserve native cadence, save source hashes and sim/output time mapping. Upscaling requires explicit opt-in."""
     from .video_tools import export
-    return export(segments,destination,output_resolution,output,allow_upscale)
+    return export(segments,destination,output_resolution,output,allow_upscale,font_file=font_file)
 
 @threaded_tool()
 def video_inspect(path: str, output_dir: str | None = None, representative_count: int = 5, job_id: str | None = None, camera: str | None = None) -> dict:
@@ -277,9 +340,14 @@ def simulation_start(scene_id: str, steps: int = 120, seed: int | None = None, c
     from .jobs import start
     return start(scene_id, steps, seed, case_path, continue_on_controller_error, archive_verified_objects, case, request_id)
 
-@threaded_tool(annotations=_read_local)
-def job_status(job_id: str) -> dict:
-    """Check a job started in this server session."""
+@threaded_tool()
+def job_status(job_id: str, wait_seconds: float = 0, receipt_path: str | None = None) -> dict:
+    """Check a job; optionally wait machine-side and save a compact completion receipt. For wait_seconds>0, the caller must choose a new unused absolute receipt_path in their own output directory. A timeout preserves the same job_id; wait again with a new unused receipt path. Waiting grants no physical acceptance. Configure a client timeout longer than wait_seconds."""
+    if wait_seconds:
+        if receipt_path is None:raise ValueError('waiting requires a new receipt_path')
+        from .workflows import wait_job
+        return wait_job(job_id,receipt_path,wait_seconds)
+    if receipt_path is not None:raise ValueError('receipt_path requires positive wait_seconds')
     from .jobs import status
     return status(job_id)
 
@@ -302,10 +370,16 @@ def run_verify_lock(job_id: str) -> dict:
     return verify_lock(job_id)
 
 @threaded_tool(annotations=_read_local)
-def run_verify(job_id: str, case_path: str | None = None, case_type: str | None = None) -> dict:
-    """Check completed physical evidence against an independent local case; defaults to the case pinned at simulation_start. Types: contact, suction, moving, repeated, domino, parallel, stream. A single-case pass is not full acceptance."""
+def run_verify(job_id: str, case_path: str | None = None, case_type: str | None = None, mode: str = 'positive', reference_job_id: str | None = None) -> dict:
+    """Check completed physical evidence against an independent pinned local case. Types: contact, suction, moving, repeated, domino, parallel, stream, mechanism, passive_network. Passive schemas infer their type. Mechanism detached_drawer and network no_trigger/broken_rope/locked_door modes require the matching reference_job_id and isolated declared changes. A single positive network run does not accept the whole stage: use run_verify_passive_suite with its frozen required controls. This verifier only reads measurements and never releases or moves a mechanism."""
     from .jobs import verify_task
-    return verify_task(job_id,case_path,case_type)
+    return verify_task(job_id,case_path,case_type,mode,reference_job_id)
+
+@threaded_tool(annotations=_read_local)
+def run_verify_passive_suite(positive_job_id: str, control_job_ids: dict[str,str], case_path: str | None = None) -> dict:
+    """Read-only acceptance of a frozen passive-network positive plus its required isolated controls. control_job_ids maps no_trigger, broken_rope and/or locked_door to completed distinct job IDs. Case bytes, source changes, sampled physical clocks, runtime settings and evidence locks are checked; missing controls cannot accept a P2/P3 stage. This checks physical acceptance, not final video or artistic quality."""
+    from .jobs import verify_passive_suite
+    return verify_passive_suite(positive_job_id,control_job_ids,case_path)
 
 @threaded_tool(annotations=_read_local)
 def run_verify_evidence(job_id: str) -> dict:

@@ -1,0 +1,14 @@
+{
+  "source": "source-lock.json",
+  "seed_scene": null,
+  "path_tokens": {
+    "${TASK_ROOT}": "this trial work/task directory",
+    "${CACHE_ROOT}": "this trial configured source cache"
+  },
+  "support_measurement": "native selected source dimensions/source unit metadata are facts, not a prescribed layout solution",
+  "physical_seed_validation": "pending independent runtime test; no old run verdict is supplied",
+  "model_hints": [
+    "orientation_wxyz is exact field name",
+    "job_status wait_seconds>0 needs caller-chosen NEW absolute receipt_path in own work"
+  ]
+}

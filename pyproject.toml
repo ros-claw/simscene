@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rosclaw-simscene"
-version = "0.1.0.dev4"
+version = "0.2.0.dev1"
 requires-python = ">=3.10"
 description = "Agent-oriented simulation scene tools"
 readme = "README.md"
@@ -17,10 +17,14 @@ Issues = "https://github.com/ros-claw/simscene/issues"
 
 [project.optional-dependencies]
 ik = ["numpy>=1.24", "scipy>=1.10"]
-build = ["packaging>=23"]
+build = ["packaging>=23", "setuptools>=61", "wheel>=0.40"]
+replay = ["numpy>=1.24"]
 
 [project.scripts]
 simscene = "simscene.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+simscene = ["catalog/data/*.yaml", "preparation/data/*.json", "recipes/data/*.json"]

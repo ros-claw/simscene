@@ -51,4 +51,6 @@ def events(directory):
     for name,event in result.get('archived_objects',{}).items():
         output.append({'kind':'verified_archive','object_id':name,'physics_step':event['physics_step'],'sim_time_s':event['physics_step']/60,'class_label':event.get('class_label'),'scope':'verified against this run pinned case'})
     for event in result.get('spawn_events',[]):output.append({'kind':'spawn','object_id':event['id'],'physics_step':event['physics_step'],'sim_time_s':event['physics_step']/60})
+    from .presentation_native import frozen_events
+    output.extend(frozen_events(root,result))
     return sorted(output,key=lambda e:e['physics_step'])

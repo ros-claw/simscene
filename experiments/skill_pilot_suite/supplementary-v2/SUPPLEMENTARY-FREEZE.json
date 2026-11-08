@@ -1,0 +1,20 @@
+{
+  "schema": "simscene.supplementary_checker_freeze.v2",
+  "original_design_freeze_sha256": "a0d4b4a39b9e5742d0165c537bb360d06d6a258f8a027edd84129680952da379",
+  "original_checker_sha256": "adccb224e983e2826a9dd220f63e802acb374b09e9f6fc62ee529558715c6061",
+  "supplementary_checker_sha256": "36cc889764bc96e3136c2869c1a588c66a138aa709d520594e2f2413010441f5",
+  "files_sha256": {
+    "README.md": "5af58acfee7672e6e07fed74ad8f5ef151fcad8d6e89cb08b01ac857a90c43fa",
+    "score_v2.py": "36cc889764bc96e3136c2869c1a588c66a138aa709d520594e2f2413010441f5",
+    "original-to-supplementary.diff": "e395bf4551d6112ba42268de7f5b62a129a77a3a37a576af3d32058e60b01aa7",
+    "CHANGE-RECORD.json": "c68c10e6c16368224d65b70aec1ee2f1c95221220ffba88bb1b2de49c80b618e",
+    "test_interfaces_cpu.py": "b3e36fb113d12474963f4d77eb71a246ee4ed5a72ce58c592295535dd48f5dcb",
+    "CPU-REGRESSION-RESULT.json": "18753d2b14bb20f73a5acb2eaa49b96a7abe6e6c58246e0d7c1752fea56a9964",
+    "build_supplementary.py": "a92258dd8fbcb65c70de4b51a44ba18de253128335d6d9b3c2b93be3d8dd6be7"
+  },
+  "posthoc_exploratory": true,
+  "original_outcomes_replaced": false,
+  "physical_thresholds_or_numeric_predicates_changed": false,
+  "new_native_or_builder_runs": 0,
+  "native_evidence_runs_reverified_intact": 10
+}

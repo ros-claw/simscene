@@ -1,0 +1,9 @@
+{
+  "schema": "simscene.supplementary_v2_cpu_regression.v1",
+  "tests": 15,
+  "passed": true,
+  "native_simulations_started": 0,
+  "model_or_builder_attempts_started": 0,
+  "output": "...............\n----------------------------------------------------------------------\nRan 15 tests in 0.095s\n\nOK\n",
+  "prepublication_harness_correction": "Optional test-design-root environment-path edit initially had one unmatched parenthesis; corrected before final test run. This did not modify the checker or any task predicate."
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "simscene.catalog_efficiency_acceptance.v1",
+  "task_id": "native-joint",
+  "group": "B",
+  "steps": 720,
+  "physics_hz": 60,
+  "seed": 42,
+  "required_objects": {
+    "cabinet": {
+      "kind": "asset",
+      "dynamic": true,
+      "mechanism": {
+        "commands": [
+          {
+            "joint_id": "main",
+            "trigger": {
+              "type": "at_step",
+              "physics_step": 0
+            },
+            "target_position": 1.3962634015954636,
+            "position_unit": "rad",
+            "stiffness": 400.0,
+            "damping": 12.0,
+            "max_effort": 22.0
+          },
+          {
+            "joint_id": "main",
+            "trigger": {
+              "type": "at_step",
+              "physics_step": 240
+            },
+            "target_position": 0.0,
+            "position_unit": "rad",
+            "stiffness": 400.0,
+            "damping": 12.0,
+            "max_effort": 22.0
+          }
+        ]
+      }
+    },
+    "ground": {
+      "kind": "box"
+    }
+  },
+  "dynamic_object_ids": [
+    "cabinet"
+  ],
+  "payloads": {},
+  "source_objects": {
+    "cabinet": {
+      "required_file_sha256": [
+        "72dbc3b8479048ff07b838a951c4dd58617eeddc8668a861415a5ca087f32be5"
+      ],
+      "profile_id": "articulated_prop_v1",
+      "source_ref": {
+        "asset_id": "ds_R021_02",
+        "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+        "source_id": "usdcraft",
+        "variant_id": null
+      },
+      "root_sha256": "72dbc3b8479048ff07b838a951c4dd58617eeddc8668a861415a5ca087f32be5"
+    }
+  },
+  "mechanism_case": "mechanism-case.json",
+  "required_capability_tools": [
+    "asset_prepare"
+  ],
+  "required_capability_files": [
+    "preparation/articulation.py",
+    "worker/mechanism.py"
+  ],
+  "capability_requirement": "Preserved imported native articulation with generic prepared joint binding, bounded position drive commands and independent actual joint/link readback."
+}

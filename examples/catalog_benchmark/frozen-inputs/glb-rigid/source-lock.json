@@ -1,0 +1,14 @@
+{
+  "root_relative": "assets/source.glb",
+  "sha256": "67d61db31084d820ca9b1b0d2d3761662f6a5532944573afceee8f57c8151845",
+  "source_ref": {
+    "source_id": "abo-glb",
+    "asset_id": "B01DN8TB5U",
+    "revision": "c7c8293fed3b7ab122ef5d7896521a187e0962d7"
+  },
+  "license": {
+    "status": "known",
+    "license": "CC-BY-4.0"
+  },
+  "staged_bytes": 524720
+}

@@ -1,0 +1,16 @@
+{
+  "joint_id": "main",
+  "mode": "position",
+  "stiffness": 400,
+  "damping": 12,
+  "max_force": 22,
+  "targets_rad": [
+    1.3962634015954636,
+    0
+  ],
+  "command_steps": [
+    0,
+    240
+  ],
+  "note": "Experimental drive forces, not manufacturer performance; final actual angle/anchors/limits checked separately."
+}

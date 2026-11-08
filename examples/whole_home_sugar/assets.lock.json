@@ -1,0 +1,757 @@
+{
+  "schema": "simscene.selected_assets.v1",
+  "assets": {
+    "living_rolling_pin_mesh": {
+      "source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/sm_kitchenware_rollingPin_a01_01.usd",
+      "package_sha256": "6bde31365c70983d8e1e9796952c23e3cc1777f66ef092759d49d4d2f5fd8845",
+      "files": [
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/sm_kitchenware_rollingPin_a01_01.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/_/sm_kitchenware_rollingPin_a01_01.usd",
+          "size": 21623,
+          "sha256": "1bfdd372057984e0f94b93f343d4ad5f8cd9826fc1e55bd292d03a1d5821029f"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/MuJoCo/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/MuJoCo/disabled.usda",
+          "size": 4329,
+          "sha256": "d0cf4f4b6025c52dc3241203976cd1ecee1392e5c2b7c134f6dccfd79859a538"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/MuJoCo/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/MuJoCo/enabled.usda",
+          "size": 5365,
+          "sha256": "972b2eeee0184be34aa71d1cc0323fcd12fdd21052b8dfc5f26f431bf7ea8d8c"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/Newton/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/Newton/disabled.usda",
+          "size": 4329,
+          "sha256": "d0cf4f4b6025c52dc3241203976cd1ecee1392e5c2b7c134f6dccfd79859a538"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/Newton/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/Newton/enabled.usda",
+          "size": 5034,
+          "sha256": "75616bbb36086f3f9ff03e2cd25f42bd8004ef27a6c02fbdaaa60b78466b46e4"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/PhysX/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/PhysX/disabled.usda",
+          "size": 4329,
+          "sha256": "d0cf4f4b6025c52dc3241203976cd1ecee1392e5c2b7c134f6dccfd79859a538"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/PhysX/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/PhysX/enabled.usda",
+          "size": 4745,
+          "sha256": "5eace896282f97debbb2ed17b019d402902e517b23d2aef16bf7ae50f23d2792"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/base.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/base.usda",
+          "size": 10877,
+          "sha256": "3d094e7cba87ad12761de9796c56078fa2322dc068ee9108bded1d0a539168a2"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/Physics/physics.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/Physics/physics.usda",
+          "size": 4869,
+          "sha256": "1ece3b29c94382bcdf3cabe9fab6a08c6a4885088516073149c2f1f27b2a6038"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/instances.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances.usda",
+          "size": 6042,
+          "sha256": "bee3a2e13fe49c4f6073b9018e0a2bc33724f3458fe9a596a70004cd106a22de"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/instances_mujoco.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_mujoco.usda",
+          "size": 6314,
+          "sha256": "2340a4e5c200a5622974845f09cd29b510926789bce88a0d5d6806efa9e25cd1"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/instances_newton.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_newton.usda",
+          "size": 6165,
+          "sha256": "002b02be9f5809f4856fd9130675f406407fa515d8e20879c85ab80e297c098a"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/instances_physx.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_physx.usda",
+          "size": 6182,
+          "sha256": "8ca1144536e191b592c4edf9150bceaa639b0a6457ab0611639bc598b8472e5f"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/geometries.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/geometries.usd",
+          "size": 422059,
+          "sha256": "0ffbffcd9c214c6078a990bb847789897074c5c12d8ab4ed3e44448d89978803"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/payloads/materials.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/materials.usda",
+          "size": 9535,
+          "sha256": "bfc0101faa440b4c8cb0c051cb4f706721f4463253b231a724a95133729e5fd9"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/Textures/t_rollingPin_brown_a01_alb.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_rollingPin_brown_a01_alb.png",
+          "size": 771621,
+          "sha256": "81eab6f2b6462693ee63e6c8ab72740f1459d6df292cf6366c8736ce6e951ff0"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/Textures/t_rollingPin_brown_a01_nor.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_rollingPin_brown_a01_nor.png",
+          "size": 537134,
+          "sha256": "038db74eab08e4f478e160ecf68e832baea804593e2e5e0351f7b4c55273f86e"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/Textures/t_rollingPin_brown_a01_orm.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_rollingPin_brown_a01_orm.png",
+          "size": 480589,
+          "sha256": "64735de226fa4a07a671a4975f46412c5775bf6ddd0895508ad6c78fbd523843"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/source_assets/OmniPBR.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBR.mdl",
+          "size": 16010,
+          "sha256": "6e6b3acbccd236e21a6c29964a431d2a53e77251cc6b8b1bc975eb1c62da1781"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/source_assets/OmniPBR_ClearCoat.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBR_ClearCoat.mdl",
+          "size": 29789,
+          "sha256": "d84c5ba482561c0eaea2e0c5b607358af549e36cd921773462f92dbc4f32cbc3"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cooking_Gear/Rolling_Pin_A01/source_assets/OmniPBRBase.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBRBase.mdl",
+          "size": 19369,
+          "sha256": "a8fd9fe174e91892e94d06da90ba453a124024c2ce2c033be9d82c9e2f76a3b7"
+        }
+      ],
+      "dependency_status": "resolved_locally",
+      "provider": "usd-search"
+    },
+    "dining_spoon_mesh": {
+      "source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/sm_dishware_plastic_spoon_a01_01.usd",
+      "package_sha256": "68345f24885d7aa649c2359dd982bc86ed7aef6ef9ab91c8ab7ea92c5f58cccc",
+      "files": [
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/sm_dishware_plastic_spoon_a01_01.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/_/sm_dishware_plastic_spoon_a01_01.usd",
+          "size": 22170,
+          "sha256": "9cb1d8effbee18e53ef98c199be2ec3cb84f4709e06045c45dd33b206c039469"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/MuJoCo/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/MuJoCo/disabled.usda",
+          "size": 4383,
+          "sha256": "6e36a53ef945c08621ea4ae77490d9cc5c59bb7c1ed0e8e7ee890e3fa9def849"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/MuJoCo/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/MuJoCo/enabled.usda",
+          "size": 5122,
+          "sha256": "7e446dff09bf0eba760cb53f007c80efd1b2450af22f497f0546ca63c8f390f3"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/Newton/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/Newton/disabled.usda",
+          "size": 4383,
+          "sha256": "6e36a53ef945c08621ea4ae77490d9cc5c59bb7c1ed0e8e7ee890e3fa9def849"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/Newton/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/Newton/enabled.usda",
+          "size": 4944,
+          "sha256": "8d1eba94319fea0a72f8a4461446c9d4012509236ad495f4c9fa7216843d214b"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/PhysX/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/PhysX/disabled.usda",
+          "size": 4383,
+          "sha256": "6e36a53ef945c08621ea4ae77490d9cc5c59bb7c1ed0e8e7ee890e3fa9def849"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/PhysX/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/PhysX/enabled.usda",
+          "size": 4658,
+          "sha256": "99a4b7de87f1682d86c45d34b151924ddf8cc1a9d75d31ef556124927224d450"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/base.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/base.usda",
+          "size": 9484,
+          "sha256": "7efcfe6c43fcd2e38af8b208095a39e4ae31e2bb8c353604bafbbf6fc2f95a60"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/Physics/physics.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/Physics/physics.usda",
+          "size": 4898,
+          "sha256": "48718b8a635e720d0665643ead4ed70ba2df525fa29ac7a6c4d168d42a46f1be"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/instances.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances.usda",
+          "size": 5366,
+          "sha256": "5231a23a0a3e08710c4d95c9d50224cf6544ace144752d700b2a74b4caffabd1"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/instances_mujoco.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_mujoco.usda",
+          "size": 5638,
+          "sha256": "e80bdb31c13cd0b5e0c5de0785aadf18a33b2149906b32d4695d464b420702aa"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/instances_newton.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_newton.usda",
+          "size": 5489,
+          "sha256": "82183dbf2a986a01839ca9e73f4a42a15521914265dfa3fcd00e83dcba06962d"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/instances_physx.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_physx.usda",
+          "size": 5506,
+          "sha256": "3adac0eff0a58c8662a720097e03b95bd93fc4b1927994a0b1442164356a1868"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/geometries.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/geometries.usd",
+          "size": 587684,
+          "sha256": "647f3dffb4dd4f4cf9b4991cfe9ff2c8c3f673b626029ba14ba32f59c70aba40"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/payloads/materials.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/materials.usda",
+          "size": 9488,
+          "sha256": "1f5a79ac19f43ee5ad4f26256c766c372e17b67f1e48d22c2d0c045d0bf03f80"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/Textures/t_plastic_glossy_white_a01_tile_nor.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_plastic_glossy_white_a01_tile_nor.png",
+          "size": 10962433,
+          "sha256": "8e1b70073339a4110b7c5103273f2c1ce2b5dbf74352ae2e3eb91d7573f10cc5"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/Textures/t_plastic_glossy_white_a01_tile_orm.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_plastic_glossy_white_a01_tile_orm.png",
+          "size": 12876795,
+          "sha256": "9a4389739da9ee7325972569e730a32a98ddeb6903d46a8d26fc0a136078f5ad"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/source_assets/OmniPBR.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBR.mdl",
+          "size": 16010,
+          "sha256": "6e6b3acbccd236e21a6c29964a431d2a53e77251cc6b8b1bc975eb1c62da1781"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/source_assets/OmniPBR_ClearCoat.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBR_ClearCoat.mdl",
+          "size": 29789,
+          "sha256": "d84c5ba482561c0eaea2e0c5b607358af549e36cd921773462f92dbc4f32cbc3"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Dishware/Plastic_Spoon_A01/source_assets/OmniPBRBase.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBRBase.mdl",
+          "size": 19369,
+          "sha256": "a8fd9fe174e91892e94d06da90ba453a124024c2ce2c033be9d82c9e2f76a3b7"
+        }
+      ],
+      "dependency_status": "resolved_locally",
+      "provider": "usd-search"
+    },
+    "dining_storage_cabinet": {
+      "source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/sm_fixture_cabinet_b01_01.usd",
+      "package_sha256": "0a858b4824c82cf0c93d86a784224f0542563eea6174c4134b0f6b88e5a8bea9",
+      "files": [
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/sm_fixture_cabinet_b01_01.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/_/sm_fixture_cabinet_b01_01.usd",
+          "size": 20240,
+          "sha256": "5d5964fac0814e116d2cf27838b7ed6d0c41748ef7a78cbdf6c8c2c730363855"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/MuJoCo/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/MuJoCo/disabled.usda",
+          "size": 4152,
+          "sha256": "0672c37b08cf0774ad8381a121a0a562bc6d8e4ae4a3f31b747761bbcd36a3a6"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/MuJoCo/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/MuJoCo/enabled.usda",
+          "size": 5795,
+          "sha256": "fdda9b6754ecec1fe83bbfcda17ef6fe42c090fefcffdb0429c9d395e7ce8d13"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/Newton/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/Newton/disabled.usda",
+          "size": 4152,
+          "sha256": "0672c37b08cf0774ad8381a121a0a562bc6d8e4ae4a3f31b747761bbcd36a3a6"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/Newton/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/Newton/enabled.usda",
+          "size": 6034,
+          "sha256": "00c06dfcb2bdb124021d32f7ff4176a5d667a30b229ed2ca8a4cb1aa8455a33f"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/PhysX/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/PhysX/disabled.usda",
+          "size": 4152,
+          "sha256": "0672c37b08cf0774ad8381a121a0a562bc6d8e4ae4a3f31b747761bbcd36a3a6"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/PhysX/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/PhysX/enabled.usda",
+          "size": 4822,
+          "sha256": "daf0fb96f56208d925cd8759135fe16dcf448a2e8de3042e0196d371c400891b"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/base.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/base.usda",
+          "size": 13072,
+          "sha256": "4b21f33a3ffa36c40797a0da1183f43c0332f854ed95a9ee022acd0881782031"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/Physics/physics.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/Physics/physics.usda",
+          "size": 8219,
+          "sha256": "c3bcdfe56a58beead7dbe5c13570263916a61be8e8ed9765e1ab46876572dc68"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/instances.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances.usda",
+          "size": 12379,
+          "sha256": "b62330c282bc2b81b568dd2b553e7139c6a2200b4978db52db512af0ebf42e37"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/instances_mujoco.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_mujoco.usda",
+          "size": 13127,
+          "sha256": "0fcafd251f0d06b3d9c6b88dcfda1a921a771f37d1d4256efcc62278e268c158"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/instances_newton.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_newton.usda",
+          "size": 12680,
+          "sha256": "e8c6adac434f8aa805e0216daabbb04902fdf73425a9da2c84bb64a93a16a3be"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/instances_physx.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_physx.usda",
+          "size": 12731,
+          "sha256": "a392a6c4e721cfabe223d39e3ed5c93d8171a8cb95b0a55de5aff38c82d5c9fc"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/geometries.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/geometries.usd",
+          "size": 5418384,
+          "sha256": "a47da2d578962bd3bad7a8fc0371b3f83da4f3fb0e375d907b512aa8ba063c07"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/payloads/materials.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/materials.usda",
+          "size": 32023,
+          "sha256": "3ee7b3e8ff296e4f1753c855a990661662b304b183224576bc7792b6f30671dc"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_cabinet_b01_alb.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_cabinet_b01_alb.png",
+          "size": 23735496,
+          "sha256": "245460c638ae3696609013b64d41b73ee47830e80b6f3c6356c55c1dbec6cc75"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_cabinet_b01_nor.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_cabinet_b01_nor.png",
+          "size": 8860072,
+          "sha256": "d874dc20015119baf7886bb00f4571a351f1055cee2407e8e846475d5dd62ff5"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_cabinet_b01_orm.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_cabinet_b01_orm.png",
+          "size": 13184427,
+          "sha256": "fa4bc80f7965edffa2d9fa28b6757559fb3172c4516666c4d9d50057536424a9"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_metal_chrome_a01_tile_alb.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_metal_chrome_a01_tile_alb.png",
+          "size": 20673810,
+          "sha256": "abd1a44e96a2192d073f407a033346f781ecb4806dbe9bb06786713c37ffbbf7"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_metal_chrome_a01_tile_nor.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_metal_chrome_a01_tile_nor.png",
+          "size": 3420212,
+          "sha256": "a334c86d8d7355dd69617a4c29c88fd17b11abf54ae10c2f05aea7feffaa0bd1"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_metal_chrome_a01_tile_orm.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_metal_chrome_a01_tile_orm.png",
+          "size": 14704982,
+          "sha256": "8929777eff60f6e624755f79c4a05bc69184664f911058bc150415af648ecbec"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_metal_glossy_a01_tile_alb.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_metal_glossy_a01_tile_alb.png",
+          "size": 17018568,
+          "sha256": "bbb6a7fd1d0627aa44115b96a93c293d11b8eb164b5e0cbd767813644e47e65b"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_metal_glossy_a01_tile_nor.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_metal_glossy_a01_tile_nor.png",
+          "size": 4969669,
+          "sha256": "f26a7354c9fcdd1b921aba49bd71c0d529cc68d404386d787ea3cd1872fbdb0e"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_metal_glossy_a01_tile_orm.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_metal_glossy_a01_tile_orm.png",
+          "size": 14112974,
+          "sha256": "6d9b0891ee9d4a8dca391cfe5f0f0800d40754465d0b0ca25b95352565457e8d"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_metal_powderMidgloss_gray_a01_tile_nor.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_metal_powderMidgloss_gray_a01_tile_nor.png",
+          "size": 32415751,
+          "sha256": "ac020c088edb51f62e22e0623d07f54a77688c2fdce2d1c673cfdbee100fe9f8"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_plastic_glossy_white_a01_tile_alb.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_plastic_glossy_white_a01_tile_alb.png",
+          "size": 1993467,
+          "sha256": "fb0b238d43a1ca1e7adf83782629cd6f8fb5e2f7eb98bf42839e63aa0bdad223"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/Textures/t_plastic_gray_a01_tile_orm.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_plastic_gray_a01_tile_orm.png",
+          "size": 13452682,
+          "sha256": "8f2fecd0faff1f28426d6402944290f96b0302969582ff6fc4fc312b6de20b11"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/source_assets/OmniPBR.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBR.mdl",
+          "size": 16010,
+          "sha256": "6e6b3acbccd236e21a6c29964a431d2a53e77251cc6b8b1bc975eb1c62da1781"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/source_assets/OmniPBR_ClearCoat.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBR_ClearCoat.mdl",
+          "size": 29789,
+          "sha256": "d84c5ba482561c0eaea2e0c5b607358af549e36cd921773462f92dbc4f32cbc3"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Cabinets/Cabinet_B01/source_assets/OmniPBRBase.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBRBase.mdl",
+          "size": 19369,
+          "sha256": "a8fd9fe174e91892e94d06da90ba453a124024c2ce2c033be9d82c9e2f76a3b7"
+        }
+      ],
+      "dependency_status": "resolved_locally",
+      "provider": "usd-search"
+    },
+    "study_book_mesh_1": {
+      "source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/sm_misc_notebook_a04_01.usd",
+      "package_sha256": "96e7e692fbc3e79988ee19bcc2fc73c10293e5268007ac6c61716dbc5c72fea1",
+      "files": [
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/sm_misc_notebook_a04_01.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/sm_misc_notebook_a04_01.usd",
+          "size": 21363,
+          "sha256": "dd311e34a2ed0dfb5be4ebc8b9d14c0e5277b7137c4650fc01db0a885df5da17"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/MuJoCo/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/MuJoCo/disabled.usda",
+          "size": 4294,
+          "sha256": "0cd659e26918f876e4cfdb75b669065c568a6fba31eecedaa08cfbddc4ed5d1e"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/MuJoCo/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/MuJoCo/enabled.usda",
+          "size": 5153,
+          "sha256": "2a4a6b322e50b1fd0bc3ce0825200068ab4774dd63706c398c0af3b5c807ef88"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/Newton/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/Newton/disabled.usda",
+          "size": 4294,
+          "sha256": "0cd659e26918f876e4cfdb75b669065c568a6fba31eecedaa08cfbddc4ed5d1e"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/Newton/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/Newton/enabled.usda",
+          "size": 5113,
+          "sha256": "e2a3feb0cf64ebc58ba7de1dbb9e425a2fbfabb60b72ab5ae103a44415ea8a4c"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/PhysX/disabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/PhysX/disabled.usda",
+          "size": 4294,
+          "sha256": "0cd659e26918f876e4cfdb75b669065c568a6fba31eecedaa08cfbddc4ed5d1e"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/PhysX/enabled.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/PhysX/enabled.usda",
+          "size": 4568,
+          "sha256": "ce78dd164936cc891e88337dbb7ea5fd6e29d2c235e05b542ceb564f9901de1f"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/base.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/base.usda",
+          "size": 9023,
+          "sha256": "6d745df983bea53ae64a7940083723a0cdacf47b1035fe8876c7051e3405a348"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/Physics/physics.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/Physics/physics.usda",
+          "size": 5155,
+          "sha256": "da3c6ef75dd66016a36f484b25e73bf8137dfda182fe88a34eec413db601841a"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/instances.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/instances.usda",
+          "size": 6658,
+          "sha256": "6415ab8b6c1ede7ffd5cbacb789d549b1dbf9634775c6a08ba4130a8d37ebcb5"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/instances_mujoco.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/instances_mujoco.usda",
+          "size": 6943,
+          "sha256": "5fa8a7b02d39a5e1575eb9c31529d8fbaf69d2132902597a4ca74f5e57963372"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/instances_newton.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/instances_newton.usda",
+          "size": 6794,
+          "sha256": "da4e15f9b3fcbddffe96f28422769aaa16d5e48d84cab985d09014444b49d692"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/instances_physx.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/instances_physx.usda",
+          "size": 6918,
+          "sha256": "e23d791c9fd99ee966d3869f5b00d8db771ef9d382a395f8ff6ee76c8af84f68"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/geometries.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/geometries.usd",
+          "size": 389184,
+          "sha256": "26e875ac1553e46c78bcdb6fc364a3fc4c8d91cf28dbfb7df54c4abbeff651b3"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/payloads/materials.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/payloads/materials.usda",
+          "size": 13569,
+          "sha256": "c4ef491e3e04f29828f4fb7bbbf52d48dad60e08b099e237f97208482952fda6"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/Textures/t_cardboard_standard_white_a01_tile_alb.png",
+          "path": "origin/_/_/_/_/_/_/_/_/Textures/t_cardboard_standard_white_a01_tile_alb.png",
+          "size": 26555598,
+          "sha256": "ae9a3981dd2bbb1d87bfd5998a2a7f5fa0035246160f933837beee708f1a1f2c"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/Textures/t_cardboard_standard_white_a01_tile_nor.png",
+          "path": "origin/_/_/_/_/_/_/_/_/Textures/t_cardboard_standard_white_a01_tile_nor.png",
+          "size": 13130817,
+          "sha256": "f64ae621b69306977c49008641603cf960af96e376dde85c102de7ae9eb7ae5a"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/Textures/t_cardboard_standard_white_a01_tile_orm.png",
+          "path": "origin/_/_/_/_/_/_/_/_/Textures/t_cardboard_standard_white_a01_tile_orm.png",
+          "size": 17954973,
+          "sha256": "01af5071a5fe63725809dc0ca577434c75dc39e91fec45cf358538deac3d5544"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/Textures/t_leather_glossy_black_a01_tile_nor.png",
+          "path": "origin/_/_/_/_/_/_/_/_/Textures/t_leather_glossy_black_a01_tile_nor.png",
+          "size": 20053620,
+          "sha256": "203d9d279b9d3f7abdd82711147289eb0e7096546d2368a4c1710a8647e774a8"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/Textures/t_leather_glossy_black_a01_tile_orm.png",
+          "path": "origin/_/_/_/_/_/_/_/_/Textures/t_leather_glossy_black_a01_tile_orm.png",
+          "size": 31666863,
+          "sha256": "5f5944ad5d9b191a4c19e69b162b32a2096ed01a769a01a71bd8426844bdcf93"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/source_assets/OmniPBR.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/source_assets/OmniPBR.mdl",
+          "size": 16010,
+          "sha256": "6e6b3acbccd236e21a6c29964a431d2a53e77251cc6b8b1bc975eb1c62da1781"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/source_assets/OmniPBR_ClearCoat.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/source_assets/OmniPBR_ClearCoat.mdl",
+          "size": 29789,
+          "sha256": "d84c5ba482561c0eaea2e0c5b607358af549e36cd921773462f92dbc4f32cbc3"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Personal_Items/Notebook_A04/source_assets/OmniPBRBase.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/source_assets/OmniPBRBase.mdl",
+          "size": 19369,
+          "sha256": "a8fd9fe174e91892e94d06da90ba453a124024c2ce2c033be9d82c9e2f76a3b7"
+        }
+      ],
+      "dependency_status": "resolved_locally",
+      "provider": "usd-search"
+    },
+    "study_spoon_mesh": {
+      "source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/sm_utensil_spoon_wooden_a01_01.usda",
+      "package_sha256": "25193e923c49d2dffa851dd7946958b4d3e253165ccf0be8ef0f6554b7b65d39",
+      "files": [
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/sm_utensil_spoon_wooden_a01_01.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/sm_utensil_spoon_wooden_a01_01.usda",
+          "size": 10637,
+          "sha256": "28dfb1aabc6e5d47266c72d5e75a76a6eaebc79e5e3e305de272ac3a5c4d2fcf"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/payloads/base.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/base.usda",
+          "size": 9662,
+          "sha256": "22d1407664ee3c50629b08d111c6377efb5c929200db36bc85adaff189037815"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/runnables/physics/mujoco.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/_/runnables/physics/mujoco.usd",
+          "size": 2002,
+          "sha256": "91c6cd18451677095333fd7e614764e1f7d741896299c07ea5004bf3c92f88b2"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/runnables/physics/newton.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/_/runnables/physics/newton.usd",
+          "size": 2018,
+          "sha256": "a5307c5e6e6259edc5f5c3f5e0f86078cd871f52ddab4c0bf9a4972684878b05"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/runnables/physics/physx.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/_/runnables/physics/physx.usd",
+          "size": 1743,
+          "sha256": "acb0eb7ef695a148a337c0eab8ddb4a8880da19df3b02806af4c99a4a6066e9a"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/payloads/Physics/physics.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/Physics/physics.usda",
+          "size": 4721,
+          "sha256": "469cad92bbfa5edc711053d26984bbc35a42ca7b6d9b4da7dd86e13422c5a1d5"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/payloads/instances.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances.usda",
+          "size": 5214,
+          "sha256": "725089fd09c55a4cc1a2aa77502945d68aac9f472aea8208b997755faad8a269"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/payloads/instances_mujoco.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_mujoco.usda",
+          "size": 5486,
+          "sha256": "077ba7e508fe50743857ef8a8153acf99b2559ba42ccc2551687e7c74a417346"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/payloads/instances_newton.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_newton.usda",
+          "size": 5337,
+          "sha256": "e12150c61a3243708b490f920320fe052281e7c504ceb3326b008df074d7c8ba"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/payloads/instances_physx.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/instances_physx.usda",
+          "size": 5354,
+          "sha256": "2d1368be208aa655212ab8d292abc68c6f1332105327568f4b1877d314353f6c"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/payloads/geometries.usd",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/geometries.usd",
+          "size": 343481,
+          "sha256": "87d92b2f6800e7b0a6c67793eeb5039a35a6d9b0cedc8855c7fad98451269a96"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/payloads/materials.usda",
+          "path": "origin/_/_/_/_/_/_/_/_/_/payloads/materials.usda",
+          "size": 9824,
+          "sha256": "e938a1f046bd750304f81cf8d64493939cddfd4fd9aa73b442b8ba9e79b6dc13"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/Textures/t_utensil_spoon_wooden_a01_alb.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_utensil_spoon_wooden_a01_alb.png",
+          "size": 5212202,
+          "sha256": "06ab61eb08177ce905a91a46d96651077ea1cb87cc44e9643035ca1e0b4e9518"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/Textures/t_utensil_spoon_wooden_a01_nor.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_utensil_spoon_wooden_a01_nor.png",
+          "size": 4975495,
+          "sha256": "adb305a1d59b14e42268469434a941bd7ec4bea2458141f04b682b11f1db791b"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/Textures/t_utensil_spoon_wooden_a01_orm.png",
+          "path": "origin/_/_/_/_/_/_/_/_/_/Textures/t_utensil_spoon_wooden_a01_orm.png",
+          "size": 4922162,
+          "sha256": "707d4cdfc103f1b2e69952632d6a79f997e86460eb28c8be1bd39e8d873c987d"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/source_assets/OmniPBR.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBR.mdl",
+          "size": 16010,
+          "sha256": "6e6b3acbccd236e21a6c29964a431d2a53e77251cc6b8b1bc975eb1c62da1781"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/source_assets/OmniPBR_ClearCoat.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBR_ClearCoat.mdl",
+          "size": 29789,
+          "sha256": "d84c5ba482561c0eaea2e0c5b607358af549e36cd921773462f92dbc4f32cbc3"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/SimReady/Residential/Kitchen/Utensils/Spoon_Wooden_A01/source_assets/OmniPBRBase.mdl",
+          "path": "origin/_/_/_/_/_/_/_/_/_/source_assets/OmniPBRBase.mdl",
+          "size": 19369,
+          "sha256": "a8fd9fe174e91892e94d06da90ba453a124024c2ce2c033be9d82c9e2f76a3b7"
+        }
+      ],
+      "dependency_status": "resolved_locally",
+      "provider": "usd-search"
+    },
+    "living_snack_mesh_1": {
+      "source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/YCB/Axis_Aligned/003_cracker_box.usd",
+      "package_sha256": "7230c3375a1445005158cae6f15d26e04225ca4177c69e1cbed3879eed4f1688",
+      "files": [
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/YCB/Axis_Aligned/003_cracker_box.usd",
+          "path": "origin/_/_/_/_/_/_/_/003_cracker_box.usd",
+          "size": 460952,
+          "sha256": "4419a31e2eb672dee05bab26501d6eb941b6dcbf664ea02f1f846c07d816bd81"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/YCB/Axis_Aligned/Materials/Textures/003_cracker_box_COLOR.png",
+          "path": "origin/_/_/_/_/_/_/_/Materials/Textures/003_cracker_box_COLOR.png",
+          "size": 13564223,
+          "sha256": "dc8a7c90d9a96e2101c764b872a54cf91e3537dd9d059fdd32217b003072e42b"
+        }
+      ],
+      "dependency_status": "missing",
+      "provider": "usd-search"
+    },
+    "home_original_red_mug_decor": {
+      "source": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/YCB/Axis_Aligned/025_mug.usd",
+      "package_sha256": "0254d8c4d53fe078b7b911329928f5f551434ebdb0e62294c6f8e150e0158e9f",
+      "files": [
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/YCB/Axis_Aligned/025_mug.usd",
+          "path": "origin/_/_/_/_/_/_/_/025_mug.usd",
+          "size": 556851,
+          "sha256": "79f4fa2a54e39bc32e417516c114de3f606e53dd8716068d9872d800c1476730"
+        },
+        {
+          "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Props/YCB/Axis_Aligned/Materials/Textures/025_mug_COLOR.png",
+          "path": "origin/_/_/_/_/_/_/_/Materials/Textures/025_mug_COLOR.png",
+          "size": 8282618,
+          "sha256": "c0cd34ec9a0eb023173e0a8adbaa3e24dc9129780592e134adbc811e08a20a9f"
+        }
+      ],
+      "dependency_status": "missing",
+      "provider": "usd-search"
+    }
+  }
+}

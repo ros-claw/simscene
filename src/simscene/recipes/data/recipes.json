@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "recipes": [
+    {
+      "recipe_id": "gravity_drop_v1",
+      "version": 1,
+      "roles": {"payload": "rigid_prop_v1", "support": "static_fixture_v1"},
+      "description": "Measured imported payloads fall onto an explicitly named prepared support region.",
+      "physical_validation": "A new asset, layout or preparation requires its own frozen positive and missing-support control."
+    },
+    {
+      "recipe_id": "passive_door_bridge_v1",
+      "version": 1,
+      "roles": {},
+      "description": "Editable primitive door, passive hinge and landing support; no timer or synthesized release.",
+      "physical_validation": "Unlatched construction proposal. Add a physical retainer for a causal release and validate the actual payload."
+    }
+  ]
+}

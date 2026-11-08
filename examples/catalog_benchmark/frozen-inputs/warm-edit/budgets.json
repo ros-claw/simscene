@@ -1,0 +1,11 @@
+{
+  "download_bytes": 268435456,
+  "unpacked_bytes": 536870912,
+  "staging_bytes": 805306368,
+  "recording_bytes": 1073741824,
+  "runtime_hz": 60,
+  "trial_steps": 720,
+  "seed": 42,
+  "staged_input_bytes": 107271431,
+  "network_policy": "metadata queries and bounded selected immutable source acquisition only; supplied asset closure is equally staged for both versions"
+}

@@ -1,0 +1,7 @@
+{
+  "source": "User-provided SimScene_Whole_Room_Codex_Kit.zip / score_motion_clock.py",
+  "source_zip_sha256": "5b88e634bd19c137ed2bea3f46f0c9049414c6e06f161f215bb62b56ea270531",
+  "fixture_sha256": "50457355ecb7c8763fec5f1c70920ab48bafe51f737f45a5d4589e39dd780f4c",
+  "modified": false,
+  "scope": "Self-contained CPU regression fixture. Formal whole-home checks separately pin the original declared runtime clock and its hashes; this copy does not change any frozen evaluator or acceptance criteria."
+}

@@ -14,10 +14,15 @@ def spawn(stage, name, obj):
     q=obj.get('orientation_wxyz',[1,0,0,0]);xform.AddOrientOp().Set(Gf.Quatf(q[0],Gf.Vec3f(*q[1:])))
     if not uniform:xform.AddScaleOp().Set(Gf.Vec3f(*size))
     if 'color' in obj:entity.CreateDisplayColorAttr([Gf.Vec3f(*obj['color'])])
+    if obj.get('visible',True) is False:UsdGeom.Imageable(entity.GetPrim()).MakeInvisible()
     if 'material' in obj:
         from simscene.materials import apply_material
         apply_material(stage,entity.GetPrim(),name,obj['material'])
-    UsdPhysics.CollisionAPI.Apply(entity.GetPrim());UsdPhysics.RigidBodyAPI.Apply(entity.GetPrim())
+    if obj.get('collision',True):UsdPhysics.CollisionAPI.Apply(entity.GetPrim())
+    UsdPhysics.RigidBodyAPI.Apply(entity.GetPrim())
     if 'mass_kg' in obj:UsdPhysics.MassAPI.Apply(entity.GetPrim()).CreateMassAttr(obj['mass_kg'])
+    if 'physics' in obj:
+        from simscene.passive import author_physics
+        author_physics(stage,entity.GetPrim(),name,obj)
     PhysxSchema.PhysxContactReportAPI.Apply(entity.GetPrim()).CreateThresholdAttr().Set(0)
     return path

@@ -1,0 +1,46 @@
+{
+  "schema": "simscene.supplementary_checker_change_record.v2",
+  "original_checker_sha256": "adccb224e983e2826a9dd220f63e802acb374b09e9f6fc62ee529558715c6061",
+  "supplementary_checker_sha256": "36cc889764bc96e3136c2869c1a588c66a138aa709d520594e2f2413010441f5",
+  "original_modified_functions": [
+    "source_checks",
+    "load_native",
+    "main"
+  ],
+  "original_functions_ast_identical": [
+    "read",
+    "sha",
+    "frozen_design",
+    "xyz",
+    "path",
+    "position",
+    "rotation",
+    "dist",
+    "sub",
+    "dot",
+    "qmul",
+    "inv",
+    "rotate",
+    "angle",
+    "pose_span",
+    "rotation_span",
+    "body_quiet",
+    "relative_position",
+    "horizontal_offset",
+    "contact_steps",
+    "unit_sphere",
+    "initial_hinge_angle",
+    "runtime_identity",
+    "driver_metrics",
+    "task_predicates",
+    "isolated_intervention"
+  ],
+  "new_interface_helpers": [
+    "empty_joint_observations_valid",
+    "effective_compiled_collisions"
+  ],
+  "original_files_modified": false,
+  "numeric_task_predicates_thresholds_and_intervention_comparator_changed": false,
+  "public_case_bytes_changed": false,
+  "purpose": "Post-hoc/exploratory same-record rescoring only; never replaces frozen outcomes or admits over-budget/no-submission arms."
+}

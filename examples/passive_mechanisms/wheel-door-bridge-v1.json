@@ -1,0 +1,82 @@
+{
+  "schema": "simscene.mechanism.v1",
+  "mechanism": "wheel_door_bridge",
+  "require_strict_initial_state": true,
+  "trigger_id": "trigger",
+  "release_step": 60,
+  "roles": {
+    "wheel": "wheel",
+    "latch": "latch",
+    "door": "door",
+    "seat": "seat",
+    "rollingpin": "rollingpin",
+    "retainer": "retainer"
+  },
+  "joints": {
+    "wheel": "wheel_axle",
+    "latch": "latch_slide",
+    "door": "door_axle"
+  },
+  "axes": {
+    "latch_world": [
+      0,
+      1,
+      0
+    ],
+    "rollingpin_world": [
+      1,
+      0,
+      0
+    ],
+    "wheel_joint_sign": -1,
+    "door_joint_sign": 1
+  },
+  "geometry": {
+    "wheel_paddle_part_index": 1,
+    "retainer_part_index": 0
+  },
+  "bridge_regions_world": [
+    {
+      "min": [
+        0.1,
+        -0.08,
+        0.99
+      ],
+      "max": [
+        0.14,
+        0.08,
+        1.09
+      ]
+    },
+    {
+      "min": [
+        0.46,
+        -0.08,
+        0.95
+      ],
+      "max": [
+        0.5,
+        0.08,
+        1.05
+      ]
+    }
+  ],
+  "thresholds": {
+    "initial_hold_steps": 30,
+    "initial_max_motion_m": 0.003,
+    "initial_max_rotation_degrees": 2,
+    "wheel_activation_degrees": 5,
+    "latch_min_travel_m": 0.24,
+    "latch_initial_max_m": 0.003,
+    "door_activation_degrees": 5,
+    "door_bridge_angle_degrees": 90,
+    "door_bridge_angle_tolerance_degrees": 2,
+    "rollingpin_release_travel_m": 0.04,
+    "max_anchor_error_m": 0.005,
+    "max_off_axis_m": 0.003,
+    "bridge_hold_steps": 6,
+    "contact_window_tolerance_steps": 6,
+    "part_contact_tolerance_m": 0.005,
+    "retainer_release_clearance_m": 0.005
+  }
+}

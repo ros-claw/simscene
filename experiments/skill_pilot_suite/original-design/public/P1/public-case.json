@@ -1,0 +1,67 @@
+{
+  "schema": "simscene.independent_pilot.v1",
+  "design_version": "20261103-independent-v1",
+  "steps": 720,
+  "physics_dt_s": 0.016666666666666666,
+  "seed": 19,
+  "release_step": 60,
+  "require_strict_initial_state": true,
+  "observation": {
+    "sample_interval_steps": 1,
+    "strict_start": true,
+    "record_contact_pairs": true
+  },
+  "allowed_geometry": [
+    "box",
+    "sphere",
+    "cylinder",
+    "capsule",
+    "compound"
+  ],
+  "maximum_object_count": 40,
+  "mass_range_kg": [
+    0.01,
+    5.0
+  ],
+  "driver_diameter_range_m": [
+    0.04,
+    0.15
+  ],
+  "initial_max_translation_m": 0.006,
+  "initial_max_rotation_degrees": 3.0,
+  "maximum_joint_anchor_error_m": 0.01,
+  "contact_time_tolerance_steps": 2,
+  "maximum_initial_interpenetration_m": 0.006,
+  "maximum_wall_seconds_per_arm": 1800,
+  "maximum_positive_attempts": 2,
+  "negative_attempts_after_positive": 1,
+  "task_id": "P1",
+  "category": "gravity_lever_load_lift",
+  "roles": {
+    "driver": "driver",
+    "payload": "payload",
+    "lever": "lever",
+    "hinge": "hinge"
+  },
+  "dynamic_ids": [
+    "driver",
+    "payload",
+    "lever"
+  ],
+  "joint_ids": [
+    "hinge"
+  ],
+  "thresholds": {
+    "driver_min_drop_m": 0.08,
+    "payload_min_rise_m": 0.1,
+    "payload_lift_hold_steps": 30,
+    "lever_min_rotation_degrees": 8.0,
+    "carried_relative_max_translation_m": 0.025,
+    "negative_payload_max_rise_m": 0.015,
+    "negative_payload_max_translation_m": 0.02,
+    "negative_lever_max_rotation_degrees": 2.0,
+    "hinge_lock_angle_tolerance_degrees": 0.0001,
+    "initial_support_contact_min_steps": 2,
+    "lift_contact_max_gap_steps": 6
+  }
+}

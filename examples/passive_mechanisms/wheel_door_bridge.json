@@ -1,0 +1,1306 @@
+{
+  "objects": {
+    "floor": {
+      "kind": "box",
+      "size": [
+        2.2,
+        1.8,
+        0.05
+      ],
+      "position": [
+        0,
+        0,
+        0.025
+      ],
+      "collision": true,
+      "color": [
+        0.45,
+        0.3,
+        0.16
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.35,
+        "dynamic_friction": 0.3,
+        "restitution": 0
+      }
+    },
+    "wheel": {
+      "kind": "compound",
+      "parts": [
+        {
+          "kind": "cylinder",
+          "size": [
+            0.44,
+            0.44,
+            0.02
+          ],
+          "orientation_wxyz": [
+            0.7071067811865476,
+            0,
+            0.7071067811865476,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.04,
+            0.04,
+            0.08
+          ],
+          "position": [
+            0.08,
+            -0.25,
+            0.15
+          ],
+          "color": [
+            0.9,
+            0.25,
+            0.04
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.02,
+            0.025,
+            0.29154759474226505
+          ],
+          "position": [
+            0,
+            -0.125,
+            0.075
+          ],
+          "orientation_wxyz": [
+            0.8701999067534788,
+            0.49269881498359297,
+            0,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.11,
+            0.025,
+            0.025
+          ],
+          "position": [
+            0.04,
+            -0.25,
+            0.15
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.07,
+            0.09,
+            0.008
+          ],
+          "position": [
+            0,
+            0.25,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.008,
+            0.09,
+            0.12
+          ],
+          "position": [
+            -0.031,
+            0.25,
+            0.06
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.008,
+            0.09,
+            0.12
+          ],
+          "position": [
+            0.031,
+            0.25,
+            0.06
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.07,
+            0.008,
+            0.12
+          ],
+          "position": [
+            0,
+            0.209,
+            0.06
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.07,
+            0.008,
+            0.12
+          ],
+          "position": [
+            0,
+            0.291,
+            0.06
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.02,
+            0.25,
+            0.02
+          ],
+          "position": [
+            0,
+            -0.125,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.02,
+            0.02,
+            0.25
+          ],
+          "position": [
+            0,
+            0,
+            -0.125
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.08,
+            0.08,
+            0.005931734580380263
+          ],
+          "position": [
+            0,
+            -0.25,
+            0
+          ],
+          "color": [
+            0.12,
+            0.15,
+            0.18
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.08,
+            0.08,
+            0.02898595925177183
+          ],
+          "position": [
+            0,
+            0,
+            -0.25
+          ],
+          "color": [
+            0.12,
+            0.15,
+            0.18
+          ]
+        }
+      ],
+      "position": [
+        0.16,
+        0.4,
+        1.45
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.18,
+      "color": [
+        0.19,
+        0.36,
+        0.52
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "solver_position_iterations": 64,
+        "solver_velocity_iterations": 8,
+        "static_friction": 0.25,
+        "dynamic_friction": 0.2,
+        "restitution": 0,
+        "angular_damping": 3,
+        "sleep_threshold": 0
+      }
+    },
+    "wheel_axle": {
+      "kind": "joint",
+      "joint": {
+        "type": "revolute",
+        "body1": "wheel",
+        "local_pos0": [
+          0.16,
+          0.4,
+          1.45
+        ],
+        "axis": "X"
+      }
+    },
+    "wheel_stand": {
+      "kind": "box",
+      "size": [
+        0.06,
+        0.06,
+        1.42
+      ],
+      "position": [
+        0.08,
+        0.4,
+        0.71
+      ],
+      "collision": true,
+      "color": [
+        0.45,
+        0.3,
+        0.16
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.35,
+        "dynamic_friction": 0.3,
+        "restitution": 0
+      }
+    },
+    "wheel_support": {
+      "kind": "box",
+      "size": [
+        0.18,
+        0.025,
+        0.025
+      ],
+      "position": [
+        0.13,
+        0.4,
+        1.45
+      ],
+      "collision": false,
+      "color": [
+        0.45,
+        0.3,
+        0.16
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.35,
+        "dynamic_friction": 0.3,
+        "restitution": 0
+      }
+    },
+    "trigger": {
+      "kind": "sphere",
+      "size": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "position": [
+        0.16,
+        0.65,
+        1.7
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.09,
+      "spawn_step": 60,
+      "color": [
+        0.65,
+        0.43,
+        0.18
+      ],
+      "physics": {
+        "enable_ccd": true,
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "restitution": 0
+      }
+    },
+    "latch": {
+      "kind": "compound",
+      "parts": [
+        {
+          "kind": "box",
+          "size": [
+            0.035,
+            0.2,
+            0.025
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.03,
+            0.02,
+            0.55
+          ],
+          "position": [
+            0.175,
+            0.2,
+            0
+          ],
+          "color": [
+            0.8,
+            0.43,
+            0.09
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.2,
+            0.02,
+            0.025
+          ],
+          "position": [
+            0.0875,
+            -0.14,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.02,
+            0.36,
+            0.025
+          ],
+          "position": [
+            0.175,
+            0.03,
+            0
+          ]
+        }
+      ],
+      "position": [
+        0.065,
+        0,
+        1.45
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.03,
+      "color": [
+        0.7,
+        0.45,
+        0.2
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "solver_position_iterations": 64,
+        "solver_velocity_iterations": 8,
+        "static_friction": 0.25,
+        "dynamic_friction": 0.2,
+        "restitution": 0,
+        "linear_damping": 1,
+        "sleep_threshold": 0
+      }
+    },
+    "latch_slide": {
+      "kind": "joint",
+      "joint": {
+        "type": "prismatic",
+        "body1": "latch",
+        "local_pos0": [
+          0.065,
+          0,
+          1.45
+        ],
+        "axis": "Y",
+        "lower_limit": 0,
+        "upper_limit": 0.28
+      }
+    },
+    "door": {
+      "kind": "compound",
+      "parts": [
+        {
+          "kind": "box",
+          "size": [
+            0.02,
+            0.2,
+            0.5
+          ],
+          "position": [
+            0,
+            0,
+            0.25
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            4.898587196589413e-18,
+            -0.12,
+            0.08
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            6.123233995736766e-17,
+            0,
+            -1.0,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.008362277061412285,
+            -0.12,
+            0.07956175162946187
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.05233595624294384,
+            0,
+            -0.9986295347545738,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.01663293526542075,
+            -0.12,
+            0.07825180805870445
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.10452846326765355,
+            0,
+            -0.9945218953682733,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.024721359549995787,
+            -0.12,
+            0.07608452130361229
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.1564344650402308,
+            0,
+            -0.9876883405951378,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.03253893144606402,
+            -0.12,
+            0.07308363661140807
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.20791169081775934,
+            0,
+            -0.9781476007338057,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.03999999999999998,
+            -0.12,
+            0.06928203230275509
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.25881904510252063,
+            0,
+            -0.9659258262890683,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.047022820183397845,
+            -0.12,
+            0.06472135954999579
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.30901699437494734,
+            0,
+            -0.9510565162951536,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.05353044850870866,
+            -0.12,
+            0.05945158603819154
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.35836794954530027,
+            0,
+            -0.9335804264972017,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.05945158603819152,
+            -0.12,
+            0.05353044850870867
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.40673664307580004,
+            0,
+            -0.913545457642601,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.06472135954999579,
+            -0.12,
+            0.04702282018339786
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.4539904997395467,
+            0,
+            -0.8910065241883679,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.06928203230275509,
+            -0.12,
+            0.039999999999999994
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.5000000000000002,
+            0,
+            -0.8660254037844385,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.07308363661140806,
+            -0.12,
+            0.03253893144606403
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.5446390350150268,
+            0,
+            -0.8386705679454243,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.07608452130361229,
+            -0.12,
+            0.0247213595499958
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.587785252292473,
+            0,
+            -0.8090169943749475,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.07825180805870445,
+            -0.12,
+            0.016632935265420746
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.6293203910498376,
+            0,
+            -0.7771459614569708,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.009,
+            0.025,
+            0.012
+          ],
+          "position": [
+            -0.07956175162946187,
+            -0.12,
+            0.008362277061412298
+          ],
+          "color": [
+            0.7,
+            0.39,
+            0.12
+          ],
+          "orientation_wxyz": [
+            -0.6691306063588579,
+            0,
+            -0.7431448254773945,
+            0
+          ]
+        }
+      ],
+      "position": [
+        0,
+        0,
+        1
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.2,
+      "color": [
+        0.57,
+        0.34,
+        0.16
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "solver_position_iterations": 64,
+        "solver_velocity_iterations": 8,
+        "static_friction": 0.25,
+        "dynamic_friction": 0.2,
+        "restitution": 0,
+        "angular_damping": 12,
+        "sleep_threshold": 0
+      },
+      "orientation_wxyz": [
+        0.9990482215818578,
+        0,
+        0.043619387365336,
+        0
+      ]
+    },
+    "door_axle": {
+      "kind": "joint",
+      "joint": {
+        "type": "revolute",
+        "body1": "door",
+        "local_pos0": [
+          0,
+          0,
+          1
+        ],
+        "axis": "Y",
+        "lower_limit": 0,
+        "upper_limit": 95
+      }
+    },
+    "seat": {
+      "kind": "box",
+      "size": [
+        0.09,
+        0.2,
+        0.06
+      ],
+      "position": [
+        0.5,
+        0,
+        0.9165
+      ],
+      "collision": true,
+      "color": [
+        0.18,
+        0.23,
+        0.27
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.35,
+        "dynamic_friction": 0.3,
+        "restitution": 0
+      }
+    },
+    "left_table": {
+      "kind": "box",
+      "size": [
+        0.51,
+        0.32,
+        0.04
+      ],
+      "position": [
+        -0.32,
+        0,
+        0.98
+      ],
+      "collision": true,
+      "color": [
+        0.45,
+        0.3,
+        0.16
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.35,
+        "dynamic_friction": 0.3,
+        "restitution": 0
+      }
+    },
+    "right_table": {
+      "kind": "box",
+      "size": [
+        0.55,
+        0.32,
+        0.04
+      ],
+      "position": [
+        0.78,
+        0,
+        0.92
+      ],
+      "collision": true,
+      "color": [
+        0.45,
+        0.3,
+        0.16
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.35,
+        "dynamic_friction": 0.3,
+        "restitution": 0
+      }
+    },
+    "start_ramp": {
+      "kind": "compound",
+      "position": [
+        -0.2,
+        0,
+        1.019
+      ],
+      "collision": true,
+      "color": [
+        0.45,
+        0.3,
+        0.16
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.35,
+        "dynamic_friction": 0.3,
+        "restitution": 0
+      },
+      "orientation_wxyz": [
+        0.9993908270190958,
+        0,
+        0.03489949670250097,
+        0
+      ],
+      "parts": [
+        {
+          "kind": "box",
+          "size": [
+            0.315,
+            0.15,
+            0.015
+          ],
+          "position": [
+            -0.0275,
+            0,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.055,
+            0.045,
+            0.015
+          ],
+          "position": [
+            0.1575,
+            -0.0525,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.055,
+            0.045,
+            0.015
+          ],
+          "position": [
+            0.1575,
+            0.0525,
+            0
+          ]
+        }
+      ]
+    },
+    "retainer": {
+      "kind": "compound",
+      "parts": [
+        {
+          "kind": "box",
+          "size": [
+            0.015,
+            0.04,
+            0.06
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.015,
+            0.014,
+            0.1
+          ],
+          "position": [
+            0,
+            0,
+            -0.07
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.015,
+            0.18,
+            0.012
+          ],
+          "position": [
+            0,
+            -0.075,
+            -0.115
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.075,
+            0.02,
+            0.012
+          ],
+          "position": [
+            0.0225,
+            -0.16,
+            -0.115
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.014,
+            0.014,
+            0.17
+          ],
+          "position": [
+            0.045,
+            -0.16,
+            -0.035
+          ]
+        },
+        {
+          "kind": "box",
+          "size": [
+            0.014,
+            0.06,
+            0.024
+          ],
+          "position": [
+            0.045,
+            -0.14,
+            0.038
+          ]
+        }
+      ],
+      "position": [
+        -0.045,
+        0,
+        1.06
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.012,
+      "color": [
+        0.72,
+        0.45,
+        0.18
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "solver_position_iterations": 64,
+        "solver_velocity_iterations": 8,
+        "static_friction": 0.25,
+        "dynamic_friction": 0.2,
+        "restitution": 0,
+        "linear_damping": 0.1,
+        "sleep_threshold": 0
+      }
+    },
+    "retainer_slide": {
+      "kind": "joint",
+      "joint": {
+        "type": "prismatic",
+        "body1": "retainer",
+        "local_pos0": [
+          -0.045,
+          0,
+          1.06
+        ],
+        "axis": "Z",
+        "lower_limit": -0.15,
+        "upper_limit": 0
+      }
+    },
+    "rollingpin": {
+      "kind": "cylinder",
+      "size": [
+        0.06,
+        0.06,
+        0.14
+      ],
+      "orientation_wxyz": [
+        0.7071067811865476,
+        0.7071067811865476,
+        0,
+        0
+      ],
+      "position": [
+        -0.0825,
+        0,
+        1.0485
+      ],
+      "dynamic": true,
+      "collision": true,
+      "mass_kg": 0.08,
+      "color": [
+        0.68,
+        0.43,
+        0.2
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.5,
+        "dynamic_friction": 0.4,
+        "angular_damping": 0.01,
+        "linear_damping": 0.02,
+        "enable_ccd": true,
+        "sleep_threshold": 0
+      }
+    },
+    "pin_rail_0": {
+      "kind": "box",
+      "size": [
+        0.36,
+        0.012,
+        0.075
+      ],
+      "position": [
+        -0.2,
+        -0.09,
+        1.03
+      ],
+      "collision": true,
+      "color": [
+        0.27,
+        0.25,
+        0.22
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.35,
+        "dynamic_friction": 0.3,
+        "restitution": 0
+      }
+    },
+    "pin_rail_1": {
+      "kind": "box",
+      "size": [
+        0.36,
+        0.012,
+        0.075
+      ],
+      "position": [
+        -0.2,
+        0.09,
+        1.03
+      ],
+      "collision": true,
+      "color": [
+        0.27,
+        0.25,
+        0.22
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.35,
+        "dynamic_friction": 0.3,
+        "restitution": 0
+      }
+    },
+    "pin_catcher": {
+      "kind": "box",
+      "size": [
+        0.03,
+        0.26,
+        0.14
+      ],
+      "position": [
+        0.96,
+        0,
+        1.0
+      ],
+      "collision": true,
+      "color": [
+        0.18,
+        0.23,
+        0.27
+      ],
+      "physics": {
+        "contact_offset_m": 0.001,
+        "rest_offset_m": 0,
+        "static_friction": 0.35,
+        "dynamic_friction": 0.3,
+        "restitution": 0
+      }
+    },
+    "camera": {
+      "kind": "camera",
+      "position": [
+        1.5,
+        -1.7,
+        1.85
+      ],
+      "orientation_wxyz": [
+        0.7588587936996465,
+        0.5835228265778345,
+        0.17628528128320786,
+        0.22925518901484485
+      ],
+      "record_fps": 30,
+      "preview_fps": 1,
+      "camera": {
+        "resolution": [
+          1920,
+          1080
+        ],
+        "focal_length_mm": 40
+      }
+    },
+    "key": {
+      "kind": "light",
+      "intensity": 1800,
+      "light": {
+        "type": "distant"
+      }
+    },
+    "fill": {
+      "kind": "light",
+      "intensity": 500,
+      "light": {
+        "type": "dome"
+      }
+    }
+  },
+  "observation": {
+    "sample_interval_steps": 1,
+    "strict_start": true,
+    "record_contact_pairs": true
+  },
+  "presentation": {
+    "profile": "technical_showcase_1080p",
+    "capture": {
+      "anti_aliasing": "dlaa",
+      "depth_of_field": false,
+      "motion_blur": false,
+      "exposure_mode": "manual",
+      "exposure_ev": 0
+    },
+    "diagnostics": {
+      "png_seconds": 0,
+      "keyframe_interval_s": 1
+    }
+  }
+}

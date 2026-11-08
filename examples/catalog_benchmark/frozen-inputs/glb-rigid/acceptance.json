@@ -1,0 +1,71 @@
+{
+  "schema": "simscene.catalog_efficiency_acceptance.v1",
+  "task_id": "glb-rigid",
+  "group": "B",
+  "steps": 720,
+  "physics_hz": 60,
+  "seed": 42,
+  "required_objects": {
+    "item": {
+      "kind": "asset"
+    },
+    "ramp": {
+      "kind": "box"
+    },
+    "floor": {
+      "kind": "box"
+    }
+  },
+  "dynamic_object_ids": [
+    "item"
+  ],
+  "payloads": {
+    "item": {
+      "target_bounds": {
+        "min": [
+          -1,
+          -1,
+          -0.005
+        ],
+        "max": [
+          1,
+          1,
+          1
+        ]
+      },
+      "support_object_ids": [
+        "ramp"
+      ],
+      "min_drop_m": 0.05,
+      "settle_seconds": 2
+    }
+  },
+  "source_objects": {
+    "item": {
+      "required_file_sha256": [
+        "67d61db31084d820ca9b1b0d2d3761662f6a5532944573afceee8f57c8151845"
+      ],
+      "profile_id": "rigid_prop_v1",
+      "source_ref": {
+        "source_id": "abo-glb",
+        "asset_id": "B01DN8TB5U",
+        "revision": "c7c8293fed3b7ab122ef5d7896521a187e0962d7"
+      },
+      "parameters": {
+        "target_longest_extent_m": 0.15,
+        "scale_mode": "fit_longest",
+        "mass_kg": 0.12
+      },
+      "root_sha256": "67d61db31084d820ca9b1b0d2d3761662f6a5532944573afceee8f57c8151845"
+    }
+  },
+  "required_capability_tools": [
+    "asset_plan",
+    "asset_prepare"
+  ],
+  "required_capability_files": [
+    "preparation/glb_convert.py",
+    "physics_binding.py"
+  ],
+  "capability_requirement": "Actual selected source GLB conversion, explicit rigid profile and pinned prepared nested-body binding; manually drawn proxy geometry is not equivalent."
+}

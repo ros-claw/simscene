@@ -3,6 +3,20 @@ name: deliver-scene-video
 description: Plan cameras, record native simulation footage, inspect clarity and motion, and edit traceable videos of SimScene scenes. Use for real simulation video delivery, not synthetic or illustrated footage.
 ---
 
+For short public cuts, handoff close-ups, causal framing and labelled slow
+replay, read [causal editing](references/causal-editing.md). Start from retained
+sources; a camera or edit change alone should not restart physical trials.
+For catalog/prepared objects, keep the selected source and preparation pins in
+the delivery lock. A successful source conversion does not certify collider
+quality, material loading or the imported body's actual motion. Use the mapped
+body and measured event evidence for close-up timing; a commanded joint target
+is distinct from its observed response.
+Native joint and declared contact proposals from `run_presentation_events`
+locate recorded frames; inspect their evidence and thresholds before choosing
+a cut. Hide static collision proxies with `visible:false` when they share a
+rendered support surface, preserving the proxy collision and documenting its
+approximation. Coplanar transparent meshes can still produce render artifacts.
+
 Read the scene/revision, subjects, actions, requested style, duration and budget.
 Use the existing SimScene execution tools; recordings run on the simulation
 host. A saved MP4 or successful encode alone does not establish good visuals.

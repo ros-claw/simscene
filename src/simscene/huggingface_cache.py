@@ -80,6 +80,10 @@ def _url(repo,revision,path):
 
 def _download(url,destination,budget):
     token=os.getenv('HF_TOKEN');headers={'Authorization':'Bearer '+token} if token else {}
+    from .acquisition.transfer import current_budget
+    transaction=current_budget()
+    if transaction is not None:
+        return transaction.download(url,destination,headers=headers,max_bytes=budget)
     size=0;hasher=hashlib.sha256()
     try:
         with build_opener(CredentialSafeRedirect()).open(Request(url,headers=headers),timeout=60) as response,destination.open('wb') as output:
@@ -99,39 +103,58 @@ def _download(url,destination,budget):
 def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
     repo,revision,root_path=_parts(repo_id,revision,path)
     cache=AssetCache(None,directory,max_bytes);source=_url(repo,revision,root_path)
+    from .acquisition.transfer import current_budget
+    transaction=current_budget()
+    package_limit=transaction.package_limit(max_bytes) if transaction is not None else max_bytes
     index=cache.directory/('.source-'+hashlib.sha256(source.encode()).hexdigest())
     with (cache.directory/'.cache.lock').open('a') as lockfile:
         fcntl.flock(lockfile,fcntl.LOCK_EX)
         cache._cleanup_partials()
+        prior = None
         if index.is_file():
             digest=index.read_text().strip();target=cache.directory/digest
             if re.fullmatch(r'[0-9a-f]{64}',digest) and target.is_dir():
                 result=cache._verified_cached(target,digest,source)
+                if transaction is not None and sum(p.stat().st_size for p in target.rglob('*') if p.is_file())>package_limit:
+                    raise SearchError('native package exceeds frozen unpacked/staging budget')
                 # Old incomplete UDIM packages remain intact. Explicitly
                 # acquiring them again creates a new content fingerprint.
                 legacy_mdl=any(f['path'].lower().endswith('.mdl') for f in result['files']) and result.get('dependency_scan_version',0)<4
-                if not legacy_mdl and not any('<UDIM>' in str(p) for p in result.get('unresolved_dependencies',[])):
+                if result.get('dependency_status') not in ('missing', 'unverified_usd_tools_unavailable') and not legacy_mdl and not any('<UDIM>' in str(p) for p in result.get('unresolved_dependencies',[])):
                     cache._write_provenance(result)
                     return result
+                prior = result
         with tempfile.TemporaryDirectory(dir=cache.directory,prefix='.partial-hf-') as tmp:
-            output=Path(tmp)/'contents';output.mkdir();files=[];errors=[];attempted=set();incomplete_udims=set();udim_patterns={}
+            output=Path(tmp)/'contents';output.mkdir();files=[];errors=[];attempted=set();incomplete_udims=set();udim_patterns=dict((prior or {}).get('udim_patterns',{}))
             def fetch(relative):
                 target=output.joinpath(*relative.parts)
                 if target.exists():raise SearchError('dependency already exists but could not be resolved')
                 target.parent.mkdir(parents=True,exist_ok=True)
                 used=sum(item['size'] for item in files)
                 url=_url(repo,revision,relative)
-                size,hash_value=_download(url,target,max_bytes-used)
+                size,hash_value=_download(url,target,package_limit-used)
                 files.append({'url':url,'path':relative.as_posix(),'size':size,'sha256':hash_value})
-            fetch(root_path)
+            if prior is not None:
+                import shutil
+                original = cache.directory / prior['package_sha256']
+                for item in prior['files']:
+                    if sum(f['size'] for f in files)+item['size']>package_limit:raise SearchError('native repair staging budget exceeded')
+                    destination = output / item['path']; destination.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(original / item['path'], destination)
+                    files.append(dict(item))
+            if not output.joinpath(*root_path.parts).is_file():
+                fetch(root_path)
             try:
                 from pxr import Sdf, UsdUtils
                 root=output.joinpath(*root_path.parts)
                 from .mdl_dependencies import missing as missing_mdl
                 material_errors=set()
+                # A present first tile can make USD report a UDIM template as
+                # resolved. Retry the prior explicit pinned tile inventory too.
+                retry_udims = [str(output / pattern) for pattern in udim_patterns]
                 for _ in range(32):
                     layers,_,unresolved=UsdUtils.ComputeAllDependencies(str(root));progress=False
-                    try:unresolved=list(unresolved)+missing_mdl(output.rglob('*.mdl'))
+                    try:unresolved=list(unresolved)+missing_mdl(output.rglob('*.mdl'))+retry_udims
                     except ValueError as error:material_errors.add(str(error))
                     # Some USD versions leave a missing UDIM template relative
                     # even though ordinary asset dependencies are anchored.
@@ -174,7 +197,9 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
                                         failed=True;errors.append({'dependency':tile.as_posix(),'error':str(error)})
                                 if failed:incomplete_udims.add(str(item))
                             else:fetch(relative);progress=True
-                        except (SearchError,ValueError) as error:errors.append({'dependency':str(item),'error':str(error)})
+                        except (SearchError,ValueError) as error:
+                            if '<UDIM>' in str(relative):incomplete_udims.add(str(item))
+                            errors.append({'dependency':str(item),'error':str(error)})
                     if not progress:break
                 _,_,unresolved=UsdUtils.ComputeAllDependencies(str(root))
                 try:unresolved=list(unresolved)+missing_mdl(output.rglob('*.mdl'))
@@ -191,7 +216,7 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
                       'dependency_scan_version':4,'udim_patterns':udim_patterns}
             (output/'simscene-lock.json').write_text(json.dumps(metadata,indent=2))
             size=sum(p.stat().st_size for p in output.rglob('*') if p.is_file())
-            if size>max_bytes:raise SearchError('Hugging Face package exceeds cache capacity')
+            if size>package_limit:raise SearchError('Hugging Face package exceeds cache capacity or frozen package budget')
             if target.is_dir():
                 result=cache._verified_cached(target,digest,source)
             else:

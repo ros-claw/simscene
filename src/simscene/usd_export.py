@@ -13,7 +13,7 @@ def export_scene(scene, destination):
     names = [name.replace('-', '_') for name in scene['objects']]
     if len(set(names)) != len(names):
         raise SceneError('object IDs collide after USD path conversion')
-    normalizations={}
+    normalizations={}; prepared_manifests={}
     for name, obj in scene['objects'].items():
         if obj['kind'] == 'asset':
             asset_path = Path(obj['asset_path']).expanduser().resolve()
@@ -29,6 +29,32 @@ def export_scene(scene, destination):
             asset_stage = Usd.Stage.Open(str(asset_path))
             if not asset_stage:
                 raise SceneError(f'cannot open USD asset: {name}')
+            if obj.get('asset_binding') is not None:
+                from .physics_binding import validate_asset_binding
+                try:
+                    prepared = validate_asset_binding(obj['asset_binding'], require_dynamic=obj.get('dynamic') is True, asset_path=asset_path)
+                    parameters = prepared.get('parameters', {})
+                    if not isinstance(parameters, dict) or type(parameters.get('ccd', False)) is not bool:
+                        raise ValueError('prepared physical parameters are malformed')
+                    if (not asset_stage.GetDefaultPrim() or str(asset_stage.GetDefaultPrim().GetPath()) != prepared['default_prim']
+                            or not asset_stage.HasAuthoredMetadata('metersPerUnit') or abs(UsdGeom.GetStageMetersPerUnit(asset_stage) - 1.) > 1e-9
+                            or not asset_stage.HasAuthoredMetadata('upAxis') or UsdGeom.GetStageUpAxis(asset_stage) != UsdGeom.Tokens.z):
+                        raise ValueError('prepared assets require their authored default prim, meters and Z-up')
+                    prims = list(asset_stage.Traverse())
+                    from .preparation.inspect import reject_executable_graphs
+                    reject_executable_graphs(asset_stage)
+                    if prepared['profile_id'] not in ('rigid_prop_v1','articulated_prop_v1') and any(prim.HasAPI(UsdPhysics.RigidBodyAPI) or prim.HasAPI(UsdPhysics.ArticulationRootAPI) or prim.IsA(UsdPhysics.Joint) for prim in prims):
+                        raise ValueError('prepared static/visual profile contains dynamic or articulated physics')
+                    expected = {prepared['default_prim'] + ('/' + relative if relative not in ('', '.') else '')
+                                for entry in prepared['body_map'].values() for relative in entry.get('collider_relative_prim_paths', [])}
+                    actual = {str(prim.GetPath()) for prim in prims if prim.HasAPI(UsdPhysics.CollisionAPI) and UsdPhysics.CollisionAPI(prim).GetCollisionEnabledAttr().Get()}
+                    if actual != expected:
+                        raise ValueError('prepared collider paths do not match the actual source profile')
+                    if prepared['profile_id'] in ('rigid_prop_v1', 'static_fixture_v1', 'container_v1', 'articulated_prop_v1') and any(attr.GetNumTimeSamples() for prim in prims for attr in prim.GetAttributes()):
+                        raise ValueError('prepared physical assets cannot contain time-sampled animation')
+                    prepared_manifests[name] = prepared
+                except (OSError, ValueError, TypeError, KeyError, AttributeError) as error:
+                    raise SceneError(f'asset {name}: {error}') from error
             metrics=obj.get('asset_metrics',{})
             if (not asset_stage.HasAuthoredMetadata('metersPerUnit') and 'meters_per_unit' not in metrics) or (not asset_stage.HasAuthoredMetadata('upAxis') and 'up_axis' not in metrics):
                 raise SceneError(f'asset {name} has unspecified unit or up axis')
@@ -45,7 +71,20 @@ def export_scene(scene, destination):
                 if obj.get('asset_physics')!='visual_only' and (has_physics or has_variants or obj.get('pose_follower')):
                     raise SceneError(f'asset {name} needs unit/up-axis conversion but has physics, variants, or a controller; import and validate it separately')
                 normalizations[name]=(meters,axis)
-            _, _, unresolved = UsdUtils.ComputeAllDependencies(str(asset_path))
+            layers, asset_files, unresolved = UsdUtils.ComputeAllDependencies(str(asset_path))
+            if name in prepared_manifests:
+                package = Path(obj['asset_binding']['manifest_path']).expanduser().absolute().parent
+                known = {entry['path'] for entry in prepared_manifests[name]['files']}
+                for dependency in [layer.realPath or layer.identifier for layer in layers] + list(asset_files):
+                    dependency = Path(str(dependency))
+                    if not dependency.is_absolute():
+                        dependency = package / dependency
+                    try:
+                        relative = dependency.resolve().relative_to(package.resolve()).as_posix()
+                    except ValueError as error:
+                        raise SceneError(f'prepared asset {name} references a file outside its package') from error
+                    if relative not in known:
+                        raise SceneError(f'prepared asset {name} references a file outside its hashed closure')
             from .runtime_dependencies import classify
             dependencies = classify(unresolved)
             if dependencies['unresolved']:
@@ -66,7 +105,9 @@ def export_scene(scene, destination):
     stage.SetDefaultPrim(root.GetPrim())
     for name, obj in scene['objects'].items():
         if obj.get('spawn_step',0)>0: continue
-        prim_path = '/World/' + name.replace('-', '_')
+        if obj['kind']=='joint':continue
+        from .attachments import prim_path as object_prim_path
+        prim_path = object_prim_path(scene,name)
         kind = obj['kind']
         if kind == 'box' and 'conveyor' in obj:
             # Bake size into points: scaled surface-velocity prims scale the
@@ -86,6 +127,12 @@ def export_scene(scene, destination):
             entity = UsdGeom.Sphere.Define(stage, prim_path)
             size=obj.get('size',[1,1,1])
             entity.CreateRadiusAttr(size[0]/2 if size[0]==size[1]==size[2] else 0.5)
+        elif kind in ('cylinder','capsule'):
+            from .passive import shape
+            entity=shape(stage,prim_path,obj)
+        elif kind=='compound':
+            from .passive import compound
+            entity=compound(stage,prim_path,obj)
         elif kind == 'camera':
             from .capture import camera_config
             cfg=camera_config(scene,obj)
@@ -156,6 +203,8 @@ def export_scene(scene, destination):
                     path.unlink(missing_ok=True)
                     raise SceneError(f'asset {name}: {error}') from error
         xform = UsdGeom.Xformable(entity.GetPrim())
+        if obj.get('visible',True) is False:
+            UsdGeom.Imageable(entity.GetPrim()).MakeInvisible()
         if 'material' in obj:
             from .materials import apply_material
             apply_material(stage,entity.GetPrim(),name,obj['material'])
@@ -201,11 +250,43 @@ def export_scene(scene, destination):
                 xform.AddScaleOp().Set(Gf.Vec3f(*size))
             if 'color' in obj:
                 entity.CreateDisplayColorAttr([Gf.Vec3f(*obj['color'])])
-            if obj.get('collision') or obj.get('dynamic'):
+            if obj.get('collision',obj.get('dynamic',False)):
                 UsdPhysics.CollisionAPI.Apply(entity.GetPrim())
             if obj.get('dynamic'):
                 UsdPhysics.RigidBodyAPI.Apply(entity.GetPrim())
                 if 'mass_kg' in obj: UsdPhysics.MassAPI.Apply(entity.GetPrim()).CreateMassAttr(obj['mass_kg'])
+        if kind in ('cylinder','capsule','compound'):
+            if kind!='compound' and obj.get('collision',obj.get('dynamic',False)):UsdPhysics.CollisionAPI.Apply(entity.GetPrim())
+            if obj.get('dynamic'):
+                UsdPhysics.RigidBodyAPI.Apply(entity.GetPrim())
+                if 'mass_kg' in obj:UsdPhysics.MassAPI.Apply(entity.GetPrim()).CreateMassAttr(obj['mass_kg'])
+        if 'physics' in obj:
+            from .passive import author_physics
+            author_physics(stage,entity.GetPrim(),name,obj)
+    for name,obj in scene['objects'].items():
+        if obj.get('collision_exclusions'):
+            api=UsdPhysics.FilteredPairsAPI.Apply(stage.GetPrimAtPath('/World/'+name.replace('-','_')))
+            api.CreateFilteredPairsRel().SetTargets(['/World/'+other.replace('-','_') for other in obj['collision_exclusions']])
+        if obj['kind']=='joint':
+            from .passive import author_joint
+            author_joint(stage,'/World/'+name.replace('-','_'),obj['joint'])
+    if (any(obj.get('physics',{}).get('enable_ccd') for obj in scene['objects'].values())
+            or any(manifest.get('parameters', {}).get('ccd') for manifest in prepared_manifests.values())):
+        physics=UsdPhysics.Scene.Define(stage,'/World/PhysicsScene');physics.GetPrim().AddAppliedSchema('PhysxSceneAPI')
+        physics.CreateGravityDirectionAttr().Set(Gf.Vec3f(0,0,-1));physics.CreateGravityMagnitudeAttr().Set(9.81)
+        from pxr import Sdf
+        physics.GetPrim().CreateAttribute('physxScene:enableCCD',Sdf.ValueTypeNames.Bool,custom=False).Set(True)
+    for name,prepared in prepared_manifests.items():
+        if prepared['profile_id']=='articulated_prop_v1':
+            from .preparation.articulation import transform_world_anchors
+            transform_world_anchors(stage,stage.GetPrimAtPath('/World/'+name.replace('-','_')+'/Asset'))
+    from .physics_binding import resolve_body_bindings
+    try:
+        body_bindings = resolve_body_bindings(stage, scene)
+    except Exception as error:
+        stage.GetRootLayer().Clear()
+        path.unlink(missing_ok=True)
+        raise SceneError(f'prepared asset body binding failed: {error}') from error
     stage.GetRootLayer().Save()
-    return {'path':str(path), 'revision':scene['revision'], 'physics_validation':'not run',
+    return {'body_bindings':body_bindings, 'path':str(path), 'revision':scene['revision'], 'physics_validation':'not run',
             'normalized_visual_assets':{name:{'source_meters_per_unit':meters,'source_up_axis':str(axis)} for name,(meters,axis) in normalizations.items()}}

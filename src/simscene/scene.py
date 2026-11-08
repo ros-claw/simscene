@@ -19,6 +19,12 @@ def _id(value):
 def validate(scene):
     issues = []
     normalized={}
+    from .passive import GEOMETRY,validate_parts,validate_joint,validate_physics
+    observation=scene.get('observation',{})
+    if not isinstance(observation,dict) or set(observation)-{'sample_interval_steps','strict_start','record_contact_pairs'} or type(observation.get('sample_interval_steps',5)) is not int or not 1<=observation.get('sample_interval_steps',5)<=60:
+        issues.append({'object':None,'message':'observation requires sample_interval_steps in 1..60'})
+    elif any(type(observation.get(k,False)) is not bool for k in ('strict_start','record_contact_pairs')) or observation.get('record_contact_pairs') and observation.get('sample_interval_steps')!=1 or observation.get('strict_start') and (observation.get('sample_interval_steps')!=1 or any(isinstance(o,dict) and o.get('pose_follower') for o in scene['objects'].values())):
+        issues.append({'object':None,'message':'strict_start requires per-step passive observations without robot controllers'})
     if 'presentation' in scene:
         from .capture import validate_presentation
         try: validate_presentation(scene['presentation'])
@@ -38,10 +44,60 @@ def validate(scene):
         if not isinstance(obj, dict):
             issues.append({'object': name, 'message': 'object must be a mapping'})
             continue
-        allowed = {'kind', 'position', 'size', 'asset_path', 'asset_physics', 'asset_lights', 'asset_metrics', 'color', 'material', 'material_overrides', 'collision', 'dynamic', 'intensity', 'light', 'orientation_wxyz', 'conveyor', 'pose_follower', 'variants', 'spawn_step', 'mass_kg', 'class_label', 'record_fps', 'preview_fps', 'camera_orbit','camera_path','camera','support_surfaces','counter','indicator'}
+        allowed = {'kind', 'position', 'size', 'asset_path', 'asset_binding', 'asset_physics', 'asset_lights', 'asset_metrics', 'color', 'material', 'material_overrides', 'collision', 'dynamic', 'intensity', 'light', 'orientation_wxyz', 'conveyor', 'pose_follower', 'variants', 'spawn_step', 'mass_kg', 'class_label', 'record_fps', 'preview_fps', 'camera_orbit','camera_path','camera','support_surfaces','counter','indicator','joint','parts','physics','collision_exclusions','rigid_attachment','mechanism','visible'}
         unknown = set(obj) - allowed
         if unknown:
             issues.append({'object':name, 'message':f'unsupported fields: {sorted(unknown)}'})
+        if 'visible' in obj and (type(obj['visible']) is not bool or obj.get('kind') not in GEOMETRY):
+            issues.append({'object':name,'message':'visible must be boolean on primitive geometry; it changes rendering only'})
+        prepared_manifest = None
+        if 'asset_binding' in obj:
+            try:
+                from .physics_binding import validate_asset_binding
+                if obj.get('kind') != 'asset':
+                    raise ValueError('asset_binding requires an imported asset')
+                prepared_manifest = validate_asset_binding(obj['asset_binding'], require_dynamic=obj.get('dynamic') is True,
+                                                           asset_path=obj.get('asset_path'))
+                profile = prepared_manifest.get('profile_id')
+                if profile not in ('rigid_prop_v1', 'static_fixture_v1', 'visual_prop_v1', 'articulated_prop_v1', 'container_v1', 'environment_v1'):
+                    raise ValueError('unsupported prepared asset profile')
+                if profile in ('rigid_prop_v1','articulated_prop_v1') and obj.get('dynamic') is not True:
+                    raise ValueError(f'prepared {profile} requires dynamic=true')
+                if profile not in ('rigid_prop_v1','articulated_prop_v1') and obj.get('dynamic', False) is not False:
+                    raise ValueError('prepared static/visual profiles require dynamic=false')
+                if profile=='articulated_prop_v1' and (not observation.get('strict_start') or observation.get('sample_interval_steps')!=1):
+                    raise ValueError('prepared articulated assets require strict_start and every-physics-step observation')
+                colliders = any(entry.get('collider_relative_prim_paths') for entry in prepared_manifest.get('body_map', {}).values())
+                if 'collision' in obj and obj['collision'] is not bool(colliders):
+                    raise ValueError('collision must match the prepared collider profile; reprepare to change it')
+                forbidden = {'size', 'scale', 'pose_follower', 'rigid_attachment', 'asset_metrics', 'variants',
+                             'mass_kg', 'physics', 'material', 'material_overrides', 'color', 'collision_exclusions'} & set(obj)
+                if forbidden:
+                    raise ValueError('prepared asset overrides require a new preparation: ' + ', '.join(sorted(forbidden)))
+                if obj.get('asset_physics', 'preserve') != 'preserve' or obj.get('asset_lights', 'preserve') != 'preserve':
+                    raise ValueError('prepared asset physics and lighting must be preserved')
+                roles = {entry.get('role') for entry in prepared_manifest.get('body_map', {}).values()}
+                if (profile in ('static_fixture_v1','container_v1') and roles - {'static'}) or (profile in ('visual_prop_v1','environment_v1') and prepared_manifest.get('body_map')):
+                    raise ValueError('prepared body map conflicts with its profile')
+            except (OSError, ValueError, TypeError, KeyError, AttributeError) as error:
+                issues.append({'object': name, 'message': 'invalid asset_binding: ' + str(error)})
+                prepared_manifest = None
+        if 'mechanism' in obj:
+            try:
+                if prepared_manifest is None or prepared_manifest.get('profile_id')!='articulated_prop_v1':
+                    raise ValueError('mechanism requires a prepared articulated_prop_v1 asset binding')
+                from .worker.mechanism import validate_config
+                joints={}
+                for local_id,entry in prepared_manifest['joint_map'].items():
+                    joints[local_id]=dict(entry,joint_path='/World/validation/Joint',parent_body='/World/validation/Parent' if entry.get('parent_body_id') else None,child_body='/World/validation/Child')
+                validate_config({'joints':joints},obj['mechanism'])
+                if not observation.get('strict_start') or observation.get('sample_interval_steps')!=1:
+                    raise ValueError('mechanism requires strict_start and every-physics-step observation')
+            except (ValueError,TypeError,KeyError) as error:
+                issues.append({'object':name,'message':str(error)})
+        if 'rigid_attachment' in obj:
+            from .attachments import validate_attachment
+            issues.extend({'object':name,'message':error} for error in validate_attachment(scene,obj))
         orientation = obj.get('orientation_wxyz', [1, 0, 0, 0])
         if not isinstance(orientation, list) or len(orientation) != 4 or not all(isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x) for x in orientation) or abs(sum(x*x for x in orientation) - 1) > 1e-4:
             issues.append({'object':name, 'message':'orientation_wxyz must be a normalized quaternion'})
@@ -50,7 +106,7 @@ def validate(scene):
             issues.append({'object':name, 'message':'color must contain three numbers between 0 and 1'})
         if 'material' in obj:
             material=obj['material']
-            if obj.get('kind') not in ('box','sphere','asset') or not isinstance(material,dict) or set(material)-{'color','roughness','metallic','opacity','emissive'}:
+            if obj.get('kind') not in (*GEOMETRY,'asset') or not isinstance(material,dict) or set(material)-{'color','roughness','metallic','opacity','emissive'}:
                 issues.append({'object':name,'message':'material requires a supported geometry and material fields'})
             else:
                 for field in ('color','emissive'):
@@ -82,7 +138,7 @@ def validate(scene):
         for field in ('collision', 'dynamic'):
             if field in obj and not isinstance(obj[field], bool):
                 issues.append({'object':name, 'message':f'{field} must be boolean'})
-            elif field in obj and obj.get('kind') not in ('box','sphere'):
+            elif field in obj and obj.get('kind') not in GEOMETRY and not (obj.get('kind') == 'asset' and 'asset_binding' in obj):
                 issues.append({'object':name,'message':f'{field} is only authored for primitive geometry; inspect asset physics separately'})
         if 'intensity' in obj:
             intensity=obj['intensity']
@@ -308,16 +364,27 @@ def validate(scene):
         if not isinstance(position, list) or len(position) != 3 or not all(isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x) for x in position):
             issues.append({'object': name, 'message': 'position must be three finite numbers'})
         kind = obj.get('kind')
-        if kind not in ('box', 'sphere', 'asset', 'camera', 'light','counter'):
+        if kind not in (*GEOMETRY, 'asset', 'camera', 'light','counter','joint'):
             issues.append({'object': name, 'message': f'unsupported kind: {kind}'})
         if kind == 'asset' and not obj.get('asset_path'):
             issues.append({'object': name, 'message': 'asset_path required'})
         elif kind == 'asset' and (not isinstance(obj['asset_path'],str) or '://' in obj['asset_path']):
             issues.append({'object':name,'message':'asset_path must be a local simulation-host path; acquire the online asset and use its returned path'})
-        if kind in ('box', 'sphere'):
+        if kind in GEOMETRY[:-1]:
             size = obj.get('size', [1, 1, 1])
             if not isinstance(size, list) or len(size) != 3 or not all(isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x) and x > 0 for x in size):
                 issues.append({'object': name, 'message': 'size must contain three positive finite numbers'})
+            elif kind in ('cylinder','capsule') and (abs(size[0]-size[1])>1e-8 or (kind=='capsule' and size[2]<size[0])):
+                issues.append({'object':name,'message':'axial geometry needs equal X/Y diameter and capsule total length >= diameter'})
+        if kind=='compound' or 'parts' in obj:issues.extend({'object':name,'message':m} for m in validate_parts(obj))
+        if kind=='joint' or 'joint' in obj:
+            issues.extend({'object':name,'message':m} for m in validate_joint(scene,obj))
+            if set(obj)-{'kind','joint','class_label'}:issues.append({'object':name,'message':'joint poses belong to local joint frames and connected body poses'})
+        if 'physics' in obj:issues.extend({'object':name,'message':m} for m in validate_physics(obj))
+        if 'collision_exclusions' in obj:
+            values=obj['collision_exclusions']
+            if kind not in GEOMETRY or not isinstance(values,list) or not all(isinstance(v,str) and v!=name and isinstance(scene['objects'].get(v),dict) and scene['objects'][v].get('kind') in GEOMETRY for v in values) or len(values)!=len(set(values)):
+                issues.append({'object':name,'message':'collision_exclusions must name distinct other existing geometry objects'})
     return issues
 
 class SceneStore:
@@ -373,6 +440,9 @@ class SceneStore:
             updated = copy.deepcopy(scene)
             for op in operations:
                 action = op.get('op')
+                if action == 'set_observation':
+                    updated['observation']=copy.deepcopy(op.get('observation'))
+                    continue
                 if action == 'set_presentation':
                     from .capture import validate_presentation
                     try: updated['presentation']=copy.deepcopy(validate_presentation(op.get('presentation')))
