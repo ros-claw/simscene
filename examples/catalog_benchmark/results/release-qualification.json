@@ -1,0 +1,144 @@
+{
+  "schema": "simscene.release_qualification.v1",
+  "source_commit": "6d00bd9c7444aa5bcf2ed6d12f78536c38b280ef",
+  "package": "simscene-0.2.0-dev.1-py310-linux-x86_64.zip",
+  "package_sha256": "76b14e730186796c099e1960c3e193a0e46fd6f9fd4559bc324033d405840de4",
+  "plan_sha256": "3b9f877e60919c9ff5486055ae5fa094d469b8294a194882f00254c8ffec479e",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "candidate_only": true,
+  "trials": [
+    {
+      "task_id": "native-video",
+      "status": "passed",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 183.15776762925088
+      },
+      "usage": {
+        "input_tokens": 880219,
+        "cached_input_tokens": 812544,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4802,
+        "reasoning_output_tokens": 929,
+        "total_tokens": 885021,
+        "uncached_input_tokens": 67675
+      },
+      "tool_calls": 18,
+      "trace_sha256": "524b490fffefce6574b2365e1286510a6f9d472d76a5cd6ebee952612d53989a",
+      "result_sha256": "acd4a24c52551cf55ea4b5c54ec735cfdb5f9ecbe1f5f077002ed6b9401dee65",
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true
+      },
+      "checks": {
+        "all_attempts_declared": true,
+        "selected_scene_matches": true,
+        "actual_process_success": true,
+        "input_and_saved_evidence_integrity": true,
+        "frozen_runtime": true,
+        "exact_physical_actor_ids": true,
+        "no_extra_actuation": true,
+        "required_kinds": true,
+        "dynamic_actor_ids": true,
+        "constraints:workbench": true,
+        "constraints:floor": true,
+        "constraints:support": true,
+        "constraints:ramp": true,
+        "constraints:baffle": true,
+        "constraints:payload1": true,
+        "constraints:payload2": true,
+        "constraints:payload3": true,
+        "constraints:payload4": true,
+        "frozen_physical_recipe": true,
+        "measured_support_top": true,
+        "source_identity": true,
+        "steps": true,
+        "seed": true,
+        "duration": true,
+        "complete_cadence": true,
+        "complete_timebase": true,
+        "no_robot_pose_followers": true,
+        "no_declared_partial_or_truncation": true,
+        "payloads": true,
+        "native_video_quality": true
+      },
+      "video_passed": true,
+      "attempts": [
+        {
+          "run_id": "c66f7ed86ccd4fa1a8b2a81405d9b2d1",
+          "complete_result": true
+        }
+      ],
+      "scope_findings": []
+    },
+    {
+      "task_id": "glb-rigid",
+      "status": "passed",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 171.18510577548295
+      },
+      "usage": {
+        "input_tokens": 826741,
+        "cached_input_tokens": 776832,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4013,
+        "reasoning_output_tokens": 64,
+        "total_tokens": 830754,
+        "uncached_input_tokens": 49909
+      },
+      "tool_calls": 26,
+      "trace_sha256": "db882e4c1474c7dceadbe5e7e05bbc0961e6501406f127f3ef9431b595bb1e81",
+      "result_sha256": "b2371eb63e71e703deacc3d11655a97b194f325f3aae77b2b55abd6a0fd94c88",
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true
+      },
+      "checks": {
+        "all_attempts_declared": true,
+        "selected_scene_matches": true,
+        "actual_process_success": true,
+        "input_and_saved_evidence_integrity": true,
+        "frozen_runtime": true,
+        "exact_physical_actor_ids": true,
+        "no_extra_actuation": true,
+        "required_kinds": true,
+        "dynamic_actor_ids": true,
+        "constraints:item": true,
+        "constraints:ramp": true,
+        "constraints:floor": true,
+        "source_identity": true,
+        "steps": true,
+        "seed": true,
+        "duration": true,
+        "complete_cadence": true,
+        "complete_timebase": true,
+        "no_robot_pose_followers": true,
+        "no_declared_partial_or_truncation": true,
+        "payloads": true
+      },
+      "video_passed": null,
+      "attempts": [
+        {
+          "run_id": "0a2bf4a6ac4649b680624956b7c50818",
+          "complete_result": true
+        }
+      ],
+      "scope_findings": []
+    }
+  ],
+  "scope": "Two bounded actual Codex tasks from the normalized transport bundle. Not a paired efficiency experiment; no savings ratio or replacement of the original 36-trial results."
+}

@@ -1,0 +1,106 @@
+{
+  "schema": "simscene.catalog_benchmark_public_inputs.v1",
+  "scope": "Exact declarative JSON bytes used by cohort3; selected model payloads and warm-cache files are excluded. New operators must acquire permitted source dependencies, rebuild the staged bundles and freeze new host bindings. This subset alone is not the complete historical input bundle.",
+  "files": [
+    {
+      "path": "generated-module/acceptance.json",
+      "sha256": "1135377ee0bac7e8a4b3ceb63fffbf5d8a2511e5451794949aaffc9ae9cffeda"
+    },
+    {
+      "path": "generated-module/budgets.json",
+      "sha256": "6fa1f7583e76ab33991d48d4c802960666ba1e3fd19c31ad2811a7382c655b82"
+    },
+    {
+      "path": "generated-module/generation-recipe.json",
+      "sha256": "d2bc5dc4a79c515f4fc9e3f7af1a281481852e2944a6acb745c2a86412024196"
+    },
+    {
+      "path": "glb-rigid/acceptance.json",
+      "sha256": "3d5091d4845c5a0c6b848197704b4ef3ce03a566c5a4fcba04bac7f001a1ea57"
+    },
+    {
+      "path": "glb-rigid/budgets.json",
+      "sha256": "81fb04f7c0e8caf4e3d536e084a0763c118e4ad9494d450f58fda154c6179bab"
+    },
+    {
+      "path": "glb-rigid/source-lock.json",
+      "sha256": "d7eef91b8df3658cc092349c8db731364633b6e7d9a1320a188f9eea795c40cd"
+    },
+    {
+      "path": "native-joint/acceptance.json",
+      "sha256": "8a7a495487db7a67b069f7eb3fefc7d9d68dbba8c70c4b1a619963a94fb76417"
+    },
+    {
+      "path": "native-joint/budgets.json",
+      "sha256": "bc08eef3de000ac1b7a68732de84538412528c4d6294e17c3eb1384965dd75f4"
+    },
+    {
+      "path": "native-joint/drive-recipe.json",
+      "sha256": "715071657b1c9ade5d6313f33d6a2d1789587c155a3498cef2b730e0452a3ae4"
+    },
+    {
+      "path": "native-joint/mechanism-case.json",
+      "sha256": "ff9170c81825f81299eed7af99b3d331ddccd32e5bd3db02fe685009ace1afbb"
+    },
+    {
+      "path": "native-joint/source-lock.json",
+      "sha256": "a843d52dd27bee847b4cff8faef305ba64327d8801550fa877a25b6df3779bf0"
+    },
+    {
+      "path": "native-layout/acceptance.json",
+      "sha256": "78071fa5cb94674789a717188dff581ee54deac0f28caf04d6e47f92ffb3bd02"
+    },
+    {
+      "path": "native-layout/budgets.json",
+      "sha256": "1b6ad3a004ec428c7f3d7a9add822dc5217cbef8ff6160ee8dca06e0ab1d1612"
+    },
+    {
+      "path": "native-layout/source-lock.json",
+      "sha256": "d69280c85b754eaef5d525b8d37ae70c24d78157d8cde4a269b6313e0e3ab736"
+    },
+    {
+      "path": "native-layout/task-notes.json",
+      "sha256": "8db0e7e1b7b699a96ee2ef8f181b5c685de15f11f8f367b4f5d0ad2b8ce68cf0"
+    },
+    {
+      "path": "native-video/acceptance.json",
+      "sha256": "0d0a71776cca3e1f0128c815e421cf9ae2b9800a94bbef66408f0728aa796c3d"
+    },
+    {
+      "path": "native-video/budgets.json",
+      "sha256": "e8ff0151ec134ae947fb0a54c07729b84d9e917eb3019db70ea8e1b18ecb6b17"
+    },
+    {
+      "path": "native-video/seed-scene.json",
+      "sha256": "c6c73653b5e3f4369a00df58b519d346640f95c61d55ba1d1cccf7917f1a312c"
+    },
+    {
+      "path": "native-video/source-lock.json",
+      "sha256": "d0594e270d94660386d3cb6995651b76eac1c16aecd9889189937c8efc262812"
+    },
+    {
+      "path": "native-video/task-notes.json",
+      "sha256": "00c2b6849413edc9eefd0de4a4faf395bcc3416d3468cd2acccdf18a85c6824d"
+    },
+    {
+      "path": "warm-edit/acceptance.json",
+      "sha256": "7c7e93b84fdce2cf48189bb02b0607c94b8f68c105f99521199ed4b4b2ab163b"
+    },
+    {
+      "path": "warm-edit/budgets.json",
+      "sha256": "6caa796abd090dee6387e1c26c5e021dee356dc2d3c258a588f21cba8c83fa9e"
+    },
+    {
+      "path": "warm-edit/seed-scene.json",
+      "sha256": "c6c73653b5e3f4369a00df58b519d346640f95c61d55ba1d1cccf7917f1a312c"
+    },
+    {
+      "path": "warm-edit/source-lock.json",
+      "sha256": "d0594e270d94660386d3cb6995651b76eac1c16aecd9889189937c8efc262812"
+    },
+    {
+      "path": "warm-edit/task-notes.json",
+      "sha256": "00c2b6849413edc9eefd0de4a4faf395bcc3416d3468cd2acccdf18a85c6824d"
+    }
+  ]
+}

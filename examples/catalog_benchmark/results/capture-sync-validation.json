@@ -1,0 +1,146 @@
+{
+  "schema": "simscene.capture_sync_validation.v1",
+  "fix_commit": "6d00bd9c7444aa5bcf2ed6d12f78536c38b280ef",
+  "runtime": "Isaac Sim 6.2.0-rc.14+release.52805.02189a84.gl; CPU PhysX 60 Hz; RTX A6000",
+  "historical_example": {
+    "run_id": "b5771dc4ce0e4cdf9ec369d2f8790570",
+    "frame_id": 25,
+    "declared_physics_step": 52,
+    "rgb_red_centroid_px": [
+      607.5,
+      382.7
+    ],
+    "step_50_projected_centroid_px": [
+      607.9,
+      383.2
+    ],
+    "step_52_projected_centroid_px": [
+      634.6,
+      388.4
+    ]
+  },
+  "replays": [
+    {
+      "run_id": "6155a816067a42aa9ecebde223ef906c",
+      "physical_steps": 720,
+      "native_frames": 150,
+      "passed": true,
+      "video_checks": {
+        "run_local_files": true,
+        "resolution": true,
+        "fps": true,
+        "frames": true,
+        "native_cadence": true,
+        "actual_decoded_dimensions_frames": true,
+        "raw_frames_present": true,
+        "nonblank_pixels": true,
+        "projected_body_and_native_pixels_visible": true,
+        "actual_motion_during_capture": true,
+        "decoded_pixels_match_native_and_visibility": true
+      },
+      "worker_camera_module_sha256": {
+        "camera_frames.py": "939ebdef10b8734a8a737a70c66adf3e414e289a2d4fb04baf9dc530278ff7cf",
+        "isaac_run.py": "59230265012eda9237c4ba67de7bdfe60aad9a109a8641933c6badbf6aa9c5e9"
+      },
+      "verification_sha256": "11b91310b73f74153be1b84ce00d71a757399f9ce1f8ac6648062618b0c9bae0"
+    },
+    {
+      "run_id": "5bc9020c4fcd45bbb7c5472effc5baf2",
+      "physical_steps": 720,
+      "native_frames": 150,
+      "passed": true,
+      "video_checks": {
+        "run_local_files": true,
+        "resolution": true,
+        "fps": true,
+        "frames": true,
+        "native_cadence": true,
+        "actual_decoded_dimensions_frames": true,
+        "raw_frames_present": true,
+        "nonblank_pixels": true,
+        "projected_body_and_native_pixels_visible": true,
+        "actual_motion_during_capture": true,
+        "decoded_pixels_match_native_and_visibility": true
+      },
+      "worker_camera_module_sha256": {
+        "camera_frames.py": "939ebdef10b8734a8a737a70c66adf3e414e289a2d4fb04baf9dc530278ff7cf",
+        "isaac_run.py": "59230265012eda9237c4ba67de7bdfe60aad9a109a8641933c6badbf6aa9c5e9"
+      },
+      "verification_sha256": "e9ccaa87b28dc15b895713bd26c87de0501737010752ecc77b734b82fbd51ced"
+    },
+    {
+      "run_id": "55e18a7c0f4641e3bbaf670a7c87f052",
+      "physical_steps": 720,
+      "native_frames": 150,
+      "passed": true,
+      "video_checks": {
+        "run_local_files": true,
+        "resolution": true,
+        "fps": true,
+        "frames": true,
+        "native_cadence": true,
+        "actual_decoded_dimensions_frames": true,
+        "raw_frames_present": true,
+        "nonblank_pixels": true,
+        "projected_body_and_native_pixels_visible": true,
+        "actual_motion_during_capture": true,
+        "decoded_pixels_match_native_and_visibility": true
+      },
+      "worker_camera_module_sha256": {
+        "camera_frames.py": "939ebdef10b8734a8a737a70c66adf3e414e289a2d4fb04baf9dc530278ff7cf",
+        "isaac_run.py": "59230265012eda9237c4ba67de7bdfe60aad9a109a8641933c6badbf6aa9c5e9"
+      },
+      "verification_sha256": "cbb4f08de3ea84abcdcbc387e7ccb4d8349dcf81d77c50f0cd3127034c70af2e"
+    }
+  ],
+  "scope": "Three new machine-driven SDK runs, same physical recipe/camera and unchanged frozen pixel/physical predicates. Not model trials or a paired token study. Render barrier receipts are not independent sensor timestamps.",
+  "multi_camera_batch": {
+    "run_id": "648030665aed4d3996aececeaf4b24f9",
+    "physical_steps": 720,
+    "camera_count": 2,
+    "native_frames_per_camera": 150,
+    "passed": true,
+    "checks": {
+      "overview": {
+        "passed": true,
+        "checks": {
+          "run_local_files": true,
+          "resolution": true,
+          "fps": true,
+          "frames": true,
+          "native_cadence": true,
+          "actual_decoded_dimensions_frames": true,
+          "raw_frames_present": true,
+          "nonblank_pixels": true,
+          "projected_body_and_native_pixels_visible": true,
+          "actual_motion_during_capture": true,
+          "decoded_pixels_match_native_and_visibility": true
+        },
+        "scope": "Every native RGB frame: measured sphere projection within viewport, minimum radius and actual role-colored pixels; full simulation cadence and observed motion."
+      },
+      "second": {
+        "passed": true,
+        "checks": {
+          "run_local_files": true,
+          "resolution": true,
+          "fps": true,
+          "frames": true,
+          "native_cadence": true,
+          "actual_decoded_dimensions_frames": true,
+          "raw_frames_present": true,
+          "nonblank_pixels": true,
+          "projected_body_and_native_pixels_visible": true,
+          "actual_motion_during_capture": true,
+          "decoded_pixels_match_native_and_visibility": true
+        },
+        "scope": "Every native RGB frame: measured sphere projection within viewport, minimum radius and actual role-colored pixels; full simulation cadence and observed motion."
+      }
+    },
+    "scope": "Two independent camera prims share the fixture pose to test batch buffer synchronization; the gallery separately records four distinct views.",
+    "prior_setup_attempt": {
+      "run_id": "d4d51aaf442d4331a02387c428f21b03",
+      "status": "failed_before_physics",
+      "reason": "Two requested cameras exceeded the fixture budget of one. New attempt explicitly budgets two; original failure retained."
+    }
+  }
+}

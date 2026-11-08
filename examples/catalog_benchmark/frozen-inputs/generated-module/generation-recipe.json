@@ -1,0 +1,12 @@
+{
+  "recipe_id": "guide_plate_v1",
+  "parameters": {
+    "length_m": 0.6,
+    "width_m": 0.18,
+    "thickness_m": 0.015
+  },
+  "changed_length_m": 0.7,
+  "reviewed_commit": "0d589a5ba568fd72c8da97f8d039918650608a42",
+  "template_sha256": "992ef5d17e3f1236c189423a0845b66b7012c31dcd78fb70a664dff4b3572d81",
+  "object_id": "guide"
+}

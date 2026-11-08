@@ -1,0 +1,75 @@
+{
+  "schema": "simscene.catalog_efficiency_acceptance.v1",
+  "task_id": "generated-module",
+  "group": "B",
+  "steps": 720,
+  "physics_hz": 60,
+  "seed": 42,
+  "required_objects": {
+    "guide": {
+      "kind": "asset"
+    },
+    "ball": {
+      "kind": "sphere",
+      "size": [
+        0.06,
+        0.06,
+        0.06
+      ],
+      "mass_kg": 0.12
+    },
+    "floor": {
+      "kind": "box"
+    }
+  },
+  "dynamic_object_ids": [
+    "ball"
+  ],
+  "payloads": {
+    "ball": {
+      "target_bounds": {
+        "min": [
+          -0.3,
+          -0.09,
+          -0.005
+        ],
+        "max": [
+          0.3,
+          0.09,
+          0.5
+        ]
+      },
+      "support_object_ids": [
+        "guide"
+      ],
+      "min_drop_m": 0.05,
+      "settle_seconds": 2
+    }
+  },
+  "source_objects": {
+    "guide": {
+      "required_file_sha256": [],
+      "profile_id": "static_fixture_v1"
+    }
+  },
+  "generated": {
+    "recipe_id": "guide_plate_v1",
+    "parameters": {
+      "length_m": 0.6,
+      "width_m": 0.18,
+      "thickness_m": 0.015
+    },
+    "changed_length_m": 0.7,
+    "reviewed_commit": "0d589a5ba568fd72c8da97f8d039918650608a42",
+    "template_sha256": "992ef5d17e3f1236c189423a0845b66b7012c31dcd78fb70a664dff4b3572d81",
+    "object_id": "guide"
+  },
+  "required_capability_tools": [
+    "asset_generate"
+  ],
+  "required_capability_files": [
+    "generation/sand3d.py",
+    "generation/templates/guide_plate_v1.py"
+  ],
+  "capability_requirement": "Trusted pinned Sand3D original USD geometry with same-parameter rebuild hash equality and changed-length geometry, followed by normal preparation and actual rigid drop."
+}

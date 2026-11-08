@@ -7,9 +7,9 @@ USD scenes, run Isaac Sim, and improve the result from real images and physical
 observations. It connects online asset selection to scene creation and video
 delivery through MCP and reusable agent skills.
 
-[Asset catalog](docs/asset-catalog.md) · [中文快速开始](docs/快速开始.md) · [Plugin setup](docs/packaging.md) · [Examples](#examples) · [Apache-2.0](LICENSE)
+[V2 preview](https://github.com/ros-claw/simscene/releases/tag/v0.2.0-dev.1) · [Asset catalog](docs/asset-catalog.md) · [中文快速开始](docs/快速开始.md) · [Plugin setup](docs/packaging.md) · [Examples](#examples) · [Apache-2.0](LICENSE)
 
-![A chain-reaction scene rendered in Isaac Sim](docs/media/chain-workshop-preview.png)
+![The multi-source kinetic gallery rendered in Isaac Sim](docs/media/kinetic-asset-gallery-preview.png)
 
 [Watch the V2 kinetic gallery (66s)](docs/media/kinetic-asset-gallery-1080p30.mp4) · [Watch the chain reaction](docs/media/chain-workshop-1080p30.mp4) · [Watch the sorting workshop](docs/media/precision-workshop-1080p30.mp4)
 
@@ -26,7 +26,8 @@ delivery through MCP and reusable agent skills.
 
 The project has completed a stage covering online asset composition, physical
 interaction validation, and multi-camera film delivery, with reusable production
-tools. A token advantage across tasks remains to be validated in real use.
+tools. Measured comparisons have not established token savings across tasks;
+see the [results and limitations](docs/validation/catalog-efficiency.md).
 
 ## Get started
 

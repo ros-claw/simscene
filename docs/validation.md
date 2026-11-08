@@ -5,6 +5,14 @@ interaction verification and multi-camera video delivery. Reusable production
 tools are included. Cross-task token advantages remain to be established by
 comparable real use.
 
+V2 preview `0.2.0.dev1` retains 46 legacy MCP schemas and adds six tools.
+The final source passed 1,115 CPU tests (five conditional skips), both build
+paths and extracted transport checks, plus Python 3.10/3.12 CI. Actual SDK
+validation is separate: imported rigid bodies, native hinge motion, generated
+parts, a four-camera 3,600-step gallery and its matched stopping control.
+Two final-package Codex tasks passed independent video/physics and GLB/physics
+checks. See [release qualification](../examples/catalog_benchmark/results/release-qualification.json).
+
 Validation is specific to a source revision, preparation profile, runtime,
 scene and frozen case. Search results, successful conversion, an SDK exit code
 and a physically successful task are different evidence levels.
@@ -24,9 +32,12 @@ itself moves and contacts the fixtures; it is not a decorative substitute for
 a primitive payload. The workbench remains visual-only with measured static
 collision proxies and unresolved individual asset licensing.
 
-The [efficiency protocol](validation/catalog-efficiency.md) separates common
+The [measured efficiency study](validation/catalog-efficiency.md) separates common
 legacy tasks from new capabilities, keeps failure costs, and leaves missing
 usage unknown. Historical development hours are not a token baseline.
+The original 36-session comparison did not establish savings; its four passing
+common-task pairs had a median token ratio of 1.1201. Later capture/audit fixes
+and qualification are separate from those original results.
 
 ## Three-level passive chain
 

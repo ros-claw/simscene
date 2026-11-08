@@ -1,0 +1,89 @@
+{
+  "schema": "simscene.catalog_efficiency_scope_reassessment.v1",
+  "original_report_sha256": "35ebcf1fbfea26464c4ea33808bca2d9927cc2e1627a082552eae90be6b11279",
+  "reassessment_source_commit": "6d00bd9c7444aa5bcf2ed6d12f78536c38b280ef",
+  "agent_harness_sha256": "16166af5d5baee4e496399d67f91b7c53af775d92283c6b5967714c00547afa9",
+  "affected_rows": [
+    {
+      "trial_id": "native-joint-2-baseline",
+      "original_status": "failed",
+      "trace_sha256": "32b08b3dd1c924a8207d3e8408c8fc457b11d7b953ba9c13a8ee6d01b5613b9f",
+      "original_findings": [
+        {
+          "reason": "possible read outside own task",
+          "command_sha256": "160f1776de3e831d5bf38a66fccf3e0c39d1c7fb0f6b40b89eced32ce4d27549"
+        },
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "160f1776de3e831d5bf38a66fccf3e0c39d1c7fb0f6b40b89eced32ce4d27549"
+        },
+        {
+          "reason": "possible read outside own task",
+          "command_sha256": "160f1776de3e831d5bf38a66fccf3e0c39d1c7fb0f6b40b89eced32ce4d27549"
+        },
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "160f1776de3e831d5bf38a66fccf3e0c39d1c7fb0f6b40b89eced32ce4d27549"
+        }
+      ],
+      "remaining_findings": [],
+      "host_pass_unchanged": false,
+      "host_capability_gap_unchanged": true
+    },
+    {
+      "trial_id": "native-video-1-baseline",
+      "original_status": "failed",
+      "trace_sha256": "30d24bcaee557e1114f0e53ad14fe28f477a86dc70d8be571fb506c926cc21fc",
+      "original_findings": [
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "11c56c62d4174f6a070fb42493d67f9feb4f6cd08c52838712779860e600f9e9"
+        },
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "11c56c62d4174f6a070fb42493d67f9feb4f6cd08c52838712779860e600f9e9"
+        }
+      ],
+      "remaining_findings": [],
+      "host_pass_unchanged": true,
+      "host_capability_gap_unchanged": null
+    },
+    {
+      "trial_id": "native-video-2-baseline",
+      "original_status": "failed",
+      "trace_sha256": "fcfb1d37a50feda6374b9e8378ae73e73aa84e29cc8d70557baa99415d301914",
+      "original_findings": [
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "7c849227dc9f0f8abdc61d6c8b5d57796003c9cd3529ccf4ece93c806f67df10"
+        },
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "7c849227dc9f0f8abdc61d6c8b5d57796003c9cd3529ccf4ece93c806f67df10"
+        }
+      ],
+      "remaining_findings": [],
+      "host_pass_unchanged": false,
+      "host_capability_gap_unchanged": null
+    },
+    {
+      "trial_id": "warm-edit-2-candidate",
+      "original_status": "failed",
+      "trace_sha256": "46e3191b08074cfbd562e6e21a0b0bff0d786509f7df6b50d4e080ccb0bb05e0",
+      "original_findings": [
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "11c56c62d4174f6a070fb42493d67f9feb4f6cd08c52838712779860e600f9e9"
+        },
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "11c56c62d4174f6a070fb42493d67f9feb4f6cd08c52838712779860e600f9e9"
+        }
+      ],
+      "remaining_findings": [],
+      "host_pass_unchanged": true,
+      "host_capability_gap_unchanged": null
+    }
+  ],
+  "scope": "Same immutable traces only; no new physical run, usage change, quality-predicate change or replacement of original results. No reassessed token ratio."
+}

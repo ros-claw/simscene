@@ -1,0 +1,14 @@
+{
+  "root_relative": "assets/model.usdc",
+  "sha256": "72dbc3b8479048ff07b838a951c4dd58617eeddc8668a861415a5ca087f32be5",
+  "license": {
+    "status": "known",
+    "license": "Apache-2.0"
+  },
+  "source_ref": {
+    "asset_id": "ds_R021_02",
+    "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+    "source_id": "usdcraft",
+    "variant_id": null
+  }
+}

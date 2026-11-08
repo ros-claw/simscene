@@ -1,9 +1,29 @@
-# Development plugin packages
+# Plugin packages
 
 Python version `0.2.0.dev1` is an experimental V2 candidate. The single version
 source is `pyproject.toml`; the builder maps its development suffix explicitly to
 plugin version `0.2.0-dev.1`. Building or installing files does not publish a
 release or establish physical compatibility for arbitrary assets.
+
+The [V2 preview release](https://github.com/ros-claw/simscene/releases/tag/v0.2.0-dev.1)
+provides an unmodified Python wheel, a Linux x86_64/Python 3.10 client bundle,
+checksums and artifact provenance. Use a matching Python for the binary bundle;
+other supported environments can build from source or install the wheel with
+their own platform dependencies. Models and SDKs are acquired separately.
+
+Release transport removes optional local pip origin records and uses a DeepSeek
+relocation template. Runtime modules, matching skills and dependency versions
+are unchanged. After extracting the ZIP, generate a local DeepSeek overlay:
+
+```sh
+PYTHONPATH=deepseek/simscene/server/vendor python3 configure_deepseek.py \
+  --plugin-root deepseek/simscene --output /your/new/cordis.local.yml
+```
+
+The extracted release bundle passed the client/package suite after this
+documented relocation. Its portable installation completed two actual Codex
+tasks: native video with full pixel/physics checks and imported GLB preparation
+with a new physical run. See [qualification records](../examples/catalog_benchmark/results/release-qualification.json).
 
 The builder preserves three layouts: portable Agent Plugins, Claude Code, and a
 DeepSeek Harness overlay. Each includes the wheel's Python code, catalog source
@@ -106,7 +126,7 @@ not install a skill or replace a host profile.
 
 | Client | Evidence boundary |
 | --- | --- |
-| Portable/Codex | Packaged stdio startup, resources, cached metadata search, and isolated registration/readback are tested. A prior isolated V2 candidate completed an authenticated Codex tool turn and physical case; the final rebuilt candidate needs its own recorded model evaluation. No desktop marketplace installation is claimed. |
+| Portable/Codex | Final release transport: stdio, resources, cached metadata, isolated registration/readback, and two authenticated Codex tasks passed. The tasks independently checked native video/physics and real GLB preparation/physics. No desktop marketplace installation is claimed. |
 | Claude Code | Packaged stdio is tested. Existing host evidence covers skill/MCP loading; no authenticated Claude model task is claimed. |
 | DeepSeek Harness | Packaged stdio is tested. Existing host evidence covers overlay loading and ListTools; no authenticated DeepSeek model task is claimed. |
 

@@ -1,0 +1,2882 @@
+{
+  "schema": "simscene.catalog_efficiency_public_summary.v1",
+  "candidate_commit": "599a90edb6197fa5ec19f6022907416f276effd7",
+  "baseline_commit": "a36d2b272cd7d64b739a9d3ebc4d9a761323aafd",
+  "candidate_python_version": "0.2.0.dev1",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "client": "codex-cli 0.166.0",
+  "pilot_plan_sha256": "e950be7d680030ac3dc6ae876333cc4349004d56e75a7c379c2ec53e32754aee",
+  "reviewed_pilot_report_sha256": "7035164b75153fdc2ad9448d5a9fa02f1044512116e13a04b5edceaed0557279",
+  "full_plan_sha256": "f94c868e1e3f3b5b074cc13c9d2821766f46b9117e8e4021ababbe0a462ed6eb",
+  "full_report_sha256": "35ebcf1fbfea26464c4ea33808bca2d9927cc2e1627a082552eae90be6b11279",
+  "comparison_fingerprint": "ca1161a63dab9fc79ecac24af0018d788ef3211ab7fb30654cd95c700a36cb62",
+  "groups": {
+    "A": {
+      "versions": {
+        "baseline": {
+          "trials": 9,
+          "passed": 6,
+          "capability_gaps": 0,
+          "all_trial_reported_tokens": 5477894,
+          "missing_usage_trials": 0,
+          "all_trial_wall_s": 1321.8367136931047,
+          "known_download_bytes": 0,
+          "missing_download_byte_trials": 9,
+          "video_passed": 1,
+          "video_measured_trials": 3
+        },
+        "candidate": {
+          "trials": 9,
+          "passed": 4,
+          "capability_gaps": 0,
+          "all_trial_reported_tokens": 5475432,
+          "missing_usage_trials": 0,
+          "all_trial_wall_s": 1300.9187098927796,
+          "known_download_bytes": 0,
+          "missing_download_byte_trials": 9,
+          "video_passed": 0,
+          "video_measured_trials": 3
+        }
+      },
+      "pairs": [
+        {
+          "pair_id": "native-layout-1",
+          "baseline_trial": "native-layout-1-baseline",
+          "candidate_trial": "native-layout-1-candidate",
+          "statuses": [
+            "passed",
+            "failed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "native-layout-2",
+          "baseline_trial": "native-layout-2-baseline",
+          "candidate_trial": "native-layout-2-candidate",
+          "statuses": [
+            "passed",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": true,
+          "token_ratio": 1.386521933823569,
+          "wall_ratio": 1.0352609987533798
+        },
+        {
+          "pair_id": "native-layout-3",
+          "baseline_trial": "native-layout-3-baseline",
+          "candidate_trial": "native-layout-3-candidate",
+          "statuses": [
+            "passed",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": true,
+          "token_ratio": 1.0425078364974298,
+          "wall_ratio": 1.1481487955499372
+        },
+        {
+          "pair_id": "native-video-1",
+          "baseline_trial": "native-video-1-baseline",
+          "candidate_trial": "native-video-1-candidate",
+          "statuses": [
+            "failed",
+            "failed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "native-video-2",
+          "baseline_trial": "native-video-2-baseline",
+          "candidate_trial": "native-video-2-candidate",
+          "statuses": [
+            "failed",
+            "failed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "native-video-3",
+          "baseline_trial": "native-video-3-baseline",
+          "candidate_trial": "native-video-3-candidate",
+          "statuses": [
+            "failed",
+            "failed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "warm-edit-1",
+          "baseline_trial": "warm-edit-1-baseline",
+          "candidate_trial": "warm-edit-1-candidate",
+          "statuses": [
+            "passed",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": true,
+          "token_ratio": 1.1977107793970145,
+          "wall_ratio": 1.0558795539151729
+        },
+        {
+          "pair_id": "warm-edit-2",
+          "baseline_trial": "warm-edit-2-baseline",
+          "candidate_trial": "warm-edit-2-candidate",
+          "statuses": [
+            "passed",
+            "failed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "warm-edit-3",
+          "baseline_trial": "warm-edit-3-baseline",
+          "candidate_trial": "warm-edit-3-candidate",
+          "statuses": [
+            "passed",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": true,
+          "token_ratio": 0.8638089361168054,
+          "wall_ratio": 0.9201940034284316
+        }
+      ],
+      "median_paired_token_ratio": 1.1201093079472222
+    },
+    "B": {
+      "versions": {
+        "baseline": {
+          "trials": 9,
+          "passed": 0,
+          "capability_gaps": 8,
+          "all_trial_reported_tokens": 1509769,
+          "missing_usage_trials": 0,
+          "all_trial_wall_s": 521.7996456604451,
+          "known_download_bytes": 0,
+          "missing_download_byte_trials": 9,
+          "video_passed": 0,
+          "video_measured_trials": 0
+        },
+        "candidate": {
+          "trials": 9,
+          "passed": 8,
+          "capability_gaps": 0,
+          "all_trial_reported_tokens": 7405530,
+          "missing_usage_trials": 0,
+          "all_trial_wall_s": 1765.036921305582,
+          "known_download_bytes": 0,
+          "missing_download_byte_trials": 9,
+          "video_passed": 0,
+          "video_measured_trials": 0
+        }
+      },
+      "pairs": [
+        {
+          "pair_id": "generated-module-1",
+          "baseline_trial": "generated-module-1-baseline",
+          "candidate_trial": "generated-module-1-candidate",
+          "statuses": [
+            "capability_gap",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "generated-module-2",
+          "baseline_trial": "generated-module-2-baseline",
+          "candidate_trial": "generated-module-2-candidate",
+          "statuses": [
+            "capability_gap",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "generated-module-3",
+          "baseline_trial": "generated-module-3-baseline",
+          "candidate_trial": "generated-module-3-candidate",
+          "statuses": [
+            "capability_gap",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "glb-rigid-1",
+          "baseline_trial": "glb-rigid-1-baseline",
+          "candidate_trial": "glb-rigid-1-candidate",
+          "statuses": [
+            "capability_gap",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "glb-rigid-2",
+          "baseline_trial": "glb-rigid-2-baseline",
+          "candidate_trial": "glb-rigid-2-candidate",
+          "statuses": [
+            "capability_gap",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "glb-rigid-3",
+          "baseline_trial": "glb-rigid-3-baseline",
+          "candidate_trial": "glb-rigid-3-candidate",
+          "statuses": [
+            "capability_gap",
+            "failed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "native-joint-1",
+          "baseline_trial": "native-joint-1-baseline",
+          "candidate_trial": "native-joint-1-candidate",
+          "statuses": [
+            "capability_gap",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "native-joint-2",
+          "baseline_trial": "native-joint-2-baseline",
+          "candidate_trial": "native-joint-2-candidate",
+          "statuses": [
+            "failed",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        },
+        {
+          "pair_id": "native-joint-3",
+          "baseline_trial": "native-joint-3-baseline",
+          "candidate_trial": "native-joint-3-candidate",
+          "statuses": [
+            "capability_gap",
+            "passed"
+          ],
+          "client_versions_match": true,
+          "comparable_pass_pair": false,
+          "token_ratio": null,
+          "wall_ratio": null
+        }
+      ],
+      "median_paired_token_ratio": null
+    }
+  },
+  "trials": [
+    {
+      "trial_id": "generated-module-1-baseline",
+      "task_id": "generated-module",
+      "pair_id": "generated-module-1",
+      "group": "B",
+      "version": "baseline",
+      "repetition": 1,
+      "status": "capability_gap",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 39.53609254769981
+      },
+      "tool_calls": 2,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 1824,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.5140748871490359,
+      "setup_wall_s": 0.4643938774242997,
+      "trace_sha256": "7512c9e622a05efae9b23e36bb5ab16823f3033352e8e785ab381c483784d3d5",
+      "usage": {
+        "input_tokens": 119579,
+        "cached_input_tokens": 90240,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1046,
+        "reasoning_output_tokens": 88,
+        "total_tokens": 120625,
+        "uncached_input_tokens": 29339
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": false,
+        "quality_verified": false,
+        "capability_gap_verified": true
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "generated-module-1-candidate",
+      "task_id": "generated-module",
+      "pair_id": "generated-module-1",
+      "group": "B",
+      "version": "candidate",
+      "repetition": 1,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 193.87444806750864
+      },
+      "tool_calls": 41,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 276414,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 1.1029729200527072,
+      "setup_wall_s": 0.5015747891739011,
+      "trace_sha256": "7915e37082af20613e1f4083bd09337eed13f7078c63d7fdcaff1724681ee6a6",
+      "usage": {
+        "input_tokens": 954373,
+        "cached_input_tokens": 913536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5006,
+        "reasoning_output_tokens": 331,
+        "total_tokens": 959379,
+        "uncached_input_tokens": 40837
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "generated-module-2-baseline",
+      "task_id": "generated-module",
+      "pair_id": "generated-module-2",
+      "group": "B",
+      "version": "baseline",
+      "repetition": 2,
+      "status": "capability_gap",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 47.36076005361974
+      },
+      "tool_calls": 2,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 1824,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.5414835289120674,
+      "setup_wall_s": 0.47119602002203465,
+      "trace_sha256": "478bf4cc9cbfa3caac58e88fa08da5dd59b8eb4defece30c20f177011a8388be",
+      "usage": {
+        "input_tokens": 111944,
+        "cached_input_tokens": 91392,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1400,
+        "reasoning_output_tokens": 211,
+        "total_tokens": 113344,
+        "uncached_input_tokens": 20552
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": false,
+        "quality_verified": false,
+        "capability_gap_verified": true
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "generated-module-2-candidate",
+      "task_id": "generated-module",
+      "pair_id": "generated-module-2",
+      "group": "B",
+      "version": "candidate",
+      "repetition": 2,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 215.76700264401734
+      },
+      "tool_calls": 38,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 182272,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 1.0538778873160481,
+      "setup_wall_s": 0.47707929369062185,
+      "trace_sha256": "9f3a8c54049f848740b9b3f4c8963c065045ee47921e1b3a0379a91cf129afeb",
+      "usage": {
+        "input_tokens": 948407,
+        "cached_input_tokens": 908416,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6002,
+        "reasoning_output_tokens": 225,
+        "total_tokens": 954409,
+        "uncached_input_tokens": 39991
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "generated-module-3-baseline",
+      "task_id": "generated-module",
+      "pair_id": "generated-module-3",
+      "group": "B",
+      "version": "baseline",
+      "repetition": 3,
+      "status": "capability_gap",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 52.7878259094432
+      },
+      "tool_calls": 4,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 3919,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.5729003604501486,
+      "setup_wall_s": 0.46400407049804926,
+      "trace_sha256": "de82af9b7da9a475065e4b27e6b85e49a9b34e7d7730203b2b76930ff0cf9899",
+      "usage": {
+        "input_tokens": 144316,
+        "cached_input_tokens": 120320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1414,
+        "reasoning_output_tokens": 168,
+        "total_tokens": 145730,
+        "uncached_input_tokens": 23996
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": false,
+        "quality_verified": false,
+        "capability_gap_verified": true
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "generated-module-3-candidate",
+      "task_id": "generated-module",
+      "pair_id": "generated-module-3",
+      "group": "B",
+      "version": "candidate",
+      "repetition": 3,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 193.40467726811767
+      },
+      "tool_calls": 40,
+      "failed_tool_calls": 3,
+      "tool_return_bytes": 180590,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 1.0422220090404153,
+      "setup_wall_s": 0.47578500863164663,
+      "trace_sha256": "28b5b4518f272bcb65bde33b5c18ec73e15db4df51a5fdaa60da5f5badb0902c",
+      "usage": {
+        "input_tokens": 875601,
+        "cached_input_tokens": 834944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6201,
+        "reasoning_output_tokens": 264,
+        "total_tokens": 881802,
+        "uncached_input_tokens": 40657
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "glb-rigid-1-baseline",
+      "task_id": "glb-rigid",
+      "pair_id": "glb-rigid-1",
+      "group": "B",
+      "version": "baseline",
+      "repetition": 1,
+      "status": "capability_gap",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 60.84069870878011
+      },
+      "tool_calls": 6,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 3365,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.5175094595178962,
+      "setup_wall_s": 0.4724705507978797,
+      "trace_sha256": "ce93c266faabd949176f3f0d7f1b731f6a70d43bceca649200c601c2503123ab",
+      "usage": {
+        "input_tokens": 204205,
+        "cached_input_tokens": 172288,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1704,
+        "reasoning_output_tokens": 349,
+        "total_tokens": 205909,
+        "uncached_input_tokens": 31917
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": false,
+        "quality_verified": false,
+        "capability_gap_verified": true
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "glb-rigid-1-candidate",
+      "task_id": "glb-rigid",
+      "pair_id": "glb-rigid-1",
+      "group": "B",
+      "version": "candidate",
+      "repetition": 1,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 194.00028242636472
+      },
+      "tool_calls": 29,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 215992,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.8964838767424226,
+      "setup_wall_s": 0.47111879754811525,
+      "trace_sha256": "35a669e50c92d9d612f7420fbe3bc8955e2a9a84821e23f8f9725e1c2d9ebdf8",
+      "usage": {
+        "input_tokens": 814222,
+        "cached_input_tokens": 769408,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4971,
+        "reasoning_output_tokens": 369,
+        "total_tokens": 819193,
+        "uncached_input_tokens": 44814
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "glb-rigid-2-baseline",
+      "task_id": "glb-rigid",
+      "pair_id": "glb-rigid-2",
+      "group": "B",
+      "version": "baseline",
+      "repetition": 2,
+      "status": "capability_gap",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 60.26657673250884
+      },
+      "tool_calls": 3,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 51680,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.5120653714984655,
+      "setup_wall_s": 0.46923885121941566,
+      "trace_sha256": "7937035e8ece6078ed2562d8d04ac5928ad707d67f160cd5d3b7bf75bda63550",
+      "usage": {
+        "input_tokens": 185100,
+        "cached_input_tokens": 133248,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1716,
+        "reasoning_output_tokens": 207,
+        "total_tokens": 186816,
+        "uncached_input_tokens": 51852
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": false,
+        "quality_verified": false,
+        "capability_gap_verified": true
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "glb-rigid-2-candidate",
+      "task_id": "glb-rigid",
+      "pair_id": "glb-rigid-2",
+      "group": "B",
+      "version": "candidate",
+      "repetition": 2,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 197.46477395668626
+      },
+      "tool_calls": 29,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 222281,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.9067540038377047,
+      "setup_wall_s": 0.48218329437077045,
+      "trace_sha256": "ade158d3d17edafccbfe600a24a8b7ec26e0bf2a5a77c30bc3b84778629352c7",
+      "usage": {
+        "input_tokens": 858290,
+        "cached_input_tokens": 817920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4610,
+        "reasoning_output_tokens": 287,
+        "total_tokens": 862900,
+        "uncached_input_tokens": 40370
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "glb-rigid-3-baseline",
+      "task_id": "glb-rigid",
+      "pair_id": "glb-rigid-3",
+      "group": "B",
+      "version": "baseline",
+      "repetition": 3,
+      "status": "capability_gap",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 66.0517290700227
+      },
+      "tool_calls": 4,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 2803,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.5288335746154189,
+      "setup_wall_s": 0.4847407480701804,
+      "trace_sha256": "a2e5d8023a9cc06282529c011956d53eaf7cff24a2aa6a43afaba0ae73df43f4",
+      "usage": {
+        "input_tokens": 176369,
+        "cached_input_tokens": 144000,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2092,
+        "reasoning_output_tokens": 457,
+        "total_tokens": 178461,
+        "uncached_input_tokens": 32369
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": false,
+        "quality_verified": false,
+        "capability_gap_verified": true
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "glb-rigid-3-candidate",
+      "task_id": "glb-rigid",
+      "pair_id": "glb-rigid-3",
+      "group": "B",
+      "version": "candidate",
+      "repetition": 3,
+      "status": "failed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 214.50742587819695
+      },
+      "tool_calls": 27,
+      "failed_tool_calls": 0,
+      "tool_return_bytes": 333573,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.9345962340012193,
+      "setup_wall_s": 0.4689000314101577,
+      "trace_sha256": "13cacb22f4ab7641d0b307095f614e76abe27e7f0f5f5eadb02ecb533078368f",
+      "usage": {
+        "input_tokens": 1044570,
+        "cached_input_tokens": 976000,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5110,
+        "reasoning_output_tokens": 532,
+        "total_tokens": 1049680,
+        "uncached_input_tokens": 68570
+      },
+      "billing_amount": null,
+      "failed_checks": [
+        "payloads"
+      ],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": true,
+        "quality_verified": false,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-joint-1-baseline",
+      "task_id": "native-joint",
+      "pair_id": "native-joint-1",
+      "group": "B",
+      "version": "baseline",
+      "repetition": 1,
+      "status": "capability_gap",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 64.43862056359649
+      },
+      "tool_calls": 4,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 4747,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.522842338308692,
+      "setup_wall_s": 0.4713223800063133,
+      "trace_sha256": "9b1e50fa7204c282b98be1a1a9cd6670ebfd540a7f065bc8a0124c64141f5da5",
+      "usage": {
+        "input_tokens": 169403,
+        "cached_input_tokens": 147200,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1975,
+        "reasoning_output_tokens": 254,
+        "total_tokens": 171378,
+        "uncached_input_tokens": 22203
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": false,
+        "quality_verified": false,
+        "capability_gap_verified": true
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-joint-1-candidate",
+      "task_id": "native-joint",
+      "pair_id": "native-joint-1",
+      "group": "B",
+      "version": "candidate",
+      "repetition": 1,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 180.64908601157367
+      },
+      "tool_calls": 29,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 159807,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 1.3817758103832603,
+      "setup_wall_s": 0.47636314760893583,
+      "trace_sha256": "84bab60598a989b088fb835c42d65a7661f7bcee3ad4a472e6222e8da7340745",
+      "usage": {
+        "input_tokens": 598800,
+        "cached_input_tokens": 563584,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3755,
+        "reasoning_output_tokens": 92,
+        "total_tokens": 602555,
+        "uncached_input_tokens": 35216
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-joint-2-baseline",
+      "task_id": "native-joint",
+      "pair_id": "native-joint-2",
+      "group": "B",
+      "version": "baseline",
+      "repetition": 2,
+      "status": "failed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 61.234872937202454
+      },
+      "tool_calls": 5,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 5085,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.510072847828269,
+      "setup_wall_s": 0.4704419123008847,
+      "trace_sha256": "32b08b3dd1c924a8207d3e8408c8fc457b11d7b953ba9c13a8ee6d01b5613b9f",
+      "usage": {
+        "input_tokens": 154315,
+        "cached_input_tokens": 135424,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2082,
+        "reasoning_output_tokens": 345,
+        "total_tokens": 156397,
+        "uncached_input_tokens": 18891
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [
+        {
+          "reason": "possible read outside own task",
+          "command_sha256": "160f1776de3e831d5bf38a66fccf3e0c39d1c7fb0f6b40b89eced32ce4d27549"
+        },
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "160f1776de3e831d5bf38a66fccf3e0c39d1c7fb0f6b40b89eced32ce4d27549"
+        },
+        {
+          "reason": "possible read outside own task",
+          "command_sha256": "160f1776de3e831d5bf38a66fccf3e0c39d1c7fb0f6b40b89eced32ce4d27549"
+        },
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "160f1776de3e831d5bf38a66fccf3e0c39d1c7fb0f6b40b89eced32ce4d27549"
+        }
+      ],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": false,
+        "quality_verified": false,
+        "capability_gap_verified": true
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-joint-2-candidate",
+      "task_id": "native-joint",
+      "pair_id": "native-joint-2",
+      "group": "B",
+      "version": "candidate",
+      "repetition": 2,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 180.73033042997122
+      },
+      "tool_calls": 29,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 188083,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 1.3622260401025414,
+      "setup_wall_s": 0.46916546765714884,
+      "trace_sha256": "bb86fc7abd49cb973c23b5dfe79b223928540ce869a28357ef79ed2d22af3d44",
+      "usage": {
+        "input_tokens": 601084,
+        "cached_input_tokens": 533888,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3825,
+        "reasoning_output_tokens": 141,
+        "total_tokens": 604909,
+        "uncached_input_tokens": 67196
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-joint-3-baseline",
+      "task_id": "native-joint",
+      "pair_id": "native-joint-3",
+      "group": "B",
+      "version": "baseline",
+      "repetition": 3,
+      "status": "capability_gap",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 69.28246913757175
+      },
+      "tool_calls": 7,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 6272,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.5168994497507811,
+      "setup_wall_s": 0.46516484022140503,
+      "trace_sha256": "9b86c936132aebbde89514731bfb0ca9728e856f3766dcfa6ed5153dc3f6b25b",
+      "usage": {
+        "input_tokens": 228799,
+        "cached_input_tokens": 188928,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2310,
+        "reasoning_output_tokens": 305,
+        "total_tokens": 231109,
+        "uncached_input_tokens": 39871
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": false,
+        "quality_verified": false,
+        "capability_gap_verified": true
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-joint-3-candidate",
+      "task_id": "native-joint",
+      "pair_id": "native-joint-3",
+      "group": "B",
+      "version": "candidate",
+      "repetition": 3,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 194.63889462314546
+      },
+      "tool_calls": 29,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 206645,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 1.435179740190506,
+      "setup_wall_s": 0.47803039010614157,
+      "trace_sha256": "177a6c8249e665397a168ac0d57c0bb2dbd9f2e1af29d317d45f51043c0e0822",
+      "usage": {
+        "input_tokens": 666597,
+        "cached_input_tokens": 622464,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4106,
+        "reasoning_output_tokens": 194,
+        "total_tokens": 670703,
+        "uncached_input_tokens": 44133
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-layout-1-baseline",
+      "task_id": "native-layout",
+      "pair_id": "native-layout-1",
+      "group": "A",
+      "version": "baseline",
+      "repetition": 1,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 142.50409786123782
+      },
+      "tool_calls": 19,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 360356,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.820749718695879,
+      "setup_wall_s": 0.609433569945395,
+      "trace_sha256": "b497a3d9befd458a83c350090401ce255dc1546405613d17cfdcc1bd7aeef2f0",
+      "usage": {
+        "input_tokens": 596078,
+        "cached_input_tokens": 556416,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3477,
+        "reasoning_output_tokens": 378,
+        "total_tokens": 599555,
+        "uncached_input_tokens": 39662
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-layout-1-candidate",
+      "task_id": "native-layout",
+      "pair_id": "native-layout-1",
+      "group": "A",
+      "version": "candidate",
+      "repetition": 1,
+      "status": "failed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 125.40626946464181
+      },
+      "tool_calls": 16,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 211625,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.8415943691506982,
+      "setup_wall_s": 0.6112678786739707,
+      "trace_sha256": "69e4bcc8d481ac1cba2bf59a8e217f8d39e46d8ff553295b23cf8ebcf5c95afe",
+      "usage": {
+        "input_tokens": 486284,
+        "cached_input_tokens": 425472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3106,
+        "reasoning_output_tokens": 434,
+        "total_tokens": 489390,
+        "uncached_input_tokens": 60812
+      },
+      "billing_amount": null,
+      "failed_checks": [
+        "measured_support_top"
+      ],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": true,
+        "quality_verified": false,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-layout-2-baseline",
+      "task_id": "native-layout",
+      "pair_id": "native-layout-2",
+      "group": "A",
+      "version": "baseline",
+      "repetition": 2,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 160.5572127168998
+      },
+      "tool_calls": 20,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 235341,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.8437177650630474,
+      "setup_wall_s": 0.5958664044737816,
+      "trace_sha256": "1dbc661ed4f7d13861fb2b472e8782228d85df5f8c84ce60c0ba7383712ab8bc",
+      "usage": {
+        "input_tokens": 551908,
+        "cached_input_tokens": 510976,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4151,
+        "reasoning_output_tokens": 534,
+        "total_tokens": 556059,
+        "uncached_input_tokens": 40932
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-layout-2-candidate",
+      "task_id": "native-layout",
+      "pair_id": "native-layout-2",
+      "group": "A",
+      "version": "candidate",
+      "repetition": 2,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 166.21862039435655
+      },
+      "tool_calls": 23,
+      "failed_tool_calls": 4,
+      "tool_return_bytes": 227972,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.8454659031704068,
+      "setup_wall_s": 0.6206996962428093,
+      "trace_sha256": "427b49be1c78140a4f2d9c85c6118dad2a909be51d2add84577b1548ca0b7085",
+      "usage": {
+        "input_tokens": 766479,
+        "cached_input_tokens": 709504,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4509,
+        "reasoning_output_tokens": 344,
+        "total_tokens": 770988,
+        "uncached_input_tokens": 56975
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-layout-3-baseline",
+      "task_id": "native-layout",
+      "pair_id": "native-layout-3",
+      "group": "A",
+      "version": "baseline",
+      "repetition": 3,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 136.04114204086363
+      },
+      "tool_calls": 19,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 351857,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.8070379439741373,
+      "setup_wall_s": 0.5995615161955357,
+      "trace_sha256": "1e3ce324a5a89a22e5d207fc24a2de97d0ff0d1baa6c96e34d3a487c400b93de",
+      "usage": {
+        "input_tokens": 505164,
+        "cached_input_tokens": 448640,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3354,
+        "reasoning_output_tokens": 417,
+        "total_tokens": 508518,
+        "uncached_input_tokens": 56524
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-layout-3-candidate",
+      "task_id": "native-layout",
+      "pair_id": "native-layout-3",
+      "group": "A",
+      "version": "candidate",
+      "repetition": 3,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 156.1954733794555
+      },
+      "tool_calls": 22,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 226455,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.8527390034869313,
+      "setup_wall_s": 0.6017838325351477,
+      "trace_sha256": "3885c7cd4c1f887c14d7e2a022ff09ff27366dcde9cae9dca9e5ecbc498b59fa",
+      "usage": {
+        "input_tokens": 525775,
+        "cached_input_tokens": 479488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4359,
+        "reasoning_output_tokens": 611,
+        "total_tokens": 530134,
+        "uncached_input_tokens": 46287
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-video-1-baseline",
+      "task_id": "native-video",
+      "pair_id": "native-video-1",
+      "group": "A",
+      "version": "baseline",
+      "repetition": 1,
+      "status": "failed",
+      "cache": "paired_warm",
+      "phase": "render",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 164.4448321852833
+      },
+      "tool_calls": 15,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 515428,
+      "actual_download_bytes": null,
+      "video_passed": true,
+      "host_verifier_wall_s": 5.967887872830033,
+      "setup_wall_s": 0.7792564705014229,
+      "trace_sha256": "30d24bcaee557e1114f0e53ad14fe28f477a86dc70d8be571fb506c926cc21fc",
+      "usage": {
+        "input_tokens": 769077,
+        "cached_input_tokens": 714112,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3411,
+        "reasoning_output_tokens": 550,
+        "total_tokens": 772488,
+        "uncached_input_tokens": 54965
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "11c56c62d4174f6a070fb42493d67f9feb4f6cd08c52838712779860e600f9e9"
+        },
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "11c56c62d4174f6a070fb42493d67f9feb4f6cd08c52838712779860e600f9e9"
+        }
+      ],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-video-1-candidate",
+      "task_id": "native-video",
+      "pair_id": "native-video-1",
+      "group": "A",
+      "version": "candidate",
+      "repetition": 1,
+      "status": "failed",
+      "cache": "paired_warm",
+      "phase": "render",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 168.1198714831844
+      },
+      "tool_calls": 19,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 1063047,
+      "actual_download_bytes": null,
+      "video_passed": false,
+      "host_verifier_wall_s": 4.046396447345614,
+      "setup_wall_s": 0.7767147636041045,
+      "trace_sha256": "4090f3348d6ee2634ac0f147147cf1ddd278ee2b1157d320e3b1e7f79d5dc5b6",
+      "usage": {
+        "input_tokens": 930339,
+        "cached_input_tokens": 858752,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3628,
+        "reasoning_output_tokens": 631,
+        "total_tokens": 933967,
+        "uncached_input_tokens": 71587
+      },
+      "billing_amount": null,
+      "failed_checks": [
+        "native_video_quality"
+      ],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": true,
+        "quality_verified": false,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-video-2-baseline",
+      "task_id": "native-video",
+      "pair_id": "native-video-2",
+      "group": "A",
+      "version": "baseline",
+      "repetition": 2,
+      "status": "failed",
+      "cache": "paired_warm",
+      "phase": "render",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 139.7594116590917
+      },
+      "tool_calls": 18,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 352620,
+      "actual_download_bytes": null,
+      "video_passed": false,
+      "host_verifier_wall_s": 3.693413750268519,
+      "setup_wall_s": 0.7801329772919416,
+      "trace_sha256": "fcfb1d37a50feda6374b9e8378ae73e73aa84e29cc8d70557baa99415d301914",
+      "usage": {
+        "input_tokens": 782853,
+        "cached_input_tokens": 709632,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2668,
+        "reasoning_output_tokens": 420,
+        "total_tokens": 785521,
+        "uncached_input_tokens": 73221
+      },
+      "billing_amount": null,
+      "failed_checks": [
+        "native_video_quality"
+      ],
+      "scope_findings": [
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "7c849227dc9f0f8abdc61d6c8b5d57796003c9cd3529ccf4ece93c806f67df10"
+        },
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "7c849227dc9f0f8abdc61d6c8b5d57796003c9cd3529ccf4ece93c806f67df10"
+        }
+      ],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": true,
+        "quality_verified": false,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-video-2-candidate",
+      "task_id": "native-video",
+      "pair_id": "native-video-2",
+      "group": "A",
+      "version": "candidate",
+      "repetition": 2,
+      "status": "failed",
+      "cache": "paired_warm",
+      "phase": "render",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 129.74650240316987
+      },
+      "tool_calls": 15,
+      "failed_tool_calls": 0,
+      "tool_return_bytes": 358303,
+      "actual_download_bytes": null,
+      "video_passed": false,
+      "host_verifier_wall_s": 3.717314441688359,
+      "setup_wall_s": 0.7834130777046084,
+      "trace_sha256": "b6e087422854df40f2b609c72b015a5f22c6c1c21b5d5c10a7619c3cadb3ad84",
+      "usage": {
+        "input_tokens": 492228,
+        "cached_input_tokens": 428160,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2643,
+        "reasoning_output_tokens": 456,
+        "total_tokens": 494871,
+        "uncached_input_tokens": 64068
+      },
+      "billing_amount": null,
+      "failed_checks": [
+        "native_video_quality"
+      ],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": true,
+        "quality_verified": false,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-video-3-baseline",
+      "task_id": "native-video",
+      "pair_id": "native-video-3",
+      "group": "A",
+      "version": "baseline",
+      "repetition": 3,
+      "status": "failed",
+      "cache": "paired_warm",
+      "phase": "render",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 156.96663200762123
+      },
+      "tool_calls": 16,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 562534,
+      "actual_download_bytes": null,
+      "video_passed": false,
+      "host_verifier_wall_s": 4.04245815705508,
+      "setup_wall_s": 0.7950586136430502,
+      "trace_sha256": "db17989f144f7cbbd21d6aa696669133f61d88c66d4e4ebc022302653191088b",
+      "usage": {
+        "input_tokens": 747221,
+        "cached_input_tokens": 633088,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3674,
+        "reasoning_output_tokens": 848,
+        "total_tokens": 750895,
+        "uncached_input_tokens": 114133
+      },
+      "billing_amount": null,
+      "failed_checks": [
+        "native_video_quality"
+      ],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": true,
+        "quality_verified": false,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-video-3-candidate",
+      "task_id": "native-video",
+      "pair_id": "native-video-3",
+      "group": "A",
+      "version": "candidate",
+      "repetition": 3,
+      "status": "failed",
+      "cache": "paired_warm",
+      "phase": "render",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 164.8632309967652
+      },
+      "tool_calls": 17,
+      "failed_tool_calls": 3,
+      "tool_return_bytes": 631750,
+      "actual_download_bytes": null,
+      "video_passed": false,
+      "host_verifier_wall_s": 4.284293496049941,
+      "setup_wall_s": 0.7966270884498954,
+      "trace_sha256": "a1b679844ed36da6e5c6d6fa8083376e486637b34a39499a226fe640d72c9243",
+      "usage": {
+        "input_tokens": 740623,
+        "cached_input_tokens": 676736,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3639,
+        "reasoning_output_tokens": 492,
+        "total_tokens": 744262,
+        "uncached_input_tokens": 63887
+      },
+      "billing_amount": null,
+      "failed_checks": [
+        "native_video_quality"
+      ],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": true,
+        "quality_verified": false,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "warm-edit-1-baseline",
+      "task_id": "warm-edit",
+      "pair_id": "warm-edit-1",
+      "group": "A",
+      "version": "baseline",
+      "repetition": 1,
+      "status": "passed",
+      "cache": "paired_warm",
+      "phase": "warm_edit",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 134.2702563945204
+      },
+      "tool_calls": 14,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 375595,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.8923597047105432,
+      "setup_wall_s": 0.7742632031440735,
+      "trace_sha256": "39866a2eaa4f83e295c05982ec48505fd3258a5e9f9842c6d973a2cbff8fda83",
+      "usage": {
+        "input_tokens": 471938,
+        "cached_input_tokens": 422656,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2634,
+        "reasoning_output_tokens": 490,
+        "total_tokens": 474572,
+        "uncached_input_tokens": 49282
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "warm-edit-1-candidate",
+      "task_id": "warm-edit",
+      "pair_id": "warm-edit-1",
+      "group": "A",
+      "version": "candidate",
+      "repetition": 1,
+      "status": "passed",
+      "cache": "paired_warm",
+      "phase": "warm_edit",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 141.7732184259221
+      },
+      "tool_calls": 14,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 286592,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.9290955401957035,
+      "setup_wall_s": 0.766040189191699,
+      "trace_sha256": "5662e4d3d5892279df0d4552348de27db4a0579abe7a741b074fb375aeaa11b2",
+      "usage": {
+        "input_tokens": 565286,
+        "cached_input_tokens": 515584,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3114,
+        "reasoning_output_tokens": 483,
+        "total_tokens": 568400,
+        "uncached_input_tokens": 49702
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "warm-edit-2-baseline",
+      "task_id": "warm-edit",
+      "pair_id": "warm-edit-2",
+      "group": "A",
+      "version": "baseline",
+      "repetition": 2,
+      "status": "passed",
+      "cache": "paired_warm",
+      "phase": "warm_edit",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 140.75486137811095
+      },
+      "tool_calls": 14,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 395307,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.9330931510776281,
+      "setup_wall_s": 0.7725346889346838,
+      "trace_sha256": "1f54a870bda59ace00b52f5704a1abdd9cf1139457a878d73f7867b9e359f3f8",
+      "usage": {
+        "input_tokens": 454272,
+        "cached_input_tokens": 410368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2342,
+        "reasoning_output_tokens": 320,
+        "total_tokens": 456614,
+        "uncached_input_tokens": 43904
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "warm-edit-2-candidate",
+      "task_id": "warm-edit",
+      "pair_id": "warm-edit-2",
+      "group": "A",
+      "version": "candidate",
+      "repetition": 2,
+      "status": "failed",
+      "cache": "paired_warm",
+      "phase": "warm_edit",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 113.75188836548477
+      },
+      "tool_calls": 16,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 271644,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.951154924929142,
+      "setup_wall_s": 0.7852616375312209,
+      "trace_sha256": "46e3191b08074cfbd562e6e21a0b0bff0d786509f7df6b50d4e080ccb0bb05e0",
+      "usage": {
+        "input_tokens": 445665,
+        "cached_input_tokens": 398976,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2212,
+        "reasoning_output_tokens": 245,
+        "total_tokens": 447877,
+        "uncached_input_tokens": 46689
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "11c56c62d4174f6a070fb42493d67f9feb4f6cd08c52838712779860e600f9e9"
+        },
+        {
+          "reason": "external path in shell file command",
+          "command_sha256": "11c56c62d4174f6a070fb42493d67f9feb4f6cd08c52838712779860e600f9e9"
+        }
+      ],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "warm-edit-3-baseline",
+      "task_id": "warm-edit",
+      "pair_id": "warm-edit-3",
+      "group": "A",
+      "version": "baseline",
+      "repetition": 3,
+      "status": "passed",
+      "cache": "paired_warm",
+      "phase": "warm_edit",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 146.53826744947582
+      },
+      "tool_calls": 16,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 361458,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.8842897834256291,
+      "setup_wall_s": 0.7788587091490626,
+      "trace_sha256": "a0ac39918e6f4f257e6002dcd70d4f2fa5806b66320a5e5cb49fab2d0a932443",
+      "usage": {
+        "input_tokens": 570654,
+        "cached_input_tokens": 519936,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3018,
+        "reasoning_output_tokens": 431,
+        "total_tokens": 573672,
+        "uncached_input_tokens": 50718
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "warm-edit-3-candidate",
+      "task_id": "warm-edit",
+      "pair_id": "warm-edit-3",
+      "group": "A",
+      "version": "candidate",
+      "repetition": 3,
+      "status": "passed",
+      "cache": "paired_warm",
+      "phase": "warm_edit",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 134.8436349797994
+      },
+      "tool_calls": 12,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 369124,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.9240355854853988,
+      "setup_wall_s": 0.7842990830540657,
+      "trace_sha256": "c938b71733c7b7399e2cb5956a8ed50bc6e69e0b33119b7546b04408066d37da",
+      "usage": {
+        "input_tokens": 493031,
+        "cached_input_tokens": 444672,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2512,
+        "reasoning_output_tokens": 446,
+        "total_tokens": 495543,
+        "uncached_input_tokens": 48359
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    }
+  ],
+  "pilot_trials": [
+    {
+      "trial_id": "glb-rigid-1-baseline",
+      "task_id": "glb-rigid",
+      "pair_id": "glb-rigid-1",
+      "group": "B",
+      "version": "baseline",
+      "repetition": 1,
+      "status": "capability_gap",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 61.83550275862217
+      },
+      "tool_calls": 6,
+      "failed_tool_calls": 1,
+      "tool_return_bytes": 4977,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.5129569433629513,
+      "setup_wall_s": 0.4722531260922551,
+      "trace_sha256": "4441d6d91c2cfa8480faedf2b5c7a3556224e15f3c561b531a703dc5e4f809fe",
+      "usage": {
+        "input_tokens": 161779,
+        "cached_input_tokens": 145152,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1785,
+        "reasoning_output_tokens": 130,
+        "total_tokens": 163564,
+        "uncached_input_tokens": 16627
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": false,
+        "provenance_verified": false,
+        "quality_verified": false,
+        "capability_gap_verified": true
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "glb-rigid-1-candidate",
+      "task_id": "glb-rigid",
+      "pair_id": "glb-rigid-1",
+      "group": "B",
+      "version": "candidate",
+      "repetition": 1,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 188.59950597397983
+      },
+      "tool_calls": 28,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 185933,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.9549654265865684,
+      "setup_wall_s": 0.471859909594059,
+      "trace_sha256": "9936221e325bfffda0511d6a771a56c46f76dc8d2c2c0c9463e776ce9cfa154a",
+      "usage": {
+        "input_tokens": 898765,
+        "cached_input_tokens": 846208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4527,
+        "reasoning_output_tokens": 430,
+        "total_tokens": 903292,
+        "uncached_input_tokens": 52557
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-layout-1-baseline",
+      "task_id": "native-layout",
+      "pair_id": "native-layout-1",
+      "group": "A",
+      "version": "baseline",
+      "repetition": 1,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 150.1932820416987
+      },
+      "tool_calls": 20,
+      "failed_tool_calls": 2,
+      "tool_return_bytes": 428899,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.8382937088608742,
+      "setup_wall_s": 0.604835769161582,
+      "trace_sha256": "392e4a73fe909cfaf1e4d26a9513983a215813c41301366ea275e4bb69ad6a3b",
+      "usage": {
+        "input_tokens": 534618,
+        "cached_input_tokens": 496768,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3900,
+        "reasoning_output_tokens": 521,
+        "total_tokens": 538518,
+        "uncached_input_tokens": 37850
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    },
+    {
+      "trial_id": "native-layout-1-candidate",
+      "task_id": "native-layout",
+      "pair_id": "native-layout-1",
+      "group": "A",
+      "version": "candidate",
+      "repetition": 1,
+      "status": "passed",
+      "cache": "cold",
+      "phase": "authoring",
+      "completion": {
+        "exit_code": 0,
+        "timed_out": false,
+        "token_limit_reached": false,
+        "client_version": "codex-cli 0.166.0",
+        "trace_budget_exceeded": false,
+        "usage_invalid": false,
+        "wall_s": 168.1973927570507
+      },
+      "tool_calls": 20,
+      "failed_tool_calls": 3,
+      "tool_return_bytes": 287120,
+      "actual_download_bytes": null,
+      "video_passed": null,
+      "host_verifier_wall_s": 0.9458675663918257,
+      "setup_wall_s": 0.6095561617985368,
+      "trace_sha256": "31a114d12b221f0db821737c89e9f44295a8939138af81c0dcb57a77a43f1ff6",
+      "usage": {
+        "input_tokens": 756434,
+        "cached_input_tokens": 696192,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3968,
+        "reasoning_output_tokens": 618,
+        "total_tokens": 760402,
+        "uncached_input_tokens": 60242
+      },
+      "billing_amount": null,
+      "failed_checks": [],
+      "scope_findings": [],
+      "host_verification": {
+        "passed": true,
+        "provenance_verified": true,
+        "quality_verified": true,
+        "capability_gap_verified": null
+      },
+      "phase_measurements": {
+        "setup": null,
+        "index": null,
+        "download": null,
+        "authoring": null,
+        "simulation": null,
+        "render": null,
+        "warm_edit": null,
+        "strict_replay": null
+      }
+    }
+  ],
+  "previous_cohorts": [
+    {
+      "cohort": "m4-efficiency-599a90e",
+      "included_in_comparison": false,
+      "trials": [
+        {
+          "trial_id": "native-layout-1-baseline",
+          "task_id": "native-layout",
+          "pair_id": "native-layout-1",
+          "group": "A",
+          "version": "baseline",
+          "repetition": 1,
+          "status": "timeout",
+          "cache": "cold",
+          "phase": "authoring",
+          "completion": {
+            "exit_code": -15,
+            "timed_out": true,
+            "token_limit_reached": false,
+            "client_version": "codex-cli 0.166.0",
+            "trace_budget_exceeded": false,
+            "usage_invalid": false,
+            "wall_s": 240.26923382095993
+          },
+          "tool_calls": 744,
+          "failed_tool_calls": 4,
+          "tool_return_bytes": 2345241,
+          "actual_download_bytes": null,
+          "video_passed": null,
+          "host_verifier_wall_s": 0.6278979508206248,
+          "setup_wall_s": 0.6214292300865054,
+          "trace_sha256": "9377bfbc5925496cb8f7888110d09fcc334cd39226771a65003e3baa026a0415",
+          "usage": null,
+          "billing_amount": null,
+          "failed_checks": [],
+          "scope_findings": [
+            {
+              "reason": "possible read outside own task",
+              "command_sha256": "dcd42fa2a70ede1a70b2e103bcbd583248e7d1182b9b8aa04190b2cf89c0d60e"
+            },
+            {
+              "reason": "external path in shell file command",
+              "command_sha256": "dcd42fa2a70ede1a70b2e103bcbd583248e7d1182b9b8aa04190b2cf89c0d60e"
+            },
+            {
+              "reason": "possible read outside own task",
+              "command_sha256": "dcd42fa2a70ede1a70b2e103bcbd583248e7d1182b9b8aa04190b2cf89c0d60e"
+            },
+            {
+              "reason": "external path in shell file command",
+              "command_sha256": "dcd42fa2a70ede1a70b2e103bcbd583248e7d1182b9b8aa04190b2cf89c0d60e"
+            }
+          ],
+          "host_verification": {
+            "passed": false,
+            "provenance_verified": false,
+            "quality_verified": false,
+            "capability_gap_verified": null
+          },
+          "phase_measurements": {
+            "setup": null,
+            "index": null,
+            "download": null,
+            "authoring": null,
+            "simulation": null,
+            "render": null,
+            "warm_edit": null,
+            "strict_replay": null
+          }
+        }
+      ]
+    },
+    {
+      "cohort": "m4-efficiency-599a90e-cohort2",
+      "included_in_comparison": false,
+      "trials": [
+        {
+          "trial_id": "glb-rigid-1-candidate",
+          "task_id": "glb-rigid",
+          "pair_id": "glb-rigid-1",
+          "group": "B",
+          "version": "candidate",
+          "repetition": 1,
+          "status": "failed",
+          "cache": "cold",
+          "phase": "authoring",
+          "completion": {
+            "exit_code": 0,
+            "timed_out": false,
+            "token_limit_reached": false,
+            "client_version": "codex-cli 0.166.0",
+            "trace_budget_exceeded": false,
+            "usage_invalid": false,
+            "wall_s": 100.96345578413457
+          },
+          "tool_calls": 12,
+          "failed_tool_calls": 2,
+          "tool_return_bytes": 79188,
+          "actual_download_bytes": null,
+          "video_passed": null,
+          "host_verifier_wall_s": 0.5390197187662125,
+          "setup_wall_s": 0.4809718728065491,
+          "trace_sha256": "a0c2d16bb19e17d1e908f65c56f3fab2d8a2f461e57fd27b5acf1e79beeb979b",
+          "usage": {
+            "input_tokens": 354562,
+            "cached_input_tokens": 314752,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2113,
+            "reasoning_output_tokens": 408,
+            "total_tokens": 356675,
+            "uncached_input_tokens": 39810
+          },
+          "billing_amount": null,
+          "failed_checks": [],
+          "scope_findings": [
+            {
+              "reason": "unapproved MCP tool",
+              "command_sha256": null
+            },
+            {
+              "reason": "unapproved MCP tool",
+              "command_sha256": null
+            },
+            {
+              "reason": "unapproved MCP tool",
+              "command_sha256": null
+            }
+          ],
+          "host_verification": {
+            "passed": false,
+            "provenance_verified": false,
+            "quality_verified": false,
+            "capability_gap_verified": null
+          },
+          "phase_measurements": {
+            "setup": null,
+            "index": null,
+            "download": null,
+            "authoring": null,
+            "simulation": null,
+            "render": null,
+            "warm_edit": null,
+            "strict_replay": null
+          }
+        },
+        {
+          "trial_id": "native-layout-1-baseline",
+          "task_id": "native-layout",
+          "pair_id": "native-layout-1",
+          "group": "A",
+          "version": "baseline",
+          "repetition": 1,
+          "status": "passed",
+          "cache": "cold",
+          "phase": "authoring",
+          "completion": {
+            "exit_code": 0,
+            "timed_out": false,
+            "token_limit_reached": false,
+            "client_version": "codex-cli 0.166.0",
+            "trace_budget_exceeded": false,
+            "usage_invalid": false,
+            "wall_s": 156.601327563636
+          },
+          "tool_calls": 21,
+          "failed_tool_calls": 2,
+          "tool_return_bytes": 559372,
+          "actual_download_bytes": null,
+          "video_passed": null,
+          "host_verifier_wall_s": 0.892904439009726,
+          "setup_wall_s": 0.6191905625164509,
+          "trace_sha256": "c9658271414fb36fc94dbc84b3510e2c4e78b4a8ac4213eb2344e1c96a0d0557",
+          "usage": {
+            "input_tokens": 493971,
+            "cached_input_tokens": 456576,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4151,
+            "reasoning_output_tokens": 439,
+            "total_tokens": 498122,
+            "uncached_input_tokens": 37395
+          },
+          "billing_amount": null,
+          "failed_checks": [],
+          "scope_findings": [],
+          "host_verification": {
+            "passed": true,
+            "provenance_verified": true,
+            "quality_verified": true,
+            "capability_gap_verified": null
+          },
+          "phase_measurements": {
+            "setup": null,
+            "index": null,
+            "download": null,
+            "authoring": null,
+            "simulation": null,
+            "render": null,
+            "warm_edit": null,
+            "strict_replay": null
+          }
+        },
+        {
+          "trial_id": "native-layout-1-candidate",
+          "task_id": "native-layout",
+          "pair_id": "native-layout-1",
+          "group": "A",
+          "version": "candidate",
+          "repetition": 1,
+          "status": "passed",
+          "cache": "cold",
+          "phase": "authoring",
+          "completion": {
+            "exit_code": 0,
+            "timed_out": false,
+            "token_limit_reached": false,
+            "client_version": "codex-cli 0.166.0",
+            "trace_budget_exceeded": false,
+            "usage_invalid": false,
+            "wall_s": 143.64475460816175
+          },
+          "tool_calls": 17,
+          "failed_tool_calls": 2,
+          "tool_return_bytes": 181795,
+          "actual_download_bytes": null,
+          "video_passed": null,
+          "host_verifier_wall_s": 0.861025009304285,
+          "setup_wall_s": 0.611273804679513,
+          "trace_sha256": "cdfeb21ffbb4aed6bfbac023b8d0152945fa8cd7eb9a300b662f29a6e35b7393",
+          "usage": {
+            "input_tokens": 442369,
+            "cached_input_tokens": 406016,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3242,
+            "reasoning_output_tokens": 439,
+            "total_tokens": 445611,
+            "uncached_input_tokens": 36353
+          },
+          "billing_amount": null,
+          "failed_checks": [],
+          "scope_findings": [],
+          "host_verification": {
+            "passed": true,
+            "provenance_verified": true,
+            "quality_verified": true,
+            "capability_gap_verified": null
+          },
+          "phase_measurements": {
+            "setup": null,
+            "index": null,
+            "download": null,
+            "authoring": null,
+            "simulation": null,
+            "render": null,
+            "warm_edit": null,
+            "strict_replay": null
+          }
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Three repetitions per task on one shared GPU host; fixed tasks, not unfamiliar-user generalization.",
+    "Baseline lacks Group B capabilities; capability gaps do not establish token savings.",
+    "Cached input and reasoning are subsets; billing is unmeasured.",
+    "Complete all-attempt download bytes and GPU/model-wait phase telemetry are unavailable, represented as null.",
+    "Selected inputs were externally staged and warm seeds identical; not a cold whole-library online benchmark.",
+    "Four rows have known heuristic scope false positives on relative globs or literal rg exclusion options. Original strict statuses and costs are preserved; the separate immutable-trace audit does not replace them."
+  ]
+}

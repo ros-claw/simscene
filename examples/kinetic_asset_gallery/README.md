@@ -2,6 +2,12 @@
 
 [Watch the 66-second film](../../docs/media/kinetic-asset-gallery-1080p30.mp4) · [Frame/time edit map](film-map.json)
 
+[Download continuous native sources](https://github.com/ros-claw/simscene/releases/download/v0.2.0-dev.1/kinetic-gallery-native-sources.zip)
+from the V2 preview release. The current film uses newly synchronized source
+recordings. Its main run, matched stopping control and short changed-length
+capture passed again; historical rebuild/long-variant identities remain in the
+[validation summary](validation-summary.json).
+
 Four physical exhibits share one 60-second main run: a scanned product starts a
 12-domino/ball handoff, four imported notebooks follow separate gravity lanes,
 a preserved native cabinet hinge opens and closes under a declared drive, and

@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0.dev1 — V2 development candidate
+## 0.2.0.dev1 — V2 preview
 
 Python package `0.2.0.dev1` maps explicitly to plugin `0.2.0-dev.1`.
 
@@ -17,12 +17,19 @@ Python package `0.2.0.dev1` maps explicitly to plugin `0.2.0-dev.1`.
 - Wheel-based portable, Claude Code and DeepSeek layouts with parallel MCP
   registration names; the original 46 MCP interfaces remain compatible.
 - An independently verified, bounded paired-efficiency protocol. Cross-task
-  token/time advantages remain unproven until comparable trials establish them.
+  token/time advantages remain unproven: the initial six-task/36-session study
+  did not establish savings, and its failures/costs remain published.
+- A paused rendering barrier corrects nonempty RGB buffers lagging the saved
+  physical frame. Same-predicate SDK replays, a two-camera batch, and a new
+  four-camera gallery recording passed. Old records are not silently rescored.
+- Final transport qualification passed two actual Codex tasks, alongside
+  wheel/pip, installed-dependency, and extracted-package client checks.
 
 Selected models and runtime limits are described in the
 [capability matrix](docs/validation/catalog-capabilities.md), not inferred from
 source-library names. This entry describes the development line; publication
-and actual client evidence are recorded separately in release documentation.
+and actual client evidence are recorded in the
+[release guide](docs/releases/v0.2.0-dev.1.md).
 
 ## Previous local baseline
 
@@ -31,3 +38,5 @@ The V2 comparison baseline is commit
 whole-home passive physics and multi-camera productions retain their original
 validation scope. Development history is not rewritten as new imported-body
 or efficiency evidence.
+The historical identifier is supplied through the release comparison artifact;
+its private Git history is not published.

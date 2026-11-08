@@ -1,0 +1,43 @@
+{
+  "mode": "driven",
+  "objects": {
+    "cabinet": {
+      "anchor_tolerance_m": 0.003,
+      "child_body": "/World/cabinet/Asset/Native/Links/flap_door",
+      "initial_position": 0.0,
+      "joint_id": "main",
+      "joint_path": "/World/cabinet/Asset/Native/Joints/flap_hinge",
+      "limit_tolerance": 0.015,
+      "limits": [
+        0.0,
+        1.3962634015954636
+      ],
+      "min_travel": 1.0,
+      "parent_body": "/World/cabinet/Asset/Native/Links/cabinet_carcass",
+      "position_unit": "rad",
+      "source_ref": {
+        "asset_id": "ds_R021_02",
+        "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+        "source_id": "usdcraft",
+        "variant_id": null
+      },
+      "waypoints": [
+        {
+          "by_step": 200,
+          "command_step": 0,
+          "target_position": 1.3962634015954636,
+          "tolerance": 0.08
+        },
+        {
+          "by_step": 500,
+          "command_step": 240,
+          "target_position": 0.0,
+          "tolerance": 0.04
+        }
+      ]
+    }
+  },
+  "physical_model_note": "Public native USDCraft2link hinge, source mass/colliders/root retained; cabinet rests under gravity on ordinary static ground. Explicit experimental position-drive parameters; no timer/contact causality claim.",
+  "schema": "simscene.articulated_asset_smoke.v1",
+  "schema_version": 1
+}
