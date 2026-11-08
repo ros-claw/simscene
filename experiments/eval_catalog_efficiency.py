@@ -262,7 +262,7 @@ def run_trial(plan, trial_id, output):
     env=dict(plan['server_environment'],SIMSCENE_HOME=str(state),SIMSCENE_CACHE=str(output/'cache'),
              XDG_CONFIG_HOME=str(output/'config'),SIMSCENE_V2_CONFIG=str(output/'v2.json'),SIMSCENE_PHYSICS_DEVICE='cpu')
     task=next(t for t in plan['tasks'] if t['id']==trial['task_id'])
-    prompt=('Use only this work directory, copied installed skills and configured SimScene MCP. Do not read global skills or global configuration. No child agents, source checkout reads, direct SDK/shell SimScene calls or network shell commands. Preserve every failed attempt. Submit submission.json with scene_id, run_ids (every attempted run ID), selected_run_id, and evidence paths. For an unsupported new capability, optionally include capability_gap:{capability:NAME}; only the host can verify a capability gap. Agent assertions are not verification. Read all fixed task inputs and acceptance predicates in task/. Do not modify them. If seed-scene-resolved.json exists, it is the same frozen seed with documented local asset locators resolved; use it as the warm task starting scene. The worker already saves the complete trajectory. Inspect only a few representative observations rather than streaming every physics step through MCP. The trusted host verifier reads the full saved trajectory directly; its acceptance file need not be a stock run_verify case. Write submission.json promptly after completing the chosen run and saving its evidence paths; do not reproduce the host audit frame by frame.\n'+task['prompt'])
+    prompt=('Use only this work directory, copied installed skills and configured SimScene MCP. Do not read global skills or global configuration. Do not list global MCP resources or templates; only the configured SimScene tools and its explicit simscene://catalog/sources resource are allowed. No child agents, source checkout reads, direct SDK/shell SimScene calls or network shell commands. Preserve every failed attempt. Submit submission.json with scene_id, run_ids (every attempted run ID), selected_run_id, and evidence paths. For an unsupported new capability, optionally include capability_gap:{capability:NAME}; only the host can verify a capability gap. Agent assertions are not verification. Read all fixed task inputs and acceptance predicates in task/. Do not modify them. If seed-scene-resolved.json exists, it is the same frozen seed with documented local asset locators resolved; use it as the warm task starting scene. The worker already saves the complete trajectory. Inspect only a few representative observations rather than streaming every physics step through MCP. The trusted host verifier reads the full saved trajectory directly; its acceptance file need not be a stock run_verify case. Write submission.json promptly after completing the chosen run and saving its evidence paths; do not reproduce the host audit frame by frame.\n'+task['prompt'])
     (output/'prompt.txt').write_text(prompt)
     (work/'AGENTS.md').write_text('Use only own work and configured MCP. Do not modify task inputs.\n')
     cmd=agent.command(package,work,output,plan['protocol']['model'],plan['protocol']['reasoning_effort'],env)
@@ -326,11 +326,19 @@ def run_trial(plan, trial_id, output):
     return result
 
 
+def approved_mcp_call(call, allowlist):
+    if call.get('server')!='simscene':return False
+    if call.get('tool') in allowlist:return True
+    args=call.get('arguments',{})
+    return (call.get('tool')=='read_mcp_resource' and isinstance(args,dict)
+            and args.get('server')=='simscene' and args.get('uri')=='simscene://catalog/sources')
+
+
 def trial_result(plan, trial, output, completion, evidence):
     output=Path(output); trace=agent.analyze_trace(output/'events.jsonl',output/'work')
     # Reuse audit-v2 command rules; extend only the explicit frozen tool allowlist.
     violations=[v for v in trace['scope_violations'] if v['reason']!='unapproved MCP tool']
-    violations += [{'reason':'unapproved MCP tool'} for c in trace['calls'] if c.get('server')!='simscene' or c.get('tool') not in plan['tool_allowlist']]
+    violations += [{'reason':'unapproved MCP tool'} for c in trace['calls'] if not approved_mcp_call(c,plan['tool_allowlist'])]
     measured=usage(output/'events.jsonl')
     try: phases=phase_seconds(evidence.get('phase_intervals',[]))
     except (ValueError,KeyError,TypeError) as error:

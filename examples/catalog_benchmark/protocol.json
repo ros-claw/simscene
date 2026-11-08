@@ -67,5 +67,12 @@
     "scope": "client context plus trace audit; not an operating-system read jail"
   },
   "observation_collection": "Worker records the full trajectory. Model inspects bounded representative observations and writes submission promptly; trusted host verifier reads the full unchanged trajectory. Applied identically to both packages.",
-  "cohort_changes": "Changed evaluator/prompt/client-isolation inputs require a new frozen cohort. Keep earlier failures and unknown usage; never pool incompatible fingerprints."
+  "cohort_changes": "Changed evaluator/prompt/client-isolation inputs require a new frozen cohort. Keep earlier failures and unknown usage; never pool incompatible fingerprints.",
+  "network_proxy_inheritance": "Allow standard HTTP(S)/ALL/NO_PROXY names, both letter cases, into the MCP server. Inherit host values without serializing them into commands, logs or public inputs.",
+  "resource_allowlist": [
+    {
+      "server": "simscene",
+      "uri": "simscene://catalog/sources"
+    }
+  ]
 }

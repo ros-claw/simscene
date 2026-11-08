@@ -282,6 +282,8 @@ def command(package, work, output, model, effort, server_env):
                 'sandbox_workspace_write.network_access': False,
                 'mcp_servers.simscene.command': sys.executable,
                 'mcp_servers.simscene.args': [str(package / 'server/launch.py')],
+                # Forward names, never serialize proxy values into commands/receipts.
+                'mcp_servers.simscene.env_vars': ['HTTP_PROXY','HTTPS_PROXY','ALL_PROXY','NO_PROXY','http_proxy','https_proxy','all_proxy','no_proxy'],
                 'mcp_servers.simscene.enabled_tools': list(ALLOWED_TOOLS),
                 'mcp_servers.simscene.default_tools_approval_mode': 'approve',
                 'model_reasoning_effort': effort}

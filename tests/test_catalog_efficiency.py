@@ -185,6 +185,14 @@ class EfficiencyTests(unittest.TestCase):
         rows[0]['completion']['client_version']='different-client'
         self.assertIsNone(ev.aggregate(plan,rows)['groups']['A']['median_paired_token_ratio'])
 
+    def test_only_explicit_simscene_resource_is_allowed_not_global_discovery(self):
+        own={'server':'simscene','tool':'read_mcp_resource','arguments':{'server':'simscene','uri':'simscene://catalog/sources'}}
+        self.assertTrue(ev.approved_mcp_call(own,[]))
+        for changed in ({'server':'codex'},{'tool':'list_mcp_resources'},
+                        {'arguments':{'server':'other','uri':'simscene://catalog/sources'}},
+                        {'arguments':{'server':'simscene','uri':'file:///outside'}}):
+            self.assertFalse(ev.approved_mcp_call(dict(own,**changed),[]))
+
     def test_live_poll_ignores_inflight_unterminated_json_line(self):
         path=self.root/'inflight.jsonl';path.write_text('{"type":"turn.completed",')
         self.assertEqual(ev.usage(path,live=True)['errors'],[])

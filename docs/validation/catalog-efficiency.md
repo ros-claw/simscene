@@ -39,6 +39,20 @@ source locks are unchanged. The evaluator/prompt change requires a new frozen
 cohort; its results cannot be pooled with the failed original collection probe
 or attributed as a plugin-only improvement.
 
+A subsequent collection attempt obtained a passing common-task pair, but its
+GLB trial could not fetch metadata because the MCP child lacked the host's proxy
+environment. The host could read the same pinned metadata; allowing proxy
+variable names into the child produced a successful live 8,317,292-byte metadata
+query with zero model bytes. The revised command inherits variable names only,
+following [MCP environment forwarding](https://learn.chatgpt.com/docs/extend/mcp?surface=cli#stdio-servers);
+proxy values never appear in the recorded command. This network change requires
+another cohort, with earlier successes, failures and usage retained separately.
+
+The exact SimScene catalog resource read is allowed as a standard MCP operation;
+it is not an additional asset tool. Global resource/template discovery and other
+servers remain outside scope. The earlier GLB attempt also made those disallowed
+global calls and produced no physical run; its failure is not relabelled.
+
 ## Comparisons and gates
 
 Group A compares native USD layout, a warm 20 mm edit, and native video. Their

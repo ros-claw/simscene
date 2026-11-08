@@ -79,6 +79,19 @@ must remain outside the installed package. Generation and GLB decoding require
 separately admitted runtime/toolchain configurations; a cached prepared asset
 does not reuse a prior physics verdict for a new scene.
 
+If your host needs a proxy, a client may filter its environment before starting
+MCP. For Codex, explicitly forward the existing variable names in that server's
+configuration; do not copy proxy credentials into a public configuration:
+
+```toml
+[mcp_servers.simscene]
+env_vars = ["http_proxy", "https_proxy", "HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "NO_PROXY", "all_proxy", "no_proxy"]
+```
+
+The evaluator forwards these names to both packages. On the tested host, this
+resolved a case where a direct metadata request worked while the MCP request
+timed out. Other clients need their corresponding environment-forwarding setup.
+
 The DeepSeek root contains `cordis.patch.yml` with the absolute build location.
 After moving it, generate a new overlay at a new path:
 
