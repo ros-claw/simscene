@@ -31,6 +31,20 @@ see the [results and limitations](docs/validation/catalog-efficiency.md).
 
 ## Get started
 
+**Recommended first run:** pin [v0.2.0-dev.1](docs/releases/v0.2.0-dev.1.md#安装与第一次尝试)
+→ configure the tested runtime → select a small ABO/GSO object → check a single
+object's fall, contact and settling → expand to multiple instances → record video.
+Follow the [preparation setup](docs/asset-catalog.md#configure-the-preparation-runtime-explicitly)
+before attempting GLB physics. The [gravity-cell example](examples/catalog_gravity_cell/README.md)
+documents the single-object and four-instance checks; its NVIDIA table follows
+the separate legacy acquisition route described below.
+
+| Your setup | What to try next |
+| --- | --- |
+| Base SimScene installation and network access | Search metadata and inspect candidates; this does not require the GLB decoder or start Isaac Sim. |
+| Compatible Isaac Sim and USD bindings, pinned Node.js decoder, successful `asset probe` | Prepare a selected ABO/GSO GLB, then run fall/contact/settling checks. |
+| Verified physical scene and configured FFmpeg | Plan cameras, capture native frames, inspect and export video. |
+
 Python **3.10+** is required. Running simulations also requires a compatible
 **NVIDIA Isaac Sim** installation on a GPU host. Install FFmpeg for video capture
 and editing; see [video setup](docs/视频交付.md) for encoding requirements.
@@ -38,6 +52,7 @@ and editing; see [video setup](docs/视频交付.md) for encoding requirements.
 ```bash
 git clone https://github.com/ros-claw/simscene.git
 cd simscene
+git checkout v0.2.0-dev.1
 python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install -e . usd-core
@@ -79,6 +94,11 @@ cover a reviewed native USD manifest, a selected BOM package, configured HDRI
 IDs and Central metadata locators. Asset licenses, dependency completeness and
 physical suitability are checked individually. Source admission does not
 certify every model.
+
+The example NVIDIA PackingTable's individual license remains unknown, so the
+new `asset_plan` route blocks its preparation. Enabling NVIDIA search by default
+does not authorize preparing every result. The gravity-cell example documents
+its separate legacy acquisition route and makes no redistribution claim.
 
 For imported dynamic objects, use the prepared package's actual body mapping
 and verify contacts, movement and settling. The [gravity-cell example](examples/catalog_gravity_cell/README.md)

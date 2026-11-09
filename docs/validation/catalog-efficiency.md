@@ -91,6 +91,13 @@ not hard provider billing caps. The fixed task repetitions were completed; no
 extra video attempts were added to improve the original score. Subsequent
 repairs and release qualification are separate evidence.
 
+In the [release qualification record](../../examples/catalog_benchmark/results/release-qualification.json),
+`total_tokens` is cumulative `input_tokens + output_tokens` for that client
+session. `cached_input_tokens` is already included in input and is not added
+again. `completion.wall_s` measures the client session, not total installation,
+deployment or all acceptance work. These two candidate-only qualification tasks
+are not a paired efficiency comparison.
+
 Complete all-attempt transfer bytes, GPU/model-wait phase telemetry and billing
 were unavailable and remain null. Known download subtotals do not establish
 zero traffic. Setup and host-verifier time are recorded separately from client
