@@ -282,7 +282,12 @@ def resolve_asset(ref, *, index_directory=None, registry_path=_CONFIGURED_REGIST
     if source is not None and source.adapter == 'usdcraft':
         from .providers.simready_package import USDCraftProvider
         return USDCraftProvider(store, source).resolve(ref)
+    if source is not None and source.adapter == 'artvip':
+        from .providers.artvip import ArtVIPProvider
+        return ArtVIPProvider(store, source).resolve(ref)
     record = store.get(ref)
     if source is None and isinstance(record.provenance, dict) and record.provenance.get('repository') == 'nvidia/USDCraft-10K':
         raise ValueError('USDCraft source must be present in the configured registry before planning')
+    if source is None and isinstance(record.provenance, dict) and record.provenance.get('repository') == 'X-Humanoid/ArtVIP':
+        raise ValueError('ArtVIP source must be present in the configured registry before planning')
     return record

@@ -35,13 +35,45 @@ def _prepared(selection,config,limits,timeout,receipts):
     from simscene.recipes.io import validate_rebuilt
     ref=selection['source_ref'];record=None
     if 'generation' in selection:
+        import hashlib
+        from importlib.resources import files
         from simscene.generation import jobs as generation
+        from simscene.recipes.io import _generation_intent
         intent=selection['generation']
-        if intent.get('generator')!='sand3d' or intent.get('seed')!=0:
-            raise ValueError('unsupported generated recipe; only reviewed trusted Sand3D templates supported')
+        if not isinstance(intent,dict):raise ValueError('invalid generated recipe intent')
+        generator=intent.get('generator')
+        if generator=='sand3d':
+            from simscene.generation.sand3d import COMMIT,parameters
+            expected_source='local-sand3d'
+            runtime_key='generation_runtime'
+        elif generator=='usdcraft_sdk' and intent.get('generation_contract_version')==3:
+            from simscene.generation.usdcraft_sdk import COMMIT,RECIPE,parameters
+            if intent.get('recipe_id')!=RECIPE:raise ValueError('unsupported trusted USDCraft SDK recipe')
+            expected_source='local-usdcraft-sdk'
+            runtime_key='usdcraft_generation_runtime'
+        else:raise ValueError('unsupported generated recipe backend or contract')
+        if (type(intent.get('seed')) is not int or intent['seed']!=0 or ref.get('source_id')!=expected_source
+                or ref.get('asset_id')!=intent.get('recipe_id')):
+            raise ValueError('generated recipe identity or seed differs from its pinned source')
+        # Compare trusted template, backend-specific normalization and the
+        # configured runtime before executing anything. A source lock cannot
+        # select a different backend merely by choosing its recipe ID.
+        recipe=intent['recipe_id']
+        normalized=parameters(recipe,intent.get('parameters'))
+        runtime_path=config.get(runtime_key)
+        if not runtime_path or not Path(runtime_path).is_file() or Path(runtime_path).stat().st_size>65536:
+            raise ValueError('generation_runtime_unavailable: configure the pinned generation runtime')
+        runtime=json.loads(Path(runtime_path).read_text())
+        template=files('simscene.generation').joinpath('templates/'+recipe+'.py').read_bytes()
+        identity={'recipe_id':recipe,'parameters':normalized,'seed':0,'toolchain':runtime,
+                  'template_sha256':hashlib.sha256(template).hexdigest()}
+        if generator=='usdcraft_sdk':identity['generation_contract_version']=3
+        actual=_generation_intent(identity,{'generator':generator,'reviewed_commit':COMMIT})
+        if actual!=intent:raise ValueError('configured generator runtime or trusted template differs from the portable lock')
         # No programs from the lock are executable. jobs.start validates the one
         # shipped recipe and requires an explicitly configured reviewed runtime.
-        receipt=generation.start(intent['recipe_id'],intent['parameters'],'recipe-generate-'+uuid.uuid4().hex,config=config)
+        receipt=generation.start(intent['recipe_id'],intent['parameters'],'recipe-generate-'+uuid.uuid4().hex,
+                                 config=config,expected_intent=intent)
         receipts.append(dict(receipt,role_phase='generation'))
         generated=wait_job(receipt,generation,config,timeout)
         ref=generated['result']['asset_ref']

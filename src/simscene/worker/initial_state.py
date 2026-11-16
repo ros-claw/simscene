@@ -60,11 +60,12 @@ def visual_bounds(stage, objects, body_bindings=None):
     return result
 
 class PassiveState:
-    def __init__(self,stage,objects,body_bindings=None,authored_state=None):
+    def __init__(self,stage,objects,body_bindings=None,authored_state=None,*,is_paused=None):
         self.delegate=None
-        if any(binding.get('articulation_roots') for binding in (body_bindings or {}).values()):
+        if any(binding.get('articulation_roots') or binding.get('profile_id')=='articulated_prop_v2'
+               for binding in (body_bindings or {}).values()):
             from .mechanism import PreparedArticulationState
-            self.delegate=PreparedArticulationState(stage,objects,body_bindings,authored_state)
+            self.delegate=PreparedArticulationState(stage,objects,body_bindings,authored_state,is_paused=is_paused)
             return
         import omni.physics.tensors as tensors
         import omni.usd
@@ -76,6 +77,9 @@ class PassiveState:
         if getattr(self,'delegate',None) is not None:return self.delegate.refresh()
         self.view=self.sim.create_rigid_body_view('/World/**' if self.body_bindings else '/World/*')
         self.paths=list(self.view.prim_paths)
+
+    def mark_task_started(self):
+        if getattr(self,'delegate',None) is not None:return self.delegate.mark_task_started()
 
     def read(self):
         if getattr(self,'delegate',None) is not None:return self.delegate.read()

@@ -1,0 +1,19 @@
+{
+  "files": {
+    "exts/isaacsim.replicator.experimental.mobility_gen/config/extension.toml": "5652b5a4e0518f6a6e379552936fc6d8306cee1aca122034c4e384f520cb787a",
+    "exts/isaacsim.replicator.experimental.mobility_gen/isaacsim/replicator/experimental/mobility_gen/bindings/_path_planner.cpython-312-x86_64-linux-gnu.so": "952eee7e366bb962f8d718b635611387e3fda282a6a3a0778835e4437f767918",
+    "exts/isaacsim.replicator.experimental.mobility_gen/isaacsim/replicator/experimental/mobility_gen/impl/occupancy_map.py": "8b49092b00b4e2a01c2923a8bb1f7a82fdf6fa5db5c98c28f655e7a786ecef68",
+    "exts/isaacsim.replicator.experimental.mobility_gen/isaacsim/replicator/experimental/mobility_gen/impl/path_planner.py": "8db343e1cb9ae0d409b6cd542938f808f4a8d99a60a803c56e9ac65f7321bd57",
+    "exts/isaacsim.replicator.experimental.mobility_gen/isaacsim/replicator/experimental/mobility_gen/impl/scenario.py": "8f485b544670fc19824c3d8a7ec99e9a3b222d6249118bc0c49a1436daad2c10",
+    "exts/isaacsim.replicator.mobility_gen.examples/config/extension.toml": "b9b0160b74c413dd8c8abd4951300c26e4cecbd2ae5f17b04e09910022dc1293",
+    "exts/isaacsim.replicator.mobility_gen.examples/isaacsim/replicator/mobility_gen/examples/robots.py": "f7cb3149ba2665f32db7b2d63544907d7284be43227ccd121a5348972da7f582",
+    "exts/isaacsim.replicator.mobility_gen.examples/isaacsim/replicator/mobility_gen/examples/scenarios.py": "6e06f1504a4f015f10af4568770f54f74eb868de03c1cbf9987e6831a2025948",
+    "exts/isaacsim.robot.experimental.wheeled_robots/isaacsim/robot/experimental/wheeled_robots/controllers/differential_controller.py": "99e1733c3cdb92b17e65f8e22264e8ba0de9e9a7b79186e6a790e8f9a3c984db",
+    "kit/mdl/core/Base/OmniGlass.mdl": "cc3d21e95997fb16d9435982c4f0a14f3438b1705d2e2b3d3e75454e5b329d61",
+    "kit/mdl/core/Base/OmniPBR.mdl": "d384fc800f120e3cad1b7ca8837f9c554f9c34343d194813fca27caa493001f2"
+  },
+  "isaac_version": "6.2.0-rc.14+release.52805.02189a84.gl",
+  "launcher_sha256": "02e191f61075faf8757c3295941e5ed937a2b121b6be8f0d6b7a8899e6815fec",
+  "schema": "simscene.mobilitygen_jetbot.runtime-lock.v1",
+  "scope": "selected MobilityGen implementation and MDL files, not the full Isaac runtime"
+}

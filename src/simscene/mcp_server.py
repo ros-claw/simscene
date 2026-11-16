@@ -52,7 +52,7 @@ def scene_compile_recipe(scene_id: str, recipe_id: str, parameters: dict, bindin
 
 @threaded_tool()
 def asset_generate(recipe_id: str, parameters: dict, request_id: str | None = None) -> dict:
-    """Start a durable job for an explicitly configured independent Sand3D runtime and a shipped fixed template (guide_plate_v1 or open_receiver_v1). Accepts structured dimensions only, never external programs. Completion returns a generated AssetRef for ordinary asset_plan/asset_prepare; generation alone gives no physical pass."""
+    """Start a durable job for a configured independent runtime and a shipped fixed template: Sand3D guide_plate_v1/open_receiver_v1 or USDCraft SDK usdcraft_sdk_guide_plate_v1. Accepts structured dimensions only, never external programs. Returns a generated AssetRef for ordinary asset_plan/asset_prepare; generation alone gives no physical pass."""
     from .generation.jobs import start
     return start(recipe_id,parameters,request_id)
 
@@ -394,7 +394,7 @@ def run_verify_lock(job_id: str) -> dict:
 
 @threaded_tool(annotations=_read_local)
 def run_verify(job_id: str, case_path: str | None = None, case_type: str | None = None, mode: str = 'positive', reference_job_id: str | None = None) -> dict:
-    """Check completed physical evidence against an independent pinned local case. Types: contact, suction, moving, repeated, domino, parallel, stream, mechanism, passive_network. Passive schemas infer their type. Mechanism detached_drawer and network no_trigger/broken_rope/locked_door modes require the matching reference_job_id and isolated declared changes. A single positive network run does not accept the whole stage: use run_verify_passive_suite with its frozen required controls. This verifier only reads measurements and never releases or moves a mechanism."""
+    """Check completed physical evidence against an independent pinned local case. Passive and imported-asset schemas infer their type. For a two-joint control use mode='missing_second_joint_drive' with the control job_id and the positive reference_job_id. Mechanism detached_drawer and network no_trigger/broken_rope/locked_door modes also require a matching positive reference. A single positive network run does not accept the whole stage: use run_verify_passive_suite with its frozen required controls. This verifier only reads measurements and never releases or moves a mechanism."""
     from .jobs import verify_task
     return verify_task(job_id,case_path,case_type,mode,reference_job_id)
 

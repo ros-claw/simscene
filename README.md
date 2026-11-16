@@ -91,8 +91,8 @@ simscene recipe list
 
 Search retrieves metadata; selecting and preparing a model is a separate step.
 Default sources are NVIDIA USD Search, ABO and GSO. Explicit optional providers
-cover a reviewed native USD manifest, a selected BOM package, configured HDRI
-IDs and Central metadata locators. Asset licenses, dependency completeness and
+cover a reviewed native USD manifest, one curated ArtVIP door, a selected BOM
+package, configured HDRI IDs and Central metadata locators. Asset licenses, dependency completeness and
 physical suitability are checked individually. Source admission does not
 certify every model.
 
@@ -110,7 +110,14 @@ describe setup and reuse. Existing asset and simulation tools remain compatible.
 This development branch also offers [optional automatic measured layout](docs/scene-layout.md)
 for existing props on an explicitly measured support. It proposes editable
 placements; the original USD and separate physical verification remain intact.
-The pinned v0.2.0-dev.1 release above predates this tool.
+The branch additionally supports an isolated [USDCraft SDK guide-plate generator](docs/usdcraft-sdk.md)
+and a narrowly admitted two-joint native asset profile. The pinned v0.2.0-dev.1
+release above predates these capabilities.
+
+An independent [MobilityGen Jetbot experiment](experiments/mobilitygen_jetbot/README.md)
+provides one fixed-route physical test and a zero-command control. It is not yet
+connected to SimScene scene or simulation jobs, and does not establish general
+robot planning or obstacle avoidance.
 
 ## Connect your agent
 
@@ -153,6 +160,9 @@ Try a prompt such as:
 | Multi-source kinetic gallery | [Editable recipe](examples/kinetic_asset_gallery/README.md) · [66-second film](docs/media/kinetic-asset-gallery-1080p30.mp4) |
 | Cross-catalog gravity cell | [Locked assets, physical case and reproduction](examples/catalog_gravity_cell/README.md) |
 | Automatic cabinet layout (development branch) | [Editable recipe, source lock and physical checks](examples/automatic_cabinet_layout/README.md) |
+| ArtVIP door (development branch) | [Selected asset, explicit physics assumptions and drive checks](examples/artvip_door/README.md) |
+| USDCraft two-drawer cabinet (development branch) | [Two native joints, editable recipe and drive control](examples/usdcraft_two_drawer/README.md) |
+| Generated USDCraft guide (development branch) | [Two sizes, editable recipe and physical support comparison](examples/usdcraft_sdk_guide/README.md) |
 | Three-level chain reaction | [Editable recipe and reproduction steps](examples/three_level_chain/README.md) · [Film](docs/media/chain-workshop-1080p30.mp4) |
 | Precision sorting workshop | [Scene recipe](examples/precision_sorting_corner/README.md) · [Film](docs/media/precision-workshop-1080p30.mp4) |
 | Maintenance workbench | [Scene recipe](examples/maintenance_workbench/README.md) · [Film](docs/media/maintenance-workbench-1080p30.mp4) |

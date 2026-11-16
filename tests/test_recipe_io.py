@@ -101,6 +101,82 @@ class RecipeIOTests(unittest.TestCase):
         manifest['provenance']['identity']['recipe_id']='exec_program'
         with self.assertRaises(ValueError):io.prepared_selection(manifest,acquired,manifest_sha256='a'*64)
 
+    def test_usdcraft_sdk_generated_intent_is_portable_and_version_pinned(self):
+        from simscene.generation.usdcraft_sdk import COMMIT, RECIPE
+        manifest=copy.deepcopy(self.manifest);acquired=copy.deepcopy(self.acquired)
+        manifest['source_ref']=dict(manifest['source_ref'],source_id='local-usdcraft-sdk',asset_id=RECIPE)
+        acquired['source_ref']=manifest['source_ref']
+        identity={'recipe_id':RECIPE,'parameters':{'length_m':.7},'seed':0,'template_sha256':'1'*64,
+            'generation_contract_version':3,'toolchain':{'schema_version':1,'backend':'usdcraft_sdk',
+                'python':'/private/sdk/python','reviewed_commit':COMMIT,
+                'observed':{'usdcraft_commit':COMMIT,'usdcraft_version':'1.0.0','source_clean':True,
+                            'repository_path':'/private/sdk/repo','source_tree_sha256':'2'*64,'python_version':[3,12,0]}}}
+        manifest['provenance']={'generator':'usdcraft_sdk','reviewed_commit':COMMIT,'identity':identity}
+        selection=io.prepared_selection(manifest,acquired,manifest_sha256='a'*64)
+        self.assertEqual(selection['generation']['generator'],'usdcraft_sdk')
+        self.assertEqual(selection['generation']['parameters']['length_m'],.7)
+        self.assertEqual(selection['generation']['generation_contract_version'],3)
+        self.assertNotIn('/private/',json.dumps(selection))
+        identity['generation_contract_version']=1
+        with self.assertRaises(ValueError):io.prepared_selection(manifest,acquired,manifest_sha256='a'*64)
+        identity['generation_contract_version']=3
+        identity['recipe_id']='execute_downloaded_code'
+        with self.assertRaises(ValueError):io.prepared_selection(manifest,acquired,manifest_sha256='a'*64)
+
+    def test_sdk_recipe_rebuild_uses_a_durable_trusted_generation_job(self):
+        from importlib.resources import files
+        from simscene.generation.usdcraft_sdk import COMMIT, RECIPE
+        selection=copy.deepcopy(self.selection)
+        new_ref={'source_id':'local-usdcraft-sdk','asset_id':RECIPE,'revision':'a'*64,'variant_id':None}
+        selection['source_ref']=new_ref
+        runtime={'schema_version':1,'backend':'usdcraft_sdk','python':'/private/sdk/python','reviewed_commit':COMMIT,
+                 'observed':{'usdcraft_commit':COMMIT,'usdcraft_version':'1.0.0','source_clean':True}}
+        template=files('simscene.generation').joinpath('templates/'+RECIPE+'.py').read_bytes()
+        identity={'recipe_id':RECIPE,'parameters':{'length_m':.7},'seed':0,'generation_contract_version':3,
+                  'template_sha256':hashlib.sha256(template).hexdigest(),'toolchain':runtime}
+        selection['generation']=io._generation_intent(identity,{'generator':'usdcraft_sdk','reviewed_commit':COMMIT})
+        result={'root':self.binding['asset_path'],**self.binding['asset_binding'],'actual_download_bytes':0}
+        runtime_path=self.root/'sdk-runtime.json';runtime_path.write_text(json.dumps(runtime))
+        config={'home':str(self.root/'state'),'asset_cache_directory':str(self.root/'cache'),
+                'usdcraft_generation_runtime':str(runtime_path)}
+        with (patch('simscene.generation.jobs.start',return_value={'job_id':'gen-fixture'}) as generate,
+              patch('simscene.generation.jobs.status',return_value={'state':'completed','result':{'asset_ref':new_ref}}),
+              patch('simscene.acquisition.plans.make_plan',return_value={'ready_to_fetch':True,'plan_id':'p'}) as plan,
+              patch('simscene.preparation.jobs.start',return_value={'job_id':'prep-fixture'}),
+              patch('simscene.preparation.jobs.status',return_value={'state':'completed','result':result,'actual_download_bytes':0}),
+              patch('simscene.recipes.io.validate_rebuilt',return_value={})):
+            catalog=acquirer.acquire({'schema':io.SCHEMA,'assets':{'plate':selection}},self.root/'cache',config=config)
+        self.assertEqual(catalog['plate'],self.binding)
+        self.assertEqual(generate.call_args.args[:2],(RECIPE,selection['generation']['parameters']))
+        self.assertEqual(plan.call_args.args[0],new_ref)
+        selection['generation']['generator']='untrusted'
+        with self.assertRaises(acquirer.RecipeAcquireError):
+            acquirer.acquire({'schema':io.SCHEMA,'assets':{'plate':selection}},self.root/'cache',config=config)
+
+    def test_generated_rebuild_rejects_wrong_backend_and_stale_template_before_launch(self):
+        from importlib.resources import files
+        from simscene.generation.sand3d import COMMIT
+        from simscene.generation.usdcraft_sdk import RECIPE
+        selection=copy.deepcopy(self.selection)
+        selection['source_ref']=dict(selection['source_ref'],source_id='local-sand3d',asset_id=RECIPE)
+        runtime={'schema_version':1,'python':'/private/python','reviewed_commit':COMMIT,
+                 'observed':{'sand3d_commit':COMMIT}}
+        runtime_path=self.root/'sand3d-runtime.json';runtime_path.write_text(json.dumps(runtime))
+        config={'home':str(self.root/'state'),'generation_runtime':str(runtime_path)}
+        selection['generation']={'generator':'sand3d','seed':0,'recipe_id':RECIPE,'parameters':{},
+            'reviewed_commit':COMMIT,'template_sha256':'1'*64,'toolchain_intent':runtime['observed']}
+        with patch('simscene.generation.jobs.start') as generate:
+            with self.assertRaises(acquirer.RecipeAcquireError):
+                acquirer.acquire({'schema':io.SCHEMA,'assets':{'plate':selection}},self.root/'cache',config=config)
+            generate.assert_not_called()
+        selection['source_ref']['asset_id']='guide_plate_v1'
+        selection['generation']['recipe_id']='guide_plate_v1'
+        assert hashlib.sha256(files('simscene.generation').joinpath('templates/guide_plate_v1.py').read_bytes()).hexdigest()!='1'*64
+        with patch('simscene.generation.jobs.start') as generate:
+            with self.assertRaises(acquirer.RecipeAcquireError):
+                acquirer.acquire({'schema':io.SCHEMA,'assets':{'plate':selection}},self.root/'cache',config=config)
+            generate.assert_not_called()
+
     def test_legacy_snapshot_export_retains_v1_payload_and_asset_uri(self):
         run=self.root/'legacy-run';(run/'assets'/('a'*64)).mkdir(parents=True)
         source='https://example.invalid/selected.usd'

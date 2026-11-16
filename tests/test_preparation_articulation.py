@@ -216,6 +216,8 @@ class PreparedArticulationIntegrationTests(unittest.TestCase):
         from pxr import Usd,UsdGeom
         from simscene.preparation.articulation import inspect_articulation
         root=Path(directory);native=self.stage();native.GetRootLayer().Export(str(root/'native.usda'))
+        (root/'source').mkdir();native.GetRootLayer().Export(str(root/'source'/'native.usda'))
+        (root/'source'/'acquired.json').write_text('{}')
         stage=Usd.Stage.CreateNew(str(root/'main.usda'));asset=UsdGeom.Xform.Define(stage,'/Asset');stage.SetDefaultPrim(asset.GetPrim())
         UsdGeom.SetStageMetersPerUnit(stage,1.);UsdGeom.SetStageUpAxis(stage,UsdGeom.Tokens.z)
         UsdGeom.Xform.Define(stage,'/Asset/Native').GetPrim().GetReferences().AddReference('./native.usda')
@@ -223,9 +225,21 @@ class PreparedArticulationIntegrationTests(unittest.TestCase):
         manifest={'schema':'simscene.prepared_asset.v1','schema_version':1,'profile_id':'articulated_prop_v1',
                   'main':'main.usda','default_prim':'/Asset','body_map':report['body_map'],
                   'joint_map':report['joint_map'],'articulation_report':report,'parameters':{'ccd':False},
-                  'files':[{'path':p.name,'size_bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in [root/'native.usda',root/'main.usda']]}
+                  'source_root':'source/native.usda','source_sha256':hashlib.sha256((root/'source'/'native.usda').read_bytes()).hexdigest(),
+                  'files':[{'path':p.relative_to(root).as_posix(),'size_bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in [root/'native.usda',root/'main.usda',root/'source'/'native.usda',root/'source'/'acquired.json']]}
         path=root/'manifest.json';path.write_text(json.dumps(manifest));binding={'manifest_path':str(path),'manifest_sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
         return {'kind':'asset','asset_path':str(root/'main.usda'),'asset_binding':binding,'dynamic':True,'position':[1.,2.,3.]}
+
+    def test_legacy_graph_without_new_native_attribute_inventory_remains_verifiable(self):
+        import json,tempfile
+        from pathlib import Path
+        from simscene.preparation.articulation import verify_source_graph
+        with tempfile.TemporaryDirectory() as tmp:
+            self.package(tmp)
+            manifest=json.loads((Path(tmp)/'manifest.json').read_text())
+            joint=manifest['articulation_report']['joint_map']['main']
+            joint.pop('native_authored_attributes');joint.pop('native_attribute_units')
+            self.assertTrue(verify_source_graph(Path(tmp),manifest))
 
     def test_export_multiple_real_links_and_joint_then_mutation_rejected(self):
         import tempfile

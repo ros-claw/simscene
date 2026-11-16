@@ -15,7 +15,7 @@ def read():
     from ..settings import config_path, get
     path = Path(os.getenv('SIMSCENE_V2_CONFIG', str(config_path().with_name('v2.json')))).expanduser()
     data = json.loads(path.read_text()) if path.is_file() else {}
-    allowed = set(DEFAULTS) | {'index_directory', 'prepared_directory', 'registry_path', 'runtime_manifest', 'converter_tools_prefix', 'generation_runtime'}
+    allowed = set(DEFAULTS) | {'index_directory', 'prepared_directory', 'registry_path', 'runtime_manifest', 'converter_tools_prefix', 'generation_runtime', 'usdcraft_generation_runtime'}
     if not isinstance(data, dict) or set(data)-allowed:
         raise ValueError('invalid V2 settings fields')
     result = dict(DEFAULTS, **data)
@@ -33,7 +33,7 @@ def read():
     result.setdefault('runtime_manifest', str(home/'preparation-runtime.json'))
     if os.getenv('SIMSCENE_GLTF_TRANSFORM_PREFIX'):
         result['converter_tools_prefix'] = os.environ['SIMSCENE_GLTF_TRANSFORM_PREFIX']
-    for key in ('index_directory', 'prepared_directory', 'runtime_manifest', 'registry_path', 'converter_tools_prefix', 'generation_runtime'):
+    for key in ('index_directory', 'prepared_directory', 'runtime_manifest', 'registry_path', 'converter_tools_prefix', 'generation_runtime', 'usdcraft_generation_runtime'):
         if key in result:
             if not isinstance(result[key], str) or not result[key].strip():
                 raise ValueError('nonempty path required for '+key)

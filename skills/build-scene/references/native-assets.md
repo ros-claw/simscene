@@ -4,7 +4,9 @@ Use explicit catalog source IDs when the role requires an optional provider:
 `usdcraft` for the admitted native USD manifest, `polyhaven` for the configured
 HDRI IDs. Default discovery combines NVIDIA search, ABO and GSO. Central offers
 additional owner locators, with individual package/licensing admission still
-required. Source admission never grants every model a physical pass.
+required. `artvip` is an explicitly selected experimental source with one
+curated `door002` candidate, not a full ArtVIP index. Source admission never
+grants every model a physical pass.
 
 `articulated_prop_v1` preserves an existing canonical metre/Z-up single-DOF
 graph. Use `source_physics_policy: preserve_valid`, `scale_mode: preserve`,
@@ -12,6 +14,34 @@ graph. Use `source_physics_policy: preserve_valid`, `scale_mode: preserve`,
 topology, missing mass and joint/inertia scaling fail rather than synthesizing
 a hinge. The scene asset requires `dynamic: true` and its exact two-key prepared
 binding. Native auto-computed inertia is checked through actual cooked readback.
+
+The curated ArtVIP door needs an opt-in `repair_explicit` preparation: its
+source links have no authored total mass, seven colliders bind density-bearing
+materials, and its source acceleration drive has unbounded effort. Supply and
+record each experimental mass, affected material-density override and drive
+neutralization in `native_physics_repairs` (`missing_masses_kg`,
+`material_density_overrides`, `neutralize_drives` and a `reason`). Do not claim
+those assumptions are source measurements or
+silently apply them to another model; inspect its source first.
+The selected object's exact repair assumptions and source pins are available
+on demand in `examples/artvip_door/assets.lock.json` and its `case.json`.
+Resolve `examples/` against the plugin root: for a skill copied into a project,
+read the `build-scene/.simscene-plugin-root` marker; otherwise use the root
+containing the `skills/` directory.
+
+`articulated_prop_v2` preserves an admitted three-link tree with two finite-limit
+scalar hinge/slider joints. It currently accepts `preserve_valid` source physics
+only and rejects coupled, geared, mimic or tendon structures. Use the actual
+manifest joint IDs and body paths, not the source joint count, and request
+strict per-step observations. For the selected USDCraft two-drawer sample, use a
+frozen `simscene.articulated_asset_two_joint.v1` case and `run_verify`; a
+matched control omitting the second drive uses mode
+`missing_second_joint_drive`, the control job ID and positive reference job ID.
+The tested two-slider result does not certify other axes or assets.
+The tested cabinet is `ds_R022_02`; inspect its pinned
+`examples/usdcraft_two_drawer/assets.lock.json` and `case.json` when needed.
+Replace template binding markers with the newly prepared manifest and source
+pins before starting the new run.
 
 For a driven trial, add ordinary object `mechanism.commands`:
 

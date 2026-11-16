@@ -12,8 +12,12 @@ def _fail(message):
 
 
 def canonical_stage(stage):
-    from pxr import UsdGeom
-    if (not stage.HasAuthoredMetadata('metersPerUnit') or abs(UsdGeom.GetStageMetersPerUnit(stage)-1.) > 1e-9
+    from pxr import UsdGeom, UsdPhysics
+    metres=UsdGeom.GetStageMetersPerUnit(stage)
+    kilograms=UsdPhysics.GetStageKilogramsPerUnit(stage)
+    if not math.isfinite(kilograms) or abs(kilograms-1.) > 1e-9:
+        _fail('native articulated physics requires kilogramsPerUnit=1; mass/inertia conversion unsupported')
+    if (not stage.HasAuthoredMetadata('metersPerUnit') or not math.isfinite(metres) or abs(metres-1.) > 1e-9
             or not stage.HasAuthoredMetadata('upAxis') or UsdGeom.GetStageUpAxis(stage) != UsdGeom.Tokens.z):
         _fail('native articulated physics requires authored metres and Z-up; joint/inertia conversion unsupported')
 
@@ -200,10 +204,120 @@ def transform_world_anchors(stage, root):
     return records
 
 
+def _verify_physical_prims(source, prepared):
+    """Compare source-replayed and derived collider/joint physical inputs."""
+    from pxr import Usd,UsdGeom,UsdPhysics,UsdShade
+    source_root=source.GetDefaultPrim();prepared_root=prepared.GetPrimAtPath('/Asset/Native')
+    if not source_root or not prepared_root:_fail('source/derived physical graph root is missing')
+    def nodes(root):
+        prefix=str(root.GetPath())
+        return {str(prim.GetPath())[len(prefix):].lstrip('/'):prim for prim in Usd.PrimRange(root)
+                if (prim.HasAPI(UsdPhysics.RigidBodyAPI) or prim.HasAPI(UsdPhysics.CollisionAPI)
+                    or prim.HasAPI(UsdPhysics.ArticulationRootAPI) or prim.IsA(UsdPhysics.Joint))}
+    left,right=nodes(source_root),nodes(prepared_root)
+    if set(left)!=set(right):_fail('source and derived physics prim closures differ')
+    geometry={'axis','doubleSided','extent','faceVertexCounts','faceVertexIndices','height',
+              'holeIndices','orientation','points','radius','size','subdivisionScheme'}
+    def selected_attributes(prim):
+        return {attr.GetName():attr for attr in prim.GetAttributes() if attr.HasAuthoredValueOpinion()
+                and (attr.GetName() in geometry or attr.GetName()=='xformOpOrder'
+                     or attr.GetName().startswith(('physics:','physx','drive:','xformOp:')))}
+    def schemas(prim):
+        raw=prim.GetMetadata('apiSchemas')
+        return sorted(str(item) for item in (raw.GetAppliedItems() if raw else [])
+                      if str(item).lower().startswith(('physics','physx')))
+    def targets(prim,root):
+        prefix=str(root.GetPath())
+        def normalize(path):
+            value=str(path)
+            return value[len(prefix):] if value==prefix or value.startswith(prefix+'/') else value
+        return {rel.GetName():[normalize(path) for path in rel.GetTargets()] for rel in prim.GetRelationships()
+                if rel.GetName().startswith(('physics:','physx','material:binding:physics'))}
+    def material(prim,root):
+        if not prim.HasAPI(UsdPhysics.CollisionAPI):return None
+        value,_=UsdShade.MaterialBindingAPI(prim).ComputeBoundMaterial('physics')
+        if not value:return None
+        path=str(value.GetPath());prefix=str(root.GetPath())
+        path=path[len(prefix):] if path==prefix or path.startswith(prefix+'/') else path
+        physical=selected_attributes(value.GetPrim())
+        return path,schemas(value.GetPrim()),{name:(str(attr.GetTypeName()),attr.Get()) for name,attr in physical.items()}
+    for path in sorted(left):
+        a,b=left[path],right[path]
+        if a.GetTypeName()!=b.GetTypeName() or schemas(a)!=schemas(b) or targets(a,source_root)!=targets(b,prepared_root):
+            _fail('source and derived physics prim type, schema or relationships differ: '+path)
+        aa,bb=selected_attributes(a),selected_attributes(b)
+        if set(aa)!=set(bb):_fail('source and derived physics attributes differ: '+path)
+        for name in aa:
+            if aa[name].GetTypeName()!=bb[name].GetTypeName() or aa[name].Get()!=bb[name].Get():
+                _fail('source and derived physics attribute differs: '+path+'/'+name)
+        xa,xb=UsdGeom.Xformable(a),UsdGeom.Xformable(b)
+        if bool(xa)!=bool(xb):_fail('source and derived physics transforms differ: '+path)
+        if xa and xa.ComputeLocalToWorldTransform(Usd.TimeCode.Default())!=xb.ComputeLocalToWorldTransform(Usd.TimeCode.Default()):
+            _fail('source and derived collider/body transform differs: '+path)
+        if material(a,source_root)!=material(b,prepared_root):
+            _fail('source and derived collision physics materials differ: '+path)
+
+
+def verify_source_graph(package, manifest):
+    """Replay the declared preparation against the package's hashed source.
+
+    This is a consistency check, not authentication of a caller-supplied pin.
+    It prevents a self-consistent derived graph from being mislabeled as the
+    original source when the immutable source snapshot says otherwise.
+    """
+    import copy
+    from pathlib import Path
+    from pxr import Usd
+    package=Path(package)
+    source_root=manifest.get('source_root')
+    candidates=[item['path'] for item in manifest.get('files',[])
+                if item.get('path','').startswith('source/') and item.get('sha256')==manifest.get('source_sha256')]
+    if source_root is not None:
+        if source_root not in candidates:_fail('source root differs from the hashed source snapshot')
+        candidates=[source_root]
+    if len(candidates)!=1:_fail('source snapshot does not uniquely identify its native USD root')
+    source=Usd.Stage.Open(str(package/candidates[0]))
+    if not source:_fail('source snapshot USD could not be opened')
+    repairs=manifest.get('parameters',{}).get('native_physics_repairs')
+    if repairs is not None:
+        from .native_repairs import apply_native_repairs
+        source=Usd.Stage.Open(source.Flatten())
+        if apply_native_repairs(source,repairs)!=manifest.get('physics_repairs'):
+            _fail('source physics repair report differs from the hashed source')
+    graph=copy.deepcopy(inspect_articulation(source))
+    def wrap(path):return 'Native'+('/'+path if path else '')
+    for entry in graph['body_map'].values():
+        if entry['role']!='static':
+            entry['relative_prim_path']=wrap(entry['relative_prim_path'])
+            entry['visual_relative_prim_paths']=[wrap(p) for p in entry['visual_relative_prim_paths']]
+        entry['collider_relative_prim_paths']=[wrap(p) for p in entry['collider_relative_prim_paths']]
+    for entry in graph['joint_map'].values():entry['relative_prim_path']=wrap(entry['relative_prim_path'])
+    for name in ('fixed_joint_paths','articulation_root_paths'):graph[name]=[wrap(p) for p in graph[name]]
+    if repairs is not None:
+        from .native_repairs import annotate_repaired_graph
+        graph=annotate_repaired_graph(graph,repairs)
+    else:
+        # Older v1 reports predate the raw-attribute inventory. Their complete
+        # source and prepared USD physical attributes are still compared below.
+        recorded=manifest.get('articulation_report',{}).get('joint_map',{}).get('main',{})
+        for key in ('native_authored_attributes','native_attribute_units'):
+            if key not in recorded:graph['joint_map']['main'].pop(key,None)
+    if graph!=manifest.get('articulation_report'):
+        _fail('prepared articulated graph differs from its hashed source and declared repairs')
+    prepared=Usd.Stage.Open(str(package/manifest['main']))
+    if not prepared:_fail('prepared native USD could not be opened')
+    _verify_physical_prims(source,prepared)
+    return True
+
+
 def resolve_instance(stage, anchor, manifest):
     """Verify final loaded graph and return explicit body and joint bindings."""
     from ..worker.mechanism import validate_binding
     actual=inspect_articulation(stage,anchor)
+    repairs=manifest.get('parameters',{}).get('native_physics_repairs')
+    if repairs is not None:
+        from .native_repairs import annotate_repaired_graph
+        actual=annotate_repaired_graph(actual,repairs)
     expected=manifest['articulation_report']
     # World-frame values may differ due to documented rigid instance placement.
     for key in ('body_map','fixed_joint_paths','articulation_root_paths'):
@@ -225,6 +339,12 @@ def resolve_instance(stage, anchor, manifest):
                       'visual_roots':[path(p) for p in entry['visual_relative_prim_paths']],
                       'collider_paths':[path(p) for p in entry['collider_relative_prim_paths']]}
             for local_id,entry in actual['body_map'].items()}
+    if repairs is not None:
+        for local_id,entry in actual['body_map'].items():
+            if entry.get('physics_provenance') == 'native_link_with_explicit_experimental_mass':
+                bodies[local_id]['mass_provenance']='explicit_experimental_assumption'
+            elif entry.get('physics_provenance') == 'native_link_with_explicit_experimental_mass_overriding_source_material_density':
+                bodies[local_id]['mass_provenance']='explicit_experimental_assumption_overrides_source_material_density'
     joints={}
     for joint_id,entry in actual['joint_map'].items():
         joints[joint_id]=dict(entry,joint_path=path(entry['relative_prim_path']),

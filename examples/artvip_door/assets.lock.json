@@ -1,0 +1,193 @@
+{
+  "schema": "simscene.selected_assets.v2",
+  "assets": {
+    "door": {
+      "provider": "prepared",
+      "source_ref": {
+        "source_id": "artvip",
+        "asset_id": "Articulated_objects/small_furniture/door/door002",
+        "revision": "d22f2095bc9db29fdd4b60f4a3c4f8177e1f5e9e",
+        "variant_id": null
+      },
+      "profile_id": "articulated_prop_v1",
+      "profile_version": 1,
+      "parameters": {
+        "ccd": false,
+        "collision_method": "preserve",
+        "dynamic_friction": 0.5,
+        "native_physics_repairs": {
+          "missing_masses_kg": {
+            "E_door_1/E_body_6": 12.0,
+            "E_door_1/E_door1_2": 8.0
+          },
+          "neutralize_drives": {
+            "E_door_1/E_door1_2/RevoluteJoint_door_middle": 50.0
+          },
+          "material_density_overrides": {
+            "E_door_1/E_body_6/E_panel20_10/P_eced188c719e2e00": {
+              "material_path": "PhysicsMaterial",
+              "density_kg_m3": 700.0
+            },
+            "E_door_1/E_body_6/E_window_frame12_7/P_7580db7e7b403a00": {
+              "material_path": "PhysicsMaterial_01",
+              "density_kg_m3": 7900.0
+            },
+            "E_door_1/E_body_6/E_window_frame12_9/P_e42822adf04ffe00": {
+              "material_path": "PhysicsMaterial_01",
+              "density_kg_m3": 7900.0
+            },
+            "E_door_1/E_body_6/E_window_frame13_8/P_db5bd455d5db6e00": {
+              "material_path": "PhysicsMaterial_01",
+              "density_kg_m3": 7900.0
+            },
+            "E_door_1/E_door1_2/E_group_3/P_f65a290ec023fe00": {
+              "material_path": "PhysicsMaterial",
+              "density_kg_m3": 700.0
+            },
+            "E_door_1/E_door1_2/E_handle1_5/P_c834d8cb1dad7e00": {
+              "material_path": "PhysicsMaterial_01",
+              "density_kg_m3": 7900.0
+            },
+            "E_door_1/E_door1_2/E_handle_4/P_8a55312ec217fe00": {
+              "material_path": "PhysicsMaterial_01",
+              "density_kg_m3": 7900.0
+            }
+          },
+          "reason": "ArtVIP body masses are not authored, but seven colliders bind source materials with densities 700 or 7900 kg/m3. Experimental body masses of 12 kg and 8 kg override those source material density contributions. The source acceleration drive with unbounded effort is neutralized in the derived layer; neither these masses nor the replacement drive are manufacturer data."
+        },
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "preserve",
+        "source_physics_policy": "repair_explicit",
+        "static_friction": 0.6
+      },
+      "target": {
+        "engine": "physx",
+        "isaac_version": "6.2.0-rc.14+release.52805.02189a84.gl",
+        "platform": "linux-x86_64",
+        "usd_version": "0.25.11"
+      },
+      "toolchain": {
+        "backend": "openusd",
+        "version": "0.25.11"
+      },
+      "source_sha256": "a5e596ad9be87033a4f9e02056d1b3baf125355ef0495a5c63b92d9004cec2be",
+      "source_closure_sha256": "66675ce1b8ec2ee38804a7b861154efc8b378aeee9541a10426ab2965f9416dd",
+      "source_files": [
+        {
+          "path": "Articulated_objects/small_furniture/door/door002/model_door.usd",
+          "size_bytes": 22536,
+          "sha256": "a5e596ad9be87033a4f9e02056d1b3baf125355ef0495a5c63b92d9004cec2be"
+        },
+        {
+          "path": "Articulated_objects/small_furniture/door/door002/resource/img/b9325bad55ced78e3fe2c90f6fea0e43.png",
+          "size_bytes": 31121,
+          "sha256": "a31ce3cc5c29347023445e286f66357182b4daa7cf7095b8215aa3c2e434c0f9"
+        },
+        {
+          "path": "Articulated_objects/small_furniture/door/door002/resource/material.usd",
+          "size_bytes": 2064,
+          "sha256": "afd74327d5b177a393f9d8691ebe8d7f8244377808b3a7d6fd7a1af776dc3302"
+        },
+        {
+          "path": "Articulated_objects/small_furniture/door/door002/resource/v_0/link_0.usd",
+          "size_bytes": 12955,
+          "sha256": "a9799c221703fab3dede8c6233eb3d3f530f465dcdf29661c2cd74ec4aae2765"
+        }
+      ],
+      "previous_preparation": {
+        "prepared_id": "f5ab23edadcf0162df7311cea81bef63a264c46f85404c2bc97c707fa4365a5c",
+        "manifest_sha256": "41c95e85b5c4e16168179c1eb0d1dee6a83f2907ee8974d6f46324ebbfd35967",
+        "source_manifest_sha256": "63a3fa2e35811336305214025f2888e348e522cf798b691408d2a1719e800a31",
+        "scope": "informational; rebuild may change absolute provenance; no physics verdict reused"
+      },
+      "source_record": {
+        "ref": {
+          "asset_id": "Articulated_objects/small_furniture/door/door002",
+          "revision": "d22f2095bc9db29fdd4b60f4a3c4f8177e1f5e9e",
+          "source_id": "artvip",
+          "variant_id": null
+        },
+        "title": "door002",
+        "format": "usd",
+        "entry_path": "Articulated_objects/small_furniture/door/door002/model_door.usd",
+        "license": {
+          "basis": "pinned_ArtVIP_dataset_card",
+          "card_sha256": "3193c5d74ef7f1d4777fe0ff77d3f9f2f4c436969ea1802726da177897003f63",
+          "card_url": "https://huggingface.co/datasets/X-Humanoid/ArtVIP/resolve/d22f2095bc9db29fdd4b60f4a3c4f8177e1f5e9e/README.md",
+          "evidence": "declared",
+          "license": "Apache-2.0",
+          "notices_required": true,
+          "status": "known"
+        },
+        "availability": {
+          "acquisition": {
+            "dependency_mode": "inspect_selected_usd_closure",
+            "files": [
+              {
+                "path": "Articulated_objects/small_furniture/door/door002/model_door.usd",
+                "sha256": "a5e596ad9be87033a4f9e02056d1b3baf125355ef0495a5c63b92d9004cec2be",
+                "size": 22536
+              }
+            ],
+            "files_complete": false,
+            "kind": "hf_usd_package",
+            "package_path": "Articulated_objects/small_furniture/door/door002",
+            "path": "Articulated_objects/small_furniture/door/door002/model_door.usd",
+            "repository": "X-Humanoid/ArtVIP",
+            "revision": "d22f2095bc9db29fdd4b60f4a3c4f8177e1f5e9e"
+          },
+          "estimated_download_bytes": null,
+          "files_complete": false,
+          "granularity": "dependency_closure",
+          "status": "declared"
+        },
+        "provenance": {
+          "license_scope": "dataset-card declaration; per-object notice not independently established",
+          "metadata_revision": "d22f2095bc9db29fdd4b60f4a3c4f8177e1f5e9e",
+          "repository": "X-Humanoid/ArtVIP",
+          "root_tree_entry": {
+            "lastCommit": {
+              "date": "2026-05-26T14:05:21.000Z",
+              "id": "e039a36ccd41c790b0a90db84be802cfa22a7e10",
+              "title": "Update ArtVIP-v1.3"
+            },
+            "lfs": {
+              "oid": "a5e596ad9be87033a4f9e02056d1b3baf125355ef0495a5c63b92d9004cec2be",
+              "pointerSize": 130,
+              "size": 22536
+            },
+            "oid": "244a2443e92b723c2f8c49ca4e032b86c0259eda",
+            "path": "Articulated_objects/small_furniture/door/door002/model_door.usd",
+            "securityFileStatus": {
+              "avScan": {
+                "message": "",
+                "status": "safe",
+                "version": "1.5.2/28012"
+              },
+              "pickleImportScan": {
+                "pickleImports": [],
+                "status": "unscanned",
+                "version": "0.0.0"
+              },
+              "protectAiScan": {
+                "status": "unscanned"
+              },
+              "status": "safe",
+              "virusTotalScan": {
+                "message": "File not scanned in VirusTotal",
+                "reportLink": "https://www.virustotal.com/gui/file/a5e596ad9be87033a4f9e02056d1b3baf125355ef0495a5c63b92d9004cec2be?utm_source=huggingface",
+                "status": "unscanned"
+              }
+            },
+            "size": 22536,
+            "type": "file",
+            "xetHash": "d0d6516f52cc10f0b4539551614ad074d7392d8b688bdcd4e9da6012de662eb7"
+          },
+          "selected_object_directory": "Articulated_objects/small_furniture/door/door002",
+          "structure_and_runtime": "unknown until selected USD is inspected and tested"
+        }
+      }
+    }
+  }
+}

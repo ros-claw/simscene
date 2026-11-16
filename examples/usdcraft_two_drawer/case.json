@@ -1,0 +1,87 @@
+{
+  "schema": "simscene.articulated_asset_two_joint.v1",
+  "schema_version": 1,
+  "mode": "driven",
+  "physics_dt_s": 0.016666666666666666,
+  "physics_device": "cpu",
+  "objects": {
+    "cabinet": {
+      "prepared_manifest_sha256": "${cabinet.manifest_sha256}",
+      "source_ref": "${cabinet.source_ref}",
+      "joints": {
+        "joint0": {
+          "joint_path": "/World/cabinet/Asset/Native/Joints/slide_lower",
+          "parent_body": "/World/cabinet/Asset/Native/Links/carcass",
+          "child_body": "/World/cabinet/Asset/Native/Links/lower_drawer",
+          "type": "prismatic",
+          "axis": "X",
+          "limits": [
+            0.0,
+            0.5
+          ],
+          "position_unit": "m",
+          "initial_position": 0.0,
+          "initial_tolerance": 0.001,
+          "coordinate_tolerance": 0.001,
+          "velocity_tolerance": 0.005,
+          "anchor_tolerance_m": 0.001,
+          "angular_tolerance_rad": 0.001
+        },
+        "joint1": {
+          "joint_path": "/World/cabinet/Asset/Native/Joints/slide_upper",
+          "parent_body": "/World/cabinet/Asset/Native/Links/carcass",
+          "child_body": "/World/cabinet/Asset/Native/Links/upper_drawer",
+          "type": "prismatic",
+          "axis": "X",
+          "limits": [
+            0.0,
+            0.5
+          ],
+          "position_unit": "m",
+          "initial_position": 0.0,
+          "initial_tolerance": 0.001,
+          "coordinate_tolerance": 0.001,
+          "velocity_tolerance": 0.005,
+          "anchor_tolerance_m": 0.001,
+          "angular_tolerance_rad": 0.001
+        }
+      },
+      "phases": [
+        {
+          "joint_id": "joint0",
+          "command_step": 0,
+          "by_step": 240,
+          "target_position": 0.25,
+          "target_tolerance": 0.01,
+          "min_travel": 0.2,
+          "other_target_position": 0.0,
+          "other_target_tolerance": 0.01,
+          "max_other_drift": 0.01,
+          "stiffness": 2000.0,
+          "damping": 100.0,
+          "max_effort": 400.0,
+          "hold_command": {
+            "stiffness": 2000.0,
+            "damping": 100.0,
+            "max_effort": 400.0
+          }
+        },
+        {
+          "joint_id": "joint1",
+          "command_step": 300,
+          "by_step": 540,
+          "target_position": 0.35,
+          "target_tolerance": 0.01,
+          "min_travel": 0.3,
+          "other_target_position": 0.25,
+          "other_target_tolerance": 0.01,
+          "max_other_drift": 0.01,
+          "stiffness": 2000.0,
+          "damping": 100.0,
+          "max_effort": 400.0,
+          "hold_command": null
+        }
+      ]
+    }
+  }
+}

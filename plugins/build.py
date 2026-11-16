@@ -38,7 +38,14 @@ Isaac Sim installation and USD Python bindings; robot control and collision
 checks remain experimental. Configure `SIMSCENE_ISAAC_PYTHON` for the host and
 use the `build-scene` skill to create and observe a scene. Asset licensing and
 dependency completeness must be checked for each selected model.
+The optional layout, Sand3D and USDCraft SDK runtimes are configured separately;
+small pinned example recipes are included without model payloads.
 '''
+EXAMPLE_DATA={
+    'artvip_door':('assets.lock.json','case.json','recipe.json','supplement.json'),
+    'usdcraft_two_drawer':('assets.lock.json','case.json','recipe.json','recipe-control.json'),
+    'usdcraft_sdk_guide':('assets.lock.json','case.json','recipe-short.json','recipe-long.json','check_pair.py'),
+}
 def write(path, value):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(value,indent=2)+'\n')
@@ -92,7 +99,9 @@ root=resources.files('simscene')
 for name in ('catalog/data/sources.yaml','recipes/data/recipes.json','preparation/data/package.json',
              'preparation/data/package-lock.json','preparation/worker.py','worker/isaac_run.py',
              'worker/gpu_queue.py','generation/worker.py','generation/backend_worker.py',
-             'generation/templates/guide_plate_v1.py'):
+             'generation/templates/guide_plate_v1.py','generation/templates/usdcraft_sdk_guide_plate_v1.py',
+             'generation/usdcraft_backend_worker.py','preparation/articulation_v2.py',
+             'verification/articulated_asset_two_joint_pair.py','catalog/providers/artvip.py'):
     assert root.joinpath(name).is_file(),name
 from simscene.catalog.registry import load_registry
 from simscene.recipes.registry import list_recipes
@@ -142,7 +151,7 @@ def build(destination, use_installed_deps=False):
         write(portable/'server'/'build-info.json',{'python_version':PYTHON_VERSION,'plugin_version':PACKAGE_VERSION,
               'builder_python':sys.version.split()[0],'wheel_sha256':wheel_sha256,
               'dependency_mode':'installed' if use_installed_deps else 'pip',
-              'optional_backends':'Isaac/USD, isolated GLB decoder and Sand3D runtimes are configured separately'})
+              'optional_backends':'Isaac/USD, isolated GLB decoder, layout, Sand3D and USDCraft SDK runtimes are configured separately'})
         validate_vendor(vendor)
         (portable/'server'/'launch.py').write_text(LAUNCHER)
         (portable/'README.md').write_text(PACKAGE_README)
@@ -150,6 +159,12 @@ def build(destination, use_installed_deps=False):
             shutil.copyfile(ROOT/notice,portable/notice)
         shutil.copyfile(ROOT/'plugins'/'install.py',portable/'install.py')
         shutil.copytree(ROOT/'skills',portable/'skills',ignore=shutil.ignore_patterns('__pycache__','*.pyc','.simscene-plugin-root'))
+        # Small, model-free reference recipes are read on demand by the skills.
+        # Copy only explicitly enumerated reference data and checker; never
+        # bundle source assets.
+        for example,names in EXAMPLE_DATA.items():
+            target=portable/'examples'/example;target.mkdir(parents=True)
+            for name in names:shutil.copyfile(ROOT/'examples'/example/name,target/name)
         shutil.copyfile(ROOT/'docs'/'passive-network-verification.md',
                         portable/'skills'/'build-scene'/'references'/'passive-network-verification.md')
         shutil.copyfile(ROOT/'docs'/'structural-loads-verification.md',
@@ -161,6 +176,7 @@ def build(destination, use_installed_deps=False):
         claude.mkdir(parents=True)
         shutil.copytree(portable/'server',claude/'server')
         shutil.copytree(portable/'skills',claude/'skills')
+        shutil.copytree(portable/'examples',claude/'examples')
         shutil.copyfile(portable/'README.md',claude/'README.md')
         for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
             shutil.copyfile(portable/notice,claude/notice)
@@ -169,6 +185,7 @@ def build(destination, use_installed_deps=False):
         deepseek.mkdir(parents=True)
         shutil.copytree(portable/'server',deepseek/'server')
         shutil.copytree(portable/'skills',deepseek/'skills')
+        shutil.copytree(portable/'examples',deepseek/'examples')
         shutil.copyfile(portable/'README.md',deepseek/'README.md')
         for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
             shutil.copyfile(portable/notice,deepseek/notice)

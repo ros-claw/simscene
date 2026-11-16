@@ -1,0 +1,116 @@
+{
+  "schema": "simscene.selected_assets.v2",
+  "assets": {
+    "cabinet": {
+      "provider": "prepared",
+      "source_ref": {
+        "source_id": "usdcraft",
+        "asset_id": "ds_R022_02",
+        "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+        "variant_id": null
+      },
+      "profile_id": "articulated_prop_v2",
+      "profile_version": 1,
+      "parameters": {
+        "ccd": false,
+        "collision_method": "preserve",
+        "dynamic_friction": 0.5,
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "preserve",
+        "source_physics_policy": "preserve_valid",
+        "static_friction": 0.6
+      },
+      "target": {
+        "engine": "physx",
+        "isaac_version": "6.2.0-rc.14+release.52805.02189a84.gl",
+        "platform": "linux-x86_64",
+        "usd_version": "0.25.11"
+      },
+      "toolchain": {
+        "backend": "openusd",
+        "version": "0.25.11"
+      },
+      "source_sha256": "e5070e0690c183629f0d24d2465d5ff0b53b88cd71b3682200650e05e009c7d0",
+      "source_closure_sha256": "3934e7dd6491d60e8db89ef41622cc9755bedca50099b68d9bb425ac6043519c",
+      "source_files": [
+        {
+          "path": "rigid/kitchen_dining/R022_kitchen_drawer_unit/02_two_drawer_wide_unit/physx/model.usdc",
+          "size_bytes": 40680,
+          "sha256": "e5070e0690c183629f0d24d2465d5ff0b53b88cd71b3682200650e05e009c7d0"
+        }
+      ],
+      "previous_preparation": {
+        "prepared_id": "604117a7eca56e8899599e8498affea3276c86568489f7130a5e3e09e3cae9f0",
+        "manifest_sha256": "6bca11b6f12bda8370607985a92fb137a4125581c11a0b9d6ea5e599f878366a",
+        "source_manifest_sha256": "08ad6fd8f3bb13a3ed2e7160e7dcdda91cad1ee1a42cd4f2540c298e14b77170",
+        "scope": "informational; rebuild may change absolute provenance; no physics verdict reused"
+      },
+      "source_record": {
+        "ref": {
+          "asset_id": "ds_R022_02",
+          "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+          "source_id": "usdcraft",
+          "variant_id": null
+        },
+        "title": "Two-Drawer Wide Unit",
+        "format": "usd",
+        "entry_path": "rigid/kitchen_dining/R022_kitchen_drawer_unit/02_two_drawer_wide_unit/physx/model.usdc",
+        "license": {
+          "basis": "pinned_USDCraft_asset_distribution_card",
+          "evidence": "declared",
+          "license": "Apache-2.0",
+          "notices_required": true,
+          "status": "known"
+        },
+        "availability": {
+          "acquisition": {
+            "dependency_mode": "inspect_selected_usd_closure",
+            "files": [
+              {
+                "path": "rigid/kitchen_dining/R022_kitchen_drawer_unit/02_two_drawer_wide_unit/physx/model.usdc",
+                "sha256": "e5070e0690c183629f0d24d2465d5ff0b53b88cd71b3682200650e05e009c7d0",
+                "size": null
+              }
+            ],
+            "files_complete": false,
+            "kind": "hf_usd_package",
+            "package_path": "rigid/kitchen_dining/R022_kitchen_drawer_unit/02_two_drawer_wide_unit",
+            "path": "rigid/kitchen_dining/R022_kitchen_drawer_unit/02_two_drawer_wide_unit/physx/model.usdc",
+            "repository": "nvidia/USDCraft-10K",
+            "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9"
+          },
+          "estimated_download_bytes": null,
+          "files_complete": false,
+          "granularity": "dependency_closure",
+          "status": "declared"
+        },
+        "provenance": {
+          "has_textures": {
+            "evidence": "declared",
+            "value": false
+          },
+          "license_scope": "USDCraft-generated native distribution; not a license rule for arbitrary owner packages",
+          "metadata_revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+          "original_metadata": {
+            "category": "Kitchen Drawer Unit",
+            "category_id": "R022",
+            "group": "kitchen_dining",
+            "has_textures": "false",
+            "joint_count": "2",
+            "joint_types": "prismatic",
+            "object_id": "ds_R022_02",
+            "part_count": "3",
+            "path": "rigid/kitchen_dining/R022_kitchen_drawer_unit/02_two_drawer_wide_unit",
+            "physics_type": "articulated",
+            "physx_sha256": "e5070e0690c183629f0d24d2465d5ff0b53b88cd71b3682200650e05e009c7d0",
+            "prompt": "Wide kitchen drawer unit, 90 x 60 x 87 cm, in matte graphite-painted wood with two large drawers and a marble-look stone top. Long brass bar handles sit on each drawer, with a flat plinth base and smooth drawer fronts. To store pots and utensils, the user grips a long brass bar handle and pulls a drawer out; each drawer slides out up to 50 cm on prismatic metal rails; every part is a rigid body, with no deformable, cloth, soft-volume or dynamic rod parts.",
+            "title": "Two-Drawer Wide Unit"
+          },
+          "repository": "nvidia/USDCraft-10K",
+          "unit_axis_evidence": "dataset_card_declared_meters_Z_up"
+        }
+      }
+    }
+  }
+}

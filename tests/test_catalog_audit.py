@@ -57,7 +57,7 @@ class CatalogAuditTest(unittest.TestCase):
 
     def test_new_registered_metadata_adapters_remain_disabled_static_candidates(self):
         registry = load_registry()
-        sources = [source for source in registry.sources if source.adapter in {'hf_manifest', 'usdcraft'}]
+        sources = [source for source in registry.sources if source.adapter in {'hf_manifest', 'usdcraft', 'artvip'}]
         for source in sources:
             with self.subTest(source=source.source_id):
                 record = candidate(repository=source.repository, revision=source.metadata_entries[0].revision,
@@ -112,6 +112,7 @@ class CatalogAuditTest(unittest.TestCase):
         changed = Registry(tuple(replace(source, checked_at='2099-01-01') for source in registry.sources))
         self.assertNotEqual(build_source_list(changed), build_source_list(registry))
         text = build_source_list(registry)
+        self.assertIn('[artvip](https://huggingface.co/datasets/X-Humanoid/ArtVIP) | audited | no | USD |', text)
         for state in ('enabled', 'audited', 'candidate', 'quarantined', 'reference_only'):
             self.assertIn('**' + state + '**', text)
         self.assertIn('B01DN8TB5U', text)

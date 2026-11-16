@@ -1,0 +1,237 @@
+{
+  "schema": "simscene.selected_assets.v2",
+  "assets": {
+    "short": {
+      "provider": "prepared",
+      "source_ref": {
+        "source_id": "local-usdcraft-sdk",
+        "asset_id": "usdcraft_sdk_guide_plate_v1",
+        "revision": "c01db7f67cd99176b023c87ebb30be2eccb09ab93e37951e8a521287ea400ec7",
+        "variant_id": null
+      },
+      "profile_id": "static_fixture_v1",
+      "profile_version": 1,
+      "parameters": {
+        "ccd": false,
+        "collision_method": "box_proxy",
+        "dynamic_friction": 0.5,
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "preserve",
+        "source_physics_policy": "replace_visual_only",
+        "static_friction": 0.6,
+        "static_proxy": {
+          "orientation_wxyz": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "position_m": [
+            0.0,
+            0.0,
+            0.0075
+          ],
+          "size_m": [
+            0.5,
+            0.18,
+            0.015
+          ]
+        },
+        "support_surfaces": {
+          "top": {
+            "max_xy": [
+              0.24,
+              0.08
+            ],
+            "min_xy": [
+              -0.24,
+              -0.08
+            ],
+            "z_m": 0.015
+          }
+        }
+      },
+      "target": {
+        "engine": "physx",
+        "isaac_version": "6.2.0-rc.14+release.52805.02189a84.gl",
+        "platform": "linux-x86_64",
+        "usd_version": "0.25.11"
+      },
+      "toolchain": {
+        "backend": "openusd",
+        "version": "0.25.11"
+      },
+      "source_sha256": "894e85edbdeccbbe6777284dc5864618b1ff944bdb10c330fcb3f60c456a1257",
+      "source_closure_sha256": "38c33b2907b18281f00f415ec660e6a570c6291e8bb9dd67e11bb39a73775fcc",
+      "source_files": [
+        {
+          "path": "source.usda",
+          "size_bytes": 4355,
+          "sha256": "894e85edbdeccbbe6777284dc5864618b1ff944bdb10c330fcb3f60c456a1257"
+        }
+      ],
+      "previous_preparation": {
+        "prepared_id": "80ddd5f8270b3263d66e0e69dd7c852bf33328f8cd2768ec9bdf1b43cd1aef89",
+        "manifest_sha256": "bb2cf274ca88cc95baab7a66b7b4bd6e4ce0f7904acdae3a39bcdcb65c1755e0",
+        "source_manifest_sha256": "e972c973c93346bc72907b25723e3c476858a13d94e76167f0059a828ce5b9b5",
+        "scope": "informational; rebuild may change absolute provenance; no physics verdict reused"
+      },
+      "generation": {
+        "generator": "usdcraft_sdk",
+        "recipe_id": "usdcraft_sdk_guide_plate_v1",
+        "parameters": {
+          "length_m": 0.5,
+          "width_m": 0.18,
+          "thickness_m": 0.015
+        },
+        "seed": 0,
+        "reviewed_commit": "46fec187bdce40845c30863a56143047edc4a263",
+        "template_sha256": "c2adbfbb84567e7189b0f32a99141bc834ec312c8585570ded9b445872093768",
+        "toolchain_intent": {
+          "dependencies": {
+            "networkx": "3.6.1",
+            "numpy": "2.4.6",
+            "pydantic": "2.13.4",
+            "scipy": "1.18.0",
+            "trimesh": "4.12.2",
+            "usd-core": "26.5",
+            "usdcraft": "1.0.0"
+          },
+          "python_executable_sha256": "038e0280abc7a8e7d45f8a64c6b5309dcebd3b09146ed3b62ca927963e4a93d6",
+          "python_version": [
+            3,
+            12,
+            13
+          ],
+          "source_clean": true,
+          "source_tree_sha256": "4e2c03fca4b37b68b3d4c7e7aeb1e3eb18c0ccee036260a8336f40588304d24c",
+          "usd_version": [
+            0,
+            26,
+            5
+          ],
+          "usdcraft_commit": "46fec187bdce40845c30863a56143047edc4a263",
+          "usdcraft_version": "1.0.0"
+        },
+        "generation_contract_version": 3
+      }
+    },
+    "long": {
+      "provider": "prepared",
+      "source_ref": {
+        "source_id": "local-usdcraft-sdk",
+        "asset_id": "usdcraft_sdk_guide_plate_v1",
+        "revision": "c2f13662c8d11c797bebaa186c810101a3bb7de62f00df9bfe72cd90a8ce44b8",
+        "variant_id": null
+      },
+      "profile_id": "static_fixture_v1",
+      "profile_version": 1,
+      "parameters": {
+        "ccd": false,
+        "collision_method": "box_proxy",
+        "dynamic_friction": 0.5,
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "preserve",
+        "source_physics_policy": "replace_visual_only",
+        "static_friction": 0.6,
+        "static_proxy": {
+          "orientation_wxyz": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "position_m": [
+            0.0,
+            0.0,
+            0.0075
+          ],
+          "size_m": [
+            0.7,
+            0.18,
+            0.015
+          ]
+        },
+        "support_surfaces": {
+          "top": {
+            "max_xy": [
+              0.33999999999999997,
+              0.08
+            ],
+            "min_xy": [
+              -0.33999999999999997,
+              -0.08
+            ],
+            "z_m": 0.015
+          }
+        }
+      },
+      "target": {
+        "engine": "physx",
+        "isaac_version": "6.2.0-rc.14+release.52805.02189a84.gl",
+        "platform": "linux-x86_64",
+        "usd_version": "0.25.11"
+      },
+      "toolchain": {
+        "backend": "openusd",
+        "version": "0.25.11"
+      },
+      "source_sha256": "1d680272bc0277488e1da40b84a3bd2b32e88c4cc4888218886c14c84b97d395",
+      "source_closure_sha256": "f2e65d69bd58940715b8f60e41a9d55954f9781681f157708fe1b4f18cd11e0b",
+      "source_files": [
+        {
+          "path": "source.usda",
+          "size_bytes": 4355,
+          "sha256": "1d680272bc0277488e1da40b84a3bd2b32e88c4cc4888218886c14c84b97d395"
+        }
+      ],
+      "previous_preparation": {
+        "prepared_id": "f309dd2e58f12082f4602011d74e9187135554fee3f00b226cdde168d905a461",
+        "manifest_sha256": "092a9b0e50f651741662926b0ed3ef476893d07e43e45f470b154379ab4c6085",
+        "source_manifest_sha256": "0a255add96a1a8fdc8e02f94237513f56d56d00a2e61a2cb20c5379cff61ee86",
+        "scope": "informational; rebuild may change absolute provenance; no physics verdict reused"
+      },
+      "generation": {
+        "generator": "usdcraft_sdk",
+        "recipe_id": "usdcraft_sdk_guide_plate_v1",
+        "parameters": {
+          "length_m": 0.7,
+          "width_m": 0.18,
+          "thickness_m": 0.015
+        },
+        "seed": 0,
+        "reviewed_commit": "46fec187bdce40845c30863a56143047edc4a263",
+        "template_sha256": "c2adbfbb84567e7189b0f32a99141bc834ec312c8585570ded9b445872093768",
+        "toolchain_intent": {
+          "dependencies": {
+            "networkx": "3.6.1",
+            "numpy": "2.4.6",
+            "pydantic": "2.13.4",
+            "scipy": "1.18.0",
+            "trimesh": "4.12.2",
+            "usd-core": "26.5",
+            "usdcraft": "1.0.0"
+          },
+          "python_executable_sha256": "038e0280abc7a8e7d45f8a64c6b5309dcebd3b09146ed3b62ca927963e4a93d6",
+          "python_version": [
+            3,
+            12,
+            13
+          ],
+          "source_clean": true,
+          "source_tree_sha256": "4e2c03fca4b37b68b3d4c7e7aeb1e3eb18c0ccee036260a8336f40588304d24c",
+          "usd_version": [
+            0,
+            26,
+            5
+          ],
+          "usdcraft_commit": "46fec187bdce40845c30863a56143047edc4a263",
+          "usdcraft_version": "1.0.0"
+        },
+        "generation_contract_version": 3
+      }
+    }
+  }
+}

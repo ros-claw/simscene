@@ -292,9 +292,9 @@ def _start(scene_id, steps=120, seed=None, case_path=None, continue_on_controlle
     if not executable or not Path(executable).is_file():
         raise SceneError('set SIMSCENE_ISAAC_PYTHON to the Isaac Sim python.sh path')
     scene = SceneStore().get(scene_id)
-    if case_snapshot and parsed.get('schema') in ('simscene.articulated_asset_smoke.v1','simscene.container_asset_smoke.v1','simscene.asset_gallery.v1','simscene.handoff_chain.v1'):
+    if case_snapshot and parsed.get('schema') in ('simscene.articulated_asset_smoke.v1','simscene.articulated_asset_two_joint.v1','simscene.container_asset_smoke.v1','simscene.asset_gallery.v1','simscene.handoff_chain.v1'):
         from importlib import import_module
-        module={'simscene.articulated_asset_smoke.v1':'articulated_asset_smoke','simscene.container_asset_smoke.v1':'container_asset_smoke','simscene.asset_gallery.v1':'asset_gallery','simscene.handoff_chain.v1':'handoff_chain'}[parsed['schema']]
+        module={'simscene.articulated_asset_smoke.v1':'articulated_asset_smoke','simscene.articulated_asset_two_joint.v1':'articulated_asset_two_joint','simscene.container_asset_smoke.v1':'container_asset_smoke','simscene.asset_gallery.v1':'asset_gallery','simscene.handoff_chain.v1':'handoff_chain'}[parsed['schema']]
         try:
             checker=import_module('.verification.'+module,__package__)
             checker.validate_case(parsed)

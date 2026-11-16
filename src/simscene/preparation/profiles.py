@@ -5,7 +5,7 @@ import json
 import math
 
 PROFILE_VERSION = 1
-PROFILES = frozenset({'visual_prop_v1', 'static_fixture_v1', 'rigid_prop_v1', 'articulated_prop_v1', 'container_v1', 'environment_v1'})
+PROFILES = frozenset({'visual_prop_v1', 'static_fixture_v1', 'rigid_prop_v1', 'articulated_prop_v1', 'articulated_prop_v2', 'container_v1', 'environment_v1'})
 
 class PreparationError(ValueError):
     def __init__(self, code, message):
@@ -42,11 +42,17 @@ def validate_parameters(profile, parameters):
     p = copy.deepcopy(parameters)
     allowed = {'source_physics_policy','scale_mode','target_longest_extent_m','mass_kg','mass_note',
                'collision_method','static_friction','dynamic_friction','restitution','ccd',
-               'proxy_tolerance_m','support_surfaces','static_proxy','container_proxy'}
+               'proxy_tolerance_m','support_surfaces','static_proxy','container_proxy','native_physics_repairs'}
     if set(p) - allowed:
         _fail(f'unknown parameters: {sorted(set(p)-allowed)}')
-    if p.get('source_physics_policy') not in {'preserve_valid','replace_visual_only','reject_if_physics'}:
+    if p.get('source_physics_policy') not in {'preserve_valid','replace_visual_only','reject_if_physics','repair_explicit'}:
         _fail('source_physics_policy is required')
+    if p['source_physics_policy']=='repair_explicit':
+        if profile!='articulated_prop_v1':_fail('explicit native repairs apply only to articulated_prop_v1')
+        from .native_repairs import validate_native_repairs
+        p['native_physics_repairs']=validate_native_repairs(p.get('native_physics_repairs'))
+    elif 'native_physics_repairs' in p:
+        _fail('native_physics_repairs require source_physics_policy=repair_explicit')
     p.setdefault('scale_mode', 'preserve')
     if p['scale_mode'] not in {'preserve','fit_longest'}:
         _fail('scale_mode must be preserve or fit_longest')
@@ -68,14 +74,15 @@ def validate_parameters(profile, parameters):
     p.setdefault('collision_method', 'convex_hull' if profile == 'rigid_prop_v1' else 'preserve')
     if p['collision_method'] not in {'preserve','convex_hull','box_proxy'}:
         _fail('invalid collision_method')
-    if profile in {'articulated_prop_v1','container_v1'}:
+    if profile in {'articulated_prop_v1','articulated_prop_v2','container_v1'}:
         if p['scale_mode'] != 'preserve':
             _fail('M2 physical profiles cannot rescale native physics or declared metric container geometry')
-        if profile == 'articulated_prop_v1':
+        if profile in {'articulated_prop_v1','articulated_prop_v2'}:
             if 'container_proxy' in p:
                 _fail('container_proxy applies only to container_v1')
-            if p['source_physics_policy'] != 'preserve_valid' or p['collision_method'] != 'preserve':
-                _fail('articulated profile requires preserve_valid native physics/collision')
+            policies={'preserve_valid','repair_explicit'} if profile=='articulated_prop_v1' else {'preserve_valid'}
+            if p['source_physics_policy'] not in policies or p['collision_method'] != 'preserve':
+                _fail('articulated profile requires preserved native collision with valid or explicitly repaired physics')
         else:
             if p['source_physics_policy'] != 'replace_visual_only' or p['collision_method'] != 'box_proxy':
                 _fail('container profile requires explicit opening-preserving wall proxies and replace_visual_only')

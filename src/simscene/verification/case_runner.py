@@ -9,6 +9,7 @@ from pathlib import Path
 TYPES={'contact':'contact_pick','suction':'suction_pick','moving':'moving_pick','repeated':'repeated_pick','domino':'domino','parallel':'parallel_probe','stream':'stream_probe','mechanism':'mechanism_adapter','passive_network':'passive_network'}
 TYPES['rigid_asset_smoke']='rigid_asset_smoke'
 TYPES['articulated_asset_smoke']='articulated_asset_smoke'
+TYPES['articulated_asset_two_joint']='articulated_asset_two_joint'
 TYPES['container_asset_smoke']='container_asset_smoke'
 TYPES['asset_gallery']='asset_gallery'
 TYPES['handoff_chain']='handoff_chain'
@@ -59,6 +60,7 @@ def evaluate(run_path,case_path=None,case_type=None,spec_path=None,mode='positiv
     if case_type is None:
         if case.get('schema')=='simscene.rigid_asset_smoke.v1':case_type='rigid_asset_smoke'
         elif case.get('schema')=='simscene.articulated_asset_smoke.v1':case_type='articulated_asset_smoke'
+        elif case.get('schema')=='simscene.articulated_asset_two_joint.v1':case_type='articulated_asset_two_joint'
         elif case.get('schema')=='simscene.container_asset_smoke.v1':case_type='container_asset_smoke'
         elif case.get('schema')=='simscene.asset_gallery.v1':case_type='asset_gallery'
         elif case.get('schema')=='simscene.handoff_chain.v1':case_type='handoff_chain'
@@ -68,6 +70,13 @@ def evaluate(run_path,case_path=None,case_type=None,spec_path=None,mode='positiv
         elif 'objects' in case:case_type='parallel'
         else:raise ValueError('case type is required when it cannot be inferred')
     if case_type not in TYPES:raise ValueError('unsupported verification case type')
+    if case.get('schema')=='simscene.articulated_asset_two_joint.v1' and case_type!='articulated_asset_two_joint':
+        raise ValueError('two-joint case requires its dedicated imported-articulation verifier')
+    if case_type=='articulated_asset_two_joint' and mode=='missing_second_joint_drive':
+        if not directory or reference_run is None:
+            raise ValueError('two-joint paired verification requires a control and positive reference run')
+        pair=importlib.import_module('.articulated_asset_two_joint_pair',__package__)
+        return {**pair.verify_pair(reference_run,directory,case_path),'case_type':case_type,'mode':mode}
     module_name=TYPES[case_type]
     if case.get('schema')=='simscene.mechanism.v2':
         if case_type!='mechanism':raise ValueError('v2 D6 case requires mechanism verification')
@@ -79,7 +88,7 @@ def evaluate(run_path,case_path=None,case_type=None,spec_path=None,mode='positiv
     if case_type=='handoff_chain':
         if not directory:raise ValueError('handoff verification requires the complete frozen run directory')
         return {**module.verify_run(directory,case_path,mode,reference_directory=reference_run),'case_type':case_type}
-    if case_type in ('rigid_asset_smoke','articulated_asset_smoke','container_asset_smoke','asset_gallery'):
+    if case_type in ('rigid_asset_smoke','articulated_asset_smoke','articulated_asset_two_joint','container_asset_smoke','asset_gallery'):
         if not directory or mode!='positive' or reference_run is not None:
             raise ValueError('imported asset verification requires a frozen run directory and its own case')
         return {**module.verify_run(directory,case_path),'case_type':case_type}

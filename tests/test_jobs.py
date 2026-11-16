@@ -6,6 +6,17 @@ from simscene.assets import SearchError
 from simscene.scene import SceneStore, SceneError
 
 class JobTests(unittest.TestCase):
+    def test_invalid_two_joint_case_is_rejected_before_worker_launch(self):
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as root:
+            runtime = Path(root) / 'python.sh'
+            runtime.write_text('runtime')
+            with patch.dict('os.environ', {'SIMSCENE_HOME': root, 'SIMSCENE_ISAAC_PYTHON': str(runtime)}):
+                SceneStore().open('s')
+                with self.assertRaisesRegex(SceneError, 'two-joint'):
+                    jobs.start('s', 120, case={'schema': 'simscene.articulated_asset_two_joint.v1'})
+                self.assertFalse((Path(root) / 'runs').exists())
+
     def test_incompatible_phase_speed_is_rejected_before_worker_launch(self):
         from pathlib import Path
         from unittest.mock import Mock

@@ -71,7 +71,7 @@ def make_plan(ref, profile_id='visual_prop_v1', parameters=None, target=None, bu
     elif ref.source_id == 'nvidia-usd-search':
         descriptor = {'kind':'usd_dependency_closure','asset_url':
                       availability.get('asset_url') or (record.provenance or {}).get('asset_url')}
-    elif ref.source_id == 'local-sand3d' and descriptor.get('kind') == 'generated_package':
+    elif ref.source_id in {'local-sand3d', 'local-usdcraft-sdk'} and descriptor.get('kind') == 'generated_package':
         if descriptor.get('revision') != ref.revision:
             blocking.append({'code':'verification_failed','detail':'generated content revision differs from selection'})
     elif descriptor.get('kind') == 'http_files':

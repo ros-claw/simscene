@@ -1,0 +1,19 @@
+{
+  "schema": "artvip.paired_trial_expectations.v2",
+  "source_sha256": "a5e596ad9be87033a4f9e02056d1b3baf125355ef0495a5c63b92d9004cec2be",
+  "intervention": "remove only mechanism.commands",
+  "physics_steps": 600,
+  "physics_dt_s": 0.016666666666666666,
+  "max_control_absolute_motion_rad": 0.05,
+  "minimum_driven_motion_rad": 0.6,
+  "max_native_frame_disagreement_rad": 0.015,
+  "require_native_dof_each_sample": true,
+  "require_no_control_command_events": true,
+  "max_fixed_parent_translation_m": 0.01,
+  "mass_kg": {
+    "link0": 12.0,
+    "link1": 8.0
+  },
+  "source_material_density_override_count": 7,
+  "scope": "experimental body mass overrides source density contributions, and source drive is neutralized; scheduled drives do not imply contact causality"
+}

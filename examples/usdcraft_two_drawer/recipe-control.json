@@ -1,0 +1,152 @@
+{
+  "schema": "simscene.scene_recipe.v2",
+  "description": "Control: same two-drawer scene with the second phase drive removed.",
+  "operations": [
+    {
+      "op": "add",
+      "id": "cabinet",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          0.0,
+          0.0,
+          0.005
+        ],
+        "mechanism": {
+          "commands": [
+            {
+              "joint_id": "joint0",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 0
+              },
+              "target_position": 0.25,
+              "position_unit": "m",
+              "stiffness": 2000.0,
+              "damping": 100.0,
+              "max_effort": 400.0
+            },
+            {
+              "joint_id": "joint1",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 0
+              },
+              "target_position": 0.0,
+              "position_unit": "m",
+              "stiffness": 2000.0,
+              "damping": 100.0,
+              "max_effort": 400.0
+            }
+          ]
+        },
+        "asset_role": "cabinet"
+      }
+    },
+    {
+      "op": "add",
+      "id": "floor",
+      "object": {
+        "kind": "box",
+        "size": [
+          4.0,
+          4.0,
+          0.1
+        ],
+        "position": [
+          0,
+          0,
+          -0.05
+        ],
+        "dynamic": false,
+        "collision": true,
+        "color": [
+          0.28,
+          0.3,
+          0.32
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "sky",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "dome"
+        },
+        "intensity": 500.0
+      }
+    },
+    {
+      "op": "add",
+      "id": "key",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "sphere",
+          "radius_m": 0.6
+        },
+        "position": [
+          1.0,
+          -2.0,
+          3.0
+        ],
+        "intensity": 2000.0
+      }
+    },
+    {
+      "op": "add",
+      "id": "overview",
+      "object": {
+        "kind": "camera",
+        "position": [
+          1.8,
+          -3.0,
+          1.6
+        ],
+        "record_fps": 2,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            640,
+            360
+          ],
+          "focal_length_mm": 35.0,
+          "horizontal_aperture_mm": 36.0,
+          "focus_distance_m": 3.6,
+          "clipping_range_m": [
+            0.01,
+            100.0
+          ]
+        },
+        "orientation_wxyz": [
+          0.7806294210093381,
+          0.5651231457929304,
+          0.15653004960585754,
+          0.21622183218656643
+        ]
+      }
+    },
+    {
+      "op": "set_presentation",
+      "presentation": {
+        "profile": "preview",
+        "budget": {
+          "max_cameras": 1,
+          "max_recording_bytes": 1073741824,
+          "min_free_bytes": 2147483648
+        }
+      }
+    },
+    {
+      "op": "set_observation",
+      "observation": {
+        "sample_interval_steps": 1,
+        "strict_start": true,
+        "record_contact_pairs": true
+      }
+    }
+  ]
+}

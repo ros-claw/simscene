@@ -98,7 +98,7 @@ def audit_source(candidate, policy=None):
     # revision may yield a review-only config. Similar filenames never create
     # a new provider and a source's old audit does not cover a new revision.
     registered = next((source for source in load_registry().sources
-                       if source.repository == repo and source.adapter in {'abo', 'hf_manifest', 'usdcraft'}), None)
+                       if source.repository == repo and source.adapter in {'abo', 'hf_manifest', 'usdcraft', 'artvip'}), None)
     if registered is not None and revision and recognized and layout.get('adapter') == registered.adapter:
         if distinct and distinct != [registered.license_policy['license'].lower()]:
             blocking.append('license_conflicts_with_registered_source')
@@ -134,7 +134,7 @@ def build_source_list(registry=None, audit_snapshot=None):
              '|---|---|---|---|---|---|---|---|']
     for source in registry.sources:
         examples = [item for item in source.evidence if isinstance(item, dict) and item.get('evidence_basis') == 'locally_executed' and item.get('runtime_validation') == 'pass']
-        formats = {'nvidia': 'USD', 'abo': 'GLB', 'hf_manifest': 'GLB', 'usdcraft': 'USD',
+        formats = {'nvidia': 'USD', 'abo': 'GLB', 'hf_manifest': 'GLB', 'usdcraft': 'USD', 'artvip': 'USD',
                    'simready_package':'USD', 'http_assets':'HDRI / material maps (selected IDs)',
                    'simready_central':'USD locators (metadata only)'}.get(source.adapter, 'unknown')
         license_info = source.license_policy
