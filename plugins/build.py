@@ -165,12 +165,6 @@ def build(destination, use_installed_deps=False):
         for example,names in EXAMPLE_DATA.items():
             target=portable/'examples'/example;target.mkdir(parents=True)
             for name in names:shutil.copyfile(ROOT/'examples'/example/name,target/name)
-        shutil.copyfile(ROOT/'docs'/'passive-network-verification.md',
-                        portable/'skills'/'build-scene'/'references'/'passive-network-verification.md')
-        shutil.copyfile(ROOT/'docs'/'structural-loads-verification.md',
-                        portable/'skills'/'build-scene'/'references'/'structural-loads-verification.md')
-        shutil.copyfile(ROOT/'docs'/'passive-d6-joints.md',
-                        portable/'skills'/'build-scene'/'references'/'passive-d6-joints.md')
         write(portable/'plugin.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json','name':'simscene','version':PACKAGE_VERSION,'description':'Discover assets, compose and run experimental simulation scenes.'})
         write(portable/'mcp.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json','mcpServers':{'simscene':{'type':'stdio','command':'python3','args':['${PLUGIN_ROOT}/server/launch.py'],'cwd':'${PLUGIN_ROOT}'}}})
         claude.mkdir(parents=True)

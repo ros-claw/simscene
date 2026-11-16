@@ -94,7 +94,14 @@ else:raise AssertionError('missing optional decoder was reported available')
                                'examples/usdcraft_sdk_guide/assets.lock.json',
                                'examples/usdcraft_sdk_guide/check_pair.py'):
                     self.assertEqual((plugin/sample).read_bytes(),(ROOT/sample).read_bytes(),sample)
+                for original in (ROOT/'skills').rglob('*.md'):
+                    reference=plugin/'skills'/original.relative_to(ROOT/'skills')
+                    self.assertTrue(reference.is_file(),str(reference))
+                    self.assertEqual(reference.read_bytes(),original.read_bytes(),
+                                     f'{reference}: packaged skill differs from its source')
                 for reference in (plugin/'skills').rglob('*.md'):
+                    original=ROOT/'skills'/reference.relative_to(plugin/'skills')
+                    self.assertTrue(original.is_file(),str(reference))
                     for link in re.findall(r'\]\(([^\s)]+)\)',reference.read_text()):
                         target=link.split('#')[0]
                         if not target or ':' in target:continue

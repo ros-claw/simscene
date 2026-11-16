@@ -40,3 +40,7 @@ contract. Before accepting a new load or layout, verify resting compatibility,
 actual transmission and a matched drawer-end cut. Keep both endpoints' original
 motion, complete observations, case and runtime pins. See
 [network verification](passive-network-verification.md) for composition.
+For a complete network, use `simscene.passive_network.v3` with exactly one
+explicitly versioned D6 rope assertion and its required typed support loads;
+v1 and v2 do not admit D6 rope assertions. Preserve older frozen cases and their
+original checker versions.

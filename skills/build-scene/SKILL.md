@@ -45,7 +45,7 @@ backend experimental until actual paired mechanism trials pass.
 
 For a passive force-path acceptance case, read
 [network verification](references/passive-network-verification.md). A separate
-gravity-loaded support pad requires the explicit v2 declaration and
+gravity-loaded support pad requires the explicit v2 or v3 declaration and
 [typed support evidence](references/structural-loads-verification.md); never
 invent an activation or count structural motion as task progress. Freeze the
 software, geometry, case and controls before formal runs, and retain their

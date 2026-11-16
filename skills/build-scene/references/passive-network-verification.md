@@ -5,7 +5,12 @@ against complete recorded physics observations. It accepts measured motion,
 physical contact callbacks and passive constraints. It never starts physics,
 edits a scene, releases an object, applies a force or fills a missing sample.
 
-The public case schema is `simscene.passive_network.v1`. A passed network
+The public case schemas are `simscene.passive_network.v1`,
+`simscene.passive_network.v2`, and `simscene.passive_network.v3`.
+The examples below use v1. Version 2 adds required typed support loads;
+version 3 also requires exactly one explicit D6 rope assertion. For direct
+Python calls to a v3 case use `simscene.verification.passive_network_v3`, or
+use the existing schema-dispatching `run_verify` interface. A passed network
 contract covers its declared physical chain, counts, timing and controls.
 Asset discovery, the semantic review of household identities, native video
 quality, project export/replay and separate P1 mechanism contracts remain
@@ -146,7 +151,7 @@ and independently inspected geometry, before observing a formal success.
 
 | Field | Contract |
 | --- | --- |
-| `schema` | Exactly `simscene.passive_network.v1`. |
+| `schema` | `simscene.passive_network.v1`; `simscene.passive_network.v2` for typed support loads; or `simscene.passive_network.v3` for a D6 rope and typed support loads. |
 | `profile` | `pilot`, `P2` or `P3`. A pilot never accepts a formal stage. |
 | `require_strict_initial_state` | Must be `true`; source `observation.strict_start` must also be `true`. |
 | `trigger_id`, `release_step` | One colliding dynamic sphere, scheduled at the declared step. All other dynamic bodies exist initially. |
@@ -160,7 +165,8 @@ and independently inspected geometry, before observing a formal success.
 | `maximum_joint_anchor_error_m` | Global error limit for every enabled observed joint. |
 | `contact_window_tolerance_steps` | Frozen tolerance for event-window contact witnesses. |
 | `rope_body_ids` | Exact capsule-link IDs. Rope motion cannot supply activity time. |
-| `mechanism_cases` | Optional mapping from assertion name to a complete frozen `simscene.mechanism.v1` contract, evaluated on the full original telemetry. |
+| `mechanism_cases` | Frozen mechanism assertions evaluated on the full original telemetry; v3 requires exactly one `simscene.mechanism.v2` D6 rope assertion. |
+| `structural_loads` | Required nonempty typed support declarations in v2 and v3, rejected in v1; see [typed support evidence](structural-loads-verification.md). |
 | `terminal` | Actual sugar dimensions, measured receiver interior and stability limits. |
 | `activity` | Frozen task stages/ROIs/speed floors plus all four timing limits. |
 | `controls`, `required_controls` | Explicit isolated interventions and their expected upstream/downstream behavior. |
