@@ -67,9 +67,17 @@ class CatalogStore:
                         canonical_json(record, exclude_volatile=False), text))
         return self.put_detail(record)
 
-    def get(self, ref):
+    def get(self, ref, *, require_snapshot_prefix=None, require_snapshot_suffix=None):
         key = stable_hash(ref)
         with self.connect() as db:
+            if require_snapshot_prefix is not None or require_snapshot_suffix is not None:
+                # Check the index marker and read its record in one SQLite
+                # snapshot, even if another process is refreshing that index.
+                db.execute('BEGIN')
+                state = db.execute('SELECT snapshot FROM indexes WHERE source=?', (ref.source_id,)).fetchone()
+                if (not state or (require_snapshot_prefix is not None and not state[0].startswith(require_snapshot_prefix)) or
+                        (require_snapshot_suffix is not None and not state[0].endswith(require_snapshot_suffix))):
+                    raise ValueError('asset metadata index is stale; search or refresh the source before planning')
             row = db.execute('SELECT payload FROM records WHERE key=?', (key,)).fetchone()
         if row is None:
             raise KeyError('asset is absent from this pinned metadata index')
@@ -100,18 +108,20 @@ class CatalogStore:
                 db.executemany('INSERT INTO record_fts VALUES (?,?,?)', [(r[0], r[1], r[5]) for r in prepared])
             db.execute('INSERT OR REPLACE INTO indexes VALUES (?,?)', (source_id, snapshot))
 
-    def search(self, source_id, query, *, limit=100):
+    def search(self, source_id, query, *, limit=100, revision=None):
         tokens = re.findall(r'[^\W_]+', query, re.UNICODE)[:16]
         if not tokens:
             return ()
         with self.connect() as db:
             if self.fts:
                 match = ' OR '.join('"' + t.replace('"', '""') + '"' for t in tokens)
-                rows = db.execute('SELECT r.payload FROM record_fts f JOIN records r ON r.key=f.key WHERE record_fts MATCH ? AND r.source=? ORDER BY rank, r.asset_id LIMIT ?',
-                                  (match, source_id, limit)).fetchall()
+                rows = db.execute('SELECT r.payload FROM record_fts f JOIN records r ON r.key=f.key WHERE record_fts MATCH ? AND r.source=?' +
+                                  (' AND r.revision=?' if revision is not None else '') + ' ORDER BY rank, r.asset_id LIMIT ?',
+                                  (match, source_id, *([revision] if revision is not None else []), limit)).fetchall()
             else:
                 clauses = ' OR '.join('LOWER(text) LIKE ? ESCAPE \'\\\'' for _ in tokens)
                 terms = ['%' + t.lower().replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_') + '%' for t in tokens]
-                rows = db.execute(f'SELECT payload FROM records WHERE source=? AND ({clauses}) ORDER BY asset_id LIMIT ?',
-                                  (source_id, *terms, limit)).fetchall()
+                rows = db.execute(f'SELECT payload FROM records WHERE source=? AND ({clauses})' +
+                                  (' AND revision=?' if revision is not None else '') + ' ORDER BY asset_id LIMIT ?',
+                                  (source_id, *terms, *([revision] if revision is not None else []), limit)).fetchall()
         return tuple(AssetRecord.from_dict(json.loads(row[0])) for row in rows)

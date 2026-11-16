@@ -39,7 +39,8 @@ CatalogStore(root/'index').replace_index('abo-glb',[record],revision+':original-
 from simscene.recipes.registry import list_recipes
 assert list_recipes()['recipes']
 assert resources.files('simscene.generation.templates').joinpath('guide_plate_v1.py').is_file()
-assert metadata.version('rosclaw-simscene')=='0.2.0.dev1'
+assert metadata.version('rosclaw-simscene')=='0.2.0.dev2'
+assert resources.files('simscene').joinpath('layout_synthesis_worker.py').is_file()
 from simscene.preparation.glb_convert import predecoder_fingerprint
 from simscene.preparation.profiles import PreparationError
 try:predecoder_fingerprint(str(root/'missing-decoder'))
@@ -55,7 +56,7 @@ else:raise AssertionError('missing optional decoder was reported available')
                 async with ClientSession(reader,writer) as session:
                     await session.initialize()
                     names={tool.name for tool in (await session.list_tools()).tools}
-                    self.assertTrue({'catalog_search','asset_plan','asset_prepare','catalog_discover','asset_generate','scene_compile_recipe'}<=names)
+                    self.assertTrue({'catalog_search','asset_plan','asset_prepare','catalog_discover','asset_generate','scene_compile_recipe','scene_plan_layout'}<=names)
                     response=await session.read_resource('simscene://catalog/sources')
                     self.assertTrue(json.loads(response.contents[0].text)['sources'])
                     response=await session.call_tool('catalog_search',{'query':'Original package fixture','filters':{'source_ids':['abo-glb']},'limit':1})
@@ -74,7 +75,7 @@ else:raise AssertionError('missing optional decoder was reported available')
                 members=set(archive.namelist())
                 for name in ('simscene/catalog/data/sources.yaml','simscene/recipes/data/recipes.json',
                              'simscene/preparation/data/package-lock.json','simscene/generation/templates/guide_plate_v1.py',
-                             'simscene/worker/isaac_run.py','simscene/preparation/worker.py'):
+                             'simscene/worker/isaac_run.py','simscene/preparation/worker.py', 'simscene/layout_synthesis_worker.py'):
                     self.assertIn(name,members)
                 self.assertFalse(any('__pycache__' in name or 'node_modules/' in name or name.endswith('.pyc') for name in members))
             for kind in ('portable','claude','deepseek'):
@@ -91,7 +92,7 @@ else:raise AssertionError('missing optional decoder was reported available')
                 for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
                     self.assertTrue((plugin/notice).is_file())
                     self.assertEqual((plugin/notice).read_bytes(),(ROOT/notice).read_bytes())
-                info=json.loads((plugin/'server/build-info.json').read_text());self.assertEqual(info['python_version'],'0.2.0.dev1');self.assertEqual(info['plugin_version'],'0.2.0-dev.1')
+                info=json.loads((plugin/'server/build-info.json').read_text());self.assertEqual(info['python_version'],'0.2.0.dev2');self.assertEqual(info['plugin_version'],'0.2.0-dev.2')
                 if kind=='portable':
                     config=json.loads((plugin/'mcp.json').read_text());self.assertEqual(config['mcpServers']['simscene']['type'],'stdio')
                 elif kind=='claude':self.assertTrue((plugin/'.claude-plugin/plugin.json').is_file())

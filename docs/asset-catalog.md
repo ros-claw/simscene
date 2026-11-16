@@ -1,9 +1,11 @@
 # Online catalog and prepared assets
 
-The V2 workflow adds six MCP tools: `catalog_search`, `asset_plan`,
+The original V2 preview added six MCP tools: `catalog_search`, `asset_plan`,
 `asset_prepare`, `catalog_discover`, `scene_compile_recipe` and `asset_generate`.
 The original 46 tools retain their interfaces. Source availability, static preparation, and successful
 physical execution are separate results.
+This later development branch also adds the optional `scene_plan_layout` tool;
+see [automatic layout](scene-layout.md) for its setup and limits.
 
 ## Select a source and search metadata
 
@@ -27,6 +29,39 @@ when the source recovers. Cursor pages retain the original query's cost under
 `budgets.metadata_bytes`; use `budgets.request_metadata_bytes` and
 `request_preview_bytes` for per-call transfer accounting. Cached cursor pages
 make no network requests.
+
+USDCraft is enabled but not selected by default. To find candidates whose
+manifest declares one rotational joint, call `catalog_search` with:
+
+```json
+{
+  "query": "cabinet",
+  "filters": {
+    "source_ids": ["usdcraft"],
+    "required_capabilities": ["declared_single_joint", "declared_rotational_joint"]
+  },
+  "limit": 8
+}
+```
+
+Use `declared_translational_joint` to search for a declared prismatic joint.
+The rotational filter includes both `revolute` and `continuous`; a continuous
+joint does not establish finite limits. All requested capabilities must match.
+These filters describe the source's joint-type labels and joint count, not the
+number of independent DOFs, an openable object, or a runtime-verified asset.
+Unknown types, malformed lists, and conflicting type/count/physics declarations
+remain unknown and do not satisfy these requirements, even with
+`allow_unknown_constraints`. The pinned manifest itself contains such conflicts.
+
+The linked detailed record retains the original row, declared `part_count`,
+`joint_count`, parsed `joint_types` and `has_textures` facts. Search returns
+compact summaries; retrieving an asset and discovering its dependency closure
+remain separate. An old USDCraft index projection refreshes the pinned manifest
+on the next search; it does not download models, and old query cursors may need
+to be restarted. Planning against a stale index asks for a search or refresh
+first. Restart older SimScene servers sharing that index after upgrading; they
+may still present their previous projection. Preparation still inspects the selected native USD and rejects
+unsupported graphs or physics.
 
 ABO is a community conversion of Amazon Berkeley Objects; preserve its source
 identity and CC-BY notices. NVIDIA search indexes upstream libraries with

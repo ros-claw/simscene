@@ -60,6 +60,10 @@ class HFManifestProvider(Provider):
     def metadata_url(self):
         return self.url(self.entry.path)
 
+    def snapshot_identity(self, payload):
+        """Identify the source bytes and any subclass-specific projection."""
+        return self.entry.revision+':'+hashlib.sha256(payload).hexdigest()
+
     def rows(self,payload):
         if self.entry.format=='csv':
             text=payload.decode('utf-8-sig');yield from enumerate(csv.DictReader(io.StringIO(text)),1)
@@ -83,7 +87,7 @@ class HFManifestProvider(Provider):
         except (ValueError,TypeError,KeyError,UnicodeError,csv.Error):
             raise MetadataError('manifest metadata schema changed; previous index preserved') from None
         if not records:raise MetadataError('manifest metadata is empty')
-        identity=self.entry.revision+':'+hashlib.sha256(payload).hexdigest()
+        identity=self.snapshot_identity(payload)
         self.store.replace_index(self.source_id,records,identity)
         return {'source_id':self.source_id,'snapshot':identity,'records':len(records),'metadata_bytes':len(payload),'model_bytes':0,
                 'text_index':'fts5' if self.store.fts else 'bounded_text_fallback'}
@@ -121,7 +125,7 @@ class HFManifestProvider(Provider):
     def search(self,request):
         self.check_deadline();start=len(self.ledger)
         if self.snapshot=='index_not_refreshed':self.refresh()
-        records=self.store.search(self.source_id,request.query,limit=100);self.check_deadline()
+        records=self.store.search(self.source_id,request.query,limit=100,revision=self.entry.revision);self.check_deadline()
         count=sum(entry.get('bytes',0) for entry in self.ledger[start:] if entry.get('category')=='metadata')
         return ProviderPage(records,self.snapshot,bytes_read=count,warnings=(() if self.store.fts else ('fts5_unavailable',)))
 

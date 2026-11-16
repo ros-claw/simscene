@@ -1,0 +1,150 @@
+{
+  "schema": "simscene.asset_gallery.v1",
+  "schema_version": 1,
+  "components": [
+    {
+      "id": "box_support",
+      "case": {
+        "schema": "simscene.rigid_asset_smoke.v1",
+        "schema_version": 1,
+        "objects": {
+          "box": {
+            "motion_body": "/World/box/Asset/Body",
+            "contact_bodies": [
+              "/World/box/Asset/Body"
+            ],
+            "visual_roots": [
+              "/World/box/Asset/Body/Visual"
+            ],
+            "support_actors": [
+              "/World/table"
+            ],
+            "target_bounds": {
+              "min": [
+                -1.3,
+                -0.75,
+                0.8
+              ],
+              "max": [
+                1.3,
+                0.75,
+                1.25
+              ]
+            },
+            "initial_height_m": 0.8874879157630889,
+            "min_drop_m": 0.015
+          }
+        },
+        "source_ref": "${box.source_ref}",
+        "prepared_manifest_sha256": "${box.manifest_sha256}",
+        "physical_assumptions": "Imported geometry, experimental 0.12 kg, starts 0.04 m above an ordinary static table."
+      }
+    },
+    {
+      "id": "book_support",
+      "case": {
+        "schema": "simscene.rigid_asset_smoke.v1",
+        "schema_version": 1,
+        "objects": {
+          "book_a": {
+            "motion_body": "/World/book_a/Asset/Body",
+            "contact_bodies": [
+              "/World/book_a/Asset/Body"
+            ],
+            "visual_roots": [
+              "/World/book_a/Asset/Body/Visual"
+            ],
+            "support_actors": [
+              "/World/table"
+            ],
+            "target_bounds": {
+              "min": [
+                -1.3,
+                -0.75,
+                0.8
+              ],
+              "max": [
+                1.3,
+                0.75,
+                1.25
+              ]
+            },
+            "initial_height_m": 0.8755482700515315,
+            "min_drop_m": 0.015
+          },
+          "book_b": {
+            "motion_body": "/World/book_b/Asset/Body",
+            "contact_bodies": [
+              "/World/book_b/Asset/Body"
+            ],
+            "visual_roots": [
+              "/World/book_b/Asset/Body/Visual"
+            ],
+            "support_actors": [
+              "/World/table"
+            ],
+            "target_bounds": {
+              "min": [
+                -1.3,
+                -0.75,
+                0.8
+              ],
+              "max": [
+                1.3,
+                0.75,
+                1.25
+              ]
+            },
+            "initial_height_m": 0.8755482659645374,
+            "min_drop_m": 0.015
+          }
+        },
+        "source_ref": "${book_a.source_ref}",
+        "prepared_manifest_sha256": "${book_a.manifest_sha256}",
+        "physical_assumptions": "Imported geometry, experimental 0.12 kg, starts 0.04 m above an ordinary static table."
+      }
+    },
+    {
+      "id": "native_joint",
+      "case": {
+        "schema": "simscene.articulated_asset_smoke.v1",
+        "schema_version": 1,
+        "mode": "driven",
+        "objects": {
+          "cabinet": {
+            "joint_id": "main",
+            "joint_path": "/World/cabinet/Asset/Native/Joints/flap_hinge",
+            "parent_body": "/World/cabinet/Asset/Native/Links/cabinet_carcass",
+            "child_body": "/World/cabinet/Asset/Native/Links/flap_door",
+            "initial_position": 0.0,
+            "position_unit": "rad",
+            "limits": [
+              0.0,
+              1.3962634015954636
+            ],
+            "min_travel": 1.0,
+            "limit_tolerance": 0.015,
+            "anchor_tolerance_m": 0.003,
+            "source_ref": "${cabinet.source_ref}",
+            "prepared_manifest_sha256": "${cabinet.manifest_sha256}",
+            "waypoints": [
+              {
+                "command_step": 0,
+                "target_position": 1.3962634015954636,
+                "by_step": 200,
+                "tolerance": 0.08
+              },
+              {
+                "command_step": 240,
+                "target_position": 0.0,
+                "by_step": 500,
+                "tolerance": 0.04
+              }
+            ]
+          }
+        },
+        "physical_model_note": "Original native two-link hinge and mass/colliders/friction; experimental scheduled drive. Supplemental acceptance SHA-256: 7e22adc1ce4eacad1edbfcc947b65efd3db0f7a11ce405f5fcdcc36109206b94"
+      }
+    }
+  ]
+}

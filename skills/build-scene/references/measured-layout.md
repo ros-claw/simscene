@@ -24,6 +24,25 @@ orientation before measuring. `avoid_ids`, `clearance_m`, and world metre
 `keepout_bounds:[{min:[x,y,z],max:[x,y,z]}]` reject reserved-space intrusion.
 This is geometric placement, not a dynamic stability proof.
 
+For repeatable sampled placement of 1–8 existing props, call
+`scene_plan_layout(scene_id, ids, support, support_surface, seed, clearance_m,
+gap_m, avoid_ids, keepout_bounds)`. Omit `support_surface` for a primitive box
+top. It requires an isolated `scene_synthesizer==1.15.0` environment available
+to the MCP server through `SIMSCENE_LAYOUT_PYTHON`; configure it separately
+without changing Isaac's Python. Imported props, obstacles and supports require
+verified local prepared bindings; imported supports must be static prepared
+fixtures with colliders. A primitive support for dynamic props requires
+`collision:true`. Compounds with attached visuals are not supported. Record the
+seed, backend/dependency versions, source pins and returned `plan_sha256`; the
+same versions do not pin every native library or guarantee cross-machine output.
+The tool does not edit the scene: apply
+all returned operations in one `scene_apply` at `base_revision`; replan after a
+revision conflict. Measured render-box proxies preserve the supplied USD and
+orientation, and explicit obstacles/keepouts are projected in XY regardless
+of height. The planner cannot infer door sweeps or certify collision geometry,
+stability or motion; inspect and conservatively reserve working space, then
+run and verify an actual case.
+
 `arrange_grid` uses `ids`, `support`, optional `support_surface`, `columns`,
 `gap_m` (between cells), `offset_xy`, optional `vertical_gap_m`, and the same
 clearance fields. Row/column dimensions come from measured footprints.

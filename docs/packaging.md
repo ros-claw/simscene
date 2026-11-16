@@ -1,8 +1,8 @@
 # Plugin packages
 
-Python package version `0.2.0.dev1` is an experimental V2 candidate. The single version
+Python package version `0.2.0.dev2` is an unreleased experimental V2 candidate. The single version
 source is `pyproject.toml`; the builder maps its development suffix explicitly to
-plugin version `0.2.0-dev.1`. Building or installing files does not publish a
+plugin version `0.2.0-dev.2`. Building or installing files does not publish a
 release or establish physical compatibility for arbitrary assets.
 
 The [V2 preview release](https://github.com/ros-claw/simscene/releases/tag/v0.2.0-dev.1)
@@ -56,7 +56,7 @@ A wheel can also be installed using ordinary pip:
 
 ```sh
 python3 -m venv /absolute/path/to/new-venv
-/absolute/path/to/new-venv/bin/python -m pip install /absolute/path/to/new-dist/wheels/rosclaw_simscene-0.2.0.dev1-py3-none-any.whl
+/absolute/path/to/new-venv/bin/python -m pip install /absolute/path/to/new-dist/wheels/rosclaw_simscene-0.2.0.dev2-py3-none-any.whl
 ```
 
 That installs the base Python dependencies. It does not install Isaac or optional

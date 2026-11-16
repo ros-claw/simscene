@@ -21,7 +21,7 @@ def make_plan(ref, profile_id='visual_prop_v1', parameters=None, target=None, bu
     ref = AssetRef.from_dict(ref) if isinstance(ref, dict) else ref
     if not isinstance(ref, AssetRef): raise ValueError('asset_ref must be a valid AssetRef')
     ref.validate_selection()
-    record = record or resolve_asset(ref, index_directory=config['index_directory'])
+    record = record or resolve_asset(ref, index_directory=config['index_directory'], registry_path=config.get('registry_path'))
     if record.ref != ref: raise ValueError('resolved selection does not match ref')
     budgets = dict(budgets or {})
     allowed = {'download_bytes', 'unpacked_bytes', 'staging_bytes'}

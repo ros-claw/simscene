@@ -77,7 +77,8 @@ with this repository.
 
 ## V2 catalog and preparation
 
-The V2 development line is **0.2.0.dev1** (plugin **0.2.0-dev.1**). It adds
+This unreleased development branch is **0.2.0.dev2** (plugin **0.2.0-dev.2**).
+The published V2 preview is **0.2.0.dev1** (plugin **0.2.0-dev.1**). It adds
 unified metadata search, immutable preparation plans, persistent preparation jobs,
 role-based scene recipes and optional isolated Sand3D generation. See the
 [source registry](docs/assets/SOURCES.md) and [measured validation scope](docs/validation/catalog-capabilities.md).
@@ -105,6 +106,11 @@ and verify contacts, movement and settling. The [gravity-cell example](examples/
 provides a complete selected-asset route. [Preparation](docs/asset-catalog.md),
 [scene recipes](docs/scene-recipes.md), and [optional generation](docs/asset-generation.md)
 describe setup and reuse. Existing asset and simulation tools remain compatible.
+
+This development branch also offers [optional automatic measured layout](docs/scene-layout.md)
+for existing props on an explicitly measured support. It proposes editable
+placements; the original USD and separate physical verification remain intact.
+The pinned v0.2.0-dev.1 release above predates this tool.
 
 ## Connect your agent
 
@@ -146,6 +152,7 @@ Try a prompt such as:
 | Only one sugar cube | [Editable whole-home experiment](examples/whole_home_sugar/README.md) · [55-second film](docs/media/only-one-sugar-public-55s.mp4) · [Red-rope control](docs/media/red-rope-causal-comparison-20s.mp4) |
 | Multi-source kinetic gallery | [Editable recipe](examples/kinetic_asset_gallery/README.md) · [66-second film](docs/media/kinetic-asset-gallery-1080p30.mp4) |
 | Cross-catalog gravity cell | [Locked assets, physical case and reproduction](examples/catalog_gravity_cell/README.md) |
+| Automatic cabinet layout (development branch) | [Editable recipe, source lock and physical checks](examples/automatic_cabinet_layout/README.md) |
 | Three-level chain reaction | [Editable recipe and reproduction steps](examples/three_level_chain/README.md) · [Film](docs/media/chain-workshop-1080p30.mp4) |
 | Precision sorting workshop | [Scene recipe](examples/precision_sorting_corner/README.md) · [Film](docs/media/precision-workshop-1080p30.mp4) |
 | Maintenance workbench | [Scene recipe](examples/maintenance_workbench/README.md) · [Film](docs/media/maintenance-workbench-1080p30.mp4) |
@@ -167,6 +174,7 @@ cross-machine deployment still needs validation in the target environment.
 - [Quick start / 快速开始](docs/快速开始.md)
 - [Plugin packaging and installation](docs/packaging.md)
 - [Cameras, video, and layout](docs/视频交付.md)
+- [Optional automatic measured layout](docs/scene-layout.md)
 - [Validation scope](docs/validation.md)
 - [Repository contents and asset distribution](docs/开源发布说明.md)
 - [Contributing](CONTRIBUTING.md)

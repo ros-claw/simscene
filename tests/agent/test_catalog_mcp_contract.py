@@ -27,7 +27,7 @@ scene_plan_translate_group scene_validate scene_export simulation_start job_stat
 run_observe run_contacts run_verify_lock run_verify run_verify_passive_suite
 run_verify_evidence run_video_chunk scene_observe job_cancel simulation_pause
 simulation_resume'''.split())
-NEW_TOOLS = frozenset({'catalog_search', 'asset_plan', 'asset_prepare', 'catalog_discover', 'scene_compile_recipe', 'asset_generate'})
+NEW_TOOLS = frozenset({'catalog_search', 'asset_plan', 'asset_prepare', 'catalog_discover', 'scene_compile_recipe', 'asset_generate', 'scene_plan_layout'})
 
 
 def nullable(kind, title):
@@ -154,6 +154,8 @@ class CatalogMCPContract(unittest.IsolatedAsyncioTestCase):
                         'scene_id': {'title': 'Scene Id', 'type': 'string'}}, ['scene_id']))
                     self.assertTrue(tools['scene_get'].annotations.readOnlyHint)
                     self.assertFalse(tools['scene_get'].annotations.openWorldHint)
+                    self.assertTrue(tools['scene_plan_layout'].annotations.readOnlyHint)
+                    self.assertFalse(tools['scene_plan_layout'].annotations.openWorldHint)
                     self.assertTrue(tools['asset_search'].annotations.readOnlyHint)
                     self.assertTrue(tools['asset_search'].annotations.openWorldHint)
                     self.assertEqual(tools['job_status'].inputSchema['required'], ['job_id'])

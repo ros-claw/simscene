@@ -4,6 +4,7 @@ import functools
 import os
 from mcp.server.fastmcp import FastMCP, Image
 from mcp.types import ToolAnnotations
+from pydantic import StrictFloat, StrictInt
 from .assets import USDSearch
 from .cache import AssetCache
 
@@ -187,6 +188,28 @@ def scene_measure(scene_id: str, ids: list[str], include_overlap_candidates: boo
     from .scene import SceneStore
     from .placement import measure
     return measure(SceneStore().get(scene_id),ids,include_overlap_candidates)
+
+@threaded_tool(annotations=_read_local)
+def scene_plan_layout(scene_id: str, ids: list[str], support: str, support_surface: str | None = None,
+                      seed: StrictInt = 0, clearance_m: StrictFloat = .01, gap_m: StrictFloat = 0.,
+                      avoid_ids: list[str] | None = None, keepout_bounds: list[dict] | None = None) -> dict:
+    """Propose editable place_on operations for up to eight existing objects on an explicit static support.
+
+    Requires scene_synthesizer 1.15.0 in SIMSCENE_LAYOUT_PYTHON; it operates
+    on measured bounding-box proxies, without editing source USD or the scene.
+    Imported props, obstacles and supports require verified prepared bindings;
+    dynamic props require a colliding static support. Compounds with attached
+    visuals are not supported.
+    Apply all operations at the returned base_revision. Explicitly include any
+    obstacles and moving-mechanism keepouts. Actual colliders, joint sweeps and
+    dynamic stability require physical inspection and a new simulation.
+    """
+    from .layout_synthesis import plan_layout
+    from .scene import SceneStore
+    plan = plan_layout(SceneStore().get(scene_id), ids, support, support_surface=support_surface,
+                       seed=seed, clearance_m=clearance_m, gap_m=gap_m, avoid_ids=avoid_ids,
+                       keepout_bounds=keepout_bounds)
+    return {**plan, 'scene_id': scene_id}
 
 @threaded_tool(annotations=_read_local)
 def scene_plan_rope(scene_id: str, prefix: str, points: list[list[float]], radius_m: float = .005, max_segment_m: float = .025, linear_density_kg_m: float = .06, attachments: dict | None = None, physics: dict | None = None, self_collision: bool = True) -> dict:

@@ -1,0 +1,441 @@
+{
+  "description": "Editable workbench, prepared native USDCraft cabinet, and three rigid props placed by a fixed scene_synthesizer plan.",
+  "source_run_id": "63d4a482dc0547458384a8eb8e91bf7c",
+  "source_run_lock_sha256": "d0fb328a93b653fde73c84278c96960ff9d34d694443e692087360bcd319c9e4",
+  "operations": [
+    {
+      "op": "add",
+      "id": "floor",
+      "object": {
+        "kind": "box",
+        "size": [
+          7.0,
+          7.0,
+          0.1
+        ],
+        "position": [
+          0.0,
+          0.0,
+          -0.05
+        ],
+        "color": [
+          0.16,
+          0.19,
+          0.22
+        ],
+        "collision": true
+      }
+    },
+    {
+      "op": "add",
+      "id": "table",
+      "object": {
+        "kind": "box",
+        "size": [
+          2.6,
+          1.5,
+          0.08
+        ],
+        "position": [
+          0.0,
+          0.0,
+          0.79
+        ],
+        "color": [
+          0.48,
+          0.32,
+          0.2
+        ],
+        "support_surfaces": {
+          "worktop": {
+            "min_xy": [
+              -1.28,
+              -0.73
+            ],
+            "max_xy": [
+              1.28,
+              0.73
+            ],
+            "z_m": 0.04
+          }
+        },
+        "collision": true
+      }
+    },
+    {
+      "op": "add",
+      "id": "cabinet",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          -0.7,
+          0.2589999995995313,
+          0.8320000029802322
+        ],
+        "mechanism": {
+          "commands": [
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 0
+              },
+              "target_position": 1.3962634015954636,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 240
+              },
+              "target_position": 0.0,
+              "position_unit": "rad",
+              "stiffness": 400.0,
+              "damping": 12.0,
+              "max_effort": 22.0
+            }
+          ]
+        },
+        "asset_role": "cabinet"
+      }
+    },
+    {
+      "op": "add",
+      "id": "box",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          0.5940649325976486,
+          0.2040442321891242,
+          0.8874879157630889
+        ],
+        "orientation_wxyz": [
+          0.7071067811865476,
+          0.7071067811865476,
+          0.0,
+          0.0
+        ],
+        "asset_role": "box"
+      }
+    },
+    {
+      "op": "add",
+      "id": "book_a",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          0.25885443006261455,
+          0.3787859622261313,
+          0.8755482700515315
+        ],
+        "orientation_wxyz": [
+          0.7071067811865476,
+          0.7071067811865476,
+          0.0,
+          0.0
+        ],
+        "asset_role": "book_a"
+      }
+    },
+    {
+      "op": "add",
+      "id": "book_b",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          0.798020155100152,
+          -0.36695188849847077,
+          0.8755482659645374
+        ],
+        "orientation_wxyz": [
+          0.6532814824381883,
+          0.6532814824381883,
+          0.2705980500730985,
+          0.2705980500730985
+        ],
+        "asset_role": "book_a"
+      }
+    },
+    {
+      "op": "add",
+      "id": "sky",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "dome"
+        },
+        "intensity": 500.0
+      }
+    },
+    {
+      "op": "add",
+      "id": "key",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "sphere",
+          "radius_m": 0.4
+        },
+        "intensity": 2000.0,
+        "position": [
+          0.0,
+          -2.5,
+          4.5
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "overview",
+      "object": {
+        "kind": "camera",
+        "position": [
+          2.35,
+          -3.8,
+          2.7
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 45.0,
+          "horizontal_aperture_mm": 36.0,
+          "focus_distance_m": 4.8,
+          "clipping_range_m": [
+            0.01,
+            100.0
+          ]
+        },
+        "orientation_wxyz": [
+          0.7892491473713551,
+          0.5475675619401452,
+          0.15843890467573032,
+          0.2283695732133975
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "leg_lf",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.09,
+          0.09,
+          0.75
+        ],
+        "position": [
+          -1.12,
+          -0.57,
+          0.375
+        ],
+        "color": [
+          0.16,
+          0.15,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "leg_lb",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.09,
+          0.09,
+          0.75
+        ],
+        "position": [
+          -1.12,
+          0.57,
+          0.375
+        ],
+        "color": [
+          0.16,
+          0.15,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "leg_rf",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.09,
+          0.09,
+          0.75
+        ],
+        "position": [
+          1.12,
+          -0.57,
+          0.375
+        ],
+        "color": [
+          0.16,
+          0.15,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "leg_rb",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.09,
+          0.09,
+          0.75
+        ],
+        "position": [
+          1.12,
+          0.57,
+          0.375
+        ],
+        "color": [
+          0.16,
+          0.15,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "detail",
+      "object": {
+        "kind": "camera",
+        "position": [
+          1.15,
+          -1.35,
+          1.55
+        ],
+        "orientation_wxyz": [
+          0.8229543905415312,
+          0.5298565641295101,
+          0.11094044795234974,
+          0.1723087622421428
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 35.0,
+          "horizontal_aperture_mm": 36.0,
+          "focus_distance_m": 1.8,
+          "clipping_range_m": [
+            0.01,
+            100.0
+          ]
+        },
+        "camera_path": [
+          {
+            "time_s": 0.0,
+            "position": [
+              1.15,
+              -1.35,
+              1.55
+            ],
+            "target": [
+              0.55,
+              0.02,
+              0.87
+            ]
+          },
+          {
+            "time_s": 2.2,
+            "position": [
+              1.15,
+              -1.35,
+              1.55
+            ],
+            "target": [
+              0.55,
+              0.02,
+              0.87
+            ]
+          },
+          {
+            "time_s": 3.8,
+            "position": [
+              -0.2,
+              -1.55,
+              1.72
+            ],
+            "target": [
+              -0.7,
+              0.2,
+              1.05
+            ]
+          },
+          {
+            "time_s": 10.0,
+            "position": [
+              -0.2,
+              -1.55,
+              1.72
+            ],
+            "target": [
+              -0.7,
+              0.2,
+              1.05
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "op": "set_presentation",
+      "presentation": {
+        "profile": "technical_showcase_1080p",
+        "capture": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "fps": 30,
+          "anti_aliasing": "dlaa",
+          "renderer": "RealTimePathTracing",
+          "depth_of_field": false,
+          "motion_blur": false,
+          "exposure_mode": "manual",
+          "exposure_ev": 0
+        },
+        "budget": {
+          "max_cameras": 2,
+          "max_recording_bytes": 4294967296,
+          "min_free_bytes": 4294967296
+        },
+        "diagnostics": {
+          "png_seconds": 0.1,
+          "keyframe_interval_s": 2
+        }
+      }
+    },
+    {
+      "op": "set_observation",
+      "observation": {
+        "sample_interval_steps": 1,
+        "strict_start": true,
+        "record_contact_pairs": true
+      }
+    }
+  ],
+  "schema": "simscene.scene_recipe.v2"
+}

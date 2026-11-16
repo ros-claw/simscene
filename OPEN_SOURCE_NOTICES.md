@@ -3,7 +3,10 @@
 SimScene code is Apache-2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 Python dependency versions and the built wheel hash are recorded in each
 plugin's `server/` build receipts. Optional Isaac Sim, Node/GLB decoding and
-Sand3D runtimes are installed separately under their own terms.
+Sand3D runtimes are installed separately under their own terms. The optional
+[scene_synthesizer](https://github.com/NVlabs/scene_synthesizer) layout backend
+is also installed separately and is distributed by its authors under Apache-2.0;
+its Python and native dependencies retain their own terms.
 
 The repository distributes recipes, references, tests and selected rendered
 outputs. It does not bundle downloaded models, textures, vendor SDKs or complete

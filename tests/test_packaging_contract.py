@@ -10,7 +10,7 @@ from plugins.install import install
 
 class PackagingContractTests(unittest.TestCase):
     def test_version_mapping_has_one_project_source(self):
-        self.assertEqual((PYTHON_VERSION,PACKAGE_VERSION),('0.2.0.dev1','0.2.0-dev.1'))
+        self.assertEqual((PYTHON_VERSION,PACKAGE_VERSION),('0.2.0.dev2','0.2.0-dev.2'))
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary)
             for python,plugin in [('0.3.0.dev12','0.3.0-dev.12'),('0.3.0','0.3.0')]:

@@ -10,12 +10,49 @@ from ..models import AssetRecord, AssetRef
 from ..network import MetadataError, fetch_metadata
 
 
+USDCRAFT_PROJECTION_SUFFIX = ':usdcraft-structure-v2'
+
+
 class USDCraftProvider(HFManifestProvider):
     """Project the pinned native CSV; dependency completeness stays unknown."""
     def __init__(self,store,source,**kwargs):
         if source.repository!='nvidia/USDCraft-10K':raise ValueError('USDCraft license projection requires the audited repository')
         super().__init__(store,source,**kwargs)
         if self.entry.path!='manifest.csv' or self.entry.format!='csv':raise ValueError('USDCraft requires pinned manifest.csv')
+
+    @property
+    def snapshot(self):
+        value=super().snapshot
+        # Persist the projection version itself. Presence of fields cannot tell
+        # whether an older projector computed articulated contradictions safely.
+        return value if value.endswith(USDCRAFT_PROJECTION_SUFFIX) else 'index_not_refreshed'
+
+    def snapshot_identity(self, payload):
+        # The projection and its records are published in one SQLite transaction.
+        return super().snapshot_identity(payload)+USDCRAFT_PROJECTION_SUFFIX
+
+    def reproject(self, record):
+        # An older concurrently running server can still remember an old row
+        # after an atomic refresh. Recompute its derived facts on every new read.
+        row = record.provenance.get('original_metadata') if isinstance(record.provenance, dict) else None
+        result = self._record(row)
+        if result.ref != record.ref:
+            raise ValueError('USDCraft index row identity does not match its source metadata')
+        return result
+
+    def search(self, request):
+        page = super().search(request)
+        if page.snapshot == 'index_not_refreshed':
+            raise MetadataError('USDCraft metadata index changed during search')
+        return ProviderPage(tuple(self.reproject(record) for record in page.items), page.snapshot,
+                            bytes_read=page.bytes_read, warnings=page.warnings)
+
+    def resolve(self, ref):
+        if ref.source_id != self.source_id:
+            raise ValueError('wrong USDCraft manifest source')
+        ref.validate_selection(huggingface=True)
+        return self.reproject(self.store.get(ref, require_snapshot_prefix=self.entry.revision+':',
+                                             require_snapshot_suffix=USDCRAFT_PROJECTION_SUFFIX))
 
     def _record(self,row):
         required={'object_id','path','group','category','title','physics_type','part_count','joint_count','joint_types','has_textures','physx_sha256'}
@@ -25,19 +62,33 @@ class USDCraftProvider(HFManifestProvider):
         joints=int(row['joint_count']);parts=int(row['part_count'])
         if joints<0 or parts<1 or row['has_textures'] not in {'true','false'} or row['physics_type'] not in {'rigid','articulated','static','static_rigid'}:
             raise ValueError('invalid declared native physics metadata')
+        if not isinstance(row['joint_types'],str):raise ValueError('invalid declared native joint types')
+        joint_types=row['joint_types'].split('|') if row['joint_types'] else []
+        unique_types=set(joint_types)
+        coherent=(unique_types <= {'revolute','continuous','prismatic'} and len(unique_types)==len(joint_types)
+            and ((row['physics_type']=='articulated' and 0<len(joint_types)<=joints)
+                 or (row['physics_type']!='articulated' and joints==0 and not joint_types)))
+        def type_fact(value):
+            return {'value':value if coherent else None,'evidence':'declared' if coherent else 'unknown'}
         root=folder+'/physx/model.usdc'
         # The specific authored-USDCraft distribution declares Apache-2.0 in its
         # pinned card. Do not apply this rule to third-party SimReady packages.
         license=declared_license('Apache-2.0',basis='pinned_USDCraft_asset_distribution_card')
         return AssetRecord(ref=AssetRef(self.source_id,identity,self.entry.revision),title=row['title'],category=row['category'],
             tags=(row['group'],row['physics_type']),format='usd',entry_path=root,license=license,
-            physics={'joint_count':{'value':joints,'evidence':'declared'}},
-            capabilities={'articulated':{'value':row['physics_type']=='articulated','evidence':'declared'}},
+            physics={'part_count':{'value':parts,'evidence':'declared'},
+                     'joint_count':{'value':joints,'evidence':'declared'},
+                     'joint_types':{'value':joint_types,'evidence':'declared'}},
+            capabilities={'articulated':type_fact(row['physics_type']=='articulated'),
+                          'declared_rotational_joint':type_fact(bool(unique_types & {'revolute','continuous'})),
+                          'declared_translational_joint':type_fact('prismatic' in unique_types),
+                          'declared_single_joint':type_fact(joints==1)},
             availability={'status':'declared','granularity':'dependency_closure','estimated_download_bytes':None,'files_complete':False,
                 'acquisition':{'kind':'hf_usd_package','repository':self.source.repository,'revision':self.entry.revision,
                               'path':root,'package_path':folder,'files':[{'path':root,'size':None,'sha256':digest}],
                               'files_complete':False,'dependency_mode':'inspect_selected_usd_closure'}},
             provenance={'repository':self.source.repository,'metadata_revision':self.entry.revision,'original_metadata':row,
+                        'has_textures':{'value':row['has_textures']=='true','evidence':'declared'},
                         'unit_axis_evidence':'dataset_card_declared_meters_Z_up','license_scope':'USDCraft-generated native distribution; not a license rule for arbitrary owner packages'},
             evidence_level='declared')
 
