@@ -71,6 +71,11 @@ def test_static_contact_cannot_prove_contact_during_drawer_motion():
     assert pair.moving_contact_steps(frames,'/box','/drawer','/joint',[1,2]) == [2]
 
 
+def test_control_displacement_includes_early_motion_that_later_returns():
+    frames=[{'positions':{'/box':[0,y,0]}} for y in (0.,-.02,0.,0.)]
+    assert pair.max_axis_displacement(frames,'/box',[0.,-1.,0.]) == pytest.approx(.02)
+
+
 def test_hold_window_cannot_be_outside_its_driven_phase():
     def command(joint,step,target):
         return {'joint_id':joint,'trigger':{'type':'at_step','physics_step':step},'target_position':target,

@@ -169,11 +169,11 @@ def validate_vendor(vendor, python=sys.executable):
 
 
 def build(destination, use_installed_deps=False):
-    build_source=source_identity()
     requested=Path(destination).expanduser()
     if requested.is_symlink():raise FileExistsError(f'destination is a symlink: {requested}')
     destination=requested.resolve()
     if destination.exists():raise FileExistsError(f'destination already exists: {destination}')
+    build_source=source_identity()
     portable=destination/'portable'/'simscene';claude=destination/'claude'/'simscene';deepseek=destination/'deepseek'/'simscene'
     portable.mkdir(parents=True)
     try:

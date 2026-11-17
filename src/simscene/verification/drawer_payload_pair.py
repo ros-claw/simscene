@@ -84,6 +84,16 @@ def moving_contact_steps(frames, payload_body, drawer_body, joint_path, window):
     return found
 
 
+def max_axis_displacement(frames, body, axis):
+    """Measure maximum absolute displacement from the first observed frame."""
+    if not isinstance(frames,list) or not frames:
+        raise ValueError('a complete observed trajectory is required')
+    axis=_vector(axis,3,'world joint axis')
+    origin=_vector(frames[0]['positions'][body],3,'initial body position')
+    return max(abs(sum((x-y)*direction for x,y,direction in
+        zip(_vector(frame['positions'][body],3,'body position'),origin,axis))) for frame in frames)
+
+
 def _read(root, name):
     path = root / name
     if path.is_symlink() or not path.is_file():
@@ -360,13 +370,15 @@ def _metrics(result, case, positive):
                      payload_relative_drift=max(_distance(relative(f),base_rel) for f in lh)<=t['relative_drift_m'],
                      actual_payload_drawer_contact=bool(contacts))
     else:
-        check.update(lower_undriven_stationary=max(abs(coordinate(f)-qref) for f in frames[windows['reference_step']:])<=t['control_displacement_m'],
-                     payload_undriven_stationary=max(abs(payload_travel(f)) for f in frames[windows['reference_step']:])<=t['control_displacement_m'])
+        check.update(lower_undriven_stationary=max(abs(coordinate(f)-lower0) for f in frames)<=t['control_displacement_m'],
+                     payload_undriven_stationary=max_axis_displacement(frames,body,axis)<=t['control_displacement_m'])
     return {'checks':check,'lower_hold_minmax_m':[min(lower_hold),max(lower_hold)],
             'upper_hold_minmax_m':[min(upper_hold),max(upper_hold)],
             'payload_hold_displacement_minmax_m':[min(payload_hold),max(payload_hold)],
             'payload_relative_hold_drift_m':max(_distance(relative(f),base_rel) for f in lh),
             'final_table_drift_m':drift,'final_payload_tilt_deg':max(tilts),
+            'full_run_drawer_displacement_max_m':max(abs(coordinate(f)-lower0) for f in frames),
+            'full_run_payload_displacement_max_m':max_axis_displacement(frames,body,axis),
             'native_pose_max_error_m':max_q_error,'actual_contact_samples':len(contacts),
             'contact_geometry_incomplete':result.get('contact_geometry_incomplete')}
 
