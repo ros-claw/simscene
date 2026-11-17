@@ -116,7 +116,8 @@ else:raise AssertionError('missing optional decoder was reported available')
                                'experiments/apply_scene_recipe.py',
                                'experiments/freeze_recipe_case.py',
                                'experiments/check_motion_clearance.py',
-                               'experiments/assemble_integration_receipt.py'):
+                               'experiments/assemble_integration_receipt.py',
+                               'experiments/run_cabinet_mcp.py'):
                     self.assertEqual((plugin/sample).read_bytes(),(ROOT/sample).read_bytes(),sample)
                 for original in (ROOT/'skills').rglob('*.md'):
                     reference=plugin/'skills'/original.relative_to(ROOT/'skills')

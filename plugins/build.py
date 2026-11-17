@@ -97,7 +97,7 @@ EXAMPLE_DATA={
     'usdcraft_sdk_guide':('assets.lock.json','case.json','recipe-short.json','recipe-long.json','check_pair.py'),
 }
 EXAMPLE_HELPERS=('acquire_recipe_assets.py','apply_scene_recipe.py','freeze_recipe_case.py',
-                 'check_motion_clearance.py','assemble_integration_receipt.py')
+                 'check_motion_clearance.py','assemble_integration_receipt.py','run_cabinet_mcp.py')
 def write(path, value):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(value,indent=2)+'\n')
@@ -153,7 +153,8 @@ for name in ('catalog/data/sources.yaml','recipes/data/recipes.json','preparatio
              'worker/gpu_queue.py','generation/worker.py','generation/backend_worker.py',
              'generation/templates/guide_plate_v1.py','generation/templates/usdcraft_sdk_guide_plate_v1.py',
              'generation/usdcraft_backend_worker.py','preparation/articulation_v2.py',
-             'verification/articulated_asset_two_joint_pair.py','catalog/providers/artvip.py'):
+             'verification/articulated_asset_two_joint_pair.py','catalog/providers/artvip.py',
+             'recipes/cabinet_mcp_workflow.py'):
     assert root.joinpath(name).is_file(),name
 from simscene.catalog.registry import load_registry
 from simscene.recipes.registry import list_recipes

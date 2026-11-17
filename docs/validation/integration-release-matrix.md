@@ -16,6 +16,25 @@ worker, checker, and independent backend runtimes for each qualification.
 | MobilityGen | Standalone fixed-route Jetbot pair | Experimental and outside the general scene job/MCP workflow; native velocity consistency is not verified. |
 | DyCraft authoring | Separate development branch and its own recorded outcomes | Its earlier client qualifications remain incomplete; this integration line does not inherit them. |
 
+## Pinned integration examples
+
+The following results apply only to the pinned inputs, settings and recorded
+runs, not to every object from the named sources:
+
+| Example | Evidence and boundary |
+| --- | --- |
+| `automatic_cabinet_layout` | An installed MCP session queried and prepared a USDCraft cabinet, two ABO notebook instances and a GSO box, applied a clearance-aware layout and passed a real 600-step Isaac run and independent case check. The technical video was reviewed through decoded samples; uninterrupted playback was not reviewed. Repeat the case for a new package or scene. |
+| `integration_workspace` | The pinned USDCraft `ds_R022_02` two-drawer cabinet carried one independent GSO box in the lower drawer. The matched control removed only lower-drawer commands; the upper drawer still moved. Actual contact and relative poses were recorded. Drives were scheduled, and the observed contact data are not a general penetration certification. |
+| Motion keepouts | The supplied hinge and two-slider profiles cover their inspected native geometry and stated joint ranges. Unknown geometry is not assessed. Layout feasibility remains a geometric precheck, not a physics result. |
+| ArtVIP and SDK examples | The pinned door and guide-plate pair retain their previous limited checks. They do not qualify arbitrary ArtVIP objects or SDK-generated assets. |
+| Client use | A real first Codex QI1 attempt exhausted its token budget before starting physics. A new package, compact workflow and any subsequent qualification must be identified and reported separately. The package version alone does not demonstrate a successful client session. |
+| Showcase video | An independently captured, source-mapped candidate exists; its visual review is `change_needed`. Video acceptance and physical acceptance are separate. |
+
+The compact installed cabinet helper records real MCP requests and responses;
+it does not make a visual judgment. For a new job, retain the actual run,
+checker output, source mapping and attributed review. No cross-task token
+advantage has been established by this evidence.
+
 The recorded physical examples use Isaac Sim 6.2.0-rc.14 on the documented
 Linux host. Prepared assets, callbacks and frame records must be checked for
 each new run. Hashes support integrity comparisons; they are not signatures.

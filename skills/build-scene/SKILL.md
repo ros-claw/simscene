@@ -13,6 +13,13 @@ modules, compact first-handoff diagnosis and machine-side waiting, read
 they remove repeated geometry or log-reading work; unsupported cases remain
 explicit rather than inheriting a previous example's physical pass.
 
+For the exact installed `automatic_cabinet_layout` reproduction, the fixed
+example reference describes a compact MCP workflow that performs the real
+search, preparation, layout, simulation, verification and video export in one
+machine-side call. It saves full MCP responses and returns short artifact
+paths. Read and visually review the recorded action windows yourself; the
+workflow never writes an acceptance decision.
+
 Use `environment_probe` to establish the available backend. Configure a supplied
 Isaac launcher with `environment_configure` when needed. Start with
 `catalog_search`: it returns bounded metadata, critical gaps and detail links;
