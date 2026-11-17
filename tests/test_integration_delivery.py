@@ -25,22 +25,25 @@ def media_fixture(tmp_path):
     run = tmp_path / 'run-a'
     run.mkdir()
     lock = run / 'run-lock.json'
-    lock.write_text(json.dumps({'run_id': 'run-a'}))
+    lock.write_text(json.dumps({'run_id': 'run-a', 'requested_physics_steps': 600, 'physics_dt_s': 1/60}))
     evidence = run / 'evidence-lock.json'
     evidence.write_text('{}')
     source = run / 'camera_overview.mp4'
     source.write_bytes(b'source')
     frames = run / 'camera_overview.frames.jsonl'
-    frames.write_text('{}\n')
+    frames.write_text(''.join(json.dumps({'frame_id': i, 'physics_step': 2+2*i, 'sim_time_s': (2+2*i)/60})+'\n' for i in range(300)))
     (run / 'result.json').write_text(json.dumps({'videos': {'overview': {
-        'path': str(source), 'frame_manifest': str(frames)}}}))
+        'path': str(source), 'frame_manifest': str(frames), 'fps': 30, 'frames': 300}}}))
     video = tmp_path / 'edit.mp4'
     video.write_bytes(b'edited')
     manifest = {'schema': 'simscene.video_edit.v1', 'path': str(video), 'sha256': digest(video),
                 'segments': [{'run_id': 'run-a', 'run_directory': str(run), 'camera': 'overview',
                     'source': str(source), 'source_sha256': digest(source),
                     'source_frame_manifest_sha256': digest(frames),
-                    'run_lock_sha256': digest(lock), 'evidence_lock_sha256': digest(evidence)}]}
+                    'run_lock_sha256': digest(lock), 'evidence_lock_sha256': digest(evidence),
+                    'source_start_frame': 0, 'source_end_frame_exclusive': 300, 'source_fps': 30,
+                    'source_sim_start_s': 2/60, 'source_sim_end_s': 10+2/60,
+                    'speed': 1, 'output_start_s': 0., 'output_end_s': 10., 'output_frames': 300}]}
     return run, video, manifest
 
 
@@ -77,6 +80,12 @@ def test_media_mapping_requires_the_actual_run_camera_and_frame_manifest(tmp_pat
     wrong = json.loads(json.dumps(edit))
     wrong['segments'][0]['camera'] = 'another-camera'
     assert mod.check_edit_binding(wrong, video, run)
+    wrong = json.loads(json.dumps(edit))
+    wrong['segments'][0]['speed'] = 2
+    assert mod.check_edit_binding(wrong, video, run)
+    wrong = json.loads(json.dumps(edit))
+    wrong['segments'][0]['source_start_frame'] = 60
+    assert mod.check_edit_binding(wrong, video, run)
     (run / 'camera_overview.frames.jsonl').write_text('tampered\n')
     assert mod.check_edit_binding(edit, video, run)
 
@@ -93,6 +102,18 @@ def test_visual_review_is_bound_to_the_actual_video_and_remains_a_declaration(tm
     review['video_sha256'] = digest(video)
     review['reviewed_windows'] = []
     assert mod.check_visual_review(review, video, duration_s=1.)
+
+
+def test_visual_review_must_cover_open_close_and_final_result(tmp_path):
+    mod=implementation(); video=tmp_path/'film.mp4';video.write_bytes(b'candidate')
+    review={'decision':'accept','reviewer':'reviewer','video_sha256':digest(video),
+            'reviewed_windows':[{'start_s':9.9,'end_s':10.,'observation':'last still frame'}]}
+    required=[{'start_s':0.,'end_s':1.},{'start_s':4.,'end_s':5.},{'start_s':9.,'end_s':10.}]
+    assert mod.check_visual_review(review,video,10.,required_windows=required)
+    review['reviewed_windows']=[{'start_s':0.,'end_s':1.,'observation':'open'},
+                                {'start_s':4.,'end_s':5.,'observation':'close'},
+                                {'start_s':9.,'end_s':10.,'observation':'result'}]
+    assert mod.check_visual_review(review,video,10.,required_windows=required)==[]
 
 
 def test_missing_review_does_not_hide_an_available_physical_result(tmp_path, monkeypatch):

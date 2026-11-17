@@ -1,6 +1,7 @@
 """Package version must not substitute for its source revision and dirty state."""
 import subprocess
 import shutil
+from pathlib import Path
 
 import pytest
 
@@ -46,3 +47,38 @@ def test_clean_build_snapshot_must_equal_the_committed_source_tree(tmp_path):
     (snapshot / 'src/simscene/ignored.py').write_text('extra\n')
     with pytest.raises(RuntimeError, match='snapshot'):
         build.verify_source_snapshot(repo, snapshot, commit)
+
+
+def test_packaged_resources_are_from_the_frozen_commit_even_if_checkout_changes(tmp_path, monkeypatch):
+    original = build.ROOT
+    repo = tmp_path / 'repo'; repo.mkdir()
+    for name in ('pyproject.toml', 'README.md', 'LICENSE', 'NOTICE', 'OPEN_SOURCE_NOTICES.md'):
+        shutil.copyfile(original / name, repo / name)
+    for directory in ('src', 'skills'):
+        shutil.copytree(original / directory, repo / directory,
+                        ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '*.egg-info', '.simscene-plugin-root'))
+    for name in ('plugins/install.py', 'plugins/deepseek_patch.py',
+                 *(f'examples/{example}/{name}' for example, names in build.EXAMPLE_DATA.items() for name in names),
+                 *(f'experiments/{name}' for name in build.EXAMPLE_HELPERS)):
+        target = repo / name; target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(original / name, target)
+    subprocess.run(['git', 'init', '-q', str(repo)], check=True)
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), '-c', 'user.name=Test', '-c',
+                    'user.email=test@example.invalid', 'commit', '-qm', 'baseline'], check=True)
+    changed = ('skills/build-scene/SKILL.md', 'examples/integration_workspace/recipe.json',
+               'experiments/assemble_integration_receipt.py', 'plugins/install.py', 'NOTICE')
+    expected = {name: (repo / name).read_bytes() for name in changed}
+    run = subprocess.run
+    def change_during_wheel(command, *args, **kwargs):
+        if isinstance(command, list) and len(command) > 3 and command[1:4] == ['-m', 'pip', 'wheel']:
+            for name in changed:
+                with (repo / name).open('ab') as stream: stream.write(b'\nchanged during wheel build\n')
+        return run(command, *args, **kwargs)
+    monkeypatch.setattr(build, 'ROOT', repo)
+    monkeypatch.setattr(build.subprocess, 'run', change_during_wheel)
+    result = build.build(tmp_path / 'dist', use_installed_deps=True)
+    package = Path(result['portable'])
+    for name, content in expected.items():
+        relative = 'install.py' if name == 'plugins/install.py' else name
+        assert (package / relative).read_bytes() == content, name

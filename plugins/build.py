@@ -7,6 +7,7 @@ import sys
 import re
 import hashlib
 import tempfile
+import importlib.util
 from pathlib import Path
 from importlib import metadata
 
@@ -38,10 +39,10 @@ def source_identity(root=ROOT):
         return {'source_commit':None,'source_clean':None}
 
 
-def verify_source_snapshot(root, snapshot, commit):
-    """Reject ignored or changed files in a supposedly clean wheel snapshot."""
+def verify_source_snapshot(root, snapshot, commit, paths=None):
+    """Reject ignored or changed files in a supposedly clean build snapshot."""
     root, snapshot = Path(root), Path(snapshot)
-    paths = ('src', 'pyproject.toml', 'README.md', 'LICENSE')
+    paths = paths or ('src', 'pyproject.toml', 'README.md', 'LICENSE')
     try:
         result = subprocess.check_output(
             ['git', 'ls-tree', '-r', '-z', '--full-tree', commit, '--', *paths], cwd=root)
@@ -173,7 +174,7 @@ def build(destination, use_installed_deps=False):
     if requested.is_symlink():raise FileExistsError(f'destination is a symlink: {requested}')
     destination=requested.resolve()
     if destination.exists():raise FileExistsError(f'destination already exists: {destination}')
-    build_source=source_identity()
+    build_source=source_identity(ROOT)
     portable=destination/'portable'/'simscene';claude=destination/'claude'/'simscene';deepseek=destination/'deepseek'/'simscene'
     portable.mkdir(parents=True)
     try:
@@ -182,12 +183,20 @@ def build(destination, use_installed_deps=False):
         # setuptools resource contract instead of bypassing it with copytree.
         with tempfile.TemporaryDirectory(prefix='simscene-wheel-') as temporary:
             snapshot=Path(temporary)/'project';snapshot.mkdir()
-            for filename in ('pyproject.toml','README.md','LICENSE'):
+            for filename in ('pyproject.toml','README.md','LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
                 shutil.copyfile(ROOT/filename,snapshot/filename)
             shutil.copytree(ROOT/'src',snapshot/'src',ignore=shutil.ignore_patterns('__pycache__','*.pyc','*.egg-info'))
+            shutil.copytree(ROOT/'skills',snapshot/'skills',ignore=shutil.ignore_patterns('__pycache__','*.pyc','.simscene-plugin-root'))
+            extra_paths = ['plugins/install.py', 'plugins/deepseek_patch.py']
+            extra_paths += [f'examples/{example}/{name}' for example,names in EXAMPLE_DATA.items() for name in names]
+            extra_paths += [f'experiments/{name}' for name in EXAMPLE_HELPERS]
+            for name in extra_paths:
+                target=snapshot/name;target.parent.mkdir(parents=True,exist_ok=True)
+                shutil.copyfile(ROOT/name,target)
+            snapshot_paths = ('src','skills','pyproject.toml','README.md','LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md',*extra_paths)
             if build_source['source_clean'] is True:
-                verify_source_snapshot(ROOT,snapshot,build_source['source_commit'])
-            if source_identity()!=build_source:
+                verify_source_snapshot(ROOT,snapshot,build_source['source_commit'],snapshot_paths)
+            if source_identity(ROOT)!=build_source:
                 raise RuntimeError('source revision or clean state changed while creating the build snapshot')
             wheels=Path(temporary)/'wheels';wheels.mkdir()
             subprocess.run([sys.executable,'-m','pip','wheel','--disable-pip-version-check',
@@ -202,6 +211,19 @@ def build(destination, use_installed_deps=False):
             subprocess.run(command+[str(wheel)],check=True)
             destination.joinpath('wheels').mkdir()
             shutil.copyfile(wheel,destination/'wheels'/wheel.name)
+            # All shipped resources come from the same frozen snapshot as the
+            # wheel, even if the live checkout changes during dependency setup.
+            for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
+                shutil.copyfile(snapshot/notice,portable/notice)
+            shutil.copyfile(snapshot/'plugins'/'install.py',portable/'install.py')
+            shutil.copytree(snapshot/'skills',portable/'skills')
+            for example,names in EXAMPLE_DATA.items():
+                target=portable/'examples'/example;target.mkdir(parents=True)
+                for name in names:shutil.copyfile(snapshot/'examples'/example/name,target/name)
+            helper_root=portable/'experiments';helper_root.mkdir()
+            for name in EXAMPLE_HELPERS:shutil.copyfile(snapshot/'experiments'/name,helper_root/name)
+            patch_spec=importlib.util.spec_from_file_location('simscene_snapshot_deepseek_patch',snapshot/'plugins'/'deepseek_patch.py')
+            patch_module=importlib.util.module_from_spec(patch_spec);patch_spec.loader.exec_module(patch_module)
         versions_lock={item.metadata['Name']:item.version for item in metadata.distributions(path=[str(vendor)])}
         write(portable/'server'/'dependency-lock.json',versions_lock)
         write(portable/'server'/'build-info.json',{'python_version':PYTHON_VERSION,'plugin_version':PACKAGE_VERSION,
@@ -212,18 +234,6 @@ def build(destination, use_installed_deps=False):
         validate_vendor(vendor)
         (portable/'server'/'launch.py').write_text(LAUNCHER)
         (portable/'README.md').write_text(PACKAGE_README)
-        for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
-            shutil.copyfile(ROOT/notice,portable/notice)
-        shutil.copyfile(ROOT/'plugins'/'install.py',portable/'install.py')
-        shutil.copytree(ROOT/'skills',portable/'skills',ignore=shutil.ignore_patterns('__pycache__','*.pyc','.simscene-plugin-root'))
-        # Small, model-free reference recipes are read on demand by the skills.
-        # Copy only explicitly enumerated reference data and checker; never
-        # bundle source assets.
-        for example,names in EXAMPLE_DATA.items():
-            target=portable/'examples'/example;target.mkdir(parents=True)
-            for name in names:shutil.copyfile(ROOT/'examples'/example/name,target/name)
-        helper_root=portable/'experiments';helper_root.mkdir()
-        for name in EXAMPLE_HELPERS:shutil.copyfile(ROOT/'experiments'/name,helper_root/name)
         write(portable/'plugin.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json','name':'simscene','version':PACKAGE_VERSION,'description':'Discover assets, compose and run experimental simulation scenes.'})
         write(portable/'mcp.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json','mcpServers':{'simscene':{'type':'stdio','command':'python3','args':['${PLUGIN_ROOT}/server/launch.py'],'cwd':'${PLUGIN_ROOT}'}}})
         claude.mkdir(parents=True)
@@ -244,9 +254,7 @@ def build(destination, use_installed_deps=False):
         shutil.copyfile(portable/'README.md',deepseek/'README.md')
         for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
             shutil.copyfile(portable/notice,deepseek/notice)
-        try:from .deepseek_patch import write_patch
-        except ImportError:from deepseek_patch import write_patch
-        write_patch(deepseek,deepseek/'cordis.patch.yml',sys.executable)
+        patch_module.write_patch(deepseek,deepseek/'cordis.patch.yml',sys.executable)
         return {'portable':str(portable),'claude':str(claude),'deepseek':str(deepseek),'python':sys.version.split()[0],
                 'python_version':PYTHON_VERSION,'plugin_version':PACKAGE_VERSION,'wheel_sha256':wheel_sha256,
                 'status':'packages_built_not_registered_or_installed',

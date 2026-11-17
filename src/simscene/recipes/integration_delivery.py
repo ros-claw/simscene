@@ -36,6 +36,11 @@ def check_edit_binding(edit, video, run):
         segments = edit.get('segments') if isinstance(edit, dict) else None
         if not isinstance(segments, list) or not segments:
             return errors + ['edited video has no source segments']
+        if lock.get('requested_physics_steps') != 600 or not math.isclose(lock.get('physics_dt_s', 0), 1 / 60, abs_tol=1e-9):
+            errors.append('fixed example requires 600 physics steps at 60 Hz')
+        next_frame = 0
+        next_output = 0.0
+        frame_tables = {}
         for index, segment in enumerate(segments):
             if not isinstance(segment, dict):
                 errors.append(f'segment {index} is invalid'); continue
@@ -49,12 +54,48 @@ def check_edit_binding(edit, video, run):
                      and segment.get('evidence_lock_sha256') == _sha(run / 'evidence-lock.json'))
             if not valid:
                 errors.append(f'segment {index} does not match the run, camera or frame table')
+                continue
+            if segment['camera'] not in frame_tables:
+                if record.get('fps') != 30 or record.get('frames') != 300:
+                    errors.append(f'segment {index} does not use the native 30 fps recording')
+                    continue
+                frame_file = Path(record['frame_manifest'])
+                if frame_file.stat().st_size > 5_000_000:
+                    errors.append(f'segment {index} frame table is too large')
+                    continue
+                frames = [json.loads(line) for line in frame_file.read_text().splitlines()]
+                if (len(frames) != 300 or any(
+                        row.get('frame_id') != i or row.get('physics_step') != 2 + 2 * i
+                        or not math.isclose(row.get('sim_time_s', -1), (2 + 2 * i) / 60, abs_tol=1e-8)
+                        for i, row in enumerate(frames))):
+                    errors.append(f'segment {index} frame table does not cover the fixed run')
+                    continue
+                frame_tables[segment['camera']] = frames
+            start, end = segment.get('source_start_frame'), segment.get('source_end_frame_exclusive')
+            if (type(start) is not int or type(end) is not int or not 0 <= start < end <= 300
+                    or start != next_frame or segment.get('source_fps') != 30
+                    or segment.get('speed') != 1 or segment.get('output_frames') != end - start):
+                errors.append(f'segment {index} skips frames or changes their playback speed')
+                continue
+            expected = {'source_sim_start_s': (2 + 2 * start) / 60,
+                        'source_sim_end_s': (2 + 2 * end) / 60,
+                        'output_start_s': next_output,
+                        'output_end_s': next_output + (end - start) / 30}
+            if any(type(segment.get(key)) not in (int, float)
+                   or not math.isclose(segment[key], value, abs_tol=1e-6)
+                   for key, value in expected.items()):
+                errors.append(f'segment {index} has inconsistent source or output timing')
+                continue
+            next_frame = end
+            next_output = expected['output_end_s']
+        if next_frame != 300 or not math.isclose(next_output, 10., abs_tol=1e-6):
+            errors.append('technical video must cover the complete 10-second run in order')
     except (OSError, ValueError, TypeError, KeyError, AttributeError) as error:
         errors.append('cannot verify edited source binding: ' + str(error))
     return errors
 
 
-def check_visual_review(review, video, duration_s):
+def check_visual_review(review, video, duration_s, required_windows=None):
     """Validate an attributed review record; its content remains a declaration."""
     errors = []
     try:
@@ -68,6 +109,7 @@ def check_visual_review(review, video, duration_s):
         if (not isinstance(windows, list) or not windows or type(duration_s) not in (int, float)
                 or not math.isfinite(duration_s) or duration_s <= 0):
             return errors + ['reviewed action windows and finite video duration are required']
+        observed = []
         for window in windows:
             if not isinstance(window, dict):
                 errors.append('visual window is invalid'); continue
@@ -77,6 +119,15 @@ def check_visual_review(review, video, duration_s):
                     or not 0 <= start < end <= duration_s + 1e-6
                     or not isinstance(window.get('observation'), str) or not window['observation'].strip()):
                 errors.append('visual window is outside the video or lacks an observation')
+            else:
+                observed.append((start, end))
+        for required in required_windows or ():
+            cursor = required['start_s']
+            for start, end in sorted(observed):
+                if start <= cursor + 1e-6:
+                    cursor = max(cursor, end)
+            if cursor < required['end_s'] - 1e-6:
+                errors.append('visual review does not cover a required action or final-result window')
     except (OSError, ValueError, TypeError) as error:
         errors.append('cannot read visual-review evidence: ' + str(error))
     return errors
@@ -205,6 +256,14 @@ def collect_delivery(paths):
             inspected = inspect(video, representative_count=1)
             if not (inspected.get('simulation_timeline') or {}).get('passed'):
                 media_errors.append('edited video provenance or timeline did not pass')
+            metadata = inspected.get('metadata') or {}
+            streams = metadata.get('streams') or []
+            stream = streams[0] if streams else {}
+            if (inspected.get('decoded_frame_count') != 300
+                    or not math.isclose(inspected.get('duration_s', 0), 10., abs_tol=.02)
+                    or stream.get('width') != 1920 or stream.get('height') != 1080
+                    or stream.get('avg_frame_rate') not in ('30/1', '30')):
+                media_errors.append('technical video must decode as 10 seconds of native 1080p30')
             report['media_status'] = 'failed' if media_errors else 'passed'
             report['errors'].extend(media_errors)
         except Exception as error:
@@ -213,7 +272,15 @@ def collect_delivery(paths):
     if inspected and present('review', 'video'):
         try:
             review = json.loads(Path(paths['review']).read_text())
-            report['errors'].extend(check_visual_review(review, paths['video'], inspected.get('duration_s')))
+            # Frame zero corresponds to physics step two; the one-run edit has
+            # already been checked for contiguous original-speed coverage.
+            required_windows = [
+                {'start_s': 0., 'end_s': 1. - 2 / 60},
+                {'start_s': 4. - 2 / 60, 'end_s': 5. - 2 / 60},
+                {'start_s': 9. - 2 / 60, 'end_s': 10.},
+            ]
+            report['errors'].extend(check_visual_review(
+                review, paths['video'], inspected.get('duration_s'), required_windows))
             report['visual_review'] = review.get('decision', 'not_checked') if isinstance(review, dict) else 'not_checked'
             if report['visual_review'] != 'accept':report['errors'].append('visual review is not accepted')
         except (OSError, ValueError, TypeError) as error:
