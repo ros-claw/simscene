@@ -2,6 +2,8 @@
 import subprocess
 import shutil
 from pathlib import Path
+import hashlib
+import json
 
 import pytest
 
@@ -79,6 +81,11 @@ def test_packaged_resources_are_from_the_frozen_commit_even_if_checkout_changes(
     monkeypatch.setattr(build.subprocess, 'run', change_during_wheel)
     result = build.build(tmp_path / 'dist', use_installed_deps=True)
     package = Path(result['portable'])
+    manifest_path = package/'server/resource-manifest.json'
+    manifest = json.loads(manifest_path.read_text())
+    info = json.loads((package/'server/build-info.json').read_text())
+    assert info['resource_manifest_sha256'] == hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+    assert manifest['files']['skills/build-scene/SKILL.md'] == hashlib.sha256(expected['skills/build-scene/SKILL.md']).hexdigest()
     for name, content in expected.items():
         relative = 'install.py' if name == 'plugins/install.py' else name
         assert (package / relative).read_bytes() == content, name

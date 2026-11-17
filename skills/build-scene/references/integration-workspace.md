@@ -53,15 +53,19 @@ PYTHONPATH="$PLUGIN/server/vendor" python3 "$PLUGIN/experiments/run_cabinet_mcp.
 ```
 
 The optional `--mcp-launcher` selects a Python stdio launcher for the *same*
-installed package (for example, a client's budgeted MCP wrapper). The command
+installed package (for example, a client's budgeted MCP wrapper). A configured
+`SIMSCENE_MCP_LAUNCHER` takes precedence and cannot be silently replaced by a
+different command-line launcher. The command
 checks the reported installed module and wheel, calls the actual MCP search,
 prepare, layout, simulation, verification and video tools, and writes complete
 responses and job IDs under the output directory. Its compact result points to
 `delivery-paths.json`, the decoded frames, and the unreviewed technical film.
 Use the existing backend environment settings for Isaac, USD and layout.
 The command does not supply a visual review or create a final receipt. If it is
-interrupted after `physics-job.json` is saved, reconnect using that exact job ID
-and the existing `job_status`; do not start a duplicate run.
+interrupted after `physics-request.json` is saved, use the same command and add
+`--resume` with the original output directory and wheel. It reconnects to the
+saved job or reissues the exact persisted request ID and payload, then verifies
+the run before any export. It does not replace an existing partial video.
 
 For shell-capable clients, the installed package also contains the same small
 helpers as the source tree: `experiments/acquire_recipe_assets.py`,

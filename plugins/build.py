@@ -227,14 +227,23 @@ def build(destination, use_installed_deps=False):
             patch_module=importlib.util.module_from_spec(patch_spec);patch_spec.loader.exec_module(patch_module)
         versions_lock={item.metadata['Name']:item.version for item in metadata.distributions(path=[str(vendor)])}
         write(portable/'server'/'dependency-lock.json',versions_lock)
+        (portable/'server'/'launch.py').write_text(LAUNCHER)
+        (portable/'README.md').write_text(PACKAGE_README)
+        resource_files = [portable/name for name in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md',
+                                                       'README.md','server/launch.py')]
+        for name in ('skills','examples','experiments'):
+            resource_files.extend(path for path in (portable/name).rglob('*') if path.is_file())
+        resource_hashes = {str(path.relative_to(portable)):hashlib.sha256(path.read_bytes()).hexdigest()
+                           for path in sorted(resource_files)}
+        resource_manifest = portable/'server'/'resource-manifest.json'
+        write(resource_manifest,{'schema':'simscene.packaged_resources.v1','files':resource_hashes})
         write(portable/'server'/'build-info.json',{'python_version':PYTHON_VERSION,'plugin_version':PACKAGE_VERSION,
               'builder_python':sys.version.split()[0],'wheel_sha256':wheel_sha256,
+              'resource_manifest_sha256':hashlib.sha256(resource_manifest.read_bytes()).hexdigest(),
               **build_source,
               'dependency_mode':'installed' if use_installed_deps else 'pip',
               'optional_backends':'Isaac/USD, isolated GLB decoder, layout, Sand3D and USDCraft SDK runtimes are configured separately'})
         validate_vendor(vendor)
-        (portable/'server'/'launch.py').write_text(LAUNCHER)
-        (portable/'README.md').write_text(PACKAGE_README)
         write(portable/'plugin.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json','name':'simscene','version':PACKAGE_VERSION,'description':'Discover assets, compose and run experimental simulation scenes.'})
         write(portable/'mcp.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json','mcpServers':{'simscene':{'type':'stdio','command':'python3','args':['${PLUGIN_ROOT}/server/launch.py'],'cwd':'${PLUGIN_ROOT}'}}})
         claude.mkdir(parents=True)

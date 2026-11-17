@@ -3,22 +3,35 @@ import argparse
 import asyncio
 import json
 from pathlib import Path
+import traceback
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', required=True, help='new directory for full MCP records and artifacts')
     parser.add_argument('--wheel', required=True, help='wheel matching the installed package build-info')
-    parser.add_argument('--scene-id', default='compact_cabinet_reproduction')
+    parser.add_argument('--scene-id', help='optional new unique scene ID')
     parser.add_argument('--mcp-launcher', help='optional Python stdio launcher for this installed MCP server')
+    parser.add_argument('--resume', action='store_true', help='reconnect using the exact saved physics request')
     args = parser.parse_args()
     plugin = Path(__file__).resolve().parents[1]
-    from simscene.recipes.cabinet_mcp_workflow import WorkflowError, run_installed
+    from simscene.recipes.cabinet_mcp_workflow import new_scene_id, run_installed
     try:
-        result = asyncio.run(run_installed(plugin, args.wheel, args.output, args.scene_id, args.mcp_launcher))
-    except (WorkflowError, OSError, ValueError, KeyError, TypeError) as error:
+        scene_id = args.scene_id if args.resume else (args.scene_id or new_scene_id())
+        result = asyncio.run(run_installed(plugin, args.wheel, args.output, scene_id, args.mcp_launcher,
+                                           resume=args.resume))
+    except Exception as error:
+        directory = Path(args.output)
+        if directory.is_dir():
+            for index in range(10000):
+                log = directory/f'workflow-error-{index:04d}.log'
+                try:
+                    with log.open('x', encoding='utf8') as stream:stream.write(traceback.format_exc())
+                    break
+                except FileExistsError:
+                    continue
         print(json.dumps({'status': 'incomplete', 'error': str(error)[:500], 'directory': args.output,
-                          'recovery': 'If physics-job.json exists, reconnect to that exact job ID; do not start a duplicate.'},
+                          'recovery': 'If physics-request.json exists, rerun with --resume and the same output and wheel; the exact request ID is reused.'},
                          ensure_ascii=False))
         return 2
     print(json.dumps(result, ensure_ascii=False))
