@@ -208,8 +208,25 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
                 status='missing' if unresolved else 'resolved_locally'
             except ImportError:
                 unresolved=[];status='unverified_usd_tools_unavailable'
-            fingerprint=json.dumps({'source':source,'files':files,'dependency_scan_version':4},sort_keys=True,separators=(',',':')).encode()
+            identity={'source':source,'files':files,'dependency_scan_version':4}
+            fingerprint=json.dumps(identity,sort_keys=True,separators=(',',':')).encode()
             digest=hashlib.sha256(fingerprint).hexdigest();target=cache.directory/digest
+            if target.is_dir():
+                # The old content fingerprint did not include scan outcome.
+                # A retry can resolve the same bytes after USD tools become
+                # available, or change the missing-dependency assessment
+                # without downloading another file. Preserve the old lock and
+                # publish a distinct immutable scan identity in that case.
+                cache._verified_cached(target,digest,source)
+                old=json.loads((target/'simscene-lock.json').read_text())
+                old_missing=sorted(str(x).replace(str(target),'${PACKAGE_ROOT}')
+                                   for x in old.get('unresolved_dependencies',[]))
+                if (old.get('dependency_status')!=status or old_missing!=unresolved
+                        or old.get('udim_patterns',{})!=udim_patterns):
+                    identity.update(dependency_status=status,unresolved_dependencies=unresolved,
+                                    udim_patterns=udim_patterns)
+                    fingerprint=json.dumps(identity,sort_keys=True,separators=(',',':')).encode()
+                    digest=hashlib.sha256(fingerprint).hexdigest();target=cache.directory/digest
             unresolved=[x.replace('${PACKAGE_ROOT}',str(target)) for x in unresolved]
             metadata={'source':source,'repository':repo,'revision':revision,'package_sha256':digest,'root':str(target.joinpath(*root_path.parts)),
                       'files':files,'dependency_status':status,'unresolved_dependencies':unresolved,'repair_errors':errors,'license':'unknown',
@@ -219,6 +236,11 @@ def acquire(repo_id,revision,path,directory,max_bytes=2*1024**3):
             if size>package_limit:raise SearchError('Hugging Face package exceeds cache capacity or frozen package budget')
             if target.is_dir():
                 result=cache._verified_cached(target,digest,source)
+                persisted=json.loads((target/'simscene-lock.json').read_text())
+                if (persisted.get('dependency_status')!=status
+                        or sorted(persisted.get('unresolved_dependencies',[]))!=sorted(unresolved)
+                        or persisted.get('udim_patterns',{})!=udim_patterns):
+                    raise SearchError('cached USD scan identity differs from current result')
             else:
                 cache._evict(size);output.rename(target);result=_runtime_status(metadata)
             cache._write_index(index,digest)
