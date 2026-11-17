@@ -13,7 +13,7 @@ def test_fixed_examples_are_separate_from_compilable_role_recipes():
     assert listing['schema'] == 'simscene.fixed_examples.v1'
     examples = {entry['id']: entry for entry in listing['examples']}
     assert set(examples) == {'automatic_cabinet_layout', 'artvip_door',
-                             'usdcraft_two_drawer', 'usdcraft_sdk_guide'}
+                             'usdcraft_two_drawer', 'usdcraft_sdk_guide', 'integration_workspace'}
     assert examples['automatic_cabinet_layout']['asset_sources'] == ['usdcraft', 'abo-glb', 'gso-glb']
     assert examples['automatic_cabinet_layout']['runtime_evidence'] == 'prior_example_only'
     assert examples['automatic_cabinet_layout']['operations'] == ['recipe.json']

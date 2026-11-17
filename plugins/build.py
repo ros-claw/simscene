@@ -92,6 +92,7 @@ EXAMPLE_DATA={
     'automatic_cabinet_layout':('assets.lock.json','case.json','recipe.json','supplemental-checks.json','check.py'),
     'artvip_door':('assets.lock.json','case.json','recipe.json','supplement.json','check.py'),
     'usdcraft_two_drawer':('assets.lock.json','case.json','recipe.json','recipe-control.json'),
+    'integration_workspace':('README.md','assets.lock.json','case.json','recipe.json','recipe-control.json','check.py'),
     'usdcraft_sdk_guide':('assets.lock.json','case.json','recipe-short.json','recipe-long.json','check_pair.py'),
 }
 EXAMPLE_HELPERS=('acquire_recipe_assets.py','apply_scene_recipe.py','freeze_recipe_case.py',

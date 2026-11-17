@@ -1,6 +1,6 @@
 # Fixed integration examples
 
-Read `simscene://recipes/examples` or `simscene recipe list` to discover four
+Read `simscene://recipes/examples` or `simscene recipe list` to discover
 model-free examples. These are fixed scene inputs, separate from the role
 recipes accepted by `scene_compile_recipe`. The registry describes earlier
 evidence for selected configurations; it is not a pass for a new run.
@@ -22,6 +22,16 @@ Other examples cover one explicitly repaired `artvip_door`, the scheduled
 `usdcraft_two_drawer` with its missing-second-drive control, and the optional
 `usdcraft_sdk_guide` two-size comparison. Their locks and case files record
 the exact assumptions. They do not certify every object in those sources.
+
+`integration_workspace` is an experimental two-drawer and independent GSO
+payload pair with ABO props. The control removes all lower-drawer commands;
+the upper drive and everything else remain matched. Its case uses native joint
+readback, actual rigid-body poses, collision geometry, observed contact callbacks
+and a frozen support region. Prepare the three pinned roles, freeze a fresh
+case and run each recipe independently before invoking its `check.py`. A
+contact callback does not certify the absence of all penetration, and the
+scheduled joint drives are not passive triggers. New results require their own
+physical and visual review.
 
 The package root is the value in a copied project's
 `build-scene/.simscene-plugin-root`; otherwise use the root that contains

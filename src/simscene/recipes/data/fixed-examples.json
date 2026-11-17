@@ -49,6 +49,22 @@
       "scope": "One three-link/two-slider graph; no payload or passive contact triggering is claimed."
     },
     {
+      "id": "integration_workspace",
+      "description": "Experimental two-drawer workspace with an independent GSO payload, two ABO props and a no-lower-drive control.",
+      "asset_sources": ["usdcraft", "abo-glb", "gso-glb"],
+      "profiles": ["articulated_prop_v2", "rigid_prop_v1"],
+      "asset_lock": "assets.lock.json",
+      "operations": ["recipe.json", "recipe-control.json"],
+      "case": "case.json",
+      "checker": "check.py",
+      "motion_profile": "usdcraft_two_drawer_v1",
+      "steps": 600,
+      "seed": 42,
+      "runtime_evidence": "exploratory_only",
+      "requires_new_physical_verification": true,
+      "scope": "One pinned cabinet and payload; scheduled drives, experimental prop mass and observed contacts are not general source certification."
+    },
+    {
       "id": "usdcraft_sdk_guide",
       "description": "Two generated guide lengths prepared as static box proxies for a falling-ball comparison.",
       "asset_sources": ["local-usdcraft-sdk"],

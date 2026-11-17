@@ -1,0 +1,157 @@
+{
+  "schema": "simscene.drawer_payload_pair.v1",
+  "steps": 600,
+  "seed": 42,
+  "physics_device": "cpu",
+  "physics_dt_s": 0.016666666666666666,
+  "windows": {
+    "reference_step": 209,
+    "upper_hold": [
+      130,
+      149
+    ],
+    "lower_hold": [
+      270,
+      359
+    ],
+    "lower_motion": [
+      210,
+      359
+    ],
+    "final": [
+      540,
+      600
+    ]
+  },
+  "positive_commands": [
+    {
+      "joint_id": "joint0",
+      "trigger": {
+        "type": "at_step",
+        "physics_step": 0
+      },
+      "target_position": 0.0,
+      "position_unit": "m",
+      "stiffness": 2000.0,
+      "damping": 100.0,
+      "max_effort": 400.0
+    },
+    {
+      "joint_id": "joint1",
+      "trigger": {
+        "type": "at_step",
+        "physics_step": 0
+      },
+      "target_position": 0.0,
+      "position_unit": "m",
+      "stiffness": 2000.0,
+      "damping": 100.0,
+      "max_effort": 400.0
+    },
+    {
+      "joint_id": "joint1",
+      "trigger": {
+        "type": "at_step",
+        "physics_step": 60
+      },
+      "target_position": 0.35,
+      "position_unit": "m",
+      "stiffness": 2000.0,
+      "damping": 100.0,
+      "max_effort": 400.0
+    },
+    {
+      "joint_id": "joint1",
+      "trigger": {
+        "type": "at_step",
+        "physics_step": 150
+      },
+      "target_position": 0.0,
+      "position_unit": "m",
+      "stiffness": 2000.0,
+      "damping": 100.0,
+      "max_effort": 400.0
+    },
+    {
+      "joint_id": "joint0",
+      "trigger": {
+        "type": "at_step",
+        "physics_step": 210
+      },
+      "target_position": 0.25,
+      "position_unit": "m",
+      "stiffness": 2000.0,
+      "damping": 100.0,
+      "max_effort": 400.0
+    },
+    {
+      "joint_id": "joint0",
+      "trigger": {
+        "type": "at_step",
+        "physics_step": 360
+      },
+      "target_position": 0.0,
+      "position_unit": "m",
+      "stiffness": 2000.0,
+      "damping": 100.0,
+      "max_effort": 400.0
+    }
+  ],
+  "bindings": {
+    "cabinet": {
+      "manifest_sha256": "${cabinet.manifest_sha256}",
+      "source_ref": "${cabinet.source_ref}"
+    },
+    "box": {
+      "manifest_sha256": "${box.manifest_sha256}",
+      "source_ref": "${box.source_ref}"
+    },
+    "book_a": {
+      "manifest_sha256": "${book_a.manifest_sha256}",
+      "source_ref": "${book_a.source_ref}"
+    },
+    "book_b": {
+      "manifest_sha256": "${book_a.manifest_sha256}",
+      "source_ref": "${book_a.source_ref}"
+    }
+  },
+  "payload_collider_bounds_local": {
+    "min": [
+      -0.043444233058121486,
+      -0.01748791165556678,
+      2.8436708363571756e-06
+    ],
+    "max": [
+      0.04312334993721854,
+      0.017467988986744804,
+      0.1200028468527472
+    ]
+  },
+  "support_bounds_local": {
+    "min": [
+      -0.4069,
+      0.0161,
+      -0.155
+    ],
+    "max": [
+      0.4069,
+      0.4959,
+      0.15
+    ]
+  },
+  "allowed_bottom_z_local": [
+    -0.155,
+    -0.14
+  ],
+  "thresholds": {
+    "target_error_m": 0.01,
+    "control_displacement_m": 0.005,
+    "relative_drift_m": 0.02,
+    "final_joint_error_m": 0.01,
+    "table_drift_m": 0.002,
+    "tilt_deg": 10.0,
+    "joint_reconstruction_error_m": 0.001,
+    "min_drawer_travel_m": 0.2,
+    "min_payload_fraction": 0.8
+  }
+}
