@@ -47,7 +47,7 @@ EXAMPLE_DATA={
     'usdcraft_two_drawer':('assets.lock.json','case.json','recipe.json','recipe-control.json'),
     'usdcraft_sdk_guide':('assets.lock.json','case.json','recipe-short.json','recipe-long.json','check_pair.py'),
 }
-EXAMPLE_HELPERS=('acquire_recipe_assets.py','apply_scene_recipe.py','freeze_recipe_case.py')
+EXAMPLE_HELPERS=('acquire_recipe_assets.py','apply_scene_recipe.py','freeze_recipe_case.py','check_motion_clearance.py')
 def write(path, value):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(value,indent=2)+'\n')

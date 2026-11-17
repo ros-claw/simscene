@@ -1,0 +1,367 @@
+{
+  "schema": "simscene.known_motion_geometry.v1",
+  "profiles": {
+    "usdcraft_lift_cabinet_v1": {
+      "qualification_manifest": {
+        "source_ref": {
+          "asset_id": "ds_R021_02",
+          "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+          "source_id": "usdcraft",
+          "variant_id": null
+        },
+        "source_sha256": "72dbc3b8479048ff07b838a951c4dd58617eeddc8668a861415a5ca087f32be5",
+        "profile_id": "articulated_prop_v1",
+        "parameters": {
+          "collision_method": "preserve",
+          "scale_mode": "preserve",
+          "source_physics_policy": "preserve_valid"
+        },
+        "joint_map": {
+          "main": {
+            "relative_prim_path": "Native/Joints/flap_hinge",
+            "type": "revolute",
+            "axis": "X",
+            "limits": [
+              0.0,
+              1.3962634015954636
+            ],
+            "parent_body_id": "link0",
+            "child_body_id": "link1",
+            "local_pos0_m": [
+              0.0,
+              -0.17499999701976776,
+              0.39800000190734863
+            ],
+            "local_rot0_wxyz": [
+              6.123234262925839e-17,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        },
+        "body_map": {
+          "link1": {
+            "relative_prim_path": "Native/Links/flap_door",
+            "collider_relative_prim_paths": [
+              "Native/Links/flap_door/Collisions/flap_panel/Geom/flap_door_with_handle_recess_obj",
+              "Native/Links/flap_door/Collisions/handle_bar/GeomHull"
+            ]
+          },
+          "link0": {
+            "relative_prim_path": "Native/Links/cabinet_carcass",
+            "collider_relative_prim_paths": [
+              "Native/Links/cabinet_carcass/Collisions/left_side/Geom",
+              "Native/Links/cabinet_carcass/Collisions/right_side/Geom",
+              "Native/Links/cabinet_carcass/Collisions/top_panel/Geom",
+              "Native/Links/cabinet_carcass/Collisions/bottom_panel/Geom",
+              "Native/Links/cabinet_carcass/Collisions/back_panel/Geom",
+              "Native/Links/cabinet_carcass/Collisions/interior_shelf/Geom"
+            ]
+          }
+        }
+      },
+      "motions": [
+        {
+          "joint_id": "main",
+          "kind": "revolute",
+          "axis_owner": [
+            -1.0,
+            1.2246468525851679e-16,
+            0.0
+          ],
+          "pivot_owner_m": [
+            0.0,
+            -0.17499999701976776,
+            0.39800000190734874
+          ],
+          "limits": [
+            0.0,
+            1.3962634015954636
+          ],
+          "parent_transform_owner": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "initial_child_bounds_owner_m": {
+            "min": [
+              -0.4480100138282776,
+              -0.19300999922513962,
+              0.0019900021457672323
+            ],
+            "max": [
+              0.4480100138282776,
+              -0.17498999999999998,
+              0.39801000000000003
+            ]
+          }
+        }
+      ],
+      "basis": {
+        "source_scene_sha256": "b89511596ba182e2868ea21182502b5b62a580babd6d978e1a15b459e47f53fc",
+        "coordinate_frame": "unscaled owner-local metres, authored zero joint state",
+        "bounds": "USD initial child render and collider bounds including guide purpose, expanded by 10 micrometres",
+        "revolute_sweep": "full-turn cylindrical enclosure; covers all intermediate angles",
+        "prismatic_sweep": "entire native joint-limit interval along transformed native axis",
+        "not_proved": "future joint integrity, parent drift, collider penetration or dynamic stability"
+      }
+    },
+    "usdcraft_two_drawer_v1": {
+      "qualification_manifest": {
+        "source_ref": {
+          "asset_id": "ds_R022_02",
+          "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+          "source_id": "usdcraft",
+          "variant_id": null
+        },
+        "source_sha256": "e5070e0690c183629f0d24d2465d5ff0b53b88cd71b3682200650e05e009c7d0",
+        "profile_id": "articulated_prop_v2",
+        "parameters": {
+          "collision_method": "preserve",
+          "scale_mode": "preserve",
+          "source_physics_policy": "preserve_valid"
+        },
+        "joint_map": {
+          "joint0": {
+            "relative_prim_path": "Native/Joints/slide_lower",
+            "type": "prismatic",
+            "axis": "X",
+            "limits": [
+              0.0,
+              0.5
+            ],
+            "parent_body_id": "link0",
+            "child_body_id": "link1",
+            "local_pos0_m": [
+              0.0,
+              -0.23999999463558197,
+              0.2800000011920929
+            ],
+            "local_rot0_wxyz": [
+              0.7071067690849304,
+              0.0,
+              0.0,
+              -0.7071067690849304
+            ]
+          },
+          "joint1": {
+            "relative_prim_path": "Native/Joints/slide_upper",
+            "type": "prismatic",
+            "axis": "X",
+            "limits": [
+              0.0,
+              0.5
+            ],
+            "parent_body_id": "link0",
+            "child_body_id": "link2",
+            "local_pos0_m": [
+              0.0,
+              -0.23999999463558197,
+              0.6299999952316284
+            ],
+            "local_rot0_wxyz": [
+              0.7071067690849304,
+              0.0,
+              0.0,
+              -0.7071067690849304
+            ]
+          }
+        },
+        "body_map": {
+          "link1": {
+            "relative_prim_path": "Native/Links/lower_drawer",
+            "collider_relative_prim_paths": [
+              "Native/Links/lower_drawer/Collisions/box_back/Geom",
+              "Native/Links/lower_drawer/Collisions/box_bottom/Geom",
+              "Native/Links/lower_drawer/Collisions/box_left/Geom",
+              "Native/Links/lower_drawer/Collisions/box_right/Geom",
+              "Native/Links/lower_drawer/Collisions/drawer_front/Geom",
+              "Native/Links/lower_drawer/Collisions/handle_bar/GeomHull",
+              "Native/Links/lower_drawer/Collisions/handle_post_left/GeomHull",
+              "Native/Links/lower_drawer/Collisions/handle_post_right/GeomHull",
+              "Native/Links/lower_drawer/Collisions/inner_front_rail/Geom",
+              "Native/Links/lower_drawer/Collisions/runner_left/Geom",
+              "Native/Links/lower_drawer/Collisions/runner_right/Geom"
+            ]
+          },
+          "link0": {
+            "relative_prim_path": "Native/Links/carcass",
+            "collider_relative_prim_paths": [
+              "Native/Links/carcass/Collisions/back_panel/Geom",
+              "Native/Links/carcass/Collisions/bottom_panel/Geom",
+              "Native/Links/carcass/Collisions/divider_board/Geom",
+              "Native/Links/carcass/Collisions/left_side/Geom",
+              "Native/Links/carcass/Collisions/plinth_back/Geom",
+              "Native/Links/carcass/Collisions/plinth_front/Geom",
+              "Native/Links/carcass/Collisions/plinth_left/Geom",
+              "Native/Links/carcass/Collisions/plinth_right/Geom",
+              "Native/Links/carcass/Collisions/right_side/Geom",
+              "Native/Links/carcass/Collisions/stone_top/Geom",
+              "Native/Links/carcass/Collisions/top_panel/Geom"
+            ]
+          },
+          "link2": {
+            "relative_prim_path": "Native/Links/upper_drawer",
+            "collider_relative_prim_paths": [
+              "Native/Links/upper_drawer/Collisions/box_back/Geom",
+              "Native/Links/upper_drawer/Collisions/box_bottom/Geom",
+              "Native/Links/upper_drawer/Collisions/box_left/Geom",
+              "Native/Links/upper_drawer/Collisions/box_right/Geom",
+              "Native/Links/upper_drawer/Collisions/drawer_front/Geom",
+              "Native/Links/upper_drawer/Collisions/handle_bar/GeomHull",
+              "Native/Links/upper_drawer/Collisions/handle_post_left/GeomHull",
+              "Native/Links/upper_drawer/Collisions/handle_post_right/GeomHull",
+              "Native/Links/upper_drawer/Collisions/inner_front_rail/Geom",
+              "Native/Links/upper_drawer/Collisions/runner_left/Geom",
+              "Native/Links/upper_drawer/Collisions/runner_right/Geom"
+            ]
+          }
+        }
+      },
+      "motions": [
+        {
+          "joint_id": "joint0",
+          "kind": "prismatic",
+          "axis_owner": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "pivot_owner_m": [
+            0.0,
+            -0.23999999463558197,
+            0.2800000011920929
+          ],
+          "limits": [
+            0.0,
+            0.5
+          ],
+          "parent_transform_owner": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "initial_child_bounds_owner_m": {
+            "min": [
+              -0.4470099969005585,
+              -0.30001000037997966,
+              0.1049899928474426
+            ],
+            "max": [
+              0.4470099969005585,
+              0.27201001215934756,
+              0.46501000715255736
+            ]
+          }
+        },
+        {
+          "joint_id": "joint1",
+          "kind": "prismatic",
+          "axis_owner": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "pivot_owner_m": [
+            0.0,
+            -0.23999999463558197,
+            0.6299999952316284
+          ],
+          "limits": [
+            0.0,
+            0.5
+          ],
+          "parent_transform_owner": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "initial_child_bounds_owner_m": {
+            "min": [
+              -0.4470099969005585,
+              -0.30001000037997966,
+              0.46998999925494195
+            ],
+            "max": [
+              0.4470099969005585,
+              0.27201001215934756,
+              0.8350100071525574
+            ]
+          }
+        }
+      ],
+      "basis": {
+        "source_scene_sha256": "ce479751b8358e39fd37c5b24c6000e788189924d4db5b2efd09567027008eaa",
+        "coordinate_frame": "unscaled owner-local metres, authored zero joint state",
+        "bounds": "USD initial child render and collider bounds including guide purpose, expanded by 10 micrometres",
+        "revolute_sweep": "full-turn cylindrical enclosure; covers all intermediate angles",
+        "prismatic_sweep": "entire native joint-limit interval along transformed native axis",
+        "not_proved": "future joint integrity, parent drift, collider penetration or dynamic stability"
+      }
+    }
+  }
+}

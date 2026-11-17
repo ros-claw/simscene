@@ -16,7 +16,7 @@ import sys
 import threading
 import time
 
-from .placement import bounds, place_on, rotate, surface, vector
+from .placement import bounds, place_on, rotate, surface, validate_surfaces, vector
 from .scene import SceneError, validate
 
 
@@ -224,6 +224,19 @@ def plan_layout(scene, ids, support, *, support_surface=None, seed=0, clearance_
         if support in item_exclusions or name in support_exclusions:
             raise SceneError('layout support and dynamic object have collision exclusions: ' + name)
     region, orientation, position = surface(objects[support], support_surface)
+    try:
+        validate_surfaces({'selected': region})
+    except (ValueError, TypeError, KeyError) as error:
+        raise SceneError('invalid support surface: ' + str(error)) from error
+    if support_obj.get('kind') == 'box':
+        size = support_obj.get('size', [1, 1, 1])
+        if not vector(size) or any(value <= 0 for value in size):
+            raise SceneError('primitive support extent must be finite and positive')
+        if abs(region['z_m'] - size[2] / 2) > 1e-6:
+            raise SceneError('primitive support height must coincide with its box top')
+        if any(region['min_xy'][i] < -size[i] / 2 - 1e-6 or
+               region['max_xy'][i] > size[i] / 2 + 1e-6 for i in range(2)):
+            raise SceneError('primitive support extent exceeds its box top')
     if any(objects[name].get('rigid_attachment') for name in ids):
         raise SceneError('arrange physical parents rather than attached visuals')
     center = [(region['min_xy'][i] + region['max_xy'][i]) / 2 for i in range(2)]

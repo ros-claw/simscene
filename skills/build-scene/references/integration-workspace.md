@@ -34,12 +34,28 @@ cache proves a cold download. Check per-asset license and missing dependencies.
 
 For shell-capable clients, the installed package also contains the same small
 helpers as the source tree: `experiments/acquire_recipe_assets.py`,
-`experiments/apply_scene_recipe.py` and `experiments/freeze_recipe_case.py`.
+`experiments/apply_scene_recipe.py`, `experiments/freeze_recipe_case.py` and
+`experiments/check_motion_clearance.py`.
 Run them with the matching `server/vendor` first on `PYTHONPATH` and a host
 Python with the required USD bindings. The acquire helper invokes the ordinary
 durable jobs directly; a workflow specifically requiring MCP coverage must
 perform and record those corresponding MCP calls instead. The helpers do not
 turn preparation or scene construction into a physical acceptance.
+
+For the USDCraft hinge or two-drawer examples, the registry names a specific
+`motion_profile`. Save the current `scene_get` result and call the packaged
+`check_motion_clearance.py` with that scene, owner ID, profile and a new output
+path. The matching vendor directory must be first on `PYTHONPATH`. With no
+`--object` arguments the result is `not_checked` and provides conservative
+world `keepout_bounds`; pass those bounds to `scene_plan_layout` with 0.05 m
+clearance. For the unchanged fixed cabinet pose, the example's larger
+`supplemental-checks.json` `reserved_volume` also encloses that calculated
+envelope; verify containment before reusing it to reproduce the original seed
+and placement. After applying its operations, save the new scene and call the helper
+again with each external object as a repeated `--object` argument. Stop if the
+result is `conflict` or `error`; the owner is deliberately excluded. The result
+pins the scene content and revision, the prepared source and the measured
+profile. Changed joint or collider geometry is unsupported, not silently clear.
 
 After applying operations at the current scene revision, measure the resulting
 world bounds, preserve collisions and reserve the mechanism's working region.

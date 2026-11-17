@@ -83,3 +83,42 @@ placing partial results.
 Render bounds are not the collision geometry or a stability certificate.
 `physics_tested` remains false. Check actual USD bindings, collider clearance,
 joint travel, contacts, and settling in a fresh Isaac run using a frozen case.
+
+## Motion envelopes for two pinned examples
+
+The installed examples provide source-specific profiles
+`usdcraft_lift_cabinet_v1` and `usdcraft_two_drawer_v1`. Their recorded
+owner-local geometry comes from the selected source's zero-state child bounds,
+including its collision geometry. The hinge uses a conservative full-turn
+cylindrical enclosure, including intermediate positions; the drawers use the
+entire native slider limits along the transformed native axes. These envelopes
+can reject feasible placements and do not account for future parent drift or
+constraint failure. They are not automatically inferred for arbitrary joints.
+
+After acquiring and preparing the matching asset, save the current `scene_get`
+result to a new JSON file. For an installed portable package, use its matching
+vendored SimScene code and the host's USD Python bindings:
+
+```bash
+PYTHONPATH="$SIMSCENE_PLUGIN_ROOT/server/vendor" python3 \
+  "$SIMSCENE_PLUGIN_ROOT/experiments/check_motion_clearance.py" \
+  --scene /your/current-scene.json --owner cabinet \
+  --profile usdcraft_lift_cabinet_v1 --output /your/new-keepout.json
+```
+
+With no `--object` arguments the result is `not_checked`: its `keepout_bounds`
+are inputs to `scene_plan_layout`, not an acceptance verdict. Use
+`clearance_m: 0.05` in the planner. After applying at the returned revision,
+save a fresh `scene_get` result and repeat the command with `--object box`
+and one `--object` for each other external prop, writing a new output file.
+`clear` means only those render bounds cleared the qualified geometry;
+`conflict` names the object and joint. The owner is excluded from its own
+keepout. Unknown sources, changed native joint/collider metadata, unsafe owner
+overrides and missing geometry fail instead of being reported as clear. The
+result pins the scene content and revision, profile, and prepared manifest.
+
+The primitive-box support's declared region must be on and within its actual
+top; invalid support height or extent is rejected before sampling. A declared
+region on an imported support still requires inspection of its actual prepared
+colliders. Neither a clear keepout nor a valid support replaces a fresh physical
+run, observed contacts or stability checks.

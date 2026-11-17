@@ -104,7 +104,8 @@ else:raise AssertionError('missing optional decoder was reported available')
                                'examples/usdcraft_sdk_guide/check_pair.py',
                                'experiments/acquire_recipe_assets.py',
                                'experiments/apply_scene_recipe.py',
-                               'experiments/freeze_recipe_case.py'):
+                               'experiments/freeze_recipe_case.py',
+                               'experiments/check_motion_clearance.py'):
                     self.assertEqual((plugin/sample).read_bytes(),(ROOT/sample).read_bytes(),sample)
                 for original in (ROOT/'skills').rglob('*.md'):
                     reference=plugin/'skills'/original.relative_to(ROOT/'skills')
