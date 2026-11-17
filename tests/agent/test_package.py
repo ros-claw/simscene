@@ -65,6 +65,11 @@ else:raise AssertionError('missing optional decoder was reported available')
                     response=await session.read_resource('simscene://recipes/examples')
                     examples=json.loads(response.contents[0].text)['examples']
                     self.assertIn('automatic_cabinet_layout',{entry['id'] for entry in examples})
+                    response=await session.read_resource('simscene://runtime/identity')
+                    identity=json.loads(response.contents[0].text)
+                    self.assertEqual(Path(identity['module_path']).resolve(),(vendor/'simscene/__init__.py').resolve())
+                    self.assertEqual(Path(identity['worker_path']).resolve(),(vendor/'simscene/worker/isaac_run.py').resolve())
+                    self.assertEqual(identity['build_info']['python_version'],'0.2.0.dev2')
                     response=await session.call_tool('catalog_search',{'query':'Original package fixture','filters':{'source_ids':['abo-glb']},'limit':1})
                     self.assertFalse(response.isError,str(response))
                     page=json.loads(response.content[0].text);self.assertEqual(len(page['items']),1)
@@ -105,7 +110,8 @@ else:raise AssertionError('missing optional decoder was reported available')
                                'experiments/acquire_recipe_assets.py',
                                'experiments/apply_scene_recipe.py',
                                'experiments/freeze_recipe_case.py',
-                               'experiments/check_motion_clearance.py'):
+                               'experiments/check_motion_clearance.py',
+                               'experiments/assemble_integration_receipt.py'):
                     self.assertEqual((plugin/sample).read_bytes(),(ROOT/sample).read_bytes(),sample)
                 for original in (ROOT/'skills').rglob('*.md'):
                     reference=plugin/'skills'/original.relative_to(ROOT/'skills')

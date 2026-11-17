@@ -22,6 +22,53 @@ def versions(root=ROOT):
     return python,python.replace('.dev','-dev.')
 
 PYTHON_VERSION,PACKAGE_VERSION=versions()
+
+def source_identity(root=ROOT):
+    """Identify a checkout only when *root* is its actual Git top level."""
+    root=Path(root).resolve()
+    try:
+        top=subprocess.check_output(['git','rev-parse','--show-toplevel'],cwd=root,stderr=subprocess.DEVNULL,text=True).strip()
+        if Path(top).resolve()!=root:
+            return {'source_commit':None,'source_clean':None}
+        commit=subprocess.check_output(['git','rev-parse','--verify','HEAD'],cwd=root,stderr=subprocess.DEVNULL,text=True).strip()
+        if not re.fullmatch(r'[0-9a-f]{40,64}',commit):raise ValueError('invalid Git commit')
+        status=subprocess.check_output(['git','status','--porcelain=v1','--untracked-files=normal'],cwd=root,stderr=subprocess.DEVNULL,text=True)
+        return {'source_commit':commit,'source_clean':not bool(status.strip())}
+    except (OSError,subprocess.SubprocessError,ValueError):
+        return {'source_commit':None,'source_clean':None}
+
+
+def verify_source_snapshot(root, snapshot, commit):
+    """Reject ignored or changed files in a supposedly clean wheel snapshot."""
+    root, snapshot = Path(root), Path(snapshot)
+    paths = ('src', 'pyproject.toml', 'README.md', 'LICENSE')
+    try:
+        result = subprocess.check_output(
+            ['git', 'ls-tree', '-r', '-z', '--full-tree', commit, '--', *paths], cwd=root)
+        algorithm = subprocess.check_output(
+            ['git', 'rev-parse', '--show-object-format'], cwd=root, text=True).strip()
+        expected = {}
+        for entry in result.split(b'\0'):
+            if not entry:
+                continue
+            header, raw_name = entry.split(b'\t', 1)
+            mode, kind, digest = header.decode('ascii').split(' ')
+            if mode not in ('100644', '100755') or kind != 'blob':
+                raise RuntimeError('source snapshot contains an unsupported Git entry')
+            expected[raw_name.decode('utf-8')] = digest
+        actual = {str(path.relative_to(snapshot)) for name in paths
+                  for path in ([snapshot / name] if (snapshot / name).is_file()
+                               else (snapshot / name).rglob('*')) if path.is_file()}
+        if actual != set(expected):
+            raise RuntimeError('source snapshot inventory differs from the committed tree')
+        for name, digest in expected.items():
+            data = (snapshot / name).read_bytes()
+            content = b'blob ' + str(len(data)).encode('ascii') + b'\0' + data
+            if hashlib.new(algorithm, content).hexdigest() != digest:
+                raise RuntimeError(f'source snapshot content differs from the committed tree: {name}')
+    except (OSError, subprocess.SubprocessError, ValueError, UnicodeError) as error:
+        raise RuntimeError('unable to verify source snapshot against Git') from error
+
 LAUNCHER='''"""Start the packaged MCP server without importing the development checkout."""
 from pathlib import Path
 import sys
@@ -47,7 +94,8 @@ EXAMPLE_DATA={
     'usdcraft_two_drawer':('assets.lock.json','case.json','recipe.json','recipe-control.json'),
     'usdcraft_sdk_guide':('assets.lock.json','case.json','recipe-short.json','recipe-long.json','check_pair.py'),
 }
-EXAMPLE_HELPERS=('acquire_recipe_assets.py','apply_scene_recipe.py','freeze_recipe_case.py','check_motion_clearance.py')
+EXAMPLE_HELPERS=('acquire_recipe_assets.py','apply_scene_recipe.py','freeze_recipe_case.py',
+                 'check_motion_clearance.py','assemble_integration_receipt.py')
 def write(path, value):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(value,indent=2)+'\n')
@@ -120,6 +168,7 @@ def validate_vendor(vendor, python=sys.executable):
 
 
 def build(destination, use_installed_deps=False):
+    build_source=source_identity()
     requested=Path(destination).expanduser()
     if requested.is_symlink():raise FileExistsError(f'destination is a symlink: {requested}')
     destination=requested.resolve()
@@ -135,6 +184,10 @@ def build(destination, use_installed_deps=False):
             for filename in ('pyproject.toml','README.md','LICENSE'):
                 shutil.copyfile(ROOT/filename,snapshot/filename)
             shutil.copytree(ROOT/'src',snapshot/'src',ignore=shutil.ignore_patterns('__pycache__','*.pyc','*.egg-info'))
+            if build_source['source_clean'] is True:
+                verify_source_snapshot(ROOT,snapshot,build_source['source_commit'])
+            if source_identity()!=build_source:
+                raise RuntimeError('source revision or clean state changed while creating the build snapshot')
             wheels=Path(temporary)/'wheels';wheels.mkdir()
             subprocess.run([sys.executable,'-m','pip','wheel','--disable-pip-version-check',
                 '--no-deps','--no-build-isolation','--wheel-dir',str(wheels),str(snapshot)],check=True)
@@ -152,6 +205,7 @@ def build(destination, use_installed_deps=False):
         write(portable/'server'/'dependency-lock.json',versions_lock)
         write(portable/'server'/'build-info.json',{'python_version':PYTHON_VERSION,'plugin_version':PACKAGE_VERSION,
               'builder_python':sys.version.split()[0],'wheel_sha256':wheel_sha256,
+              **build_source,
               'dependency_mode':'installed' if use_installed_deps else 'pip',
               'optional_backends':'Isaac/USD, isolated GLB decoder, layout, Sand3D and USDCraft SDK runtimes are configured separately'})
         validate_vendor(vendor)

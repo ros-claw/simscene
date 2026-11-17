@@ -35,7 +35,11 @@ cache proves a cold download. Check per-asset license and missing dependencies.
 For shell-capable clients, the installed package also contains the same small
 helpers as the source tree: `experiments/acquire_recipe_assets.py`,
 `experiments/apply_scene_recipe.py`, `experiments/freeze_recipe_case.py` and
-`experiments/check_motion_clearance.py`.
+`experiments/check_motion_clearance.py`. For an MCP workflow use
+`apply_scene_recipe.py --operations-only --asset-catalog CATALOG.json
+--asset-lock LOCK.json --save-directory NEW_DIRECTORY RECIPE.json` to resolve
+the verified bindings without editing the scene. Submit the resulting
+`resolved-operations.json` with `scene_apply` and its current revision.
 Run them with the matching `server/vendor` first on `PYTHONPATH` and a host
 Python with the required USD bindings. The acquire helper invokes the ordinary
 durable jobs directly; a workflow specifically requiring MCP coverage must
@@ -64,3 +68,19 @@ the same durable job, inspect real frames and observations, then run the
 appropriate checker with the same installed package and USD environment.
 Archive the case, inputs, physical result, video mapping and an actual visual
 review. Scheduled commands are not evidence of contact-triggered motion.
+
+For the fixed cabinet example, read `simscene://runtime/identity` from the
+actual MCP session and save `{"runtime_identity": RESPONSE, "wheel_path":
+"/path/to/the/builds/wheel.whl"}`. Keep the complete response, not just the
+version. The portable installation's `server/build-info.json` records the
+source commit, clean state and wheel digest. Isaac, layout and generator
+runtimes have separate identities; the MCP interpreter is not the Isaac worker.
+
+After a real inspection, an attributed visual review may be saved separately
+with the video SHA256, `reviewer`, `decision` (`accept` or `change_needed`) and
+`reviewed_windows` (start/end seconds and actual observation). Run installed
+`experiments/assemble_integration_receipt.py --help` to combine the scene,
+frozen case, run, recipe, identity, video, edit mapping and this review. The
+helper reports missing, physical, media and visual states separately. It never
+authors the visual review, signs evidence or proves a deadline. The presence
+of a receipt is not itself a pass.

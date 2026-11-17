@@ -82,6 +82,26 @@ def fixed_examples_resource() -> str:
     from .recipes.registry import list_examples
     return json.dumps(list_examples(),ensure_ascii=False)
 
+@server.resource('simscene://runtime/identity')
+def runtime_identity_resource() -> str:
+    """Report this process's loaded package paths and local build identity."""
+    import hashlib
+    import json
+    import sys
+    from pathlib import Path
+    import simscene
+    module=Path(simscene.__file__).resolve()
+    server_file=Path(__file__).resolve()
+    worker=module.parent/'worker'/'isaac_run.py'
+    build_file=module.parent.parent.parent/'build-info.json'
+    info=json.loads(build_file.read_text()) if build_file.is_file() and build_file.stat().st_size<=65536 else None
+    digest=lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
+    return json.dumps({'schema':'simscene.runtime_identity.v1','python_executable':sys.executable,
+        'python_version':sys.version.split()[0],'module_path':str(module),'module_sha256':digest(module),
+        'mcp_server_path':str(server_file),'mcp_server_sha256':digest(server_file),
+        'worker_path':str(worker),'worker_sha256':digest(worker),'build_info':info,
+        'scope':'Current MCP process and local files; separate worker and optional backends need their own identity. Hashes are not signatures.'},ensure_ascii=False)
+
 @threaded_tool(annotations=_read_local)
 def environment_probe() -> dict:
     """Inspect configured runtime and GPU without starting Isaac Sim."""

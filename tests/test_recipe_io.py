@@ -67,6 +67,20 @@ class RecipeIOTests(unittest.TestCase):
         forged=copy.deepcopy(recipe);forged['operations'][0]['object']['asset_path']='old.usda'
         with self.assertRaises(ValueError):io.resolve_operations(forged,{'payload':self.binding},selections={'payload':self.selection})
 
+    def test_can_emit_resolved_operations_without_changing_a_scene(self):
+        recipe={'operations':[{'op':'add','id':'item','object':{'kind':'asset','dynamic':True,'asset_role':'payload'}}]}
+        for name,value in [('recipe',recipe),('catalog',{'payload':self.binding}),
+                           ('lock',{'assets':{'payload':self.selection}})]:
+            (self.root/(name+'.json')).write_text(json.dumps(value))
+        with patch('simscene.scene.SceneStore') as store:
+            self.assertEqual(applier.main([str(self.root/'recipe.json'),'--asset-catalog',str(self.root/'catalog.json'),
+                '--asset-lock',str(self.root/'lock.json'),'--save-directory',str(self.root/'out'),
+                '--operations-only']),0)
+            store.assert_not_called()
+        operations=json.loads((self.root/'out/resolved-operations.json').read_text())
+        self.assertEqual(operations[0]['object'],dict(kind='asset',dynamic=True,**self.binding))
+        self.assertFalse((self.root/'out/scene.json').exists())
+
     def test_source_profile_target_toolchain_and_complete_closure_are_mandatory(self):
         for key,value in [('source_sha256','f'*64),('profile_version',99),('target',{}),('toolchain',{}),('source_ref',dict(self.selection['source_ref'],asset_id='imposter'))]:
             bad=copy.deepcopy(self.selection);bad[key]=value

@@ -51,6 +51,14 @@ check resources and Pillow in a fresh interpreter, and retain the own-project
 wheel under `wheels/`. Each client tree has `server/dependency-lock.json` and
 `server/build-info.json` with versions, build mode, and wheel SHA256. These are
 platform/Python-specific bundles, not universal offline runtime distributions.
+The build record also identifies the full Git commit and whether the checkout
+was clean. A clean build verifies its wheel source snapshot against the Git
+tree; dirty or non-Git builds explicitly record that state. Query the running
+MCP resource `simscene://runtime/identity` for the loaded module, worker and
+build record, and compare the wheel digest with the actual wheel. Two builds
+with the same version string can contain different code. Isaac, layout and
+optional generator environments are distinct runtimes and need their own
+identity checks.
 
 A wheel can also be installed using ordinary pip:
 
