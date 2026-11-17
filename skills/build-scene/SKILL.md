@@ -5,7 +5,9 @@ description: Discover online simulation assets, compose editable scenes with mea
 
 Choose reproduction, modification or original construction first. Reproduce a
 locked recipe directly; test changed interfaces locally; build new mechanisms
-on a small bench before assembling the full scene. For editable parameter
+on a small bench before assembling the full scene. For the installed fixed
+cabinet, ArtVIP, two-drawer and SDK examples, read
+[fixed integration examples](references/integration-workspace.md). For editable parameter
 modules, compact first-handoff diagnosis and machine-side waiting, read
 [passive production](references/passive-production.md). Use its scripts when
 they remove repeated geometry or log-reading work; unsupported cases remain

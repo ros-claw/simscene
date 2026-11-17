@@ -1,0 +1,65 @@
+{
+  "schema": "simscene.fixed_examples.v1",
+  "examples": [
+    {
+      "id": "automatic_cabinet_layout",
+      "description": "Measured worktable layout with one scheduled USDCraft hinge, two ABO notebooks and one GSO box.",
+      "asset_sources": ["usdcraft", "abo-glb", "gso-glb"],
+      "profiles": ["articulated_prop_v1", "rigid_prop_v1"],
+      "asset_lock": "assets.lock.json",
+      "operations": ["recipe.json"],
+      "case": "case.json",
+      "checker": "check.py",
+      "steps": 600,
+      "seed": 42,
+      "runtime_evidence": "prior_example_only",
+      "requires_new_physical_verification": true,
+      "scope": "One fixed placement and scheduled drive; 0.12 kg prop masses and measured scaling are experimental."
+    },
+    {
+      "id": "artvip_door",
+      "description": "One ArtVIP door with explicitly repaired mass and bounded scheduled hinge drive.",
+      "asset_sources": ["artvip"],
+      "profiles": ["articulated_prop_v1"],
+      "asset_lock": "assets.lock.json",
+      "operations": ["recipe.json"],
+      "case": "case.json",
+      "checker": "check.py",
+      "steps": 600,
+      "seed": 42,
+      "runtime_evidence": "prior_example_only",
+      "requires_new_physical_verification": true,
+      "scope": "One door; experimental mass overrides source density and the original drive is neutralized."
+    },
+    {
+      "id": "usdcraft_two_drawer",
+      "description": "One USDCraft cabinet with two scheduled slider joints and a missing-second-drive control.",
+      "asset_sources": ["usdcraft"],
+      "profiles": ["articulated_prop_v2"],
+      "asset_lock": "assets.lock.json",
+      "operations": ["recipe.json", "recipe-control.json"],
+      "case": "case.json",
+      "checker": "builtin:simscene verify",
+      "steps": 600,
+      "seed": 42,
+      "runtime_evidence": "prior_example_only",
+      "requires_new_physical_verification": true,
+      "scope": "One three-link/two-slider graph; no payload or passive contact triggering is claimed."
+    },
+    {
+      "id": "usdcraft_sdk_guide",
+      "description": "Two generated guide lengths prepared as static box proxies for a falling-ball comparison.",
+      "asset_sources": ["local-usdcraft-sdk"],
+      "profiles": ["static_fixture_v1"],
+      "asset_lock": "assets.lock.json",
+      "operations": ["recipe-short.json", "recipe-long.json"],
+      "case": "case.json",
+      "checker": "check_pair.py",
+      "steps": 360,
+      "seed": 17,
+      "runtime_evidence": "prior_example_only",
+      "requires_new_physical_verification": true,
+      "scope": "Reviewed optional SDK runtime, fixed generator template and experimental static collision proxies."
+    }
+  ]
+}

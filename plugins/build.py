@@ -42,10 +42,12 @@ The optional layout, Sand3D and USDCraft SDK runtimes are configured separately;
 small pinned example recipes are included without model payloads.
 '''
 EXAMPLE_DATA={
-    'artvip_door':('assets.lock.json','case.json','recipe.json','supplement.json'),
+    'automatic_cabinet_layout':('assets.lock.json','case.json','recipe.json','supplemental-checks.json','check.py'),
+    'artvip_door':('assets.lock.json','case.json','recipe.json','supplement.json','check.py'),
     'usdcraft_two_drawer':('assets.lock.json','case.json','recipe.json','recipe-control.json'),
     'usdcraft_sdk_guide':('assets.lock.json','case.json','recipe-short.json','recipe-long.json','check_pair.py'),
 }
+EXAMPLE_HELPERS=('acquire_recipe_assets.py','apply_scene_recipe.py','freeze_recipe_case.py')
 def write(path, value):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(value,indent=2)+'\n')
@@ -165,12 +167,15 @@ def build(destination, use_installed_deps=False):
         for example,names in EXAMPLE_DATA.items():
             target=portable/'examples'/example;target.mkdir(parents=True)
             for name in names:shutil.copyfile(ROOT/'examples'/example/name,target/name)
+        helper_root=portable/'experiments';helper_root.mkdir()
+        for name in EXAMPLE_HELPERS:shutil.copyfile(ROOT/'experiments'/name,helper_root/name)
         write(portable/'plugin.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json','name':'simscene','version':PACKAGE_VERSION,'description':'Discover assets, compose and run experimental simulation scenes.'})
         write(portable/'mcp.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json','mcpServers':{'simscene':{'type':'stdio','command':'python3','args':['${PLUGIN_ROOT}/server/launch.py'],'cwd':'${PLUGIN_ROOT}'}}})
         claude.mkdir(parents=True)
         shutil.copytree(portable/'server',claude/'server')
         shutil.copytree(portable/'skills',claude/'skills')
         shutil.copytree(portable/'examples',claude/'examples')
+        shutil.copytree(portable/'experiments',claude/'experiments')
         shutil.copyfile(portable/'README.md',claude/'README.md')
         for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
             shutil.copyfile(portable/notice,claude/notice)
@@ -180,6 +185,7 @@ def build(destination, use_installed_deps=False):
         shutil.copytree(portable/'server',deepseek/'server')
         shutil.copytree(portable/'skills',deepseek/'skills')
         shutil.copytree(portable/'examples',deepseek/'examples')
+        shutil.copytree(portable/'experiments',deepseek/'experiments')
         shutil.copyfile(portable/'README.md',deepseek/'README.md')
         for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
             shutil.copyfile(portable/notice,deepseek/notice)

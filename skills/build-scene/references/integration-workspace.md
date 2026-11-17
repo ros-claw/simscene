@@ -1,0 +1,50 @@
+# Fixed integration examples
+
+Read `simscene://recipes/examples` or `simscene recipe list` to discover four
+model-free examples. These are fixed scene inputs, separate from the role
+recipes accepted by `scene_compile_recipe`. The registry describes earlier
+evidence for selected configurations; it is not a pass for a new run.
+
+Choose the closest path:
+
+* **Reproduce:** use `automatic_cabinet_layout` for the single-hinge USDCraft
+  cabinet, two ABO notebook instances and one GSO box. The lock pins source
+  revisions, preparation parameters and experimental 0.12 kg prop masses;
+  the case and supplemental checks fix the earlier 600-step/60 Hz predicates.
+* **Modify:** keep the selected source and role bindings, measure the actual
+  support and motion keepout, then freeze a new case and run the changed scene.
+  A changed asset, placement, drive or preparation cannot inherit an old pass.
+* **Explore:** make a small physical test first. A manifest's joint count,
+  generator output or geometrically feasible layout does not establish motion,
+  support, stability or a contact-triggered event.
+
+Other examples cover one explicitly repaired `artvip_door`, the scheduled
+`usdcraft_two_drawer` with its missing-second-drive control, and the optional
+`usdcraft_sdk_guide` two-size comparison. Their locks and case files record
+the exact assumptions. They do not certify every object in those sources.
+
+The package root is the value in a copied project's
+`build-scene/.simscene-plugin-root`; otherwise use the root that contains
+`server/`, `skills/` and `examples/`. Each `examples/<id>/` contains the
+listed lock, ordinary operations, case and checker. Source model payloads are
+not bundled. Search metadata with `catalog_search`, then use `asset_plan` and
+`asset_prepare` only for selected assets; retain the returned job IDs and
+prepared bindings. Record transfer categories rather than assuming a warm
+cache proves a cold download. Check per-asset license and missing dependencies.
+
+For shell-capable clients, the installed package also contains the same small
+helpers as the source tree: `experiments/acquire_recipe_assets.py`,
+`experiments/apply_scene_recipe.py` and `experiments/freeze_recipe_case.py`.
+Run them with the matching `server/vendor` first on `PYTHONPATH` and a host
+Python with the required USD bindings. The acquire helper invokes the ordinary
+durable jobs directly; a workflow specifically requiring MCP coverage must
+perform and record those corresponding MCP calls instead. The helpers do not
+turn preparation or scene construction into a physical acceptance.
+
+After applying operations at the current scene revision, measure the resulting
+world bounds, preserve collisions and reserve the mechanism's working region.
+Freeze the case against the new bindings before `simulation_start`, wait for
+the same durable job, inspect real frames and observations, then run the
+appropriate checker with the same installed package and USD environment.
+Archive the case, inputs, physical result, video mapping and an actual visual
+review. Scheduled commands are not evidence of contact-triggered motion.

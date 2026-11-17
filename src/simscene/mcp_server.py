@@ -75,6 +75,13 @@ def catalog_sources_resource() -> str:
     from .catalog.service import sources
     return json.dumps(sources(),ensure_ascii=False)
 
+@server.resource('simscene://recipes/examples')
+def fixed_examples_resource() -> str:
+    """List pinned example inputs and prior-evidence scope without starting physics."""
+    import json
+    from .recipes.registry import list_examples
+    return json.dumps(list_examples(),ensure_ascii=False)
+
 @threaded_tool(annotations=_read_local)
 def environment_probe() -> dict:
     """Inspect configured runtime and GPU without starting Isaac Sim."""
