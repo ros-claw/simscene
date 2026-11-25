@@ -119,6 +119,29 @@ class CatalogAuditTest(unittest.TestCase):
         self.assertIn('unknown; per-asset review required', text)
         self.assertIn('not registered sources or prepared assets', text)
 
+    def test_readme_source_table_matches_registry_without_changing_other_content(self):
+        from simscene.catalog.audit import update_readme_sources
+
+        root = Path(__file__).resolve().parents[1]
+        readme = (root / 'README.md').read_text()
+        registry = load_registry()
+        self.assertEqual(update_readme_sources(readme, registry), readme)
+
+        updated_registry = Registry(tuple(
+            replace(source, default_enabled=False) if source.source_id == 'abo-glb' else source
+            for source in registry.sources
+        ))
+        changed = update_readme_sources(readme, updated_registry)
+        before, right = readme.split('<!-- asset-sources:start -->')
+        after = right.split('<!-- asset-sources:end -->')[1]
+        self.assertTrue(changed.startswith(before))
+        self.assertTrue(changed.endswith(after))
+        self.assertIn('[abo-glb](https://huggingface.co/datasets/codepawl/abo-glb) | enabled | no |', changed)
+        self.assertIn('[artvip](https://huggingface.co/datasets/X-Humanoid/ArtVIP) | audited | no |', changed)
+        for invalid in ('', readme + readme, '<!-- asset-sources:end --><!-- asset-sources:start -->'):
+            with self.subTest(invalid=invalid[:40]), self.assertRaises(ValueError):
+                update_readme_sources(invalid, registry)
+
     def test_candidate_version_and_unknown_contract_values_fail_explicitly(self):
         for changes in ({'schema_version': True}, {'default_enabled': True}, {'state': 'enabled'},
                         {'formats': 'glb'}, {'license': {'status': 'runtime_verified', 'declarations': []}}):

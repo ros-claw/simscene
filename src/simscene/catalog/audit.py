@@ -124,6 +124,33 @@ def _text(value):
     return str(value).replace('|', '\\|').replace('\n', ' ').replace('\r', ' ').replace('<', '&lt;').replace('>', '&gt;')
 
 
+def _source_summary(source):
+    formats = {
+        'nvidia': 'USD', 'abo': 'GLB', 'hf_manifest': 'GLB', 'usdcraft': 'USD',
+        'artvip': 'USD', 'simready_package': 'USD', 'http_assets': 'HDRI / material maps (selected IDs)',
+        'simready_central': 'USD locators (metadata only)',
+    }.get(source.adapter, 'unknown')
+    link = f'[{_text(source.source_id)}]({source.homepage})'
+    return (link, source.state, 'yes' if source.default_enabled else 'no', formats)
+
+
+def _table_row(columns):
+    return '| ' + ' | '.join(_text(value) for value in columns) + ' |'
+
+
+def update_readme_sources(readme, registry=None):
+    """Replace the single marked source table using the packaged registry."""
+    start = '<!-- asset-sources:start -->'
+    end = '<!-- asset-sources:end -->'
+    if readme.count(start) != 1 or readme.count(end) != 1 or readme.index(start) > readme.index(end):
+        raise ValueError('README must contain one ordered pair of asset source markers')
+    if registry is None:
+        registry = load_registry()
+    lines = ['| Source ID | State | Default | Formats |', '| --- | --- | --- | --- |']
+    lines.extend(_table_row(_source_summary(source)) for source in registry.sources)
+    return readme[:readme.index(start)] + '\n'.join([start, '', *lines, '', '']) + readme[readme.index(end):]
+
+
 def build_source_list(registry=None, audit_snapshot=None):
     """Render SOURCES.md solely from registry and an explicit optional audit view."""
     registry = registry or load_registry()
@@ -134,17 +161,12 @@ def build_source_list(registry=None, audit_snapshot=None):
              '|---|---|---|---|---|---|---|---|']
     for source in registry.sources:
         examples = [item for item in source.evidence if isinstance(item, dict) and item.get('evidence_basis') == 'locally_executed' and item.get('runtime_validation') == 'pass']
-        formats = {'nvidia': 'USD', 'abo': 'GLB', 'hf_manifest': 'GLB', 'usdcraft': 'USD', 'artvip': 'USD',
-                   'simready_package':'USD', 'http_assets':'HDRI / material maps (selected IDs)',
-                   'simready_central':'USD locators (metadata only)'}.get(source.adapter, 'unknown')
         license_info = source.license_policy
         license_label = license_info.get('license') or license_info.get('status', 'unknown')
         license_label += '; per-asset review required' if license_info.get('per_asset_required') else ''
-        columns = [f'[{_text(source.source_id)}]({source.homepage})', source.state,
-                   'yes' if source.default_enabled else 'no', formats,
-                   source.acquisition_granularity or 'unknown', license_label,
-                   source.checked_at or 'unknown', str(len(examples))]
-        lines.append('| ' + ' | '.join(_text(value) for value in columns) + ' |')
+        columns = (*_source_summary(source), source.acquisition_granularity or 'unknown',
+                   license_label, source.checked_at or 'unknown', str(len(examples)))
+        lines.append(_table_row(columns))
     lines += ['', '## Lifecycle inventory', '']
     for state in ('enabled', 'audited', 'candidate', 'quarantined', 'reference_only'):
         identifiers = ', '.join(source.source_id for source in registry.sources if source.state == state) or '(none)'

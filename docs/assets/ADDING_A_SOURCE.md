@@ -9,7 +9,7 @@ Use the curated YAML registry as the single production source inventory. Dynamic
 5. Implement and test the adapter boundary. Search may read bounded metadata; model, texture, archive and preview payloads require their own authorized acquisition paths. Do not use whole-repository downloads to complete a selected object. If a model is hidden in an archive, report the archive's real cost and leave range/member access unverified until measured.
 6. Obtain a selected sample through a frozen acquisition plan, retain licensing and a complete hashed dependency closure, prepare its declared role, and test restoration after cache eviction. Confirm codec support in the actual converter environment. A static schema check is not a runtime test.
 7. Record an actual acceptance example with its exact asset revision, preparation parameters, engine/toolchain, case, input/evidence locks and result. Include a meaningful negative control. Source admission requires implemented code and a finite integration example; it never certifies every object, variant or physics task in the source.
-8. Edit the packaged registry explicitly, keep evidence scoped, and regenerate `SOURCES.md`. Do not copy the research inventory or discovery results into the enabled set wholesale.
+8. Edit the packaged registry explicitly, keep evidence scoped, and regenerate the README source table and `SOURCES.md`. Do not copy the research inventory or discovery results into the enabled set wholesale.
 
 The Python maintenance interfaces are:
 
@@ -23,10 +23,21 @@ for candidate in page.candidates:
     # Inspect audit.to_dict(); no registry change occurs.
 ```
 
-Regenerate the public list from the registry, then run its drift test:
+From the checkout root, regenerate both documents using the packaged registry.
+The drift tests run without network access or model downloads.
 
 ```bash
-python -c "from simscene.catalog.audit import build_source_list; print(build_source_list(), end='')" > docs/assets/SOURCES.md
+python - <<'PYTHON'
+from pathlib import Path
+from simscene.catalog.audit import build_source_list, update_readme_sources
+from simscene.catalog.registry import load_registry
+
+registry = load_registry()
+readme = Path("README.md")
+updated = update_readme_sources(readme.read_text(encoding="utf8"), registry)
+readme.write_text(updated, encoding="utf8")
+Path("docs/assets/SOURCES.md").write_text(build_source_list(registry), encoding="utf8")
+PYTHON
 python -m unittest discover -s tests -p 'test_catalog_audit.py'
 ```
 

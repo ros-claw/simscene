@@ -1,4 +1,4 @@
-"""Build separate portable and Claude plugin trees with isolated Python code."""
+"""Build portable, Claude and DeepSeek plugin trees with isolated Python code."""
 import argparse
 import json
 import shutil
@@ -7,7 +7,6 @@ import sys
 import re
 import hashlib
 import tempfile
-import importlib.util
 from pathlib import Path
 from importlib import metadata
 
@@ -88,6 +87,11 @@ use the `build-scene` skill to create and observe a scene. Asset licensing and
 dependency completeness must be checked for each selected model.
 The optional layout, Sand3D and USDCraft SDK runtimes are configured separately;
 small pinned example recipes are included without model payloads.
+
+The DeepSeek layout includes `deepseek_patch.py`. From that package's final
+directory, run `python3 deepseek_patch.py` and then
+`dsh web --patch "$(pwd)/cordis.patch.yml"`. Use `--output` with an unused
+path to regenerate the overlay after moving the package again.
 '''
 EXAMPLE_DATA={
     'first_delivery':('README.md', 'assets.lock.json', 'case.json', 'recipe.json'),
@@ -224,8 +228,8 @@ def build(destination, use_installed_deps=False):
                 for name in names:shutil.copyfile(snapshot/'examples'/example/name,target/name)
             helper_root=portable/'experiments';helper_root.mkdir()
             for name in EXAMPLE_HELPERS:shutil.copyfile(snapshot/'experiments'/name,helper_root/name)
-            patch_spec=importlib.util.spec_from_file_location('simscene_snapshot_deepseek_patch',snapshot/'plugins'/'deepseek_patch.py')
-            patch_module=importlib.util.module_from_spec(patch_spec);patch_spec.loader.exec_module(patch_module)
+            deepseek.mkdir(parents=True)
+            shutil.copyfile(snapshot/'plugins'/'deepseek_patch.py',deepseek/'deepseek_patch.py')
         versions_lock={item.metadata['Name']:item.version for item in metadata.distributions(path=[str(vendor)])}
         write(portable/'server'/'dependency-lock.json',versions_lock)
         (portable/'server'/'launch.py').write_text(LAUNCHER)
@@ -257,7 +261,6 @@ def build(destination, use_installed_deps=False):
             shutil.copyfile(portable/notice,claude/notice)
         write(claude/'.claude-plugin'/'plugin.json',{'name':'simscene','version':PACKAGE_VERSION,'description':'Discover assets, compose and run experimental simulation scenes.'})
         write(claude/'.mcp.json',{'mcpServers':{'simscene':{'command':'python3','args':['${CLAUDE_PLUGIN_ROOT}/server/launch.py']}}})
-        deepseek.mkdir(parents=True)
         shutil.copytree(portable/'server',deepseek/'server')
         shutil.copytree(portable/'skills',deepseek/'skills')
         shutil.copytree(portable/'examples',deepseek/'examples')
@@ -265,7 +268,6 @@ def build(destination, use_installed_deps=False):
         shutil.copyfile(portable/'README.md',deepseek/'README.md')
         for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
             shutil.copyfile(portable/notice,deepseek/notice)
-        patch_module.write_patch(deepseek,deepseek/'cordis.patch.yml',sys.executable)
         return {'portable':str(portable),'claude':str(claude),'deepseek':str(deepseek),'python':sys.version.split()[0],
                 'python_version':PYTHON_VERSION,'plugin_version':PACKAGE_VERSION,'wheel_sha256':wheel_sha256,
                 'status':'packages_built_not_registered_or_installed',

@@ -16,6 +16,16 @@ class PackageIntegration(unittest.TestCase):
                         result=await session.call_tool(name,args)
                         self.assertFalse(result.isError,f'{name}: {result}')
                     self.assertTrue((root/'scene.usda').is_file())
+        async def check_overlay(config, env):
+            server = StdioServerParameters(command=config['command'], args=config['args'],
+                                           cwd=config['cwd'], env=env)
+            async with stdio_client(server) as (reader, writer):
+                async with ClientSession(reader, writer) as session:
+                    await session.initialize()
+                    names = {tool.name for tool in (await session.list_tools()).tools}
+                    self.assertIn('catalog_search', names)
+                    self.assertIn('video_export_start', names)
+
         async def check_independent_metadata(root,plugin):
             # A new venv has neither checkout imports nor host site-packages.
             interpreter=root/'isolated-python'
@@ -146,10 +156,42 @@ else:raise AssertionError('missing optional decoder was reported available')
                     config=json.loads((plugin/'mcp.json').read_text());self.assertEqual(config['mcpServers']['simscene']['type'],'stdio')
                 elif kind=='claude':self.assertTrue((plugin/'.claude-plugin/plugin.json').is_file())
                 else:
-                    patch=yaml.safe_load((plugin/'cordis.patch.yml').read_text());row=patch[0]['insert'][0]
-                    self.assertEqual(row['name'],'@deepseek-ai/dsh-mcp-client')
-                    self.assertEqual(row['config']['args'],[str(plugin/'server'/'launch.py')])
-                    self.assertEqual(row['config']['cwd'],str(plugin))
+                    self.assertFalse((plugin/'cordis.patch.yml').exists())
+                    moved = stage/'moved plugin'
+                    if supplied:
+                        shutil.copytree(plugin, moved)
+                    else:
+                        plugin.rename(moved)
+                    plugin = moved
+                    generator = plugin/'deepseek_patch.py'
+                    self.assertEqual(generator.read_bytes(), (ROOT/'plugins/deepseek_patch.py').read_bytes())
+                    interpreter = stage/'local python'
+                    subprocess.run([sys.executable, '-m', 'venv', '--without-pip', str(interpreter)], check=True)
+                    python = interpreter/'bin/python'
+                    env = dict(os.environ, PYTHONPATH='', PYTHONNOUSERSITE='1', SIMSCENE_HOME=str(stage/'state'))
+                    command = [str(python), '-I', str(generator)]
+                    completed = subprocess.run(command, cwd=stage, env=env, capture_output=True, text=True, check=True)
+                    overlay = plugin/'cordis.patch.yml'
+                    self.assertEqual(json.loads(completed.stdout)['status'], 'generated_not_installed')
+                    row = yaml.safe_load(overlay.read_text())[0]['insert'][0]
+                    self.assertEqual(row['name'], '@deepseek-ai/dsh-mcp-client')
+                    config = row['config']
+                    self.assertEqual(config['transport'], 'stdio')
+                    self.assertEqual(config['command'], str(python))
+                    self.assertEqual(config['args'], [str(plugin/'server/launch.py')])
+                    self.assertEqual(config['cwd'], str(plugin))
+                    asyncio.run(check_overlay(config, env))
+                    original = overlay.read_bytes()
+                    duplicate = subprocess.run(command, cwd=stage, env=env, capture_output=True, text=True)
+                    self.assertNotEqual(duplicate.returncode, 0)
+                    self.assertEqual(overlay.read_bytes(), original)
+
+                    new_overlay = stage/'regenerated overlay.yml'
+                    explicit = command + ['--plugin-root', str(plugin), '--output', str(new_overlay),
+                                          '--python', './python']
+                    subprocess.run(explicit, cwd=python.parent, env=env, capture_output=True, text=True, check=True)
+                    regenerated = yaml.safe_load(new_overlay.read_text())[0]['insert'][0]['config']
+                    self.assertEqual(regenerated, config)
                 asyncio.run(check(stage,plugin))
                 if kind=='portable':asyncio.run(check_independent_metadata(stage,plugin))
             if shutil.which('codex'):
