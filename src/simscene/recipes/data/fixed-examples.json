@@ -2,6 +2,21 @@
   "schema": "simscene.fixed_examples.v1",
   "examples": [
     {
+      "id": "first_delivery",
+      "description": "One GSO scanned box drops onto an editable primitive worktop and produces a short native video.",
+      "asset_sources": ["gso-glb"],
+      "profiles": ["rigid_prop_v1"],
+      "asset_lock": "assets.lock.json",
+      "operations": ["recipe.json"],
+      "case": "case.json",
+      "checker": "builtin:simscene verify",
+      "steps": 240,
+      "seed": 42,
+      "runtime_evidence": "prior_example_only",
+      "requires_new_physical_verification": true,
+      "scope": "A pinned 120 mm scan and an experimental 0.12 kg mass; verify fall, direct table contact, full bounds and settling on each run."
+    },
+    {
       "id": "automatic_cabinet_layout",
       "description": "Measured worktable layout with one scheduled USDCraft hinge, two ABO notebooks and one GSO box.",
       "asset_sources": ["usdcraft", "abo-glb", "gso-glb"],

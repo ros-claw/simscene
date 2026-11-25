@@ -23,8 +23,10 @@ def _canonical(value):
                                      allow_nan=False).encode()).hexdigest()
 
 
-def check_edit_binding(edit, video, run):
+def check_edit_binding(edit, video, run, *, physics_steps=600):
     """Check that each declared camera source belongs to this exact run."""
+    frame_count = physics_steps // 2
+    duration_s = physics_steps / 60
     errors = []
     try:
         video, run = Path(video).resolve(), Path(run).resolve()
@@ -36,8 +38,8 @@ def check_edit_binding(edit, video, run):
         segments = edit.get('segments') if isinstance(edit, dict) else None
         if not isinstance(segments, list) or not segments:
             return errors + ['edited video has no source segments']
-        if lock.get('requested_physics_steps') != 600 or not math.isclose(lock.get('physics_dt_s', 0), 1 / 60, abs_tol=1e-9):
-            errors.append('fixed example requires 600 physics steps at 60 Hz')
+        if lock.get('requested_physics_steps') != physics_steps or not math.isclose(lock.get('physics_dt_s', 0), 1 / 60, abs_tol=1e-9):
+            errors.append(f'fixed example requires {physics_steps} physics steps at 60 Hz')
         next_frame = 0
         next_output = 0.0
         frame_tables = {}
@@ -56,7 +58,7 @@ def check_edit_binding(edit, video, run):
                 errors.append(f'segment {index} does not match the run, camera or frame table')
                 continue
             if segment['camera'] not in frame_tables:
-                if record.get('fps') != 30 or record.get('frames') != 300:
+                if record.get('fps') != 30 or record.get('frames') != frame_count:
                     errors.append(f'segment {index} does not use the native 30 fps recording')
                     continue
                 frame_file = Path(record['frame_manifest'])
@@ -64,7 +66,7 @@ def check_edit_binding(edit, video, run):
                     errors.append(f'segment {index} frame table is too large')
                     continue
                 frames = [json.loads(line) for line in frame_file.read_text().splitlines()]
-                if (len(frames) != 300 or any(
+                if (len(frames) != frame_count or any(
                         row.get('frame_id') != i or row.get('physics_step') != 2 + 2 * i
                         or not math.isclose(row.get('sim_time_s', -1), (2 + 2 * i) / 60, abs_tol=1e-8)
                         for i, row in enumerate(frames))):
@@ -72,7 +74,7 @@ def check_edit_binding(edit, video, run):
                     continue
                 frame_tables[segment['camera']] = frames
             start, end = segment.get('source_start_frame'), segment.get('source_end_frame_exclusive')
-            if (type(start) is not int or type(end) is not int or not 0 <= start < end <= 300
+            if (type(start) is not int or type(end) is not int or not 0 <= start < end <= frame_count
                     or start != next_frame or segment.get('source_fps') != 30
                     or segment.get('speed') != 1 or segment.get('output_frames') != end - start):
                 errors.append(f'segment {index} skips frames or changes their playback speed')
@@ -88,8 +90,8 @@ def check_edit_binding(edit, video, run):
                 continue
             next_frame = end
             next_output = expected['output_end_s']
-        if next_frame != 300 or not math.isclose(next_output, 10., abs_tol=1e-6):
-            errors.append('technical video must cover the complete 10-second run in order')
+        if next_frame != frame_count or not math.isclose(next_output, duration_s, abs_tol=1e-6):
+            errors.append(f'technical video must cover the complete {duration_s:g}-second run in order')
     except (OSError, ValueError, TypeError, KeyError, AttributeError) as error:
         errors.append('cannot verify edited source binding: ' + str(error))
     return errors

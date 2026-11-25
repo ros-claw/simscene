@@ -175,6 +175,29 @@ async def wait_for_job(journal, job_id, receipt, timeout):
     return actual
 
 
+async def prepare_fixed_asset(journal, root, scene_id, role, query, selected, budget_bytes):
+    found = await journal.call('catalog_search', {'query': query,
+             'filters': {'source_ids': [selected['source_ref']['source_id']]}, 'limit': 20})
+    budgets = found.get('budgets', {})
+    if budgets.get('model_bytes') != 0 or budgets.get('preview_bytes') != 0:
+        raise WorkflowError(f'{role} metadata search downloaded a model or preview, or did not report bytes')
+    item = next((x for x in found.get('items', []) if x.get('ref') == selected['source_ref']), None)
+    if not item:
+        raise WorkflowError(f'locked {role} was not returned by the catalog')
+    plan = await journal.call('asset_plan', {'asset_ref': item['ref'], 'profile_id': selected['profile_id'],
+                              'parameters': selected['parameters'], 'budget_bytes': budget_bytes})
+    if not plan.get('ready_to_fetch'):
+        reasons = json.dumps(plan.get('blocking_reasons', []), ensure_ascii=False)[:650]
+        raise WorkflowError(f'locked {role} asset plan is blocked: {reasons}')
+    job = await journal.call('asset_prepare', {'plan_id': plan['plan_id'],
+                                               'request_id': f'{scene_id}-prepare-{role}'})
+    _write(root/f'prepare-{role}-job.json', job)
+    done = await wait_for_job(journal, job['job_id'], root/f'prepare-{role}-wait.json', 300)
+    prepared = done['result']
+    return {'asset_path': prepared['root'], 'asset_binding': {
+        'manifest_path': prepared['manifest_path'], 'manifest_sha256': prepared['manifest_sha256']}}
+
+
 async def wait_for_export(journal, root, request, resume, *, collect_only=False):
     from ..video_export_jobs import export_job_id
 
@@ -249,26 +272,8 @@ async def run(session, plugin, wheel, root, scene_id, resume=False, *, collect_o
         for role, query in [('cabinet', 'Lift-Up Wall Cabinet'),
                             ('book_a', 'AmazonBasics Classic Blank Notebook'),
                             ('box', 'Ready to Use Rolled Fondant Pure White')]:
-            selected = lock['assets'][role]
-            found = await journal.call('catalog_search', {'query': query,
-                     'filters': {'source_ids': [selected['source_ref']['source_id']]}, 'limit': 20})
-            budgets = found.get('budgets', {})
-            if budgets.get('model_bytes') != 0 or budgets.get('preview_bytes') != 0:
-                raise WorkflowError(f'{role} metadata search downloaded a model or preview, or did not report bytes')
-            item = next((x for x in found.get('items', []) if x.get('ref') == selected['source_ref']), None)
-            if not item:
-                raise WorkflowError(f'locked {role} was not returned by the catalog')
-            plan = await journal.call('asset_plan', {'asset_ref': item['ref'], 'profile_id': selected['profile_id'],
-                                      'parameters': selected['parameters'], 'budget_bytes': 50_000_000})
-            if not plan.get('ready_to_fetch'):
-                raise WorkflowError(f'locked {role} is blocked; inspect asset_plan')
-            job = await journal.call('asset_prepare', {'plan_id': plan['plan_id'],
-                                                       'request_id': f'{scene_id}-prepare-{role}'})
-            _write(root/f'prepare-{role}-job.json', job)
-            done = await wait_for_job(journal, job['job_id'], root/f'prepare-{role}-wait.json', 300)
-            prepared = done['result']
-            bindings[role] = {'asset_path': prepared['root'], 'asset_binding': {
-                'manifest_path': prepared['manifest_path'], 'manifest_sha256': prepared['manifest_sha256']}}
+            bindings[role] = await prepare_fixed_asset(journal, root, scene_id, role, query,
+                                                       lock['assets'][role], 50_000_000)
         _write(root/'bindings.json', bindings)
         _helper(plugin, root, 'apply_scene_recipe.py', [example/'recipe.json', '--asset-catalog', root/'bindings.json',
                 '--asset-lock', example/'assets.lock.json', '--save-directory', root/'ops', '--operations-only'])
@@ -386,7 +391,7 @@ def select_launcher(plugin, requested=None):
     return Path(requested).expanduser().resolve() if requested else Path(plugin).resolve()/'server/launch.py'
 
 
-async def run_installed(plugin, wheel, root, scene_id, launcher=None, resume=False, *, collect_only=False):
+async def run_installed(plugin, wheel, root, scene_id, launcher=None, resume=False, *, collect_only=False, workflow=run):
     from mcp import ClientSession, StdioServerParameters
     from mcp.client.stdio import stdio_client
     plugin, root = Path(plugin).resolve(), Path(root).resolve()
@@ -402,4 +407,4 @@ async def run_installed(plugin, wheel, root, scene_id, launcher=None, resume=Fal
         async with stdio_client(params, errlog=error_log) as (reader, writer):
             async with ClientSession(reader, writer, read_timeout_seconds=timedelta(seconds=1900)) as session:
                 await session.initialize()
-                return await run(session, plugin, wheel, root, scene_id, resume=resume, collect_only=collect_only)
+                return await workflow(session, plugin, wheel, root, scene_id, resume=resume, collect_only=collect_only)

@@ -31,6 +31,9 @@ see the [results and limitations](docs/validation/catalog-efficiency.md).
 
 ## Get started
 
+**Development package (dev2):** try the [one-object first delivery](examples/first_delivery/README.md)
+for a checked drop onto a SimScene worktop and a four-second native video.
+
 **Recommended first run:** pin [v0.2.0-dev.1](docs/releases/v0.2.0-dev.1.md#安装与第一次尝试)
 → configure the tested runtime → select a small ABO/GSO object → check a single
 object's fall, contact and settling → expand to multiple instances → record video.

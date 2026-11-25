@@ -97,7 +97,12 @@ else:raise AssertionError('missing optional decoder was reported available')
                 stage=root/kind;stage.mkdir()
                 plugin=output/kind/'simscene'
                 self.assertTrue((plugin/'README.md').is_file())
-                for sample in ('examples/automatic_cabinet_layout/assets.lock.json',
+                for sample in ('examples/first_delivery/README.md',
+                               'examples/first_delivery/assets.lock.json',
+                               'examples/first_delivery/recipe.json',
+                               'examples/first_delivery/case.json',
+                               'experiments/run_first_delivery.py',
+                               'examples/automatic_cabinet_layout/assets.lock.json',
                                'examples/automatic_cabinet_layout/recipe.json',
                                'examples/automatic_cabinet_layout/case.json',
                                'examples/automatic_cabinet_layout/supplemental-checks.json',

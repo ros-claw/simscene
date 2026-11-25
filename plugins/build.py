@@ -90,6 +90,7 @@ The optional layout, Sand3D and USDCraft SDK runtimes are configured separately;
 small pinned example recipes are included without model payloads.
 '''
 EXAMPLE_DATA={
+    'first_delivery':('README.md', 'assets.lock.json', 'case.json', 'recipe.json'),
     'automatic_cabinet_layout':('assets.lock.json','case.json','recipe.json','supplemental-checks.json','check.py'),
     'artvip_door':('assets.lock.json','case.json','recipe.json','supplement.json','check.py'),
     'usdcraft_two_drawer':('assets.lock.json','case.json','recipe.json','recipe-control.json'),
@@ -97,7 +98,7 @@ EXAMPLE_DATA={
     'usdcraft_sdk_guide':('assets.lock.json','case.json','recipe-short.json','recipe-long.json','check_pair.py'),
 }
 EXAMPLE_HELPERS=('acquire_recipe_assets.py','apply_scene_recipe.py','freeze_recipe_case.py',
-                 'check_motion_clearance.py','assemble_integration_receipt.py','run_cabinet_mcp.py')
+                 'check_motion_clearance.py','assemble_integration_receipt.py','run_cabinet_mcp.py','run_first_delivery.py')
 def write(path, value):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(value,indent=2)+'\n')

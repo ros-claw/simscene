@@ -3,6 +3,8 @@ name: build-scene
 description: Discover online simulation assets, compose editable scenes with measured support relationships, run Isaac Sim and improve the result from camera and physical observations.
 ---
 
+For a first verified delivery, use the installed [one-object example](../../examples/first_delivery/README.md).
+
 Choose reproduction, modification or original construction first. Reproduce a
 locked recipe directly; test changed interfaces locally; build new mechanisms
 on a small bench before assembling the full scene. For the installed fixed
