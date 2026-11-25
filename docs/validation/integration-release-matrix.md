@@ -45,3 +45,19 @@ The recorded physical examples use Isaac Sim 6.2.0-rc.14 on the documented
 Linux host. Prepared assets, callbacks and frame records must be checked for
 each new run. Hashes support integrity comparisons; they are not signatures.
 See [catalog capabilities](catalog-capabilities.md) for per-source conditions.
+
+
+## Independent first delivery
+
+On 2026-11-25, the new host-assisted first-delivery qualification submitted
+the verified GSO tabletop drop at commit 82e01fb. Real Codex selected the
+recipe in one turn and accepted the fall and settled result from attached
+ordered frames in a separate turn. The host ran the installed MCP workflow
+between those turns. The submission took 111.777 seconds and reported 30,540
+tokens within the 900-second and 150,000-token allowances. See the
+[qualification result](../../examples/first_delivery/qualification-result.json)
+for the tested wheel and usage scope.
+
+The earlier cabinet QI1 outcomes remain unchanged. The paired drawer showcase
+revision retains source mapping, Chinese captions and synchronized displacement
+traces. Its final continuous-playback visual review remains pending.

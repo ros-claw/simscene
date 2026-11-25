@@ -253,6 +253,7 @@ def main():
         result = {'status': 'incomplete', 'error': str(error), 'directory': str(root)}
     result['wall_s'] = time.monotonic()-start
     result['model_observed_tokens'] = budget.spent
+    result['pending_usage_turn'] = budget.in_flight
     write(root/'summary.json', result)
     write(root/'budget-ledger.json', budget.ledger)
     print(json.dumps(result, indent=2, ensure_ascii=False))
