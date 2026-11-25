@@ -60,3 +60,32 @@ def test_review_rejects_a_changed_case_even_when_video_hashes_match(tmp_path):
     assert not (tmp_path/'reviewed-delivery.json').exists()
     files['case'].write_text('{"passed":true}')
     assert record_review(tmp_path, review)['status'] == 'ready_for_submission'
+
+
+def test_submission_write_that_crosses_deadline_is_retained_as_late(tmp_path, monkeypatch):
+    h = host(monkeypatch)
+    clock = [3.]
+    original_replace = h.os.replace
+
+    def delayed_replace(src, dst):
+        original_replace(src, dst)
+        if dst.name == 'submission.json':
+            clock[0] = 6.
+
+    monkeypatch.setattr(h.time, 'monotonic', lambda: clock[0])
+    monkeypatch.setattr(h.os, 'replace', delayed_replace)
+    with pytest.raises(TimeoutError, match='deadline'):
+        h.publish_submission(tmp_path, {'status': 'submitted'}, deadline=5.)
+    assert not (tmp_path/'submission.json').exists()
+    assert h.read(tmp_path/'submission-late.json')['status'] == 'late'
+
+
+def test_fixed_turn_rejects_started_tool_without_completion(monkeypatch):
+    h = host(monkeypatch)
+    complete = [(1, {'type': 'turn.completed', 'usage': {'input_tokens': 1000, 'output_tokens': 50}})]
+    h.require_fixed_turn(complete, [], 'review')
+    with pytest.raises(ValueError, match='invalid CLI event'):
+        h.require_fixed_turn(complete, [2], 'review')
+    started = (1, {'type': 'item.started', 'item': {'type': 'command_execution'}})
+    with pytest.raises(ValueError, match='outside the fixed model turn'):
+        h.require_fixed_turn([started, *complete], [], 'review')

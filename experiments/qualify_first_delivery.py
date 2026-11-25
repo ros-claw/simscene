@@ -68,6 +68,35 @@ def object_schema(**fields):
     return {'type': 'object', 'properties': fields, 'required': list(fields), 'additionalProperties': False}
 
 
+def require_fixed_turn(events, invalid_lines, phase):
+    if invalid_lines or any(not isinstance(event, dict) for _, event in events):
+        raise ValueError(f'{phase} contains an invalid CLI event')
+    if sum(event.get('type') == 'turn.completed' for _, event in events) != 1:
+        raise ValueError(f'{phase} did not produce one complete model turn')
+    for _, event in events:
+        if event.get('type') in ('item.started', 'item.updated', 'item.completed'):
+            item = event.get('item')
+            if not isinstance(item, dict) or item.get('type') not in ('reasoning', 'agent_message'):
+                raise ValueError(f'{phase} used a tool outside the fixed model turn')
+
+
+def publish_submission(root, result, deadline):
+    staged = root/'submission.pending.json'
+    final = root/'submission.json'
+    write(staged, result)
+    with staged.open('rb') as stream:
+        os.fsync(stream.fileno())
+    try:
+        remaining(deadline)
+        os.replace(staged, final)
+        remaining(deadline)
+    except TimeoutError:
+        final.unlink(missing_ok=True)
+        staged.unlink(missing_ok=True)
+        write(root/'submission-late.json', {**result, 'status': 'late'})
+        raise
+
+
 def model_turn(root, phase, prompt, schema, model, budget, deadline, *, later_turns, images=()):
     budget.admit(phase, later_turns=later_turns)
     schema_path = root/f'{phase}.schema.json'
@@ -86,19 +115,13 @@ def model_turn(root, phase, prompt, schema, model, budget, deadline, *, later_tu
     with events.open('xb') as out, (root/f'{phase}.stderr').open('xb') as err:
         process = subprocess.run(command+['-'], input=prompt.encode(), cwd=root, stdout=out, stderr=err,
                                  timeout=min(120, remaining(deadline)))
+    parsed, invalid = rows(events)
+    require_fixed_turn(parsed, invalid, phase)
     report = collect(events)
     write(root/f'{phase}-usage.json', report)
-    parsed, _ = rows(events)
-    completed = [event for _, event in parsed if event.get('type') == 'turn.completed']
-    if len(completed) != 1:
-        raise ValueError(f'{phase} did not produce one complete model turn')
     budget.settle(phase, report['aggregate_reported_usage'])
     if process.returncode or not final.is_file():
         raise ValueError(f'{phase} failed; see its retained CLI output')
-    for _, event in parsed:
-        if event.get('type') == 'item.completed' and event.get('item', {}).get('type') not in (
-                'reasoning', 'agent_message'):
-            raise ValueError(f'{phase} used a tool outside the fixed model turn')
     remaining(deadline)
     return read(final)
 
@@ -200,7 +223,7 @@ def qualify(args, root, budget, deadline):
               'reviewed_receipt_sha256': sha(delivery/'reviewed-delivery.json'),
               'video_sha256': receipt['video_sha256'], 'submitted_unix_ns': time.time_ns(),
               'scope': 'Two fresh Codex turns with host-run installed MCP engineering between them. Independent attached-frame review.'}
-    write(root/'submission.json', result)
+    publish_submission(root, result, deadline)
     return result
 
 
