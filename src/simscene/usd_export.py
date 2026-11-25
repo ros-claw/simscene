@@ -43,14 +43,14 @@ def export_scene(scene, destination):
                     prims = list(asset_stage.Traverse())
                     from .preparation.inspect import reject_executable_graphs
                     reject_executable_graphs(asset_stage)
-                    if prepared['profile_id'] not in ('rigid_prop_v1','articulated_prop_v1') and any(prim.HasAPI(UsdPhysics.RigidBodyAPI) or prim.HasAPI(UsdPhysics.ArticulationRootAPI) or prim.IsA(UsdPhysics.Joint) for prim in prims):
+                    if prepared['profile_id'] not in ('rigid_prop_v1','articulated_prop_v1','articulated_prop_v2') and any(prim.HasAPI(UsdPhysics.RigidBodyAPI) or prim.HasAPI(UsdPhysics.ArticulationRootAPI) or prim.IsA(UsdPhysics.Joint) for prim in prims):
                         raise ValueError('prepared static/visual profile contains dynamic or articulated physics')
                     expected = {prepared['default_prim'] + ('/' + relative if relative not in ('', '.') else '')
                                 for entry in prepared['body_map'].values() for relative in entry.get('collider_relative_prim_paths', [])}
                     actual = {str(prim.GetPath()) for prim in prims if prim.HasAPI(UsdPhysics.CollisionAPI) and UsdPhysics.CollisionAPI(prim).GetCollisionEnabledAttr().Get()}
                     if actual != expected:
                         raise ValueError('prepared collider paths do not match the actual source profile')
-                    if prepared['profile_id'] in ('rigid_prop_v1', 'static_fixture_v1', 'container_v1', 'articulated_prop_v1') and any(attr.GetNumTimeSamples() for prim in prims for attr in prim.GetAttributes()):
+                    if prepared['profile_id'] in ('rigid_prop_v1', 'static_fixture_v1', 'container_v1', 'articulated_prop_v1','articulated_prop_v2') and any(attr.GetNumTimeSamples() for prim in prims for attr in prim.GetAttributes()):
                         raise ValueError('prepared physical assets cannot contain time-sampled animation')
                     prepared_manifests[name] = prepared
                 except (OSError, ValueError, TypeError, KeyError, AttributeError) as error:
@@ -277,7 +277,7 @@ def export_scene(scene, destination):
         from pxr import Sdf
         physics.GetPrim().CreateAttribute('physxScene:enableCCD',Sdf.ValueTypeNames.Bool,custom=False).Set(True)
     for name,prepared in prepared_manifests.items():
-        if prepared['profile_id']=='articulated_prop_v1':
+        if prepared['profile_id'] in ('articulated_prop_v1','articulated_prop_v2'):
             from .preparation.articulation import transform_world_anchors
             transform_world_anchors(stage,stage.GetPrimAtPath('/World/'+name.replace('-','_')+'/Asset'))
     from .physics_binding import resolve_body_bindings

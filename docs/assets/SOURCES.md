@@ -10,6 +10,7 @@ Source admission and asset physics are separate. Enabled means an adapter passed
 | [abo-glb](https://huggingface.co/datasets/codepawl/abo-glb) | enabled | yes | GLB | single_file | CC-BY-4.0; per-asset review required | 2026-11-08 | 1 |
 | [gso-glb](https://huggingface.co/datasets/codepawl/scanned-objects-glb) | enabled | yes | GLB | single_file | CC-BY-4.0; per-asset review required | 2026-11-08 | 1 |
 | [usdcraft](https://huggingface.co/datasets/nvidia/USDCraft-10K) | enabled | no | USD | dependency_closure | Apache-2.0; per-asset review required | 2026-11-08 | 1 |
+| [artvip](https://huggingface.co/datasets/X-Humanoid/ArtVIP) | audited | no | USD | dependency_closure | Apache-2.0; per-asset review required | 2026-11-16 | 0 |
 | [polyhaven](https://polyhaven.com) | enabled | no | HDRI / material maps (selected IDs) | asset_package | CC0-1.0; per-asset review required | 2026-11-08 | 1 |
 | [simready-central](https://nvidia-simready-central.hf.space) | audited | no | USD locators (metadata only) | dependency_closure | unknown; per-asset review required | 2026-11-08 | 0 |
 | [projectsim-public](https://huggingface.co/datasets/projectsim/simready-assets) | audited | no | USD | asset_package | unknown; per-asset review required | 2026-11-08 | 1 |
@@ -17,7 +18,7 @@ Source admission and asset physics are separate. Enabled means an adapter passed
 ## Lifecycle inventory
 
 - **enabled**: nvidia-usd-search, abo-glb, gso-glb, usdcraft, polyhaven
-- **audited**: simready-central, projectsim-public
+- **audited**: artvip, simready-central, projectsim-public
 - **candidate**: (none)
 - **quarantined**: (none)
 - **reference_only**: (none)
@@ -74,6 +75,10 @@ Selected asset: `ds_R021_02` at `92f4e908415d7532a02661d6502ab49dc3aa33f9`.
 - Limitation: Drive targets are declared schedules, not contact-triggered causality. Newton was not tested.
 
 Observed target: physx, 6.2.0-rc.14+release.52805.02189a84.gl, 0.25.11, linux-x86_64.
+
+### artvip
+
+No locally executed example is recorded.
 
 ### polyhaven
 

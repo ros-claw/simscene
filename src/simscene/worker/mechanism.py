@@ -38,8 +38,12 @@ def _path(value):
 def validate_binding(binding):
     """Validate already-resolved canonical bindings, never infer joint paths."""
     joints = binding.get('joints') if isinstance(binding, dict) else None
-    if not isinstance(joints, dict) or len(joints) != 1:
+    two_dof = isinstance(binding, dict) and binding.get('profile_id') == 'articulated_prop_v2'
+    if not isinstance(joints, dict) or len(joints) != (2 if two_dof else 1):
         raise ValueError('M2 mechanism requires exactly one declared single-DOF joint')
+    if two_dof:
+        from .mechanism_v2 import TwoDofTensorState
+        TwoDofTensorState._validate_binding(binding)
     for joint_id, joint in joints.items():
         if not isinstance(joint_id, str) or not joint_id or not isinstance(joint, dict):
             raise ValueError('invalid mechanism joint identity')
@@ -136,10 +140,13 @@ class MechanismController:
                 raise RuntimeError('missed mechanism command physics step; refusing a late target')
             joint_id = command['joint_id']
             readback = self.backend.apply_drive(self.binding['joints'][joint_id], command)
-            self.events.append({'command_index': index, 'joint_id': joint_id,
-                                'physics_step': physics_step, 'trigger': copy.deepcopy(command['trigger']),
-                                'target_position': command['target_position'], 'position_unit': command['position_unit'],
-                                'drive_readback': readback, 'cause': 'declared_at_step_schedule'})
+            event = {'command_index': index, 'joint_id': joint_id,
+                     'physics_step': physics_step, 'trigger': copy.deepcopy(command['trigger']),
+                     'target_position': command['target_position'], 'position_unit': command['position_unit'],
+                     'drive_readback': readback, 'cause': 'declared_at_step_schedule'}
+            if self.binding.get('profile_id') == 'articulated_prop_v2':
+                event['joint_path'] = self.binding['joints'][joint_id]['joint_path']
+            self.events.append(event)
             self.targets[joint_id] = copy.deepcopy(command)
             self._executed.add(index)
         # Contact events are deliberately not interpreted as triggers in M2.
@@ -152,7 +159,9 @@ class MechanismController:
         measured = self.backend.observe(self.binding, step, native_state=native_state)
         return {'physics_step': step, 'joints': measured,
                 'runtime_targets': copy.deepcopy(self.targets), 'command_events': copy.deepcopy(self.events),
-                'control_scope': 'explicit single-DOF at_step drive targets; no body pose setters'}
+                'control_scope': ('explicit two-DOF at_step drive targets; no body pose setters'
+                                  if self.binding.get('profile_id') == 'articulated_prop_v2' else
+                                  'explicit single-DOF at_step drive targets; no body pose setters')}
 
 
 def _mul(a, b):
@@ -168,7 +177,8 @@ def _rotate(q, p):
     return _mul(_mul(q, [0., *p]), _inverse(q))[1:]
 
 
-def measure_joint(joint, native_state, previous=None, *, physics_step, physics_dt_s):
+def measure_joint(joint, native_state, previous=None, *, physics_step, physics_dt_s,
+                  require_unique_initial=False):
     """Reconstruct a signed coordinate from two same-sample body tensor poses."""
     frames = []
     for suffix, body in [('0', joint['parent_body']), ('1', joint['child_body'])]:
@@ -187,6 +197,7 @@ def measure_joint(joint, native_state, previous=None, *, physics_step, physics_d
     if joint['type'] == 'prismatic':
         position = relative_p[axis]
         anchor_error = math.sqrt(sum(v*v for i, v in enumerate(relative_p) if i != axis))
+        locked_rotation_error = 2 * math.atan2(math.sqrt(sum(v*v for v in relative_q[1:])), abs(relative_q[0]))
     else:
         position = 2 * math.atan2(relative_q[axis+1], relative_q[0])
         position = (position + math.pi) % (2*math.pi) - math.pi
@@ -194,12 +205,25 @@ def measure_joint(joint, native_state, previous=None, *, physics_step, physics_d
             last = previous['position']
             position = last + (position - last + math.pi) % (2*math.pi) - math.pi
         else:
-            # Choose the unique representative inside the frozen finite range.
-            candidates = [position + 2*math.pi*k for k in (-1, 0, 1)
-                          if joint['limits'][0]-1e-4 <= position+2*math.pi*k <= joint['limits'][1]+1e-4]
-            if len(candidates) == 1:
-                position = candidates[0]
+            # Find the unique integer turn inside the finite frozen range,
+            # without assuming the authored interval lies within one turn of 0.
+            period = 2 * math.pi
+            lower = math.ceil((joint['limits'][0] - position) / period)
+            upper = math.floor((joint['limits'][1] - position) / period)
+            if lower > upper:
+                # Permit the existing small endpoint tolerance only when no
+                # exact representative exists, without making one exact angle
+                # appear ambiguous in a near-single-turn interval.
+                lower = math.ceil((joint['limits'][0] - 1e-4 - position) / period)
+                upper = math.floor((joint['limits'][1] + 1e-4 - position) / period)
+            if lower == upper:
+                position += period * lower
+            elif require_unique_initial:
+                raise ValueError('joint pose has no unique initial angle in its frozen limits')
         anchor_error = math.sqrt(sum(v*v for v in difference))
+        perpendicular = math.sqrt(sum(v*v for i, v in enumerate(relative_q[1:]) if i != axis))
+        twist = math.hypot(relative_q[0], relative_q[axis+1])
+        locked_rotation_error = 2 * math.atan2(perpendicular, twist)
     velocity = None
     if previous is not None:
         delta = physics_step - previous['physics_step']
@@ -213,7 +237,8 @@ def measure_joint(joint, native_state, previous=None, *, physics_step, physics_d
             velocity = (position - previous['position']) / (delta * physics_dt_s)
     return {'position': position, 'velocity': velocity, 'position_unit': joint['position_unit'],
             'velocity_unit': joint['position_unit'] + '/s', 'physics_step': physics_step,
-            'anchor_error_m': anchor_error, 'parent_body': joint['parent_body'], 'child_body': joint['child_body'],
+            'anchor_error_m': anchor_error, 'locked_rotation_error_rad': locked_rotation_error,
+            'parent_body': joint['parent_body'], 'child_body': joint['child_body'],
             'joint_path': joint['joint_path'], 'measurement_source': 'same_sample_PhysX_body_poses_joint_frame_reconstruction'}
 
 
@@ -273,6 +298,16 @@ class UsdMechanismBackend:
         for name, joint in binding['joints'].items():
             result[name] = measure_joint(joint, native_state, self.previous.get(name),
                                          physics_step=physics_step, physics_dt_s=self.physics_dt_s)
+            if binding.get('profile_id') == 'articulated_prop_v2':
+                path = joint['joint_path']
+                positions = native_state.get('native_joint_positions')
+                velocities = native_state.get('native_joint_velocities')
+                if (not isinstance(positions, dict) or not isinstance(velocities, dict)
+                        or path not in positions or path not in velocities
+                        or native_state.get('native_joint_measurement_source') != 'PhysX_articulation_tensor_DOF_readback_SI'):
+                    raise RuntimeError('two-DOF observation requires native position and velocity for every frozen joint')
+                _number(positions[path], 'native DOF position')
+                _number(velocities[path], 'native DOF velocity')
             if joint['joint_path'] in native_state.get('native_joint_positions',{}):
                 result[name].update(native_position=native_state['native_joint_positions'][joint['joint_path']],native_velocity=native_state['native_joint_velocities'][joint['joint_path']],native_measurement_source=native_state['native_joint_measurement_source'])
         self.previous = copy.deepcopy(result)
@@ -285,30 +320,58 @@ class PreparedArticulationState:
     Setters exist only in reset_before_task(), once while paused before task zero.
     Runtime read() is read-only and includes independent native DOF readback.
     """
-    def __init__(self, stage, objects, body_bindings, authored_state):
+    def __init__(self, stage, objects, body_bindings, authored_state, *,
+                 simulation_view=None, root_link_type=None, is_paused=None):
         import numpy as np
-        import omni.physics.tensors as tensors
-        import omni.usd
         self.np=np;self.stage=stage;self.objects=objects;self.bindings=body_bindings
-        self.authored=authored_state;self.reset_count=0
+        self.authored=authored_state;self.reset_count=0;self._is_paused=is_paused
+        self._reset_attempted=False;self._reset_verified=False;self._task_started=False
         if authored_state is None:raise RuntimeError('articulated strict reset requires pre-warmup authored state')
-        self.sim=tensors.create_simulation_view('numpy',stage_id=omni.usd.get_context().get_stage_id())
-        self.sim.set_subspace_roots('/')
-        self.articulations=[];art_paths=set()
+        has_v2=any(binding.get('profile_id')=='articulated_prop_v2' for binding in body_bindings.values())
+        if simulation_view is None:
+            import omni.physics.tensors as tensors
+            import omni.usd
+            self.sim=tensors.create_simulation_view('numpy',stage_id=omni.usd.get_context().get_stage_id())
+            self.sim.set_subspace_roots('/')
+            if has_v2:
+                try:root_link_type=tensors.ObjectType.ArticulationRootLink
+                except AttributeError as error:raise RuntimeError('PhysX root-link enum is unavailable') from error
+        else:
+            self.sim=simulation_view
+        if has_v2 and (root_link_type is None or not callable(is_paused)):
+            raise RuntimeError('two-DOF state requires the engine root-link enum and a paused-state query')
+        self.articulations=[];self.two_dof_articulations=[];art_paths=set();joint_paths=set()
         for binding in body_bindings.values():
-            for root in binding.get('articulation_roots',[]):
+            roots=binding.get('articulation_roots',[])
+            is_v2=binding.get('profile_id')=='articulated_prop_v2'
+            if is_v2:
+                validate_binding(binding)
+                if not isinstance(roots,list) or len(roots)!=1:
+                    raise RuntimeError('two-DOF articulation requires one explicit root view')
+            for root in roots:
                 view=self.sim.create_articulation_view(root)
-                if view.count!=1 or view.max_dofs!=1:
-                    raise RuntimeError('prepared native articulation must expose exactly one actual tensor DOF')
-                paths=list(view.link_paths[0]);dofs=list(view.dof_paths[0])
-                if set(paths)!=set(binding['motion_bodies']) or set(dofs)!={j['joint_path'] for j in binding['joints'].values()}:
-                    raise RuntimeError('native articulation tensor graph differs from frozen body/joint binding')
-                self.articulations.append((view,paths,dofs,binding));art_paths.update(paths)
+                if is_v2:
+                    from .mechanism_v2 import TwoDofTensorState
+                    adapter=TwoDofTensorState(view,binding,simulation_view=self.sim,root_link_type=root_link_type)
+                    paths=list(adapter.link_paths);dofs=list(adapter.dof_paths)
+                    self.two_dof_articulations.append(adapter)
+                else:
+                    if view.count!=1 or view.max_dofs!=1:
+                        raise RuntimeError('prepared native articulation must expose exactly one actual tensor DOF')
+                    paths=list(view.link_paths[0]);dofs=list(view.dof_paths[0])
+                    if set(paths)!=set(binding['motion_bodies']) or set(dofs)!={j['joint_path'] for j in binding['joints'].values()}:
+                        raise RuntimeError('native articulation tensor graph differs from frozen body/joint binding')
+                    self.articulations.append((view,paths,dofs,binding))
+                if (len(paths)!=len(set(paths)) or len(dofs)!=len(set(dofs))
+                        or art_paths.intersection(paths) or joint_paths.intersection(dofs)):
+                    raise RuntimeError('duplicate native tensor body or DOF path across articulations')
+                art_paths.update(paths);joint_paths.update(dofs)
         expected=set(authored_state['bodies'])
         remaining=sorted(expected-art_paths)
         self.rigid=self.sim.create_rigid_body_view(remaining) if remaining else None
         self.rigid_paths=list(self.rigid.prim_paths) if self.rigid else []
-        self.paths=self.rigid_paths+[p for _,paths,_,_ in self.articulations for p in paths]
+        self.paths=(self.rigid_paths+[p for _,paths,_,_ in self.articulations for p in paths]
+                    +[p for adapter in self.two_dof_articulations for p in adapter.link_paths])
         if len(set(self.paths))!=len(self.paths) or set(self.paths)!=expected:
             raise RuntimeError('strict articulated tensor body set differs from authored bodies')
 
@@ -318,27 +381,56 @@ class PreparedArticulationState:
     def read(self):
         np=self.np;transforms=[];velocities=[];paths=[];positions={};speeds={}
         if self.rigid:
-            transforms.extend(np.asarray(self.rigid.get_transforms()).copy());velocities.extend(np.asarray(self.rigid.get_velocities()).copy());paths.extend(self.rigid_paths)
+            rt=np.asarray(self.rigid.get_transforms()).copy();rv=np.asarray(self.rigid.get_velocities()).copy()
+            if self.two_dof_articulations and (rt.shape!=(len(self.rigid_paths),7) or rv.shape!=(len(self.rigid_paths),6)):
+                raise RuntimeError('rigid tensor shape differs from frozen body paths')
+            transforms.extend(rt);velocities.extend(rv);paths.extend(self.rigid_paths)
         for view,links,dofs,_ in self.articulations:
-            transforms.extend(np.asarray(view.get_link_transforms())[0,:len(links)].copy())
-            velocities.extend(np.asarray(view.get_link_velocities())[0,:len(links)].copy());paths.extend(links)
-            q=np.asarray(view.get_dof_positions())[0];v=np.asarray(view.get_dof_velocities())[0]
+            lt=np.asarray(view.get_link_transforms());lv=np.asarray(view.get_link_velocities())
+            qa=np.asarray(view.get_dof_positions());va=np.asarray(view.get_dof_velocities())
+            if self.two_dof_articulations and (lt.shape!=(1,len(links),7) or lv.shape!=(1,len(links),6)
+                    or qa.shape!=(1,len(dofs)) or va.shape!=(1,len(dofs))):
+                raise RuntimeError('single-DOF tensor shape differs from frozen body or DOF paths')
+            transforms.extend(lt[0,:len(links)].copy())
+            velocities.extend(lv[0,:len(links)].copy());paths.extend(links)
+            q=qa[0];v=va[0]
             positions.update({p:float(q[i]) for i,p in enumerate(dofs)});speeds.update({p:float(v[i]) for i,p in enumerate(dofs)})
         transforms=np.asarray(transforms);velocities=np.asarray(velocities)
         if not np.isfinite(transforms).all() or not np.isfinite(velocities).all() or not all(math.isfinite(x) for x in list(positions.values())+list(speeds.values())):
             raise RuntimeError('nonfinite native articulation tensor state')
-        return {'positions':{p:[float(v) for v in transforms[i,:3]] for i,p in enumerate(paths)},
+        result={'positions':{p:[float(v) for v in transforms[i,:3]] for i,p in enumerate(paths)},
                 'orientations_wxyz':{p:[float(transforms[i,6]),*[float(v) for v in transforms[i,3:6]]] for i,p in enumerate(paths)},
                 'linear_velocities_m_s':{p:[float(v) for v in velocities[i,:3]] for i,p in enumerate(paths)},
                 'angular_velocities_rad_s':{p:[float(v) for v in velocities[i,3:]] for i,p in enumerate(paths)},
                 'native_joint_positions':positions,'native_joint_velocities':speeds,
                 'native_joint_measurement_source':'PhysX_articulation_tensor_DOF_readback_SI'}
+        for adapter in self.two_dof_articulations:
+            observed=adapter.read()
+            for key in ('positions','orientations_wxyz','linear_velocities_m_s','angular_velocities_rad_s',
+                        'native_joint_positions','native_joint_velocities'):
+                if set(result[key]).intersection(observed[key]):
+                    raise RuntimeError('duplicate native tensor path during readback')
+                result[key].update(observed[key])
+            root_velocities=result.setdefault('native_root_velocities',{})
+            if set(root_velocities).intersection(observed['native_root_velocities']):
+                raise RuntimeError('duplicate native root tensor path during readback')
+            root_velocities.update(observed['native_root_velocities'])
+        return result
 
     def mass_properties(self,physics_step):
         np=self.np;result={}
+        assumptions={}
+        for binding in self.bindings.values():
+            for entry in binding.get('bodies',{}).values():
+                if entry.get('mass_provenance'):
+                    assumptions[entry['motion_body']]={'mass_provenance':entry['mass_provenance'],
+                        'native_repairs_ref':copy.deepcopy(binding.get('native_repairs_ref'))}
         groups=[]
         if self.rigid:groups.append((self.rigid_paths,np.asarray(self.rigid.get_masses()),np.asarray(self.rigid.get_coms()),np.asarray(self.rigid.get_inertias())))
         for view,paths,_,_ in self.articulations:
+            groups.append((paths,np.asarray(view.get_masses())[0,:len(paths)],np.asarray(view.get_coms())[0,:len(paths)],np.asarray(view.get_inertias())[0,:len(paths)]))
+        for adapter in self.two_dof_articulations:
+            view=adapter.view;paths=adapter.link_paths
             groups.append((paths,np.asarray(view.get_masses())[0,:len(paths)],np.asarray(view.get_coms())[0,:len(paths)],np.asarray(view.get_inertias())[0,:len(paths)]))
         for paths,masses,coms,inertias in groups:
             masses=masses.reshape(len(paths));coms=coms.reshape(len(paths),7);inertias=inertias.reshape(len(paths),9)
@@ -350,11 +442,16 @@ class PreparedArticulationState:
                 result[path]={'mass_kg':float(masses[i]),'center_of_mass_local_m':[float(v) for v in coms[i,:3]],
                     'principal_axes_local_wxyz':[float(coms[i,6]),*[float(v) for v in coms[i,3:6]]],
                     'inertia_at_com_in_prim_axes_kg_m2':[[float(v) for v in row] for row in inertia],
-                    'observed_at_physics_step':physics_step,'source':'PhysX native articulation/rigid tensor cooked mass properties; source mass/collision preserved'}
+                    'observed_at_physics_step':physics_step,'source':'PhysX native articulation/rigid tensor cooked mass properties; see prepared manifest for authored or experimental assumptions'}
+                if path in assumptions:result[path].update(assumptions[path])
         return result
 
     def reset_before_task(self):
         if self.reset_count:raise RuntimeError('strict articulated initialization reset may run only once')
+        if self.two_dof_articulations:
+            if self._reset_attempted or self._task_started:raise RuntimeError('two-DOF initialization is allowed only once before task start')
+            if self._is_paused() is not True:raise RuntimeError('two-DOF initialization requires a paused timeline')
+            self._reset_attempted=True
         np=self.np;expected=self.authored['bodies']
         def transform(path):
             body=expected[path];q=body['orientation_wxyz'];return [*body['position'],*q[1:],q[0]]
@@ -373,7 +470,11 @@ class PreparedArticulationState:
                 values.append(measure_joint(joint,authored_native,physics_step=0,physics_dt_s=1/60)['position'])
             view.set_dof_positions(np.asarray([values],dtype=np.float32),indices)
             view.set_dof_velocities(np.zeros((1,len(values)),dtype=np.float32),indices)
+        for adapter in self.two_dof_articulations:
+            adapter.reset_before_task(self.authored,is_paused=self._is_paused)
         self.sim.update_articulations_kinematic()
+        if self.two_dof_articulations and self._is_paused() is not True:
+            raise RuntimeError('timeline resumed during two-DOF initialization')
         from .initial_state import restore_local_ops
         restore_local_ops(self.stage,self.authored);self.reset_count=1
         observed=self.read();position_error=0.;rotation_error=0.;speed=0.
@@ -384,8 +485,15 @@ class PreparedArticulationState:
             speed=max(speed,float(np.linalg.norm(observed['linear_velocities_m_s'][path])),float(np.linalg.norm(observed['angular_velocities_rad_s'][path])))
         if position_error>1e-6 or rotation_error>1e-6 or speed>1e-7:
             raise RuntimeError('native articulation strict authored-pose/zero-velocity reset mismatch')
+        self._reset_verified=True
         return {'applied':True,'phase':'before_task_start','reset_count':1,'body_paths':self.paths,
                 'authored_pose_capture_phase':self.authored['phase'],'authored_pose_readback_max_error_m':position_error,
                 'max_quaternion_error':rotation_error,'max_speed':speed,'local_xform_ops_restored':True,
                 'setters_during_task':False,'native_articulation_joint_reset':True,
                 'scope':'one paused pre-task native articulation root/DOF reset; runtime readback only'}
+
+    def mark_task_started(self):
+        if self.two_dof_articulations and not self._reset_verified:
+            raise RuntimeError('two-DOF task requires a successfully verified initialization')
+        for adapter in self.two_dof_articulations:adapter.mark_task_started()
+        self._task_started=True

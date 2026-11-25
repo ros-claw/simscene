@@ -1,6 +1,7 @@
 """CPU contracts: admission, unknown facts, identity, and offline resource loading."""
 from copy import deepcopy
 from dataclasses import replace
+from datetime import date
 import json
 import os
 from pathlib import Path
@@ -28,7 +29,7 @@ class CatalogRegistryTest(unittest.TestCase):
         self.assertEqual(registry.schema_version, 1)
         self.assertTrue(all(s.state == 'enabled' and s.default_enabled for s in registry.select()))
         self.assertTrue(all(not s.default_enabled for s in registry.sources if s.state != 'enabled'))
-        self.assertTrue(all(s.checked_at == '2026-11-08' for s in registry.sources))
+        self.assertTrue(all(date.fromisoformat(s.checked_at) for s in registry.sources))
         abo = registry.get('abo-glb')
         self.assertEqual(abo.repository, 'codepawl/abo-glb')
         self.assertEqual(registry.select(['abo-glb']), (abo,))

@@ -7,6 +7,7 @@ import sys
 import re
 import hashlib
 import tempfile
+import importlib.util
 from pathlib import Path
 from importlib import metadata
 
@@ -22,6 +23,53 @@ def versions(root=ROOT):
     return python,python.replace('.dev','-dev.')
 
 PYTHON_VERSION,PACKAGE_VERSION=versions()
+
+def source_identity(root=ROOT):
+    """Identify a checkout only when *root* is its actual Git top level."""
+    root=Path(root).resolve()
+    try:
+        top=subprocess.check_output(['git','rev-parse','--show-toplevel'],cwd=root,stderr=subprocess.DEVNULL,text=True).strip()
+        if Path(top).resolve()!=root:
+            return {'source_commit':None,'source_clean':None}
+        commit=subprocess.check_output(['git','rev-parse','--verify','HEAD'],cwd=root,stderr=subprocess.DEVNULL,text=True).strip()
+        if not re.fullmatch(r'[0-9a-f]{40,64}',commit):raise ValueError('invalid Git commit')
+        status=subprocess.check_output(['git','status','--porcelain=v1','--untracked-files=normal'],cwd=root,stderr=subprocess.DEVNULL,text=True)
+        return {'source_commit':commit,'source_clean':not bool(status.strip())}
+    except (OSError,subprocess.SubprocessError,ValueError):
+        return {'source_commit':None,'source_clean':None}
+
+
+def verify_source_snapshot(root, snapshot, commit, paths=None):
+    """Reject ignored or changed files in a supposedly clean build snapshot."""
+    root, snapshot = Path(root), Path(snapshot)
+    paths = paths or ('src', 'pyproject.toml', 'README.md', 'LICENSE')
+    try:
+        result = subprocess.check_output(
+            ['git', 'ls-tree', '-r', '-z', '--full-tree', commit, '--', *paths], cwd=root)
+        algorithm = subprocess.check_output(
+            ['git', 'rev-parse', '--show-object-format'], cwd=root, text=True).strip()
+        expected = {}
+        for entry in result.split(b'\0'):
+            if not entry:
+                continue
+            header, raw_name = entry.split(b'\t', 1)
+            mode, kind, digest = header.decode('ascii').split(' ')
+            if mode not in ('100644', '100755') or kind != 'blob':
+                raise RuntimeError('source snapshot contains an unsupported Git entry')
+            expected[raw_name.decode('utf-8')] = digest
+        actual = {str(path.relative_to(snapshot)) for name in paths
+                  for path in ([snapshot / name] if (snapshot / name).is_file()
+                               else (snapshot / name).rglob('*')) if path.is_file()}
+        if actual != set(expected):
+            raise RuntimeError('source snapshot inventory differs from the committed tree')
+        for name, digest in expected.items():
+            data = (snapshot / name).read_bytes()
+            content = b'blob ' + str(len(data)).encode('ascii') + b'\0' + data
+            if hashlib.new(algorithm, content).hexdigest() != digest:
+                raise RuntimeError(f'source snapshot content differs from the committed tree: {name}')
+    except (OSError, subprocess.SubprocessError, ValueError, UnicodeError) as error:
+        raise RuntimeError('unable to verify source snapshot against Git') from error
+
 LAUNCHER='''"""Start the packaged MCP server without importing the development checkout."""
 from pathlib import Path
 import sys
@@ -38,7 +86,19 @@ Isaac Sim installation and USD Python bindings; robot control and collision
 checks remain experimental. Configure `SIMSCENE_ISAAC_PYTHON` for the host and
 use the `build-scene` skill to create and observe a scene. Asset licensing and
 dependency completeness must be checked for each selected model.
+The optional layout, Sand3D and USDCraft SDK runtimes are configured separately;
+small pinned example recipes are included without model payloads.
 '''
+EXAMPLE_DATA={
+    'first_delivery':('README.md', 'assets.lock.json', 'case.json', 'recipe.json'),
+    'automatic_cabinet_layout':('assets.lock.json','case.json','recipe.json','supplemental-checks.json','check.py'),
+    'artvip_door':('assets.lock.json','case.json','recipe.json','supplement.json','check.py'),
+    'usdcraft_two_drawer':('assets.lock.json','case.json','recipe.json','recipe-control.json'),
+    'integration_workspace':('README.md','assets.lock.json','case.json','recipe.json','recipe-control.json','check.py'),
+    'usdcraft_sdk_guide':('assets.lock.json','case.json','recipe-short.json','recipe-long.json','check_pair.py'),
+}
+EXAMPLE_HELPERS=('acquire_recipe_assets.py','apply_scene_recipe.py','freeze_recipe_case.py',
+                 'check_motion_clearance.py','assemble_integration_receipt.py','run_cabinet_mcp.py','run_first_delivery.py')
 def write(path, value):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(value,indent=2)+'\n')
@@ -92,7 +152,10 @@ root=resources.files('simscene')
 for name in ('catalog/data/sources.yaml','recipes/data/recipes.json','preparation/data/package.json',
              'preparation/data/package-lock.json','preparation/worker.py','worker/isaac_run.py',
              'worker/gpu_queue.py','generation/worker.py','generation/backend_worker.py',
-             'generation/templates/guide_plate_v1.py'):
+             'generation/templates/guide_plate_v1.py','generation/templates/usdcraft_sdk_guide_plate_v1.py',
+             'generation/usdcraft_backend_worker.py','preparation/articulation_v2.py',
+             'verification/articulated_asset_two_joint_pair.py','catalog/providers/artvip.py',
+             'recipes/cabinet_mcp_workflow.py'):
     assert root.joinpath(name).is_file(),name
 from simscene.catalog.registry import load_registry
 from simscene.recipes.registry import list_recipes
@@ -113,6 +176,7 @@ def build(destination, use_installed_deps=False):
     if requested.is_symlink():raise FileExistsError(f'destination is a symlink: {requested}')
     destination=requested.resolve()
     if destination.exists():raise FileExistsError(f'destination already exists: {destination}')
+    build_source=source_identity(ROOT)
     portable=destination/'portable'/'simscene';claude=destination/'claude'/'simscene';deepseek=destination/'deepseek'/'simscene'
     portable.mkdir(parents=True)
     try:
@@ -121,9 +185,21 @@ def build(destination, use_installed_deps=False):
         # setuptools resource contract instead of bypassing it with copytree.
         with tempfile.TemporaryDirectory(prefix='simscene-wheel-') as temporary:
             snapshot=Path(temporary)/'project';snapshot.mkdir()
-            for filename in ('pyproject.toml','README.md','LICENSE'):
+            for filename in ('pyproject.toml','README.md','LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
                 shutil.copyfile(ROOT/filename,snapshot/filename)
             shutil.copytree(ROOT/'src',snapshot/'src',ignore=shutil.ignore_patterns('__pycache__','*.pyc','*.egg-info'))
+            shutil.copytree(ROOT/'skills',snapshot/'skills',ignore=shutil.ignore_patterns('__pycache__','*.pyc','.simscene-plugin-root'))
+            extra_paths = ['plugins/install.py', 'plugins/deepseek_patch.py']
+            extra_paths += [f'examples/{example}/{name}' for example,names in EXAMPLE_DATA.items() for name in names]
+            extra_paths += [f'experiments/{name}' for name in EXAMPLE_HELPERS]
+            for name in extra_paths:
+                target=snapshot/name;target.parent.mkdir(parents=True,exist_ok=True)
+                shutil.copyfile(ROOT/name,target)
+            snapshot_paths = ('src','skills','pyproject.toml','README.md','LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md',*extra_paths)
+            if build_source['source_clean'] is True:
+                verify_source_snapshot(ROOT,snapshot,build_source['source_commit'],snapshot_paths)
+            if source_identity(ROOT)!=build_source:
+                raise RuntimeError('source revision or clean state changed while creating the build snapshot')
             wheels=Path(temporary)/'wheels';wheels.mkdir()
             subprocess.run([sys.executable,'-m','pip','wheel','--disable-pip-version-check',
                 '--no-deps','--no-build-isolation','--wheel-dir',str(wheels),str(snapshot)],check=True)
@@ -137,30 +213,45 @@ def build(destination, use_installed_deps=False):
             subprocess.run(command+[str(wheel)],check=True)
             destination.joinpath('wheels').mkdir()
             shutil.copyfile(wheel,destination/'wheels'/wheel.name)
+            # All shipped resources come from the same frozen snapshot as the
+            # wheel, even if the live checkout changes during dependency setup.
+            for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
+                shutil.copyfile(snapshot/notice,portable/notice)
+            shutil.copyfile(snapshot/'plugins'/'install.py',portable/'install.py')
+            shutil.copytree(snapshot/'skills',portable/'skills')
+            for example,names in EXAMPLE_DATA.items():
+                target=portable/'examples'/example;target.mkdir(parents=True)
+                for name in names:shutil.copyfile(snapshot/'examples'/example/name,target/name)
+            helper_root=portable/'experiments';helper_root.mkdir()
+            for name in EXAMPLE_HELPERS:shutil.copyfile(snapshot/'experiments'/name,helper_root/name)
+            patch_spec=importlib.util.spec_from_file_location('simscene_snapshot_deepseek_patch',snapshot/'plugins'/'deepseek_patch.py')
+            patch_module=importlib.util.module_from_spec(patch_spec);patch_spec.loader.exec_module(patch_module)
         versions_lock={item.metadata['Name']:item.version for item in metadata.distributions(path=[str(vendor)])}
         write(portable/'server'/'dependency-lock.json',versions_lock)
-        write(portable/'server'/'build-info.json',{'python_version':PYTHON_VERSION,'plugin_version':PACKAGE_VERSION,
-              'builder_python':sys.version.split()[0],'wheel_sha256':wheel_sha256,
-              'dependency_mode':'installed' if use_installed_deps else 'pip',
-              'optional_backends':'Isaac/USD, isolated GLB decoder and Sand3D runtimes are configured separately'})
-        validate_vendor(vendor)
         (portable/'server'/'launch.py').write_text(LAUNCHER)
         (portable/'README.md').write_text(PACKAGE_README)
-        for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
-            shutil.copyfile(ROOT/notice,portable/notice)
-        shutil.copyfile(ROOT/'plugins'/'install.py',portable/'install.py')
-        shutil.copytree(ROOT/'skills',portable/'skills',ignore=shutil.ignore_patterns('__pycache__','*.pyc','.simscene-plugin-root'))
-        shutil.copyfile(ROOT/'docs'/'passive-network-verification.md',
-                        portable/'skills'/'build-scene'/'references'/'passive-network-verification.md')
-        shutil.copyfile(ROOT/'docs'/'structural-loads-verification.md',
-                        portable/'skills'/'build-scene'/'references'/'structural-loads-verification.md')
-        shutil.copyfile(ROOT/'docs'/'passive-d6-joints.md',
-                        portable/'skills'/'build-scene'/'references'/'passive-d6-joints.md')
+        resource_files = [portable/name for name in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md',
+                                                       'README.md','server/launch.py')]
+        for name in ('skills','examples','experiments'):
+            resource_files.extend(path for path in (portable/name).rglob('*') if path.is_file())
+        resource_hashes = {str(path.relative_to(portable)):hashlib.sha256(path.read_bytes()).hexdigest()
+                           for path in sorted(resource_files)}
+        resource_manifest = portable/'server'/'resource-manifest.json'
+        write(resource_manifest,{'schema':'simscene.packaged_resources.v1','files':resource_hashes})
+        write(portable/'server'/'build-info.json',{'python_version':PYTHON_VERSION,'plugin_version':PACKAGE_VERSION,
+              'builder_python':sys.version.split()[0],'wheel_sha256':wheel_sha256,
+              'resource_manifest_sha256':hashlib.sha256(resource_manifest.read_bytes()).hexdigest(),
+              **build_source,
+              'dependency_mode':'installed' if use_installed_deps else 'pip',
+              'optional_backends':'Isaac/USD, isolated GLB decoder, layout, Sand3D and USDCraft SDK runtimes are configured separately'})
+        validate_vendor(vendor)
         write(portable/'plugin.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json','name':'simscene','version':PACKAGE_VERSION,'description':'Discover assets, compose and run experimental simulation scenes.'})
         write(portable/'mcp.json',{'$schema':'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json','mcpServers':{'simscene':{'type':'stdio','command':'python3','args':['${PLUGIN_ROOT}/server/launch.py'],'cwd':'${PLUGIN_ROOT}'}}})
         claude.mkdir(parents=True)
         shutil.copytree(portable/'server',claude/'server')
         shutil.copytree(portable/'skills',claude/'skills')
+        shutil.copytree(portable/'examples',claude/'examples')
+        shutil.copytree(portable/'experiments',claude/'experiments')
         shutil.copyfile(portable/'README.md',claude/'README.md')
         for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
             shutil.copyfile(portable/notice,claude/notice)
@@ -169,12 +260,12 @@ def build(destination, use_installed_deps=False):
         deepseek.mkdir(parents=True)
         shutil.copytree(portable/'server',deepseek/'server')
         shutil.copytree(portable/'skills',deepseek/'skills')
+        shutil.copytree(portable/'examples',deepseek/'examples')
+        shutil.copytree(portable/'experiments',deepseek/'experiments')
         shutil.copyfile(portable/'README.md',deepseek/'README.md')
         for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
             shutil.copyfile(portable/notice,deepseek/notice)
-        try:from .deepseek_patch import write_patch
-        except ImportError:from deepseek_patch import write_patch
-        write_patch(deepseek,deepseek/'cordis.patch.yml',sys.executable)
+        patch_module.write_patch(deepseek,deepseek/'cordis.patch.yml',sys.executable)
         return {'portable':str(portable),'claude':str(claude),'deepseek':str(deepseek),'python':sys.version.split()[0],
                 'python_version':PYTHON_VERSION,'plugin_version':PACKAGE_VERSION,'wheel_sha256':wheel_sha256,
                 'status':'packages_built_not_registered_or_installed',

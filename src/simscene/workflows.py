@@ -16,14 +16,19 @@ def wait_job(job_id, receipt_path, timeout_s=1800, poll_interval_s=1):
         raise ValueError('preserve an existing job receipt')
     output.parent.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
+    cutoff_unix_ns = time.time_ns() + round(timeout_s * 1e9)
     started_at = datetime.now(timezone.utc).isoformat()
     while True:
         state = status(job_id)
+        finished = state.get('finished_unix_ns')
+        if state.get('type') == 'video_export' and type(finished) is int and finished > cutoff_unix_ns:
+            raise TimeoutError('wait budget exhausted; original job is preserved, not restarted or cancelled')
         if state['state'] not in ('queued', 'running', 'paused', 'stalled', 'acquiring', 'converting', 'inspecting', 'generating'):
             break
-        if time.monotonic()-started >= timeout_s:
+        remaining = timeout_s - (time.monotonic() - started)
+        if remaining <= 0:
             raise TimeoutError('wait budget exhausted; original job is preserved, not restarted or cancelled')
-        time.sleep(poll_interval_s)
+        time.sleep(min(poll_interval_s, remaining))
     observed_exit = type(state.get('exit_code')) is int and state.get('exit_code_inferred') is False
     result = state.get('result') or {}
     receipt = {'schema': 'simscene.job_wait_receipt.v1', 'job_id': job_id,
@@ -44,6 +49,12 @@ def wait_job(job_id, receipt_path, timeout_s=1800, poll_interval_s=1):
         receipt.update(job_type='asset_generation',completion_confirmed=state.get('completion_confirmed') is True,
                        generation_record=state.get('record_path'),generated_source=result.get('asset_ref'),
                        scope='Durable generated-source completion; preparation and physical verification are separate required steps.')
+    if state.get('type')=='video_export':
+        receipt.update(job_type='video_export', completion_confirmed=state.get('completion_confirmed') is True,
+                       export_record=state.get('record_path'), video=result.get('video'), edit_map=result.get('edit_map'),
+                       video_sha256=result.get('video_sha256'), edit_map_sha256=result.get('edit_map_sha256'),
+                       visual_review=result.get('visual_review'), finished_unix_ns=state.get('finished_unix_ns'),
+                       scope='Durable export status. Media verification, visual review and submission are separate steps.')
     with output.open('x') as f:
         json.dump(receipt, f, ensure_ascii=False, indent=2, allow_nan=False); f.write('\n')
     summary={k: receipt[k] for k in ('job_id', 'run_id', 'state', 'exit_code', 'exit_code_observed', 'physics_accepted')}

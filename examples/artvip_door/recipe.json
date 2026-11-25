@@ -1,0 +1,178 @@
+{
+  "description": "Editable ArtVIP door and a measured scheduled drive, exported from the paired physical trial.",
+  "source_run_id": "1081ffaa561c4beead99464d3289ce2b",
+  "source_run_lock_sha256": "a31016c7fef37ccb2f0a557df7c99df49a9f0dba0258e68a0316e5fe38a42be6",
+  "operations": [
+    {
+      "op": "add",
+      "id": "door",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mechanism": {
+          "commands": [
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 0
+              },
+              "target_position": 0.8,
+              "position_unit": "rad",
+              "stiffness": 800.0,
+              "damping": 50.0,
+              "max_effort": 160.0
+            },
+            {
+              "joint_id": "main",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 300
+              },
+              "target_position": 0.0,
+              "position_unit": "rad",
+              "stiffness": 800.0,
+              "damping": 50.0,
+              "max_effort": 160.0
+            }
+          ]
+        },
+        "asset_role": "door"
+      }
+    },
+    {
+      "op": "add",
+      "id": "floor",
+      "object": {
+        "kind": "box",
+        "size": [
+          8.0,
+          8.0,
+          0.1
+        ],
+        "position": [
+          0.0,
+          0.0,
+          -0.05
+        ],
+        "dynamic": false,
+        "collision": true,
+        "color": [
+          0.25,
+          0.28,
+          0.31
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "wall",
+      "object": {
+        "kind": "box",
+        "size": [
+          20.0,
+          0.12,
+          5.0
+        ],
+        "position": [
+          0.0,
+          2.0,
+          2.5
+        ],
+        "dynamic": false,
+        "collision": false,
+        "color": [
+          0.21,
+          0.25,
+          0.3
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "sky",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "dome"
+        },
+        "intensity": 500.0
+      }
+    },
+    {
+      "op": "add",
+      "id": "key",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "sphere",
+          "radius_m": 0.7
+        },
+        "position": [
+          1.0,
+          -3.0,
+          4.5
+        ],
+        "intensity": 2500.0
+      }
+    },
+    {
+      "op": "add",
+      "id": "overview",
+      "object": {
+        "kind": "camera",
+        "position": [
+          3.0,
+          -5.0,
+          2.4
+        ],
+        "record_fps": 2,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            640,
+            360
+          ],
+          "focal_length_mm": 28.0,
+          "horizontal_aperture_mm": 36.0,
+          "focus_distance_m": 5.8,
+          "clipping_range_m": [
+            0.01,
+            100.0
+          ]
+        },
+        "orientation_wxyz": [
+          0.7315803619922879,
+          0.6273249849986092,
+          0.17375896165613133,
+          0.20263602934303418
+        ]
+      }
+    },
+    {
+      "op": "set_presentation",
+      "presentation": {
+        "profile": "preview",
+        "budget": {
+          "max_cameras": 1,
+          "max_recording_bytes": 1073741824,
+          "min_free_bytes": 2147483648
+        }
+      }
+    },
+    {
+      "op": "set_observation",
+      "observation": {
+        "sample_interval_steps": 1,
+        "strict_start": true,
+        "record_contact_pairs": true
+      }
+    }
+  ],
+  "schema": "simscene.scene_recipe.v2"
+}

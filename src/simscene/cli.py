@@ -35,9 +35,11 @@ def main():
     recipe=commands.add_parser('recipe',help='compile editable role-based scene operations without running physics')
     recipe.add_argument('action',choices=['list','compile']);recipe.add_argument('identifier',nargs='?')
     recipe.add_argument('--parameters');recipe.add_argument('--bindings');recipe.add_argument('--scene');recipe.add_argument('--output')
-    generation=commands.add_parser('generate',help='optional trusted Sand3D template jobs in an independent runtime')
+    generation=commands.add_parser('generate',help='optional trusted template jobs in independent runtimes')
     generation.add_argument('action',choices=['probe','start','status','cancel']);generation.add_argument('identifier',nargs='?')
     generation.add_argument('--python',dest='generation_python');generation.add_argument('--output');generation.add_argument('--parameters');generation.add_argument('--request-id')
+    generation.add_argument('--backend',choices=['sand3d','usdcraft-sdk'],help='independent runtime to probe (default: sand3d)')
+    generation.add_argument('--checkout',help='reviewed USDCraft source checkout to probe')
     asset=commands.add_parser('asset',help='immutable plans and durable preparation jobs')
     asset.add_argument('action',choices=['plan','prepare','probe','status','cancel','setup-decoder'])
     asset.add_argument('identifier',nargs='?');asset.add_argument('--ref');asset.add_argument('--parameters')
@@ -89,9 +91,9 @@ def main():
     run.add_argument('--archive-verified-objects',action='store_true',help='experimentally reclaim objects only after pinned per-item case checks')
     verify=commands.add_parser('verify')
     verify.add_argument('--run',required=True);verify.add_argument('--case',help='independent JSON/YAML case; defaults to a case snapshotted in a run directory')
-    verify.add_argument('--type',choices=['contact','suction','moving','repeated','domino','parallel','stream','mechanism','passive_network','rigid_asset_smoke'],help='case type; inferred for passive, stream or parallel cases')
+    verify.add_argument('--type',choices=['contact','suction','moving','repeated','domino','parallel','stream','mechanism','passive_network','rigid_asset_smoke','articulated_asset_two_joint'],help='case type; inferred for passive, stream or parallel cases')
     verify.add_argument('--spec',help='saved run spec, required for parallel and stream cases')
-    verify.add_argument('--mode',choices=['positive','detached_drawer','no_trigger','broken_rope','locked_door'],default='positive',help='read-only paired passive verification mode')
+    verify.add_argument('--mode',choices=['positive','detached_drawer','no_trigger','broken_rope','locked_door','missing_second_joint_drive'],default='positive',help='read-only paired passive or two-joint verification mode')
     verify.add_argument('--reference-run',help='matching completed positive run directory for a detached mechanism control')
     suite=commands.add_parser('verify-suite')
     suite.add_argument('--case',required=True);suite.add_argument('--run',required=True,action='append');suite.add_argument('--long-run',required=True)
@@ -128,11 +130,18 @@ def main():
                 result=service.search(args.query,filters,args.limit,args.cursor)
         elif args.command=='generate':
             from .generation import jobs as generation_jobs
+            if args.checkout is not None and args.action != 'probe':raise ValueError('checkout applies only to probe')
             if args.action=='probe':
                 if not args.generation_python or not args.output:raise ValueError('probe requires --python and a new --output')
-                from .generation.sand3d import probe_runtime
-                result=probe_runtime(args.generation_python,args.output)
+                if args.backend == 'usdcraft-sdk':
+                    from .generation.usdcraft_sdk import probe_runtime
+                    result=probe_runtime(args.generation_python,args.output,checkout=args.checkout)
+                else:
+                    if args.checkout:raise ValueError('checkout applies only to the USDCraft SDK probe')
+                    from .generation.sand3d import probe_runtime
+                    result=probe_runtime(args.generation_python,args.output)
             elif args.action=='start':
+                if args.backend is not None:raise ValueError('backend applies to probe; start selects its backend by template ID')
                 if not args.identifier:raise ValueError('start requires a registered template ID')
                 result=generation_jobs.start(args.identifier,_load(args.parameters) if args.parameters else {},args.request_id)
             else:

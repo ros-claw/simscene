@@ -1,4 +1,5 @@
 """Validate prepared file closures and resolve explicit imported body paths."""
+import hashlib
 import json
 import re
 from pathlib import Path, PurePosixPath
@@ -62,6 +63,66 @@ def validate_asset_binding(binding, *, require_dynamic=False, asset_path=None):
     main = _relative(manifest.get('main'))
     if main not in names or manifest.get('default_prim') != '/Asset':
         raise ValueError('prepared default prim or entry file is invalid')
+    if manifest.get('profile_id') in {'articulated_prop_v1','articulated_prop_v2'}:
+        if 'source/acquired.json' not in names:
+            raise ValueError('prepared native source attribution snapshot is missing')
+        acquired=json.loads((root/'source/acquired.json').read_text())
+        if not isinstance(acquired,dict):
+            raise ValueError('prepared native source attribution snapshot is malformed')
+        original_ref=acquired.get('source_ref',acquired.get('asset_ref'))
+        if (manifest.get('source_ref')!=original_ref or manifest.get('license','unknown')!=acquired.get('license','unknown')
+                or manifest.get('provenance')!=acquired.get('provenance')
+                or manifest.get('source_manifest_sha256')!=acquired.get('manifest_sha256',acquired.get('source_manifest_hash'))):
+            raise ValueError('prepared native source attribution differs from its acquired snapshot')
+        source_files={item['path'][len('source/'):]:item for item in files
+                      if item['path'].startswith('source/') and item['path']!='source/acquired.json'}
+        acquired_files=acquired.get('files')
+        is_artvip=isinstance(original_ref,dict) and original_ref.get('source_id')=='artvip'
+        if is_artvip and not acquired_files:
+            raise ValueError('prepared native source acquisition file list is empty')
+        if acquired_files:
+            if not isinstance(acquired_files,list):
+                raise ValueError('prepared native source acquisition file list is malformed')
+            acquired_manifest=acquired.get('manifest_sha256',acquired.get('source_manifest_hash'))
+            if acquired_manifest is not None:
+                computed=hashlib.sha256(json.dumps(acquired_files,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+                if acquired_manifest!=computed:
+                    raise ValueError('prepared native source acquisition manifest hash differs from its file list')
+            recorded={}
+            for item in acquired_files:
+                if not isinstance(item,dict):raise ValueError('prepared native source acquisition file is malformed')
+                name=_relative(item.get('path'))
+                if name in recorded:raise ValueError('duplicate prepared native source acquisition file')
+                recorded[name]=item
+            if set(recorded)!=set(source_files):
+                raise ValueError('prepared native source acquisition file closure differs')
+            for name,item in recorded.items():
+                saved=source_files[name];size=item.get('size_bytes',item.get('size'))
+                if is_artvip and (not isinstance(item.get('sha256'),str) or type(size) is not int):
+                    raise ValueError('ArtVIP source acquisition requires every file hash and size')
+                if item.get('sha256') not in (None,saved['sha256']) or size is not None and size!=saved.get('size_bytes',saved.get('size')):
+                    raise ValueError('prepared native source acquisition file hash or size differs')
+        closure=[{'path':name,'sha256':entry['sha256'],'size_bytes':entry.get('size_bytes',entry.get('size'))}
+                 for name,entry in sorted(source_files.items())]
+        closure_hash=hashlib.sha256(json.dumps(closure,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        if manifest.get('source_closure_sha256') is not None and manifest['source_closure_sha256']!=closure_hash:
+            raise ValueError('prepared native source closure hash differs from its snapshot')
+        source_root=manifest.get('source_root')
+        if source_root is not None:
+            source_root=_relative(source_root)
+            matches=[item for item in files if item.get('path')==source_root and item.get('sha256')==manifest.get('source_sha256')]
+            if not source_root.startswith('source/') or len(matches)!=1:
+                raise ValueError('prepared native source attribution has an invalid root hash')
+        provenance=manifest.get('provenance')
+        if isinstance(original_ref,dict) and original_ref.get('source_id')=='artvip':
+            if not isinstance(provenance,dict) or provenance.get('repository')!='X-Humanoid/ArtVIP' or provenance.get('metadata_revision')!=original_ref.get('revision'):
+                raise ValueError('ArtVIP source attribution has an inconsistent repository or revision')
+            tree=provenance.get('root_tree_entry')
+            if (not isinstance(tree,dict) or not isinstance(tree.get('lfs'),dict) or not isinstance(tree.get('path'),str)
+                    or tree['lfs'].get('oid')!=manifest.get('source_sha256')
+                    or PurePosixPath(tree.get('path','')).parent.as_posix()!=original_ref.get('asset_id')
+                    or source_root is not None and source_root!='source/'+tree.get('path','')):
+                raise ValueError('ArtVIP source attribution differs from its pinned object metadata')
     if asset_path is not None and Path(asset_path).expanduser().absolute() != root / main:
         raise ValueError('scene asset_path does not match its prepared binding')
     body_map = manifest.get('body_map', {})
@@ -85,6 +146,14 @@ def validate_asset_binding(binding, *, require_dynamic=False, asset_path=None):
         report=manifest.get('articulation_report')
         if not isinstance(report,dict) or report.get('body_map') != body_map or report.get('joint_map') != manifest.get('joint_map'):
             raise ValueError('articulated prepared maps must match the inspected immutable graph')
+        parameters=manifest.get('parameters',{})
+        if parameters.get('source_physics_policy') == 'repair_explicit':
+            from .preparation.native_repairs import validate_repair_report,annotate_repaired_graph
+            repairs=validate_repair_report(parameters.get('native_physics_repairs'),manifest.get('physics_repairs'))
+            if annotate_repaired_graph(report,repairs) != report:
+                raise ValueError('prepared native repair report lacks derived graph provenance')
+        elif manifest.get('physics_repairs') is not None or parameters.get('native_physics_repairs') is not None:
+            raise ValueError('native repair report requires the explicit repair policy')
         from .worker.mechanism import validate_binding
         joints={}
         for local_id,entry in manifest.get('joint_map',{}).items():
@@ -94,7 +163,27 @@ def validate_asset_binding(binding, *, require_dynamic=False, asset_path=None):
                 raise ValueError('prepared joint references an undeclared body')
             joints[local_id]=dict(entry,joint_path='/World/validation/'+rel,parent_body='/World/validation/'+body_map[parent]['relative_prim_path'] if parent else None,child_body='/World/validation/'+body_map[child]['relative_prim_path'])
         validate_binding({'joints':joints})
-    if require_dynamic and manifest.get('profile_id') != 'articulated_prop_v1':
+    elif manifest.get('profile_id') == 'articulated_prop_v2':
+        from .preparation.articulation_v2 import runtime_joint
+        from .worker.mechanism_v2 import TwoDofTensorState
+        report=manifest.get('articulation_report')
+        if (not isinstance(report,dict) or report.get('schema')!='simscene.articulation_inspection.v2'
+                or report.get('body_map')!=body_map or report.get('joint_map')!=manifest.get('joint_map')
+                or manifest.get('parameters',{}).get('source_physics_policy')!='preserve_valid'
+                or manifest.get('physics_repairs') is not None):
+            raise ValueError('two-DOF prepared maps must match the preserved inspected graph')
+        root_id=report.get('root_body_id')
+        if root_id not in body_map:raise ValueError('two-DOF prepared graph requires an explicit root body')
+        def body_path(local_id):return '/World/validation/'+_relative(body_map[local_id]['relative_prim_path'],allow_root=True)
+        joints={}
+        for local_id,entry in manifest.get('joint_map',{}).items():
+            parent=entry.get('parent_body_id');child=entry.get('child_body_id')
+            if parent not in body_map or child not in body_map:raise ValueError('two-DOF joint references an undeclared body')
+            joints[local_id]=dict(runtime_joint(entry),joint_path='/World/validation/'+_relative(entry['relative_prim_path']),
+                                  parent_body=body_path(parent),child_body=body_path(child))
+        TwoDofTensorState._validate_binding({'profile_id':'articulated_prop_v2','joints':joints,
+            'motion_bodies':[body_path(name) for name in body_map],'root_body':body_path(root_id)})
+    if require_dynamic and manifest.get('profile_id') not in {'articulated_prop_v1','articulated_prop_v2'}:
         if manifest.get('profile_id') != 'rigid_prop_v1' or set(body_map) != {'main'} or body_map['main'].get('role') != 'rigid':
             raise ValueError('dynamic imported assets require a prepared rigid_prop_v1 main body')
         if not all(body_map['main'].get(key) for key in ('visual_relative_prim_paths', 'collider_relative_prim_paths')):
@@ -144,9 +233,18 @@ def resolve_body_bindings(stage, spec):
         anchor = stage.GetPrimAtPath(base)
         if not anchor or not anchor.IsActive():
             raise ValueError('prepared asset instance is missing')
-        if manifest['profile_id']=='articulated_prop_v1':
-            from .preparation.articulation import resolve_instance
-            result[object_id]=resolve_instance(stage,anchor,manifest)
+        if manifest['profile_id'] in {'articulated_prop_v1','articulated_prop_v2'}:
+            if manifest['profile_id']=='articulated_prop_v1':
+                from .preparation.articulation import resolve_instance,verify_source_graph
+                verify_source_graph(package,manifest)
+                result[object_id]=resolve_instance(stage,anchor,manifest)
+            else:
+                from .preparation.articulation_v2 import resolve_instance_v2,verify_source_graph_v2
+                verify_source_graph_v2(package,manifest)
+                result[object_id]=resolve_instance_v2(stage,anchor,manifest)
+            if manifest.get('physics_repairs') is not None:
+                result[object_id]['native_repairs_ref']={'manifest_path':binding['manifest_path'],
+                    'manifest_sha256':binding['manifest_sha256'],'json_pointer':'/physics_repairs'}
             for motion in result[object_id]['motion_bodies']:
                 if motion in claimed:raise ValueError('duplicate prepared motion body')
                 claimed.add(motion)

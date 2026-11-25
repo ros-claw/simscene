@@ -3,13 +3,24 @@ name: build-scene
 description: Discover online simulation assets, compose editable scenes with measured support relationships, run Isaac Sim and improve the result from camera and physical observations.
 ---
 
+For a first verified delivery, follow [the one-object setup](references/integration-workspace.md#first-delivery).
+
 Choose reproduction, modification or original construction first. Reproduce a
 locked recipe directly; test changed interfaces locally; build new mechanisms
-on a small bench before assembling the full scene. For editable parameter
+on a small bench before assembling the full scene. For the installed fixed
+cabinet, ArtVIP, two-drawer and SDK examples, read
+[fixed integration examples](references/integration-workspace.md). For editable parameter
 modules, compact first-handoff diagnosis and machine-side waiting, read
 [passive production](references/passive-production.md). Use its scripts when
 they remove repeated geometry or log-reading work; unsupported cases remain
 explicit rather than inheriting a previous example's physical pass.
+
+For the exact installed `automatic_cabinet_layout` reproduction, the fixed
+example reference describes a compact MCP workflow that performs the real
+search, preparation, layout, simulation, verification and video export in one
+machine-side call. It saves full MCP responses and returns short artifact
+paths. Read and visually review the recorded action windows yourself; the
+workflow never writes an acceptance decision.
 
 Use `environment_probe` to establish the available backend. Configure a supplied
 Isaac launcher with `environment_configure` when needed. Start with
@@ -45,7 +56,7 @@ backend experimental until actual paired mechanism trials pass.
 
 For a passive force-path acceptance case, read
 [network verification](references/passive-network-verification.md). A separate
-gravity-loaded support pad requires the explicit v2 declaration and
+gravity-loaded support pad requires the explicit v2 or v3 declaration and
 [typed support evidence](references/structural-loads-verification.md); never
 invent an activation or count structural motion as task progress. Freeze the
 software, geometry, case and controls before formal runs, and retain their

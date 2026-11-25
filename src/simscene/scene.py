@@ -59,13 +59,13 @@ def validate(scene):
                 prepared_manifest = validate_asset_binding(obj['asset_binding'], require_dynamic=obj.get('dynamic') is True,
                                                            asset_path=obj.get('asset_path'))
                 profile = prepared_manifest.get('profile_id')
-                if profile not in ('rigid_prop_v1', 'static_fixture_v1', 'visual_prop_v1', 'articulated_prop_v1', 'container_v1', 'environment_v1'):
+                if profile not in ('rigid_prop_v1', 'static_fixture_v1', 'visual_prop_v1', 'articulated_prop_v1', 'articulated_prop_v2', 'container_v1', 'environment_v1'):
                     raise ValueError('unsupported prepared asset profile')
-                if profile in ('rigid_prop_v1','articulated_prop_v1') and obj.get('dynamic') is not True:
+                if profile in ('rigid_prop_v1','articulated_prop_v1','articulated_prop_v2') and obj.get('dynamic') is not True:
                     raise ValueError(f'prepared {profile} requires dynamic=true')
-                if profile not in ('rigid_prop_v1','articulated_prop_v1') and obj.get('dynamic', False) is not False:
+                if profile not in ('rigid_prop_v1','articulated_prop_v1','articulated_prop_v2') and obj.get('dynamic', False) is not False:
                     raise ValueError('prepared static/visual profiles require dynamic=false')
-                if profile=='articulated_prop_v1' and (not observation.get('strict_start') or observation.get('sample_interval_steps')!=1):
+                if profile in ('articulated_prop_v1','articulated_prop_v2') and (not observation.get('strict_start') or observation.get('sample_interval_steps')!=1):
                     raise ValueError('prepared articulated assets require strict_start and every-physics-step observation')
                 colliders = any(entry.get('collider_relative_prim_paths') for entry in prepared_manifest.get('body_map', {}).values())
                 if 'collision' in obj and obj['collision'] is not bool(colliders):
@@ -84,13 +84,23 @@ def validate(scene):
                 prepared_manifest = None
         if 'mechanism' in obj:
             try:
-                if prepared_manifest is None or prepared_manifest.get('profile_id')!='articulated_prop_v1':
-                    raise ValueError('mechanism requires a prepared articulated_prop_v1 asset binding')
+                if prepared_manifest is None or prepared_manifest.get('profile_id') not in ('articulated_prop_v1','articulated_prop_v2'):
+                    raise ValueError('mechanism requires a prepared articulated asset binding')
                 from .worker.mechanism import validate_config
-                joints={}
+                joints={};profile=prepared_manifest['profile_id'];bodies=prepared_manifest['body_map']
                 for local_id,entry in prepared_manifest['joint_map'].items():
-                    joints[local_id]=dict(entry,joint_path='/World/validation/Joint',parent_body='/World/validation/Parent' if entry.get('parent_body_id') else None,child_body='/World/validation/Child')
-                validate_config({'joints':joints},obj['mechanism'])
+                    if profile=='articulated_prop_v2':
+                        from .preparation.articulation_v2 import runtime_joint
+                        entry=runtime_joint(entry)
+                    parent=entry.get('parent_body_id');child=entry['child_body_id']
+                    joints[local_id]=dict(entry,joint_path='/World/validation/'+entry['relative_prim_path'],
+                        parent_body='/World/validation/'+bodies[parent]['relative_prim_path'] if parent else None,
+                        child_body='/World/validation/'+bodies[child]['relative_prim_path'])
+                binding={'joints':joints}
+                if profile=='articulated_prop_v2':
+                    binding.update(profile_id=profile,motion_bodies=['/World/validation/'+b['relative_prim_path'] for b in bodies.values()],
+                        root_body='/World/validation/'+bodies[prepared_manifest['articulation_report']['root_body_id']]['relative_prim_path'])
+                validate_config(binding,obj['mechanism'])
                 if not observation.get('strict_start') or observation.get('sample_interval_steps')!=1:
                     raise ValueError('mechanism requires strict_start and every-physics-step observation')
             except (ValueError,TypeError,KeyError) as error:

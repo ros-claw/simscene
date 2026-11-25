@@ -5,7 +5,7 @@ from pathlib import Path
 import yaml
 from .models import SourceRecord
 
-KNOWN_ADAPTERS = frozenset({'nvidia', 'abo', 'hf_manifest', 'usdcraft', 'simready_package', 'http_assets', 'simready_central'})
+KNOWN_ADAPTERS = frozenset({'nvidia', 'abo', 'hf_manifest', 'usdcraft', 'artvip', 'simready_package', 'http_assets', 'simready_central'})
 MAX_REGISTRY_BYTES = 1024 * 1024
 
 
@@ -17,7 +17,9 @@ def validate_source(record: dict) -> SourceRecord:
         raise ValueError('ABO adapter requires the audited codepawl/abo-glb repository')
     if source.adapter == 'usdcraft' and source.repository != 'nvidia/USDCraft-10K':
         raise ValueError('USDCraft adapter requires its audited native source repository')
-    if source.adapter in {'abo','hf_manifest','usdcraft','simready_package'}:
+    if source.adapter == 'artvip' and source.repository != 'X-Humanoid/ArtVIP':
+        raise ValueError('ArtVIP adapter requires its audited native source repository')
+    if source.adapter in {'abo','hf_manifest','usdcraft','artvip','simready_package'}:
         import re
         if not source.repository or not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',source.repository):
             raise ValueError('HF adapter requires an explicit repository')

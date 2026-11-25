@@ -45,6 +45,33 @@ class Response(io.BytesIO):
 
 
 class DependencyRepairRetryTest(unittest.TestCase):
+    def test_hf_unverified_cache_can_be_rescanned_without_redownloading_or_mutating_it(self):
+        import builtins
+        real_import = builtins.__import__
+        root_data = b'#usda 1.0\ndef Xform "Asset" {}\n'
+        calls = []
+        def download(url, destination, budget):
+            calls.append(url); destination.write_bytes(root_data)
+            return len(root_data), hashlib.sha256(root_data).hexdigest()
+        def without_usd(name, *args, **kwargs):
+            if name == 'pxr': raise ImportError('USD intentionally unavailable')
+            return real_import(name, *args, **kwargs)
+        with tempfile.TemporaryDirectory() as directory:
+            with patch('simscene.huggingface_cache._download', side_effect=download), \
+                 patch('builtins.__import__', side_effect=without_usd):
+                first = huggingface_cache.acquire('org/models', 'a'*40, 'root.usda', directory, 100000)
+            self.assertEqual(first['dependency_status'], 'unverified_usd_tools_unavailable')
+            old_lock = Path(directory) / first['package_sha256'] / 'simscene-lock.json'
+            original = old_lock.read_bytes()
+            with patch('simscene.huggingface_cache._download', side_effect=AssertionError('unexpected download')):
+                repaired = huggingface_cache.acquire('org/models', 'a'*40, 'root.usda', directory, 100000)
+                warm = huggingface_cache.acquire('org/models', 'a'*40, 'root.usda', directory, 100000)
+            self.assertEqual(repaired['dependency_status'], 'resolved_locally')
+            self.assertNotEqual(repaired['package_sha256'], first['package_sha256'])
+            self.assertEqual(warm['package_sha256'], repaired['package_sha256'])
+            self.assertEqual(old_lock.read_bytes(), original)
+            self.assertEqual(len(calls), 1)
+
     def test_usd_texture_404_then_restored_creates_new_lock_reusing_existing_root(self):
         available = False
         calls = []

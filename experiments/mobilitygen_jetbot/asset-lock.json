@@ -1,0 +1,57 @@
+{
+  "asset": "jetbot.usda",
+  "files": [
+    {
+      "bytes": 13508,
+      "path": "jetbot.usda",
+      "sha256": "d483e768ee585047e3179df4e05865a7584521d08fc20cfc15fe6a92b6ee42f5",
+      "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots_Multiphysics/NVIDIA/Jetbot/jetbot.usda"
+    },
+    {
+      "bytes": 12645,
+      "path": "payloads/base.usda",
+      "sha256": "4b98f56568a6620e829bc04505a146f884e63b2a1417050b9632c095fb4d8312",
+      "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots_Multiphysics/NVIDIA/Jetbot/payloads/base.usda"
+    },
+    {
+      "bytes": 6572,
+      "path": "payloads/Physics/physx.usda",
+      "sha256": "4001f5a8b0142baf800727510d91bfe407f99406eb282ef7ab286b7a18b76a70",
+      "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots_Multiphysics/NVIDIA/Jetbot/payloads/Physics/physx.usda"
+    },
+    {
+      "bytes": 307106,
+      "path": "payloads/instances.usda",
+      "sha256": "acfb9b01f6c28018926c5632ce04e47d509bfad8c19a2fdf4ab9d410610abe3a",
+      "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots_Multiphysics/NVIDIA/Jetbot/payloads/instances.usda"
+    },
+    {
+      "bytes": 4324,
+      "path": "payloads/robot.usda",
+      "sha256": "8e3cb0e8d46b29354a70e727a008bfbc8cfe82f8becf87b6333874f3b2ebc356",
+      "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots_Multiphysics/NVIDIA/Jetbot/payloads/robot.usda"
+    },
+    {
+      "bytes": 7689,
+      "path": "payloads/Physics/physics.usda",
+      "sha256": "1d18be0666499b8de9e26552e6f1c1f982a6ceecf5c110c70097902bf56697f4",
+      "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots_Multiphysics/NVIDIA/Jetbot/payloads/Physics/physics.usda"
+    },
+    {
+      "bytes": 146529,
+      "path": "payloads/materials.usda",
+      "sha256": "24156a1e9ccadb36abd0ced650b57604881e89d878fda2727ec7c515c79069b4",
+      "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots_Multiphysics/NVIDIA/Jetbot/payloads/materials.usda"
+    },
+    {
+      "bytes": 31444131,
+      "path": "payloads/geometries.usd",
+      "sha256": "be03d338e1c19883d98328d16ed5802736e7d96e6f65f6d162e0e6dc88a5d0f8",
+      "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots_Multiphysics/NVIDIA/Jetbot/payloads/geometries.usd"
+    }
+  ],
+  "license": "NVIDIA Isaac Sim Additional Software and Materials License",
+  "license_url": "https://docs.isaacsim.omniverse.nvidia.com/latest/common/license-isaac-sim-additional.html",
+  "schema": "simscene.mobilitygen_jetbot.asset-lock.v1",
+  "total_bytes": 31942504
+}

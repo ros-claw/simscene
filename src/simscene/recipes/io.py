@@ -40,17 +40,26 @@ def _files(files):
 def _generation_intent(identity,provenance):
     if not isinstance(identity,dict) or type(identity.get('seed')) is not int or identity['seed']!=0:
         raise ValueError('unsupported generated source: explicit trusted recipe and seed 0 required')
-    from ..generation.sand3d import parameters,COMMIT
     if not re.fullmatch('[0-9a-f]{64}',str(identity.get('template_sha256',''))):raise ValueError('trusted template content pin required')
+    generator=provenance.get('generator')
+    if generator=='sand3d':
+        from ..generation.sand3d import parameters,COMMIT
+    elif generator=='usdcraft_sdk':
+        from ..generation.usdcraft_sdk import parameters,COMMIT,validate_runtime
+        if identity.get('generation_contract_version')!=3:raise ValueError('unsupported generated source contract')
+        validate_runtime(identity.get('toolchain'))
+    else:raise ValueError('unsupported generated source runtime')
     recipe=identity.get('recipe_id');p=parameters(recipe,identity.get('parameters'))
     runtime=identity.get('toolchain') or {}
-    if provenance.get('generator')!='sand3d' or provenance.get('reviewed_commit')!=COMMIT or runtime.get('reviewed_commit')!=COMMIT:
+    if provenance.get('reviewed_commit')!=COMMIT or runtime.get('reviewed_commit')!=COMMIT:
         raise ValueError('unsupported generated source runtime')
     # Python executable locations are runtime configuration, not portable intent.
     observed=runtime.get('observed',{})
-    return portable({'generator':'sand3d','recipe_id':recipe,'parameters':p,'seed':0,
+    result={'generator':generator,'recipe_id':recipe,'parameters':p,'seed':0,
         'reviewed_commit':COMMIT,'template_sha256':identity.get('template_sha256'),
-        'toolchain_intent':{key:value for key,value in observed.items() if key not in ('python','executable','python_executable','path')}})
+        'toolchain_intent':{key:value for key,value in observed.items() if key not in ('python','executable','python_executable','path','repository_path')}}
+    if generator=='usdcraft_sdk':result['generation_contract_version']=3
+    return portable(result)
 
 
 def prepared_selection(manifest,acquired,*,manifest_sha256):
@@ -65,9 +74,11 @@ def prepared_selection(manifest,acquired,*,manifest_sha256):
         'previous_preparation':{'prepared_id':manifest['prepared_id'],'manifest_sha256':manifest_sha256,
             'source_manifest_sha256':manifest.get('source_manifest_sha256'),'scope':'informational; rebuild may change absolute provenance; no physics verdict reused'}}
     if acquired.get('source_ref')!=manifest['source_ref']:raise ValueError('source attribution differs from prepared manifest')
-    if ref.source_id=='local-sand3d':
+    if ref.source_id in ('local-sand3d','local-usdcraft-sdk'):
         provenance=manifest.get('provenance') or {}
         result['generation']=_generation_intent(provenance.get('identity'),provenance)
+        if (ref.source_id,result['generation']['generator']) not in (('local-sand3d','sand3d'),('local-usdcraft-sdk','usdcraft_sdk')):
+            raise ValueError('generated source reference differs from its backend')
         if ref.asset_id!=result['generation']['recipe_id']:raise ValueError('generated source reference differs from trusted recipe')
     else:
         metadata=acquired.get('metadata')
@@ -89,7 +100,8 @@ def validate_rebuilt(selection,binding):
         if manifest.get('source_ref')!=selection['source_ref']:raise ValueError('rebuilt source reference differs')
     else:
         actual_ref=AssetRef.from_dict(manifest.get('source_ref'))
-        if actual_ref.source_id!='local-sand3d' or actual_ref.asset_id!=selection['generation']['recipe_id']:
+        expected_source={'sand3d':'local-sand3d','usdcraft_sdk':'local-usdcraft-sdk'}.get(selection['generation'].get('generator'))
+        if not expected_source or actual_ref.source_id!=expected_source or actual_ref.asset_id!=selection['generation']['recipe_id']:
             raise ValueError('rebuilt generated source attribution differs')
         provenance=manifest.get('provenance') or {}
         if _generation_intent(provenance.get('identity'),provenance)!=selection['generation']:

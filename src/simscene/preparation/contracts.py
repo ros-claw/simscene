@@ -95,11 +95,15 @@ def prepared_contract(manifest, *, manifest_path=None, manifest_sha256=None):
                        'runtime_dependency_count': dependency_count,
                        'runtime_dependency_evidence': 'inspected' if dependency_count is not None else 'unknown'}
     mass = parameters.get('mass_kg') if profile == 'rigid_prop_v1' else None
-    collision_applied = profile in {'rigid_prop_v1', 'static_fixture_v1', 'container_v1', 'articulated_prop_v1'}
+    native_repairs = parameters.get('native_physics_repairs')
+    if native_repairs is not None:
+        from .native_repairs import validate_repair_report
+        validate_repair_report(native_repairs, manifest.get('physics_repairs'))
+    collision_applied = profile in {'rigid_prop_v1', 'static_fixture_v1', 'container_v1', 'articulated_prop_v1', 'articulated_prop_v2'}
     collision_method = parameters.get('collision_method')
     approximate = collision_applied and collision_method in {'convex_hull', 'box_proxy'}
     physics_report = {'collision_method': collision_method, 'collision_applied': collision_applied,
-                      'mass_assumption_kg': mass, 'experimental_mass': mass is not None,
+                      'mass_assumption_kg': mass, 'experimental_mass': mass is not None or bool(native_repairs and native_repairs['missing_masses_kg']),
                       'experimental_material': profile == 'rigid_prop_v1' or (profile == 'static_fixture_v1' and collision_method == 'box_proxy'),
                       'collision_approximation': approximate,
                       'collision_report_ref': reference('/collision_report') if manifest.get('collision_report') is not None else None,
@@ -114,6 +118,15 @@ def prepared_contract(manifest, *, manifest_path=None, manifest_sha256=None):
         warnings.append('runtime_mdl_dependency_requires_target_environment')
     if mass is not None:
         warnings.append('experimental_mass_assumption_not_manufacturer_data')
+    if native_repairs is not None:
+        physics_report['native_repairs_ref'] = reference('/physics_repairs')
+        if native_repairs['missing_masses_kg']:
+            warnings.append('experimental_native_link_masses')
+        if native_repairs['neutralize_drives']:
+            warnings.append('source_native_drive_neutralized')
+        if native_repairs['material_density_overrides']:
+            physics_report['source_material_densities_overridden'] = True
+            warnings.append('experimental_body_mass_overrides_source_material_density')
     if material_count is None:
         warnings.append('material_count_unknown')
     if runtime['status'] not in {'runtime_verified', 'verified', 'pass'}:
@@ -132,7 +145,7 @@ def prepared_contract(manifest, *, manifest_path=None, manifest_sha256=None):
               'bounds': deepcopy(manifest.get('bounds')), 'body_map': deepcopy(body_map),
               'material_report': material_report, 'physics_report': physics_report,
               'warnings': warnings, 'runtime_validation': runtime}
-    if profile=='articulated_prop_v1':
+    if profile in {'articulated_prop_v1','articulated_prop_v2'}:
         result['joint_map']=deepcopy(manifest.get('joint_map',{}))
     if profile=='container_v1':
         result['physics_report']['container_report_ref']=reference('/container_report')

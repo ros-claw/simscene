@@ -251,7 +251,8 @@ try:
         app.update()  # Complete the SDK's physics setup before restoring t0.
         app_utils.pause()
         from simscene.worker.initial_state import PassiveState
-        state_reader=PassiveState(stage,spec['objects'],body_bindings=body_bindings,authored_state=authored_initial_state);initialization_reset=state_reader.reset_before_task()
+        state_reader=PassiveState(stage,spec['objects'],body_bindings=body_bindings,authored_state=authored_initial_state,
+                                  is_paused=getattr(app_utils,'is_paused',None));initialization_reset=state_reader.reset_before_task()
         initialization_reset.update(before_warmup_absolute_physics_step=initialization_before_steps,before_warmup_absolute_simulation_time_s=initialization_before_time,after_warmup_absolute_physics_step=SimulationManager.get_num_physics_steps(),after_warmup_absolute_simulation_time_s=SimulationManager.get_simulation_time())
         paused_steps=SimulationManager.get_num_physics_steps()
         for _ in range(3):app.update()
@@ -290,6 +291,7 @@ try:
             if not binding.get('joints'):continue
             mechanism_controllers[name]=MechanismController(binding,spec['objects'][name].get('mechanism',{}),backend=UsdMechanismBackend(stage,state_reader))
     if strict_start:
+        state_reader.mark_task_started()
         initial_native_state=state_reader.read()
         initial_joint_states=sample_joints(stage,spec['objects'],native_state=initial_native_state)
         mechanism_configuration['mass_properties_by_prim_path']=state_reader.mass_properties(0)

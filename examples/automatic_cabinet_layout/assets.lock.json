@@ -1,0 +1,420 @@
+{
+  "schema": "simscene.selected_assets.v2",
+  "assets": {
+    "cabinet": {
+      "provider": "prepared",
+      "source_ref": {
+        "source_id": "usdcraft",
+        "asset_id": "ds_R021_02",
+        "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+        "variant_id": null
+      },
+      "profile_id": "articulated_prop_v1",
+      "profile_version": 1,
+      "parameters": {
+        "ccd": false,
+        "collision_method": "preserve",
+        "dynamic_friction": 0.5,
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "preserve",
+        "source_physics_policy": "preserve_valid",
+        "static_friction": 0.6
+      },
+      "target": {
+        "engine": "physx",
+        "isaac_version": "6.2.0-rc.14+release.52805.02189a84.gl",
+        "platform": "linux-x86_64",
+        "usd_version": "0.25.11"
+      },
+      "toolchain": {
+        "backend": "openusd",
+        "version": "0.25.11"
+      },
+      "source_sha256": "72dbc3b8479048ff07b838a951c4dd58617eeddc8668a861415a5ca087f32be5",
+      "source_closure_sha256": "a8b18e9ab32ef792c1409fa05e741b2316b2869cf1348cd6ed2c731d483779ef",
+      "source_files": [
+        {
+          "path": "rigid/kitchen_dining/R021_kitchen_wall_cabinet/02_lift_up_wall_cabinet/physx/model.usdc",
+          "size_bytes": 63716,
+          "sha256": "72dbc3b8479048ff07b838a951c4dd58617eeddc8668a861415a5ca087f32be5"
+        }
+      ],
+      "previous_preparation": {
+        "prepared_id": "781e55aa1dda2360052337c952099fe713a205ee7978754ed0d5a7d030104694",
+        "manifest_sha256": "993b5f45e7c9f89f65dd4294cbd3ca4c6969408226f25e24829c570b31fb2a19",
+        "source_manifest_sha256": "19a4f3486fbed40e340d793b951157146e1b2da204e673d2f006c835245a74ba",
+        "scope": "informational; rebuild may change absolute provenance; no physics verdict reused"
+      },
+      "source_record": {
+        "ref": {
+          "asset_id": "ds_R021_02",
+          "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+          "source_id": "usdcraft",
+          "variant_id": null
+        },
+        "title": "Lift-Up Wall Cabinet",
+        "format": "usd",
+        "entry_path": "rigid/kitchen_dining/R021_kitchen_wall_cabinet/02_lift_up_wall_cabinet/physx/model.usdc",
+        "license": {
+          "basis": "pinned_USDCraft_asset_distribution_card",
+          "evidence": "declared",
+          "license": "Apache-2.0",
+          "notices_required": true,
+          "status": "known"
+        },
+        "availability": {
+          "acquisition": {
+            "dependency_mode": "inspect_selected_usd_closure",
+            "files": [
+              {
+                "path": "rigid/kitchen_dining/R021_kitchen_wall_cabinet/02_lift_up_wall_cabinet/physx/model.usdc",
+                "sha256": "72dbc3b8479048ff07b838a951c4dd58617eeddc8668a861415a5ca087f32be5",
+                "size": null
+              }
+            ],
+            "files_complete": false,
+            "kind": "hf_usd_package",
+            "package_path": "rigid/kitchen_dining/R021_kitchen_wall_cabinet/02_lift_up_wall_cabinet",
+            "path": "rigid/kitchen_dining/R021_kitchen_wall_cabinet/02_lift_up_wall_cabinet/physx/model.usdc",
+            "repository": "nvidia/USDCraft-10K",
+            "revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9"
+          },
+          "estimated_download_bytes": null,
+          "files_complete": false,
+          "granularity": "dependency_closure",
+          "status": "declared"
+        },
+        "provenance": {
+          "license_scope": "USDCraft-generated native distribution; not a license rule for arbitrary owner packages",
+          "metadata_revision": "92f4e908415d7532a02661d6502ab49dc3aa33f9",
+          "original_metadata": {
+            "category": "Kitchen Wall Cabinet",
+            "category_id": "R021",
+            "group": "kitchen_dining",
+            "has_textures": "false",
+            "joint_count": "1",
+            "joint_types": "revolute",
+            "object_id": "ds_R021_02",
+            "part_count": "2",
+            "path": "rigid/kitchen_dining/R021_kitchen_wall_cabinet/02_lift_up_wall_cabinet",
+            "physics_type": "articulated",
+            "physx_sha256": "72dbc3b8479048ff07b838a951c4dd58617eeddc8668a861415a5ca087f32be5",
+            "prompt": "Lift-up wall cabinet, 90 x 35 x 40 cm, in matte grey-painted wood with a single wide flap door and a recessed handle bar. The interior has one wooden shelf and a flat back. To store light items above the counter, the user grips the recessed handle bar and lifts the flap door upward to reach the shelf; the flap is hinged along its top edge on a horizontal revolute axis and swings up 80 degrees; every part is a rigid body, with no deformable, cloth, soft-volume or dynamic rod parts.",
+            "title": "Lift-Up Wall Cabinet"
+          },
+          "repository": "nvidia/USDCraft-10K",
+          "unit_axis_evidence": "dataset_card_declared_meters_Z_up"
+        }
+      }
+    },
+    "box": {
+      "provider": "prepared",
+      "source_ref": {
+        "source_id": "gso-glb",
+        "asset_id": "ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box",
+        "revision": "75e8895e4f4e854cddd7009a7e60f86812041012",
+        "variant_id": null
+      },
+      "profile_id": "rigid_prop_v1",
+      "profile_version": 1,
+      "parameters": {
+        "ccd": true,
+        "collision_method": "convex_hull",
+        "dynamic_friction": 0.5,
+        "mass_kg": 0.12,
+        "mass_note": "Experimental120mm scaled scanned box/.12kg assumption; not manufacturer values.",
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "fit_longest",
+        "source_physics_policy": "reject_if_physics",
+        "static_friction": 0.6,
+        "target_longest_extent_m": 0.12
+      },
+      "target": {
+        "engine": "physx",
+        "isaac_version": "6.2.0-rc.14+release.52805.02189a84.gl",
+        "platform": "linux-x86_64",
+        "usd_version": "0.25.11"
+      },
+      "toolchain": {
+        "backend": "omni.kit.asset_converter",
+        "canonicalization": "explicit_Rx90_once",
+        "codec_policy_version": 2,
+        "predecoder": {
+          "backend": "gltf-transform-meshopt",
+          "core_version": "4.5.1",
+          "extensions_version": "4.5.1",
+          "max_decoded_bytes": 268435456,
+          "meshoptimizer_version": "1.3.0",
+          "node_modules_sha256": "3bfdef144f9a32d73ab5147f5be0dcd2e9e731a28b56f9ae7e521a46e590c302",
+          "node_version": "v22.23.2",
+          "package_lock_sha256": "bac0ab1332c821de5680b887f828014d86a71eb930b14d91fd938e36c45bdff0",
+          "script_sha256": "06af0eaf70d3cfda095cadef3de0afde388d1c9b4ba1e930d408e95c002602e4"
+        },
+        "usd_version": "0.25.11",
+        "version": "6.1.0"
+      },
+      "source_sha256": "5454424606ed780b806c99a5a3ffc0f4b0b9ade2fc9afa9c63fbf932ea187949",
+      "source_closure_sha256": "c2800268fbde5b01d93558746942ffc8446780f390573605f2979056c6223975",
+      "source_files": [
+        {
+          "path": "README.md",
+          "size_bytes": 11624,
+          "sha256": "a283318ac5c8990a1fb49ddd5b2f2f91aaaddece678e3a97941e90b29deb8ad9"
+        },
+        {
+          "path": "objects/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box.glb",
+          "size_bytes": 263232,
+          "sha256": "5454424606ed780b806c99a5a3ffc0f4b0b9ade2fc9afa9c63fbf932ea187949"
+        }
+      ],
+      "previous_preparation": {
+        "prepared_id": "dd50547b39fed14df8ddecbe15ee71952928b21b43fb302cc105aece9e66947b",
+        "manifest_sha256": "52de9211b27fc73eaaadedd4725f1122224c0f31d5ab07a95baa340902244990",
+        "source_manifest_sha256": "bd310cb197a405b1671b990a1daeb72be6062d4419fadf252dd88ed8f23e6c67",
+        "scope": "informational; rebuild may change absolute provenance; no physics verdict reused"
+      },
+      "source_record": {
+        "ref": {
+          "asset_id": "ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box",
+          "revision": "75e8895e4f4e854cddd7009a7e60f86812041012",
+          "source_id": "gso-glb",
+          "variant_id": null
+        },
+        "title": "Ready-to-Use Rolled Fondant, Pure White - 24 oz box",
+        "format": "glb",
+        "entry_path": "objects/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box.glb",
+        "license": {
+          "basis": "object_metadata_row",
+          "evidence": "declared",
+          "license": "CC-BY-4.0",
+          "notices_required": true,
+          "status": "known"
+        },
+        "availability": {
+          "acquisition": {
+            "additional_paths": [
+              "README.md"
+            ],
+            "kind": "hf_single_glb",
+            "path": "objects/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box.glb",
+            "repository": "codepawl/scanned-objects-glb",
+            "revision": "75e8895e4f4e854cddd7009a7e60f86812041012"
+          },
+          "estimated_download_bytes": 263232,
+          "files_complete": null,
+          "granularity": "single_file",
+          "status": "declared"
+        },
+        "provenance": {
+          "mass_estimate_note": "metadata estimates are not measured/manufacturer dynamics",
+          "metadata_revision": "75e8895e4f4e854cddd7009a7e60f86812041012",
+          "original_metadata": {
+            "brand": "Ready-to-Use",
+            "category": "food and drink",
+            "category_source": "name rule",
+            "file": "objects/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box.glb",
+            "file_name": "engine/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box.glb",
+            "id": "ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box",
+            "license": "CC-BY-4.0",
+            "mass_estimate_kg": 0.2866,
+            "mpn": null,
+            "name": "Ready-to-Use Rolled Fondant, Pure White - 24 oz box",
+            "pack_bytes": 263232,
+            "pack_texture_px": 2048,
+            "size_metres": [
+              0.1217,
+              0.1687,
+              0.0491
+            ],
+            "sku": "00070896423016",
+            "source": "https://fuel.gazebosim.org/1.0/GoogleResearch/models/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box",
+            "source_bytes": 13264125,
+            "source_categories": [
+              "Consumer Goods"
+            ],
+            "source_texture_px": 4096,
+            "thumb": "thumbs/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box.webp",
+            "triangles": 1744,
+            "vertices": 949
+          },
+          "relationship": "community_conversion",
+          "repository": "codepawl/scanned-objects-glb",
+          "selected_variant": "standard_objects_glb",
+          "upstream_source": "https://fuel.gazebosim.org/1.0/GoogleResearch/models/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box",
+          "viewer_variant_not_selected": "engine/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box/ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box.glb"
+        }
+      }
+    },
+    "book_a": {
+      "provider": "prepared",
+      "source_ref": {
+        "source_id": "abo-glb",
+        "asset_id": "B01DN8TB5U",
+        "revision": "c7c8293fed3b7ab122ef5d7896521a187e0962d7",
+        "variant_id": null
+      },
+      "profile_id": "rigid_prop_v1",
+      "profile_version": 1,
+      "parameters": {
+        "ccd": true,
+        "collision_method": "convex_hull",
+        "dynamic_friction": 0.5,
+        "mass_kg": 0.12,
+        "mass_note": "Experimental 150mm scaled notebook surrogate for 200mm routing channels; mass assumption, not full-size manufacturer specification.",
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "fit_longest",
+        "source_physics_policy": "reject_if_physics",
+        "static_friction": 0.6,
+        "target_longest_extent_m": 0.15
+      },
+      "target": {
+        "engine": "physx",
+        "isaac_version": "6.2.0-rc.14+release.52805.02189a84.gl",
+        "platform": "linux-x86_64",
+        "usd_version": "0.25.11"
+      },
+      "toolchain": {
+        "backend": "omni.kit.asset_converter",
+        "canonicalization": "explicit_Rx90_once",
+        "codec_policy_version": 2,
+        "predecoder": {
+          "backend": "gltf-transform-meshopt",
+          "core_version": "4.5.1",
+          "extensions_version": "4.5.1",
+          "max_decoded_bytes": 268435456,
+          "meshoptimizer_version": "1.3.0",
+          "node_modules_sha256": "3bfdef144f9a32d73ab5147f5be0dcd2e9e731a28b56f9ae7e521a46e590c302",
+          "node_version": "v22.23.2",
+          "package_lock_sha256": "bac0ab1332c821de5680b887f828014d86a71eb930b14d91fd938e36c45bdff0",
+          "script_sha256": "06af0eaf70d3cfda095cadef3de0afde388d1c9b4ba1e930d408e95c002602e4"
+        },
+        "usd_version": "0.25.11",
+        "version": "6.1.0"
+      },
+      "source_sha256": "67d61db31084d820ca9b1b0d2d3761662f6a5532944573afceee8f57c8151845",
+      "source_closure_sha256": "6dbe5eddcba3d8c26d5b3f27a0272a59420e565492957a3cbfef22753a87de9a",
+      "source_files": [
+        {
+          "path": "LICENSE-CC-BY-4.0.txt",
+          "size_bytes": 14527,
+          "sha256": "419896aea50c15d6e40c5b4baf4bd346f78223b9a354c7357ad00262afdc08ec"
+        },
+        {
+          "path": "objects/B01DN8TB5U/B01DN8TB5U.glb",
+          "size_bytes": 524720,
+          "sha256": "67d61db31084d820ca9b1b0d2d3761662f6a5532944573afceee8f57c8151845"
+        }
+      ],
+      "previous_preparation": {
+        "prepared_id": "4f6ada04a8274c8ce1dadbd4a13242ab1f688b407e09d106cab2f613795684ec",
+        "manifest_sha256": "c00b0427d407b564b116c7b79426f9db3d5ccc1ed239e68186484918e85a759b",
+        "source_manifest_sha256": "7d3ae44fb94faa434650be896d80eb6b2fdff835a276afdafff3bc077bd0fc6a",
+        "scope": "informational; rebuild may change absolute provenance; no physics verdict reused"
+      },
+      "source_record": {
+        "ref": {
+          "asset_id": "B01DN8TB5U",
+          "revision": "c7c8293fed3b7ab122ef5d7896521a187e0962d7",
+          "source_id": "abo-glb",
+          "variant_id": null
+        },
+        "title": "AmazonBasics Classic Blank Notebook, 240 Pages, Hardcover - Plain",
+        "format": "glb",
+        "entry_path": "objects/B01DN8TB5U/B01DN8TB5U.glb",
+        "license": {
+          "basis": "dataset_card",
+          "evidence": "declared",
+          "license": "CC-BY-4.0",
+          "notices_required": true,
+          "status": "known"
+        },
+        "availability": {
+          "acquisition": {
+            "kind": "hf_single_glb",
+            "path": "objects/B01DN8TB5U/B01DN8TB5U.glb",
+            "repository": "codepawl/abo-glb",
+            "revision": "c7c8293fed3b7ab122ef5d7896521a187e0962d7"
+          },
+          "estimated_download_bytes": 524720,
+          "files_complete": null,
+          "granularity": "single_file",
+          "status": "declared"
+        },
+        "provenance": {
+          "coordinate_system": "Y-up",
+          "dimensions_evidence": "declared",
+          "license": "CC-BY-4.0",
+          "metadata_revision": "c7c8293fed3b7ab122ef5d7896521a187e0962d7",
+          "original_metadata": {
+            "amazon_item_ids": [
+              "B01DN8TB5U"
+            ],
+            "bounds_min": [
+              -0.0635,
+              0,
+              -0.0079
+            ],
+            "brand": "AmazonBasics",
+            "catalog_dimensions_cm": {
+              "height": 12.7,
+              "length": 21,
+              "width": 1.5
+            },
+            "catalog_weight_kg": null,
+            "color": "Black",
+            "domain": "amazon.com",
+            "file": "objects/B01DN8TB5U/B01DN8TB5U.glb",
+            "hull_volume_m3": 0.00041,
+            "id": "B01DN8TB5U",
+            "ktx2_bytes": 634804,
+            "ktx2_file": "objects_ktx2/B01DN8TB5U/B01DN8TB5U.glb",
+            "lods": [
+              {
+                "bytes": 182952,
+                "file": "lods/B01DN8TB5U/B01DN8TB5U_lod1.glb",
+                "texture_px": 1024,
+                "triangles": 786
+              },
+              {
+                "bytes": 50384,
+                "file": "lods/B01DN8TB5U/B01DN8TB5U_lod2.glb",
+                "texture_px": 512,
+                "triangles": 314
+              },
+              {
+                "bytes": 20140,
+                "file": "lods/B01DN8TB5U/B01DN8TB5U_lod3.glb",
+                "texture_px": 256,
+                "triangles": 220
+              }
+            ],
+            "material": null,
+            "materials": 1,
+            "name": "AmazonBasics Classic Blank Notebook, 240 Pages, Hardcover - Plain",
+            "pack_bytes": 524720,
+            "product_type": "paper product",
+            "size_metres": [
+              0.127,
+              0.2128,
+              0.0157
+            ],
+            "source_bytes": 14891808,
+            "source_texture_px": 4096,
+            "style": "Plain",
+            "texture_vram_mib_ktx2": 12,
+            "texture_vram_mib_webp": 64,
+            "triangles": 1574,
+            "vertices": 1164
+          },
+          "relationship": "community_conversion",
+          "repository": "codepawl/abo-glb",
+          "upstream_asset_id": "B01DN8TB5U",
+          "upstream_source": "amazon-berkeley-objects"
+        }
+      }
+    }
+  }
+}

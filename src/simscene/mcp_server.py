@@ -4,6 +4,7 @@ import functools
 import os
 from mcp.server.fastmcp import FastMCP, Image
 from mcp.types import ToolAnnotations
+from pydantic import StrictFloat, StrictInt
 from .assets import USDSearch
 from .cache import AssetCache
 
@@ -51,7 +52,7 @@ def scene_compile_recipe(scene_id: str, recipe_id: str, parameters: dict, bindin
 
 @threaded_tool()
 def asset_generate(recipe_id: str, parameters: dict, request_id: str | None = None) -> dict:
-    """Start a durable job for an explicitly configured independent Sand3D runtime and a shipped fixed template (guide_plate_v1 or open_receiver_v1). Accepts structured dimensions only, never external programs. Completion returns a generated AssetRef for ordinary asset_plan/asset_prepare; generation alone gives no physical pass."""
+    """Start a durable job for a configured independent runtime and a shipped fixed template: Sand3D guide_plate_v1/open_receiver_v1 or USDCraft SDK usdcraft_sdk_guide_plate_v1. Accepts structured dimensions only, never external programs. Returns a generated AssetRef for ordinary asset_plan/asset_prepare; generation alone gives no physical pass."""
     from .generation.jobs import start
     return start(recipe_id,parameters,request_id)
 
@@ -73,6 +74,33 @@ def catalog_sources_resource() -> str:
     import json
     from .catalog.service import sources
     return json.dumps(sources(),ensure_ascii=False)
+
+@server.resource('simscene://recipes/examples')
+def fixed_examples_resource() -> str:
+    """List pinned example inputs and prior-evidence scope without starting physics."""
+    import json
+    from .recipes.registry import list_examples
+    return json.dumps(list_examples(),ensure_ascii=False)
+
+@server.resource('simscene://runtime/identity')
+def runtime_identity_resource() -> str:
+    """Report this process's loaded package paths and local build identity."""
+    import hashlib
+    import json
+    import sys
+    from pathlib import Path
+    import simscene
+    module=Path(simscene.__file__).resolve()
+    server_file=Path(__file__).resolve()
+    worker=module.parent/'worker'/'isaac_run.py'
+    build_file=module.parent.parent.parent/'build-info.json'
+    info=json.loads(build_file.read_text()) if build_file.is_file() and build_file.stat().st_size<=65536 else None
+    digest=lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
+    return json.dumps({'schema':'simscene.runtime_identity.v1','python_executable':sys.executable,
+        'python_version':sys.version.split()[0],'module_path':str(module),'module_sha256':digest(module),
+        'mcp_server_path':str(server_file),'mcp_server_sha256':digest(server_file),
+        'worker_path':str(worker),'worker_sha256':digest(worker),'build_info':info,
+        'scope':'Current MCP process and local files; separate worker and optional backends need their own identity. Hashes are not signatures.'},ensure_ascii=False)
 
 @threaded_tool(annotations=_read_local)
 def environment_probe() -> dict:
@@ -189,6 +217,28 @@ def scene_measure(scene_id: str, ids: list[str], include_overlap_candidates: boo
     return measure(SceneStore().get(scene_id),ids,include_overlap_candidates)
 
 @threaded_tool(annotations=_read_local)
+def scene_plan_layout(scene_id: str, ids: list[str], support: str, support_surface: str | None = None,
+                      seed: StrictInt = 0, clearance_m: StrictFloat = .01, gap_m: StrictFloat = 0.,
+                      avoid_ids: list[str] | None = None, keepout_bounds: list[dict] | None = None) -> dict:
+    """Propose editable place_on operations for up to eight existing objects on an explicit static support.
+
+    Requires scene_synthesizer 1.15.0 in SIMSCENE_LAYOUT_PYTHON; it operates
+    on measured bounding-box proxies, without editing source USD or the scene.
+    Imported props, obstacles and supports require verified prepared bindings;
+    dynamic props require a colliding static support. Compounds with attached
+    visuals are not supported.
+    Apply all operations at the returned base_revision. Explicitly include any
+    obstacles and moving-mechanism keepouts. Actual colliders, joint sweeps and
+    dynamic stability require physical inspection and a new simulation.
+    """
+    from .layout_synthesis import plan_layout
+    from .scene import SceneStore
+    plan = plan_layout(SceneStore().get(scene_id), ids, support, support_surface=support_surface,
+                       seed=seed, clearance_m=clearance_m, gap_m=gap_m, avoid_ids=avoid_ids,
+                       keepout_bounds=keepout_bounds)
+    return {**plan, 'scene_id': scene_id}
+
+@threaded_tool(annotations=_read_local)
 def scene_plan_rope(scene_id: str, prefix: str, points: list[list[float]], radius_m: float = .005, max_segment_m: float = .025, linear_density_kg_m: float = .06, attachments: dict | None = None, physics: dict | None = None, self_collision: bool = True) -> dict:
     """Propose real colliding capsule links connected by passive spherical joints. points are a metric world polyline, including deliberate slack. Optional start/end attachments each use body and local_position_m. Apply returned ordinary operations after review. This is not a distance-only or animated rope; routing over a free pulley and actual tension transfer need physical trials and broken-end controls."""
     from .scene import SceneStore,validate,SceneError
@@ -227,6 +277,14 @@ def video_export(segments: list[dict], destination: str, output_resolution: list
     """Edit intact real run recordings. Segments require run_directory,camera,start_sim_time_s,end_sim_time_s; optional speed,title. Preserve native cadence, save source hashes and sim/output time mapping. Upscaling requires explicit opt-in."""
     from .video_tools import export
     return export(segments,destination,output_resolution,output,allow_upscale,font_file=font_file)
+
+@threaded_tool()
+def video_export_start(segments: list[dict], destination: str, request_id: str,
+                       output_resolution: list[int] | None = None, output: dict | None = None,
+                       allow_upscale: bool = False, font_file: str | None = None) -> dict:
+    """Start a durable native video export to an absolute MP4 path. Use job_status to wait or reconnect. An identical request ID replays the original job handle. Review the video separately after completion."""
+    from .video_export_jobs import start
+    return start(segments, destination, request_id, output_resolution, output, allow_upscale, font_file)
 
 @threaded_tool()
 def video_inspect(path: str, output_dir: str | None = None, representative_count: int = 5, job_id: str | None = None, camera: str | None = None) -> dict:
@@ -371,7 +429,7 @@ def run_verify_lock(job_id: str) -> dict:
 
 @threaded_tool(annotations=_read_local)
 def run_verify(job_id: str, case_path: str | None = None, case_type: str | None = None, mode: str = 'positive', reference_job_id: str | None = None) -> dict:
-    """Check completed physical evidence against an independent pinned local case. Types: contact, suction, moving, repeated, domino, parallel, stream, mechanism, passive_network. Passive schemas infer their type. Mechanism detached_drawer and network no_trigger/broken_rope/locked_door modes require the matching reference_job_id and isolated declared changes. A single positive network run does not accept the whole stage: use run_verify_passive_suite with its frozen required controls. This verifier only reads measurements and never releases or moves a mechanism."""
+    """Check completed physical evidence against an independent pinned local case. Passive and imported-asset schemas infer their type. For a two-joint control use mode='missing_second_joint_drive' with the control job_id and the positive reference_job_id. Mechanism detached_drawer and network no_trigger/broken_rope/locked_door modes also require a matching positive reference. A single positive network run does not accept the whole stage: use run_verify_passive_suite with its frozen required controls. This verifier only reads measurements and never releases or moves a mechanism."""
     from .jobs import verify_task
     return verify_task(job_id,case_path,case_type,mode,reference_job_id)
 

@@ -1,8 +1,8 @@
 # Plugin packages
 
-Python package version `0.2.0.dev1` is an experimental V2 candidate. The single version
+Python package version `0.2.0.dev2` is an unreleased experimental V2 candidate. The single version
 source is `pyproject.toml`; the builder maps its development suffix explicitly to
-plugin version `0.2.0-dev.1`. Building or installing files does not publish a
+plugin version `0.2.0-dev.2`. Building or installing files does not publish a
 release or establish physical compatibility for arbitrary assets.
 
 The [V2 preview release](https://github.com/ros-claw/simscene/releases/tag/v0.2.0-dev.1)
@@ -51,12 +51,20 @@ check resources and Pillow in a fresh interpreter, and retain the own-project
 wheel under `wheels/`. Each client tree has `server/dependency-lock.json` and
 `server/build-info.json` with versions, build mode, and wheel SHA256. These are
 platform/Python-specific bundles, not universal offline runtime distributions.
+The build record also identifies the full Git commit and whether the checkout
+was clean. A clean build verifies its wheel source snapshot against the Git
+tree; dirty or non-Git builds explicitly record that state. Query the running
+MCP resource `simscene://runtime/identity` for the loaded module, worker and
+build record, and compare the wheel digest with the actual wheel. Two builds
+with the same version string can contain different code. Isaac, layout and
+optional generator environments are distinct runtimes and need their own
+identity checks.
 
 A wheel can also be installed using ordinary pip:
 
 ```sh
 python3 -m venv /absolute/path/to/new-venv
-/absolute/path/to/new-venv/bin/python -m pip install /absolute/path/to/new-dist/wheels/rosclaw_simscene-0.2.0.dev1-py3-none-any.whl
+/absolute/path/to/new-venv/bin/python -m pip install /absolute/path/to/new-dist/wheels/rosclaw_simscene-0.2.0.dev2-py3-none-any.whl
 ```
 
 That installs the base Python dependencies. It does not install Isaac or optional

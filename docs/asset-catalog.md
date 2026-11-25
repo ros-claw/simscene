@@ -1,9 +1,11 @@
 # Online catalog and prepared assets
 
-The V2 workflow adds six MCP tools: `catalog_search`, `asset_plan`,
+The original V2 preview added six MCP tools: `catalog_search`, `asset_plan`,
 `asset_prepare`, `catalog_discover`, `scene_compile_recipe` and `asset_generate`.
 The original 46 tools retain their interfaces. Source availability, static preparation, and successful
 physical execution are separate results.
+This later development branch also adds the optional `scene_plan_layout` tool;
+see [automatic layout](scene-layout.md) for its setup and limits.
 
 ## Select a source and search metadata
 
@@ -27,6 +29,84 @@ when the source recovers. Cursor pages retain the original query's cost under
 `budgets.metadata_bytes`; use `budgets.request_metadata_bytes` and
 `request_preview_bytes` for per-call transfer accounting. Cached cursor pages
 make no network requests.
+
+USDCraft is enabled but not selected by default. To find candidates whose
+manifest declares one rotational joint, call `catalog_search` with:
+
+```json
+{
+  "query": "cabinet",
+  "filters": {
+    "source_ids": ["usdcraft"],
+    "required_capabilities": ["declared_single_joint", "declared_rotational_joint"]
+  },
+  "limit": 8
+}
+```
+
+Use `declared_translational_joint` to search for a declared prismatic joint.
+The rotational filter includes both `revolute` and `continuous`; a continuous
+joint does not establish finite limits. All requested capabilities must match.
+These filters describe the source's joint-type labels and joint count, not the
+number of independent DOFs, an openable object, or a runtime-verified asset.
+Unknown types, malformed lists, and conflicting type/count/physics declarations
+remain unknown and do not satisfy these requirements, even with
+`allow_unknown_constraints`. The pinned manifest itself contains such conflicts.
+
+The linked detailed record retains the original row, declared `part_count`,
+`joint_count`, parsed `joint_types` and `has_textures` facts. Search returns
+compact summaries; retrieving an asset and discovering its dependency closure
+remain separate. An old USDCraft index projection refreshes the pinned manifest
+on the next search; it does not download models, and old query cursors may need
+to be restarted. Planning against a stale index asks for a search or refresh
+first. Restart older SimScene servers sharing that index after upgrading; they
+may still present their previous projection. Preparation still inspects the selected native USD and rejects
+unsupported graphs or physics.
+
+For selected sources with two actual independent scalar joints, the experimental
+`articulated_prop_v2` profile preserves a native three-link tree, its collision
+geometry and finite limits. Static source declarations are not enough to prove
+independence: the worker also checks the actual PhysX joint-to-DOF mapping, and
+the dedicated verifier compares native readings with recorded link frames.
+Coupled, geared, mimic and tendon mechanisms, arbitrary link counts, and
+unsupported drives or repairs remain outside this profile. The reproducible
+[two-drawer example](../examples/usdcraft_two_drawer/README.md) demonstrates two
+prismatic axes; two-hinge and mixed-axis models need their own runtime tests.
+
+ArtVIP is an explicitly selected, experimental source. The current registry
+contains **only one curated object directory**, `small_furniture/door/door002`;
+it is not a search index for all objects in the upstream dataset:
+
+```bash
+simscene catalog search 'door' --source artvip
+```
+
+The first search reads the selected directory's Hugging Face tree metadata at
+the fixed revision, without downloading the USD, textures, previews, or code.
+Its one root USD must have an unambiguous path and LFS SHA-256. The root's size
+is known, but the total dependency size is unknown until acquisition. A plan
+can be ready to fetch while the physical profile remains unverified. Selected
+preparation retrieves and checks the USD dependency closure under the normal
+transfer budgets; it does not download the repository. In one cold acquisition
+this particular root and its three dependencies totaled 68,676 bytes.
+
+The [pinned ArtVIP dataset card](https://huggingface.co/datasets/X-Humanoid/ArtVIP/blob/d22f2095bc9db29fdd4b60f4a3c4f8177e1f5e9e/README.md)
+declares Apache-2.0. The record retains the card URL and its SHA-256; a separate
+per-object license notice was not established, and an unreviewed revision does
+not inherit this declaration. Preserve attribution and applicable notices. The
+chosen door's native USD has one revolute joint and a world fixed joint, but its
+rigid links lack explicit masses and its native drive uses acceleration with
+unbounded effort. Its seven colliders have source physics-material densities of
+700 or 7,900 kg/m³. The original source is therefore not admitted by the
+preserving single-joint profile. The opt-in `repair_explicit` recipe for this
+particular door adds experimental body masses and neutralizes the unsupported
+drive **in a derived package**; its body masses override those original material
+density contributions. It lists each affected collider, material and density.
+The original source closure remains unchanged in the package. This is an
+experiment, not a measurement of the manufactured object or a preservation of
+its original drive behavior. See the [door example](../examples/artvip_door/README.md).
+Neither dataset membership nor a metadata result establishes a compatible
+profile, successful simulation, or physical behavior for other objects.
 
 ABO is a community conversion of Amazon Berkeley Objects; preserve its source
 identity and CC-BY notices. NVIDIA search indexes upstream libraries with
@@ -92,6 +172,18 @@ dependency sizes remain unknown. Preparation retrieves only the selected model
 and its closure. Missing dependencies cannot qualify as complete. Failed
 requests retain their consumed transfer bytes. Repair publishes a new package
 while reusing verified files and preserving the old package.
+
+For an explicitly repaired native articulation, the recipe must identify every
+missing body mass and any incompatible drive to neutralize. A new body mass
+must also explicitly identify each effective source physics-material density it
+overrides. Authored descendant mass or density, inherited body density, unsafe
+units and unsupported graph structures are rejected instead of silently
+overridden. Reports and run readbacks link these assumptions to the prepared
+manifest. Scene validation checks the file closure and recorded attribution;
+scene export and execution additionally replay the source graph and compare its
+collider geometry, transforms, joint attributes and physics materials. This
+checks consistency with the pinned package, not the authenticity of a
+caller-supplied pin.
 
 Reusing a request ID returns its original job, including a failed job. Use a
 new request ID for a deliberate retry. Jobs persist independently of the MCP

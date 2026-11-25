@@ -21,7 +21,7 @@ def make_plan(ref, profile_id='visual_prop_v1', parameters=None, target=None, bu
     ref = AssetRef.from_dict(ref) if isinstance(ref, dict) else ref
     if not isinstance(ref, AssetRef): raise ValueError('asset_ref must be a valid AssetRef')
     ref.validate_selection()
-    record = record or resolve_asset(ref, index_directory=config['index_directory'])
+    record = record or resolve_asset(ref, index_directory=config['index_directory'], registry_path=config.get('registry_path'))
     if record.ref != ref: raise ValueError('resolved selection does not match ref')
     budgets = dict(budgets or {})
     allowed = {'download_bytes', 'unpacked_bytes', 'staging_bytes'}
@@ -71,7 +71,7 @@ def make_plan(ref, profile_id='visual_prop_v1', parameters=None, target=None, bu
     elif ref.source_id == 'nvidia-usd-search':
         descriptor = {'kind':'usd_dependency_closure','asset_url':
                       availability.get('asset_url') or (record.provenance or {}).get('asset_url')}
-    elif ref.source_id == 'local-sand3d' and descriptor.get('kind') == 'generated_package':
+    elif ref.source_id in {'local-sand3d', 'local-usdcraft-sdk'} and descriptor.get('kind') == 'generated_package':
         if descriptor.get('revision') != ref.revision:
             blocking.append({'code':'verification_failed','detail':'generated content revision differs from selection'})
     elif descriptor.get('kind') == 'http_files':

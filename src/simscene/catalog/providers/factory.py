@@ -15,6 +15,9 @@ def make_provider(store, source, config):
     if source.adapter=='usdcraft':
         from .simready_package import USDCraftProvider
         return USDCraftProvider(store,source,max_index_bytes=cap)
+    if source.adapter=='artvip':
+        from .artvip import ArtVIPProvider
+        return ArtVIPProvider(store,source,max_index_bytes=min(4*1024**2,cap))
     if source.adapter=='simready_package':
         from .simready_package import SimReadyPackageProvider
         return SimReadyPackageProvider(store,source,max_index_bytes=min(4*1024**2,cap))

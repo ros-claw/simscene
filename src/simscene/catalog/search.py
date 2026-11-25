@@ -11,6 +11,7 @@ from .store import CatalogStore
 
 MAX_RESPONSE_BYTES = 12 * 1024
 MAX_CANDIDATES_PER_PROVIDER = 100
+_CONFIGURED_REGISTRY = object()
 ALIASES = {'工作台': 'workbench', '桌子': 'table', '椅子': 'chair', '杯子': 'cup',
            '台灯': 'lamp', '柜子': 'cabinet', '沙发': 'sofa', '盒子': 'box', '球': 'ball'}
 
@@ -258,7 +259,7 @@ def search_assets(request, *, registry=None, providers=None, index_directory=Non
     return _page(frozen, 0, request, (time.monotonic() - started) * 1000)
 
 
-def resolve_asset(ref, *, index_directory=None):
+def resolve_asset(ref, *, index_directory=None, registry_path=_CONFIGURED_REGISTRY):
     """Resolve only a prior search/index selection; never inspect/fetch models."""
     from .models import AssetRef
     if isinstance(ref, dict):
@@ -266,7 +267,27 @@ def resolve_asset(ref, *, index_directory=None):
     if not isinstance(ref, AssetRef):
         raise ValueError('resolve_asset requires an AssetRef')
     ref.validate_selection()
+    from .config import read
+    configuration = read()
     if index_directory is None:
-        from .config import read
-        index_directory = read()['index_directory']
-    return CatalogStore(index_directory).get(ref)
+        index_directory = configuration['index_directory']
+    store = CatalogStore(index_directory)
+    if registry_path is _CONFIGURED_REGISTRY:
+        registry_path = configuration.get('registry_path')
+    registry = load_registry(registry_path)
+    try:
+        source = registry.get(ref.source_id)
+    except KeyError:
+        source = None
+    if source is not None and source.adapter == 'usdcraft':
+        from .providers.simready_package import USDCraftProvider
+        return USDCraftProvider(store, source).resolve(ref)
+    if source is not None and source.adapter == 'artvip':
+        from .providers.artvip import ArtVIPProvider
+        return ArtVIPProvider(store, source).resolve(ref)
+    record = store.get(ref)
+    if source is None and isinstance(record.provenance, dict) and record.provenance.get('repository') == 'nvidia/USDCraft-10K':
+        raise ValueError('USDCraft source must be present in the configured registry before planning')
+    if source is None and isinstance(record.provenance, dict) and record.provenance.get('repository') == 'X-Humanoid/ArtVIP':
+        raise ValueError('ArtVIP source must be present in the configured registry before planning')
+    return record

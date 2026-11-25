@@ -1,0 +1,176 @@
+{
+  "schema": "simscene.scene_recipe.v2",
+  "description": "Generated long plate, CCD ball and support test.",
+  "operations": [
+    {
+      "op": "add",
+      "id": "plate",
+      "object": {
+        "kind": "asset",
+        "dynamic": false,
+        "position": [
+          0.0,
+          0.0,
+          0.25
+        ],
+        "asset_role": "long"
+      }
+    },
+    {
+      "op": "add",
+      "id": "ball",
+      "object": {
+        "kind": "sphere",
+        "size": [
+          0.04,
+          0.04,
+          0.04
+        ],
+        "position": [
+          0.3,
+          0.0,
+          0.65
+        ],
+        "dynamic": true,
+        "collision": true,
+        "mass_kg": 0.05,
+        "physics": {
+          "enable_ccd": true
+        },
+        "color": [
+          0.9,
+          0.3,
+          0.1
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "floor",
+      "object": {
+        "kind": "box",
+        "size": [
+          2.0,
+          2.0,
+          0.1
+        ],
+        "position": [
+          0.0,
+          0.0,
+          -0.05
+        ],
+        "dynamic": false,
+        "collision": true,
+        "color": [
+          0.25,
+          0.28,
+          0.3
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "pedestal",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.1,
+          0.14,
+          0.25
+        ],
+        "position": [
+          -0.15,
+          0.0,
+          0.125
+        ],
+        "dynamic": false,
+        "collision": true,
+        "color": [
+          0.35,
+          0.4,
+          0.45
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "sky",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "dome"
+        },
+        "intensity": 500.0
+      }
+    },
+    {
+      "op": "add",
+      "id": "key",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "sphere",
+          "radius_m": 0.5
+        },
+        "position": [
+          1.0,
+          -1.5,
+          2.0
+        ],
+        "intensity": 1500.0
+      }
+    },
+    {
+      "op": "add",
+      "id": "overview",
+      "object": {
+        "kind": "camera",
+        "position": [
+          0.9,
+          -1.4,
+          1.05
+        ],
+        "record_fps": 2,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            640,
+            360
+          ],
+          "focal_length_mm": 32.0,
+          "horizontal_aperture_mm": 36.0,
+          "focus_distance_m": 1.8,
+          "clipping_range_m": [
+            0.01,
+            100.0
+          ]
+        },
+        "orientation_wxyz": [
+          0.8258143506823128,
+          0.5086950395094699,
+          0.12767432761618716,
+          0.2072662081801167
+        ]
+      }
+    },
+    {
+      "op": "set_presentation",
+      "presentation": {
+        "profile": "preview",
+        "budget": {
+          "max_cameras": 1,
+          "max_recording_bytes": 1073741824,
+          "min_free_bytes": 2147483648
+        }
+      }
+    },
+    {
+      "op": "set_observation",
+      "observation": {
+        "sample_interval_steps": 1,
+        "strict_start": true,
+        "record_contact_pairs": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "simscene.generated_plate_support_pair.v1",
+  "steps": 360,
+  "physics_dt_s": 0.016666666666666666,
+  "physics_device": "cpu",
+  "seed": 17,
+  "assets": {
+    "short": {
+      "source_ref": "${short.source_ref}",
+      "source_sha256": "894e85edbdeccbbe6777284dc5864618b1ff944bdb10c330fcb3f60c456a1257",
+      "length_m": 0.5,
+      "manifest_sha256": "${short.manifest_sha256}"
+    },
+    "long": {
+      "source_ref": "${long.source_ref}",
+      "source_sha256": "1d680272bc0277488e1da40b84a3bd2b32e88c4cc4888218886c14c84b97d395",
+      "length_m": 0.7,
+      "manifest_sha256": "${long.manifest_sha256}"
+    }
+  },
+  "ball_center_initial_m": [
+    0.3,
+    0.0,
+    0.65
+  ],
+  "ball_radius_m": 0.02,
+  "plate_origin_m": [
+    0.0,
+    0.0,
+    0.25
+  ],
+  "settled_last_steps": 60,
+  "max_settled_z_range_m": 0.005,
+  "max_settled_xy_drift_m": 0.01,
+  "expected_final_ball_z_m": {
+    "short": [
+      0.015,
+      0.03
+    ],
+    "long": [
+      0.279,
+      0.295
+    ]
+  },
+  "expected_contact": {
+    "short": "floor",
+    "long": "plate"
+  },
+  "require_direct_contact_min_separation_m_at_most": 0.003,
+  "max_reported_penetration_m": 0.002,
+  "note": "Same ball and scene; only selected generated plate length and its prepared source change. Both use explicitly replaced static box proxies and a ball with CCD. Case is an experiment-specific external protocol, not an existing SimScene case type."
+}

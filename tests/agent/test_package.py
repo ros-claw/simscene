@@ -39,7 +39,11 @@ CatalogStore(root/'index').replace_index('abo-glb',[record],revision+':original-
 from simscene.recipes.registry import list_recipes
 assert list_recipes()['recipes']
 assert resources.files('simscene.generation.templates').joinpath('guide_plate_v1.py').is_file()
-assert metadata.version('rosclaw-simscene')=='0.2.0.dev1'
+assert resources.files('simscene.generation.templates').joinpath('usdcraft_sdk_guide_plate_v1.py').is_file()
+from simscene.verification.articulated_asset_two_joint_pair import verify_pair
+from simscene.catalog.providers.artvip import ArtVIPProvider
+assert metadata.version('rosclaw-simscene')=='0.2.0.dev2'
+assert resources.files('simscene').joinpath('layout_synthesis_worker.py').is_file()
 from simscene.preparation.glb_convert import predecoder_fingerprint
 from simscene.preparation.profiles import PreparationError
 try:predecoder_fingerprint(str(root/'missing-decoder'))
@@ -55,9 +59,17 @@ else:raise AssertionError('missing optional decoder was reported available')
                 async with ClientSession(reader,writer) as session:
                     await session.initialize()
                     names={tool.name for tool in (await session.list_tools()).tools}
-                    self.assertTrue({'catalog_search','asset_plan','asset_prepare','catalog_discover','asset_generate','scene_compile_recipe'}<=names)
+                    self.assertTrue({'catalog_search','asset_plan','asset_prepare','catalog_discover','asset_generate','scene_compile_recipe','scene_plan_layout'}<=names)
                     response=await session.read_resource('simscene://catalog/sources')
                     self.assertTrue(json.loads(response.contents[0].text)['sources'])
+                    response=await session.read_resource('simscene://recipes/examples')
+                    examples=json.loads(response.contents[0].text)['examples']
+                    self.assertIn('automatic_cabinet_layout',{entry['id'] for entry in examples})
+                    response=await session.read_resource('simscene://runtime/identity')
+                    identity=json.loads(response.contents[0].text)
+                    self.assertEqual(Path(identity['module_path']).resolve(),(vendor/'simscene/__init__.py').resolve())
+                    self.assertEqual(Path(identity['worker_path']).resolve(),(vendor/'simscene/worker/isaac_run.py').resolve())
+                    self.assertEqual(identity['build_info']['python_version'],'0.2.0.dev2')
                     response=await session.call_tool('catalog_search',{'query':'Original package fixture','filters':{'source_ids':['abo-glb']},'limit':1})
                     self.assertFalse(response.isError,str(response))
                     page=json.loads(response.content[0].text);self.assertEqual(len(page['items']),1)
@@ -74,14 +86,52 @@ else:raise AssertionError('missing optional decoder was reported available')
                 members=set(archive.namelist())
                 for name in ('simscene/catalog/data/sources.yaml','simscene/recipes/data/recipes.json',
                              'simscene/preparation/data/package-lock.json','simscene/generation/templates/guide_plate_v1.py',
-                             'simscene/worker/isaac_run.py','simscene/preparation/worker.py'):
+                             'simscene/worker/isaac_run.py','simscene/preparation/worker.py', 'simscene/layout_synthesis_worker.py',
+                             'simscene/generation/templates/usdcraft_sdk_guide_plate_v1.py',
+                             'simscene/generation/usdcraft_backend_worker.py','simscene/catalog/providers/artvip.py',
+                             'simscene/preparation/articulation_v2.py','simscene/worker/mechanism_v2.py',
+                             'simscene/verification/articulated_asset_two_joint_pair.py'):
                     self.assertIn(name,members)
                 self.assertFalse(any('__pycache__' in name or 'node_modules/' in name or name.endswith('.pyc') for name in members))
             for kind in ('portable','claude','deepseek'):
                 stage=root/kind;stage.mkdir()
                 plugin=output/kind/'simscene'
                 self.assertTrue((plugin/'README.md').is_file())
+                for sample in ('examples/first_delivery/README.md',
+                               'examples/first_delivery/assets.lock.json',
+                               'examples/first_delivery/recipe.json',
+                               'examples/first_delivery/case.json',
+                               'experiments/run_first_delivery.py',
+                               'examples/automatic_cabinet_layout/assets.lock.json',
+                               'examples/automatic_cabinet_layout/recipe.json',
+                               'examples/automatic_cabinet_layout/case.json',
+                               'examples/automatic_cabinet_layout/supplemental-checks.json',
+                               'examples/automatic_cabinet_layout/check.py',
+                               'examples/artvip_door/assets.lock.json',
+                               'examples/artvip_door/check.py',
+                               'examples/usdcraft_two_drawer/case.json',
+                               'examples/integration_workspace/recipe.json',
+                               'examples/integration_workspace/README.md',
+                               'examples/integration_workspace/recipe-control.json',
+                               'examples/integration_workspace/case.json',
+                               'examples/integration_workspace/check.py',
+                               'examples/usdcraft_sdk_guide/assets.lock.json',
+                               'examples/usdcraft_sdk_guide/check_pair.py',
+                               'experiments/acquire_recipe_assets.py',
+                               'experiments/apply_scene_recipe.py',
+                               'experiments/freeze_recipe_case.py',
+                               'experiments/check_motion_clearance.py',
+                               'experiments/assemble_integration_receipt.py',
+                               'experiments/run_cabinet_mcp.py'):
+                    self.assertEqual((plugin/sample).read_bytes(),(ROOT/sample).read_bytes(),sample)
+                for original in (ROOT/'skills').rglob('*.md'):
+                    reference=plugin/'skills'/original.relative_to(ROOT/'skills')
+                    self.assertTrue(reference.is_file(),str(reference))
+                    self.assertEqual(reference.read_bytes(),original.read_bytes(),
+                                     f'{reference}: packaged skill differs from its source')
                 for reference in (plugin/'skills').rglob('*.md'):
+                    original=ROOT/'skills'/reference.relative_to(plugin/'skills')
+                    self.assertTrue(original.is_file(),str(reference))
                     for link in re.findall(r'\]\(([^\s)]+)\)',reference.read_text()):
                         target=link.split('#')[0]
                         if not target or ':' in target:continue
@@ -91,7 +141,7 @@ else:raise AssertionError('missing optional decoder was reported available')
                 for notice in ('LICENSE','NOTICE','OPEN_SOURCE_NOTICES.md'):
                     self.assertTrue((plugin/notice).is_file())
                     self.assertEqual((plugin/notice).read_bytes(),(ROOT/notice).read_bytes())
-                info=json.loads((plugin/'server/build-info.json').read_text());self.assertEqual(info['python_version'],'0.2.0.dev1');self.assertEqual(info['plugin_version'],'0.2.0-dev.1')
+                info=json.loads((plugin/'server/build-info.json').read_text());self.assertEqual(info['python_version'],'0.2.0.dev2');self.assertEqual(info['plugin_version'],'0.2.0-dev.2')
                 if kind=='portable':
                     config=json.loads((plugin/'mcp.json').read_text());self.assertEqual(config['mcpServers']['simscene']['type'],'stdio')
                 elif kind=='claude':self.assertTrue((plugin/'.claude-plugin/plugin.json').is_file())
@@ -116,4 +166,9 @@ else:raise AssertionError('missing optional decoder was reported available')
                 self.assertTrue(result['codex_mcp_registered'])
                 self.assertFalse(result['native_plugin_installed'])
                 self.assertTrue((project/'.agents/skills/build-scene/SKILL.md').is_file())
+                skill_root=project/'.agents/skills/build-scene'
+                installed_root=Path((skill_root/'.simscene-plugin-root').read_text().strip())
+                self.assertEqual(installed_root,destination)
+                self.assertTrue((installed_root/'examples/usdcraft_two_drawer/case.json').is_file())
+                self.assertTrue((installed_root/'examples/usdcraft_sdk_guide/check_pair.py').is_file())
                 asyncio.run(check(project,destination))

@@ -1,0 +1,414 @@
+{
+  "description": "Matched control; remove only all lower drawer drive commands.",
+  "operations": [
+    {
+      "op": "add",
+      "id": "floor",
+      "object": {
+        "kind": "box",
+        "size": [
+          7.0,
+          7.0,
+          0.1
+        ],
+        "position": [
+          0.0,
+          0.0,
+          -0.05
+        ],
+        "color": [
+          0.16,
+          0.19,
+          0.22
+        ],
+        "collision": true
+      }
+    },
+    {
+      "op": "add",
+      "id": "table",
+      "object": {
+        "kind": "box",
+        "size": [
+          2.6,
+          1.5,
+          0.08
+        ],
+        "position": [
+          0.0,
+          0.0,
+          0.79
+        ],
+        "color": [
+          0.48,
+          0.32,
+          0.2
+        ],
+        "support_surfaces": {
+          "worktop": {
+            "min_xy": [
+              -1.28,
+              -0.73
+            ],
+            "max_xy": [
+              1.28,
+              0.73
+            ],
+            "z_m": 0.04
+          }
+        },
+        "collision": true
+      }
+    },
+    {
+      "op": "add",
+      "id": "cabinet",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          -1.8,
+          0.0,
+          0.005
+        ],
+        "mechanism": {
+          "commands": [
+            {
+              "joint_id": "joint1",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 0
+              },
+              "target_position": 0.0,
+              "position_unit": "m",
+              "stiffness": 2000.0,
+              "damping": 100.0,
+              "max_effort": 400.0
+            },
+            {
+              "joint_id": "joint1",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 60
+              },
+              "target_position": 0.35,
+              "position_unit": "m",
+              "stiffness": 2000.0,
+              "damping": 100.0,
+              "max_effort": 400.0
+            },
+            {
+              "joint_id": "joint1",
+              "trigger": {
+                "type": "at_step",
+                "physics_step": 150
+              },
+              "target_position": 0.0,
+              "position_unit": "m",
+              "stiffness": 2000.0,
+              "damping": 100.0,
+              "max_effort": 400.0
+            }
+          ]
+        },
+        "asset_role": "cabinet"
+      }
+    },
+    {
+      "op": "add",
+      "id": "box",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          -1.8,
+          -0.08,
+          0.1594879117077209
+        ],
+        "orientation_wxyz": [
+          0.7071067811865476,
+          0.7071067811865476,
+          0,
+          0
+        ],
+        "asset_role": "box"
+      }
+    },
+    {
+      "op": "add",
+      "id": "book_a",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          0.26289903053234287,
+          0.3871088653379733,
+          0.8755482700515308
+        ],
+        "orientation_wxyz": [
+          0.7071067811865476,
+          0.7071067811865476,
+          0.0,
+          0.0
+        ],
+        "asset_role": "book_a"
+      }
+    },
+    {
+      "op": "add",
+      "id": "book_b",
+      "object": {
+        "kind": "asset",
+        "dynamic": true,
+        "position": [
+          0.8113178607321683,
+          -0.37845832407133945,
+          0.8755482659645383
+        ],
+        "orientation_wxyz": [
+          0.6532814824381883,
+          0.6532814824381883,
+          0.2705980500730985,
+          0.2705980500730985
+        ],
+        "asset_role": "book_a"
+      }
+    },
+    {
+      "op": "add",
+      "id": "sky",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "dome"
+        },
+        "intensity": 500.0
+      }
+    },
+    {
+      "op": "add",
+      "id": "key",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "sphere",
+          "radius_m": 0.4
+        },
+        "intensity": 2000.0,
+        "position": [
+          0.0,
+          -2.5,
+          4.5
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "drawer_fill",
+      "object": {
+        "kind": "light",
+        "light": {
+          "type": "sphere",
+          "radius_m": 0.15
+        },
+        "position": [
+          -1.8,
+          -0.52,
+          0.85
+        ],
+        "intensity": 1600.0
+      }
+    },
+    {
+      "op": "add",
+      "id": "overview",
+      "object": {
+        "kind": "camera",
+        "position": [
+          1.4,
+          -4.6,
+          2.65
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 45.0,
+          "horizontal_aperture_mm": 36.0,
+          "focus_distance_m": 4.8,
+          "clipping_range_m": [
+            0.01,
+            100.0
+          ]
+        },
+        "orientation_wxyz": [
+          0.8185196451622787,
+          0.5388608160686871,
+          0.10949889232068281,
+          0.1663267987119022
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "leg_lf",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.09,
+          0.09,
+          0.75
+        ],
+        "position": [
+          -1.12,
+          -0.57,
+          0.375
+        ],
+        "color": [
+          0.16,
+          0.15,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "leg_lb",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.09,
+          0.09,
+          0.75
+        ],
+        "position": [
+          -1.12,
+          0.57,
+          0.375
+        ],
+        "color": [
+          0.16,
+          0.15,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "leg_rf",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.09,
+          0.09,
+          0.75
+        ],
+        "position": [
+          1.12,
+          -0.57,
+          0.375
+        ],
+        "color": [
+          0.16,
+          0.15,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "leg_rb",
+      "object": {
+        "kind": "box",
+        "size": [
+          0.09,
+          0.09,
+          0.75
+        ],
+        "position": [
+          1.12,
+          0.57,
+          0.375
+        ],
+        "color": [
+          0.16,
+          0.15,
+          0.14
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "id": "detail",
+      "object": {
+        "kind": "camera",
+        "position": [
+          -1.7,
+          -0.9,
+          1.8
+        ],
+        "orientation_wxyz": [
+          0.9830976922196835,
+          0.15659550134871766,
+          0.014920563115266527,
+          0.09367045054871734
+        ],
+        "record_fps": 30,
+        "preview_fps": 1,
+        "camera": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "focal_length_mm": 35.0,
+          "horizontal_aperture_mm": 36.0,
+          "focus_distance_m": 1.8,
+          "clipping_range_m": [
+            0.01,
+            100.0
+          ]
+        }
+      }
+    },
+    {
+      "op": "set_presentation",
+      "presentation": {
+        "profile": "technical_showcase_1080p",
+        "capture": {
+          "resolution": [
+            1920,
+            1080
+          ],
+          "fps": 30,
+          "anti_aliasing": "dlaa",
+          "renderer": "RealTimePathTracing",
+          "depth_of_field": false,
+          "motion_blur": false,
+          "exposure_mode": "manual",
+          "exposure_ev": 0
+        },
+        "budget": {
+          "max_cameras": 2,
+          "max_recording_bytes": 4294967296,
+          "min_free_bytes": 4294967296
+        },
+        "diagnostics": {
+          "png_seconds": 0.1,
+          "keyframe_interval_s": 2
+        }
+      }
+    },
+    {
+      "op": "set_observation",
+      "observation": {
+        "sample_interval_steps": 1,
+        "strict_start": true,
+        "record_contact_pairs": true
+      }
+    }
+  ],
+  "schema": "simscene.scene_recipe.v2"
+}

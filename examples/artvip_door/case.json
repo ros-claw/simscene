@@ -1,0 +1,39 @@
+{
+  "schema": "simscene.articulated_asset_smoke.v1",
+  "schema_version": 1,
+  "mode": "driven",
+  "objects": {
+    "door": {
+      "joint_path": "/World/door/Asset/Native/E_door_1/E_door1_2/RevoluteJoint_door_middle",
+      "parent_body": "/World/door/Asset/Native/E_door_1/E_body_6",
+      "child_body": "/World/door/Asset/Native/E_door_1/E_door1_2",
+      "position_unit": "rad",
+      "limits": [
+        -1.3962634015954636,
+        1.3962634015954636
+      ],
+      "joint_id": "main",
+      "initial_position": 0.0,
+      "min_travel": 0.6,
+      "limit_tolerance": 0.04,
+      "anchor_tolerance_m": 0.01,
+      "prepared_manifest_sha256": "${door.manifest_sha256}",
+      "source_ref": "${door.source_ref}",
+      "waypoints": [
+        {
+          "command_step": 0,
+          "target_position": 0.8,
+          "by_step": 240,
+          "tolerance": 0.08
+        },
+        {
+          "command_step": 300,
+          "target_position": 0.0,
+          "by_step": 570,
+          "tolerance": 0.08
+        }
+      ]
+    }
+  },
+  "physical_model_note": "ArtVIP door002; source body total masses are unauthored but seven collider materials carry source densities. The explicit experimental 12 kg/8 kg body masses override those densities; source acceleration drive is neutralized. Supplemental acceptance SHA-256: a5f34c0501aee8e0fbbce24fc33be9776a60ba9c726038fa042ee124b6054bbf"
+}

@@ -3,7 +3,7 @@ import base64
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from urllib.parse import urlencode, urlsplit
 from ..assets import USDSearch, SearchError
 from ..cache import AssetCache
@@ -83,7 +83,7 @@ def acquire_selected(plan, *, config=None, job_directory=None):
     directory = Path(config['asset_cache_directory']).expanduser().resolve()
     capacity = config['asset_cache_capacity_bytes']
     descriptor = plan.get('acquisition', {})
-    if ref.source_id == 'local-sand3d' and descriptor.get('kind') == 'generated_package':
+    if ref.source_id in {'local-sand3d', 'local-usdcraft-sdk'} and descriptor.get('kind') == 'generated_package':
         from ..generation.acquisition import acquire_generated
         return acquire_generated(plan,config,job_directory)
     source_record = plan.get('source_snapshot', {})
@@ -99,10 +99,18 @@ def acquire_selected(plan, *, config=None, job_directory=None):
     if descriptor.get('kind') == 'hf_usd_package':
         from ..catalog.registry import load_registry
         source=load_registry(config.get('registry_path')).get(ref.source_id)
-        if (source.state not in {'audited','enabled'} or source.adapter not in {'usdcraft','simready_package'}
+        if (source.state not in {'audited','enabled'} or source.adapter not in {'usdcraft','artvip','simready_package'}
                 or descriptor.get('repository') != source.repository or descriptor.get('revision') != ref.revision
                 or descriptor.get('path') != source_record.get('entry_path')):
             raise ValueError('native selection differs from its admitted source descriptor')
+        if source.repository == 'X-Humanoid/ArtVIP':
+            path = descriptor.get('path')
+            registered = any(entry.path == ref.asset_id and entry.revision == ref.revision
+                             for entry in source.metadata_entries)
+            if (not registered or descriptor.get('package_path') != ref.asset_id
+                    or not isinstance(path, str) or PurePosixPath(path).as_posix() != path
+                    or PurePosixPath(path).parent.as_posix() != ref.asset_id):
+                raise ValueError('ArtVIP selection differs from its current registered object or root directory')
         from .hf_package import acquire_hf_package
         return acquire_hf_package(descriptor,ref,limits,config,source_record,license_info,provenance,job_directory)
     transaction = TransferBudget(limits['download_bytes'], limits['unpacked_bytes'], limits['staging_bytes'])

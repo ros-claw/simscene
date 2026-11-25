@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0.dev2 — development, not released
+
+- Optional isolated scene_synthesizer layout proposals for verified prepared
+  props on measured static supports, returned as ordinary editable scene edits.
+- USDCraft manifest filtering by declared joint type and count, with explicit
+  unknown results for contradictory metadata and versioned index migration.
+- A specific cabinet-and-props trial exercises one fixed layout. It does not
+  certify arbitrary assets, collisions, stability or generalized layouts.
+
 ## 0.2.0.dev1 — V2 preview
 
 Python package `0.2.0.dev1` maps explicitly to plugin `0.2.0-dev.1`.

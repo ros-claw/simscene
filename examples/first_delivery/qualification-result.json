@@ -1,0 +1,47 @@
+{
+  "schema": "simscene.first_delivery_qualification_public.v1",
+  "date": "2026-11-25",
+  "code_commit": "82e01fb1e5d3ef569779e9bcd916afa80a1aad29",
+  "wheel_sha256": "a8fdeb7a45c6af7fd3327042f7602d1936da17bf124dc3648022c40d9d001b4b",
+  "model": "gpt-6.1-terra",
+  "codex_cli": "0.172.0",
+  "model_turns": {
+    "discover": {
+      "input_tokens": 10968,
+      "cached_input_tokens": 0,
+      "output_tokens": 43,
+      "total_tokens": 11011
+    },
+    "review": {
+      "input_tokens": 19394,
+      "cached_input_tokens": 0,
+      "output_tokens": 135,
+      "total_tokens": 19529
+    }
+  },
+  "wall_seconds": 111.777,
+  "wall_limit_seconds": 900,
+  "observed_token_limit": 150000,
+  "observed_turn_allowance": 60000,
+  "result": "submitted",
+  "physical_status": "passed",
+  "media_status": "passed",
+  "visual_review": "accept",
+  "video_sha256": "f063281a2f6f95e28f01ccf1ab6afb9a4ad49b63308554f3512e36c7f152da0c",
+  "source": {
+    "source_id": "gso-glb",
+    "asset_id": "ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box",
+    "revision": "75e8895e4f4e854cddd7009a7e60f86812041012",
+    "variant_id": null
+  },
+  "native_video": {
+    "fps": 30,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "decoded_frames": 120
+  },
+  "scope": "Two isolated Codex turns: installed recipe selection and visual review from attached ordered frames. Host executes the installed MCP workflow between turns. Scope is limited to this fixed GSO case.",
+  "usage_scope": "Reported CLI aggregate only. No request-level accounting or claims about hidden in-flight use, whole-library compatibility, or throughput."
+}

@@ -246,6 +246,39 @@ sources:
         target: *id001
         public_validation: docs/validation/catalog-capabilities.md
   - schema_version: 1
+    source_id: artvip
+    kind: asset_dataset
+    homepage: https://huggingface.co/datasets/X-Humanoid/ArtVIP
+    repository: X-Humanoid/ArtVIP
+    adapter: artvip
+    state: audited
+    default_enabled: false
+    metadata_entries:
+      - path: Articulated_objects/small_furniture/door/door002
+        format: json
+        size_bytes: null
+        revision: d22f2095bc9db29fdd4b60f4a3c4f8177e1f5e9e
+        contains_images: false
+        contains_code: false
+    acquisition_granularity: dependency_closure
+    access:
+      visibility: public
+      gated: false
+      credentials_required: false
+    license_policy:
+      status: known
+      license: Apache-2.0
+      per_asset_required: true
+      note: Dataset card declaration; no separate per-object license was found.
+    capabilities: {}
+    checked_at: '2026-11-16'
+    evidence:
+      - scope: static_source_review
+        origin: pinned_huggingface_metadata_2026-11-16
+        url: https://huggingface.co/datasets/X-Humanoid/ArtVIP/tree/d22f2095bc9db29fdd4b60f4a3c4f8177e1f5e9e/Articulated_objects/small_furniture/door/door002
+        runtime_validation: not_run
+        note: Only the explicitly listed object is indexed; USD dependencies and physics require selected-asset verification.
+  - schema_version: 1
     source_id: polyhaven
     kind: asset_dataset
     homepage: https://polyhaven.com

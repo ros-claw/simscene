@@ -175,12 +175,26 @@ def prepare_acquired(acquired, profile, parameters, target, output_dir, *, app=N
         for path in original['colliders']:
             if not UsdPhysics.CollisionAPI(source_stage.GetPrimAtPath(path)).GetCollisionEnabledAttr().Get():
                 raise PreparationError('physics_profile_unsupported','disabled native collider cannot qualify as preserved support')
-    if profile=='articulated_prop_v1':
+    if profile in {'articulated_prop_v1','articulated_prop_v2'}:
         if is_glb:
             raise PreparationError('physics_profile_unsupported','articulated profile requires a native USD joint, not GLB extras')
-        from .articulation import inspect_articulation
-        inspect_articulation(source_stage)
+        from .articulation import canonical_stage,inspect_articulation
+        canonical_stage(source_stage)
+        if parameters['source_physics_policy']=='preserve_valid':
+            if profile=='articulated_prop_v1':inspect_articulation(source_stage)
+            else:
+                from .articulation_v2 import inspect_articulation_v2,runtime_joint
+                native_graph=inspect_articulation_v2(source_stage)
+                if native_graph['static_collider_paths']:
+                    raise PreparationError('physics_profile_unsupported','two-DOF profile does not yet support static colliders outside its rigid links')
+                for entry in native_graph['joint_map'].values():runtime_joint(entry)
     visual,runtime=_localize_flattened(source_stage,derived/'visual.usda',output)
+    physics_repairs=None
+    if profile=='articulated_prop_v1' and parameters['source_physics_policy']=='repair_explicit':
+        from .native_repairs import apply_native_repairs
+        physics_repairs=apply_native_repairs(visual,parameters['native_physics_repairs'])
+        inspect_articulation(visual)
+        visual.GetRootLayer().Save()
     if profile=='visual_prop_v1' and physics and parameters['source_physics_policy']!='replace_visual_only':
         raise PreparationError('physics_profile_unsupported','visual profile must explicitly replace source physics')
     if parameters['source_physics_policy']=='replace_visual_only':
@@ -192,21 +206,24 @@ def prepare_acquired(acquired, profile, parameters, target, output_dir, *, app=N
     joint_map={};articulation_report=None;container_report=None
     body_map={};visual_path='/Asset/Body/Visual' if profile=='rigid_prop_v1' else '/Asset/Visual'
     if profile=='rigid_prop_v1':UsdGeom.Xform.Define(stage,'/Asset/Body')
-    if profile=='articulated_prop_v1':
+    if profile in {'articulated_prop_v1','articulated_prop_v2'}:
         visual_path='/Asset/Native'
     visual_xf=UsdGeom.Xform.Define(stage,visual_path)
     if source_axis=='Y':visual_xf.AddRotateXOp(opSuffix='sourceYUpToZUp').Set(90)
     scale_op=None
-    if profile!='articulated_prop_v1':
+    if profile not in {'articulated_prop_v1','articulated_prop_v2'}:
         scale_op=visual_xf.AddScaleOp(opSuffix='canonicalUnitsAndSize');scale_op.Set(Gf.Vec3f(source_units))
-    source_prim=visual_xf.GetPrim() if profile=='articulated_prop_v1' else UsdGeom.Xform.Define(stage,visual_path+'/Source').GetPrim()
+    source_prim=visual_xf.GetPrim() if profile in {'articulated_prop_v1','articulated_prop_v2'} else UsdGeom.Xform.Define(stage,visual_path+'/Source').GetPrim()
     source_prim.GetReferences().AddReference('./derived/visual.usda')
     before=inspect_stage(stage);factor=1.0
     if parameters['scale_mode']=='fit_longest':factor=parameters['target_longest_extent_m']/max(before['bounds']['dimensions'])
     if scale_op is not None:scale_op.Set(Gf.Vec3f(source_units*factor))
     measured=inspect_stage(stage);shape_report=None;support_report=None
-    if profile=='articulated_prop_v1':
-        articulation_report=inspect_articulation(stage)
+    if profile in {'articulated_prop_v1','articulated_prop_v2'}:
+        articulation_report=inspect_articulation(stage) if profile=='articulated_prop_v1' else inspect_articulation_v2(stage)
+        if physics_repairs is not None:
+            from .native_repairs import annotate_repaired_graph
+            articulation_report=annotate_repaired_graph(articulation_report,parameters['native_physics_repairs'])
         body_map=articulation_report['body_map'];joint_map=articulation_report['joint_map']
     elif profile=='container_v1':
         from .container import check_geometry,author_walls
@@ -244,6 +261,7 @@ def prepare_acquired(acquired, profile, parameters, target, output_dir, *, app=N
     report={'schema':'simscene.prepared_asset.v1','schema_version':1,'prepared_id':identity,'profile_id':profile,'profile_version':PROFILE_VERSION,
             'root':str(output),'asset_path':str(output/'main.usda'),'main':'main.usda','default_prim':'/Asset','parameters':parameters,'target':target,
             'source_ref':acquired.get('source_ref',acquired.get('asset_ref')),'source_sha256':source_hash,'source_closure_sha256':closure_hash,
+            'source_root':root.relative_to(output).as_posix(),
             'source_manifest_sha256':acquired.get('manifest_sha256',acquired.get('source_manifest_hash')),'license':acquired.get('license','unknown'),
             'provenance':acquired.get('provenance'),'toolchain':selected,'body_map':body_map,'bounds':measured['bounds'],
             'source_to_output':{'source_axis':source_axis,'rotation_x_degrees':90 if source_axis=='Y' else 0,'source_meters_per_unit':source_units,
@@ -251,8 +269,11 @@ def prepare_acquired(acquired, profile, parameters, target, output_dir, *, app=N
             'runtime_dependencies':runtime,'collision_report':shape_report,'support_report':support_report,'support_surfaces':parameters.get('support_surfaces',{}),
             'physical_material_assumption':'experimental recipe values; not manufacturer facts','inertia':{'status':'runtime_check_required','method':'engine computes from collision geometry and explicit mass'},
             'runtime_verification':'unverified','runtime_validation':{'status':'not_run','physical_steps':0},'physical_steps':0,'conversion':conversion}
-    if profile=='articulated_prop_v1':
-        report.update(joint_map=joint_map,articulation_report=articulation_report,physical_material_assumption='preserved native source values; no material or mass rewrite',inertia={'status':'native_mass_preserved_inertia_authored_or_engine_computed_runtime_check_required'})
+    if profile in {'articulated_prop_v1','articulated_prop_v2'}:
+        report.update(joint_map=joint_map,articulation_report=articulation_report,
+                      physical_material_assumption=('native materials preserved; explicitly listed experimental masses and neutral drives authored in derived layer' if physics_repairs else 'preserved native source values; no material or mass rewrite'),
+                      inertia={'status':('explicit_experimental_mass_inertia_runtime_check_required' if physics_repairs else 'native_mass_preserved_inertia_authored_or_engine_computed_runtime_check_required')})
+        if physics_repairs is not None:report['physics_repairs']=physics_repairs
     elif profile=='container_v1':
         report.update(container_report=container_report)
     report['files']=[{'path':f.relative_to(output).as_posix(),'size_bytes':f.stat().st_size,'sha256':_sha(f)} for f in sorted(output.rglob('*')) if f.is_file()]

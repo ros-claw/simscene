@@ -1,0 +1,30 @@
+{
+  "schema": "demo.supplemental_checks.v1",
+  "reserved_volume": {
+    "min": [
+      -1.3,
+      -0.75,
+      0.83
+    ],
+    "max": [
+      -0.1,
+      0.75,
+      1.75
+    ]
+  },
+  "cabinet_parent": "/World/cabinet/Asset/Native/Links/cabinet_carcass",
+  "cabinet_child": "/World/cabinet/Asset/Native/Links/flap_door",
+  "support_actor": "/World/table",
+  "rigid_objects": [
+    "box",
+    "book_a",
+    "book_b"
+  ],
+  "max_parent_translation_m": 0.05,
+  "last_seconds_for_settling": 2.0,
+  "max_linear_speed_m_s": 0.03,
+  "max_angular_speed_rad_s": 0.3,
+  "require_native_dof_every_sample": true,
+  "forbid_door_prop_contacts": true,
+  "scope": "separate frozen requirements; actual outcome not yet observed"
+}
