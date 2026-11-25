@@ -27,8 +27,14 @@ runs, not to every object from the named sources:
 | `integration_workspace` | The pinned USDCraft `ds_R022_02` two-drawer cabinet carried one independent GSO box in the lower drawer. The matched control removed only lower-drawer commands; the upper drawer still moved. Actual contact and relative poses were recorded. Drives were scheduled, and the observed contact data are not a general penetration certification. |
 | Motion keepouts | The supplied hinge and two-slider profiles cover their inspected native geometry and stated joint ranges. Unknown geometry is not assessed. Layout feasibility remains a geometric precheck, not a physics result. |
 | ArtVIP and SDK examples | The pinned door and guide-plate pair retain their previous limited checks. They do not qualify arbitrary ArtVIP objects or SDK-generated assets. |
-| Client use | A real first Codex QI1 attempt exhausted its token budget before starting physics. A new package, compact workflow and any subsequent qualification must be identified and reported separately. The package version alone does not demonstrate a successful client session. |
+| Client use | Both historical QI1 attempts failed to submit. The first reached its token limit before physics. The retry passed physics and began synchronous export, which was interrupted during submission reserve. The durable export path has its own engineering checks and awaits a fresh client qualification. |
 | Showcase video | An independently captured, source-mapped candidate exists; its visual review is `change_needed`. Video acceptance and physical acceptance are separate. |
+
+The development helper starts video export as a durable job. A client can save
+the request ID, wait using `job_status` and reconnect to the same job. The
+synchronous `video_export` tool remains available for existing integrations.
+Capture and media checks, visual review and on-time submission each require
+their own evidence.
 
 The compact installed cabinet helper records real MCP requests and responses;
 it does not make a visual judgment. For a new job, retain the actual run,

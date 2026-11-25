@@ -136,3 +136,33 @@ def test_run_must_bind_the_saved_scene_and_revision_before_export(tmp_path):
     mod.check_run_scene(scene,run)
     with pytest.raises(mod.WorkflowError, match='scene'):
         mod.check_run_scene({**scene,'revision':3},run)
+
+
+def test_video_recovery_reuses_job_status_after_losing_the_start_response(tmp_path):
+    mod = module()
+    from simscene.video_export_jobs import export_job_id
+
+    movie = tmp_path/'technical.mp4'
+    edit = movie.with_suffix('.edit.json')
+    request = {'destination': str(movie), 'request_id': 'cabinet-video',
+               'segments': [{'camera': 'overview'}], 'output_resolution': [1920, 1080]}
+    mod._write(tmp_path/'video-request.json', request)
+    expected_job = export_job_id(request['request_id'])
+    lost = Session([Result({'state': 'completed'}),
+                    Result({'job_id': expected_job, 'state': 'completed',
+                            'result': {'video': str(movie), 'edit_map': str(edit)}})])
+    journal = mod.MCPJournal(lost, tmp_path)
+    assert asyncio.run(mod.wait_for_export(journal, tmp_path, request, resume=True))['job_id'] == expected_job
+    assert [name for name, _ in lost.calls] == ['job_status', 'job_status']
+    assert {args['job_id'] for _, args in lost.calls} == {expected_job}
+
+
+def test_collection_does_not_start_an_export_without_a_saved_request(tmp_path):
+    mod = module()
+    session = Session([])
+    journal = mod.MCPJournal(session, tmp_path)
+    request = {'destination': str(tmp_path/'technical.mp4'), 'request_id': 'cabinet-video'}
+    with pytest.raises(mod.WorkflowError, match='no saved video export'):
+        asyncio.run(mod.wait_for_export(journal, tmp_path, request, resume=True, collect_only=True))
+    assert session.calls == []
+    assert not (tmp_path/'video-request.json').exists()

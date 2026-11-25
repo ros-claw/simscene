@@ -279,6 +279,14 @@ def video_export(segments: list[dict], destination: str, output_resolution: list
     return export(segments,destination,output_resolution,output,allow_upscale,font_file=font_file)
 
 @threaded_tool()
+def video_export_start(segments: list[dict], destination: str, request_id: str,
+                       output_resolution: list[int] | None = None, output: dict | None = None,
+                       allow_upscale: bool = False, font_file: str | None = None) -> dict:
+    """Start a durable native video export to an absolute MP4 path. Use job_status to wait or reconnect. An identical request ID replays the original job handle. Review the video separately after completion."""
+    from .video_export_jobs import start
+    return start(segments, destination, request_id, output_resolution, output, allow_upscale, font_file)
+
+@threaded_tool()
 def video_inspect(path: str, output_dir: str | None = None, representative_count: int = 5, job_id: str | None = None, camera: str | None = None) -> dict:
     """Probe/decode real video; when job_id/camera supplied, bind to intact source and verify native capture dimensions and physics frame clock. Representative PNG paths are returned for actual visual review."""
     from .video_tools import inspect

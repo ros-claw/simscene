@@ -450,6 +450,8 @@ def robot_profile_start(model, asset_path):
     return {'job_id':job_id}
 
 def status(job_id):
+    from . import video_export_jobs
+    if video_export_jobs.owns(job_id):return video_export_jobs.status(job_id)
     from .generation import jobs as generation_jobs
     if generation_jobs.owns(job_id):return generation_jobs.status(job_id)
     from .preparation import jobs as preparation_jobs
@@ -679,6 +681,8 @@ def video_chunk(job_id, camera, offset=0, length=262144):
             'chunk_sha256':hashlib.sha256(data).hexdigest(), 'next_offset':offset+len(data) if offset+len(data)<total else None}
 
 def cancel(job_id):
+    from . import video_export_jobs
+    if video_export_jobs.owns(job_id):return video_export_jobs.cancel(job_id)
     from .generation import jobs as generation_jobs
     if generation_jobs.owns(job_id):return generation_jobs.cancel(job_id)
     from .preparation import jobs as preparation_jobs

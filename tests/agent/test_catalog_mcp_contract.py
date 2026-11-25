@@ -27,7 +27,7 @@ scene_plan_translate_group scene_validate scene_export simulation_start job_stat
 run_observe run_contacts run_verify_lock run_verify run_verify_passive_suite
 run_verify_evidence run_video_chunk scene_observe job_cancel simulation_pause
 simulation_resume'''.split())
-NEW_TOOLS = frozenset({'catalog_search', 'asset_plan', 'asset_prepare', 'catalog_discover', 'scene_compile_recipe', 'asset_generate', 'scene_plan_layout'})
+NEW_TOOLS = frozenset({'catalog_search', 'asset_plan', 'asset_prepare', 'catalog_discover', 'scene_compile_recipe', 'asset_generate', 'scene_plan_layout', 'video_export_start'})
 
 
 def nullable(kind, title):
@@ -41,6 +41,15 @@ def schema(name, properties, required):
     return {'properties': properties, 'required': required, 'title': name + 'Arguments', 'type': 'object'}
 
 NEW_SCHEMAS = {
+    'video_export_start': schema('video_export_start', {
+        'segments': {'items': {'additionalProperties': True, 'type': 'object'}, 'title': 'Segments', 'type': 'array'},
+        'destination': {'title': 'Destination', 'type': 'string'},
+        'request_id': {'title': 'Request Id', 'type': 'string'},
+        'output_resolution': {'anyOf': [{'items': {'type': 'integer'}, 'type': 'array'}, {'type': 'null'}],
+                              'default': None, 'title': 'Output Resolution'},
+        'output': nullable('object', 'Output'),
+        'allow_upscale': {'default': False, 'title': 'Allow Upscale', 'type': 'boolean'},
+        'font_file': nullable('string', 'Font File')}, ['segments', 'destination', 'request_id']),
     'asset_generate': schema('asset_generate', {
         'recipe_id': {'title': 'Recipe Id', 'type': 'string'},
         'parameters': {'additionalProperties': True, 'title': 'Parameters', 'type': 'object'},

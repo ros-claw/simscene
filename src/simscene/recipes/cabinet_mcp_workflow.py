@@ -175,6 +175,31 @@ async def wait_for_job(journal, job_id, receipt, timeout):
     return actual
 
 
+async def wait_for_export(journal, root, request, resume, *, collect_only=False):
+    from ..video_export_jobs import export_job_id
+
+    request_path = root/'video-request.json'
+    job_id = export_job_id(request['request_id'])
+    if not request_path.exists():
+        if collect_only:
+            raise WorkflowError('no saved video export request; collection cannot start a new job')
+        _write(request_path, request)
+        handle = await journal.call('video_export_start', request)
+        if handle.get('job_id') != job_id:
+            raise WorkflowError('export job ID differs from the saved request')
+        _write(root/'video-job.json', handle)
+    elif not resume or json.loads(request_path.read_text()) != request:
+        raise WorkflowError('existing video request differs or recovery was not requested')
+    # A lost start response still identifies the same durable reservation.
+    actual = await wait_for_job(journal, job_id, _next_path(root/'video-wait.json'), 1800)
+    movie = Path(request['destination'])
+    result = actual.get('result') or {}
+    if (actual.get('job_id') != job_id or result.get('video') != str(movie)
+            or result.get('edit_map') != str(movie.with_suffix('.edit.json'))):
+        raise WorkflowError('export job does not match the requested movie and edit map')
+    return actual
+
+
 def _helper(plugin, directory, name, arguments):
     command = [sys.executable, str(plugin/'experiments'/name), *map(str, arguments)]
     env = dict(os.environ, PYTHONPATH=str(plugin/'server/vendor'))
@@ -190,8 +215,10 @@ def _helper(plugin, directory, name, arguments):
         raise WorkflowError(f'{name} did not return JSON; inspect {log}') from error
 
 
-async def run(session, plugin, wheel, root, scene_id, resume=False):
+async def run(session, plugin, wheel, root, scene_id, resume=False, *, collect_only=False):
     plugin, wheel, root = Path(plugin).resolve(), Path(wheel).resolve(), Path(root).resolve()
+    if collect_only and not resume:
+        raise WorkflowError('collection mode requires recovery of a previous invocation')
     example = plugin/'examples/automatic_cabinet_layout'
     journal_dir = root/'mcp-calls'
     if resume and not journal_dir.is_dir():
@@ -285,6 +312,8 @@ async def run(session, plugin, wheel, root, scene_id, resume=False):
     job_file = root/'physics-job.json'
     if resume and job_file.exists():
         job = json.loads(job_file.read_text())
+    elif collect_only:
+        raise WorkflowError('no saved physics job ID; collection cannot start a new job')
     else:
         current_scene = await journal.call('scene_get', {'scene_id': scene_id})
         if _scene_hash(current_scene) != _scene_hash(scene):
@@ -317,13 +346,10 @@ async def run(session, plugin, wheel, root, scene_id, resume=False):
                  'start_sim_time_s': start, 'end_sim_time_s': end} for camera,start,end in
                 [('overview',2/60,1.),('detail',1.,6.),('overview',6.,10+2/60)]]
     movie = root/'technical-1080p.mp4'
-    if movie.exists():
-        if not resume or not movie.with_suffix('.edit.json').is_file():
-            raise WorkflowError('existing video is incomplete or unexpected; preserve it and inspect manually')
-    else:
-        exported = await journal.call('video_export', {'segments': segments, 'destination': str(movie),
-                                                       'output_resolution': [1920,1080]})
-        _write(_next_path(root/'video-export.json'), exported)
+    export_request = {'segments': segments, 'destination': str(movie),
+                      'request_id': f'{scene_id}-video', 'output_resolution': [1920, 1080]}
+    exported = await wait_for_export(journal, root, export_request, resume, collect_only=collect_only)
+    _write(_next_path(root/'video-export.json'), exported)
     inspected = await journal.call('video_inspect', {'path': str(movie), 'output_dir': str(_next_path(root/'decoded')),
                                                      'representative_count': 9})
     inspection_path = _next_path(root/'video-inspection.json')
@@ -360,7 +386,7 @@ def select_launcher(plugin, requested=None):
     return Path(requested).expanduser().resolve() if requested else Path(plugin).resolve()/'server/launch.py'
 
 
-async def run_installed(plugin, wheel, root, scene_id, launcher=None, resume=False):
+async def run_installed(plugin, wheel, root, scene_id, launcher=None, resume=False, *, collect_only=False):
     from mcp import ClientSession, StdioServerParameters
     from mcp.client.stdio import stdio_client
     plugin, root = Path(plugin).resolve(), Path(root).resolve()
@@ -376,4 +402,4 @@ async def run_installed(plugin, wheel, root, scene_id, launcher=None, resume=Fal
         async with stdio_client(params, errlog=error_log) as (reader, writer):
             async with ClientSession(reader, writer, read_timeout_seconds=timedelta(seconds=1900)) as session:
                 await session.initialize()
-                return await run(session, plugin, wheel, root, scene_id, resume=resume)
+                return await run(session, plugin, wheel, root, scene_id, resume=resume, collect_only=collect_only)

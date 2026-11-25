@@ -65,7 +65,13 @@ The command does not supply a visual review or create a final receipt. If it is
 interrupted after `physics-request.json` is saved, use the same command and add
 `--resume` with the original output directory and wheel. It reconnects to the
 saved job or reissues the exact persisted request ID and payload, then verifies
-the run before any export. It does not replace an existing partial video.
+the run. For video it uses the persisted `video_export_start` request and waits
+with `job_status`. With `video-request.json` present, recovery queries the
+original export job even if its start reply was lost. A disconnected client or
+a wait timeout leaves the job running. During budget reserve, use
+`--resume --collect-only` to query saved jobs without issuing new starts. An export receipt records
+completion time and pending visual review. Complete the review and submit
+separately before the applicable deadline.
 
 For shell-capable clients, the installed package also contains the same small
 helpers as the source tree: `experiments/acquire_recipe_assets.py`,
