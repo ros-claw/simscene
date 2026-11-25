@@ -144,15 +144,18 @@ def test_video_recovery_reuses_job_status_after_losing_the_start_response(tmp_pa
 
     movie = tmp_path/'technical.mp4'
     edit = movie.with_suffix('.edit.json')
+    movie.write_bytes(b'checked native output')
+    edit.write_text('{}')
     request = {'destination': str(movie), 'request_id': 'cabinet-video',
                'segments': [{'camera': 'overview'}], 'output_resolution': [1920, 1080]}
     mod._write(tmp_path/'video-request.json', request)
     expected_job = export_job_id(request['request_id'])
     lost = Session([Result({'state': 'completed'}),
-                    Result({'job_id': expected_job, 'state': 'completed',
-                            'result': {'video': str(movie), 'edit_map': str(edit)}})])
+                    Result({'job_id': expected_job, 'state': 'completed', 'completion_confirmed': True,
+                            'result': {'video': str(movie), 'edit_map': str(edit),
+                                       'video_sha256': mod._sha(movie), 'edit_map_sha256': mod._sha(edit)}})])
     journal = mod.MCPJournal(lost, tmp_path)
-    assert asyncio.run(mod.wait_for_export(journal, tmp_path, request, resume=True))['job_id'] == expected_job
+    assert asyncio.run(mod.wait_for_export(journal, tmp_path, request, resume=True, collect_only=True))['job_id'] == expected_job
     assert [name for name, _ in lost.calls] == ['job_status', 'job_status']
     assert {args['job_id'] for _, args in lost.calls} == {expected_job}
 
@@ -166,3 +169,24 @@ def test_collection_does_not_start_an_export_without_a_saved_request(tmp_path):
         asyncio.run(mod.wait_for_export(journal, tmp_path, request, resume=True, collect_only=True))
     assert session.calls == []
     assert not (tmp_path/'video-request.json').exists()
+
+
+def test_resume_replays_a_reserved_request_that_never_reached_the_server(tmp_path):
+    mod = module()
+    from simscene.video_export_jobs import export_job_id
+
+    movie = tmp_path/'technical.mp4'
+    request = {'destination': str(movie), 'request_id': 'cabinet-video',
+               'segments': [{'camera': 'overview'}], 'output_resolution': [1920, 1080]}
+    mod._write(tmp_path/'video-request.json', request)
+    job_id = export_job_id(request['request_id'])
+    edit = movie.with_suffix('.edit.json')
+    movie.write_bytes(b'checked native output')
+    edit.write_text('{}')
+    session = Session([Result({'job_id': job_id}), Result({'state': 'completed'}),
+                       Result({'job_id': job_id, 'state': 'completed', 'completion_confirmed': True, 'result': {
+                           'video': str(movie), 'edit_map': str(edit),
+                           'video_sha256': mod._sha(movie), 'edit_map_sha256': mod._sha(edit)}})])
+    journal = mod.MCPJournal(session, tmp_path)
+    assert asyncio.run(mod.wait_for_export(journal, tmp_path, request, resume=True))['job_id'] == job_id
+    assert session.calls[0] == ('video_export_start', request)

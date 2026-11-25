@@ -60,3 +60,26 @@ python3 "$PLUGIN/experiments/run_first_delivery.py" --output "$WORK/output" --re
 The reviewed receipt binds the declaration to the checked movie and can reach
 `ready_for_submission`. The eventual submission belongs to the client or host
 that requested the work. This example verifies a fixed asset and configuration.
+
+## Qualified host-assisted Codex route
+
+From the source checkout, a host with a configured Codex CLI login can use
+the first-delivery qualification driver. Use a fresh attempt directory and
+the same runtime setup as above.
+
+~~~sh
+python3 experiments/qualify_first_delivery.py --plugin "$PLUGIN" --wheel "$WHEEL" \
+  --output "$WORK/qualification" --model YOUR_CODEX_MODEL
+~~~
+
+The host admits one discovery turn, runs the installed MCP workflow outside
+model turns, and admits a separate visual review only after physical and media
+checks pass. It preserves observed token usage and writes a submission only
+within the wall and token limits. The allowance governs client turn admission
+and observed use. Reports cannot enforce unreported in-flight provider usage.
+Visual qualification uses two ordered frame strips tied to the checked video.
+
+The export destination should be on a local filesystem that supports hard
+links. After worker or host failure, use the job record as the completion
+authority. An uncertain status leaves any remaining files available for
+diagnosis.

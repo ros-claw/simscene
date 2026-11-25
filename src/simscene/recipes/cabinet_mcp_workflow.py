@@ -203,23 +203,31 @@ async def wait_for_export(journal, root, request, resume, *, collect_only=False)
 
     request_path = root/'video-request.json'
     job_id = export_job_id(request['request_id'])
-    if not request_path.exists():
+    if request_path.exists():
+        if not resume or json.loads(request_path.read_text()) != request:
+            raise WorkflowError('existing video request differs or recovery was not requested')
+    else:
         if collect_only:
             raise WorkflowError('no saved video export request; collection cannot start a new job')
         _write(request_path, request)
+    if not collect_only:
+        # The exact request is safe if its original reply or dispatch was lost.
         handle = await journal.call('video_export_start', request)
         if handle.get('job_id') != job_id:
             raise WorkflowError('export job ID differs from the saved request')
-        _write(root/'video-job.json', handle)
-    elif not resume or json.loads(request_path.read_text()) != request:
-        raise WorkflowError('existing video request differs or recovery was not requested')
+        receipt = root/'video-job.json'
+        if not receipt.exists():
+            _write(receipt, handle)
     # A lost start response still identifies the same durable reservation.
     actual = await wait_for_job(journal, job_id, _next_path(root/'video-wait.json'), 1800)
     movie = Path(request['destination'])
     result = actual.get('result') or {}
-    if (actual.get('job_id') != job_id or result.get('video') != str(movie)
-            or result.get('edit_map') != str(movie.with_suffix('.edit.json'))):
-        raise WorkflowError('export job does not match the requested movie and edit map')
+    edit = movie.with_suffix('.edit.json')
+    if (actual.get('job_id') != job_id or actual.get('completion_confirmed') is not True
+            or result.get('video') != str(movie) or result.get('edit_map') != str(edit)
+            or not movie.is_file() or not edit.is_file()
+            or result.get('video_sha256') != _sha(movie) or result.get('edit_map_sha256') != _sha(edit)):
+        raise WorkflowError('export files do not match the completed durable export')
     return actual
 
 

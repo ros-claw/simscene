@@ -1,5 +1,14 @@
 # Fixed integration examples
 
+## First delivery
+
+Read the installed package path from the skill's .simscene-plugin-root
+marker, then open examples/first_delivery/README.md in that package. A skill
+loaded in place is already within the package's skills directory. The example
+runs one locked GSO box on a primitive worktop and retains its physical check
+and native video. Use the installed helper for long-running work.
+
+
 Read `simscene://recipes/examples` or `simscene recipe list` to discover
 model-free examples. These are fixed scene inputs, separate from the role
 recipes accepted by `scene_compile_recipe`. The registry describes earlier

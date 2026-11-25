@@ -64,7 +64,13 @@ async def run(session, plugin, wheel, root, scene_id, resume=False, *, collect_o
                                              'include_overlap_candidates': True})
         if (await journal.call('scene_validate', {'scene_id': scene_id})).get('issues') != []:
             raise WorkflowError('scene validation reported issues; see the saved MCP response')
-        freeze_case_file(example/'case.json', root/'bindings.json', lock_path, root/'case.json')
+        frozen = freeze_case_file(example/'case.json', root/'bindings.json', lock_path, root/'case.json')
+        _write(root/'case-freeze.json', frozen)
+    case_path = root/'case.json'
+    frozen = _read(root/'case-freeze.json')
+    case_digest = _sha(case_path)
+    if frozen.get('case_sha256') != case_digest or frozen.get('template_sha256') != _sha(example/'case.json'):
+        raise WorkflowError('the case or packaged template differs from the saved freeze')
     request = {'scene_id': scene_id, 'steps': STEPS, 'seed': 42,
                'case_path': str(root/'case.json'), 'request_id': scene_id+'-physics'}
     request_path = root/'physics-request.json'
@@ -89,6 +95,8 @@ async def run(session, plugin, wheel, root, scene_id, resume=False, *, collect_o
     if run_directory.name != job['run_id']:
         raise WorkflowError('physics job and completed run do not match')
     check_run_scene(scene, run_directory)
+    if _read(run_directory/'run-lock.json').get('acceptance_case_sha256') != case_digest:
+        raise WorkflowError('the verified run does not contain the saved frozen case')
     check_path = _next_path(root/'physical-check.json')
     checked = await journal.call('run_verify', {'job_id': job_id, 'case_type': 'rigid_asset_smoke'})
     _write(check_path, checked)
@@ -111,7 +119,9 @@ async def run(session, plugin, wheel, root, scene_id, resume=False, *, collect_o
     result = {'schema': 'simscene.first_delivery.v1', 'status': 'needs_visual_review',
               'physical_status': 'passed', 'media_status': 'passed', 'visual_review': 'pending',
               'physics_job_id': job_id, 'run_id': run_directory.name, 'export_job_id': exported['job_id'],
-              'scene': str(root/'scene.json'), 'video': str(movie), 'edit_map': str(edit),
+              'scene': str(root/'scene.json'), 'scene_sha256': _sha(root/'scene.json'),
+              'case': str(case_path), 'case_sha256': case_digest,
+              'video': str(movie), 'edit_map': str(edit),
               'video_sha256': _sha(movie), 'edit_map_sha256': _sha(edit),
               'check': str(check_path), 'check_sha256': _sha(check_path), 'inspection': str(inspection_path)}
     result_path = _next_path(root/'delivery.json')
@@ -129,6 +139,8 @@ def record_review(directory, review_file):
     if (receipt.get('schema') != 'simscene.first_delivery.v1' or receipt.get('status') != 'needs_visual_review'
             or receipt.get('physical_status') != 'passed' or receipt.get('media_status') != 'passed'
             or Path(receipt['video']).resolve() != movie or Path(receipt['edit_map']).resolve() != edit
+            or Path(receipt['scene']).resolve() != root/'scene.json' or _sha(root/'scene.json') != receipt['scene_sha256']
+            or Path(receipt['case']).resolve() != root/'case.json' or _sha(root/'case.json') != receipt['case_sha256']
             or checked.parent != root or _sha(checked) != receipt['check_sha256'] or _read(checked).get('passed') is not True
             or _sha(movie) != receipt['video_sha256'] or _sha(edit) != receipt['edit_map_sha256']):
         raise WorkflowError('delivery artifacts differ from the technical receipt')
