@@ -151,6 +151,14 @@
       }
     },
     {
+      "op": "set_observation",
+      "observation": {
+        "sample_interval_steps": 1,
+        "strict_start": true,
+        "record_contact_pairs": true
+      }
+    },
+    {
       "op": "set_presentation",
       "presentation": {
         "profile": "technical_showcase_1080p",

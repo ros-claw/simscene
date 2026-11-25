@@ -30,6 +30,8 @@ def main():
             result = asyncio.run(run_installed(plugin, args.wheel, args.output, scene_id,
                                               resume=args.resume, collect_only=args.collect_only, workflow=run))
     except Exception as error:
+        while len(getattr(error, 'exceptions', ())) == 1:
+            error = error.exceptions[0]
         print(json.dumps({'status': 'incomplete', 'directory': args.output, 'error': str(error)[:900]},
                          ensure_ascii=False))
         return 2

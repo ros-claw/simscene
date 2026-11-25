@@ -50,6 +50,8 @@ def test_first_delivery_locks_only_one_real_import_and_builtin_support():
     lock = portable(json.loads((example/'assets.lock.json').read_text()))['assets']
     assert list(lock) == ['box']
     ops = portable(json.loads((example/'recipe.json').read_text()))['operations']
+    observation = next(op['observation'] for op in ops if op['op'] == 'set_observation')
+    assert observation['strict_start'] is True and observation['sample_interval_steps'] == 1
     assets = {op['id']: op['object'] for op in ops if op.get('object', {}).get('kind') == 'asset'}
     assert set(assets) == {'box'}
     assert assets['box']['dynamic'] and assets['box']['asset_role'] == 'box'
