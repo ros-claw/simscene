@@ -38,28 +38,34 @@ can receive images and results while those files remain on the GPU host.
 
 ## Supported asset sources
 
-The public preview registers **7 sources: 5 enabled and 2 audited**. Three are
-searched by default. Optional sources require explicit selection.
+This table is generated from the
+[development registry](src/simscene/catalog/data/sources.yaml). The public
+preview tag has its own
+[source list](https://github.com/ros-claw/simscene/blob/v0.2.0-dev.1/docs/assets/SOURCES.md).
 
-| Resource | Source ID | Availability | Supported route and recorded scope |
+<!-- asset-sources:start -->
+
+| Source ID | State | Default | Formats |
 | --- | --- | --- | --- |
-| [NVIDIA USD Search](https://search.simready.omniverse.nvidia.com) | `nvidia-usd-search` | Default · enabled | Natural-language metadata search and selected native USD acquisition. The recorded workbench uses visual geometry with an explicit support proxy; its unresolved individual license blocks the newer preparation route. |
-| [ABO GLB](https://huggingface.co/datasets/codepawl/abo-glb) | `abo-glb` | Default · enabled | Community-converted Amazon Berkeley Objects: metadata search and selected standard GLB preparation. A notebook has recorded rigid-body fall, contact, and settling checks. |
-| [GSO GLB](https://huggingface.co/datasets/codepawl/scanned-objects-glb) | `gso-glb` | Default · enabled | Community-converted Google Scanned Objects: metadata search and selected standard GLB preparation. A scanned box has a real drop test and missing-support control. |
-| [NVIDIA USDCraft-10K](https://huggingface.co/datasets/nvidia/USDCraft-10K) | `usdcraft` | Optional · enabled | Manifest search and selected native USD dependencies. The recorded `ds_R021_02` cabinet preserves a two-link, single-hinge articulation; arbitrary multi-DOF imports are outside this public profile. |
-| [Poly Haven](https://polyhaven.com) | `polyhaven` | Optional · enabled | Configured HDRI/material IDs and selected resolutions. A 1k HDRI has light-only USD preparation and rendering evidence; material-map acquisition does not imply geometry preparation. |
-| [NVIDIA SimReady Central](https://huggingface.co/spaces/nvidia/simready-central) | `simready-central` | Optional · audited | Literal filename filtering through its HTTP service. Returns metadata locators; this adapter does not directly acquire or prepare the returned assets. |
-| [ProjectSim SimReady packages](https://huggingface.co/datasets/projectsim/simready-assets) | `projectsim-public` | Optional · audited | The selected `industrial_pipe_valve` BOM package has acquisition, visual-only preparation, texture rendering, and cache-restore evidence. Its original dynamics and joints are not qualified. |
+| [nvidia-usd-search](https://search.simready.omniverse.nvidia.com) | enabled | yes | USD |
+| [abo-glb](https://huggingface.co/datasets/codepawl/abo-glb) | enabled | yes | GLB |
+| [gso-glb](https://huggingface.co/datasets/codepawl/scanned-objects-glb) | enabled | yes | GLB |
+| [usdcraft](https://huggingface.co/datasets/nvidia/USDCraft-10K) | enabled | no | USD |
+| [artvip](https://huggingface.co/datasets/X-Humanoid/ArtVIP) | audited | no | USD |
+| [polyhaven](https://polyhaven.com) | enabled | no | HDRI / material maps (selected IDs) |
+| [simready-central](https://nvidia-simready-central.hf.space) | audited | no | USD locators (metadata only) |
+| [projectsim-public](https://huggingface.co/datasets/projectsim/simready-assets) | audited | no | USD |
 
-**Enabled** means an adapter has a finite integration example. **Audited** is a
-limited admission state, not full-source support. Search availability, preparation,
-and physical success are separate results; each recorded check applies to its
-listed asset, parameters, and runtime.
+<!-- asset-sources:end -->
 
-For the current development checkout, the
-[packaged registry](src/simscene/catalog/data/sources.yaml) is authoritative.
-Its generated [full source list](docs/assets/SOURCES.md) records revisions,
-license scope, examples, and limitations. See also
+Default sources participate in a search without a source filter. Select an
+optional source explicitly. **Enabled** sources have a finite integration
+example. **Audited** sources have a limited admission scope. Search,
+preparation, and physical verification have separate evidence for each asset
+and configuration.
+
+The generated [full source list](docs/assets/SOURCES.md) documents access,
+formats, licensing scope, and the recorded examples. See
 [measured capabilities](docs/validation/catalog-capabilities.md) and
 [adding a source](docs/assets/ADDING_A_SOURCE.md).
 
@@ -84,7 +90,7 @@ it does not execute arbitrary code returned by search.
 
 ## Get started
 
-### Development branch
+### First delivery on the development branch
 
 Build and install the current dev2 portable package using
 [the package guide](docs/packaging.md). Then run the
@@ -93,8 +99,7 @@ pinned GSO scan, drop it onto an editable worktop, verify the run and export a
 four-second native video. See the [integration results](docs/validation/integration-release-matrix.md)
 for tested cases and client qualification scope.
 
-
-### 1. Search metadata first
+### 1. Search metadata in the public preview
 
 Use **Python 3.10+** and pin the public preview. These catalog commands do not
 start Isaac Sim or require the optional GLB decoder:
@@ -117,7 +122,7 @@ model library. For a prebuilt installation, the
 includes a Python wheel and a **Linux x86_64 / Python 3.10** client bundle;
 see [installation and relocation](docs/packaging.md).
 
-### 2. Prepare one object and run a small physical test
+### 2. Run a physical example in the public preview
 
 | Operation | Additional requirements |
 | --- | --- |
@@ -144,7 +149,7 @@ to configure the decoder and probe the runtime before GLB physics.
 `doctor` checks configuration; `asset probe` starts the preparation runtime and
 records its capabilities.
 
-**Recommended first experiment:** the
+The public preview includes the
 [cross-catalog gravity cell](examples/catalog_gravity_cell/README.md).
 Its reproduction starts with a pinned ABO notebook and an NVIDIA table, then
 checks fall, contact, and settling before expanding to several notebook

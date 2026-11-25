@@ -120,13 +120,21 @@ The evaluator forwards these names to both packages. On the tested host, this
 resolved a case where a direct metadata request worked while the MCP request
 timed out. Other clients need their corresponding environment-forwarding setup.
 
-The DeepSeek root contains `cordis.patch.yml` with the absolute build location.
-After moving it, generate a new overlay at a new path:
+The DeepSeek development package includes an overlay generator. Move or
+extract the package to its final location, then run these commands with the
+local Python version that matches the package.
 
 ```sh
-python3 plugins/deepseek_patch.py --plugin-root /absolute/path/to/moved/deepseek/simscene --output /absolute/path/to/new-cordis.patch.yml
-dsh web --patch /absolute/path/to/new-cordis.patch.yml
+cd "/absolute/path/to/deepseek/simscene"
+python3 deepseek_patch.py
+dsh web --patch "$(pwd)/cordis.patch.yml"
 ```
+
+The generator uses the package's vendored YAML library and records the selected
+local interpreter, launcher and working directory. After another move, use
+`python3 deepseek_patch.py --output cordis-local.patch.yml` to write a fresh
+overlay at an unused path, then pass that path to `dsh web --patch`. Use
+`--python /path/to/python` to select a different interpreter for the server.
 
 Add the package's `skills` directory to the host's existing skill directories,
 or install project skills separately. The overlay adds an MCP client; it does
@@ -136,7 +144,7 @@ not install a skill or replace a host profile.
 | --- | --- |
 | Portable/Codex | Final release transport: stdio, resources, cached metadata, isolated registration/readback, and two authenticated Codex tasks passed. The tasks independently checked native video/physics and real GLB preparation/physics. No desktop marketplace installation is claimed. |
 | Claude Code | Packaged stdio is tested. Existing host evidence covers skill/MCP loading; no authenticated Claude model task is claimed. |
-| DeepSeek Harness | Packaged stdio is tested. Existing host evidence covers overlay loading and ListTools; no authenticated DeepSeek model task is claimed. |
+| DeepSeek Harness | Packaged stdio is tested with an overlay generated after relocation. Existing host evidence covers overlay loading and ListTools; no authenticated DeepSeek model task is claimed. |
 
 `tests/agent/test_package.py` clears `PYTHONPATH`, changes working directory, and
 uses a new virtual environment without host site-packages for resources, cached

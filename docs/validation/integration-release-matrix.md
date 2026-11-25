@@ -27,7 +27,7 @@ runs, not to every object from the named sources:
 | `integration_workspace` | The pinned USDCraft `ds_R022_02` two-drawer cabinet carried one independent GSO box in the lower drawer. The matched control removed only lower-drawer commands; the upper drawer still moved. Actual contact and relative poses were recorded. Drives were scheduled, and the observed contact data are not a general penetration certification. |
 | Motion keepouts | The supplied hinge and two-slider profiles cover their inspected native geometry and stated joint ranges. Unknown geometry is not assessed. Layout feasibility remains a geometric precheck, not a physics result. |
 | ArtVIP and SDK examples | The pinned door and guide-plate pair retain their previous limited checks. They do not qualify arbitrary ArtVIP objects or SDK-generated assets. |
-| Client use | Both historical QI1 attempts failed to submit. The first reached its token limit before physics. The retry passed physics and began synchronous export, which was interrupted during submission reserve. The durable export path has its own engineering checks and awaits a fresh client qualification. |
+| Client use | Both historical QI1 attempts failed to submit. The first reached its token limit before physics. The retry passed physics and began synchronous export, which was interrupted during submission reserve. The fixed GSO first delivery qualified with durable export, as recorded below. A cabinet-specific qualification remains open. |
 | Showcase video | An independently captured, source-mapped candidate exists; its visual review is `change_needed`. Video acceptance and physical acceptance are separate. |
 
 The development helper starts video export as a durable job. A client can save
@@ -46,6 +46,28 @@ Linux host. Prepared assets, callbacks and frame records must be checked for
 each new run. Hashes support integrity comparisons; they are not signatures.
 See [catalog capabilities](catalog-capabilities.md) for per-source conditions.
 
+
+## Historical QI1 usage audit
+
+The retained Codex session records contain 16 completed model responses for
+the first attempt and 22 for the retry. Their summed usage reconciles with
+the host's totals.
+
+| Attempt | Total input and output tokens | Cached input tokens included in total | Tokens after reserve began |
+| --- | ---: | ---: | ---: |
+| First attempt | 1,047,317 | 955,904 | 295,405 |
+| Retry | 1,016,231 | 951,552 | 314,460 |
+
+During the retry's background workflow, 13 responses completed between the
+physics request and the host observing its terminal job status. Those responses
+accounted for 598,944 tokens. The session shows repeated progress checks and
+growing context across responses. The logs provide completion timestamps and
+aggregate input usage. They give no per-component token breakdown or HTTP
+request start times.
+
+The first-delivery host runs the long engineering workflow between model
+turns. Its reported usage is scoped to the observed turns and the pinned
+first-delivery case.
 
 ## Independent first delivery
 
