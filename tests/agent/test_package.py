@@ -59,11 +59,48 @@ from simscene.preparation.profiles import PreparationError
 try:predecoder_fingerprint(str(root/'missing-decoder'))
 except PreparationError as error:assert error.code=='dependency_missing'
 else:raise AssertionError('missing optional decoder was reported available')
+
+# Exercise the production detached worker without network or Isaac. The plan
+# has a valid digest but intentionally points at a different repository.
+from simscene.acquisition.plans import payload_hash
+from simscene.catalog.config import read
+from simscene.preparation.environment import installation_fingerprint
+from simscene.preparation.glb_convert import CONVERTER
+
+launcher = Path(sys.argv[3])
+launcher.parent.mkdir()
+launcher.write_text("#!/bin/sh\nexit 99\n")
+(launcher.parent/'VERSION').write_text('fixture SDK')
+config = read()
+target = {'engine': 'physx', 'isaac_version': 'fixture SDK', 'usd_version': '0.25.11',
+          'platform': 'linux-x86_64'}
+installation = installation_fingerprint()
+Path(config['runtime_manifest']).write_text(json.dumps({
+    'schema_version': 1, 'target': target, 'converter': CONVERTER,
+    'installation': installation,
+}))
+plan = {
+    'schema_version': 1, 'ready_to_fetch': True, 'asset_ref': ref.to_dict(),
+    'target': target, 'toolchain_requirements': installation,
+    'converter_selection': CONVERTER,
+    'budget_breakdown': {'download_bytes': 1024, 'unpacked_bytes': 1024, 'staging_bytes': 1024},
+    'acquisition': {'kind': 'hf_glb', 'repository': 'fixture/unregistered'},
+}
+plan_id = payload_hash(plan)
+path = Path(config['home'])/'asset-plans'/f'{plan_id}.json'
+path.parent.mkdir(parents=True)
+path.write_text(json.dumps(dict(plan, plan_id=plan_id, plan_payload_sha256=plan_id)))
+(root/'fixture-plan-id').write_text(plan_id)
 """
             env={key:value for key,value in os.environ.items() if not key.startswith(('SIMSCENE_','USD_SEARCH_'))}
             env.update(PYTHONPATH='',PYTHONNOUSERSITE='1',HOME=str(root/'home'),XDG_CONFIG_HOME=str(root/'config'),
                 SIMSCENE_HOME=str(root/'state'),SIMSCENE_CACHE=str(root/'cache'),SIMSCENE_V2_CONFIG=str(root/'v2.json'))
-            subprocess.run([str(python),'-I','-c',bootstrap,str(vendor),str(root)],cwd=root,env=env,check=True)
+            launcher = root/'fixture-sdk'/'python.sh'
+            env['SIMSCENE_ISAAC_PYTHON'] = str(launcher.relative_to(root))
+            shadow = root/'simscene'
+            shadow.mkdir()
+            (shadow/'__init__.py').write_text('raise AssertionError("project must not shadow task code")')
+            subprocess.run([str(python),'-I','-c',bootstrap,str(vendor),str(root),str(launcher)],cwd=root,env=env,check=True)
             server=StdioServerParameters(command=str(python),args=['-I',str(plugin/'server/launch.py')],env=env,cwd=str(root))
             async with stdio_client(server) as (reader,writer):
                 async with ClientSession(reader,writer) as session:
@@ -85,6 +122,18 @@ else:raise AssertionError('missing optional decoder was reported available')
                     page=json.loads(response.content[0].text);self.assertEqual(len(page['items']),1)
                     unavailable=await session.call_tool('asset_generate',{'recipe_id':'guide_plate_v1','parameters':{}})
                     self.assertTrue(unavailable.isError);self.assertIn('generation_runtime_unavailable',str(unavailable))
+
+                    response = await session.call_tool('asset_prepare', {'plan_id': (root/'fixture-plan-id').read_text()})
+                    self.assertFalse(response.isError, str(response))
+                    job = json.loads(response.content[0].text)
+                    waited = await session.call_tool('job_status', {
+                        'job_id': job['job_id'], 'wait_seconds': 5, 'receipt_path': str(root/'prep-wait.json'),
+                    })
+                    self.assertFalse(waited.isError, str(waited))
+                    status = await session.call_tool('job_status', {'job_id': job['job_id']})
+                    failure = json.loads(status.content[0].text)
+                    self.assertEqual(failure['state'], 'failed', failure)
+                    self.assertIn('GLB selection requires its audited source repository', failure['error'])
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             supplied=os.environ.get('SIMSCENE_TEST_PACKAGE_OUTPUT')

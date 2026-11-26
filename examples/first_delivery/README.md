@@ -1,20 +1,41 @@
 # First delivery · one gravity drop
 
-Use an installed development package that includes this example. The fixed input
-is one GSO scan of a fondant box. The scene uses editable SimScene boxes for its
-worktop, stand and floor. The model is fetched on demand with its source notice.
+The fixed input is one GSO scan of a fondant box. The scene uses editable
+SimScene boxes for its worktop, stand and floor. The model is fetched on demand with its source notice.
 The prepared 120 mm size and 0.12 kg mass are experimental parameters.
+
+## Install the download bundle
+
+On a Linux x86_64 simulation host, use Python 3.10 with a pip that supports
+`--python`, the tested Isaac Sim 6.2.0-rc.14 runtime, Node.js 22.23.2 with npm,
+and FFmpeg with libx264 and zscale. The documented host Python uses `usd-core==26.5`. Isaac runs in its
+own Python environment with its bundled OpenUSD.
+
+Download `simscene-0.2.0-dev.2-py310-linux-x86_64.zip` and `SHA256SUMS.txt`
+from [the dev2 preview](https://github.com/ros-claw/simscene/releases/tag/v0.2.0-dev.2).
+In a new working directory containing the downloads, run these commands.
+
+~~~sh
+export DIST="$PWD/simscene-dev2"
+ARCHIVE=simscene-0.2.0-dev.2-py310-linux-x86_64.zip
+awk -v file="$ARCHIVE" '$2 == file' SHA256SUMS.txt | sha256sum --check - &&
+    unzip -q "$ARCHIVE" -d "$DIST"
+
+python3.10 -m venv --without-pip .venv
+python3.10 -m pip --python .venv/bin/python install usd-core==26.5
+. .venv/bin/activate
+
+export PLUGIN="$PWD/installed/simscene"
+export WHEEL="$DIST/wheels/rosclaw_simscene-0.2.0.dev2-py3-none-any.whl"
+python "$DIST/portable/simscene/install.py" --destination "$PLUGIN" --project "$PWD"
+~~~
 
 ## Run on the simulation host
 
-Use a Python with USD bindings, the tested Isaac Sim 6.2.0-rc.14 runtime,
-Node.js 22.23.2 with npm, and FFmpeg with libx264 and zscale. Supply paths to an
-installed portable plugin and the matching wheel. Use a directory you own for
-this example's state and cache.
+Choose the actual Isaac launcher path. Use a new work directory for the example
+so any earlier model and prepared caches stay outside the run.
 
 ~~~sh
-export PLUGIN=/absolute/path/to/installed/simscene
-export WHEEL=/absolute/path/to/rosclaw_simscene-0.2.0.dev2-py3-none-any.whl
 export SIMSCENE_ISAAC_PYTHON=/absolute/path/to/isaac-sim/python.sh
 export WORK="$PWD/first-delivery-local"
 export SIMSCENE_HOME="$WORK/state"
@@ -24,9 +45,9 @@ export SIMSCENE_GLTF_TRANSFORM_PREFIX="$WORK/decoder"
 export PYTHONPATH="$PLUGIN/server/vendor"
 
 mkdir "$WORK"
-python3 -m simscene.cli asset setup-decoder --output "$SIMSCENE_GLTF_TRANSFORM_PREFIX"
-python3 -m simscene.cli asset probe
-python3 "$PLUGIN/experiments/run_first_delivery.py" --wheel "$WHEEL" --output "$WORK/output"
+python -m simscene.cli asset setup-decoder --output "$SIMSCENE_GLTF_TRANSFORM_PREFIX"
+python -m simscene.cli asset probe
+python "$PLUGIN/experiments/run_first_delivery.py" --wheel "$WHEEL" --output "$WORK/output"
 ~~~
 
 Setup and probing are reusable within this environment. Repeat the last command
@@ -54,7 +75,7 @@ are visible. Save a JSON review with `reviewer`, `decision` (`accept` or
 entry after reviewing the whole clip.
 
 ~~~sh
-python3 "$PLUGIN/experiments/run_first_delivery.py" --output "$WORK/output" --review "$WORK/review.json"
+python "$PLUGIN/experiments/run_first_delivery.py" --output "$WORK/output" --review "$WORK/review.json"
 ~~~
 
 The reviewed receipt binds the declaration to the checked movie and can reach
@@ -63,8 +84,8 @@ that requested the work. This example verifies a fixed asset and configuration.
 
 ## Qualified host-assisted Codex route
 
-From the source checkout, a host with a configured Codex CLI login can use
-the first-delivery qualification driver. Use a fresh attempt directory and
+From the matching source checkout, a host with a configured Codex CLI login can
+use the first-delivery qualification driver. Use a fresh attempt directory and
 the same runtime setup as above.
 
 ~~~sh
