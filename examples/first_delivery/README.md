@@ -1,14 +1,14 @@
 # First delivery · one gravity drop
 
-The fixed input is one GSO scan of a fondant box. The scene uses editable SimScene boxes for its
-worktop, stand and floor. The model is fetched on demand with its source notice.
+The fixed input is one GSO scan of a fondant box. The scene uses editable
+SimScene boxes for its worktop, stand and floor. The model is fetched on demand with its source notice.
 The prepared 120 mm size and 0.12 kg mass are experimental parameters.
 
 ## Install the download bundle
 
-On a Linux x86_64 simulation host, use Python 3.10 with pip, the tested
-Isaac Sim 6.2.0-rc.14 runtime, Node.js 22.23.2 with npm, and FFmpeg with libx264
-and zscale. The documented host Python uses `usd-core==26.5`. Isaac runs in its
+On a Linux x86_64 simulation host, use Python 3.10 with a pip that supports
+`--python`, the tested Isaac Sim 6.2.0-rc.14 runtime, Node.js 22.23.2 with npm,
+and FFmpeg with libx264 and zscale. The documented host Python uses `usd-core==26.5`. Isaac runs in its
 own Python environment with its bundled OpenUSD.
 
 Download `simscene-0.2.0-dev.2-py310-linux-x86_64.zip` and `SHA256SUMS.txt`
@@ -16,9 +16,10 @@ from [the dev2 preview](https://github.com/ros-claw/simscene/releases/tag/v0.2.0
 In a new working directory containing the downloads, run these commands.
 
 ~~~sh
-sha256sum --ignore-missing -c SHA256SUMS.txt
 export DIST="$PWD/simscene-dev2"
-unzip -q simscene-0.2.0-dev.2-py310-linux-x86_64.zip -d "$DIST"
+ARCHIVE=simscene-0.2.0-dev.2-py310-linux-x86_64.zip
+awk -v file="$ARCHIVE" '$2 == file' SHA256SUMS.txt | sha256sum --check - &&
+    unzip -q "$ARCHIVE" -d "$DIST"
 
 python3.10 -m venv --without-pip .venv
 python3.10 -m pip --python .venv/bin/python install usd-core==26.5

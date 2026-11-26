@@ -78,17 +78,22 @@ def start(plan_id, request_id=None, *, config=None):
         job_id = 'prep-'+uuid.uuid4().hex; root = directory(job_id, config=config)
         root.mkdir(parents=True)
         write(root/'plan.json', plan); write(root/'config.json', config)
-        package = root/'runtime'/'simscene'
-        shutil.copytree(Path(__file__).parents[1], package, ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
+        runtime = root/'runtime'
+        source_package = Path(__file__).resolve().parents[1]
+        shutil.copytree(source_package, runtime/'simscene', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
         record = {'schema_version':1, 'job_id':job_id, 'type':'asset_preparation', 'plan_id':plan_id,
                   'state':'queued', 'request_id':identifier, 'request_payload_sha256':digest,
                   'created_unix_ns':time.time_ns(), 'checkpoints':[]}
         # A durable reservation precedes launch. Crash here is uncertain, never a retry.
         write(root/'job.json', record)
-        env = dict(os.environ, PYTHONPATH=str(root/'runtime'), PYTHONUNBUFFERED='1')
+        # Import SimScene from the frozen runtime first. Bundled third-party
+        # modules live beside the original package and may be absent from site-packages.
+        imports = os.pathsep.join((str(runtime), str(source_package.parent)))
+        env = dict(os.environ, PYTHONPATH=imports, PYTHONUNBUFFERED='1')
         with (root/'worker.log').open('ab') as log:
             process = subprocess.Popen([sys.executable, '-m', 'simscene.preparation.worker', str(root)],
-                                       env=env, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+                                       cwd=root, env=env, stdout=log, stderr=subprocess.STDOUT,
+                                       start_new_session=True)
         write(root/'launch.json', {'pid':process.pid, 'identity':_identity(process.pid)})
         return _receipt(record)
     return invoke(config['home'], request_id, payload, launch,
