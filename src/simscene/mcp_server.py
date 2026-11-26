@@ -82,6 +82,15 @@ def fixed_examples_resource() -> str:
     from .recipes.registry import list_examples
     return json.dumps(list_examples(),ensure_ascii=False)
 
+@server.resource('simscene://recipes/worktop-fit/{width_m}/{depth_m}/{edge_clearance_m}')
+def worktop_fit_resource(width_m: str, depth_m: str, edge_clearance_m: str) -> str:
+    """Find recorded prop poses that fit a measured, level static worktop. Dimensions are metres."""
+    import json
+    from .recipes.worktop_fit import worktop_fit
+    return json.dumps(worktop_fit(float(width_m), float(depth_m), float(edge_clearance_m)),
+                      ensure_ascii=False, allow_nan=False)
+
+
 @server.resource('simscene://runtime/identity')
 def runtime_identity_resource() -> str:
     """Report this process's loaded package paths and local build identity."""

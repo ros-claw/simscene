@@ -83,3 +83,16 @@ for the tested wheel and usage scope.
 The earlier cabinet QI1 outcomes remain unchanged. The paired drawer showcase
 revision retains source mapping, Chinese captions and synchronized displacement
 traces. Its final continuous-playback visual review remains pending.
+
+The public dev2 archive subsequently completed the same fixed first delivery
+from an isolated installation with empty asset caches. The host acquired the
+selected GSO object and notice, ran the physical and native video checks, and
+submitted the independently reviewed result in 137.114 seconds with 37,388
+observed tokens. The package and receipt hashes are recorded in the
+[dev2 release qualification](https://github.com/ros-claw/simscene/releases/download/v0.2.0-dev.2/release-qualification.json).
+
+## Worktop transfer
+
+The post-release worktop trials compare additional pinned props on the
+released first-delivery support. Their measurement and historical physics
+scope are documented in [worktop transfer](worktop-transfer.md).
