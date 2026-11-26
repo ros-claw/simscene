@@ -96,7 +96,10 @@ path.write_text(json.dumps(dict(plan, plan_id=plan_id, plan_payload_sha256=plan_
             env.update(PYTHONPATH='',PYTHONNOUSERSITE='1',HOME=str(root/'home'),XDG_CONFIG_HOME=str(root/'config'),
                 SIMSCENE_HOME=str(root/'state'),SIMSCENE_CACHE=str(root/'cache'),SIMSCENE_V2_CONFIG=str(root/'v2.json'))
             launcher = root/'fixture-sdk'/'python.sh'
-            env['SIMSCENE_ISAAC_PYTHON'] = str(launcher)
+            env['SIMSCENE_ISAAC_PYTHON'] = str(launcher.relative_to(root))
+            shadow = root/'simscene'
+            shadow.mkdir()
+            (shadow/'__init__.py').write_text('raise AssertionError("project must not shadow task code")')
             subprocess.run([str(python),'-I','-c',bootstrap,str(vendor),str(root),str(launcher)],cwd=root,env=env,check=True)
             server=StdioServerParameters(command=str(python),args=['-I',str(plugin/'server/launch.py')],env=env,cwd=str(root))
             async with stdio_client(server) as (reader,writer):

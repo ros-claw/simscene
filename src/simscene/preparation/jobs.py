@@ -81,18 +81,26 @@ def start(plan_id, request_id=None, *, config=None):
         runtime = root/'runtime'
         source_package = Path(__file__).resolve().parents[1]
         shutil.copytree(source_package, runtime/'simscene', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
+        # The launcher lives with the frozen SimScene snapshot so the project
+        # directory cannot shadow it. Keep the caller's cwd for relative settings.
+        launcher = runtime/'launch-preparation.py'
+        launcher.write_text(
+            "import sys\n"
+            "from simscene.preparation.worker import execute\n"
+            "execute(sys.argv[1])\n",
+            encoding='utf8',
+        )
         record = {'schema_version':1, 'job_id':job_id, 'type':'asset_preparation', 'plan_id':plan_id,
                   'state':'queued', 'request_id':identifier, 'request_payload_sha256':digest,
                   'created_unix_ns':time.time_ns(), 'checkpoints':[]}
         # A durable reservation precedes launch. Crash here is uncertain, never a retry.
         write(root/'job.json', record)
-        # Import SimScene from the frozen runtime first. Bundled third-party
-        # modules live beside the original package and may be absent from site-packages.
+        # The bundled third-party modules live beside the original package.
         imports = os.pathsep.join((str(runtime), str(source_package.parent)))
         env = dict(os.environ, PYTHONPATH=imports, PYTHONUNBUFFERED='1')
         with (root/'worker.log').open('ab') as log:
-            process = subprocess.Popen([sys.executable, '-m', 'simscene.preparation.worker', str(root)],
-                                       cwd=root, env=env, stdout=log, stderr=subprocess.STDOUT,
+            process = subprocess.Popen([sys.executable, str(launcher), str(root)],
+                                       env=env, stdout=log, stderr=subprocess.STDOUT,
                                        start_new_session=True)
         write(root/'launch.json', {'pid':process.pid, 'identity':_identity(process.pid)})
         return _receipt(record)
