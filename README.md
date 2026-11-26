@@ -7,7 +7,7 @@ assets, composing editable USD scenes, running NVIDIA Isaac Sim, and producing
 videos from real simulation recordings. Agents can inspect images, measured
 motion, and contacts to check and improve a scene.
 
-**Current public preview:** [v0.2.0-dev.1](https://github.com/ros-claw/simscene/releases/tag/v0.2.0-dev.1)
+**Current public preview** [v0.2.0-dev.2](https://github.com/ros-claw/simscene/releases/tag/v0.2.0-dev.2)
 · [Supported asset sources](#supported-asset-sources)
 · [Get started](#get-started)
 · [Connect your agent](#connect-your-agent)
@@ -39,8 +39,8 @@ can receive images and results while those files remain on the GPU host.
 ## Supported asset sources
 
 This table is generated from the
-[development registry](src/simscene/catalog/data/sources.yaml). The public
-preview tag has its own
+[packaged registry](src/simscene/catalog/data/sources.yaml). The earlier
+`v0.2.0-dev.1` tag has its own
 [source list](https://github.com/ros-claw/simscene/blob/v0.2.0-dev.1/docs/assets/SOURCES.md).
 
 <!-- asset-sources:start -->
@@ -90,14 +90,13 @@ it does not execute arbitrary code returned by search.
 
 ## Get started
 
-### First delivery on the development branch
+### First delivery from the download bundle
 
-Build and install the current dev2 portable package using
-[the package guide](docs/packaging.md). Then run the
-[one-object first delivery](examples/first_delivery/README.md) to search for a
-pinned GSO scan, drop it onto an editable worktop, verify the run and export a
-four-second native video. See the [integration results](docs/validation/integration-release-matrix.md)
-for tested cases and client qualification scope.
+Download the [Linux x86_64 / Python 3.10 preview bundle](https://github.com/ros-claw/simscene/releases/tag/v0.2.0-dev.2) and follow the
+[one-object first delivery](examples/first_delivery/README.md). The example
+fetches one pinned GSO scan, drops it onto an editable worktop, verifies contact
+and settling, and exports a four-second native video. See the
+[integration results](docs/validation/integration-release-matrix.md) for the tested scope.
 
 ### 1. Search metadata in the public preview
 
@@ -105,7 +104,7 @@ Use **Python 3.10+** and pin the public preview. These catalog commands do not
 start Isaac Sim or require the optional GLB decoder:
 
 ```bash
-git clone --branch v0.2.0-dev.1 https://github.com/ros-claw/simscene.git
+git clone --branch v0.2.0-dev.2 https://github.com/ros-claw/simscene.git
 cd simscene
 python3 -m venv .venv
 . .venv/bin/activate
@@ -118,7 +117,7 @@ simscene recipe list
 
 The first query may fetch a bounded metadata index. It does not download the
 model library. For a prebuilt installation, the
-[preview release](https://github.com/ros-claw/simscene/releases/tag/v0.2.0-dev.1)
+[preview release](https://github.com/ros-claw/simscene/releases/tag/v0.2.0-dev.2)
 includes a Python wheel and a **Linux x86_64 / Python 3.10** client bundle;
 see [installation and relocation](docs/packaging.md).
 
@@ -149,7 +148,7 @@ to configure the decoder and probe the runtime before GLB physics.
 `doctor` checks configuration; `asset probe` starts the preparation runtime and
 records its capabilities.
 
-The public preview includes the
+The earlier preview also includes the
 [cross-catalog gravity cell](examples/catalog_gravity_cell/README.md).
 Its reproduction starts with a pinned ABO notebook and an NVIDIA table, then
 checks fall, contact, and settling before expanding to several notebook
@@ -195,7 +194,7 @@ For a client that accepts an `mcpServers` configuration:
 
 | Client | Integration | Recorded public-preview evidence |
 | --- | --- | --- |
-| Codex | Portable package, matching skills, optional explicit MCP registration | Two authenticated tasks covering native video/physics and imported GLB preparation/physics. |
+| Codex | Portable package, matching skills, optional explicit MCP registration | The dev2 release qualification covers the fixed GSO first delivery. The earlier preview recorded two authenticated tasks covering native video/physics and imported GLB preparation/physics. |
 | Claude Code | Claude plugin layout and matching skills | Packaged stdio and host skill/MCP loading; no authenticated Claude model task claimed. |
 | DeepSeek Harness | MCP overlay plus skill-directory configuration | Packaged stdio, overlay loading, and tool listing; no authenticated DeepSeek model task claimed. |
 | Other MCP clients | Stdio configuration | Compatibility depends on the client; complete tasks need their own validation. |
@@ -218,13 +217,11 @@ The two skills divide the work:
 - [deliver-scene-video](skills/deliver-scene-video/SKILL.md): plan cameras,
   inspect native footage, and export a traceable film.
 
-Start with a small request:
+Start with the installed first-delivery example.
 
-> Reproduce the gravity-cell example with its pinned ABO notebook and documented
-> table acquisition route. Prepare the notebook as a rigid body and run the
-> fall/contact/settling check.
-> Enable native capture, inspect the actual result, and deliver the editable scene, a short native
-> video, and the verification result. Download only the selected dependencies.
+> Run the first_delivery example with the pinned GSO object and editable
+> worktop. Check direct contact and settling, review the native video, and
+> deliver the editable scene, checks, and video source map.
 
 Then try a composition task:
 
