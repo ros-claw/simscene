@@ -24,6 +24,14 @@ orientation before measuring. `avoid_ids`, `clearance_m`, and world metre
 `keepout_bounds:[{min:[x,y,z],max:[x,y,z]}]` reject reserved-space intrusion.
 This is geometric placement, not a dynamic stability proof.
 
+If the server exposes the `simscene://recipes/worktop-fit/{width_m}/{depth_m}/{edge_clearance_m}`
+resource template, read it before fetching candidates for a level, static
+collision-enabled worktop. Use the measured usable rectangle and margin in
+metres. The matches identify pinned props in a tested pose with recorded
+worktop contact and settling. Apply the recorded orientation and offset from
+the usable rectangle center. Express that placement in the support-local
+coordinates for `place_on`, measure it, and verify a new physical run.
+
 For repeatable sampled placement of 1–8 existing props, call
 `scene_plan_layout(scene_id, ids, support, support_surface, seed, clearance_m,
 gap_m, avoid_ids, keepout_bounds)`. Omit `support_surface` for a primitive box

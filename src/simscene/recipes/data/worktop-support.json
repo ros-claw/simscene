@@ -1,0 +1,343 @@
+{
+  "schema": "simscene.worktop_support_observations.v1",
+  "test_context": {
+    "release": "v0.2.0-dev.2",
+    "source_commit": "e5de299f7ebd17d0e3edb4761186fce6cba9ac81",
+    "wheel_sha256": "6d67d336785310b7440fbb442895d6fcc08c491a4e4a90ef38f1b3a6affa753e",
+    "runtime": {
+      "engine": "physx",
+      "isaac_version": "6.2.0-rc.14+release.52805.02189a84.gl",
+      "usd_version": "0.25.11",
+      "platform": "linux-x86_64"
+    },
+    "steps": 240,
+    "physics_hz": 60,
+    "seed": 42,
+    "worktop_xy_m": [
+      0.66,
+      0.5
+    ],
+    "worktop_height_m": 0.72,
+    "gravity_drop_case": "rigid_asset_smoke",
+    "asset_mass_kg": 0.12,
+    "settle_window_s": 2,
+    "max_linear_m_s": 0.03,
+    "max_angular_rad_s": 0.3,
+    "footprint_scope": "Axis-aligned render bounds from the initial and every recorded physics sample."
+  },
+  "observations": [
+    {
+      "source_ref": {
+        "asset_id": "ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box",
+        "revision": "75e8895e4f4e854cddd7009a7e60f86812041012",
+        "source_id": "gso-glb",
+        "variant_id": null
+      },
+      "physics_passed": true,
+      "profile_id": "rigid_prop_v1",
+      "prepared_longest_extent_m": 0.12,
+      "pose_wxyz": [
+        0.7071067811865476,
+        0.7071067811865476,
+        0,
+        0
+      ],
+      "footprint": {
+        "initial_projected_xy_m": [
+          0.08656758299534002,
+          0.12000000437840026
+        ],
+        "final_xy_m": [
+          0.08687988308758417,
+          0.1207773821953348
+        ],
+        "centered_xy_envelope_m": [
+          0.09070674850298123,
+          0.2403997324135836
+        ],
+        "final_edge_margins_xy_m": [
+          0.28622192004491254,
+          0.13013393239157892
+        ],
+        "final_full_bounds_in_case_envelope": true
+      },
+      "support": {
+        "kind": "horizontal_static_primitive_box",
+        "worktop_xy_m": [
+          0.66,
+          0.5
+        ],
+        "worktop_height_m": 0.7200000000000001,
+        "case_target_bounds_m": {
+          "max": [
+            0.27,
+            0.21,
+            0.83
+          ],
+          "min": [
+            -0.27,
+            -0.21,
+            0.704
+          ]
+        },
+        "initial_bottom_clearance_m": 0.23251208423691094,
+        "vertical_displacement_m": 0.2348232865333557,
+        "minimum_displacement_m": 0.18,
+        "direct_worktop_contact": true,
+        "contact_in_recorded_steps": {
+          "count": 24,
+          "first_physics_step": 13,
+          "last_physics_step": 36,
+          "actor_pair": [
+            "/World/box/Asset/Body",
+            "/World/table"
+          ]
+        },
+        "settled": true,
+        "settling": {
+          "window_observed_s": 1.983333333333333,
+          "max_linear_m_s": 0.0,
+          "max_angular_rad_s": 2.528810910653651e-06,
+          "window_requested_s": 2.0,
+          "linear_limit_m_s": 0.03,
+          "angular_limit_rad_s": 0.3
+        }
+      },
+      "title": "GSO Ready-to-Use Rolled Fondant box",
+      "prepared_parameters": {
+        "ccd": true,
+        "collision_method": "convex_hull",
+        "dynamic_friction": 0.5,
+        "mass_kg": 0.12,
+        "mass_note": "Experimental120mm scaled scanned box/.12kg assumption; not manufacturer values.",
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "fit_longest",
+        "source_physics_policy": "reject_if_physics",
+        "static_friction": 0.6,
+        "target_longest_extent_m": 0.12
+      },
+      "source_model_sha256": "5454424606ed780b806c99a5a3ffc0f4b0b9ade2fc9afa9c63fbf932ea187949",
+      "license": "CC-BY-4.0",
+      "outcome": "passed",
+      "case_sha256": "d6d84fc232b8f672fc0d3cd70c528b5673672f463666f22f94ed105fec9b034a",
+      "physics_check_sha256": "213ac625877a90a8e682ba2dc3fbeb647af5514685637b4ec1c2992fa9d28679",
+      "run_lock_sha256": "bad59c8f9fc859ea4a260c3886de6d5a3b3acbd000b585a1194261fe55297be0",
+      "run_result_sha256": "442f32b8e50ede387387ff907e21a5d9dface93f4e1c8f09b77c117a9cd47e4b",
+      "tested_bottom_center_offset_xy_m": [
+        -0.00016044156045147417,
+        -0.060002845261450784
+      ]
+    },
+    {
+      "source_ref": {
+        "asset_id": "B01DN8TB5U",
+        "revision": "c7c8293fed3b7ab122ef5d7896521a187e0962d7",
+        "source_id": "abo-glb",
+        "variant_id": null
+      },
+      "physics_passed": true,
+      "profile_id": "rigid_prop_v1",
+      "prepared_longest_extent_m": 0.15,
+      "pose_wxyz": [
+        0.7071067811865476,
+        0.7071067811865476,
+        0.0,
+        0.0
+      ],
+      "footprint": {
+        "initial_projected_xy_m": [
+          0.08951384263310863,
+          0.14999999766762728
+        ],
+        "final_xy_m": [
+          0.08951452343483639,
+          0.15001341947083435
+        ],
+        "centered_xy_envelope_m": [
+          0.0895167191018613,
+          0.1500267256224101
+        ],
+        "final_edge_margins_xy_m": [
+          0.2852416429432234,
+          0.17498663798697206
+        ],
+        "final_full_bounds_in_case_envelope": true
+      },
+      "support": {
+        "kind": "horizontal_static_primitive_box",
+        "worktop_xy_m": [
+          0.66,
+          0.5
+        ],
+        "worktop_height_m": 0.7200000000000001,
+        "case_target_bounds_m": {
+          "max": [
+            0.27,
+            0.21,
+            0.83
+          ],
+          "min": [
+            -0.27,
+            -0.21,
+            0.704
+          ]
+        },
+        "initial_bottom_clearance_m": 0.23249999999999982,
+        "vertical_displacement_m": 0.23249882459640503,
+        "minimum_displacement_m": 0.18,
+        "direct_worktop_contact": true,
+        "contact_in_recorded_steps": {
+          "count": 25,
+          "first_physics_step": 12,
+          "last_physics_step": 36,
+          "actor_pair": [
+            "/World/box/Asset/Body",
+            "/World/table"
+          ]
+        },
+        "settled": true,
+        "settling": {
+          "window_observed_s": 1.983333333333333,
+          "max_linear_m_s": 0.0,
+          "max_angular_rad_s": 0.0,
+          "window_requested_s": 2.0,
+          "linear_limit_m_s": 0.03,
+          "angular_limit_rad_s": 0.3
+        }
+      },
+      "title": "AmazonBasics Classic Blank Notebook",
+      "prepared_parameters": {
+        "ccd": true,
+        "collision_method": "convex_hull",
+        "dynamic_friction": 0.5,
+        "mass_kg": 0.12,
+        "mass_note": "Matched 0.12 kg experimental worktop drop; no manufacturer mass claim.",
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "fit_longest",
+        "source_physics_policy": "reject_if_physics",
+        "static_friction": 0.6,
+        "target_longest_extent_m": 0.15
+      },
+      "source_model_sha256": "67d61db31084d820ca9b1b0d2d3761662f6a5532944573afceee8f57c8151845",
+      "license": "CC-BY-4.0",
+      "outcome": "passed",
+      "case_sha256": "133377e8531c86e5ff5660324305aee65772d52aa270a183bb33a363a8fd4b20",
+      "physics_check_sha256": "213ac625877a90a8e682ba2dc3fbeb647af5514685637b4ec1c2992fa9d28679",
+      "run_lock_sha256": "8fcb302c8da33235e6c34391611cb2670e3489ea95d78ac1e81569d441886505",
+      "run_result_sha256": "1df2367f0c646a343fb89b4e86d300682af23ee4f9c60974861aa6510c9ad28c",
+      "tested_bottom_center_offset_xy_m": [
+        0.0,
+        1.3877787807814457e-17
+      ],
+      "attempt_outcomes": [
+        "preparation_failed",
+        "passed"
+      ]
+    },
+    {
+      "source_ref": {
+        "asset_id": "Crunch_Girl_Scouts_Candy_Bars_Peanut_Butter_Creme_78_oz_box",
+        "revision": "75e8895e4f4e854cddd7009a7e60f86812041012",
+        "source_id": "gso-glb",
+        "variant_id": null
+      },
+      "physics_passed": true,
+      "profile_id": "rigid_prop_v1",
+      "prepared_longest_extent_m": 0.12,
+      "pose_wxyz": [
+        0.7071067811865476,
+        0.7071067811865476,
+        0.0,
+        0.0
+      ],
+      "footprint": {
+        "initial_projected_xy_m": [
+          0.10146915939595505,
+          0.1199999990813976
+        ],
+        "final_xy_m": [
+          0.11748486078590677,
+          0.13300809631134308
+        ],
+        "centered_xy_envelope_m": [
+          0.1511464725553664,
+          0.14906843771473063
+        ],
+        "final_edge_margins_xy_m": [
+          0.25472606332648345,
+          0.17718199762159914
+        ],
+        "final_full_bounds_in_case_envelope": true
+      },
+      "support": {
+        "kind": "horizontal_static_primitive_box",
+        "worktop_xy_m": [
+          0.66,
+          0.5
+        ],
+        "worktop_height_m": 0.7200000000000001,
+        "case_target_bounds_m": {
+          "max": [
+            0.27,
+            0.21,
+            0.83
+          ],
+          "min": [
+            -0.27,
+            -0.21,
+            0.704
+          ]
+        },
+        "initial_bottom_clearance_m": 0.23250000000000004,
+        "vertical_displacement_m": 0.23476850986480713,
+        "minimum_displacement_m": 0.18,
+        "direct_worktop_contact": true,
+        "contact_in_recorded_steps": {
+          "count": 24,
+          "first_physics_step": 13,
+          "last_physics_step": 36,
+          "actor_pair": [
+            "/World/box/Asset/Body",
+            "/World/table"
+          ]
+        },
+        "settled": true,
+        "settling": {
+          "window_observed_s": 1.983333333333333,
+          "max_linear_m_s": 0.0,
+          "max_angular_rad_s": 2.528810910653651e-06,
+          "window_requested_s": 2.0,
+          "linear_limit_m_s": 0.03,
+          "angular_limit_rad_s": 0.3
+        }
+      },
+      "title": "Crunch Girl Scouts Peanut Butter Creme carton",
+      "prepared_parameters": {
+        "ccd": true,
+        "collision_method": "convex_hull",
+        "dynamic_friction": 0.5,
+        "mass_kg": 0.12,
+        "mass_note": "Matched 0.12 kg experimental worktop drop; no manufacturer mass claim.",
+        "proxy_tolerance_m": 0.002,
+        "restitution": 0.05,
+        "scale_mode": "fit_longest",
+        "source_physics_policy": "reject_if_physics",
+        "static_friction": 0.6,
+        "target_longest_extent_m": 0.12
+      },
+      "source_model_sha256": "9b90e9d43ba10a81dbb0f5f8da258f1d58d45094269fa0263431ffb1306860c7",
+      "license": "CC-BY-4.0",
+      "outcome": "passed",
+      "case_sha256": "2453f5db0bae70f0d9b99cbf8c8f7fb79123231c056b1d83e87d797d207aa5aa",
+      "physics_check_sha256": "213ac625877a90a8e682ba2dc3fbeb647af5514685637b4ec1c2992fa9d28679",
+      "run_lock_sha256": "906c48e03144b6ccc65f2968143dfb21c4cc67f2b9f2ab0c7c5fabb92041fda7",
+      "run_result_sha256": "663db2135180e8acae222a0eb5fb0c8efbe16da8b8bc317402f177ab383a6042",
+      "tested_bottom_center_offset_xy_m": [
+        0.0,
+        6.938893903907228e-18
+      ]
+    }
+  ]
+}

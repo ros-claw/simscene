@@ -112,6 +112,11 @@ path.write_text(json.dumps(dict(plan, plan_id=plan_id, plan_payload_sha256=plan_
                     response=await session.read_resource('simscene://recipes/examples')
                     examples=json.loads(response.contents[0].text)['examples']
                     self.assertIn('automatic_cabinet_layout',{entry['id'] for entry in examples})
+                    response = await session.read_resource('simscene://recipes/worktop-fit/0.66/0.50/0.02')
+                    fit = json.loads(response.contents[0].text)
+                    self.assertEqual(fit['schema'], 'simscene.worktop_fit.v1')
+                    self.assertIn('ReadytoUse_Rolled_Fondant_Pure_White_24_oz_box',
+                                  {item['source_ref']['asset_id'] for item in fit['matches']})
                     response=await session.read_resource('simscene://runtime/identity')
                     identity=json.loads(response.contents[0].text)
                     self.assertEqual(Path(identity['module_path']).resolve(),(vendor/'simscene/__init__.py').resolve())
