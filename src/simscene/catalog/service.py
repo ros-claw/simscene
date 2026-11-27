@@ -37,10 +37,16 @@ def refresh(source_id):
     from .registry import load_registry
     from .config import read
     from .store import CatalogStore
-    from .providers.factory import make_provider
-    config = read(); source = load_registry(config.get('registry_path')).get(source_id)
-    if source.adapter not in {'abo','hf_manifest','usdcraft','http_assets'}:
-        raise ValueError('source has no downloadable metadata index; search the live service directly')
-    provider = make_provider(CatalogStore(config['index_directory']),source,config)
-    ledger = []; provider.configure(time.monotonic()+config['search_deadline_seconds'], ledger)
-    return dict(provider.refresh(), requests=ledger)
+    from .providers.factory import INDEX_REFRESH_ADAPTERS, make_provider
+
+    if not isinstance(source_id, str) or not source_id.strip():
+        raise ValueError('refresh requires a catalog source ID')
+    config = read()
+    source, = load_registry(config.get('registry_path')).select((source_id,))
+    if source.adapter not in INDEX_REFRESH_ADAPTERS:
+        raise ValueError('source has no explicit index refresh; use catalog search for this source')
+    provider = make_provider(CatalogStore(config['index_directory']), source, config)
+    seconds = config['refresh_deadline_seconds']
+    ledger = []
+    provider.configure(time.monotonic() + seconds, ledger)
+    return dict(provider.refresh(), requests=ledger, deadline_seconds=seconds)

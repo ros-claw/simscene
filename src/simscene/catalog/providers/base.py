@@ -10,6 +10,7 @@ class ProviderPage:
     snapshot: str
     bytes_read: int = 0
     warnings: tuple[str, ...] = ()
+    indexed: bool = False
 
 
 class Provider:

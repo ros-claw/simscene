@@ -59,6 +59,7 @@ class ABOProvider(Provider):
         if not records:
             raise MetadataError('ABO metadata index is empty')
         identity = self.entry.revision + ':' + hashlib.sha256(payload).hexdigest()
+        self.check_deadline()
         self.store.replace_index(self.source_id, records, identity)
         return {'source_id': self.source_id, 'snapshot': identity, 'records': len(records),
                 'metadata_bytes': len(payload), 'model_bytes': 0,
@@ -109,12 +110,15 @@ class ABOProvider(Provider):
         if self.snapshot == 'index_not_refreshed':
             self.refresh()
         self.check_deadline()
-        records = self.store.search(self.source_id, request.query, limit=100)
+        records, snapshot = self.store.search(self.source_id, request.query, limit=100,
+                                              revision=self.entry.revision, include_snapshot=True)
+        if not snapshot or not snapshot.startswith(self.entry.revision + ':'):
+            raise MetadataError('ABO metadata index changed during search')
         self.check_deadline()
         metadata_bytes = sum(entry.get('bytes', 0) for entry in self.ledger[start:]
                              if entry.get('category') == 'metadata')
-        return ProviderPage(records, self.snapshot, bytes_read=metadata_bytes,
-                            warnings=(() if self.store.fts else ('fts5_unavailable',)))
+        return ProviderPage(records, snapshot, bytes_read=metadata_bytes,
+                            warnings=(() if self.store.fts else ('fts5_unavailable',)), indexed=True)
 
     def resolve(self, ref):
         if ref.source_id != self.source_id:

@@ -30,9 +30,16 @@ _read_network = ToolAnnotations(readOnlyHint=True, openWorldHint=True)
 
 @threaded_tool(annotations=_read_network)
 def catalog_search(query: str, filters: dict | None = None, limit: int = 8, cursor: str | None = None) -> dict:
-    """Search reviewed sources with bounded metadata only. Read known source IDs from simscene://catalog/sources or simscene catalog sources; copy those IDs into filters.source_ids for explicit selection. Detailed records are linked, not inlined."""
+    """Search reviewed sources with bounded metadata only. Read known source IDs from simscene://catalog/sources or simscene catalog sources; copy those IDs into filters.source_ids for explicit selection. Detailed records are linked. A recovery hint identifies a source that needs explicit refresh."""
     from .catalog.service import search
     return search(query,filters,limit,cursor)
+
+
+@threaded_tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, openWorldHint=True))
+def catalog_refresh(source_id: str) -> dict:
+    """Refresh one registered metadata index with a separate download and parsing budget. Publishes the complete local index without downloading models or previews."""
+    from .catalog.service import refresh
+    return refresh(source_id)
 
 
 @threaded_tool(annotations=_read_network)

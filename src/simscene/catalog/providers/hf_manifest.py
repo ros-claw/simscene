@@ -51,7 +51,10 @@ class HFManifestProvider(Provider):
     @property
     def snapshot(self):
         value=self.store.snapshot(self.source_id)
-        return value if value and value.startswith(self.entry.revision+':') else 'index_not_refreshed'
+        return value if self._valid_snapshot(value) else 'index_not_refreshed'
+
+    def _valid_snapshot(self, snapshot):
+        return bool(snapshot and snapshot.startswith(self.entry.revision+':'))
 
     def url(self,path):
         return self.base_url+'/datasets/'+self.source.repository+'/resolve/'+self.entry.revision+'/'+quote(safe_path(path),safe='/')
@@ -88,6 +91,7 @@ class HFManifestProvider(Provider):
             raise MetadataError('manifest metadata schema changed; previous index preserved') from None
         if not records:raise MetadataError('manifest metadata is empty')
         identity=self.snapshot_identity(payload)
+        self.check_deadline()
         self.store.replace_index(self.source_id,records,identity)
         return {'source_id':self.source_id,'snapshot':identity,'records':len(records),'metadata_bytes':len(payload),'model_bytes':0,
                 'text_index':'fts5' if self.store.fts else 'bounded_text_fallback'}
@@ -125,9 +129,14 @@ class HFManifestProvider(Provider):
     def search(self,request):
         self.check_deadline();start=len(self.ledger)
         if self.snapshot=='index_not_refreshed':self.refresh()
-        records=self.store.search(self.source_id,request.query,limit=100,revision=self.entry.revision);self.check_deadline()
+        records, snapshot = self.store.search(self.source_id, request.query, limit=100,
+                                              revision=self.entry.revision, include_snapshot=True)
+        if not self._valid_snapshot(snapshot):
+            raise MetadataError('manifest metadata index changed during search')
+        self.check_deadline()
         count=sum(entry.get('bytes',0) for entry in self.ledger[start:] if entry.get('category')=='metadata')
-        return ProviderPage(records,self.snapshot,bytes_read=count,warnings=(() if self.store.fts else ('fts5_unavailable',)))
+        return ProviderPage(records, snapshot, bytes_read=count,
+                            warnings=(() if self.store.fts else ('fts5_unavailable',)), indexed=True)
 
     def resolve(self,ref):
         if ref.source_id!=self.source_id:raise ValueError('wrong manifest source')

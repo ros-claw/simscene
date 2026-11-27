@@ -5,6 +5,7 @@ from dataclasses import replace
 import json
 import time
 from .models import SearchPage, SearchRequest, stable_hash
+from .providers.factory import INDEX_REFRESH_ADAPTERS
 from .network import MetadataDeadline, MetadataError
 from .registry import load_registry
 from .store import CatalogStore
@@ -215,15 +216,20 @@ def search_assets(request, *, registry=None, providers=None, index_directory=Non
                 statuses[source.source_id] = {'status': 'ok', 'candidates': len(page.items),
                                               'experimental': source.state != 'enabled',
                                               'warnings': list(page.warnings)}
-                source_records = []
+                matches = []
                 for rank, record in enumerate(page.items):
                     if record.ref.source_id != source.source_id:
                         raise ValueError('provider returned a foreign source')
                     decision = constraint_decision(record, request)
                     if decision['include']:
-                        detail = store.remember(record)
-                        source_records.append(_summary(record, decision, detail, source.state != 'enabled', rank))
-                records.extend(source_records)
+                        matches.append((rank, record, decision))
+                if page.indexed:
+                    # A concurrent refresh may have replaced these rows already.
+                    details = [store.put_detail(record) for _, record, _ in matches]
+                else:
+                    details = store.remember_many(record for _, record, _ in matches)
+                records.extend([_summary(record, decision, detail, source.state != 'enabled', rank)
+                                for (rank, record, decision), detail in zip(matches, details)])
             except MetadataDeadline:
                 statuses[source.source_id] = {'status': 'timeout'}
             except MetadataError as error:
@@ -236,6 +242,11 @@ def search_assets(request, *, registry=None, providers=None, index_directory=Non
             statuses[futures[future].source_id] = {'status': 'timeout'}
     finally:
         executor.shutdown(wait=False, cancel_futures=True)
+    for source in sources:
+        source_status = statuses[source.source_id]
+        if (source_status['status'] == 'timeout' and source.adapter in INDEX_REFRESH_ADAPTERS
+                and versions.get(source.source_id) == 'index_not_refreshed'):
+            source_status['recovery'] = {'tool': 'catalog_refresh', 'source_id': source.source_id}
     successes = sum(s['status'] == 'ok' for s in statuses.values())
     status = 'ok' if statuses and successes == len(statuses) else 'partial' if successes else 'unavailable'
     # Only identical immutable refs are deduplicated; similar titles/geometries

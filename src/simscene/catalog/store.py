@@ -59,13 +59,23 @@ class CatalogStore:
         return self.write_document('details', identity, record.to_dict())
 
     def remember(self, record):
-        key = stable_hash(record.ref)
-        text = ' '.join([record.title, record.category or '', *record.tags])
+        return self.remember_many((record,))[0]
+
+    def remember_many(self, records):
+        """Persist one search provider's candidates in a single write transaction."""
+        records = tuple(records)
+        if not records:
+            return ()
+        rows = [self._record_row(record) for record in records]
         with self.connect() as db:
-            db.execute('INSERT OR REPLACE INTO records VALUES (?,?,?,?,?,?)',
-                       (key, record.ref.source_id, record.ref.asset_id, record.ref.revision,
-                        canonical_json(record, exclude_volatile=False), text))
-        return self.put_detail(record)
+            db.executemany('INSERT OR REPLACE INTO records VALUES (?,?,?,?,?,?)', rows)
+        return tuple(self.put_detail(record) for record in records)
+
+    @staticmethod
+    def _record_row(record):
+        text = ' '.join([record.title, record.category or '', *record.tags])
+        return (stable_hash(record.ref), record.ref.source_id, record.ref.asset_id, record.ref.revision,
+                canonical_json(record, exclude_volatile=False), text)
 
     def get(self, ref, *, require_snapshot_prefix=None, require_snapshot_suffix=None):
         key = stable_hash(ref)
@@ -94,10 +104,7 @@ class CatalogStore:
         for record in records:
             if record.ref.source_id != source_id:
                 raise ValueError('index contains an asset from another source')
-            key = stable_hash(record.ref)
-            text = ' '.join([record.title, record.category or '', *record.tags])
-            prepared.append((key, source_id, record.ref.asset_id, record.ref.revision,
-                             canonical_json(record, exclude_volatile=False), text))
+            prepared.append(self._record_row(record))
         if len({r[0] for r in prepared}) != len(prepared):
             raise ValueError('duplicate asset reference in index')
         with self.connect() as db:
@@ -108,12 +115,20 @@ class CatalogStore:
                 db.executemany('INSERT INTO record_fts VALUES (?,?,?)', [(r[0], r[1], r[5]) for r in prepared])
             db.execute('INSERT OR REPLACE INTO indexes VALUES (?,?)', (source_id, snapshot))
 
-    def search(self, source_id, query, *, limit=100, revision=None):
+    def search(self, source_id, query, *, limit=100, revision=None, include_snapshot=False):
+        """Read candidates and, when requested, their marker in one SQLite snapshot."""
         tokens = re.findall(r'[^\W_]+', query, re.UNICODE)[:16]
-        if not tokens:
+        if not tokens and not include_snapshot:
             return ()
+        marker = None
         with self.connect() as db:
-            if self.fts:
+            if include_snapshot:
+                db.execute('BEGIN')
+                row = db.execute('SELECT snapshot FROM indexes WHERE source=?', (source_id,)).fetchone()
+                marker = row[0] if row else None
+            if not tokens:
+                rows = ()
+            elif self.fts:
                 match = ' OR '.join('"' + t.replace('"', '""') + '"' for t in tokens)
                 rows = db.execute('SELECT r.payload FROM record_fts f JOIN records r ON r.key=f.key WHERE record_fts MATCH ? AND r.source=?' +
                                   (' AND r.revision=?' if revision is not None else '') + ' ORDER BY rank, r.asset_id LIMIT ?',
@@ -124,4 +139,5 @@ class CatalogStore:
                 rows = db.execute(f'SELECT payload FROM records WHERE source=? AND ({clauses})' +
                                   (' AND revision=?' if revision is not None else '') + ' ORDER BY asset_id LIMIT ?',
                                   (source_id, *terms, *([revision] if revision is not None else []), limit)).fetchall()
-        return tuple(AssetRecord.from_dict(json.loads(row[0])) for row in rows)
+        records = tuple(AssetRecord.from_dict(json.loads(row[0])) for row in rows)
+        return (records, marker) if include_snapshot else records

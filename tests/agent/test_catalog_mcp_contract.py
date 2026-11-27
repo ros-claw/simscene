@@ -27,7 +27,7 @@ scene_plan_translate_group scene_validate scene_export simulation_start job_stat
 run_observe run_contacts run_verify_lock run_verify run_verify_passive_suite
 run_verify_evidence run_video_chunk scene_observe job_cancel simulation_pause
 simulation_resume'''.split())
-NEW_TOOLS = frozenset({'catalog_search', 'asset_plan', 'asset_prepare', 'catalog_discover', 'scene_compile_recipe', 'asset_generate', 'scene_plan_layout', 'video_export_start'})
+NEW_TOOLS = frozenset({'catalog_search', 'asset_plan', 'asset_prepare', 'catalog_discover', 'scene_compile_recipe', 'asset_generate', 'scene_plan_layout', 'video_export_start', 'catalog_refresh'})
 
 
 def nullable(kind, title):
@@ -41,6 +41,9 @@ def schema(name, properties, required):
     return {'properties': properties, 'required': required, 'title': name + 'Arguments', 'type': 'object'}
 
 NEW_SCHEMAS = {
+    'catalog_refresh': schema('catalog_refresh', {
+        'source_id': {'title': 'Source Id', 'type': 'string'},
+    }, ['source_id']),
     'video_export_start': schema('video_export_start', {
         'segments': {'items': {'additionalProperties': True, 'type': 'object'}, 'title': 'Segments', 'type': 'array'},
         'destination': {'title': 'Destination', 'type': 'string'},
@@ -153,6 +156,12 @@ class CatalogMCPContract(unittest.IsolatedAsyncioTestCase):
                     for name, expected in NEW_SCHEMAS.items():
                         self.assertEqual(tools[name].inputSchema, expected, name)
                     self.assertEqual(tools['catalog_search'].annotations.model_dump(), READ_NETWORK)
+                    self.assertFalse(tools['catalog_refresh'].annotations.readOnlyHint)
+                    self.assertFalse(tools['catalog_refresh'].annotations.destructiveHint)
+                    self.assertTrue(tools['catalog_refresh'].annotations.openWorldHint)
+                    refresh = await session.call_tool('catalog_refresh', {'source_id': 'nvidia-usd-search'})
+                    self.assertTrue(refresh.isError)
+                    self.assertIn('no explicit index refresh', refresh.content[0].text)
                     self.assertIsNone(tools['asset_plan'].annotations)
                     self.assertIsNone(tools['asset_prepare'].annotations)
                     self.assertEqual(tools['asset_acquire'].inputSchema, schema('asset_acquire', {

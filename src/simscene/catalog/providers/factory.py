@@ -1,6 +1,9 @@
 """Explicit adapter selection; an unknown adapter can never become NVIDIA search."""
 
 
+INDEX_REFRESH_ADAPTERS = frozenset({'abo', 'hf_manifest', 'usdcraft', 'http_assets'})
+
+
 def make_provider(store, source, config):
     cap=config['metadata_max_bytes']
     if source.adapter=='nvidia':
