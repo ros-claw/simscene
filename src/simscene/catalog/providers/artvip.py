@@ -139,11 +139,14 @@ class ArtVIPProvider(Provider):
         start = len(self.ledger)
         if self.snapshot == 'index_not_refreshed':
             self.refresh()
-        records = self.store.search(self.source_id, request.query, limit=100, revision=self.entry.revision)
+        records, snapshot = self.store.search(self.source_id, request.query, limit=100,
+                                              revision=self.entry.revision, include_snapshot=True)
+        if not snapshot or not snapshot.startswith(self.prefix) or not snapshot.endswith(self.suffix):
+            raise MetadataError('ArtVIP metadata index changed during search')
         self.check_deadline()
         count = sum(item.get('bytes', 0) for item in self.ledger[start:] if item.get('category') == 'metadata')
-        return ProviderPage(tuple(self._reproject(record) for record in records), self.snapshot,
-                            bytes_read=count, warnings=(() if self.store.fts else ('fts5_unavailable',)))
+        return ProviderPage(tuple(self._reproject(record) for record in records), snapshot,
+                            bytes_read=count, warnings=(() if self.store.fts else ('fts5_unavailable',)), indexed=True)
 
     def resolve(self, ref):
         if ref.source_id != self.source_id or ref.revision != self.entry.revision:

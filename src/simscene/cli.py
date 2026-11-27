@@ -3,6 +3,7 @@ import json
 import sys
 from pathlib import Path
 from .assets import USDSearch, SearchError
+from .catalog.network import MetadataError
 from .scene import SceneError
 
 def _load(path):
@@ -300,7 +301,7 @@ def main():
             result = probe()
             result["usd_search_url"] = client.base_url
         print(json.dumps(result, ensure_ascii=False, indent=2))
-    except (SearchError, SceneError, ValueError, OSError, KeyError, TypeError) as e:
+    except (SearchError, MetadataError, SceneError, ValueError, OSError, KeyError, TypeError) as e:
         print(str(e), file=sys.stderr)
         return 1
     return 0

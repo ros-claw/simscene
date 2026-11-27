@@ -125,15 +125,21 @@ class PolyHavenProvider(Provider):
             try:records.append(polyhaven_record(identity,*responses,kind='hdri' if category=='hdris' else 'material'))
             except ValueError as error:raise MetadataError(str(error)) from None
         snapshot=hashlib.sha256(''.join(hashes).encode()).hexdigest()
+        self.check_deadline()
         self.store.replace_index(self.source_id,records,snapshot)
         return {'source_id':self.source_id,'snapshot':snapshot,'records':len(records),'metadata_bytes':total,'model_bytes':0}
 
     def search(self, request):
         from .base import ProviderPage
+        from ..network import MetadataError
         start=len(self.ledger);self.check_deadline()
         if self.snapshot=='index_not_refreshed':self.refresh()
-        return ProviderPage(tuple(self.store.search(self.source_id,request.query,limit=100)),self.snapshot,
-            sum(item.get('bytes',0) for item in self.ledger[start:]),('selected_metadata_list_only',))
+        records, snapshot = self.store.search(self.source_id, request.query, limit=100, include_snapshot=True)
+        if not snapshot:
+            raise MetadataError('Poly Haven metadata index changed during search')
+        self.check_deadline()
+        return ProviderPage(records, snapshot, sum(item.get('bytes',0) for item in self.ledger[start:]),
+                            ('selected_metadata_list_only',), indexed=True)
 
     def resolve(self, ref):
         if ref.source_id!=self.source_id:raise ValueError('wrong source for Poly Haven provider')

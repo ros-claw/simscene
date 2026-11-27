@@ -20,12 +20,9 @@ class USDCraftProvider(HFManifestProvider):
         super().__init__(store,source,**kwargs)
         if self.entry.path!='manifest.csv' or self.entry.format!='csv':raise ValueError('USDCraft requires pinned manifest.csv')
 
-    @property
-    def snapshot(self):
-        value=super().snapshot
-        # Persist the projection version itself. Presence of fields cannot tell
-        # whether an older projector computed articulated contradictions safely.
-        return value if value.endswith(USDCRAFT_PROJECTION_SUFFIX) else 'index_not_refreshed'
+    def _valid_snapshot(self, snapshot):
+        # The version identifies the projector that computed these facts.
+        return super()._valid_snapshot(snapshot) and snapshot.endswith(USDCRAFT_PROJECTION_SUFFIX)
 
     def snapshot_identity(self, payload):
         # The projection and its records are published in one SQLite transaction.
@@ -42,10 +39,8 @@ class USDCraftProvider(HFManifestProvider):
 
     def search(self, request):
         page = super().search(request)
-        if page.snapshot == 'index_not_refreshed':
-            raise MetadataError('USDCraft metadata index changed during search')
         return ProviderPage(tuple(self.reproject(record) for record in page.items), page.snapshot,
-                            bytes_read=page.bytes_read, warnings=page.warnings)
+                            bytes_read=page.bytes_read, warnings=page.warnings, indexed=True)
 
     def resolve(self, ref):
         if ref.source_id != self.source_id:

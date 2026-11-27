@@ -4,7 +4,8 @@ import os
 from pathlib import Path
 
 DEFAULTS = {
-    'schema_version': 1, 'search_deadline_seconds': 12, 'metadata_max_bytes': 32*1024**2,
+    'schema_version': 1, 'search_deadline_seconds': 12, 'refresh_deadline_seconds': 60,
+    'metadata_max_bytes': 32*1024**2,
     'asset_download_bytes': 1024**3, 'scene_download_bytes': 2*1024**3,
     'unpacked_bytes': 4*1024**3, 'staging_bytes': 4*1024**3,
     'prepared_cache_bytes': 4*1024**3,

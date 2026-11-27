@@ -23,9 +23,22 @@ are accepted. The first ABO search retrieves its bounded pinned metadata index;
 Search returns bounded summaries and links to detailed records. The
 NVIDIA adapter requests no inline previews. Opening a preview is a separate
 operation. Search service failures are reported as unavailable/partial results.
-An index transfer that exceeds the configured search deadline also reports a
-timeout; it does not publish a partial index. Retry or explicitly refresh it
-when the source recovers. Cursor pages retain the original query's cost under
+A cold index that exceeds the interactive search deadline reports `timeout`.
+On current source builds, a supported cold source includes a recovery hint
+for the `catalog_refresh` MCP tool. Call it with
+`{"source_id": "abo-glb"}`, then repeat the search. The CLI equivalent is
+`simscene catalog refresh abo-glb`. The completed refresh installs the
+pinned metadata index as a single transaction.
+
+Current source builds give explicit refresh a 60-second download and parsing
+budget. Interactive searches default to 12 seconds. Host settings can set
+`refresh_deadline_seconds` and `search_deadline_seconds` in the V2 JSON
+configuration. For example, with the released dev2 build, a slow cold ABO
+connection can use `{"search_deadline_seconds": 45}` in the file pointed to
+by `SIMSCENE_V2_CONFIG`. The recorded cold worktop run completed that query
+within this budget.
+
+Cursor pages retain the original query's cost under
 `budgets.metadata_bytes`; use `budgets.request_metadata_bytes` and
 `request_preview_bytes` for per-call transfer accounting. Cached cursor pages
 make no network requests.
